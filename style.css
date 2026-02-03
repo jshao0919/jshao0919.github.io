@@ -5,6 +5,9 @@ body {
     padding: 20px;
     line-height: 1.6;
 }
+.profile-pic {
+    width: 150px;
+}
 
 h1 { color: #2c3e50; }
 h2 { color: #34495e; }
