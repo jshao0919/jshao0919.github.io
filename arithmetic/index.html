@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Timed mental arithmetic practice with automatic score history and insights into your slowest problems."
+    />
+    <title>Arithmetic Lab · Mathjock</title>
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <header class="site-header wrap">
+      <a class="brand" href="../index.html"
+        ><span class="brand-mark" aria-hidden="true">m.</span> Mathjock
+        <span class="brand-divider">/</span>
+        <span class="brand-section">Arithmetic lab</span></a
+      >
+      <a class="back-link" href="../index.html"
+        >Back to the site
+        <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 19 19 5M5 5h14v14" /></svg
+      ></a>
+    </header>
+
+    <main class="wrap">
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">
+            <span class="little-dot"></span> A little practice, every day
+          </p>
+          <h1 id="page-title">
+            Small reps.<br /><span>Sharper thinking.</span>
+          </h1>
+          <p class="intro-copy">
+            Your daily workout for mental math. Beat the clock,<br
+              class="desktop-break"
+            />
+            find your rhythm, and watch yourself improve.
+          </p>
+        </div>
+        <div class="intro-note">
+          <span class="note-icon" aria-hidden="true"
+            ><svg class="arrow-icon" viewBox="0 0 24 24">
+              <path d="M5 19 19 5M5 5h14v14" /></svg
+          ></span>
+          <p>Progress adds up.<br /><span>One problem at a time.</span></p>
+        </div>
+      </section>
+
+      <p id="storage-warning" class="notice warning" role="status" hidden></p>
+      <p id="recovery-notice" class="notice" role="status" hidden></p>
+
+      <div class="training-layout">
+        <section class="panel training-panel" aria-labelledby="training-title">
+          <div id="setup-view">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">01 / The workout</p>
+                <h2 id="training-title">Make it your own.</h2>
+              </div>
+              <span class="pill">No calculator needed</span>
+            </div>
+            <form id="settings-form">
+              <fieldset class="operation-fieldset">
+                <legend>Operations</legend>
+                <div class="operation-grid">
+                  <label class="operation"
+                    ><input
+                      type="checkbox"
+                      name="operation"
+                      value="add"
+                      checked
+                    /><span><b aria-hidden="true">+</b>Addition</span></label
+                  >
+                  <label class="operation"
+                    ><input
+                      type="checkbox"
+                      name="operation"
+                      value="subtract"
+                      checked
+                    /><span><b aria-hidden="true">−</b>Subtraction</span></label
+                  >
+                  <label class="operation"
+                    ><input
+                      type="checkbox"
+                      name="operation"
+                      value="multiply"
+                      checked
+                    /><span
+                      ><b aria-hidden="true">×</b>Multiplication</span
+                    ></label
+                  >
+                  <label class="operation"
+                    ><input
+                      type="checkbox"
+                      name="operation"
+                      value="divide"
+                      checked
+                    /><span><b aria-hidden="true">÷</b>Division</span></label
+                  >
+                </div>
+              </fieldset>
+              <div class="duration-row">
+                <label for="duration">Round length <span>seconds</span></label
+                ><input
+                  id="duration"
+                  name="duration"
+                  type="number"
+                  min="15"
+                  max="600"
+                  step="1"
+                  value="120"
+                  required
+                />
+              </div>
+              <details class="range-details">
+                <summary>
+                  Customize number ranges <span aria-hidden="true">+</span>
+                </summary>
+                <div class="range-fields">
+                  <p>
+                    Addition uses two numbers in its range. Subtraction reverses
+                    addition, so answers stay nonnegative. Division reverses
+                    multiplication, so answers stay whole.
+                  </p>
+                  <div class="range-row">
+                    <span>Addition operands</span
+                    ><label
+                      ><span class="sr-only">Addition minimum</span
+                      ><input
+                        name="additionMin"
+                        type="number"
+                        min="0"
+                        max="1000"
+                        value="2"
+                        required /></label
+                    ><span>to</span
+                    ><label
+                      ><span class="sr-only">Addition maximum</span
+                      ><input
+                        name="additionMax"
+                        type="number"
+                        min="0"
+                        max="1000"
+                        value="100"
+                        required
+                    /></label>
+                  </div>
+                  <div class="range-row">
+                    <span>First factor</span
+                    ><label
+                      ><span class="sr-only">First factor minimum</span
+                      ><input
+                        name="multiplicationMin"
+                        type="number"
+                        min="1"
+                        max="1000"
+                        value="2"
+                        required /></label
+                    ><span>to</span
+                    ><label
+                      ><span class="sr-only">First factor maximum</span
+                      ><input
+                        name="multiplicationMax"
+                        type="number"
+                        min="1"
+                        max="1000"
+                        value="12"
+                        required
+                    /></label>
+                  </div>
+                  <div class="range-row">
+                    <span>Second factor</span
+                    ><label
+                      ><span class="sr-only">Second factor minimum</span
+                      ><input
+                        name="multiplierMin"
+                        type="number"
+                        min="1"
+                        max="1000"
+                        value="2"
+                        required /></label
+                    ><span>to</span
+                    ><label
+                      ><span class="sr-only">Second factor maximum</span
+                      ><input
+                        name="multiplierMax"
+                        type="number"
+                        min="1"
+                        max="1000"
+                        value="100"
+                        required
+                    /></label>
+                  </div>
+                </div>
+              </details>
+              <p id="form-error" class="form-error" role="alert" hidden></p>
+              <button class="button primary start-button" type="submit">
+                Start a round <span aria-hidden="true">→</span>
+              </button>
+              <p class="form-footnote">
+                Correct answers advance automatically. Keyboard ready.
+              </p>
+            </form>
+          </div>
+
+          <div id="game-view" hidden>
+            <div class="game-top">
+              <p class="eyebrow">
+                <span class="live-dot"></span> Round in progress
+              </p>
+              <button id="end-round" class="text-button" type="button">
+                End early
+              </button>
+            </div>
+            <div class="game-numbers">
+              <div>
+                <span class="metric-label">Time left</span
+                ><strong id="time-left">2:00</strong>
+              </div>
+              <div class="score-number">
+                <span class="metric-label">Correct</span
+                ><strong id="live-score">0</strong>
+              </div>
+            </div>
+            <div class="timer-track"><div id="timer-fill"></div></div>
+            <div class="problem-area">
+              <p class="eyebrow">Find your rhythm</p>
+              <p
+                id="problem"
+                class="problem"
+                aria-live="polite"
+                aria-atomic="true"
+              ></p>
+              <label for="answer" class="sr-only">Your answer</label
+              ><input
+                id="answer"
+                class="answer"
+                type="text"
+                inputmode="numeric"
+                autocomplete="off"
+                autocorrect="off"
+                spellcheck="false"
+                placeholder="?"
+                aria-describedby="answer-help answer-feedback"
+              />
+              <p id="answer-feedback" class="answer-feedback" role="status"></p>
+              <p id="answer-help" class="muted">
+                Type your answer to keep going.<br />Press Enter to check. Esc
+                ends the round.
+              </p>
+            </div>
+          </div>
+
+          <div id="result-view" hidden>
+            <p class="eyebrow" id="result-eyebrow">Round complete</p>
+            <h2 id="result-title" tabindex="-1">That’s a good rep.</h2>
+            <div class="result-score">
+              <strong id="result-score">0</strong><span>problems solved</span>
+            </div>
+            <p id="result-message" class="muted"></p>
+            <div class="result-stats">
+              <div>
+                <span>Avg. solve time</span><strong id="result-speed">—</strong>
+              </div>
+              <div>
+                <span>Checked accuracy</span
+                ><strong id="result-accuracy">—</strong>
+              </div>
+              <div>
+                <span>Slowest problem</span
+                ><strong id="result-slowest">—</strong>
+              </div>
+            </div>
+            <p id="saved-status" class="save-status" role="status"></p>
+            <div class="result-actions">
+              <button id="play-again" class="button primary" type="button">
+                Go again
+                <svg class="arrow-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 19 19 5M5 5h14v14" />
+                </svg></button
+              ><button
+                id="edit-settings"
+                class="button secondary"
+                type="button"
+              >
+                Change settings
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <aside class="side-stack">
+          <section
+            class="panel overview-panel"
+            aria-labelledby="overview-title"
+          >
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">The big picture</p>
+                <h2 id="overview-title">Your numbers.</h2>
+              </div>
+              <span class="small-icon" aria-hidden="true"
+                ><svg class="arrow-icon" viewBox="0 0 24 24">
+                  <path d="M5 19 19 5M5 5h14v14" /></svg
+              ></span>
+            </div>
+            <p id="overview-scope" class="muted small">
+              Completed rounds · current setup
+            </p>
+            <dl class="overview-stats">
+              <div>
+                <dt>Personal best</dt>
+                <dd id="best-score">—<span>correct</span></dd>
+              </div>
+              <div>
+                <dt>Rounds completed</dt>
+                <dd id="round-count">0</dd>
+              </div>
+              <div>
+                <dt>Average score</dt>
+                <dd id="average-score">—</dd>
+              </div>
+              <div>
+                <dt>Avg. solve time</dt>
+                <dd id="average-speed">—</dd>
+              </div>
+            </dl>
+            <div class="local-badge">
+              <span aria-hidden="true">◉</span>
+              <p>
+                Saved automatically in this browser.<br /><span
+                  >No account. No cross-device sync.</span
+                >
+              </p>
+            </div>
+          </section>
+          <section class="tip-card">
+            <span class="tip-icon" aria-hidden="true">✳</span>
+            <p class="eyebrow">Build a habit</p>
+            <h3>Consistency beats<br />cramming.</h3>
+            <p>
+              Try a two-minute round each day. Your history will help you spot
+              the small wins.
+            </p>
+          </section>
+        </aside>
+      </div>
+
+      <section class="panel progress-panel" aria-labelledby="progress-title">
+        <div class="panel-heading progress-heading">
+          <div>
+            <p class="eyebrow">02 / The progress</p>
+            <h2 id="progress-title">See the work add up.</h2>
+          </div>
+          <div class="filters">
+            <label
+              ><span class="sr-only">History settings filter</span
+              ><select id="profile-filter">
+                <option value="current">Current setup</option>
+                <option value="all">All setups</option>
+              </select></label
+            ><label
+              ><span class="sr-only">History date filter</span
+              ><select id="date-filter">
+                <option value="all">All time</option>
+                <option value="7">Last 7 days</option>
+                <option value="30">Last 30 days</option>
+                <option value="90">Last 90 days</option>
+              </select></label
+            >
+          </div>
+        </div>
+        <p id="comparison-note" class="muted small">
+          Comparing rounds with the same operations, ranges, and duration.
+        </p>
+        <div id="chart-empty" class="empty-state">
+          <span aria-hidden="true"
+            ><svg class="arrow-icon" viewBox="0 0 24 24">
+              <path d="M5 19 19 5M5 5h14v14" /></svg
+          ></span>
+          <h3>Your first round is a starting point.</h3>
+          <p>
+            Finish a round to start your score history.<br />Every session is
+            another step forward.
+          </p>
+        </div>
+        <div id="chart-container" hidden>
+          <div class="chart-legend">
+            <span><i class="legend-dot"></i>Correct answers</span
+            ><span><i class="legend-line"></i>Last 5 rounds average</span>
+          </div>
+          <div id="score-chart" class="score-chart"></div>
+          <p id="chart-info" class="chart-info" aria-live="polite">
+            Focus or hover over a point to explore a round.
+          </p>
+        </div>
+      </section>
+
+      <section class="panel analysis-panel" aria-labelledby="analysis-title">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">03 / The sticking points</p>
+            <h2 id="analysis-title">Know what slows you down.</h2>
+          </div>
+          <span class="pill">Time each problem</span>
+        </div>
+        <p class="muted section-description">
+          Slowest average times across the selected history. Includes unfinished
+          problems and rounds ended early; their times are lower bounds.
+        </p>
+        <div id="analysis-empty" class="compact-empty">
+          Your problem timings will appear here after a round.
+        </div>
+        <div id="analysis-content" hidden>
+          <div id="operation-stats" class="operation-stats"></div>
+          <div class="table-scroll">
+            <table class="problem-table">
+              <caption class="sr-only">
+                Slowest problems in selected history, including unfinished
+                attempts
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Problem</th>
+                  <th scope="col">Avg. time</th>
+                  <th scope="col">Slowest</th>
+                  <th scope="col">Attempts</th>
+                  <th scope="col">Wrong checks</th>
+                </tr>
+              </thead>
+              <tbody id="slow-problems"></tbody>
+            </table>
+          </div>
+          <p class="muted small">
+            Showing up to 10 slowest problems. “Unfinished” means the timer or
+            round ended before an answer. Wrong checks count only incorrect
+            answers submitted with Enter.
+          </p>
+        </div>
+      </section>
+
+      <section class="panel history-panel" aria-labelledby="history-title">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">The training log</p>
+            <h2 id="history-title">Round by round.</h2>
+          </div>
+          <div class="history-actions">
+            <button id="export-history" class="text-button" type="button">
+              Export backup <span aria-hidden="true">↓</span></button
+            ><label class="text-button import-label" for="import-history"
+              >Import backup <span aria-hidden="true">↑</span></label
+            ><input
+              id="import-history"
+              class="sr-only"
+              type="file"
+              accept=".json,application/json"
+            />
+          </div>
+        </div>
+        <p id="backup-status" class="muted small" role="status"></p>
+        <div id="history-empty" class="compact-empty">
+          No rounds in this history yet. Let’s change that.
+        </div>
+        <div id="history-content" class="table-scroll" hidden>
+          <table class="history-table">
+            <caption class="sr-only">
+              Most recent rounds matching selected history
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Score</th>
+                <th scope="col">Time</th>
+                <th scope="col">Operations</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody id="history-rows"></tbody>
+          </table>
+        </div>
+        <p id="history-count" class="muted small"></p>
+        <p class="privacy-note">
+          History is stored on this device and browser only. Clearing browser
+          data removes it. Export a backup to keep a copy or move it to another
+          device.
+          <button id="clear-history" class="text-button" type="button">
+            Clear history
+          </button>
+        </p>
+      </section>
+    </main>
+    <footer class="wrap footer">
+      <p>Mathjock <span>·</span> A stronger mind, one rep at a time.</p>
+      <p>
+        Inspired by
+        <a
+          href="https://arithmetic.zetamac.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Zetamac Arithmetic</a
+        >.
+      </p>
+    </footer>
+    <noscript
+      ><p class="wrap notice">
+        Enable JavaScript to play and track your arithmetic practice.
+      </p></noscript
+    >
+  </body>
+</html>
