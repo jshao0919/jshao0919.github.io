@@ -8,11 +8,13 @@ import tempfile
 import zipfile
 
 ROOT = Path(__file__).resolve().parent
-TARGETS = [f"ross-section-{section:02}" for section in range(7, 13)] + [
+TARGETS = [f"ross-section-{section:02}" for section in range(7, 17)] + [
+    "ross-chapter-2", "ross-chapter-2-sections-13-16",
     "ross-chapter-2-sections-7-12", "ross-chapter-2-sections-11-12",
     "ross-chapter-2-sections-7-10", "ross-chapter-2-sections-9-10",
     "ross-chapter-2-sections-7-8"]
-EXPECTED = {7: 5, 8: 10, 9: 18, 10: 12, 11: 11, 12: 14}
+EXPECTED = {7: 5, 8: 10, 9: 18, 10: 12, 11: 11, 12: 14,
+            13: 15, 14: 14, 15: 8, 16: 10}
 
 
 def expanded_source(path, ancestors=()):
@@ -58,7 +60,7 @@ def main():
             pdf = output / f"{target}.pdf"
             if not pdf.is_file() or not pdf.read_bytes().startswith(b"%PDF-"):
                 raise SystemExit(f"{target}: expected a valid PDF.")
-            print(f"Compiled {target}.pdf ({pdf.stat().st_size:,} bytes)")
+            print(f"Compiled {target}.pdf ({pdf.stat().st_size:,} bytes)", flush=True)
         for target in TARGETS:
             shutil.copyfile(output / f"{target}.pdf", ROOT / f"{target}.pdf")
     source_files = sorted(ROOT.glob("*.tex")) + [ROOT / "README.md", ROOT / "build.py"]

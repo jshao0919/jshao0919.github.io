@@ -1,0 +1,563 @@
+\section{Decimal expansions of real numbers}
+\label{sec:decimal-expansions}
+A bar marks exactly the digits that repeat. Thus
+$0.0\overline{2}=0.02222\ldots$, whereas
+$0.\overline{02}=0.020202\ldots$.
+A terminating decimal is understood to continue with zeros.
+For a decimal $K.d_1d_2\cdots$, its value means the convergent series
+\[
+ K+\sum_{j=1}^{\infty}d_j10^{-j},\qquad 0\le d_j\le9.
+\]
+Convergence follows by comparison with the geometric series
+$\sum_{j=1}^{\infty}9\cdot10^{-j}=1$.
+Theorem~16.3 describes the only possible ambiguity: a positive
+terminating decimal also has a representation ending in nines.
+
+\exercise{16.1}{Two expansions for eleven fourths}
+\goal Verify both decimal representations in part (a), and identify
+which one long division produces in part (b).
+
+\step{(a) Evaluate the expansion ending in zeros.}
+The expression $2.75\overline{0}$ means
+\[
+ 2+\frac7{10}+\frac5{100}
+ =\frac{200+70+5}{100}
+ =\frac{275}{100}=\frac{11}{4}.
+\]
+Every remaining term is zero, so there is no additional contribution.
+
+\step{(a) Evaluate the expansion ending in nines.}
+In $2.74\overline{9}$ the first nine is in the third decimal place.
+The sum of the nines is
+\[
+ \sum_{j=3}^{\infty}9\cdot10^{-j}
+ =9\cdot10^{-3}\sum_{k=0}^{\infty}(10^{-1})^k
+ =\frac{9\cdot10^{-3}}{1-10^{-1}}
+ =\frac1{100}.
+\]
+Consequently
+\[
+ 2.74\overline{9}
+ =2+\frac7{10}+\frac4{100}+\frac1{100}
+ =2+\frac7{10}+\frac5{100}
+ =\frac{11}{4}.
+\]
+The extra tail of nines supplies exactly the missing hundredth.
+
+\step{(b) Carry out the long division.}
+First $11=4\cdot2+3$, so the integer part is $2$ and the initial
+remainder is $3$. Multiplying the remainder by ten gives
+\[
+ 30=4\cdot7+2,\qquad 20=4\cdot5+0.
+\]
+The successive decimal digits are therefore $7$ and $5$, after
+which the remainder is zero. All subsequent divisions have
+$10\cdot0=4\cdot0+0$, so all subsequent digits are zero.
+\answer{Both $2.74\overline9$ and $2.75\overline0$ equal $11/4$.
+The long division algorithm produces $2.75\overline0$.}
+
+\exercise{16.2}{Trading a terminating tail for a tail of nines}
+\goal Verify the two identities in the opening paragraph of the
+proof of Theorem~16.3: the identity for a positive integer, and the
+identity for a decimal with a last nonzero digit.
+
+\step{First calculate a general tail of nines.}
+For any integer $r\ge0$, a geometric series gives
+\[
+ \sum_{j=r+1}^{\infty}9\cdot10^{-j}
+ =\frac{9\cdot10^{-(r+1)}}{1-10^{-1}}
+ =10^{-r}.
+\]
+In particular, when $r=0$ this tail has value $1$.
+
+\step{A positive integer has the asserted alternative representation.}
+Let $K$ be a positive integer. Then $K-1$ is a nonnegative integer,
+so it is an allowed integer part for a nonnegative decimal. The
+tail formula with $r=0$ gives
+\[
+ (K-1).\overline9
+ =(K-1)+\sum_{j=1}^{\infty}9\cdot10^{-j}
+ =(K-1)+1=K=K.\overline0.
+\]
+These digit strings are distinct even though their values agree.
+
+\step{A last nonzero digit can be reduced by one.}
+Suppose
+\[
+ x=K.d_1\cdots d_{r-1}d_r\overline0,\qquad r\ge1,
+ \qquad d_r\in\{1,\ldots,9\}.
+\]
+The condition $d_r\ne0$ makes $d_r-1$ an allowed digit. The value
+of the proposed other expansion is
+\[
+ \begin{aligned}
+ &K+\sum_{j=1}^{r-1}d_j10^{-j}
+       +(d_r-1)10^{-r}+\sum_{j=r+1}^{\infty}9\cdot10^{-j}\\
+ &\qquad=K+\sum_{j=1}^{r-1}d_j10^{-j}
+       +(d_r-1)10^{-r}+10^{-r}\\
+ &\qquad=K+\sum_{j=1}^{r-1}d_j10^{-j}+d_r10^{-r}=x.
+ \end{aligned}
+\]
+Thus decreasing the last nonzero digit by one and replacing the
+following zeros by nines preserves the represented number.
+
+\step{Check the zero case separately.}
+The first identity requires $K>0$, and the second requires a last
+nonzero digit. Neither condition holds for $0.\overline0$.
+Indeed, if a nonnegative decimal represents zero, its nonnegative
+integer part must be zero. Every digit must then be zero too:
+a positive digit $d_j$ would contribute the positive amount
+$d_j10^{-j}$ to a sum of nonnegative terms. Hence zero has just
+the expansion $0.\overline0$.
+\answer{The two claimed alternative expansions follow from the
+geometric tail identity. Every positive terminating decimal has
+the indicated second expansion; zero is the exceptional case.}
+
+\exercise{16.3}{Strict comparison of convergent nonnegative series}
+\goal Suppose $\sum a_n$ and $\sum b_n$ converge, all their terms
+are nonnegative, $a_n\le b_n$ for every $n$, and $a_m<b_m$ at
+at least one index $m$. Prove the inequality of their sums is strict.
+
+\idea Keep the positive gap at that one index when passing from
+finite sums to infinite sums. A strict inequality at each partial
+sum alone would not guarantee a strict inequality of limits.
+
+\step{Name the sums and the fixed positive gap.}
+Write
+\[
+ A=\sum_{n=1}^{\infty}a_n,\qquad
+ B=\sum_{n=1}^{\infty}b_n,\qquad
+ \delta=b_m-a_m>0.
+\]
+Both $A$ and $B$ are finite by hypothesis. For every $N\ge m$,
+\[
+ \sum_{n=1}^{N}b_n-\sum_{n=1}^{N}a_n
+ =\sum_{n=1}^{N}(b_n-a_n)
+ \ge b_m-a_m=\delta.
+\]
+The inequality holds because all the other differences are
+nonnegative; deleting them cannot increase the sum.
+
+\step{Take the limit with the gap still present.}
+The difference rule for limits gives
+\[
+ B-A=\lim_{N\to\infty}
+ \left(\sum_{n=1}^{N}b_n-\sum_{n=1}^{N}a_n\right)\ge\delta>0.
+\]
+Here the weak inequality is preserved by passage to finite limits,
+and the final strict inequality comes from the fixed number
+$\delta$, which does not shrink with $N$.
+\answer{$\displaystyle\sum_{n=1}^{\infty}a_n
+<\sum_{n=1}^{\infty}b_n$.}
+
+\exercise{16.4}{Converting six repeating decimals to fractions}
+\goal Express each given repeating decimal as a fraction of integers.
+\idea Group the repeated block as an integer and use a geometric
+series. A block of $r$ digits with integer value $D$, repeated
+immediately after the decimal point, represents
+\[
+ \frac{D}{10^r}+\frac{D}{10^{2r}}+\cdots
+ =\frac{D10^{-r}}{1-10^{-r}}=\frac{D}{10^r-1}.
+\]
+A leading zero counts as a digit of the block: the block $02$ has
+length two and integer value $2$.
+
+\step{(a) The decimal $0.\overline2$.}
+Here the block has length one and value $2$, so
+\[
+ 0.\overline2=\frac2{10-1}=\boxed{\frac29}.
+\]
+
+\step{(b) The decimal $0.0\overline2$.}
+Only the digit $2$ repeats; the first decimal digit is the single
+nonrepeating zero. Moving the decimal point one place right gives
+$10x=0.\overline2=2/9$, where $x=0.0\overline2$. Therefore
+\[
+ x=\frac1{10}\frac29=\frac2{90}=\boxed{\frac1{45}}.
+\]
+This differs from part (c), where the zero repeats as part of the block.
+
+\step{(c) The decimal $0.\overline{02}$.}
+The repeated block has length two, so
+\[
+ 0.\overline{02}=\frac2{10^2-1}=\boxed{\frac2{99}}.
+\]
+
+\step{(d) The decimal $3.\overline{14}$.}
+Separate the integer part before evaluating the length-two block:
+\[
+ 3.\overline{14}=3+\frac{14}{99}
+ =\frac{297+14}{99}=\boxed{\frac{311}{99}}.
+\]
+
+\step{(e) The decimal $0.\overline{10}$.}
+The block is $10$, of length two and integer value $10$. Hence
+\[
+ 0.\overline{10}=\boxed{\frac{10}{99}}.
+\]
+
+\step{(f) The decimal $0.\overline{1492}$.}
+This block has length four and integer value $1492$, giving
+\[
+ 0.\overline{1492}=\frac{1492}{10^4-1}
+ =\boxed{\frac{1492}{9999}}.
+\]
+\answer{The six fractions, in order, are
+$2/9$, $1/45$, $2/99$, $311/99$, $10/99$, and $1492/9999$.}
+
+\exercise{16.5}{Decimal expansions of six rational numbers}
+\goal Find the decimal expansions of the six prescribed fractions.
+For terminating values, include both expansions supplied by
+Theorem~16.3.
+
+\step{(a) Expand $1/8$.}
+At each stage divide ten times the current remainder by $8$:
+\[
+ 10=8\cdot1+2,\qquad
+ 20=8\cdot2+4,\qquad
+ 40=8\cdot5+0.
+\]
+The quotients give digits $1,2,5$. A zero remainder produces zeros
+forever. Reducing the last nonzero digit by one gives the other
+expansion, so
+\[
+ \boxed{\frac18=0.125\overline0=0.124\overline9}.
+\]
+
+\step{(b) Expand $1/16$.}
+The successive divisions are
+\[
+ \begin{aligned}
+ 10&=16\cdot0+10,&100&=16\cdot6+4,\\
+ 40&=16\cdot2+8,&80&=16\cdot5+0.
+ \end{aligned}
+\]
+The initial quotient zero matters: it is the first decimal digit.
+The digits are $0,6,2,5$, followed by zeros. Thus
+\[
+ \boxed{\frac1{16}=0.0625\overline0=0.0624\overline9}.
+\]
+
+\step{(c) Expand $2/3$.}
+The first division is $20=3\cdot6+2$. The new remainder is the
+original remainder $2$, so the same digit $6$ and remainder $2$
+recur at every step. Therefore
+\[
+ \boxed{\frac23=0.\overline6}.
+\]
+As a check, the geometric-series formula gives
+$0.\overline6=6/9=2/3$.
+
+\step{(d) Expand $7/9$.}
+Here $70=9\cdot7+7$. The remainder $7$ returns immediately, so
+every digit is $7$:
+\[
+ \boxed{\frac79=0.\overline7}.
+\]
+
+\step{(e) Expand $6/11$.}
+The divisions $60=11\cdot5+5$ and $50=11\cdot4+6$ return to the
+initial remainder $6$ after the two digits $5,4$. Hence
+\[
+ \boxed{\frac6{11}=0.\overline{54}}.
+\]
+The block formula confirms $54/99=6/11$.
+
+\step{(f) Expand $22/7$.}
+First $22=7\cdot3+1$, giving integer part $3$ and remainder $1$.
+The next six divisions are
+\[
+ \begin{aligned}
+ 10&=7\cdot1+3,&30&=7\cdot4+2,\\
+ 20&=7\cdot2+6,&60&=7\cdot8+4,\\
+ 40&=7\cdot5+5,&50&=7\cdot7+1.
+ \end{aligned}
+\]
+The remainder has returned to $1$, so the six-digit block repeats:
+\[
+ \boxed{\frac{22}{7}=3.\overline{142857}}.
+\]
+
+\step{Account for all possible expansions.}
+The last four displayed expansions have neither an eventual tail
+of zeros nor an eventual tail of nines. Theorem~16.3 says they
+are unique. The first two are positive terminating decimals, so
+the two representations displayed in each of (a) and (b) are
+their only representations.
+\answer{The expansions are the six boxed answers above, including
+both representations in the two terminating cases.}
+
+\exercise{16.6}{The cyclic decimal blocks for the sevenths}
+\goal Find the expansions of $1/7,2/7,\ldots,6/7$ and explain
+the pattern in their repeating blocks.
+
+\step{Record the long division rule once for each possible nonzero remainder.}
+For a current remainder $r$, the next digit $d$ and next remainder
+$r'$ satisfy $10r=7d+r'$ with $0\le r'<7$.
+The six possible nonzero remainders give
+\[
+\begin{array}{c|rrrrrr}
+ r&1&2&3&4&5&6\\ \hline
+ d&1&2&4&5&7&8\\
+ r'&3&6&2&5&1&4
+\end{array}
+\]
+For instance, the entry $r=3$ comes from $30=7\cdot4+2$,
+so the next digit is $4$ and the next remainder is $2$.
+
+\step{Follow the cycle starting from remainder one.}
+The remainder rule traces
+\[
+ 1\longmapsto3\longmapsto2\longmapsto6
+ \longmapsto4\longmapsto5\longmapsto1.
+\]
+The digits produced on these six steps are respectively
+$1,4,2,8,5,7$. All six remainders in the cycle are distinct,
+so returning to the initial remainder takes exactly six steps.
+
+\step{Start the same cycle at each of the other remainders.}
+The fraction $a/7$ begins with remainder $a$, for $a=1,\ldots,6$.
+Starting the displayed cycle at that remainder gives
+\[
+ \begin{array}{c|c|c}
+ \text{Fraction}&\text{Remainders before the successive digits}
+                &\text{Expansion}\\ \hline
+ 1/7&1,3,2,6,4,5&0.\overline{142857}\\
+ 2/7&2,6,4,5,1,3&0.\overline{285714}\\
+ 3/7&3,2,6,4,5,1&0.\overline{428571}\\
+ 4/7&4,5,1,3,2,6&0.\overline{571428}\\
+ 5/7&5,1,3,2,6,4&0.\overline{714285}\\
+ 6/7&6,4,5,1,3,2&0.\overline{857142}
+ \end{array}
+\]
+Each row returns to its initial remainder after the six digits,
+so the same block repeats forever. These expansions are unique
+because none has an eventual tail of zeros or nines.
+\answer{The six blocks are cyclic rotations of $142857$.
+Long division uses the same cycle of six nonzero remainders,
+with a different starting position for each fraction.}
+
+\exercise{16.7}{The decimal formed by concatenating integers}
+\goal Decide whether the number
+\[
+ c=0.1234567891011121314151617181920212223\cdots
+\]
+is rational. Here its digits are obtained by writing $1,2,3,\ldots$
+in their ordinary decimal notation and concatenating those strings.
+
+\idea Prove this digit string is not eventually periodic. It has
+arbitrarily long strings of zeros arbitrarily far out, but it also
+has nonzero digits arbitrarily far out. Both facts are needed:
+a decimal ending in zeros would have the first property alone.
+
+\step{Find long zero strings after any prescribed position.}
+For every positive integer $m$, the integer $10^m$ appears in the
+concatenation. Its ordinary decimal notation is the digit $1$
+followed by $m$ zeros. As $m$ increases, the starting positions
+of these integers go arbitrarily far out: before writing $10^m$,
+we have already written the $10^m-1$ preceding positive integers,
+each of which contributes at least one digit.
+Thus, after any specified digit position and for any specified
+length $p$, there is a string of at least $p$ consecutive zeros.
+Choose $m\ge p$ large enough that the occurrence of $10^m$
+starts after that position.
+
+\step{Find nonzero digits after any prescribed position.}
+The initial digit $1$ in each of those occurrences of $10^m$ is
+nonzero, and these occurrences start arbitrarily far out.
+Consequently the decimal does not eventually consist only of zeros.
+It does not eventually consist only of nines either, since zero
+strings also occur arbitrarily far out.
+
+\step{Rule out an eventual repeating block.}
+Suppose the digits were periodic with period $p\ge1$ after some
+position $N$. If the repeating block contained only zeros, all
+digits beyond $N$ would be zero, contradicting the preceding step.
+Otherwise the block contains a nonzero digit. Every run of $p$
+consecutive positions beyond $N$ passes through every position of
+the repeating block once, so it must contain a nonzero digit.
+But the first step supplies a run of $p$ zeros entirely beyond
+$N$. This is a contradiction in both cases.
+
+\step{Apply the decimal characterization of rational numbers.}
+The given decimal is not eventually periodic. By Theorem~16.5,
+a rational number has a repeating decimal expansion; by
+Theorem~16.3 its only possible second expansion would have tails
+of zeros and nines. Those tails have already been excluded here.
+Therefore the displayed decimal cannot represent a rational number.
+\answer{The concatenation decimal is irrational.}
+
+\exercise{16.8}{Constructing a number outside a proposed list}
+\goal Given any sequence $(s_n)$ in $(0,1)$, with selected
+expansions $s_n=0.d_1^{(n)}d_2^{(n)}\cdots$, define
+\[
+ e_n=\begin{cases}
+ 6,&d_n^{(n)}\ne6,\\
+ 7,&d_n^{(n)}=6.
+ \end{cases}
+\]
+Show that $0.e_1e_2\cdots$ represents a number $y\in(0,1)$
+different from every $s_n$.
+
+\step{Check that the new digit string represents a number.}
+Every $e_n$ is either $6$ or $7$, hence an allowed decimal digit.
+Define the partial sums $y_N=\sum_{n=1}^{N}e_n10^{-n}$.
+They increase and are bounded above by the convergent geometric
+series $\sum_{n=1}^{\infty}7\cdot10^{-n}=7/9$.
+The monotone sequence theorem gives a finite limit $y$, which
+by the definition of a decimal is the number $0.e_1e_2\cdots$.
+Termwise comparison of the finite partial sums and passage to
+limits give
+\[
+ \frac23=\sum_{n=1}^{\infty}6\cdot10^{-n}
+ \le y\le\sum_{n=1}^{\infty}7\cdot10^{-n}=\frac79.
+\]
+Because $0<2/3\le7/9<1$, these bounds imply $y\in(0,1)$.
+
+\step{Verify the diagonal difference at every index.}
+Fix $n$. If $d_n^{(n)}\ne6$, the construction gives $e_n=6$,
+so $e_n\ne d_n^{(n)}$. If $d_n^{(n)}=6$, it gives $e_n=7$,
+so again $e_n\ne d_n^{(n)}$.
+Thus the new expansion differs from the selected expansion of
+$s_n$ at least at its $n$th decimal digit.
+
+\step{Explain why different strings cannot secretly represent the same number.}
+Different decimal strings can represent the same real number in
+the zero-tail/nine-tail case of Theorem~16.3. That issue must be
+checked rather than ignored. Every digit of the expansion of $y$
+is $6$ or $7$, so this expansion ends neither in zeros nor in
+nines. Theorem~16.3 therefore makes it the unique expansion of
+$y$. If $y=s_n$, the selected expansion of $s_n$ would be a
+second expansion of $y$ differing at digit $n$, which is impossible.
+Hence $y\ne s_n$ for every $n$.
+
+\step{Interpret the conclusion for a supposed enumeration.}
+If a sequence listed every number in $(0,1)$, the number $y$
+constructed from that sequence would belong to $(0,1)$ and yet
+would be absent from the list. This contradiction proves that
+no such listing exists.
+\answer{The constructed $y$ lies in $(0,1)$ and differs from every
+listed term. Thus $(0,1)$ is uncountable.}
+
+\exercise{16.9}{Existence of Euler's constant}
+\goal For
+\[
+ H_n=\sum_{k=1}^{n}\frac1k,\qquad
+ \gamma_n=H_n-\log n
+ =H_n-\int_1^n\frac{dt}{t},
+\]
+prove (a) $(\gamma_n)$ decreases, (b) $0<\gamma_n\le1$, and
+(c) its limit exists and is finite. The logarithm here is natural.
+
+\step{(a) Subtract two neighboring terms without discarding the logarithm.}
+Since $H_{n+1}=H_n+1/(n+1)$, we have
+\[
+ \begin{aligned}
+ \gamma_n-\gamma_{n+1}
+ &=H_n-\log n-H_n-\frac1{n+1}+\log(n+1)\\
+ &=\int_n^{n+1}\frac{dt}{t}-\frac1{n+1}\\
+ &=\int_n^{n+1}\left(\frac1t-\frac1{n+1}\right)dt.
+ \end{aligned}
+\]
+For $n\le t<n+1$ the integrand is positive, because $t<n+1$
+implies $1/t>1/(n+1)$. It is continuous and positive on the
+interior of this interval, so its integral is strictly positive.
+For an explicit lower estimate, on $[n,n+1/2]$ the integrand
+is at least $1/(n+1/2)-1/(n+1)>0$, and that interval has positive
+length $1/2$. Hence $\gamma_n>\gamma_{n+1}$ for every $n$.
+
+\step{(b) Bound the integral between two rectangle sums.}
+For $t\in[k,k+1]$ with $k\ge1$, reciprocation gives
+\[
+ \frac1{k+1}\le\frac1t\le\frac1k.
+\]
+Integrating over an interval of length one preserves these bounds:
+\[
+ \frac1{k+1}\le\int_k^{k+1}\frac{dt}{t}\le\frac1k.
+\]
+For $n\ge2$, sum from $k=1$ to $k=n-1$ to obtain
+\[
+ H_n-1\le\int_1^n\frac{dt}{t}\le H_n-\frac1n.
+\]
+Subtract the middle expression from $H_n$. Reversal of the
+inequalities under subtraction gives
+\[
+ \frac1n\le\gamma_n\le1.
+\]
+The same conclusion holds for $n=1$ directly:
+$\gamma_1=1-\log1=1$. In particular $\gamma_n>0$ at every index.
+
+\step{(c) Apply monotone convergence with a real lower bound.}
+Part (a) makes $(\gamma_n)$ decreasing, and part (b) bounds it
+below by zero. The monotone sequence theorem therefore gives a
+finite real limit
+\[
+ \gamma=\lim_{n\to\infty}\gamma_n\in[0,1].
+\]
+The fact that the two pieces $H_n$ and $\log n$ both grow without
+bound does not obstruct convergence of their difference. The
+monotonicity and bounds control that difference directly.
+\answer{The sequence is strictly decreasing, satisfies
+$0<\gamma_n\le1$, and has a finite limit called Euler's constant.}
+
+\exercise{16.10}{Irrationality of the indicated powers and roots of pi}
+\goal Starting with the irrationality of $\pi^2$ established in
+Example~6(b), determine what follows for $\pi$, $\sqrt\pi$, and
+$\sqrt[3]\pi$. Also address $\pi^4$ and distinguish the additional
+fact needed for that last conclusion.
+
+\step{Recall the elementary closure property of rational powers.}
+If $q=a/b$ is rational, with $a,b\in\Z$ and $b\ne0$, then for
+every positive integer $m$,
+\[
+ q^m=\frac{a^m}{b^m}\in\Q,
+\]
+since the numerator and denominator are integers and $b^m\ne0$.
+Consequently, if a positive integer power of a number is
+irrational, the number itself must be irrational.
+
+\step{Apply this property to $\pi$ and to its square root.}
+If $\pi$ were rational, its square would be rational, contrary
+to the given result. Therefore $\pi$ is irrational.
+If $\sqrt\pi$ were rational, its square would be $\pi$ and would
+be rational, giving the same contradiction. Equivalently, its
+fourth power is $\pi^2$, which is already known to be irrational.
+Thus $\sqrt\pi$ is irrational too.
+
+\step{Apply the same argument to the cube root.}
+If $\sqrt[3]\pi$ were rational, its cube $\pi$ would be rational.
+Since $\pi$ is irrational, this is impossible. One can also apply
+the closure property directly to the sixth power:
+$(\sqrt[3]\pi)^6=\pi^2$. Hence $\sqrt[3]\pi$ is irrational.
+
+\step{Explain what the premise alone says about $\pi^4$.}
+The implication just used runs from irrationality of a power to
+irrationality of its base. It cannot be reversed: the square of
+an irrational number can be rational. For a concrete comparison,
+let $x=\sqrt[4]{2}$. Then $x^2=\sqrt2$ is irrational, but
+$x^4=2$ is rational. Thus the statement ``$x^2$ is irrational''
+does not by itself imply ``$x^4$ is irrational.'' In particular,
+the given irrationality of $\pi^2$ alone does not settle the
+question about $\pi^4$ by this rational-power argument.
+
+\step{Determine the actual status of $\pi^4$ using the stronger fact stated in the text.}
+Example~6(c) additionally states the deeper theorem that $\pi$
+is not algebraic. This means it is not a zero of any nonzero
+polynomial with integer coefficients. That stated theorem does
+settle the question: if $\pi^4=a/b$ were rational, where
+$a,b\in\Z$ and $b\ne0$, then
+\[
+ b\pi^4-a=0.
+\]
+The polynomial $P(X)=bX^4-a$ has integer coefficients and is
+nonzero because its leading coefficient $b$ is nonzero. The
+displayed equation would make $\pi$ algebraic, contradicting
+Example~6(c). Therefore $\pi^4$ is irrational.
+
+This final step cites the stronger theorem expressly stated in
+the chapter; it is not a consequence of the irrationality of
+$\pi^2$ alone.
+\answer{$\pi$, $\sqrt\pi$, and $\sqrt[3]\pi$ are irrational by
+elementary rational-power arguments from $\pi^2$. The number
+$\pi^4$ is also irrational, using the stronger nonalgebraicity
+result stated in Example~6(c).}

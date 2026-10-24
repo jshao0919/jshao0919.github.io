@@ -10,10 +10,11 @@ the development of the real numbers using Dedekind cuts. The website links to
 the complete chapter PDF, individual section PDFs, and a LaTeX source archive.
 See [the Chapter 1 source and build instructions](solutions/ross/chapter-1/README.md).
 
-[Chapter 2, Sections 7–12](solutions/ross/chapter-2/ross-chapter-2-sections-7-12.pdf)
-covers all 70 exercises from those sections, including explicit calculations,
+[Complete Chapter 2](solutions/ross/chapter-2/ross-chapter-2.pdf)
+covers all 117 exercises in Sections 7–16, including explicit calculations,
 finite and infinite limits, epsilon–N proofs, recursive sequences, monotonicity,
-Cauchy arguments, subsequences, and lim sup/lim inf proofs.
+Cauchy arguments, subsequences, lim sup/lim inf proofs, metric-space topology,
+series and convergence tests, and decimal expansions.
 Individual section PDFs and a LaTeX source archive are
 linked on the website. See
 [the Chapter 2 source and build instructions](solutions/ross/chapter-2/README.md).

@@ -1,0 +1,275 @@
+\exercise{14.1}{Six initial convergence tests}
+\goal Decide convergence for each of the six given series, with a
+reason that checks the hypotheses of the chosen test.
+
+\step{(a) The series with term $n^4/2^n$.}
+Let $a_n=n^4/2^n>0$. Since no term is zero, the successive ratio is
+well defined. Canceling powers gives
+\[
+ \frac{a_{n+1}}{a_n}
+ =\frac{(n+1)^4}{2^{n+1}}\frac{2^n}{n^4}
+ =\frac12\left(1+\frac1n\right)^4
+ \longrightarrow\frac12.
+\]
+The last limit follows from $1/n\to0$ and the finite product limit
+law. Its value is strictly below $1$, so the Ratio Test proves
+absolute convergence. Since the terms are positive, this proves
+convergence of the requested series.
+
+\step{(b) The series with term $2^n/n!$.}
+Put $a_n=2^n/n!>0$. The identity $(n+1)!=(n+1)n!$ yields
+\[
+ \frac{a_{n+1}}{a_n}
+ =\frac{2^{n+1}}{(n+1)!}\frac{n!}{2^n}
+ =\frac{2}{n+1}\longrightarrow0.
+\]
+Here $0<1$, so the Ratio Test proves absolute convergence.
+
+\step{(c) The series with term $n^2/3^n$.}
+With $a_n=n^2/3^n>0$, the same cancellation gives
+\[
+ \frac{a_{n+1}}{a_n}
+ =\frac13\left(1+\frac1n\right)^2\longrightarrow\frac13<1.
+\]
+The Ratio Test again gives absolute convergence. The power of $n$
+in the numerator does not prevent this conclusion because the
+computed ratio limit is strictly less than $1$.
+
+\step{(d) The series with term $n!/(n^4+3)$.}
+Let $a_n=n!/(n^4+3)>0$. Its ratio is
+\[
+ \frac{a_{n+1}}{a_n}
+ =(n+1)\frac{n^4+3}{(n+1)^4+3}
+ =(n+1)\frac{1+3/n^4}{(1+1/n)^4+3/n^4}.
+\]
+The second factor tends to $1$, since its numerator and denominator
+both tend to $1$ and the denominator is never zero. In particular,
+it exceeds $1/2$ eventually. Hence the displayed ratio is eventually
+at least $(n+1)/2$, and therefore tends to $+\infty$.
+The divergent part of the Ratio Test applies, since the ratio
+limit inferior is greater than $1$.
+
+We can also see why the term condition fails. There is $N$ after
+which every ratio is at least $2$. Induction then gives
+$a_{N+k}\ge2^k a_N$, with $a_N>0$, so the terms tend to
+$+\infty$ rather than to zero. The positive partial sums are
+unbounded, and the series diverges to $+\infty$.
+
+\step{(e) The series with term $\cos^2 n/n^2$.}
+The trigonometric bound $-1\le\cos n\le1$ gives
+$0\le\cos^2 n\le1$. Since $n^2>0$, division preserves order:
+\[
+ 0\le\frac{\cos^2 n}{n^2}\le\frac1{n^2}.
+\]
+The comparison series $\sum 1/n^2$ converges by the $p$-series
+criterion with $p=2>1$. The Comparison Test therefore proves
+convergence of the given nonnegative series.
+
+\step{(f) The series with term $1/\log n$, beginning at $n=2$.}
+For $n\ge2$, the logarithm is positive. The elementary logarithm
+bound is
+\[
+ 0<\log n=\int_1^n\frac{dt}{t}\le\int_1^n1\,dt=n-1<n.
+\]
+The integral comparison here only justifies the inequality for one
+logarithm; no integral test for a series is being invoked.
+Taking reciprocals of positive quantities reverses the inequality,
+so $1/\log n\ge1/n$. The harmonic series diverges to $+\infty$,
+and deleting its first term leaves divergent partial sums.
+Thus the Comparison Test proves divergence to $+\infty$.
+
+\answer{Parts (a), (b), (c), and (e) converge absolutely. Parts (d)
+and (f) diverge to $+\infty$.}
+
+\exercise{14.2}{Seven further convergence tests}
+\goal Classify the seven series, explaining the actual numerator
+and denominator in each term before applying a test.
+
+\step{(a) The series with term $(n-1)/n^2$.}
+All terms are nonnegative. For $n\ge2$, the inequality
+$n-1\ge n/2$ follows by subtracting $n/2$ from both sides:
+$n/2-1\ge0$. Therefore
+\[
+ \frac{n-1}{n^2}\ge\frac{n/2}{n^2}=\frac1{2n}\qquad(n\ge2).
+\]
+The series $\sum_{n=2}^{\infty}1/(2n)$ is one half of a tail of
+the harmonic series, so it diverges to $+\infty$. The Comparison
+Test proves divergence to $+\infty$ of the requested series.
+The first term is zero and has no effect on this lower bound for
+the later partial sums.
+
+\step{(b) The series with term $(-1)^n$.}
+Every term has absolute value $1$, so the terms do not tend to zero.
+Corollary~14.5 therefore rules out convergence. Directly, the partial
+sums are $-1,0,-1,0,\ldots$: an odd number of terms gives $-1$,
+and each pair $(-1)+1$ sums to zero. Thus the partial sums have
+two different subsequential limits and do not tend to either infinity.
+
+\step{(c) The series with term $3n/n^3$.}
+Since $n\ne0$, cancellation gives
+$3n/n^3=3/n^2$. The $p$-series $\sum1/n^2$ converges, and
+multiplication of all partial sums by the constant $3$ preserves
+convergence by the constant multiple limit law. Hence this positive
+series converges absolutely.
+
+\step{(d) The series with term $n^3/3^n$.}
+For $a_n=n^3/3^n>0$, compute
+\[
+ \frac{a_{n+1}}{a_n}
+ =\frac13\left(1+\frac1n\right)^3
+ \longrightarrow\frac13<1.
+\]
+All ratios are defined; the Ratio Test gives absolute convergence.
+
+\step{(e) The series with term $n^2/n!$.}
+Put $a_n=n^2/n!>0$. Cancel $n!$ and one factor of $n+1$:
+\[
+ \frac{a_{n+1}}{a_n}
+ =\frac{(n+1)^2}{(n+1)!}\frac{n!}{n^2}
+ =\frac{n+1}{n^2}
+ =\frac1n+\frac1{n^2}\longrightarrow0<1.
+\]
+The Ratio Test proves absolute convergence.
+
+\step{(f) The series with term $1/n^n$.}
+The terms are positive and their positive $n$th roots satisfy
+\[
+ \left(\frac1{n^n}\right)^{1/n}=\frac1n\longrightarrow0.
+\]
+Thus the limit superior of the roots is $0<1$. The convergent
+part of the Root Test proves absolute convergence.
+
+\step{(g) The series with term $n^n/2^n$.}
+Here the positive $n$th root is
+\[
+ \left(\frac{n^n}{2^n}\right)^{1/n}=\frac n2\longrightarrow+\infty.
+\]
+The root limit superior is greater than $1$, so the Root Test
+proves divergence. More explicitly, for $n\ge4$ one has
+$n/2\ge2$, so $(n/2)^n\ge2^n$. These positive terms tend to
+$+\infty$; hence the partial sums do too.
+
+\answer{Parts (c), (d), (e), and (f) converge absolutely.
+Parts (a) and (g) diverge to $+\infty$. Part (b) diverges with
+bounded, oscillating partial sums.}
+
+\exercise{14.3}{Factorials, geometric comparisons, and a periodic term}
+\goal Classify each of the six series and justify convergence or
+failure of the necessary term condition.
+
+\step{(a) The series with term $1/\sqrt{n!}$.}
+Set $a_n=1/\sqrt{n!}>0$. The factorial is inside the square root.
+Using $(n+1)!=(n+1)n!$ and positivity,
+\[
+ \frac{a_{n+1}}{a_n}
+ =\frac{\sqrt{n!}}{\sqrt{(n+1)!}}
+ =\frac1{\sqrt{n+1}}\longrightarrow0.
+\]
+The Ratio Test applies and gives absolute convergence.
+
+\step{(b) The series with term $(2+\cos n)/3^n$.}
+Since $-1\le\cos n\le1$, adding $2$ gives
+$1\le2+\cos n\le3$. Consequently
+\[
+ 0\le\frac{2+\cos n}{3^n}\le\frac3{3^n}.
+\]
+The comparison series is geometric, with positive constant factor
+$3$ and ratio $1/3<1$. It converges, so the Comparison Test
+proves absolute convergence of the given nonnegative series.
+
+\step{(c) The series with term $1/(2^n+n)$.}
+We have $2^n+n\ge2^n>0$. Reciprocation yields
+\[
+ 0<\frac1{2^n+n}\le\frac1{2^n}.
+\]
+The upper comparison is a geometric series of ratio $1/2$,
+so the requested series converges absolutely.
+
+\step{(d) The series with term $(1/2)^n(50+2/n)$.}
+For $n\ge1$, the inequality $0<2/n\le2$ implies
+$0<50+2/n\le52$. Multiply by the positive number $2^{-n}$:
+\[
+ 0<\left(\frac12\right)^n\left(50+\frac2n\right)
+ \le\frac{52}{2^n}.
+\]
+The series on the right is a constant multiple of a convergent
+geometric series. The Comparison Test therefore gives absolute
+convergence. In particular, the expression in parentheses is
+$50+2/n$, with $n$ in the denominator of its second term.
+
+\step{(e) The series with term $\sin(n\pi/9)$.}
+Consider the strictly increasing indices $n_k=18k+3$,
+$k\in\N$. The corresponding terms are
+\[
+ \sin\left(\frac{(18k+3)\pi}{9}\right)
+ =\sin(2k\pi+\pi/3)=\sin(\pi/3)=\frac{\sqrt3}{2}.
+\]
+This nonzero constant subsequence prevents the whole term sequence
+from tending to zero: every subsequence of a sequence tending to
+zero would also tend to zero. Thus Corollary~14.5 proves that the
+series diverges. A term test does not require the terms to be
+nonnegative or the partial sums to tend to $+\infty$.
+
+\step{(f) The series with term $100^n/n!$.}
+For $a_n=100^n/n!>0$, factorial cancellation gives
+\[
+ \frac{a_{n+1}}{a_n}=\frac{100}{n+1}\longrightarrow0<1.
+\]
+The Ratio Test gives absolute convergence, despite the relatively
+large fixed base $100$ in the numerator.
+
+\answer{Every series in this exercise except (e) converges
+absolutely. Part (e) diverges because its terms do not tend to zero.}
+
+\exercise{14.4}{Oscillating denominators, telescoping roots, and factorials}
+\goal Classify the three series, keeping track of the starting
+index and the placement of the powers.
+
+\step{(a) The series with term $1/[n+(-1)^n]^2$, for $n\ge2$.}
+For these indices,
+\[
+ n+(-1)^n\ge n-1\ge\frac n2>0.
+\]
+The middle inequality is equivalent to $n\ge2$. Because both
+sides are positive, squaring preserves order and taking reciprocals
+reverses it. We obtain
+\[
+ 0<\frac1{[n+(-1)^n]^2}\le\frac4{n^2}\qquad(n\ge2).
+\]
+The comparison series converges by the $p$-series criterion with
+$p=2$ and the constant multiple limit law. Hence the given series
+converges absolutely. Beginning at $n=2$ also avoids the zero
+denominator that would occur at $n=1$.
+
+\step{(b) The series with term $\sqrt{n+1}-\sqrt n$.}
+Each term is positive. Its $N$th partial sum telescopes:
+\[
+ \begin{aligned}
+ \sum_{n=1}^{N}(\sqrt{n+1}-\sqrt n)
+ &=(\sqrt2-1)+(\sqrt3-\sqrt2)+\cdots
+     +(\sqrt{N+1}-\sqrt N)\\
+ &=\sqrt{N+1}-1.
+ \end{aligned}
+\]
+All intermediate square roots cancel exactly in this finite sum.
+For a given $M>0$, any $N>(M+1)^2$ makes the last expression
+greater than $M$. Thus the partial sums tend to $+\infty$ and
+the series diverges to $+\infty$. Individual terms tending to
+zero would not change this conclusion about the partial sums.
+
+\step{(c) The series with term $n!/n^n$.}
+Let $a_n=n!/n^n>0$. The ratio simplifies as follows:
+\[
+ \begin{aligned}
+ \frac{a_{n+1}}{a_n}
+ &=\frac{(n+1)!}{(n+1)^{n+1}}\frac{n^n}{n!}
+ =\frac{(n+1)n^n}{(n+1)^{n+1}}\\
+ &=\left(\frac{n}{n+1}\right)^n
+ =\frac1{(1+1/n)^n}.
+ \end{aligned}
+\]
+Exercise~12.14 justified $(1+1/n)^n\to e$ with finite $e\ge2$.
+The reciprocal limit law therefore gives ratio limit $1/e$,
+which lies in $(0,1)$. The Ratio Test proves absolute convergence.
+\answer{Parts (a) and (c) converge absolutely. Part (b) diverges
+to $+\infty$.}

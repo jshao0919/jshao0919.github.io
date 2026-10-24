@@ -1,0 +1,412 @@
+\exercise{14.5}{Linearity of series and failure of a termwise product formula}
+\goal If $\sum a_n=A$ and $\sum b_n=B$ are finite real sums,
+prove the two linearity formulas and examine the proposed product
+formula.
+
+\step{Preparation: use partial sums, whose limits are given.}
+Write $S_N=\sum_{n=1}^{N}a_n$ and $T_N=\sum_{n=1}^{N}b_n$.
+The hypotheses mean $S_N\to A$ and $T_N\to B$. These are finite
+limits, so the sum and constant multiple laws from Section~9 apply.
+
+\step{(a) Addition of two series.}
+Finite distributivity gives
+\[
+ \sum_{n=1}^{N}(a_n+b_n)=S_N+T_N.
+\]
+Taking limits yields $A+B$. By the definition of a series sum,
+this proves $\sum_{n=1}^{\infty}(a_n+b_n)=A+B$.
+
+\step{(b) Multiplication by a fixed real constant.}
+For any $k\in\R$ and every $N$,
+\[
+ \sum_{n=1}^{N}ka_n=kS_N.
+\]
+The right side tends to $kA$, including when $k=0$ or $k<0$.
+Hence $\sum_{n=1}^{\infty}ka_n=kA$.
+
+\step{(c) Test the termwise product formula on finite series.}
+Let $a_1=1$ and $a_n=0$ for $n\ge2$. Let $b_2=1$ and
+$b_n=0$ for every $n\ne2$. Each series has sum $1$, so $AB=1$.
+At $n=1$ the second factor is zero; at $n=2$ the first factor is
+zero; at every other index both are zero. Thus $a_nb_n=0$ for
+all $n$, and
+\[
+ \sum_{n=1}^{\infty}a_nb_n=0\ne1=AB.
+\]
+The conjectured identity is false even for series with only one
+nonzero term each. The finite product $S_NT_N$ contains all the
+terms $a_i b_j$ with $1\le i,j\le N$, whereas the partial sum
+$\sum_{n=1}^{N}a_nb_n$ includes only the terms with equal indices.
+The product limit law applies to $S_NT_N$, not to that shorter sum.
+\answer{The two linearity identities hold. The termwise product
+identity does not follow and is false in general.}
+
+\exercise{14.6}{Absolutely summable terms times a bounded sequence}
+\goal Prove (a) that $\sum a_nb_n$ converges when
+$\sum\abs{a_n}$ converges and $(b_n)$ is bounded, and (b) recover
+Corollary~14.7.
+
+\step{(a), first step: put one bound on every second factor.}
+Boundedness supplies a finite $M>0$ with $\abs{b_n}\le M$ for
+every $n$. We may insist on $M>0$ by enlarging a given bound,
+even if every $b_n$ is zero.
+
+\step{(a), second step: verify the Cauchy criterion for the product series.}
+Let $\varepsilon>0$. Since the nonnegative series
+$\sum\abs{a_n}$ converges, its Cauchy criterion gives an index
+$N$ such that
+\[
+ n\ge m>N\quad\Longrightarrow\quad
+ \sum_{j=m}^{n}\abs{a_j}<\frac{\varepsilon}{M}.
+\]
+For any such $m,n$, the finite triangle inequality and the bound
+on $b_j$ imply
+\[
+ \abs{\sum_{j=m}^{n}a_jb_j}
+ \le\sum_{j=m}^{n}\abs{a_j}\abs{b_j}
+ \le M\sum_{j=m}^{n}\abs{a_j}
+ <M\frac{\varepsilon}{M}=\varepsilon.
+\]
+This is exactly the Cauchy criterion for $\sum a_nb_n$.
+Theorem~14.4 therefore proves convergence. The same estimate
+without the outer absolute value also proves the Cauchy criterion
+for $\sum\abs{a_nb_n}$, so the product series actually converges
+absolutely.
+
+\step{(b) Use a constant second sequence.}
+Choose $b_n=1$ for all $n$. This sequence is bounded and
+$a_nb_n=a_n$. Part (a) then says that convergence of
+$\sum\abs{a_n}$ implies convergence of $\sum a_n$, precisely
+Corollary~14.7.
+\answer{Every bounded multiplier preserves absolute summability;
+the constant multiplier $1$ gives the cited corollary.}
+
+\exercise{14.7}{Powers greater than one of a summable nonnegative sequence}
+\goal If $a_n\ge0$, $\sum a_n$ converges, and $p>1$, prove that
+$\sum a_n^p$ converges.
+
+\step{1. A convergent series has terms tending to zero.}
+Corollary~14.5 gives $a_n\to0$. Hence there is $N_0$ such that
+$0\le a_n<1$ for all $n>N_0$.
+
+\step{2. Compare the powers only where that comparison is justified.}
+If $a_n=0$, then $a_n^p=0\le a_n$. If $0<a_n\le1$, the
+positive exponent $p-1$ gives $a_n^{p-1}\le1$. Multiplication
+by $a_n>0$ yields
+\[
+ 0\le a_n^p=a_na_n^{p-1}\le a_n\qquad(n>N_0).
+\]
+The restriction to sufficiently late indices matters: a number
+larger than $1$ has its size increased by taking a power $p>1$.
+
+\step{3. Include the finite initial part.}
+Let $A=\sum_{n=1}^{\infty}a_n<+\infty$ and
+$C=\sum_{n=1}^{N_0}a_n^p$, both nonnegative and finite.
+For $N>N_0$,
+\[
+ \sum_{n=1}^{N}a_n^p
+ =C+\sum_{n=N_0+1}^{N}a_n^p
+ \le C+\sum_{n=N_0+1}^{N}a_n\le C+A.
+\]
+For $N\le N_0$, the partial sum is at most $C\le C+A$ as well.
+The partial sums of $\sum a_n^p$ are increasing because their
+terms are nonnegative, and the displayed inequalities bound them
+above. The monotone sequence theorem proves a finite limit.
+\answer{The series $\sum a_n^p$ converges for every real $p>1$.}
+
+\exercise{14.8}{A geometric-mean comparison for two nonnegative series}
+\goal If $a_n,b_n\ge0$ and both $\sum a_n$ and $\sum b_n$
+converge, prove convergence of $\sum\sqrt{a_nb_n}$.
+
+\step{1. Derive the needed pointwise inequality.}
+The square of any real number is nonnegative. Apply this to
+$\sqrt{a_n}-\sqrt{b_n}$, whose square expands to
+\[
+ 0\le(\sqrt{a_n}-\sqrt{b_n})^2
+   =a_n+b_n-2\sqrt{a_nb_n}.
+\]
+Rearranging and dividing by $2>0$ gives
+\[
+ 0\le\sqrt{a_nb_n}\le\frac{a_n+b_n}{2}\le a_n+b_n.
+\]
+The last inequality uses $a_n+b_n\ge0$. The square-root identity
+also holds when one or both of the numbers are zero.
+
+\step{2. Apply the Comparison Test to a convergent upper series.}
+By Exercise~14.5, $\sum(a_n+b_n)$ converges, with sum equal to
+the sum of the two original sums. Its terms are nonnegative.
+The displayed pointwise inequality therefore satisfies all the
+hypotheses of the Comparison Test, which proves convergence of
+$\sum\sqrt{a_nb_n}$.
+\answer{The geometric-mean series converges. In fact its sum is
+at most one half of the sum of the two given series.}
+
+\exercise{14.9}{Changing finitely many terms}
+\goal Suppose $a_n=b_n$ except for finitely many indices. Prove
+that $\sum a_n$ and $\sum b_n$ either both converge or both
+diverge.
+
+\step{1. Place all exceptional indices before a single cutoff.}
+If the exceptional set is nonempty, let $N_0$ be its maximum.
+If the set is empty, take $N_0=1$. In either case $a_n=b_n$
+for every $n>N_0$. Define the finite real constant
+\[
+ D=\sum_{n=1}^{N_0}(a_n-b_n).
+\]
+
+\step{2. Compare partial sums exactly.}
+For each $N\ge N_0$, all the later differences are zero, so
+\[
+ \sum_{n=1}^{N}a_n-\sum_{n=1}^{N}b_n
+ =\sum_{n=1}^{N_0}(a_n-b_n)=D.
+\]
+Thus the two partial-sum sequences differ by a fixed constant
+from that point onward.
+
+\step{3. Prove both directions of convergence.}
+If $\sum a_n=A$ is finite, the last identity gives
+$\sum_{n=1}^{N}b_n=\sum_{n=1}^{N}a_n-D\to A-D$, so the
+second series converges. Conversely, if $\sum b_n=B$ is finite,
+then $\sum_{n=1}^{N}a_n=\sum_{n=1}^{N}b_n+D\to B+D$.
+Therefore convergence of either series implies convergence of the
+other. If one diverges and the other converged, one of these
+implications would be contradicted; hence divergence is shared too.
+\answer{Finite changes preserve convergence. They can change a
+finite sum by the constant $D$, which is why equality of sums is
+not asserted.}
+
+\exercise{14.10}{Divergence detected by roots but not by ratios}
+\goal Give a series for which the Root Test proves divergence
+while neither conclusion of the Ratio Test applies.
+
+\step{1. Define positive terms with alternating adjacent ratios.}
+Take
+\[
+ a_n=2^{\,n+(-1)^n}\qquad(n\ge1).
+\]
+Every term is positive, so its root and ratio are defined.
+The $n$th root is $a_n^{1/n}=2\cdot2^{(-1)^n/n}$.
+Since $-1/n\le(-1)^n/n\le1/n$ and powers of $2$ preserve
+order,
+\[
+ 2\cdot2^{-1/n}\le a_n^{1/n}\le2\cdot2^{1/n}.
+\]
+Both outer expressions tend to $2$, using the root limit for the
+fixed positive number $2$ and its reciprocal. The squeeze theorem
+gives $a_n^{1/n}\to2$.
+
+\step{2. Apply the divergent part of the Root Test.}
+The root limit superior is $2>1$, so the Root Test proves
+divergence of $\sum a_n$.
+
+\step{3. Check both possible ratio-test inequalities.}
+When $n$ is even, $(-1)^n=1$ and $(-1)^{n+1}=-1$, giving
+\[
+ \frac{a_{n+1}}{a_n}
+ =2^{(n+1)-1-(n+1)}=2^{-1}=\frac12.
+\]
+When $n$ is odd, the two signs are reversed, giving
+\[
+ \frac{a_{n+1}}{a_n}
+ =2^{(n+1)+1-(n-1)}=2^3=8.
+\]
+Each value occurs infinitely often, and there are no other ratio
+values. Hence the ratio limit inferior is $1/2$ and its limit
+superior is $8$. The convergence condition, ratio limit superior
+less than $1$, fails. The divergence condition, ratio limit
+inferior greater than $1$, fails as well. Thus the Ratio Test is
+inconclusive even though the Root Test settles the question.
+\answer{The series $\sum 2^{n+(-1)^n}$ has the required properties:
+root limit $2$, ratio limit inferior $1/2$, and ratio limit superior $8$.}
+
+\exercise{14.11}{A constant successive ratio gives a geometric series}
+\goal Suppose every $a_n\ne0$ and $a_{n+1}/a_n=r$ is independent
+of $n$. Prove that $\sum a_n$ is geometric.
+
+\step{1. Convert the quotient statement to a recurrence.}
+Since $a_n\ne0$, multiplication by $a_n$ gives
+$a_{n+1}=ra_n$ for every $n$. Also $r=a_2/a_1\ne0$ because
+both $a_1$ and $a_2$ are nonzero.
+
+\step{2. Solve the recurrence by induction.}
+At $n=1$, the formula $a_n=a_1r^{n-1}$ reads $a_1=a_1r^0$,
+which holds. Suppose $a_n=a_1r^{n-1}$ for some $n\ge1$.
+Then
+\[
+ a_{n+1}=ra_n=r(a_1r^{n-1})=a_1r^n.
+\]
+This is the same formula with $n$ replaced by $n+1$, so induction
+proves it for every positive integer.
+
+\step{3. Recognize the series and its possible sum.}
+The series is therefore
+\[
+ \sum_{n=1}^{\infty}a_n
+ =\sum_{n=1}^{\infty}a_1r^{n-1}
+ =a_1+a_1r+a_1r^2+\cdots,
+\]
+which is the definition of a geometric series with first term
+$a_1$ and common ratio $r$. It converges when $\abs r<1$ and
+then has sum $a_1/(1-r)$. If $\abs r\ge1$, the nonzero first
+term ensures that the terms do not tend to zero, so it diverges.
+\answer{A constant successive ratio forces the exact geometric
+form $a_n=a_1r^{n-1}$.}
+
+\exercise{14.12}{Selecting an absolutely summable subsequence}
+\goal From $\liminf\abs{a_n}=0$, construct strictly increasing
+indices $n_k$ for which $\sum_{k=1}^{\infty}a_{n_k}$ converges.
+
+\step{1. Arbitrarily small absolute values occur after every finite prefix.}
+Fix a number $\eta>0$ and an index cutoff $N\ge0$. If no
+$n>N$ satisfied $\abs{a_n}<\eta$, every term beyond $N$
+would have $\abs{a_n}\ge\eta$. All later tail infima would then
+be at least $\eta$, which would imply
+$\liminf\abs{a_n}\ge\eta>0$, a contradiction. Thus such an
+index always exists.
+
+\step{2. Select a geometric error bound at each stage.}
+Put $n_0=0$. After $n_{k-1}$ has been chosen, use Step~1 with
+$N=n_{k-1}$ and $\eta=2^{-k}$ to choose
+\[
+ n_k>n_{k-1},\qquad\abs{a_{n_k}}<2^{-k}.
+\]
+For definiteness, choose the least eligible index. Existence is
+provided by Step~1, and the least positive integer principle makes
+the recursive choice well defined. Strict increase of the indices
+ensures that $(a_{n_k})$ is a subsequence of the original sequence.
+
+\step{3. Compare the absolute-value series to a geometric series.}
+The geometric series satisfies $\sum_{k=1}^{\infty}2^{-k}=1$.
+Its terms dominate $\abs{a_{n_k}}\ge0$, so the Comparison Test
+gives convergence of $\sum\abs{a_{n_k}}$. Absolute convergence
+implies convergence of $\sum a_{n_k}$ by Corollary~14.7.
+The geometric bound is essential to this argument: merely choosing
+a subsequence whose terms tend to zero would not by itself prove
+that its series converges.
+\answer{There is an absolutely convergent subsequence series,
+obtained by imposing $\abs{a_{n_k}}<2^{-k}$ at stage $k$.}
+
+\exercise{14.13}{Four exact sums from geometric and telescoping identities}
+\goal Calculate the two geometric sums in part (a), prove the
+identities in parts (b) and (c), and deduce the sum in part (d).
+
+\step{(a) The ratios $2/3$ and $-2/3$, starting at $n=1$.}
+For any $\abs r<1$, shifting the index of the geometric series gives
+\[
+ \sum_{n=1}^{\infty}r^n
+ =r\sum_{j=0}^{\infty}r^j=\frac{r}{1-r}.
+\]
+Both ratios here have absolute value $2/3<1$. Substitution yields
+\[
+ \sum_{n=1}^{\infty}\left(\frac23\right)^n
+ =\frac{2/3}{1-2/3}=2,
+ \qquad
+ \sum_{n=1}^{\infty}\left(-\frac23\right)^n
+ =\frac{-2/3}{1+2/3}=-\frac25.
+\]
+The negative sign in the second first term matters because its
+sum begins at exponent $1$, rather than exponent $0$.
+
+\step{(b) The series with term $1/[n(n+1)]$.}
+The finite algebraic identity
+\[
+ \frac1n-\frac1{n+1}
+ =\frac{n+1-n}{n(n+1)}=\frac1{n(n+1)}
+\]
+gives, for every $N\ge1$,
+\[
+ \begin{aligned}
+ \sum_{n=1}^{N}\frac1{n(n+1)}
+ &=(1-\tfrac12)+(\tfrac12-\tfrac13)+\cdots
+      +(\tfrac1N-\tfrac1{N+1})\\
+ &=1-\frac1{N+1}.
+ \end{aligned}
+\]
+Taking the limit $N\to\infty$ gives the finite sum $1$.
+
+\step{(c) The series with term $(n-1)/2^{n+1}$.}
+Put the right side of the following identity over a common
+denominator to verify it:
+\[
+ \frac n{2^n}-\frac{n+1}{2^{n+1}}
+ =\frac{2n-(n+1)}{2^{n+1}}
+ =\frac{n-1}{2^{n+1}}.
+\]
+The first term of the series, at $n=1$, is zero. Summing the
+identity to $N$ causes all intervening terms to cancel:
+\[
+ \sum_{n=1}^{N}\frac{n-1}{2^{n+1}}
+ =\frac12-\frac{N+1}{2^{N+1}}.
+\]
+To justify the last term's limit explicitly, set
+$u_N=(N+1)/2^{N+1}>0$. For $N\ge1$,
+\[
+ \frac{u_{N+1}}{u_N}=\frac{N+2}{2(N+1)}\le\frac34,
+\]
+because the last inequality is equivalent to $N\ge1$.
+Induction gives $0<u_N\le u_1(3/4)^{N-1}$, whose upper bound
+tends to zero. Hence $u_N\to0$ by the squeeze theorem, and
+\[
+ \sum_{n=1}^{\infty}\frac{n-1}{2^{n+1}}=\frac12.
+\]
+
+\step{(d) Deduce the sum with term $n/2^n$.}
+For each index,
+\[
+ \frac n{2^n}
+ =2\frac{n-1}{2^{n+1}}+\frac1{2^n}.
+\]
+The first series on the right converges by part (c), and the
+second is geometric with sum $1$. The linearity formulas of
+Exercise~14.5 therefore apply and give
+\[
+ \sum_{n=1}^{\infty}\frac n{2^n}
+ =2\left(\frac12\right)+1=2.
+\]
+\answer{The requested sums are, in order, $2$, $-2/5$, $1$,
+$1/2$, and $2$. All telescoping cancellations were made in finite
+partial sums before taking a limit.}
+
+\exercise{14.14}{A blockwise lower comparison for the harmonic series}
+\goal Prove divergence of $\sum_{n=1}^{\infty}1/n$ by comparing
+it with the displayed repeated-block sequence.
+
+\step{1. Express the displayed sequence by exact index ranges.}
+For each integer $j\ge1$, the block
+\[
+ 2^{j-1}\le n\le2^j-1
+\]
+contains $2^j-1-2^{j-1}+1=2^{j-1}$ indices. On that block
+define $a_n=2^{-j}$. Thus the first block is the single term
+$1/2$; the second contains two terms $1/4$; the third contains
+four terms $1/8$; and the fourth contains eight terms $1/16$.
+These blocks exactly reproduce the sequence in the question.
+
+\step{2. Every complete block contributes the same positive amount.}
+For the block labeled $j$, its sum is
+\[
+ 2^{j-1}\cdot2^{-j}=\frac12.
+\]
+The comparison series in the exercise begins at $n=2$, so it
+omits the first block and retains all blocks with $j\ge2$.
+At the end of block $J\ge2$ its partial sum is
+\[
+ \sum_{n=2}^{2^J-1}a_n
+ =\sum_{j=2}^{J}\frac12=\frac{J-1}{2}.
+\]
+These values tend to $+\infty$ as $J$ grows. All intermediate
+partial sums are increasing, since $a_n>0$. Therefore the entire
+comparison series, not only these block-end partial sums,
+diverges to $+\infty$.
+
+\step{3. Compare each harmonic term with its block value.}
+Given $n\ge2$, there is a unique block index $j\ge2$ with
+$2^{j-1}\le n\le2^j-1$. Since $n<2^j$ and both are positive,
+\[
+ \frac1n>\frac1{2^j}=a_n.
+\]
+The Comparison Test now shows that $\sum_{n=2}^{\infty}1/n$
+diverges to $+\infty$. Adding the first harmonic term, which is
+$1$, preserves this divergence.
+\answer{The harmonic series diverges to $+\infty$ because it
+dominates a positive series whose every complete block adds $1/2$.}

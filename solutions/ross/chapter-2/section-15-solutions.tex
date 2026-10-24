@@ -1,0 +1,546 @@
+\section{Alternating series and integral tests}
+\label{sec:alternating-integral-tests}
+In this section, $\log$ means the natural logarithm. A series is
+\emph{conditionally convergent} if it converges but its series of
+absolute values diverges. Changing or removing finitely many terms
+does not change convergence, by Exercise~14.9. We use this fact when
+a comparison or monotonicity estimate holds only after a fixed index.
+
+The alternating-series theorem requires nonnegative magnitudes that
+decrease to zero. An alternating sign by itself does not guarantee
+convergence. An integral test requires a nonnegative decreasing
+function matching the terms; the precise statement and proof are
+given in Exercise~15.8 below. As in the textbook's Section~15, the
+usual elementary integral and derivative formulas are available.
+
+\exercise{15.1}{Two alternating series with very different magnitudes}
+\goal Decide whether the series in parts (a) and (b) converge,
+and justify each answer.
+\idea Check the magnitudes before applying the alternating-series
+theorem. In particular, a convergent series must have terms tending
+to zero, regardless of their signs.
+
+\step{(a) The series $\sum_{n=1}^{\infty}(-1)^n/n$.}
+Put $b_n=1/n$. For every positive integer $n$, we have $b_n>0$.
+Also $n+1>n>0$, so taking reciprocals reverses the inequality:
+\[
+ b_{n+1}=\frac{1}{n+1}<\frac1n=b_n.
+\]
+Finally, $b_n\to0$. Indeed, for $\varepsilon>0$, choose an integer
+$N>1/\varepsilon$. If $n>N$, then
+$\abs{b_n-0}=1/n<\varepsilon$.
+
+Thus $\sum_{n=1}^{\infty}(-1)^{n+1}b_n$ converges by the
+alternating-series theorem. Multiplication by $-1$ preserves
+convergence, by Exercise~14.5(b), and gives the series requested here.
+Its series of absolute values is $\sum_{n=1}^{\infty}1/n$, the
+divergent harmonic series. Hence the requested series converges
+conditionally.
+
+\step{(b) The series $\sum_{n=1}^{\infty}(-1)^n n!/2^n$.}
+Let $c_n=n!/2^n>0$. Cancellation of the common factorial and power
+gives
+\[
+ \frac{c_{n+1}}{c_n}
+ =\frac{(n+1)!}{2^{n+1}}\frac{2^n}{n!}
+ =\frac{n+1}{2}.
+\]
+For $n\ge3$, this ratio is at least $2$. Repeated multiplication
+therefore gives, for $n\ge3$,
+\[
+ c_n\ge c_3\,2^{n-3}=\frac34\,2^{n-3}.
+\]
+The right side tends to $+\infty$. In particular $c_n$ does not
+tend to zero. If the signed terms $(-1)^nc_n$ tended to zero, their
+absolute values $c_n$ would tend to zero too, a contradiction.
+The necessary term condition, Corollary~14.5, now proves divergence.
+Alternation does not compensate for these growing magnitudes.
+\answer{Part (a) converges conditionally. Part (b) diverges because
+its terms do not tend to zero.}
+
+\exercise{15.2}{Powers of periodically sampled sine values}
+\goal Determine convergence of
+\[
+ \textup{(a)}\quad\sum_{n=1}^{\infty}
+       \left[\sin\left(\frac{n\pi}{6}\right)\right]^n,
+ \qquad
+ \textup{(b)}\quad\sum_{n=1}^{\infty}
+       \left[\sin\left(\frac{n\pi}{7}\right)\right]^n.
+\]
+The exponent $n$ applies to the whole sine value in each case.
+\idea In part (a), the sampled sine values reach $1$ infinitely
+often. In part (b), there are only finitely many sampled values,
+and every one has absolute value strictly less than $1$.
+
+\step{(a) Exhibit terms that stay equal to $1$.}
+For every integer $k\ge0$, choose $n_k=12k+3$. These are strictly
+increasing positive indices, and
+\[
+ \frac{n_k\pi}{6}=2k\pi+\frac{\pi}{2}.
+\]
+Sine has period $2\pi$ and $\sin(\pi/2)=1$, so
+\[
+ \left[\sin\left(\frac{n_k\pi}{6}\right)\right]^{n_k}
+ =1^{n_k}=1.
+\]
+The terms of a convergent series must tend to zero, and every
+subsequence of a sequence tending to zero must also tend to zero.
+This constant subsequence contradicts that requirement. Therefore
+the series in part (a) diverges.
+
+\step{(b) Bound all the absolute sine values by one number below $1$.}
+The values $\sin(n\pi/7)$ repeat when $n$ is increased by $14$,
+because the angle then increases by $2\pi$. Thus all their absolute
+values occur in the finite list
+\[
+ \left\{\abs{\sin\left(\frac{r\pi}{7}\right)}:
+                  r=1,2,\ldots,14\right\}.
+\]
+None of these absolute values equals $1$. Otherwise the angle
+$r\pi/7$ would have the form $\pi/2+\ell\pi$ for some integer
+$\ell$. After division by $\pi$ and multiplication by $14$, this
+would give $2r=7(2\ell+1)$. The left side is even and the right
+side is odd, which is impossible.
+
+Let $c$ be the maximum of that finite list. Every entry is less
+than $1$, so its attained maximum satisfies $c<1$ as well; also
+$c\ge0$. In fact $c>0$, since $\sin(\pi/7)>0$.
+For every $n\ge1$,
+\[
+ \abs{\left[\sin\left(\frac{n\pi}{7}\right)\right]^n}
+ =\abs{\sin\left(\frac{n\pi}{7}\right)}^n\le c^n.
+\]
+The inequality is preserved when taking the positive integer power
+because both sides are nonnegative. The geometric series
+$\sum_{n=1}^{\infty}c^n$ converges, since $0<c<1$. Comparison proves
+that the series of absolute values converges. Hence the series in
+part (b) converges absolutely.
+\answer{Part (a) diverges by the necessary term condition. Part (b)
+converges absolutely by comparison with a geometric series.}
+
+\exercise{15.3}{The logarithmic refinement of the harmonic series}
+\goal For a real parameter $p$, prove
+\[
+ \sum_{n=2}^{\infty}\frac{1}{n(\log n)^p}
+ \text{ converges}\quad\Longleftrightarrow\quad p>1.
+\]
+\idea For positive $p$, use the integral test with the substitution
+$u=\log x$. For nonpositive $p$, compare directly with $1/n$.
+
+\step{1. Check positivity and the case $p\le0$.}
+For $n\ge2$, $\log n>0$, so every real power $(\log n)^p$ is
+defined and positive. Choose an integer $N>e$. For $n\ge N$,
+$\log n>1$. If $p\le0$, then $(\log n)^p\le1$, and therefore
+\[
+ \frac{1}{n(\log n)^p}\ge\frac1n.
+\]
+The harmonic series diverges. Comparison shows that the series
+under consideration diverges to $+\infty$ for $p\le0$.
+
+\step{2. For $p>0$, verify the hypotheses of the integral test.}
+Define
+\[
+ f_p(x)=\frac{1}{x(\log x)^p}\qquad(x\ge2).
+\]
+The function is positive and continuous on this interval.
+Differentiating the product $x^{-1}(\log x)^{-p}$ gives
+\[
+ \begin{aligned}
+ f_p'(x)
+ &=-x^{-2}(\log x)^{-p}
+   -p x^{-2}(\log x)^{-p-1}\\
+ &=-\frac{\log x+p}{x^2(\log x)^{p+1}}<0.
+ \end{aligned}
+\]
+The denominator is positive, and the numerator $\log x+p$ is
+positive because $x\ge2$ and $p>0$. Thus the function decreases
+and matches the series terms at every integer $n\ge2$.
+
+\step{3. Evaluate the integrals and distinguish the parameter cases.}
+For $R\ge2$, put $u=\log x$, so $du=dx/x$. Then
+\[
+ \int_2^R\frac{dx}{x(\log x)^p}
+ =\int_{\log2}^{\log R}u^{-p}\,du.
+\]
+If $p\ne1$, the power rule gives
+\[
+ \int_2^R\frac{dx}{x(\log x)^p}
+ =\frac{(\log R)^{1-p}-(\log2)^{1-p}}{1-p}.
+\]
+For $p>1$, one has $1-p<0$, so $(\log R)^{1-p}\to0$ as
+$R\to\infty$. The integral tends to the finite positive number
+$(\log2)^{1-p}/(p-1)$. The integral test proves convergence.
+
+For $0<p<1$, one has $1-p>0$, so $(\log R)^{1-p}\to+\infty$.
+The denominator $1-p$ is positive, and the integral tends to
+$+\infty$. The integral test proves divergence.
+
+For $p=1$, integration instead gives
+\[
+ \int_2^R\frac{dx}{x\log x}
+ =\log(\log R)-\log(\log2)\longrightarrow+\infty.
+\]
+The arguments of both outer logarithms are positive, even though
+$\log(\log2)$ itself is negative. This case also diverges.
+\answer{Exactly the parameters $p>1$ give convergence. For every
+$p\le1$, the nonnegative series diverges to $+\infty$.}
+
+\exercise{15.4}{Four series involving logarithms}
+\goal Determine convergence of each of the four requested series.
+\idea Compare the first two series with the harmonic series.
+For the other two, check the integral-test hypotheses and compute
+the relevant integrals.
+
+\step{(a) The series $\sum_{n=2}^{\infty}1/(\sqrt n\log n)$.}
+We first justify the eventual inequality $\log x\le\sqrt x$.
+Let $g(x)=\sqrt x-\log x$ for $x>0$. Its derivative is
+\[
+ g'(x)=\frac{1}{2\sqrt x}-\frac1x
+       =\frac{\sqrt x-2}{2x}\ge0\qquad(x\ge4).
+\]
+Also $\log2=\int_1^2dt/t<1$, since $1/t<1$ on $(1,2]$.
+Thus $g(4)=2-\log4=2-2\log2>0$. As $g$ is nondecreasing
+on $[4,\infty)$, we have $\log x<\sqrt x$ there.
+
+For integers $n\ge4$, both logarithms and square roots are positive,
+and the inequality just proved gives
+\[
+ \sqrt n\log n\le n,
+ \qquad
+ \frac{1}{\sqrt n\log n}\ge\frac1n.
+\]
+Taking reciprocals reverses the positive-denominator inequality.
+Comparison with the divergent harmonic series proves divergence
+to $+\infty$.
+
+\step{(b) The series $\sum_{n=2}^{\infty}(\log n)/n$.}
+Choose an integer $N>e$. If $n\ge N$, monotonicity of the
+logarithm gives $\log n>\log e=1$. Consequently
+\[
+ \frac{\log n}{n}\ge\frac1n.
+\]
+All terms are positive for $n\ge2$. Comparison with the harmonic
+series, with the first finitely many indices ignored, proves
+divergence to $+\infty$.
+
+\step{(c) The series $\sum_{n=4}^{\infty}1/[n(\log n)(\log\log n)]$.}
+For $x\ge4$, we have $\log x>1$. One direct check at the left
+endpoint is
+\[
+ \log2=\int_1^2\frac{dt}{t}>\frac12,
+ \qquad \log4=2\log2>1.
+\]
+Therefore $\log\log x>0$ on this whole interval.
+The three factors $x$, $\log x$, and $\log\log x$ are positive,
+continuous, and increasing. Their product is increasing, so its
+positive reciprocal
+\[
+ f(x)=\frac{1}{x(\log x)(\log\log x)}
+\]
+is decreasing and continuous on $[4,\infty)$.
+
+Two substitutions, first $u=\log x$ and then $v=\log u$, give
+\[
+ \begin{aligned}
+ \int_4^R\frac{dx}{x(\log x)(\log\log x)}
+ &=\int_{\log4}^{\log R}\frac{du}{u\log u}\\
+ &=\int_{\log\log4}^{\log\log R}\frac{dv}{v}\\
+ &=\log(\log(\log R))-\log(\log(\log4)).
+ \end{aligned}
+\]
+Every argument of a logarithm in these formulas is positive for
+$R\ge4$: in particular $\log\log4>0$. As $R\to\infty$, the
+first triple logarithm tends to $+\infty$. The integral test proves
+that this series diverges to $+\infty$.
+
+\step{(d) The series $\sum_{n=2}^{\infty}(\log n)/n^2$.}
+Let $h(x)=(\log x)/x^2$ for $x\ge2$. This function is positive
+and continuous. Differentiation gives
+\[
+ h'(x)=\frac{1-2\log x}{x^3}<0\qquad(x\ge2),
+\]
+because $\log x\ge\log2>1/2$, as established in part (c).
+Thus the integral test applies. For integration by parts, take
+$u=\log x$ and $dv=x^{-2}\,dx$. Then $du=dx/x$ and $v=-1/x$,
+so
+\[
+ \begin{aligned}
+ \int_2^R\frac{\log x}{x^2}\,dx
+ &=\left[-\frac{\log x}{x}\right]_2^R
+      +\int_2^R\frac{dx}{x^2}\\
+ &=\frac{\log2+1}{2}-\frac{\log R+1}{R}.
+ \end{aligned}
+\]
+Part (a) gives $0\le(\log R)/R\le1/\sqrt R$ for $R\ge4$.
+The right side tends to zero, as does $1/R$. Hence the integral
+tends to $(\log2+1)/2$, a finite number. The integral test proves
+convergence of the series.
+\answer{Parts (a), (b), and (c) diverge to $+\infty$.
+Part (d) converges.}
+
+\exercise{15.5}{Why a direct comparison does not establish all positive powers}
+\goal Explain why the text used an integral argument to prove the
+convergence of $\sum 1/n^p$ for every $p>1$.
+\idea A comparison proof needs an independently known convergent
+upper series. It cannot assume a nearby case of the very theorem
+it is trying to establish.
+
+\step{1. Check which direction of comparison is useful.}
+Knowing that $\sum1/n^2$ converges immediately handles $p\ge2$,
+since $0\le1/n^p\le1/n^2$ for $n\ge1$. For $1<p<2$, however,
+the inequality reverses:
+\[
+ \frac1{n^p}\ge\frac1{n^2}.
+\]
+Being larger than the terms of a convergent nonnegative series
+does not establish either convergence or divergence. Comparison
+with $1/n$ also fails to settle the question: for $p>1$ the terms
+$1/n^p$ are smaller than the terms of that divergent series.
+
+\step{2. Explain the missing starting exponent.}
+If convergence were already known at some $p_0>1$, comparison
+would prove it for every $p\ge p_0$. It would leave the interval
+$1<p<p_0$ unresolved. There is no smallest real exponent greater
+than $1$: between $1$ and $p_0$ lies $(1+p_0)/2$.
+Thus no single known case $p_0>1$ settles the whole range by this
+direct comparison. Choosing an unproved exponent $q$ with
+$1<q<p$ merely replaces the original convergence problem with
+another case of the same problem. The integral calculation supplies
+an independent argument for every $p>1$.
+
+\step{3. Comparison can still work after grouping the terms.}
+The explanation above does not mean a comparison proof is impossible.
+For example, fix $p>1$ and group the indices into blocks
+\[
+ 2^j\le n<2^{j+1}\qquad(j=0,1,2,\ldots).
+\]
+There are exactly $2^j$ integers in this block, and each satisfies
+$n^{-p}\le2^{-jp}$. Hence the sum of the block is at most
+\[
+ 2^j2^{-jp}=2^{j(1-p)}.
+\]
+The bounding block sums form a geometric series with ratio
+$2^{1-p}<1$. Every original partial sum is bounded above by the
+sum of this geometric series, since its terms are nonnegative and
+its indices occupy finitely many blocks. The original partial sums
+are increasing and bounded above, so they converge by Theorem~10.2.
+This is a valid alternative proof using an extra grouping argument.
+\answer{The integral proof avoids relying on an unproved nearby
+$p$-series. A plain comparison with one known exponent does not cover
+all $p>1$; a geometric comparison of grouped blocks does.}
+
+\exercise{15.6}{What squaring the terms can change}
+\goal Supply the examples in parts (a) and (c), and justify the
+nonnegative-term assertion in part (b).
+
+\step{(a) A divergent series whose squared-term series converges.}
+Take $a_n=1/n$. Then $\sum a_n$ is the divergent harmonic series,
+whereas
+\[
+ \sum_{n=1}^{\infty}a_n^2
+ =\sum_{n=1}^{\infty}\frac1{n^2}
+\]
+converges by the $p$-series theorem, with $p=2>1$.
+These two facts verify both required properties of the example.
+
+\step{(b) Squaring preserves convergence when the original terms are nonnegative.}
+Suppose $a_n\ge0$ and $\sum a_n$ converges. Corollary~14.5 gives
+$a_n\to0$. There is therefore an integer $N$ with $0\le a_n<1$
+whenever $n>N$. Multiplication of $a_n<1$ by the nonnegative
+number $a_n$ gives
+\[
+ 0\le a_n^2\le a_n\qquad(n>N).
+\]
+The comparison test proves convergence of $\sum_{n>N}a_n^2$.
+Adding its finitely many omitted real terms preserves convergence,
+so the whole squared-term series converges. This is also
+Exercise~14.7 with the power $p=2$.
+
+\step{(c) A convergent signed series whose squared-term series diverges.}
+Take
+\[
+ a_n=\frac{(-1)^{n+1}}{\sqrt n}.
+\]
+Its magnitudes $b_n=1/\sqrt n$ are positive and decrease, because
+the positive square root increases with its argument and taking
+reciprocals reverses order. They tend to zero: given
+$\varepsilon>0$, choose $N>1/\varepsilon^2$; then $n>N$
+implies $1/\sqrt n<\varepsilon$.
+The alternating-series theorem proves that $\sum a_n$ converges.
+However,
+\[
+ a_n^2=\frac{[(-1)^{n+1}]^2}{(\sqrt n)^2}=\frac1n,
+\]
+so $\sum a_n^2$ is the divergent harmonic series.
+\answer{Use $a_n=1/n$ for part (a) and
+$a_n=(-1)^{n+1}/\sqrt n$ for part (c). Part (b) follows from the
+eventual bound $0\le a_n^2\le a_n$.}
+
+\exercise{15.7}{A necessary decay rate for decreasing summable terms}
+\goal Prove that if $(a_n)$ is a decreasing real sequence and
+$\sum a_n$ converges, then $na_n\to0$. Then apply this conclusion
+to the harmonic series.
+\idea First deduce that every $a_n$ is nonnegative. A late block
+of roughly $n/2$ terms is small by the Cauchy criterion, yet every
+term in that block is at least $a_n$.
+
+\step{(a), first: derive the sign condition from the actual hypotheses.}
+Since $\sum a_n$ converges, Corollary~14.5 gives $a_n\to0$.
+The word decreasing means $a_{n+1}\le a_n$; strict decrease is
+not required. If $a_j<0$ at any index $j$, then $a_n\le a_j<0$
+for all $n\ge j$. Such a tail cannot tend to zero: with
+$\varepsilon=-a_j/2>0$, its terms satisfy
+$\abs{a_n}\ge-a_j>\varepsilon$. This contradicts $a_n\to0$.
+Thus $a_n\ge0$ for every index $n$.
+
+\step{(a), second: use a tail block with an explicit number of terms.}
+Fix $\varepsilon>0$. By the Cauchy criterion for the convergent
+series, choose an integer $N\ge1$ such that
+\[
+ q\ge m>N\quad\Longrightarrow\quad
+ \abs{\sum_{j=m}^{q}a_j}<\frac{\varepsilon}{2}.
+\]
+For any integer $n>2N$, set $k=\lfloor n/2\rfloor$.
+Here $\lfloor x\rfloor$ is the greatest integer at most $x$.
+We have $k\ge N$, so the block starting at $k+1$ begins after $N$.
+It contains exactly $n-k$ terms, and $n-k\ge n/2$.
+For $k+1\le j\le n$, decreasingness gives $a_j\ge a_n$.
+Consequently
+\[
+ 0\le\frac n2 a_n
+ \le(n-k)a_n
+ \le\sum_{j=k+1}^{n}a_j
+ =\abs{\sum_{j=k+1}^{n}a_j}
+ <\frac{\varepsilon}{2}.
+\]
+The equality with the absolute value uses nonnegativity of the
+terms. Multiplying the resulting strict upper bound by $2$ gives
+$0\le na_n<\varepsilon$ whenever $n>2N$.
+This verifies the definition of $na_n\to0$.
+
+\step{(b) Apply the necessary condition to $a_n=1/n$.}
+The sequence $1/n$ is decreasing. If the harmonic series converged,
+part (a) would imply
+\[
+ n\left(\frac1n\right)\longrightarrow0.
+\]
+The expression on the left equals $1$ for every $n$, so its limit
+is $1$, a contradiction. Therefore the harmonic series diverges.
+Since its terms are nonnegative, its partial sums are increasing;
+having no finite limit, they tend to $+\infty$ by the monotone
+sequence theorem for unbounded increasing sequences.
+\answer{Every decreasing real sequence with a convergent series
+satisfies $na_n\to0$. The constant value $n(1/n)=1$ therefore
+provides another proof of divergence of the harmonic series.}
+
+\exercise{15.8}{A general integral test and its error bounds}
+\goal State and prove a precise integral test of the type described
+in Discussion~15.2.
+\idea Compare each unit-width rectangle with the integral below
+and above it. Nonnegativity makes both the partial sums and the
+integrals increasing, so a finite upper bound implies convergence.
+
+\step{1. State the assumptions and the conclusion.}
+Let $m\ge1$ be an integer, and let
+$f:[m,\infty)\to[0,\infty)$ be continuous and nonincreasing.
+Set $a_n=f(n)$ for every integer $n\ge m$.
+Define the improper integral by
+\[
+ \int_m^{\infty}f(x)\,dx
+ =\lim_{R\to\infty}\int_m^R f(x)\,dx,
+\]
+where the value $+\infty$ is allowed. Then
+\[
+ \sum_{n=m}^{\infty}a_n\text{ converges}
+ \quad\Longleftrightarrow\quad
+ \int_m^{\infty}f(x)\,dx<+\infty.
+\]
+If either side is infinite, both the integral and the series diverge
+to $+\infty$. If they converge and
+$R_N=\sum_{n=N+1}^{\infty}a_n$ for $N\ge m$, then additionally
+\[
+ \int_{N+1}^{\infty}f(x)\,dx
+ \le R_N\le\int_N^{\infty}f(x)\,dx.
+\]
+Continuity is a sufficient condition ensuring that all the finite
+integrals used here exist. The proof also works whenever those
+integrals exist, with the same nonnegativity and monotonicity
+assumptions.
+
+\step{2. Establish the unit-interval inequalities.}
+Fix an integer $k\ge m$. If $k\le x\le k+1$, nonincreasingness
+gives $f(k+1)\le f(x)\le f(k)$. Integrating these constant bounds
+over the interval of length $1$ yields
+\[
+ f(k+1)\le\int_k^{k+1}f(x)\,dx\le f(k).
+\]
+In particular, summing the right-hand inequalities for
+$k=m,m+1,\ldots,N$ gives
+\[
+ \int_m^{N+1}f(x)\,dx\le\sum_{k=m}^{N}f(k).
+\]
+For the opposite comparison, use
+$f(k)\le\int_{k-1}^{k}f(x)\,dx$ for $k\ge m+1$.
+Keep the first term $f(m)$ separate and sum to obtain
+\[
+ \sum_{k=m}^{N}f(k)\le f(m)+\int_m^{N}f(x)\,dx.
+\]
+At $N=m$, the second sum has no remaining terms and the integral
+is zero, so this estimate still holds. Combining the two bounds,
+with $S_N=\sum_{k=m}^{N}f(k)$, gives
+\[
+ \boxed{\int_m^{N+1}f(x)\,dx\le S_N
+        \le f(m)+\int_m^{N}f(x)\,dx.}
+\]
+
+\step{3. A finite integral bounds the partial sums.}
+Suppose the improper integral has finite value $I$.
+Since $f\ge0$, one has $\int_m^N f\le I$. Therefore
+$0\le S_N\le f(m)+I$ for every $N\ge m$.
+Also $S_{N+1}-S_N=f(N+1)\ge0$, so $(S_N)$ is increasing.
+The monotone sequence theorem gives a finite limit of $(S_N)$,
+which is precisely convergence of the series.
+
+\step{4. A convergent series bounds all the finite integrals.}
+Conversely, suppose $S_N\to S<+\infty$. The nonnegative terms
+imply $S_N\le S$. If $R\ge m$ is any real number, choose an
+integer $N\ge m$ with $R\le N+1$. Nonnegativity and the first
+rectangle estimate give
+\[
+ 0\le\int_m^R f(x)\,dx
+ \le\int_m^{N+1}f(x)\,dx\le S_N\le S.
+\]
+Thus all the integrals are bounded above by $S$, not only those
+with integer endpoints. They increase with $R$, again because
+$f\ge0$. Their supremum is finite, and their limit as
+$R\to\infty$ equals that supremum: given a positive tolerance,
+choose an endpoint whose integral is within that tolerance of the
+supremum; every larger endpoint gives an integral between that
+value and the supremum. Hence the improper integral converges.
+
+\step{5. Explain divergence and derive the tail estimates.}
+If the integral tends to $+\infty$, the lower bound
+$S_N\ge\int_m^{N+1}f$ forces $S_N\to+\infty$.
+If instead $S_N\to+\infty$, the upper rectangle bound rearranges
+to $\int_m^N f\ge S_N-f(m)$, which forces the integral to
+$+\infty$ as well. Nonnegative increasing sums and integrals have
+no other type of divergence.
+
+Finally, in the convergent case, apply the same unit-interval
+comparisons to the terms with indices $N+1,\ldots,M$, where
+$M>N\ge m$:
+\[
+ \int_{N+1}^{M+1}f(x)\,dx
+ \le\sum_{k=N+1}^{M}f(k)
+ \le\int_N^M f(x)\,dx.
+\]
+Letting $M\to\infty$ gives the stated remainder bounds. These
+limits are finite since the whole integral and series converge.
+
+The same test applies if the assumptions hold only after some
+integer index: start at that index and use Exercise~14.9 to restore
+the finite initial segment.
+\answer{For a continuous nonnegative nonincreasing function matching
+the terms, the series converges exactly when its improper integral
+is finite. The two neighboring tail integrals bound the omitted
+tail of the series.}

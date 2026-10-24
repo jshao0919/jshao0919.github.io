@@ -1,0 +1,855 @@
+\section{Some topological concepts in metric spaces}
+\label{sec:metric-topology}
+Throughout this section, $k$ is a positive integer. In $\R^k$,
+$d$ without a subscript denotes Euclidean distance. In an arbitrary
+metric space $(S,d)$, write
+\[
+ B(x,r)=\{y\in S:d(y,x)<r\}\qquad(r>0).
+\]
+The ambient space matters: complements, interiors, and closures are
+taken in the space specified in the exercise. We write $\overline E$
+for the book's closure $E^-$, and $E^\circ$ for its interior.
+
+We will use the following elementary ball fact. If $y\in B(x,r)$,
+then $\rho=r-d(y,x)>0$. For $z\in B(y,\rho)$, the triangle
+inequality gives
+\[
+ d(z,x)\le d(z,y)+d(y,x)<\rho+d(y,x)=r.
+\]
+Thus $B(y,\rho)\subseteq B(x,r)$, which proves that every open
+ball in every metric space is open. No assertion about the boundary
+of a ball in a general metric space is being assumed.
+
+\exercise{13.1}{Two complete metrics on finite-dimensional space}
+\goal For $x,y\in\R^k$, verify that
+\[
+ d_1(x,y)=\max_{1\le j\le k}\abs{x_j-y_j},\qquad
+ d_2(x,y)=\sum_{j=1}^k\abs{x_j-y_j}
+\]
+are metrics, and prove that each metric is complete.
+\idea Check the three metric axioms directly. For completeness,
+first obtain a limit of each coordinate, then combine the finitely
+many coordinate estimates using one cutoff.
+
+\step{(a), first axiom: finite nonnegative distances, with the correct zeros.}
+Each $\abs{x_j-y_j}$ is a finite nonnegative real number. A finite
+maximum and a finite sum of these quantities are therefore finite
+and nonnegative. If $x=y$, every coordinate difference is zero,
+and both distances are zero. Conversely, if the maximum is zero,
+then every nonnegative coordinate difference is at most zero and
+so is zero. If the sum is zero, every nonnegative summand must
+also be zero. In either case $x_j=y_j$ for all $j$, hence $x=y$.
+Equivalently, if $x\ne y$, at least one difference is positive,
+and both distances are positive.
+
+\step{(a), second and third axioms: symmetry and triangle inequalities.}
+The identity $\abs{x_j-y_j}=\abs{y_j-x_j}$ gives symmetry for
+both formulas. For any $x,y,z\in\R^k$, the real triangle
+inequality gives
+\[
+ \abs{x_j-z_j}\le\abs{x_j-y_j}+\abs{y_j-z_j}.
+\]
+For $d_1$, the right side is at most $d_1(x,y)+d_1(y,z)$ for
+every $j$. Taking the maximum of the left sides proves
+$d_1(x,z)\le d_1(x,y)+d_1(y,z)$. For $d_2$, summing the
+coordinate inequalities gives
+\[
+ d_2(x,z)\le\sum_{j=1}^k\abs{x_j-y_j}
+              +\sum_{j=1}^k\abs{y_j-z_j}
+ =d_2(x,y)+d_2(y,z).
+\]
+This checks all metric axioms.
+
+\step{(b), coordinate limits: start with a Cauchy sequence in either metric.}
+Let $(x^{(n)})$ be Cauchy for $d_i$, where $i=1$ or $i=2$.
+For every coordinate $j$,
+\[
+ \abs{x_j^{(m)}-x_j^{(n)}}\le d_i(x^{(m)},x^{(n)}).
+\]
+For $d_1$, this is the defining maximum bound; for $d_2$, it is
+the bound of one nonnegative summand by the whole sum. Given
+$\varepsilon>0$, the Cauchy cutoff for $d_i$ therefore also
+makes every coordinate difference smaller than $\varepsilon$.
+Each coordinate sequence is Cauchy in $\R$. Completeness of
+$\R$ gives a real limit $x_j$ for each $j$. Put
+$x=(x_1,\ldots,x_k)\in\R^k$.
+
+\step{(b), convergence in the maximum metric.}
+Fix $\varepsilon>0$. For each $j$, choose $N_j$ so that
+$n>N_j$ implies $\abs{x_j^{(n)}-x_j}<\varepsilon$.
+Take $N=\max\{N_1,\ldots,N_k\}$. If $n>N$, every one of
+the finitely many differences is strictly less than $\varepsilon$.
+Their maximum is therefore strictly less than $\varepsilon$:
+$d_1(x^{(n)},x)<\varepsilon$.
+
+\step{(b), convergence in the sum metric.}
+For $d_2$, instead choose $N_j$ to give coordinate errors smaller
+than $\varepsilon/k$, which is positive because $k\ge1$.
+Beyond the maximum of these cutoffs,
+\[
+ d_2(x^{(n)},x)=\sum_{j=1}^k\abs{x_j^{(n)}-x_j}
+ <k\frac{\varepsilon}{k}=\varepsilon.
+\]
+Thus a Cauchy sequence for either metric has a limit in that same
+metric and in the same space $\R^k$.
+\answer{Both $d_1$ and $d_2$ are complete metrics on $\R^k$.}
+
+\exercise{13.2}{Euclidean distance and convergence of coordinates}
+\goal Prove both inequalities in Lemma~13.3(1), then prove that
+a sequence in $\R^k$ converges if and only if every coordinate
+sequence converges in $\R$.
+
+\step{(a) Compare one summand, the sum, and its largest summand.}
+For $x,y\in\R^k$, let
+$M=\max_{1\le i\le k}\abs{x_i-y_i}$. Every square is
+nonnegative, so for each $j$,
+\[
+ \abs{x_j-y_j}^2\le\sum_{i=1}^k\abs{x_i-y_i}^2\le kM^2.
+\]
+The first inequality retains one summand and discards only
+nonnegative summands. The second replaces each of the $k$
+summands by the upper bound $M^2$. Taking nonnegative square
+roots, which preserves order, gives
+\[
+ \boxed{\abs{x_j-y_j}\le d(x,y)\le
+ \sqrt{k}\max_{1\le i\le k}\abs{x_i-y_i}.}
+\]
+
+\step{(b), forward direction: Euclidean convergence gives coordinate convergence.}
+Suppose $x^{(n)}\to x$ in Euclidean distance. Given
+$\varepsilon>0$, there is $N$ such that
+$d(x^{(n)},x)<\varepsilon$ for $n>N$. The first inequality
+in (a) then gives
+$\abs{x_j^{(n)}-x_j}<\varepsilon$ for every $j$ and $n>N$.
+Thus each $x_j^{(n)}\to x_j$ in $\R$.
+
+\step{(b), reverse direction: select one cutoff for all the coordinates.}
+Suppose $x_j^{(n)}\to x_j\in\R$ for $j=1,\ldots,k$,
+and define $x=(x_1,\ldots,x_k)$. Given $\varepsilon>0$,
+choose $N_j$ such that
+\[
+ n>N_j\quad\Longrightarrow\quad
+ \abs{x_j^{(n)}-x_j}<\frac{\varepsilon}{\sqrt{k}}.
+\]
+Set $N=\max_jN_j$. For $n>N$, the maximum of all coordinate
+errors is smaller than $\varepsilon/\sqrt{k}$. The second
+inequality in (a) gives $d(x^{(n)},x)<\varepsilon$.
+\answer{The distance bounds are proved, and coordinate convergence
+is equivalent to Euclidean convergence.}
+
+\exercise{13.3}{The supremum metric on bounded sequences}
+\goal Let $B$ be the set of all bounded real sequences. Prove
+that
+\[
+ d(x,y)=\sup_{j\in\N}\abs{x_j-y_j}
+\]
+is a metric on $B$, and decide whether the analogous infinite sum
+defines a metric on all of $B$.
+
+\step{(a) First verify that the supremum is a finite real number.}
+For $x,y\in B$, choose finite nonnegative bounds $C_x,C_y$
+with $\abs{x_j}\le C_x$ and $\abs{y_j}\le C_y$ for all $j$.
+Then
+\[
+ 0\le\abs{x_j-y_j}\le\abs{x_j}+\abs{y_j}\le C_x+C_y.
+\]
+The set of coordinate differences is nonempty and bounded above,
+so its supremum exists and belongs to $[0,C_x+C_y]$.
+
+\step{(a) Check the zeros, symmetry, and triangle inequality.}
+If $x=y$, every difference is zero and so is the supremum.
+If $d(x,y)=0$, then each $0\le\abs{x_j-y_j}\le0$, implying
+$x_j=y_j$ for all $j$, hence $x=y$. Symmetry follows coordinate
+by coordinate from symmetry of absolute value. Finally, for every $j$,
+\[
+ \abs{x_j-z_j}\le\abs{x_j-y_j}+\abs{y_j-z_j}
+ \le d(x,y)+d(y,z).
+\]
+The final expression is an upper bound for all coordinate
+differences between $x$ and $z$. Their least upper bound is thus
+at most that expression. This is the triangle inequality for $d$.
+
+\step{(b) A sum can be infinite even when both sequences are bounded.}
+Take $x=(0,0,0,\ldots)$ and $y=(1,1,1,\ldots)$.
+Both belong to $B$, but
+\[
+ \sum_{j=1}^{\infty}\abs{x_j-y_j}
+ =\sum_{j=1}^{\infty}1=+\infty,
+\]
+since its $n$th partial sum is $n$. A metric in Definition~13.1
+must give a finite real distance between each pair of points.
+\answer{The supremum formula is a metric on $B$. The sum formula
+is not a metric on all of $B$, because it need not be finite.}
+
+\exercise{13.4}{Unions and finite intersections of open sets}
+\goal Prove that arbitrary unions and finite intersections of
+open subsets of a metric space $(S,d)$ are open.
+
+\step{(iii) For a point of a union, use one set that contains it.}
+Let $U=\bigcup_{\lambda\in\Lambda}U_\lambda$, where each
+$U_\lambda$ is open. If $x\in U$, there is a $\lambda_0$ with
+$x\in U_{\lambda_0}$. Since that set is open, some $r>0$
+satisfies $B(x,r)\subseteq U_{\lambda_0}\subseteq U$.
+Thus every point of $U$ is interior, which says $U$ is open.
+If the collection is empty, its union is the empty set. That set
+is open because there is no point for which the interior condition
+could fail.
+
+\step{(iv) For a point of a finite intersection, take the smallest radius.}
+Let $V=U_1\cap\cdots\cap U_m$, where $m\ge1$ and all the
+$U_i$ are open. For $x\in V$, choose $r_i>0$ with
+$B(x,r_i)\subseteq U_i$. The number
+$r=\min\{r_1,\ldots,r_m\}$ is positive because this is a finite
+nonempty set of positive numbers. If $d(y,x)<r$, then
+$d(y,x)<r_i$ for every $i$, so $y\in U_i$ for every $i$.
+Hence $B(x,r)\subseteq V$, proving openness.
+The intersection of no subsets of $S$ is $S$, which is open:
+every ball with center in $S$ is a subset of $S$.
+
+An infinite intersection need not be open: in $\R$,
+$\bigcap_{n\ge1}(-1/n,1/n)=\{0\}$, and no positive-radius
+interval about $0$ fits in $\{0\}$. This explains why the
+intersection statement requires finiteness.
+\answer{Arbitrary unions and finite intersections preserve openness.}
+
+\exercise{13.5}{De Morgan's law and intersections of closed sets}
+\goal Verify the stated complement identity and deduce that
+an arbitrary intersection of closed subsets of $S$ is closed.
+
+\step{(a) Prove equality by testing membership of a point.}
+For any $x\in S$, the following statements are equivalent:
+\[
+ \begin{aligned}
+ x\in\bigcap_{U\in\mathcal U}(S\setminus U)
+ &\quad\Longleftrightarrow\quad
+ x\notin U\text{ for every }U\in\mathcal U\\
+ &\quad\Longleftrightarrow\quad
+ x\notin\bigcup_{U\in\mathcal U}U\\
+ &\quad\Longleftrightarrow\quad
+ x\in S\setminus\bigcup_{U\in\mathcal U}U.
+ \end{aligned}
+\]
+Since every point has the same membership on the two sides,
+the sets are equal. For the empty collection, the left side is
+$S$ and the right side is $S\setminus\varnothing=S$, so the
+convention is consistent.
+
+\step{(b) Take complements, then apply the open-union result.}
+Let $F_\lambda$ be closed subsets of $S$, and put
+$F=\bigcap_{\lambda\in\Lambda}F_\lambda$.
+A point fails to belong to this intersection exactly when it
+fails to belong to at least one $F_\lambda$. Thus
+\[
+ S\setminus F
+ =\bigcup_{\lambda\in\Lambda}(S\setminus F_\lambda).
+\]
+Each complement on the right is open by the definition of a
+closed set. Their union is open by Exercise~13.4, so $F$ is
+closed by that same definition. If $\Lambda$ is empty, $F=S$
+and its complement is empty and open.
+\answer{The complement identity holds, and every intersection of
+closed sets is closed.}
+
+\exercise{13.6}{Four equivalent descriptions involving closure}
+\goal Prove all four assertions of Proposition~13.9 for a subset
+$E$ of an arbitrary metric space $(S,d)$.
+\idea First derive a ball characterization directly from the
+definition of closure as an intersection of closed supersets.
+Then obtain the sequence characterizations without assuming them.
+
+\step{Preparation: closure is a closed superset, and a ball detects its points.}
+The family of closed sets containing $E$ is nonempty, because
+$S$ belongs to it. Every set in that family contains $E$;
+therefore their intersection $\overline E$ contains $E$.
+Exercise~13.5 shows that the intersection is closed.
+
+For any $x\in S$, we claim
+\[
+ x\in\overline E
+ \quad\Longleftrightarrow\quad
+ B(x,r)\cap E\ne\varnothing\text{ for every }r>0.\tag{*}
+\]
+If some ball $B(x,r)$ misses $E$, then its complement is a
+closed set containing $E$, since balls are open. This closed
+superset excludes $x$, so $x\notin\overline E$.
+Conversely, if $x\notin\overline E$, then at least one closed
+set $C$ containing $E$ excludes $x$; otherwise $x$ would belong
+to their intersection. The open set $S\setminus C$ contains
+$x$, so it contains some $B(x,r)$, and that ball misses $E$.
+These two implications prove (*).
+
+\step{(a) A set is closed exactly when it equals its closure.}
+If $E$ is closed, it is one of the closed supersets in the
+defining intersection, so $\overline E\subseteq E$.
+The reverse inclusion was already proved, giving equality.
+If $E=\overline E$, then $E$ is closed because $\overline E$
+was proved closed. This proves both directions.
+
+\step{(c) Closure points are exactly limits of sequences of points of $E$.}
+We establish (c) before (b) so that there is no circular argument.
+If $x\in\overline E$, apply (*) with radius $1/n$ to choose
+$x_n\in E$ with $d(x_n,x)<1/n$. For any $\varepsilon>0$,
+choose an integer $N>1/\varepsilon$. If $n>N$, then
+$d(x_n,x)<1/n<\varepsilon$. Hence $x_n\to x$.
+
+Conversely, if $x_n\in E$ and $x_n\to x\in S$, fix $r>0$.
+Convergence gives some index $n$ with $d(x_n,x)<r$, so
+$x_n\in B(x,r)\cap E$. Every ball about $x$ thus meets $E$,
+and (*) gives $x\in\overline E$. For $E=\varnothing$, no such
+sequence exists and its closure is empty, so the equivalence
+still holds.
+
+\step{(b) Closed sets are exactly those containing limits of their convergent sequences.}
+If $E$ is closed and $x_n\in E$ tends to a point $x\in S$,
+part (c) gives $x\in\overline E$, and part (a) gives
+$\overline E=E$, so $x\in E$.
+Conversely, suppose $E$ contains every such limit. For every
+$x\in\overline E$, part (c) supplies a sequence in $E$
+converging to $x$, so the assumption gives $x\in E$.
+Thus $\overline E\subseteq E$. Combined with the always-valid
+inclusion $E\subseteq\overline E$, this gives equality, and
+part (a) makes $E$ closed.
+
+\step{(d) Boundary points see both the set and its complement.}
+By definition, the boundary is $\overline E\setminus E^\circ$.
+A point $x$ lies outside $E^\circ$ exactly when no ball about
+$x$ is contained in $E$. Indeed, the existence of such a ball
+would also put $x$ in $E$, since its center belongs to the ball,
+and would make $x$ interior. Saying no ball is contained in $E$
+is equivalent to saying every ball meets $S\setminus E$.
+By (*) applied to this complement,
+\[
+ x\notin E^\circ\quad\Longleftrightarrow\quad
+ x\in\overline{S\setminus E}.
+\]
+Consequently
+\[
+ \overline E\setminus E^\circ
+ =\overline E\cap\overline{S\setminus E},
+\]
+which is precisely the assertion in (d).
+\answer{All four claims follow from the closure definition and
+the ball criterion (*), with no sequence characterization assumed
+in advance.}
+
+\exercise{13.7}{Decomposing an open real set into disjoint intervals}
+\goal Express every open $U\subseteq\R$ as a finite or countably
+infinite disjoint union of open intervals. Unbounded intervals are
+allowed; the empty set is the union of an empty family.
+
+\step{1. Group points that have no gap of $U$ between them.}
+For $x,y\in U$, write $x\sim y$ when the whole closed segment
+with endpoints $x,y$ lies in $U$. This relation is reflexive,
+because $[x,x]=\{x\}\subseteq U$, and symmetric because
+the segment is unchanged when its endpoints are interchanged.
+For transitivity, if $x\sim y$ and $y\sim z$, every point
+between $x$ and $z$ lies in the union of the segments joining
+$x$ to $y$ and $y$ to $z$. That union is contained in $U$.
+Thus $x\sim z$, so $\sim$ is an equivalence relation.
+Its classes partition $U$ into nonempty pairwise disjoint sets.
+
+\step{2. Show that each class is an interval and is open.}
+Let $I$ be a class, and let $p<q$ belong to it. The equivalence
+relation gives $[p,q]\subseteq U$. For $p<t<q$, the segment
+$[p,t]$ is contained in $[p,q]$, so $p\sim t$ and $t\in I$.
+Thus every point between two points of $I$ belongs to $I$.
+
+For $z\in I$, openness of $U$ gives $r>0$ with
+$(z-r,z+r)\subseteq U$. Every $t$ in that interval has its
+segment to $z$ inside the interval, hence inside $U$. Therefore
+$t\sim z$ and $t\in I$. We have proved
+$(z-r,z+r)\subseteq I$, so $I$ is itself open.
+
+\step{3. Identify the endpoints, including infinite endpoints.}
+Let $a=\inf I$ and $b=\sup I$ in the extended real sense;
+use $a=-\infty$ or $b=+\infty$ if the corresponding bound
+does not exist in $\R$. Since $I$ is nonempty and open,
+it contains an interval around one of its points, and $a<b$.
+For $a<t<b$, the definitions of infimum and supremum give
+$p,q\in I$ with $p<t<q$; otherwise $t$ would be a lower or
+upper bound contradicting $a<t<b$. The interval property puts
+$t\in I$. Conversely, a finite endpoint cannot lie in $I$:
+openness there would supply a point of $I$ still smaller than
+$a$ or still larger than $b$. Hence $I=(a,b)$, with the
+usual interpretations $(a,+\infty)$, $(-\infty,b)$, or $\R$.
+
+\step{4. Prove that there are at most countably many classes.}
+Fix an enumeration $q_1,q_2,\ldots$ of $\Q$. Each nonempty
+open interval $I$ contains a rational by density. Assign to $I$
+the least index $m(I)$ for which $q_{m(I)}\in I$.
+This least index exists by the least-element property of $\N$.
+Distinct classes have distinct assigned indices, because they
+are disjoint and cannot contain the same rational.
+Thus the classes inject into $\N$. If there are infinitely
+many, list their assigned indices in increasing order and use
+that order to list the classes; every assigned index appears,
+since only finitely many positive integers precede it.
+
+\answer{The equivalence classes give the required disjoint interval
+decomposition. The family may be empty, finite, or countably
+infinite, and intervals may be unbounded.}
+
+\exercise{13.8}{Intervals, balls, half-spaces, and examples that are neither}
+\goal Verify the assertions in the first paragraph of Example~3
+and all the assertions in Example~4. In the interval assertions
+assume $a<b$; in the ball assertions assume $r>0$ and $k\ge1$.
+We address the degenerate cases separately below.
+
+\step{(a) Open and closed intervals in the real line.}
+For $x\in(a,b)$, let $\rho=\min\{x-a,b-x\}>0$.
+If $\abs{y-x}<\rho$, then $a<y<b$. Thus $(a,b)$ is open.
+The complement of $[a,b]$ is
+$(-\infty,a)\cup(b,+\infty)$. Each ray is open: for a point
+strictly on its allowed side, half its distance to the endpoint
+provides a ball staying on that side. Their union is open,
+so $[a,b]$ is closed.
+
+Every $x\in(a,b)$ is interior to $[a,b]$ by the first estimate.
+The endpoint $a$ is not interior: every ball about it contains
+$a-\rho/2<a$ for its radius $\rho>0$. Similarly $b$ is not
+interior because $b+\rho/2$ is outside $[a,b]$.
+Hence $[a,b]^\circ=(a,b)$.
+
+The closed set $[a,b]$ contains $(a,b)$, so
+$\overline{(a,b)}\subseteq[a,b]$. Every ball about $a$ meets
+$(a,b)$: choose a displacement
+$0<t<\min\{\rho,b-a\}$ and use $a+t$. The point $b-t$
+does the same for $b$. The ball criterion of Exercise~13.6
+therefore puts both endpoints in the closure. Interior points
+already belong to the set. Thus
+$\overline{(a,b)}=[a,b]=\overline{[a,b]}$.
+Subtracting the interior gives boundary $\{a,b\}$ for both
+intervals.
+
+If $a=b$, the open interval is empty and has empty closure and
+boundary. The closed interval is the singleton $\{a\}$, which
+is closed, has empty interior, and has boundary $\{a\}$.
+This is why the boundary assertion for both intervals presumes
+$a<b$.
+
+\step{(b), balls: openness, closedness, and the possible boundary points.}
+For a center $c\in\R^k$, put
+\[
+ D=\{x:d(x,c)<r\},\qquad K=\{x:d(x,c)\le r\}.
+\]
+The opening ball argument of this section shows $D$ is open.
+If $x\notin K$, let $\rho=d(x,c)-r>0$. For
+$d(y,x)<\rho$, the triangle inequality rearranges to
+\[
+ d(y,c)\ge d(x,c)-d(x,y)>d(x,c)-\rho=r.
+\]
+Thus a ball about $x$ stays outside $K$, so the complement
+of $K$ is open and $K$ is closed.
+
+If $d(x,c)<r$, then $x$ is interior to both sets, using the
+radius $r-d(x,c)$. If $d(x,c)>r$, the preceding complement
+ball shows $x$ lies outside the closure of either set.
+Only points with $d(x,c)=r$ can therefore be boundary points.
+
+\step{(b), spheres: every point on the sphere really is a boundary point.}
+Let $d(x,c)=r>0$, and let $\varepsilon>0$. Choose
+$0<t<\min\{1,\varepsilon/r\}$. Define
+\[
+ x_-=c+(1-t)(x-c),\qquad x_+=c+(1+t)(x-c).
+\]
+The Euclidean distance formula gives
+\[
+ d(x_-,c)=(1-t)r<r,\quad d(x_+,c)=(1+t)r>r,
+ \quad d(x_-,x)=d(x_+,x)=tr<\varepsilon.
+\]
+Thus every ball about $x$ meets $D$ (at $x_-$) and the
+complement of $K$ (at $x_+$). It meets both either set and
+its complement, so Exercise~13.6(d) puts $x$ on both boundaries.
+Consequently both boundaries are exactly $\{x:d(x,c)=r\}$.
+This radial argument uses Euclidean space; the same sphere
+assertion is not valid for all metrics. If $r=0$, the open ball
+is empty with empty boundary, while the closed ball is the
+singleton $\{c\}$ with boundary $\{c\}$.
+
+\step{(b), strict coordinate inequalities give open half-spaces and quadrants.}
+In $\R^2$, consider $H=\{x:x_1>0\}$ and
+$Q=\{x:x_1>0,\ x_2>0\}$. For $x\in H$, choose
+$\rho=x_1/2>0$. Since $\abs{y_1-x_1}\le d(y,x)$,
+every $y$ in $B(x,\rho)$ satisfies
+$y_1>x_1-\rho=x_1/2>0$. Thus $H$ is open.
+For $x\in Q$, choose $\rho=\min\{x_1,x_2\}/2$.
+The same coordinate estimate, separately for $j=1,2$,
+gives $y_j>x_j-\rho\ge x_j/2>0$. Hence $Q$ is open.
+
+For $H_0=\{x:x_1\ge0\}$, its complement is
+$\{x:x_1<0\}$, an open half-space by the same radius argument
+with $-x_1$ in place of $x_1$. Thus $H_0$ is closed.
+For $Q_0=\{x:x_1\ge0,\ x_2\ge0\}$, the complement is
+$\{x:x_1<0\}\cup\{x:x_2<0\}$, a union of open half-spaces.
+Thus $Q_0$ is closed as asserted.
+
+\step{(b), the half-open interval is neither open nor closed.}
+The point $0\in[0,1)$ is not interior, since every ball about
+$0$ contains negative points. Hence $[0,1)$ is not open.
+The sequence $1-1/n$ belongs to $[0,1)$ and tends to $1$,
+which is outside the set. The closed-set sequence criterion
+of Exercise~13.6(b) shows it is not closed.
+
+\step{(b), the mixed quadrant is neither open nor closed.}
+Let $M=\{x:x_1>0,\ x_2\ge0\}$. The point $(1,0)$ belongs
+to $M$, but every ball of radius $\rho>0$ about it contains
+$(1,-\rho/2)$, outside $M$. Thus $M$ is not open.
+The sequence $(1/n,0)$ lies in $M$ and tends in Euclidean
+distance to $(0,0)$, outside $M$. It follows that $M$ is not
+closed either.
+\answer{All the interval, Euclidean ball, half-space, quadrant,
+and mixed examples have the stated properties, with the positive
+radius and nondegenerate interval conditions made explicit.}
+
+\exercise{13.9}{Three closures in the real line}
+\goal Find the closures of
+$\{1/n:n\in\N\}$, $\Q$, and $\{q\in\Q:q^2<2\}$ in $\R$.
+
+\step{(a) Include the reciprocal terms and their one additional limit.}
+Let $A=\{1/n:n\in\N\}$. Every point of $A$ belongs to its
+closure, and $1/n\to0$ gives $0\in\overline A$ by
+Exercise~13.6(c). We show no other point belongs.
+If $x<0$, the ball of radius $-x/2$ about $x$ is negative
+and misses $A$. If $x>1$, the radius $(x-1)/2$ gives a
+ball wholly above $1$, which also misses $A$.
+
+It remains to exclude $0<x\le1$ with $x\notin A$.
+Choose $N$ so large that $1/N<x/2$. All terms $1/n$ for
+$n\ge N$ are then below $x/2$. The finite set
+$\{1,1/2,\ldots,1/(N-1)\}$ has no member equal to $x$.
+Its finitely many positive distances from $x$ have a positive
+minimum $\eta$. Here $N\ge2$ because $1/N<x/2\le1/2$.
+A ball about $x$ of radius $\min\{x/2,\eta\}/2$
+misses the finite set and all the remaining reciprocals.
+The ball criterion excludes $x$. Therefore
+\[
+ \boxed{\overline A=A\cup\{0\}.}
+\]
+
+\step{(b) Density fills the whole real line.}
+For any $x\in\R$ and $r>0$, the interval $(x-r,x+r)$
+contains a rational by density of $\Q$. Hence every real $x$
+satisfies the closure ball criterion, giving
+$\boxed{\overline\Q=\R}$.
+
+\step{(c) The rational points between the two square-root endpoints.}
+For real $q$, the inequality $q^2<2$ is equivalent to
+$-\sqrt2<q<\sqrt2$. Thus the given set is
+$C=\Q\cap(-\sqrt2,\sqrt2)$.
+If $-\sqrt2<x<\sqrt2$, then every neighborhood of $x$
+contains a smaller nonempty interval lying inside
+$(-\sqrt2,\sqrt2)$; density supplies a rational in that interval.
+For $x=\sqrt2$, an interval
+$(\sqrt2-t,\sqrt2)$ with $0<t<\min\{r,2\sqrt2\}$
+lies inside the radius-$r$ neighborhood and inside the allowed
+range, and contains a rational. The interval
+$(-\sqrt2,-\sqrt2+t)$ proves the same statement for $x=-\sqrt2$.
+Therefore the whole closed interval belongs to $\overline C$.
+
+If $x>\sqrt2$, take radius $(x-\sqrt2)/2$; if
+$x<-\sqrt2$, take radius $(-\sqrt2-x)/2$. The resulting
+ball misses the closed interval and hence misses $C$.
+No outside point belongs to the closure, so
+\[
+ \boxed{\overline C=[-\sqrt2,\sqrt2].}
+\]
+\answer{The closures are respectively
+$\{0\}\cup\{1/n:n\in\N\}$, $\R$, and $[-\sqrt2,\sqrt2]$.}
+
+\exercise{13.10}{Three sets with no interior points}
+\goal Prove that the reciprocal set, the rationals, and the
+Cantor set all have empty interior in $\R$.
+
+\step{(a) A rational-only set cannot contain a real interval.}
+Every reciprocal $1/n$ is rational. Every open interval contains
+an irrational number. For completeness, to find one in $(a,b)$,
+choose a rational $q$ in $(a-\sqrt2,b-\sqrt2)$ by rational
+density; then $q+\sqrt2\in(a,b)$ is irrational, since its
+being rational would make $\sqrt2=(q+\sqrt2)-q$ rational.
+Thus every ball about any point of the reciprocal set contains
+a point outside that set. No point of the set is interior.
+
+\step{(b) Apply the same irrational-density argument to $\Q$.}
+For any $q\in\Q$ and $r>0$, the preceding argument gives an
+irrational in $(q-r,q+r)$. That ball is not a subset of $\Q$.
+Thus $\Q$ also has no interior points. Notice that dense closure
+does not imply nonempty interior: Exercise~13.9 gave
+$\overline\Q=\R$.
+
+\step{(c) The intervals remaining at late Cantor stages are too short.}
+Use the numbering in Example~5: $F_1=[0,1]$, and $F_n$ is
+the union of $2^{n-1}$ disjoint closed intervals, each of length
+$3^{-(n-1)}$. The Cantor set is $F=\bigcap_{n\ge1}F_n$.
+Suppose, for contradiction, that $x\in F^\circ$. Then some
+real interval $(x-r,x+r)$, with $r>0$, lies in $F$.
+The closed interval $J=[x-r/2,x+r/2]$ has length $r$ and
+also lies in $F$, hence in every $F_n$.
+
+Choose $n$ so large that $3^{-(n-1)}<r$. The interval $J$
+would have to lie in one of the component intervals of $F_n$.
+Indeed, if it met two distinct components, it would also contain
+the points of the nonempty removed gap between those components,
+because it contains every point between any two of its points.
+That would contradict $J\subseteq F_n$.
+But an interval of length $r$ cannot be contained in an interval
+of smaller length $3^{-(n-1)}$. This is a contradiction.
+\answer{All three interiors are empty. The Cantor proof uses the
+explicit shrinking intervals of its construction.}
+
+\exercise{13.11}{Compactness and subsequences in Euclidean space}
+\goal Show that $E\subseteq\R^k$ is compact if and only if
+every sequence of points of $E$ has a subsequence converging to
+a point of $E$.
+\idea Use Heine--Borel and Bolzano--Weierstrass. For the converse,
+show that the stated subsequence property forces both boundedness
+and closedness.
+
+\step{Preparation: uniqueness and inheritance of metric limits.}
+If $x_n\to x$ and $x_n\to y$, then
+$d(x,y)\le d(x,x_n)+d(x_n,y)\to0$, so $d(x,y)=0$ and $x=y$.
+Every subsequence of a convergent sequence has the same limit:
+strictly increasing selection indices $n_j$ satisfy $n_j\ge j$,
+so every eventual distance estimate for the original sequence
+also holds for all sufficiently late selected terms.
+Also, a convergent sequence in $\R^k$ is bounded: its tail
+lies within distance $1$ of its limit $x$, and for each
+coordinate the triangle inequality gives
+$\abs{x_j^{(n)}}\le\abs{x_j}+1$ on that tail. A finite
+maximum accommodates the omitted initial coordinates.
+
+\step{Forward direction: combine boundedness, subsequences, and closedness.}
+If $E$ is compact, Heine--Borel (Theorem~13.12) says it is
+closed and bounded. Any sequence in $E$ is then bounded.
+Bolzano--Weierstrass (Theorem~13.5) gives a subsequence tending
+to some point of $\R^k$. Since all its terms lie in the closed
+set $E$, Exercise~13.6(b) puts that limit in $E$.
+
+\step{Reverse direction, boundedness: unbounded points would escape every subsequence.}
+Assume the stated subsequence property. If $E$ were unbounded,
+then for each $n\in\N$ we could choose $x^{(n)}\in E$ with
+\[
+ \max_{1\le j\le k}\abs{x_j^{(n)}}>n.
+\]
+For any subsequence $x^{(n_m)}$, the selected indices satisfy
+$n_m\ge m$, so its coordinate maximum exceeds $m$.
+It is therefore unbounded: for any proposed finite bound $C$,
+take $m>C$. It cannot converge, since a convergent sequence
+was just shown to be bounded. This contradicts the assumed
+property. Thus $E$ is bounded.
+
+\step{Reverse direction, closedness: recover every closure point.}
+Let $x\in\overline E$. By Exercise~13.6(c), choose a sequence
+$x_n\in E$ converging to $x$. The assumed property supplies
+a subsequence $x_{n_m}\to y$ for some $y\in E$.
+Inheritance gives $x_{n_m}\to x$ as well, and uniqueness of
+the limit gives $x=y\in E$. Thus $\overline E\subseteq E$.
+The reverse inclusion always holds, so Exercise~13.6(a)
+makes $E$ closed. Having proved both closedness and boundedness,
+Heine--Borel gives compactness.
+
+If $E=\varnothing$, it is compact because the empty subfamily
+is a finite subcover of every cover of it. There is no sequence
+of points of $E$, so the sequential condition is vacuously true.
+\answer{The two conditions are equivalent for all subsets of
+$\R^k$, including the empty set.}
+
+\exercise{13.12}{Closed subsets and finite unions of compact sets}
+\goal In any metric space $(S,d)$, prove that a closed subset
+of a compact set is compact, and that a finite union of compact
+sets is compact.
+\idea Work directly with open covers, so neither result depends
+on the finite-dimensional Heine--Borel theorem.
+
+\step{(a) Add one open set to cover the rest of the larger compact set.}
+Suppose $E\subseteq F$, $E$ is closed in $S$, and $F$ is
+compact. Let $\mathcal U$ be any family of open subsets of
+$S$ covering $E$. The set $V=S\setminus E$ is open, and
+$\mathcal U\cup\{V\}$ covers $F$: a point of $F$ either
+belongs to $E$ and is covered by $\mathcal U$, or lies in $V$.
+Compactness of $F$ gives a finite subfamily covering $F$.
+Remove $V$ if it was selected. The remaining sets still cover
+$E$, since no point of $E$ belongs to $V$. They are a finite
+subfamily of $\mathcal U$, so $E$ is compact.
+
+If ``closed subset of $F$'' is interpreted as closed relative
+to $F$, the same conclusion holds: relative closedness means
+$F\setminus E=F\cap V$ for some open $V\subseteq S$.
+Use that $V$ in the preceding cover argument; it still misses
+$E$ and covers every point of $F\setminus E$.
+
+\step{(b) Take a finite subcover for each compact piece.}
+Let $K=K_1\cup\cdots\cup K_m$ with each $K_i$ compact,
+and let $\mathcal U$ be an open cover of $K$.
+It also covers each $K_i$. For each $i$, select a finite
+subfamily $\mathcal U_i\subseteq\mathcal U$ covering $K_i$.
+The family $\mathcal U_1\cup\cdots\cup\mathcal U_m$ is
+finite, since a finite union of finite sets is finite, and
+it covers every piece, hence their union $K$. This proves
+compactness. When $m=0$, the union is empty and is compact
+by the empty-subcover argument.
+\answer{Both permanence properties hold in every metric space.}
+
+\exercise{13.13}{A compact real set contains its extreme bounds}
+\goal For a nonempty compact $E\subseteq\R$, show
+$\sup E\in E$ and $\inf E\in E$.
+
+\step{1. Ensure the bounds are finite and use the approximation property.}
+Heine--Borel makes $E$ closed and bounded. Since it is also
+nonempty, completeness of $\R$ supplies finite real numbers
+$M=\sup E$ and $m=\inf E$.
+For every $n\in\N$, $M-1/n$ is strictly below the least
+upper bound, so it cannot be an upper bound. Choose $u_n\in E$
+with
+\[
+ M-\frac1n<u_n\le M.
+\]
+Similarly, $m+1/n$ is strictly above the greatest lower bound,
+so it cannot be a lower bound. Choose $v_n\in E$ with
+\[
+ m\le v_n<m+\frac1n.
+\]
+
+\step{2. Check convergence, then use closedness.}
+The first inequalities give $\abs{u_n-M}<1/n$, so $u_n\to M$.
+The second give $\abs{v_n-m}<1/n$, so $v_n\to m$.
+Both sequences lie in $E$. Closedness and Exercise~13.6(b)
+therefore put both limits in $E$.
+\answer{The supremum and infimum are attained: $E$ has a maximum
+and a minimum, namely $M$ and $m$.}
+
+\exercise{13.14}{The diameter of a compact set is attained}
+\goal For nonempty compact $E\subseteq\R^k$, put
+\[
+ \delta=\sup\{d(x,y):x,y\in E\}.
+\]
+Find $x^0,y^0\in E$ such that $d(x^0,y^0)=\delta$.
+\idea Approximate the supremum by pairs, select subsequences
+for both entries of the pairs, and justify passage to the limit
+using the triangle inequality.
+
+\step{1. Verify that the distance supremum is a finite real number.}
+Heine--Borel makes $E$ bounded. Choose $C\ge0$ so that every
+coordinate of every $x\in E$ has absolute value at most $C$.
+For $x,y\in E$, each $\abs{x_j-y_j}\le2C$, so
+$d(x,y)\le2C\sqrt{k}$ by Exercise~13.2(a).
+The set of distances is nonempty because $E$ is nonempty,
+and contains $d(x,x)=0$. Its supremum therefore exists with
+$0\le\delta\le2C\sqrt{k}$.
+
+\step{2. Choose pairs whose distances approach the supremum.}
+For each $n\in\N$, the real number $\delta-1/n$ is not
+an upper bound of the distance set. Hence choose $x_n,y_n\in E$
+such that
+\[
+ \delta-\frac1n<d(x_n,y_n)\le\delta.
+\]
+This works even when $\delta=0$; any pair then has distance
+$0>\delta-1/n$. The displayed error bound gives
+$d(x_n,y_n)\to\delta$.
+
+\step{3. Pass to a common subsequence for the two endpoints.}
+By Exercise~13.11, some subsequence $x_{n_j}$ tends to a
+point $x^0\in E$. Apply the same result to the sequence
+$y_{n_j}$ in $E$ to find further indices $j_\ell$ with
+$y_{n_{j_\ell}}\to y^0\in E$.
+The matching $x_{n_{j_\ell}}$ still tends to $x^0$, since
+a subsequence inherits a limit. This further selection is
+also a subsequence of the original sequence of pairs because
+the composition of two increasing index selections is increasing.
+
+\step{4. Prove that distances pass to the limit.}
+Two uses of the triangle inequality give
+\[
+ \begin{split}
+ d(x,y)&\le d(x,x^0)+d(x^0,y^0)+d(y^0,y),\\
+ d(x^0,y^0)&\le d(x^0,x)+d(x,y)+d(y,y^0).
+ \end{split}
+\]
+Subtracting $d(x^0,y^0)$ in the first and $d(x,y)$ in the
+second combines into
+\[
+ \abs{d(x,y)-d(x^0,y^0)}\le d(x,x^0)+d(y,y^0).
+\]
+At the selected pairs, the right side tends to zero. Thus
+$d(x_{n_{j_\ell}},y_{n_{j_\ell}})\to d(x^0,y^0)$.
+The same distances tend to $\delta$, being a subsequence of
+the distance sequence in Step~2. Uniqueness of real limits
+gives $d(x^0,y^0)=\delta$.
+\answer{Two points of $E$ realize its diameter, including the
+zero-diameter case.}
+
+\exercise{13.15}{A closed bounded set that is not compact}
+\goal In the bounded-sequence space $(B,d)$ of Exercise~13.3,
+let
+\[
+ F=\left\{x\in B:\sup_{j\in\N}\abs{x_j}\le1\right\}.
+\]
+Show that $F$ is closed and bounded, but not compact.
+\idea Verify closedness using an open complement. Then use
+the prescribed cover by open balls of radius $1$, together
+with infinitely many points whose pairwise distance is $2$.
+
+\step{(a), boundedness: use the zero sequence as the center.}
+The sequence $0=(0,0,\ldots)$ belongs to $B$. For $x\in F$,
+\[
+ d(x,0)=\sup_j\abs{x_j}\le1.
+\]
+Thus $F$ lies in the closed metric ball with center $0$
+and radius $1$, which is exactly the boundedness condition
+stated in the exercise.
+
+\step{(a), closedness: exhibit a ball about each point outside $F$.}
+If $x\in B\setminus F$, then $\sup_j\abs{x_j}>1$.
+At least one coordinate, say $j_0$, satisfies $\abs{x_{j_0}}>1$;
+otherwise $1$ would be an upper bound for all these absolute
+values and hence for their supremum. Set
+$\rho=(\abs{x_{j_0}}-1)/2>0$.
+If $d(x,y)<\rho$, the real triangle inequality gives
+\[
+ \abs{y_{j_0}}\ge\abs{x_{j_0}}-\abs{x_{j_0}-y_{j_0}}
+ >\abs{x_{j_0}}-\rho
+ =\frac{\abs{x_{j_0}}+1}{2}>1.
+\]
+Such a $y$ lies outside $F$. Hence a ball about each point
+of the complement stays in the complement, proving it open
+and $F$ closed in $B$.
+
+\step{(b), the open cover: give every point its radius-one ball.}
+For $x\in F$, define
+$U(x)=\{y\in B:d(y,x)<1\}$. These sets are open in $B$
+by the general ball fact at the start of this section.
+They cover $F$, since $d(x,x)=0<1$ puts each $x\in F$
+in its own $U(x)$.
+
+\step{(b), separated points: compute the distance exactly.}
+For each $n\in\N$, let $x^{(n)}$ have coordinate $-1$
+at index $n$ and coordinate $1$ at every other index.
+Every one of its coordinates has absolute value $1$,
+so $x^{(n)}\in F$.
+If $m\ne n$, the two sequences differ by $2$ in absolute
+value at coordinates $m$ and $n$, and agree at all other
+coordinates. Therefore
+\[
+ d(x^{(m)},x^{(n)})=2.
+\]
+No ball $U(x)$ can contain two distinct such points: if it
+contained both, then the metric triangle inequality would give
+\[
+ 2=d(x^{(m)},x^{(n)})
+ \le d(x^{(m)},x)+d(x,x^{(n)})<1+1=2,
+\]
+an impossibility. The strict inequalities in the open-ball
+definition are essential here.
+
+\step{(b), exclude every finite subcover.}
+A union of $q$ members of this cover can contain at most
+$q$ of the separated points, since each member contains at
+most one. But $F$ contains the infinitely many distinct
+points $x^{(1)},x^{(2)},\ldots$. For example, among its first
+$q+1$ separated points at least one must be missed. Thus
+no finite subfamily covers $F$.
+\answer{$F$ is closed and bounded in the specified metric space,
+but this explicit open cover has no finite subcover, so $F$
+is not compact. Heine--Borel's closed-and-bounded criterion
+is specific to Euclidean space and does not apply to all
+metric spaces.}
