@@ -1,0 +1,547 @@
+\exercise{9.1}{Three quotients evaluated by the finite limit laws}
+\goal Use Theorems~9.2--9.7, with their hypotheses checked, to prove
+\begin{align*}
+ \text{(a)}\quad &\lim_{n\to\infty}\frac{n+1}{n}=1,\\
+ \text{(b)}\quad &\lim_{n\to\infty}\frac{3n+7}{6n-5}=\frac12,\\
+ \text{(c)}\quad &\lim_{n\to\infty}
+ \frac{17n^5+73n^4-18n^2+3}{23n^5+13n^3}=\frac{17}{23}.
+\end{align*}
+
+\idea Divide each polynomial expression by the appropriate positive
+power of $n$. The resulting expressions involve constants and
+reciprocal powers, whose limits are known. For each use of the quotient
+theorem, verify that the denominator terms are nonzero and that their
+finite limit is nonzero.
+
+\step{1. Record the finite limit rules being used}
+A constant sequence with value $c\in\R$ converges to $c$, because
+$\abs{c-c}=0<\varepsilon$ for every $\varepsilon>0$.
+Theorem~9.7(a) gives
+\[
+ \frac1{n^p}\longrightarrow0\qquad(p>0).
+\]
+The scalar rule is Theorem~9.2, the sum rule is Theorem~9.3,
+and the product rule is Theorem~9.4. Subtraction follows by
+combining the scalar rule with scalar $-1$ and the sum rule.
+The quotient rule, Theorem~9.6, requires a convergent numerator,
+a convergent denominator, a nonzero denominator at every index,
+and a nonzero denominator limit. All limits used in these rules
+are finite real numbers.
+
+\step{2. Part (a): Separate the constant term}
+Since $n\in\N$, the denominator $n$ is positive. The identity
+\[
+ \frac{n+1}{n}=\frac nn+\frac1n=1+\frac1n
+\]
+therefore holds for every index. The constant sequence $1$ converges
+to $1$, and Theorem~9.7(a), with $p=1$, gives $1/n\to0$.
+Applying Theorem~9.3 yields
+\[
+ \frac{n+1}{n}=1+\frac1n\longrightarrow1+0=1.
+\]
+Here the sum rule applies after rewriting; there is no need to treat
+the unbounded sequence $n$ as a finite convergent sequence.
+
+\step{3. Part (b): Normalize numerator and denominator}
+For every $n\ge1$, the original denominator satisfies
+$6n-5\ge1>0$. Dividing numerator and denominator by $n>0$ gives
+\[
+ \frac{3n+7}{6n-5}
+ =\frac{(3n+7)/n}{(6n-5)/n}
+ =\frac{3+7/n}{6-5/n}.
+\]
+Let $u_n=3+7/n$ and $v_n=6-5/n$.
+By Theorem~9.7(a), $1/n\to0$. The scalar rule gives
+$7/n\to7\cdot0=0$ and $-5/n\to-5\cdot0=0$.
+Adding the constant sequences by Theorem~9.3 gives
+\[
+ u_n\longrightarrow3+0=3,
+ \qquad v_n\longrightarrow6+0=6.
+\]
+For each $n$, we also have
+\[
+ v_n=\frac{6n-5}{n}>0.
+\]
+Thus every denominator term is nonzero, and its limit $6$ is nonzero.
+All hypotheses of Theorem~9.6 have now been verified, so
+\[
+ \frac{3n+7}{6n-5}=\frac{u_n}{v_n}
+ \longrightarrow\frac36=\frac12.
+\]
+
+\step{4. Part (c): Divide by the largest power in the denominator}
+The original denominator is positive for every index:
+\[
+ 23n^5+13n^3=n^3(23n^2+13)>0,
+\]
+because $n\ge1$. Divide both numerator and denominator by $n^5>0$.
+Each term then simplifies as follows:
+\[
+ \frac{n^4}{n^5}=\frac1n,
+ \qquad \frac{n^2}{n^5}=\frac1{n^3},
+ \qquad \frac{n^3}{n^5}=\frac1{n^2}.
+\]
+Consequently
+\[
+ \frac{17n^5+73n^4-18n^2+3}{23n^5+13n^3}
+ =\frac{17+73/n-18/n^3+3/n^5}{23+13/n^2}.
+\]
+Write the normalized numerator and denominator as $U_n$ and $V_n$.
+Theorem~9.7(a), applied with $p=1,2,3,5$, gives
+\[
+ \frac1n\to0,\qquad \frac1{n^2}\to0,\qquad
+ \frac1{n^3}\to0,\qquad \frac1{n^5}\to0.
+\]
+Multiplication by the indicated constants, using Theorem~9.2, gives
+\[
+ \frac{73}{n}\to0,\qquad
+ -\frac{18}{n^3}\to0,\qquad
+ \frac3{n^5}\to0,\qquad
+ \frac{13}{n^2}\to0.
+\]
+Repeated applications of the sum rule, together with the constant
+limits, therefore yield
+\[
+ U_n\longrightarrow17+0+0+0=17,
+ \qquad V_n\longrightarrow23+0=23.
+\]
+Moreover, $V_n=23+13/n^2>23>0$ for every $n$, and its limit
+$23$ is nonzero. The quotient rule applies and gives
+\[
+ \frac{U_n}{V_n}\longrightarrow\frac{17}{23}.
+\]
+
+\answer{The three limits are \textup{(a)} $1$,
+\textup{(b)} $1/2$, and \textup{(c)} $17/23$.
+Every use of the quotient theorem has a denominator that is nonzero
+at every index and has a nonzero finite limit.}
+
+\exercise{9.2}{Limits obtained from two given convergent sequences}
+\goal Suppose $x_n\to3$, $y_n\to7$, and $y_n\ne0$ for every $n$.
+Find
+\[
+ \text{(a)}\quad\lim_{n\to\infty}(x_n+y_n),
+ \qquad
+ \text{(b)}\quad\lim_{n\to\infty}\frac{3y_n-x_n}{y_n^2}.
+\]
+
+\idea Use the sum rule in part \textup{(a)}. In part \textup{(b)},
+build the numerator from scalar multiples and a sum, build the
+denominator with the product rule, and then check the quotient rule.
+
+\step{1. Part (a): Add the two limits}
+The hypotheses give two finite convergent sequences. Theorem~9.3
+therefore applies directly:
+\[
+ x_n+y_n\longrightarrow3+7=10.
+\]
+
+\step{2. Part (b): Evaluate the numerator}
+Theorem~9.2 gives
+\[
+ 3y_n\longrightarrow3\cdot7=21,
+ \qquad -x_n\longrightarrow(-1)\cdot3=-3.
+\]
+Theorem~9.3 then gives
+\[
+ 3y_n-x_n=3y_n+(-x_n)\longrightarrow21+(-3)=18.
+\]
+The numerator here is $3y_n-x_n$; only the denominator contains a
+square.
+
+\step{3. Part (b): Evaluate the denominator and take the quotient}
+Since $y_n\to7$, Theorem~9.4 applied to the two factors $y_n$ gives
+\[
+ y_n^2=y_n\,y_n\longrightarrow7\cdot7=49.
+\]
+The assumption $y_n\ne0$ makes $y_n^2>0$ at every index.
+Thus every denominator is nonzero, and its limit $49$ is also
+nonzero. Theorem~9.6 now gives
+\[
+ \frac{3y_n-x_n}{y_n^2}\longrightarrow\frac{18}{49}.
+\]
+
+\answer{The limits are \textup{(a)} $10$ and
+\textup{(b)} $18/49$.}
+
+\exercise{9.3}{A polynomial expression in convergent sequences}
+\goal Assume $a_n\to a\in\R$ and $b_n\to b\in\R$. For
+\[
+ s_n=\frac{a_n^3+4a_n}{b_n^2+1},
+\]
+prove carefully that
+\[
+ s_n\longrightarrow\frac{a^3+4a}{b^2+1}.
+\]
+
+\idea Form the powers one multiplication at a time. Then use the
+scalar and sum rules. The added $1$ makes the denominator and its
+limit positive even when $b_n=0$ or $b=0$.
+
+\step{1. Construct the square and cube of the numerator sequence}
+The two factors in $a_n\,a_n$ both converge to $a$.
+The product rule, Theorem~9.4, gives
+\[
+ a_n^2=a_n\,a_n\longrightarrow a\cdot a=a^2.
+\]
+We may now apply the product rule again, this time to $a_n^2$ and
+$a_n$, since both have finite limits:
+\[
+ a_n^3=(a_n^2)a_n\longrightarrow a^2\cdot a=a^3.
+\]
+Separately, Theorem~9.2 gives $4a_n\to4a$.
+The sum rule therefore yields
+\[
+ a_n^3+4a_n\longrightarrow a^3+4a.
+\]
+
+\step{2. Construct the denominator limit}
+Apply Theorem~9.4 to $b_n\,b_n$ to obtain
+\[
+ b_n^2\longrightarrow b\cdot b=b^2.
+\]
+The constant sequence $1$ converges to $1$, so Theorem~9.3 gives
+\[
+ b_n^2+1\longrightarrow b^2+1.
+\]
+For every real $b_n$, its square is nonnegative, and thus
+$b_n^2+1\ge1>0$. The denominator terms are consequently nonzero.
+Likewise $b^2+1\ge1>0$, so their limit is nonzero.
+
+\step{3. Apply the quotient theorem with all hypotheses established}
+Step~1 proves convergence of the numerator, Step~2 proves convergence
+of the denominator, and the positivity checks verify both nonzero
+requirements. Theorem~9.6 therefore gives the desired limit.
+
+\answer{$\displaystyle
+ \lim_{n\to\infty}s_n=\frac{a^3+4a}{b^2+1}$
+for all finite real limits $a$ and $b$, including $b=0$.}
+
+\exercise{9.4}{A nested-square-root recursion}
+\goal For $s_1=1$ and $s_{n+1}=\sqrt{s_n+1}$, list the first
+four terms and, assuming convergence, prove that the limit is
+$(1+\sqrt5)/2$.
+
+\idea First check that every radical is defined and every term is
+at least $1$. Under the stated convergence assumption, square the
+recursion and apply the product and sum limit laws. The lower bound
+will select the appropriate quadratic root.
+
+\step{1. Verify that the recursion stays defined and positive}
+The initial value is $s_1=1\ge1$. If $s_n\ge1$, then
+$s_n+1\ge2>0$, so its nonnegative real square root exists.
+Moreover, $\sqrt{s_n+1}\ge1$: a nonnegative number less than $1$
+would have square less than $1$, whereas this square is at least $2$.
+Thus $s_{n+1}\ge1$. Induction shows that all terms are defined
+and satisfy $s_n\ge1$.
+
+\step{2. Part (a): Substitute successively four times}
+The successive terms are
+\begin{align*}
+ s_1&=1,\\
+ s_2&=\sqrt{s_1+1}=\sqrt{1+1}=\sqrt2,\\
+ s_3&=\sqrt{s_2+1}=\sqrt{\sqrt2+1}
+      =\sqrt{1+\sqrt2},\\
+ s_4&=\sqrt{s_3+1}=\sqrt{\sqrt{1+\sqrt2}+1}
+      =\sqrt{1+\sqrt{1+\sqrt2}}.
+\end{align*}
+
+\step{3. A shift of a convergent sequence has the same limit}
+We will use this elementary observation for this and the next two
+recursions. If $u_n\to u\in\R$, then $u_{n+1}\to u$.
+Indeed, given $\varepsilon>0$, choose $N$ so that
+$m>N$ implies $\abs{u_m-u}<\varepsilon$.
+If $n>N$, then also $n+1>N$, so
+$\abs{u_{n+1}-u}<\varepsilon$. This is exactly the limit
+definition for the shifted sequence.
+
+\step{4. Part (b): Record the restriction on a finite limit}
+Assume, as requested, that $s_n\to L\in\R$.
+Since $s_n\ge1$ for every $n$, we have $L\ge1$.
+To see the bound directly, if $L<1$, set
+$\varepsilon=(1-L)/2>0$. Eventually
+$\abs{s_n-L}<\varepsilon$, giving
+\[
+ s_n<L+\varepsilon=\frac{L+1}{2}<1,
+\]
+contrary to the bound on the terms. This is also the eventual-bound
+principle of Exercise~8.9(a).
+
+\step{5. Pass to limits in a squared identity}
+The defining radical equality implies
+\[
+ s_{n+1}^2=s_n+1
+\]
+for every $n$. By Step~3, $s_{n+1}\to L$.
+Theorem~9.4 applied to $s_{n+1}\,s_{n+1}$ gives
+$s_{n+1}^2\to L^2$. Theorem~9.3 gives
+$s_n+1\to L+1$. These two expressions are equal term by term,
+so uniqueness of finite limits, proved at the end of Section~7,
+gives
+\[
+ L^2=L+1.
+\]
+Only the product and sum laws were used; a square-root limit rule
+is not needed.
+
+\step{6. Solve the quadratic equation and select its permitted root}
+Rearrange and complete the square:
+\[
+ L^2-L-1=0,
+ \qquad 4L^2-4L=4,
+ \qquad (2L-1)^2=5.
+\]
+Consequently $2L-1=\sqrt5$ or $2L-1=-\sqrt5$, which gives
+\[
+ L=\frac{1+\sqrt5}{2}
+ \quad\text{or}\quad L=\frac{1-\sqrt5}{2}.
+\]
+We have $\sqrt5>1$, since the opposite nonnegative inequality
+would imply $5\le1$ after squaring. Thus
+$(1-\sqrt5)/2<0$, contradicting $L\ge1$.
+The only remaining root is $(1+\sqrt5)/2$.
+
+\answer{The first four terms are
+$1$, $\sqrt2$, $\sqrt{1+\sqrt2}$, and
+$\sqrt{1+\sqrt{1+\sqrt2}}$.
+Under the given convergence assumption,
+$\displaystyle\lim s_n=(1+\sqrt5)/2$.}
+
+\exercise{9.5}{A positive rational recursion}
+\goal Let $t_1=1$ and
+\[
+ t_{n+1}=\frac{t_n^2+2}{2t_n}\qquad(n\ge1).
+\]
+Assuming that $(t_n)$ converges to a finite real number, find its limit.
+
+\idea Prove positivity so that every term is defined, and strengthen
+it to the uniform lower bound $t_n\ge1$. The lower bound makes the
+assumed limit nonzero before the quotient theorem is applied.
+
+\step{1. Check that the recursion is defined at every index}
+We start with $t_1=1>0$. If $t_n>0$, then its denominator
+$2t_n$ is positive and its numerator $t_n^2+2$ is positive.
+The quotient is therefore a well-defined positive real number.
+Induction proves $t_n>0$ for all $n$, and in particular no
+denominator in the recursion vanishes.
+
+\step{2. Obtain a positive uniform lower bound}
+For every $n$, use the positive denominator to compute
+\begin{align*}
+ t_{n+1}-1
+ &=\frac{t_n^2+2}{2t_n}-\frac{2t_n}{2t_n}\\
+ &=\frac{t_n^2-2t_n+2}{2t_n}\\
+ &=\frac{(t_n-1)^2+1}{2t_n}>0.
+\end{align*}
+The last numerator is positive because $(t_n-1)^2\ge0$.
+Thus every term after $t_1$ is greater than $1$, and $t_1=1$.
+It follows that $t_n\ge1$ for every $n$.
+
+\step{3. The convergence assumption gives a nonzero limit}
+Suppose $t_n\to L\in\R$. The bound $t_n\ge1$ passes to the
+limit by Exercise~8.9(a), so $L\ge1>0$.
+Equivalently, if $L<1$, the positive tolerance $(1-L)/2$
+would force eventual terms to be less than
+$L+(1-L)/2=(L+1)/2<1$, a contradiction.
+In particular, $2L\ne0$.
+
+\step{4. Apply the finite limit laws to the recursion}
+The product rule, Theorem~9.4, gives
+\[
+ t_n^2=t_n\,t_n\longrightarrow L^2.
+\]
+The constant sequence $2$ converges to $2$, and hence the sum rule
+gives $t_n^2+2\to L^2+2$. The scalar rule gives
+$2t_n\to2L$. The terms $2t_n$ are nonzero by Step~1,
+and their limit $2L$ is nonzero by Step~3. Thus Theorem~9.6 applies:
+\[
+ \frac{t_n^2+2}{2t_n}\longrightarrow\frac{L^2+2}{2L}.
+\]
+The shift observation in Exercise~9.4 also gives $t_{n+1}\to L$.
+The recursion identifies these two sequences, so uniqueness of
+finite limits gives
+\[
+ L=\frac{L^2+2}{2L}.
+\]
+
+\step{5. Solve and select the positive root}
+Since $2L\ne0$, multiplying the last equality by $2L$ is valid:
+\[
+ 2L^2=L^2+2,
+ \qquad L^2=2.
+\]
+Thus $L=\sqrt2$ or $L=-\sqrt2$.
+The root $-\sqrt2$ is negative and violates $L\ge1$.
+Consequently the assumed finite limit is $\sqrt2$.
+
+\answer{Under the convergence assumption,
+$\displaystyle\lim_{n\to\infty}t_n=\sqrt2$.
+The nonzero denominator limit was established before the quotient
+theorem was used.}
+
+\exercise{9.6}{A necessary finite-limit equation and an actual infinite limit}
+\goal For $x_1=1$ and $x_{n+1}=3x_n^2$, address all three questions:
+\textup{(a)} determine the possibilities for a finite real limit;
+\textup{(b)} decide whether the actual sequence has a limit;
+\textup{(c)} explain why the conclusions are consistent.
+
+\idea A hypothetical finite limit must satisfy the recursion's
+fixed-point equation. Separately, use an induction estimate for the
+actual terms. Distinguish finite convergence from the extended
+infinite-limit convention in Definition~9.8.
+
+\step{1. Part (a): Assume a finite limit before applying the product rule}
+Suppose $x_n\to a\in\R$. The shift observation proved in
+Exercise~9.4 gives $x_{n+1}\to a$.
+Theorem~9.4 gives $x_n^2\to a^2$, and Theorem~9.2 then gives
+$3x_n^2\to3a^2$. Since $x_{n+1}=3x_n^2$ for every $n$,
+uniqueness of finite limits implies
+\[
+ a=3a^2.
+\]
+Subtracting $a$ and factoring gives
+\[
+ 0=3a^2-a=a(3a-1).
+\]
+The zero-product property in $\R$ says that one of the two factors
+must be zero. Thus $a=0$ or $3a-1=0$; the second equation gives
+$a=1/3$ after division by $3\ne0$.
+
+This proves only a necessary condition: \emph{if the sequence has a
+finite real limit, that limit must be $0$ or $1/3$}. The computation
+does not prove that such a finite limit exists.
+
+\step{2. Part (b): Bound the actual terms below by their indices}
+We prove $x_n\ge n$ for every $n\in\N$.
+For $n=1$, the equality $x_1=1$ supplies the base case.
+Suppose $x_n\ge n$ for some $n\ge1$.
+In particular $x_n\ge1$, so
+$x_n^2-x_n=x_n(x_n-1)\ge0$. It follows that
+\[
+ x_{n+1}=3x_n^2\ge3x_n\ge3n\ge n+1.
+\]
+The final inequality holds because
+$3n-(n+1)=2n-1\ge1>0$ for $n\ge1$.
+This completes the induction.
+
+Now let $M>0$ and take the threshold $N=M$.
+For every integer $n>N$, the bound gives
+\[
+ x_n\ge n>M.
+\]
+This is exactly Definition~9.8 for $x_n\to+\infty$.
+Thus the actual sequence has the extended limit $+\infty$.
+
+It cannot have a finite real limit. For a direct check, if
+$x_n\to a\in\R$, then eventually $\abs{x_n-a}<1$,
+which implies $x_n<a+1$. Choose an integer $n$ larger than
+both that eventual threshold and $a+1$, using the Archimedean
+property. The bound $x_n\ge n$ would instead give $x_n>a+1$,
+a contradiction. This is also consistent with Theorem~9.1,
+which says every finitely convergent sequence is bounded.
+
+\step{3. Part (c): Explain the two meanings of the limit statement}
+Part \textup{(a)} began with the hypothesis of a \emph{finite real}
+limit $a$. Its use of the finite product and scalar limit laws is
+valid under that hypothesis. Part \textup{(b)} shows that the
+hypothesis fails for this initial value: the terms grow without bound.
+Consequently the necessary alternatives in part \textup{(a)} are
+not attained by this sequence.
+
+Under the convention introduced after Definition~9.8, saying that
+``the limit exists'' also allows divergence to $+\infty$ or
+$-\infty$. In that stated convention the answer to part \textup{(b)}
+is yes, with limit $+\infty$; the sequence does not converge to a
+finite real number. Theorems~9.2--9.6 were proved for finite real
+limits, so their product calculation in part \textup{(a)} cannot be
+applied with $a=+\infty$. The extended infinite-limit conclusion
+therefore supplies no contradiction to the finite necessary condition.
+
+\answer{\textup{(a)} Any hypothetical finite real limit is $0$ or
+$1/3$. \textup{(b)} The actual sequence satisfies
+$\displaystyle\lim x_n=+\infty$ in the sense of Definition~9.8,
+and has no finite real limit. \textup{(c)} A necessary condition
+for finite convergence does not assert its existence, and finite
+product laws cannot be applied at an infinite limit.}
+
+\exercise{9.7}{Finish the estimate for the root of the index}
+\goal Complete the argument that
+\[
+ s_n=n^{1/n}-1\longrightarrow0,
+\]
+and hence finish the proof of Theorem~9.7(c), $n^{1/n}\to1$.
+
+\idea Use the nonnegative binomial terms in $(1+s_n)^n$ to obtain
+an explicit bound on $s_n$. Then choose a threshold directly in
+terms of the prescribed positive tolerance.
+
+\step{1. Verify the sign and the defining power identity}
+Let $u_n=n^{1/n}$ denote the positive real $n$th root of $n$.
+Then $u_n^n=n\ge1$. If $u_n<1$, the positivity $0<u_n<1$
+would give $u_n^n<1$, a contradiction. Hence $u_n\ge1$ and
+\[
+ s_n=u_n-1\ge0,
+ \qquad (1+s_n)^n=u_n^n=n.
+\]
+For $n=1$, this gives $s_1=1-1=0$.
+
+\step{2. Derive the binomial bound for $n\ge2$}
+For an integer $n\ge2$, the binomial theorem gives
+\[
+ n=(1+s_n)^n
+   =1+ns_n+\frac{n(n-1)}2s_n^2
+      +\sum_{j=3}^{n}\binom nj s_n^j.
+\]
+When $n=2$, the final sum is empty and equals $0$.
+All terms of that sum are nonnegative, since $s_n\ge0$ and all
+the binomial coefficients are nonnegative. Also $ns_n\ge0$,
+and the constant term $1$ is strictly positive. Therefore
+\[
+ n>\frac{n(n-1)}2s_n^2.
+\]
+Dividing by the positive number $n$ gives
+$1>(n-1)s_n^2/2$. Multiplying by $2/(n-1)>0$ yields
+\[
+ s_n^2<\frac2{n-1}.
+\]
+Both $s_n$ and the square root of the right-hand side are
+nonnegative, so the order of their squares gives
+\[
+ 0\le s_n<\sqrt{\frac2{n-1}}\qquad(n\ge2).
+\]
+
+\step{3. Specify the threshold and verify the limit definition}
+Let $\varepsilon>0$ be arbitrary and set
+\[
+ N=\max\left\{2,\ 1+\frac2{\varepsilon^2}\right\}.
+\]
+A real threshold is permitted by the definition of convergence;
+an integer larger than it may also be chosen by the Archimedean
+property. If $n>N$, then $n\ge2$ and
+\[
+ n-1>\frac2{\varepsilon^2}>0.
+\]
+Taking reciprocals of positive quantities and multiplying by $2$
+gives $2/(n-1)<\varepsilon^2$. As $\varepsilon>0$, this implies
+\[
+ \sqrt{\frac2{n-1}}<\varepsilon.
+\]
+Using the bound from Step~2, we conclude
+\[
+ \abs{s_n-0}=s_n<\sqrt{\frac2{n-1}}<\varepsilon
+ \qquad(n>N).
+\]
+This is the required proof that $s_n\to0$.
+
+\step{4. Return to the root sequence}
+The constant sequence $1$ converges to $1$, and $s_n\to0$ was
+proved without assuming a limit for $n^{1/n}$.
+The sum rule, Theorem~9.3, therefore gives
+\[
+ n^{1/n}=1+s_n\longrightarrow1+0=1.
+\]
+
+\answer{The explicit estimate
+$0\le n^{1/n}-1<\sqrt{2/(n-1)}$ for $n\ge2$, together with
+$N=\max\{2,1+2/\varepsilon^2\}$, proves
+$n^{1/n}-1\to0$ and hence $n^{1/n}\to1$.}

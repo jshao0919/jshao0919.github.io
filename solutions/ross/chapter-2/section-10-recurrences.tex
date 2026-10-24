@@ -1,0 +1,526 @@
+\exercise{10.9}{A decreasing recurrence with a squared term}
+
+\goal For
+\[
+ s_1=1,\qquad s_{n+1}=\frac{n}{n+1}s_n^2\quad(n\in\N),
+\]
+compute $s_2,s_3,s_4$, prove that a finite limit exists, and prove
+that its value is $0$.
+
+\step{Part (a): substitute the indices one at a time.}
+For $n=1$, the recurrence gives
+\[
+ s_2=\frac1{1+1}s_1^2=\frac12\cdot1^2=\frac12.
+\]
+For $n=2$,
+\[
+ s_3=\frac2{2+1}s_2^2
+     =\frac23\left(\frac12\right)^2
+     =\frac23\cdot\frac14=\frac16.
+\]
+For $n=3$,
+\[
+ s_4=\frac3{3+1}s_3^2
+     =\frac34\left(\frac16\right)^2
+     =\frac34\cdot\frac1{36}
+     =\frac3{144}=\frac1{48}.
+\]
+
+\answer{\(\boxed{s_2=\tfrac12,\quad s_3=\tfrac16,\quad
+s_4=\tfrac1{48}}\).}
+
+\step{Part (b), Step 1: prove positivity and an upper bound by induction.}
+We claim $0<s_n\le1$ for every $n\in\N$.
+
+The initial case is $s_1=1$, so $0<s_1\le1$ holds.
+For the induction step, assume $0<s_n\le1$.
+Since $n\ge1$, the coefficient satisfies
+\[
+ 0<\frac n{n+1}<1.
+\]
+Also $0<s_n^2\le1$.
+Multiplying these positive quantities gives
+\[
+ 0<s_{n+1}=\frac n{n+1}s_n^2<1.
+\]
+This proves the claim by induction.
+
+\step{Part (b), Step 2: compare consecutive terms.}
+The inequality $s_n\le1$, multiplied by the positive number $s_n$,
+gives $s_n^2\le s_n$. The coefficient $n/(n+1)$ is strictly below $1$,
+and $s_n^2>0$, so
+\[
+ s_{n+1}=\frac n{n+1}s_n^2<s_n^2\le s_n.
+\]
+Hence the sequence is strictly decreasing. It is bounded below by $0$
+and above by $1$.
+
+\step{Part (b), Step 3: apply monotone convergence before manipulating a limit.}
+Theorem~10.2 for bounded monotone sequences now applies.
+There is a real number $L$ with $s_n\to L$.
+The inequalities $s_n>0$ imply $L\ge0$ by Exercise~8.9(a).
+Since the sequence is decreasing and $s_2=1/2$,
+\[
+ 0<s_n\le\frac12\qquad(n\ge2).
+\]
+Exercise~8.9 also passes this eventual upper bound to the limit.
+Therefore
+\[
+ 0\le L\le\frac12.
+\]
+
+\answer{A finite limit exists, and it belongs to $[0,1/2]$.
+Its existence has been proved independently of any equation for its value.}
+
+\step{Part (c), Step 1: justify the shifted limit and the coefficient limit.}
+If $s_n\to L$, then $s_{n+1}\to L$ as well.
+Indeed, for any $\varepsilon>0$ choose a threshold $N$ with
+$m>N\Rightarrow\abs{s_m-L}<\varepsilon$.
+For $n>N$, we have $n+1>N$, so the same estimate holds with $m=n+1$.
+
+Next put $c_n=n/(n+1)$. Its error from $1$ is
+\[
+ \abs{c_n-1}
+ =\abs{\frac{n-(n+1)}{n+1}}
+ =\frac1{n+1}.
+\]
+For any $\varepsilon>0$, if $n>1/\varepsilon$, then
+$n+1>1/\varepsilon$, so $1/(n+1)<\varepsilon$.
+Thus $c_n\to1$.
+
+\step{Part (c), Step 2: apply the product limit law to the established limits.}
+Because $s_n\to L$ and $c_n\to1$, the product laws from Section~9 give
+\[
+ \lim_{n\to\infty}c_ns_n^2=1\cdot L\cdot L=L^2.
+\]
+The recurrence says that this is the same sequence as $s_{n+1}$,
+whose limit is $L$. Uniqueness of a finite limit gives
+\[
+ L=L^2.
+\]
+Rearranging and factoring gives
+\[
+ L^2-L=0,\qquad L(L-1)=0.
+\]
+The zero-product property therefore gives $L=0$ or $L=1$.
+
+\step{Part (c), Step 3: use the tail bound to remove the extraneous candidate.}
+Part (b) proved $L\le1/2$, so $L=1$ is impossible.
+The only remaining candidate is $L=0$.
+
+\answer{\(\boxed{\displaystyle\lim_{n\to\infty}s_n=0}\).}
+
+\step{An additional direct error bound.}
+The same recurrence supplies a quantitative check. Since $s_n^2\le s_n$,
+\[
+ s_{n+1}\le\frac n{n+1}s_n.
+\]
+Starting with $s_1=1=1/1$, induction gives $s_n\le1/n$:
+if $s_n\le1/n$, then
+\[
+ s_{n+1}\le\frac n{n+1}\cdot\frac1n=\frac1{n+1}.
+\]
+Consequently
+\[
+ \abs{s_n-0}=s_n\le\frac1n<\varepsilon
+ \qquad\left(n>\frac1\varepsilon\right).
+\]
+This also verifies the zero limit directly from Definition~7.1.
+
+\exercise{10.10}{A linear recurrence approaching one half}
+
+\goal For
+\[
+ s_1=1,\qquad s_{n+1}=\frac{s_n+1}{3}\quad(n\in\N),
+\]
+compute $s_2,s_3,s_4$, prove $s_n>1/2$ by induction, prove that the
+sequence is decreasing, and identify its limit.
+
+\step{Part (a): calculate the first three new terms.}
+Using the recurrence successively gives
+\[
+ s_2=\frac{1+1}{3}=\frac23,
+\]
+\[
+ s_3=\frac{\frac23+1}{3}
+     =\frac{\frac23+\frac33}{3}
+     =\frac{5/3}{3}=\frac59,
+\]
+and
+\[
+ s_4=\frac{\frac59+1}{3}
+     =\frac{\frac59+\frac99}{3}
+     =\frac{14/9}{3}=\frac{14}{27}.
+\]
+
+\answer{\(\boxed{s_2=\tfrac23,\quad s_3=\tfrac59,\quad
+s_4=\tfrac{14}{27}}\).}
+
+\step{Part (b), Step 1: verify the initial case of the proposed lower bound.}
+The proposition for induction is $P_n$: $s_n>1/2$.
+For $n=1$, it says $1>1/2$, which is true.
+
+\step{Part (b), Step 2: prove the induction implication.}
+Assume $s_n>1/2$.
+Adding $1$ to both sides gives $s_n+1>3/2$.
+Dividing by the positive number $3$ preserves the strict inequality:
+\[
+ s_{n+1}=\frac{s_n+1}{3}>\frac{3/2}{3}=\frac12.
+\]
+Thus $P_n$ implies $P_{n+1}$. Induction proves the bound for every
+positive integer $n$.
+
+\answer{\(\boxed{s_n>\tfrac12\text{ for every }n\in\N}\).}
+
+\step{Part (c): subtract consecutive terms and determine the sign.}
+Use a common denominator:
+\[
+ s_{n+1}-s_n
+ =\frac{s_n+1}{3}-s_n
+ =\frac{s_n+1-3s_n}{3}
+ =\frac{1-2s_n}{3}.
+\]
+Part (b) gives $2s_n>1$, so the numerator is negative.
+The denominator $3$ is positive. Hence $s_{n+1}-s_n<0$,
+which means $s_{n+1}<s_n$ for every $n$.
+
+\answer{The sequence is strictly decreasing.}
+
+\step{Part (d), Step 1: establish convergence from bounds and monotonicity.}
+The terms satisfy $1/2<s_n\le s_1=1$, and part (c) proves that
+the sequence is decreasing. Theorem~10.2 therefore gives a finite
+limit $L$. Exercise~8.9 implies
+\[
+ \frac12\le L\le1.
+\]
+
+\step{Part (d), Step 2: solve the limit equation after convergence is known.}
+The shifted sequence $s_{n+1}$ has the same limit $L$, by the
+threshold argument given in Exercise~10.9(c).
+The addition and scalar-multiplication laws from Section~9 give
+\[
+ \lim_{n\to\infty}\frac{s_n+1}{3}=\frac{L+1}{3}.
+\]
+The recurrence identifies these two sequences, so their limits agree:
+\[
+ L=\frac{L+1}{3}.
+\]
+Multiplying by $3$ and collecting terms gives
+\[
+ 3L=L+1,\qquad 2L=1,\qquad L=\frac12.
+\]
+
+\answer{\(\boxed{\displaystyle\lim_{n\to\infty}s_n=\tfrac12}\).
+Every term is strictly greater than $1/2$, but the limit can equal
+that lower bound.}
+
+\exercise{10.11}{An infinite-product recurrence}
+
+\goal For
+\[
+ t_1=1,\qquad
+ t_{n+1}=\left(1-\frac1{4n^2}\right)t_n\quad(n\in\N),
+\]
+(a) prove that a finite limit exists and (b) investigate its value.
+Part (b) asks what the limit appears to be. We will distinguish
+a numerical guess from a proof; an optional elementary-calculus
+argument will then verify the exact value.
+
+\step{Part (a), Step 1: bound the coefficient and prove positivity.}
+For every $n\ge1$, we have $4n^2\ge4$, so
+\[
+ 0<\frac1{4n^2}\le\frac14.
+\]
+Subtracting from $1$ gives
+\[
+ \frac34\le1-\frac1{4n^2}<1.
+\]
+In particular, every recurrence coefficient is strictly positive.
+The initial value is $t_1=1>0$. If $t_n>0$, the recurrence is a
+product of two positive numbers and gives $t_{n+1}>0$.
+Induction shows $t_n>0$ for all $n$.
+
+\step{Part (a), Step 2: prove monotonicity and apply the theorem.}
+Since $1-1/(4n^2)<1$ and $t_n>0$,
+\[
+ t_{n+1}=\left(1-\frac1{4n^2}\right)t_n<t_n.
+\]
+Thus $(t_n)$ is strictly decreasing, bounded below by $0$ and above
+by its first term $1$. Theorem~10.2 gives a finite real limit $L$.
+The bound on the terms implies $0\le L\le1$ by Exercise~8.9.
+
+\answer{The limit of $(t_n)$ exists as a real number.
+This conclusion uses only positivity, monotonicity, and boundedness.}
+
+\step{Part (b), Step 1: compute initial values and a numerical table.}
+The first terms are
+\[
+ t_2=\left(1-\frac14\right)1=\frac34,
+\]
+\[
+ t_3=\left(1-\frac1{16}\right)\frac34
+     =\frac{15}{16}\cdot\frac34=\frac{45}{64},
+\]
+and
+\[
+ t_4=\left(1-\frac1{36}\right)\frac{45}{64}
+     =\frac{35}{36}\cdot\frac{45}{64}
+     =\frac{1575}{2304}=\frac{175}{256}.
+\]
+Continuing the recurrence produces the following rounded values:
+\[
+ \begin{array}{c|c}
+ n&t_n\\ \hline
+ 1&1.000000000000\\
+ 2&0.750000000000\\
+ 3&0.703125000000\\
+ 4&0.683593750000\\
+ 10&0.653587392299\\
+ 100&0.638221323951\\
+ 1000&0.636779026837
+ \end{array}
+\]
+The numbers suggest a limit near $0.63662$.
+The familiar constant $2/\pi$ has the decimal value
+$0.636619772368\ldots$, which suggests the guess
+\[
+ L=\frac2\pi.
+\]
+The numerical agreement motivates this guess; finitely many numerical
+calculations by themselves do not prove the exact identification.
+
+\step{Part (b), Step 2: explain why a direct limit equation gives no value.}
+The coefficient $1-1/(4n^2)$ tends to $1$.
+Taking limits in the recurrence, after convergence has been proved,
+only yields
+\[
+ L=1\cdot L.
+\]
+Every real $L$ satisfies this identity, so it does not determine the
+limit. Further information is needed to justify the guess $2/\pi$.
+
+\step{Optional verification of the guess: the elementary-calculus input.}
+The remaining argument uses integration by parts and the order
+property of definite integrals. Those are additional calculus tools;
+they were not needed for the existence proof in part (a).
+We derive the required product formula here rather than assume
+Wallis's product.
+
+For an integer $m\ge0$, define
+\[
+ I_m=\int_0^{\pi/2}\sin^m x\,dx,
+\]
+where $\sin^0x$ means the constant function $1$.
+The integrands are continuous and are positive in the interior
+when $m\ge1$, so all $I_m$ are positive. Direct integration gives
+\[
+ I_0=\frac\pi2,\qquad I_1=1.
+\]
+
+\step{Optional verification, Step 1: derive the integral recurrence.}
+For $m\ge2$, write
+$I_m=\int_0^{\pi/2}\sin^{m-1}x\sin x\,dx$.
+In integration by parts take
+\[
+ u=\sin^{m-1}x,\quad dv=\sin x\,dx,\quad
+ du=(m-1)\sin^{m-2}x\cos x\,dx,\quad v=-\cos x.
+\]
+The boundary term
+$[-\sin^{m-1}x\cos x]_0^{\pi/2}$ is zero:
+$\cos(\pi/2)=0$, and at $0$ the factor $\sin^{m-1}0$ is zero
+because $m-1\ge1$. Consequently
+\begin{align*}
+ I_m
+  &=(m-1)\int_0^{\pi/2}\sin^{m-2}x\cos^2x\,dx\\
+  &=(m-1)\int_0^{\pi/2}
+          \sin^{m-2}x(1-\sin^2x)\,dx\\
+  &=(m-1)(I_{m-2}-I_m).
+\end{align*}
+Adding $(m-1)I_m$ to both sides and dividing by $m>0$ gives
+\[
+ I_m=\frac{m-1}{m}I_{m-2}.
+\]
+
+\step{Optional verification, Step 2: express the even and odd integrals.}
+Repeated use of the recurrence, ending at $I_0$ or $I_1$, gives
+for every integer $N\ge1$,
+\[
+ I_{2N}=\frac\pi2\prod_{k=1}^{N}\frac{2k-1}{2k},
+ \qquad
+ I_{2N+1}=\prod_{k=1}^{N}\frac{2k}{2k+1}.
+\]
+For example, the even recurrence successively contributes the factors
+$(2N-1)/(2N)$, $(2N-3)/(2N-2)$, down to $1/2$.
+The odd recurrence contributes $(2N)/(2N+1)$ down to $2/3$.
+These are exactly the displayed finite products.
+
+Unrolling the recurrence for $t_n$ gives
+\[
+ t_{N+1}
+  =\prod_{k=1}^{N}\left(1-\frac1{4k^2}\right)
+  =\prod_{k=1}^{N}\frac{(2k-1)(2k+1)}{(2k)^2}.
+\]
+The initial empty product for $t_1$ is $1$, and each new recurrence
+step multiplies by the next factor, which justifies this finite-product
+identity. Dividing the formulas for the positive integrals gives
+\[
+ \frac{I_{2N}}{I_{2N+1}}
+   =\frac\pi2
+     \prod_{k=1}^{N}\frac{(2k-1)(2k+1)}{(2k)^2}
+   =\frac\pi2\,t_{N+1}.
+\]
+
+\step{Optional verification, Step 3: bound the integral ratio.}
+On $[0,\pi/2]$, the quantity $\sin x$ lies in $[0,1]$.
+Multiplication by a number in $[0,1]$ cannot increase a nonnegative
+power, so
+\[
+ \sin^{2N+1}x\le\sin^{2N}x\le\sin^{2N-1}x.
+\]
+Integrating preserves these inequalities:
+\[
+ I_{2N+1}\le I_{2N}\le I_{2N-1}.
+\]
+Divide by $I_{2N+1}>0$. The integral recurrence with $m=2N+1$
+gives $I_{2N+1}=(2N)/(2N+1)\,I_{2N-1}$, so
+\[
+ 1\le\frac{I_{2N}}{I_{2N+1}}
+   \le\frac{I_{2N-1}}{I_{2N+1}}
+   =\frac{2N+1}{2N}=1+\frac1{2N}.
+\]
+Substituting $I_{2N}/I_{2N+1}=(\pi/2)t_{N+1}$ and multiplying
+by $2/\pi>0$ yields
+\[
+ 0\le t_{N+1}-\frac2\pi\le\frac1{\pi N}.
+\]
+For any $\varepsilon>0$, a positive integer index
+$n>1+1/(\pi\varepsilon)$ has $N=n-1>1/(\pi\varepsilon)$.
+Therefore
+\[
+ \abs{t_n-\frac2\pi}\le\frac1{\pi(n-1)}<\varepsilon.
+\]
+This proves the conjectured limit by Definition~7.1.
+
+\answer{Part (a) proves existence using Section~10 alone.
+For part (b), the computed terms suggest $2/\pi$.
+The explicitly marked additional calculus argument verifies that
+\[
+ \boxed{\displaystyle\lim_{n\to\infty}t_n=\frac2\pi.}
+\]
+No product formula was taken on trust; the finite-product identity
+and its limiting estimate were derived.}
+
+\exercise{10.12}{A product recurrence with an exact formula}
+
+\goal For
+\[
+ t_1=1,\qquad
+ t_{n+1}=\left(1-\frac1{(n+1)^2}\right)t_n\quad(n\in\N),
+\]
+(a) establish existence of the limit, (b) guess its value,
+(c) prove $t_n=(n+1)/(2n)$ by induction, and (d) use the formula
+to verify the limit.
+
+\step{Part (a), Step 1: prove positivity and monotonicity.}
+For every $n\ge1$, we have $n+1\ge2$, so
+\[
+ 0<\frac1{(n+1)^2}\le\frac14,\qquad
+ \frac34\le1-\frac1{(n+1)^2}<1.
+\]
+The initial term is positive. If $t_n>0$, multiplying it by this
+positive coefficient gives $t_{n+1}>0$. Induction proves positivity
+for every term.
+
+Because the coefficient is strictly less than $1$ and $t_n>0$,
+we also have $t_{n+1}<t_n$ for every $n$. Thus the sequence is
+strictly decreasing, bounded below by $0$ and above by $t_1=1$.
+
+\step{Part (a), Step 2: apply bounded monotone convergence.}
+Theorem~10.2 now gives a finite limit $L$.
+Exercise~8.9 implies $0\le L\le1$.
+
+\answer{The limit exists as a real number. Its value has not been
+assumed in establishing existence.}
+
+\step{Part (b): calculate early terms to formulate a guess.}
+Successive substitutions give
+\[
+ t_2=\left(1-\frac14\right)1=\frac34,
+\]
+\[
+ t_3=\left(1-\frac19\right)\frac34
+     =\frac89\cdot\frac34=\frac23,
+\]
+\[
+ t_4=\left(1-\frac1{16}\right)\frac23
+     =\frac{15}{16}\cdot\frac23=\frac58,
+\]
+and
+\[
+ t_5=\left(1-\frac1{25}\right)\frac58
+     =\frac{24}{25}\cdot\frac58=\frac35.
+\]
+The values
+\[
+ 1,\quad \frac34,\quad \frac23,\quad \frac58,\quad \frac35
+\]
+fit the proposed pattern $t_n=(n+1)/(2n)$.
+Since this expression equals $1/2+1/(2n)$, it suggests the limit $1/2$.
+At this stage, the pattern and the limit are guesses to be proved.
+
+\step{Part (c), Step 1: state the induction proposition and verify its base.}
+Let $P_n$ be the assertion
+\[
+ t_n=\frac{n+1}{2n}.
+\]
+For $n=1$, the right side is $(1+1)/(2\cdot1)=1$, which equals $t_1$.
+Thus $P_1$ holds.
+
+\step{Part (c), Step 2: substitute the induction hypothesis.}
+Assume $P_n$ for an arbitrary positive integer $n$.
+The recurrence gives
+\begin{align*}
+ t_{n+1}
+   &=\left(1-\frac1{(n+1)^2}\right)\frac{n+1}{2n}\\
+   &=\frac{(n+1)^2-1}{(n+1)^2}\frac{n+1}{2n}\\
+   &=\frac{n^2+2n}{(n+1)^2}\frac{n+1}{2n}\\
+   &=\frac{n(n+2)}{(n+1)^2}\frac{n+1}{2n}\\
+   &=\frac{n+2}{2(n+1)}\\
+   &=\frac{(n+1)+1}{2(n+1)}.
+\end{align*}
+The cancellation in the penultimate line is legitimate because
+$n>0$ and $n+1>0$, so neither cancelled factor is zero.
+The final expression is precisely the formula in $P_{n+1}$.
+
+\answer{Mathematical induction proves
+\[
+ \boxed{t_n=\frac{n+1}{2n}\quad\text{for every }n\in\N.}
+\]}
+
+\step{Part (d), Step 1: separate the constant term from the error.}
+The proved formula gives the identity
+\[
+ t_n=\frac{n+1}{2n}
+     =\frac n{2n}+\frac1{2n}
+     =\frac12+\frac1{2n}.
+\]
+Since $1/n\to0$, the limit laws from Section~9 give
+$t_n\to1/2$.
+
+\step{Part (d), Step 2: verify the conclusion directly with a threshold.}
+For any $\varepsilon>0$, choose $N=1/(2\varepsilon)$.
+Every positive integer $n>N$ satisfies $1/(2n)<\varepsilon$, and
+\[
+ \abs{t_n-\frac12}
+ =\abs{\frac1{2n}}
+ =\frac1{2n}
+ <\varepsilon.
+\]
+This is the definition of convergence to $1/2$.
+
+\answer{The guess in part (b) is now proved:
+\[
+ \boxed{\displaystyle\lim_{n\to\infty}t_n=\frac12.}
+\]
+The exact formula also gives the error $t_n-1/2=1/(2n)$ for every
+positive integer index.}

@@ -1,0 +1,670 @@
+\subsection*{Conventions for monotonicity and Cauchy estimates}
+In Definition~10.1, ``increasing'' means $s_n\le s_{n+1}$ and
+``decreasing'' means $s_n\ge s_{n+1}$. Equality is permitted in both
+definitions. A constant sequence therefore has both properties.
+Repeated application of an increasing inequality gives $s_n\le s_m$
+whenever $n<m$; for a decreasing sequence it gives $s_n\ge s_m$.
+
+Definition~10.8 says that $(s_n)$ is Cauchy if
+\[
+ \text{for every }\varepsilon>0\text{ there is an }N\text{ such that
+ every pair of integers }m,n>N\text{ satisfies }
+ \abs{s_m-s_n}<\varepsilon.
+\]
+Both indices are arbitrary after the same threshold. An estimate for
+consecutive terms alone is not yet the estimate for an arbitrary pair.
+
+\exercise{10.1}{Classifying six sequences}
+
+\goal Decide whether each sequence is increasing, decreasing, and
+bounded, with the weak monotonicity conventions just stated.
+
+\step{Part (a): the sequence $s_n=1/n$.}
+For every $n\in\N$, the denominators $n$ and $n+1$ are positive, and
+\[
+ s_{n+1}-s_n
+   =\frac1{n+1}-\frac1n
+   =\frac{n-(n+1)}{n(n+1)}
+   =-\frac1{n(n+1)}<0.
+\]
+Thus $s_{n+1}<s_n$ for every $n$, so the sequence is decreasing.
+It is not increasing: for example, $s_2=1/2<1=s_1$.
+Because $n\ge1$, we also have $0<1/n\le1$, so $0$ and $1$ are
+a lower and an upper bound.
+
+\answer{The sequence $1/n$ is \textbf{decreasing and bounded}, and is
+not increasing.}
+
+\step{Part (b), Step 1: test monotonicity with exact terms.}
+Here $s_n=(-1)^n/n^2$. Its first three terms are
+\[
+ s_1=-1,\qquad s_2=\frac14,\qquad s_3=-\frac19.
+\]
+The inequality $s_1<s_2$ rules out a decreasing sequence, which would
+require $s_1\ge s_2$. The inequality $s_2>s_3$ rules out an increasing
+sequence, which would require $s_2\le s_3$. Hence it is neither.
+
+\step{Part (b), Step 2: give bounds valid at every index.}
+If $n$ is odd, then $s_n=-1/n^2$, so $-1\le s_n<0$.
+If $n$ is even, then $n\ge2$ and $s_n=1/n^2$, so
+$0<s_n\le1/4$. Both cases give
+\[
+ -1\le s_n\le\frac14\qquad(n\in\N).
+\]
+These bounds are attained at $n=1$ and $n=2$, respectively.
+
+\answer{The sequence $(-1)^n/n^2$ is \textbf{bounded but neither
+increasing nor decreasing}.}
+
+\step{Part (c), Step 1: check the growth of $s_n=n^5$.}
+For every $n\ge1$, the binomial expansion gives
+\begin{align*}
+ s_{n+1}-s_n
+   &=(n+1)^5-n^5,\\
+   &=n^5+5n^4+10n^3+10n^2+5n+1-n^5,\\
+   &=5n^4+10n^3+10n^2+5n+1>0.
+\end{align*}
+All five terms in the final sum are positive. Thus $s_{n+1}>s_n$
+for every index, giving an increasing sequence and ruling out a
+decreasing one.
+
+\step{Part (c), Step 2: prove unboundedness above.}
+Since $n\ge1$, we have $n^4\ge1$, so $n^5\ge n\ge1$.
+The number $1$ is a lower bound. To show there is no upper bound,
+let $U\in\R$ be any proposed upper bound. By the Archimedean
+property, choose $n\in\N$ with $n>\max\{1,U\}$. Then
+\[
+ s_n=n^5\ge n>U.
+\]
+Thus $U$ fails to bound the sequence above. This works for every real
+candidate $U$.
+
+\answer{The sequence $n^5$ is \textbf{increasing and unbounded above}.
+It is not decreasing or bounded, although it is bounded below by $1$.}
+
+\step{Part (d), Step 1: give a rise and a fall for the sine sequence.}
+Let $s_n=\sin(n\pi/7)$. Put $c=\sin(\pi/7)$.
+Since $0<\pi/7<\pi$, the elementary sign property of sine gives
+$c>0$. The sine values at three indices are
+\[
+ s_1=c>0,\qquad s_7=\sin\pi=0,\qquad
+ s_{15}=\sin(2\pi+\pi/7)=c>0.
+\]
+An increasing sequence would satisfy $s_1\le s_7$, contradicting
+$s_1>0=s_7$. A decreasing sequence would satisfy $s_7\ge s_{15}$,
+contradicting $s_7=0<s_{15}$. Comparisons at nonadjacent indices are
+legitimate because monotonicity implies the corresponding comparison
+at any pair of ordered indices.
+
+\step{Part (d), Step 2: give global bounds.}
+The elementary trigonometric inequality $-1\le\sin x\le1$ is valid
+for every real $x$. Applying it at $x=n\pi/7$ gives
+$-1\le s_n\le1$ for every $n$.
+
+\answer{The sequence $\sin(n\pi/7)$ is \textbf{bounded but neither
+increasing nor decreasing}.}
+
+\step{Part (e), Step 1: rule out both monotonicity directions.}
+For $s_n=(-2)^n$, the first three terms are
+\[
+ s_1=-2,\qquad s_2=4,\qquad s_3=-8.
+\]
+The rise from $-2$ to $4$ rules out a decreasing sequence. The fall
+from $4$ to $-8$ rules out an increasing sequence.
+
+\step{Part (e), Step 2: record an elementary power estimate.}
+We will use
+\[
+ 2^j\ge j+1\qquad(j\in\N).
+\]
+For $j=1$, this is $2\ge2$. If it holds for $j\ge1$, then
+\[
+ 2^{j+1}=2\cdot2^j\ge2(j+1)=2j+2\ge j+2,
+\]
+since $(2j+2)-(j+2)=j\ge0$. Induction proves the estimate.
+
+\step{Part (e), Step 3: show that both signs have arbitrarily large magnitude.}
+Let $R>0$ be arbitrary. Choose $k\in\N$ with $k>R$ by the
+Archimedean property. At an even index,
+\[
+ s_{2k}=2^{2k}\ge2k+1>R.
+\]
+At the following odd index,
+\[
+ s_{2k+1}=-2^{2k+1}\le-(2k+2)<-R.
+\]
+Thus there are terms above $R$ and below $-R$ for every positive
+$R$. In particular, no real number is an upper bound and no real
+number is a lower bound.
+
+\answer{The sequence $(-2)^n$ is \textbf{neither increasing nor
+decreasing, and is unbounded both above and below}.}
+
+\step{Part (f), Step 1: compare consecutive positive terms.}
+Here $s_n=n/3^n>0$. Since we are dividing positive quantities, we can
+compute the consecutive-term ratio:
+\begin{align*}
+ \frac{s_{n+1}}{s_n}
+   &=\frac{n+1}{3^{n+1}}\frac{3^n}{n},\\
+   &=\frac{n+1}{3n}.
+\end{align*}
+For $n\ge1$, the denominator is positive and
+$3n-(n+1)=2n-1\ge1>0$. Hence
+$0<(n+1)/(3n)<1$. Multiplying this strict upper inequality by
+$s_n>0$ gives $s_{n+1}<s_n$.
+
+\step{Part (f), Step 2: bound the whole sequence.}
+Every term is positive. Repeated application of the decreasing
+inequality gives $s_n\le s_1=1/3$. Therefore
+\[
+ 0<s_n\le\frac13\qquad(n\in\N).
+\]
+The strict decrease also rules out an increasing sequence.
+
+\answer{The sequence $n/3^n$ is \textbf{decreasing and bounded}, and
+is not increasing.}
+
+\step{Summary of all six classifications.}
+\begin{center}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Sequence & Increasing? & Decreasing? & Bounded?\\
+\midrule
+$1/n$ & No & Yes & Yes\\
+$(-1)^n/n^2$ & No & No & Yes\\
+$n^5$ & Yes & No & No\\
+$\sin(n\pi/7)$ & No & No & Yes\\
+$(-2)^n$ & No & No & No\\
+$n/3^n$ & No & Yes & Yes\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\exercise{10.2}{Convergence of a bounded decreasing sequence}
+
+\goal Prove the decreasing case of Theorem~10.2: every bounded
+decreasing real sequence converges.
+
+\step{Step 1: define the candidate limit and justify its existence.}
+Let $(s_n)$ be bounded and decreasing, and let
+\[
+ S=\{s_n:n\in\N\}.
+\]
+The set is nonempty because $s_1\in S$, and it is bounded because
+the sequence is bounded. In particular, it is bounded below.
+The lower-bound form of completeness gives a real number
+\[
+ L=\inf S.
+\]
+Being a lower bound means $L\le s_n$ for every $n$.
+
+\step{Step 2: obtain one term close to the infimum.}
+Let $\varepsilon>0$. The number $L+\varepsilon$ is strictly larger
+than the greatest lower bound $L$, so it cannot itself be a lower
+bound of $S$. Therefore there is an element of $S$ below
+$L+\varepsilon$. By the definition of $S$, that element is $s_N$
+for some index $N\in\N$. Thus
+\[
+ L\le s_N<L+\varepsilon.
+\]
+
+\step{Step 3: use decrease to control every subsequent term.}
+Take any integer $n>N$. Since the sequence is decreasing,
+$s_n\le s_N$. Since $L$ is a lower bound, $L\le s_n$.
+Combining these facts with Step~2 gives
+\[
+ L\le s_n\le s_N<L+\varepsilon.
+\]
+Subtract $L$ throughout to get $0\le s_n-L<\varepsilon$.
+The difference $s_n-L$ is nonnegative, so
+\[
+ \abs{s_n-L}=s_n-L<\varepsilon
+ \qquad\text{for every integer }n>N.
+\]
+
+\answer{For every $\varepsilon>0$ we obtained the threshold required
+by Definition~7.1. Hence
+\(\boxed{s_n\longrightarrow\inf\{s_n:n\in\N\}}\).
+The proof uses the greatest-lower-bound property, without assuming the
+infimum is one of the terms.}
+
+\exercise{10.3}{A finite bound for decimal approximations}
+
+\goal Let $K$ be a nonnegative integer and let each digit $d_j$ belong
+to $\{0,1,\ldots,9\}$. For
+\[
+ s_n=K+\sum_{j=1}^{n}\frac{d_j}{10^j},
+\]
+prove $s_n<K+1$ for every $n\in\N$.
+
+\step{Step 1: bound each digit contribution.}
+For every $j\ge1$, $0\le d_j\le9$ and $10^j>0$. Division by the
+positive denominator gives
+\[
+ 0\le\frac{d_j}{10^j}\le\frac9{10^j}.
+\]
+Add these finitely many inequalities and then add $K$:
+\[
+ K\le s_n\le K+\sum_{j=1}^{n}\frac9{10^j}.
+\]
+
+\step{Step 2: evaluate the finite upper-bound sum by cancellation.}
+For an individual index $j$,
+\[
+ \frac9{10^j}=\frac{10-1}{10^j}
+   =\frac1{10^{j-1}}-\frac1{10^j}.
+\]
+Consequently
+\begin{align*}
+ \sum_{j=1}^{n}\frac9{10^j}
+   &=\left(1-\frac1{10}\right)
+     +\left(\frac1{10}-\frac1{10^2}\right)
+     +\cdots
+     +\left(\frac1{10^{n-1}}-\frac1{10^n}\right),\\
+   &=1-\frac1{10^n}.
+\end{align*}
+Every intermediate negative term cancels the identical positive term
+in the next parentheses. This is a finite algebraic identity; no
+limit or infinite sum has been used to derive it.
+
+\step{Step 3: preserve the strict final inequality.}
+Substitute the identity from Step~2 into Step~1:
+\[
+ K\le s_n\le K+1-\frac1{10^n}.
+\]
+Since $10^n>0$, its reciprocal is strictly positive. Subtracting that
+positive number makes $K+1-1/10^n$ strictly less than $K+1$. Thus
+\[
+ s_n\le K+1-\frac1{10^n}<K+1.
+\]
+
+\answer{Every finite decimal approximation satisfies
+\(\boxed{s_n<K+1}\).
+Moreover $s_{n+1}-s_n=d_{n+1}/10^{n+1}\ge0$, so the approximations
+are increasing and bounded. Their convergence follows from
+Theorem~10.2 \emph{after} the finite bound has been established.}
+
+\exercise{10.4}{Why the monotone and Cauchy theorems require real completeness}
+
+\goal Explain why Theorems~10.2 and 10.11 would be false if the
+permitted terms and limits were restricted to $\Q$.
+
+\idea We construct a sequence of rational decimal truncations to
+$\sqrt2$. It is increasing, bounded by rational numbers, and Cauchy,
+but its only real limit is the irrational number $\sqrt2$. The
+construction itself uses finite sets and rational comparisons, rather
+than assuming that $\Q$ has the completeness property being tested.
+
+\step{Step 1: construct each truncation using integers only.}
+For each $n\in\N$, consider the finite set
+\[
+ E_n=\{k\in\Z:0\le k\le2\cdot10^n,
+                   \ k^2<2\cdot10^{2n}\}.
+\]
+It is nonempty because $0\in E_n$. A finite nonempty set of integers
+has a largest member, so define
+\[
+ k_n=\max E_n,\qquad q_n=\frac{k_n}{10^n}.
+\]
+The denominator is a positive integer, and the numerator is an
+integer. Hence every $q_n$ is rational.
+The operations and comparisons used to define $E_n$ involve only
+integers. In particular, this construction does not presuppose a
+supremum in $\Q$ for an infinite set.
+
+\step{Step 2: prove rational lower and upper bounds.}
+The integer $10^n$ belongs to $E_n$, since it is between $0$ and
+$2\cdot10^n$ and its square $10^{2n}$ is strictly less than
+$2\cdot10^{2n}$. Thus $k_n\ge10^n$.
+The integer $2\cdot10^n$ does not belong to $E_n$, since its square
+is $4\cdot10^{2n}>2\cdot10^{2n}$. Therefore $k_n<2\cdot10^n$.
+Dividing by $10^n>0$ gives
+\[
+ 1\le q_n<2.
+\]
+Both bounds are rational, so the sequence is bounded even when all
+bounding numbers are required to lie in $\Q$.
+
+\step{Step 3: prove that the sequence is increasing.}
+Since $k_n^2<2\cdot10^{2n}$, multiplication by $100$ gives
+\[
+ (10k_n)^2<2\cdot10^{2(n+1)}.
+\]
+Also $0\le10k_n\le2\cdot10^{n+1}$. Thus $10k_n\in E_{n+1}$.
+The maximality of $k_{n+1}$ implies $10k_n\le k_{n+1}$.
+Dividing by $10^{n+1}>0$ yields
+\[
+ q_n=\frac{10k_n}{10^{n+1}}\le
+      \frac{k_{n+1}}{10^{n+1}}=q_{n+1}.
+\]
+Equality may occur at some indices, which is permitted by the
+definition of increasing.
+
+\step{Step 4: give a rational upper approximation to the same square.}
+The integer $k_n+1$ is still at most $2\cdot10^n$, because
+$k_n<2\cdot10^n$ and both numbers are integers. If
+$(k_n+1)^2<2\cdot10^{2n}$, then $k_n+1$ would belong to $E_n$,
+contradicting maximality. Therefore
+\[
+ k_n^2<2\cdot10^{2n}\le(k_n+1)^2.
+\]
+Divide by $10^{2n}>0$. The result is
+\[
+ q_n^2<2\le\left(q_n+\frac1{10^n}\right)^2.
+\]
+Every number in this display is rational, so the comparisons remain
+meaningful entirely within $\Q$.
+
+\step{Step 5: verify the Cauchy condition through rational estimates.}
+For integers $m>n$, Step~3 gives $q_n\le q_m$.
+The positive numbers $q_m$ and $q_n+10^{-n}$ satisfy
+\[
+ q_m^2<2\le(q_n+10^{-n})^2.
+\]
+Hence $q_m<q_n+10^{-n}$. Indeed, the contrary inequality
+$q_m\ge q_n+10^{-n}\ge0$ would imply the contrary comparison
+between their squares. We conclude
+\[
+ 0\le q_m-q_n<10^{-n}\qquad(m>n).
+\]
+We may use $10^j\ge j$ for every $j\in\N$: the case $j=1$ is
+$10\ge1$; if $10^j\ge j$, then
+$10^{j+1}\ge10j\ge j+1$ because $j\ge1$. This proves the estimate
+by induction, and taking reciprocals gives $10^{-j}\le1/j$.
+
+Now let $\varepsilon>0$ and choose
+$N=\max\{1,1/\varepsilon\}$. Take any two integer indices $m,n>N$.
+If $m=n$, then $\abs{q_m-q_n}=0<\varepsilon$.
+If $m>n$, the preceding estimate gives
+\[
+ \abs{q_m-q_n}=q_m-q_n<10^{-n}\le\frac1n<\varepsilon.
+\]
+If $n>m$, interchange their roles and use the symmetry of absolute
+value to obtain
+$\abs{q_m-q_n}<10^{-m}\le1/m<\varepsilon$.
+Thus the Cauchy estimate holds for every pair of indices above $N$.
+In particular, it holds for every positive rational tolerance, as a
+Cauchy condition formulated within $\Q$ requires.
+
+\step{Step 6: identify the only possible real limit.}
+In the ambient real numbers, let $\alpha=\sqrt2$. It is positive,
+$\alpha^2=2$, and it is irrational by Section~2.
+Step~4 and comparison of squares of positive numbers give
+\[
+ q_n<\alpha\le q_n+10^{-n}.
+\]
+The upper equality is impossible because $q_n+10^{-n}$ is rational
+and $\alpha$ is irrational. Therefore
+\[
+ 0<\alpha-q_n<10^{-n}\le\frac1n.
+\]
+For any real $\varepsilon>0$, the choice
+$N=\max\{1,1/\varepsilon\}$ makes the right side strictly smaller
+than $\varepsilon$ whenever $n>N$. Hence Definition~7.1 gives
+$q_n\to\alpha$ as a sequence in $\R$.
+
+\step{Step 7: rule out every rational limit.}
+A limit in $\Q$ would have to be some $r\in\Q$.
+Restricting the definition to positive rational tolerances makes no
+difference: given any real tolerance $\varepsilon>0$, the
+Archimedean property gives a positive rational $1/j<\varepsilon$,
+and the estimate for that smaller rational tolerance implies the
+estimate for $\varepsilon$. Thus a limit in $\Q$ would also be the
+same limit in $\R$.
+
+Because $r$ is rational and $\alpha$ is irrational, they are distinct.
+Put $d=\abs{\alpha-r}>0$. If $q_n$ converged to both numbers, there
+would be thresholds $N_1,N_2$ such that, for
+$n>\max\{N_1,N_2\}$,
+\[
+ \abs{q_n-\alpha}<\frac d3,
+ \qquad
+ \abs{q_n-r}<\frac d3.
+\]
+The triangle inequality would then give
+\[
+ d=\abs{\alpha-r}
+   \le\abs{\alpha-q_n}+\abs{q_n-r}
+   <\frac{2d}{3}<d,
+\]
+a contradiction. Thus the rational sequence has no rational limit.
+
+\answer{The same rational sequence is bounded and increasing, so it
+contradicts the version of Theorem~10.2 with limits restricted to
+$\Q$. It is also Cauchy, so it contradicts the corresponding version
+of Theorem~10.11. Both failures arise because the required limit
+$\sqrt2$ is missing from $\Q$, not because the sequence is unbounded
+or fails its Cauchy estimates.}
+
+\exercise{10.5}{An unbounded decreasing sequence tends to negative infinity}
+
+\goal Prove Theorem~10.4(ii): if a real sequence $(s_n)$ is decreasing
+and unbounded, then $s_n\to-\infty$.
+
+\step{Step 1: determine which direction must be unbounded.}
+Since the sequence is decreasing, every term satisfies $s_n\le s_1$.
+Thus $s_1$ is an upper bound of its set of terms. If the sequence also
+had a real lower bound, it would be bounded above and below, contrary
+to the hypothesis that it is unbounded. Therefore the sequence is
+unbounded below.
+
+\step{Step 2: find a term below an arbitrary target.}
+Let $M<0$ be any real target. Since the sequence is unbounded below,
+$M$ cannot be a lower bound for all its terms. Hence some index
+$N\in\N$ satisfies
+\[
+ s_N<M.
+\]
+
+\step{Step 3: show that every later term remains below that target.}
+For every integer $n>N$, decrease gives $s_n\le s_N$. Thus
+\[
+ s_n\le s_N<M\qquad(n>N).
+\]
+We have proved that for each $M<0$ there exists a threshold $N$ such
+that every later term is less than $M$.
+
+\answer{This is the definition of divergence to negative infinity,
+so \(\boxed{s_n\longrightarrow-\infty}\). The choice of $s_N$
+would in fact work for any real target $M$, not just negative ones.}
+
+\exercise{10.6}{Small successive differences: one sufficient rate and one insufficient rate}
+
+\goal Prove (a) that $\abs{s_{n+1}-s_n}<2^{-n}$ for every natural
+$n$ implies $(s_n)$ is Cauchy and convergent; and (b) decide whether
+the same conclusion follows from the weaker estimate
+$\abs{s_{n+1}-s_n}<1/n$.
+
+\step{Part (a), Step 1: compare arbitrary terms by telescoping.}
+Fix integers $m>n$. Then
+\[
+ s_m-s_n=\sum_{k=n}^{m-1}(s_{k+1}-s_k).
+\]
+To see the cancellation, expand the right side as
+$(s_{n+1}-s_n)+(s_{n+2}-s_{n+1})+\cdots+(s_m-s_{m-1})$;
+every intermediate term occurs once with each sign. Applying the
+finite triangle inequality gives
+\[
+ \abs{s_m-s_n}
+   \le\sum_{k=n}^{m-1}\abs{s_{k+1}-s_k}
+   <\sum_{k=n}^{m-1}2^{-k}.
+\]
+The final inequality is strict because the finite sum is nonempty
+and every one of its summands is strictly less than the corresponding
+$2^{-k}$.
+
+\step{Part (a), Step 2: bound this finite geometric sum.}
+For an individual $k$,
+$2^{-k}=2^{1-k}-2^{-k}$. Substituting that identity into the sum
+makes the consecutive terms telescope:
+\begin{align*}
+ \sum_{k=n}^{m-1}2^{-k}
+   &=(2^{1-n}-2^{-n})+(2^{-n}-2^{-n-1})
+       +\cdots+(2^{2-m}-2^{1-m}),\\
+   &=2^{1-n}-2^{1-m},\\
+   &<2^{1-n}.
+\end{align*}
+The last inequality holds because $2^{1-m}>0$.
+We have therefore shown
+\[
+ \abs{s_m-s_n}<2^{1-n}\qquad(m>n).
+\]
+
+\step{Part (a), Step 3: choose one threshold for all pairs.}
+Let $\varepsilon>0$. By the Archimedean property choose
+$N\in\N$ such that
+\[
+ N>\max\left\{1,\frac2\varepsilon\right\}.
+\]
+The elementary estimate $2^N\ge N+1$ was proved in Exercise~10.1(e).
+It gives
+\[
+ 2^{1-N}=\frac2{2^N}\le\frac2{N+1}<\frac2N<\varepsilon.
+\]
+Now let $m,n>N$ be arbitrary integer indices.
+If $m=n$, their terms have distance $0<\varepsilon$.
+If $m>n$, Steps~1--2 give
+\[
+ \abs{s_m-s_n}<2^{1-n}\le2^{1-N}<\varepsilon.
+\]
+If $n>m$, interchange the indices and use
+$\abs{s_m-s_n}=\abs{s_n-s_m}$ to get the same conclusion with
+$2^{1-m}$ in place of $2^{1-n}$.
+
+\answer{For every $\varepsilon>0$ all pairs of terms after the chosen
+threshold have distance less than $\varepsilon$. Thus $(s_n)$ is
+Cauchy by Definition~10.8, and Theorem~10.11 for real sequences
+implies that it converges to a real number.}
+
+\step{Part (b), Step 1: construct a sequence satisfying the strict hypothesis.}
+Define the harmonic partial sums
+\[
+ H_n=\sum_{k=1}^{n}\frac1k
+   =1+\frac12+\cdots+\frac1n.
+\]
+The consecutive difference is exactly
+\[
+ H_{n+1}-H_n=\frac1{n+1}.
+\]
+Both sides are positive, and $n+1>n>0$, so
+\[
+ \abs{H_{n+1}-H_n}=\frac1{n+1}<\frac1n
+ \qquad(n\in\N).
+\]
+The required inequality is strict at every index, including $n=1$.
+
+\step{Part (b), Step 2: show directly that the sequence is not Cauchy.}
+Fix the positive tolerance $\varepsilon_0=1/2$. Given any proposed
+threshold $N$, choose an integer $n>\max\{N,1\}$ and put $m=2n$.
+Both indices are greater than $N$. The difference of the terms is
+\[
+ H_{2n}-H_n=\sum_{k=n+1}^{2n}\frac1k.
+\]
+There are exactly $n$ summands. For each index in this sum, $k\le2n$,
+so $1/k\ge1/(2n)$. Adding the $n$ inequalities gives
+\[
+ \abs{H_{2n}-H_n}=H_{2n}-H_n
+   \ge n\frac1{2n}=\frac12=\varepsilon_0.
+\]
+Thus, no matter how $N$ is chosen, some pair of indices $m,n>N$
+violates the required strict Cauchy estimate.
+
+\answer{The answer to part (b) is \textbf{no}. The sequence $(H_n)$
+satisfies every strict bound $\abs{H_{n+1}-H_n}<1/n$, but it is not
+Cauchy. Since every convergent sequence is Cauchy by Lemma~10.9,
+it does not converge.}
+
+\exercise{10.7}{Approaching an unattained supremum by points of the set}
+
+\goal Let $S\subseteq\R$ be bounded and nonempty, and suppose
+$\sup S\notin S$. Construct a sequence $(s_n)$ with $s_n\in S$
+for every $n$ and $s_n\to\sup S$.
+
+\step{Step 1: use the least-upper-bound property at each precision.}
+Completeness gives the real number $M=\sup S$. For each $n\in\N$,
+we have $1/n>0$, and consequently $M-1/n<M$.
+The smaller number $M-1/n$ cannot be an upper bound of $S$,
+because $M$ is its least upper bound. Therefore there is a point
+$s_n\in S$ satisfying $M-1/n<s_n$.
+Since $M$ is an upper bound, also $s_n\le M$. Equality is ruled out
+by $M\notin S$. Thus, choosing such a point for each $n$, we obtain
+\[
+ M-\frac1n<s_n<M\qquad(n\in\N).
+\]
+
+\step{Step 2: translate the order estimate into an error estimate.}
+Subtracting $s_n$ and rearranging the left inequality gives
+$M-s_n<1/n$. The right inequality gives $M-s_n>0$, so
+\[
+ \abs{s_n-M}=M-s_n<\frac1n.
+\]
+This bound holds at every index; the actual choices of the points
+$s_n$ need not produce a monotone sequence.
+
+\step{Step 3: verify convergence with an explicit threshold.}
+Let $\varepsilon>0$ and choose
+\[
+ N=\max\left\{1,\frac1\varepsilon\right\}.
+\]
+For every integer $n>N$, $n>1/\varepsilon$ gives $1/n<\varepsilon$,
+and therefore
+\[
+ \abs{s_n-M}<\frac1n<\varepsilon.
+\]
+
+\answer{The constructed sequence consists entirely of points of $S$
+and satisfies \(\boxed{s_n\longrightarrow\sup S}\).
+The supremum itself is excluded from the set, so each approximation
+is strictly below its target.}
+
+\exercise{10.8}{Averages of an increasing positive sequence}
+
+\goal Let $(s_n)$ be increasing with $s_n>0$ for every $n$, and let
+\[
+ \sigma_n=\frac1n\sum_{k=1}^{n}s_k.
+\]
+Prove that the average sequence $(\sigma_n)$ is increasing in the
+sense of Definition~10.1.
+
+\step{Step 1: compare each average with the last term it averages.}
+Fix $n\in\N$. Since $(s_n)$ is increasing, every $k$ with $1\le k\le n$
+satisfies $s_k\le s_n$. Add these $n$ inequalities:
+\[
+ s_1+s_2+\cdots+s_n\le
+ \underbrace{s_n+s_n+\cdots+s_n}_{n\text{ terms}}=ns_n.
+\]
+Divide by the positive integer $n$ to obtain $\sigma_n\le s_n$.
+Since $s_n\le s_{n+1}$, transitivity gives
+\[
+ \sigma_n\le s_n\le s_{n+1}.
+\]
+In particular, $s_{n+1}-\sigma_n\ge0$.
+
+\step{Step 2: express the next average in terms of the previous one.}
+The definition of $\sigma_n$ gives
+$s_1+\cdots+s_n=n\sigma_n$. Therefore
+\begin{align*}
+ \sigma_{n+1}
+   &=\frac{s_1+\cdots+s_n+s_{n+1}}{n+1},\\
+   &=\frac{n\sigma_n+s_{n+1}}{n+1}.
+\end{align*}
+
+\step{Step 3: calculate the exact difference between consecutive averages.}
+Put the terms over the same positive denominator $n+1$:
+\begin{align*}
+ \sigma_{n+1}-\sigma_n
+   &=\frac{n\sigma_n+s_{n+1}}{n+1}
+       -\frac{(n+1)\sigma_n}{n+1},\\
+   &=\frac{n\sigma_n+s_{n+1}-(n+1)\sigma_n}{n+1},\\
+   &=\frac{n\sigma_n+s_{n+1}-n\sigma_n-\sigma_n}{n+1},\\
+   &=\frac{s_{n+1}-\sigma_n}{n+1}.
+\end{align*}
+The numerator is nonnegative by Step~1, and the denominator $n+1$
+is positive. Hence $\sigma_{n+1}-\sigma_n\ge0$, or
+$\sigma_n\le\sigma_{n+1}$.
+
+\answer{This comparison holds for every $n\in\N$, proving
+\(\boxed{(\sigma_n)\text{ is increasing}}\).
+Equality can occur: for a constant positive sequence, all the averages
+are equal. Thus the weak meaning of ``increasing'' is the one required
+by the hypotheses and conclusion.}

@@ -1,0 +1,860 @@
+\exercise{9.8}{Finite and infinite possibilities for five limits}
+
+\goal Determine each of the five requested limits, using the
+convention introduced in Definition 9.8: an existing limit may be
+a real number, $+\infty$, or $-\infty$. The answer ``NOT EXIST''
+therefore means that none of these three possibilities works.
+
+\idea Use the defining threshold tests. A sequence has limit
+$+\infty$ if, for every $M>0$, all sufficiently late terms exceed
+$M$. It has limit $-\infty$ if, for every $M<0$, all sufficiently
+late terms are below $M$. Neither definition describes finite
+convergence, and the finite-limit arithmetic laws cannot simply
+be applied to expressions involving infinity.
+
+\step{(a) The sequence $n^3$.}
+Let $M>0$ be arbitrary. Set $N=\max\{1,M\}$. If $n>N$, then
+$n\geq1$ and
+\[
+ n^3=n\cdot n^2\geq n>M.
+\]
+Thus every prescribed positive threshold is exceeded by all
+sufficiently late terms, exactly as Definition 9.8 requires.
+
+\answer{In part (a), $\displaystyle\lim_{n\to\infty}n^3=+\infty$.}
+
+\step{(b) The sequence $-n^3$.}
+Let $M<0$. The number $-M$ is positive. Choose
+$N=\max\{1,-M\}$. If $n>N$, the estimate used in (a) gives
+$n^3\geq n>-M$. Multiplication by $-1$ reverses the inequality,
+giving $-n^3<M$. This is the negative-infinity definition.
+
+\answer{In part (b), $\displaystyle\lim_{n\to\infty}(-n^3)=-\infty$.}
+
+\step{(c) The sequence $(-n)^n$.}
+At an even index $n=2m$ the value is $(2m)^{2m}>0$; at an
+odd index $n=2m+1$ it is $-(2m+1)^{2m+1}<0$.
+There are even and odd indices beyond every threshold: choose
+a positive integer $m>N$ to make both $2m$ and $2m+1$ exceed
+a prescribed $N$.
+
+The limit cannot be $+\infty$, because the test with $M=1$
+would require all sufficiently late terms to be greater than $1$,
+whereas arbitrarily late odd terms are negative. It cannot be
+$-\infty$, because the test with $M=-1$ would require all
+sufficiently late terms to be less than $-1$, whereas arbitrarily
+late even terms are positive.
+
+It also cannot be a finite real number $L$. If it converged to
+$L$, the definition with $\varepsilon=1$ would give a threshold
+$N_1$ such that
+\[
+ n>N_1\quad\Longrightarrow\quad\abs{(-n)^n-L}<1.
+\]
+Choose an even positive integer $n>N_1$ with
+$n>\max\{1,L+1\}$. Such an index exists by taking $n=2m$
+with $m$ sufficiently large. Since $n\geq1$, $n^n\geq n$,
+so at this even index
+\[
+ (-n)^n=n^n\geq n>L+1.
+\]
+Consequently $\abs{(-n)^n-L}=n^n-L>1$, contradicting the
+required error bound. All three possible types of limit have
+now been excluded.
+
+\answer{In part (c), the limit does NOT EXIST, even in the
+extended sense of Definition 9.8.}
+
+\step{(d) The sequence $(1.01)^n$.}
+Write $1.01=1+1/100$. The binomial theorem, or Bernoulli's
+inequality, gives
+\[
+ \left(1+\frac1{100}\right)^n\geq1+\frac n{100}.
+\]
+For completeness, the inequality $(1+x)^n\geq1+nx$ for
+$x\geq0$ follows by induction: the case $n=1$ is equality,
+and from the inequality at $n$ one obtains
+\[
+ (1+x)^{n+1}\geq(1+nx)(1+x)
+ =1+(n+1)x+nx^2\geq1+(n+1)x.
+\]
+Now let $M>0$ and set $N=100M$. If $n>N$, then
+$n/100>M$, and hence
+\[
+ (1.01)^n\geq1+\frac n{100}>M.
+\]
+This proves divergence to positive infinity by the definition.
+
+\answer{In part (d), $\displaystyle\lim_{n\to\infty}(1.01)^n=+\infty$.}
+
+\step{(e) The sequence $n^n$.}
+For $n\geq1$, the product of $n$ factors all equal to $n$
+satisfies $n^n\geq n$. Let $M>0$ and set
+$N=\max\{1,M\}$. If $n>N$, then
+$n^n\geq n>M$. The definition therefore applies.
+
+\answer{In part (e), $\displaystyle\lim_{n\to\infty}n^n=+\infty$.}
+
+\exercise{9.9}{Order preserved by existing extended limits}
+
+\goal Assume there is a threshold $N_0$ such that
+$s_n\leq t_n$ whenever $n>N_0$. Prove the three assertions,
+including every possible finite or infinite case in part (c).
+
+\idea Combine the threshold at which the comparison becomes
+valid with the threshold supplied by the relevant limit. In the
+finite case, two limits in the wrong order would force the late
+terms to have the wrong order as well.
+
+\step{(a) From $s_n\to+\infty$ to $t_n\to+\infty$.}
+Fix $M>0$. Since $s_n\to+\infty$, some $N_1$ satisfies
+$s_n>M$ for all $n>N_1$. Set $N=\max\{N_0,N_1\}$.
+For every $n>N$, both the comparison and this threshold test
+hold, so
+\[
+ t_n\geq s_n>M.
+\]
+This holds for the arbitrary $M>0$, proving $t_n\to+\infty$.
+
+\step{(b) From $t_n\to-\infty$ to $s_n\to-\infty$.}
+Fix $M<0$. Since $t_n\to-\infty$, some $N_1$ satisfies
+$t_n<M$ for all $n>N_1$. With
+$N=\max\{N_0,N_1\}$, every $n>N$ gives
+\[
+ s_n\leq t_n<M.
+\]
+This is the definition of $s_n\to-\infty$.
+
+\step{(c) Account for the infinite limit cases.}
+Write $S=\lim s_n$ and $T=\lim t_n$, which exist by the
+assumption in this part. Their possible values lie in
+$\R\cup\{-\infty,+\infty\}$, with the usual extended order.
+The finite and infinite alternatives cannot overlap. Indeed,
+convergence to a real $c$ puts the late terms between $c-1$
+and $c+1$. A simultaneous limit $+\infty$ would put them
+above $\max\{1,c+2\}$, contradicting the upper restriction;
+a simultaneous limit $-\infty$ would put them below
+$\min\{-1,c-2\}$, contradicting the lower restriction.
+Limits of both signs of infinity are incompatible as well,
+since they would eventually require a term to be both greater
+than $1$ and less than $-1$.
+The following cases exhaust all possibilities involving infinity:
+\begin{enumerate}
+ \item If $S=-\infty$, then $S\leq T$ for every possible $T$.
+ \item If $T=+\infty$, then $S\leq T$ for every possible $S$.
+ \item If $S=+\infty$, part (a) forces $T=+\infty$, so
+       $S=T$ and in particular $S\leq T$.
+ \item If $T=-\infty$, part (b) forces $S=-\infty$, so
+       again $S=T$.
+\end{enumerate}
+After these cases, both $S$ and $T$ must be finite real numbers.
+
+\step{(c) Prove the finite case by contradiction.}
+Suppose, contrary to the desired inequality, that $S>T$.
+Set $\delta=(S-T)/3>0$. By finite convergence there are
+thresholds $N_1,N_2$ such that
+\[
+ n>N_1\Longrightarrow\abs{s_n-S}<\delta,
+ \qquad
+ n>N_2\Longrightarrow\abs{t_n-T}<\delta.
+\]
+Thus $s_n>S-\delta$ and $t_n<T+\delta$ at the corresponding
+late indices. But
+\[
+ (S-\delta)-(T+\delta)
+ =(S-T)-2\delta
+ =(S-T)-\frac{2(S-T)}3
+ =\frac{S-T}{3}>0.
+\]
+For $n>\max\{N_0,N_1,N_2\}$ this gives
+\[
+ s_n>S-\delta>T+\delta>t_n,
+\]
+contradicting $s_n\leq t_n$. Hence $S\leq T$ in the finite
+case as well.
+
+\answer{The eventual order implies both infinite-limit comparisons
+in (a) and (b), and $\lim s_n\leq\lim t_n$ whenever both limits
+exist in the extended sense.}
+
+\exercise{9.10}{Scaling and reversing an infinite limit}
+
+\goal Prove the effects of multiplying a sequence with limit
+$+\infty$ by a positive constant or a negative constant, and
+prove both directions of the sign-reversal equivalence.
+
+\idea Choose a threshold for $s_n$ by dividing the target
+threshold by the multiplying constant. A negative constant
+reverses the inequality, so the signs must be recorded.
+
+\step{(a) Multiplication by $k>0$.}
+Assume $s_n\to+\infty$ and fix $k>0$.
+To prove $ks_n\to+\infty$, let $M>0$. Then $M/k>0$,
+so the assumed limit supplies $N$ with
+\[
+ n>N\quad\Longrightarrow\quad s_n>\frac Mk.
+\]
+Multiplying by $k>0$ preserves the direction and gives
+$ks_n>M$. This verifies the target definition.
+
+In fact this implication is reversible. If $ks_n\to+\infty$
+and $M>0$, use the positive threshold $kM$ for $ks_n$.
+Eventually $ks_n>kM$, and division by $k>0$ gives $s_n>M$.
+Thus positive multiplication preserves the $+\infty$ limit in
+both directions.
+
+\step{(b) Prove $s_n\to+\infty\Longrightarrow -s_n\to-\infty$.}
+Let $M<0$ be an arbitrary threshold for $-s_n$.
+Because $-M>0$, the assumption $s_n\to+\infty$ supplies
+$N$ such that $n>N$ implies $s_n>-M$.
+Multiplication by $-1$ reverses the inequality, giving
+$-s_n<M$. Thus $-s_n\to-\infty$.
+
+\step{(b) Prove the reverse implication.}
+Assume $-s_n\to-\infty$ and let $M>0$.
+The number $-M$ is negative, so some $N$ satisfies
+$n>N\Longrightarrow -s_n<-M$. Multiplication by $-1$
+reverses this inequality and gives $s_n>M$.
+Consequently $s_n\to+\infty$, completing the equivalence.
+
+\step{(c) Multiplication by $k<0$.}
+Assume $s_n\to+\infty$ and $k<0$. Let $M<0$ be
+an arbitrary target threshold for $ks_n$. The quotient
+$M/k$ is positive, since both numerator and denominator are
+negative. Hence the assumed limit supplies $N$ such that
+$n>N$ implies $s_n>M/k$. Multiplying by $k<0$ reverses
+the comparison:
+\[
+ n>N\quad\Longrightarrow\quad ks_n<M.
+\]
+This proves $ks_n\to-\infty$.
+
+The corresponding reverse implication also holds. If
+$ks_n\to-\infty$, fix $M>0$ and use the negative threshold
+$kM$. Eventually $ks_n<kM$, and division by $k<0$ reverses
+the inequality, yielding $s_n>M$. Therefore $s_n\to+\infty$.
+
+\answer{Positive scaling preserves a positive-infinity limit;
+negative scaling changes it to negative infinity. In particular,
+$s_n\to+\infty$ if and only if $-s_n\to-\infty$, with each
+direction justified by its own threshold test.}
+
+\exercise{9.11}{Adding a sequence that is bounded below}
+
+\goal Prove the sum has limit $+\infty$ in each of the three
+stated situations. Distinguish a lower bound valid for all terms
+from a lower bound valid only after an initial segment.
+
+\idea Once $t_n\geq m$ holds in the tail, it suffices to make
+$s_n>M-m$. If this number is not positive, replace it by a
+larger positive threshold before invoking Definition 9.8.
+
+\step{(a) Use the stated global lower bound.}
+Assume $s_n\to+\infty$ and
+$\inf\{t_n:n\in\N\}>-\infty$.
+The set is nonempty and consists of real numbers; its infimum
+is at most the finite member $t_1$. Thus this hypothesis provides
+a real lower bound $m$, for example the real infimum itself,
+such that $t_n\geq m$ for every $n$.
+
+Let $M>0$ be arbitrary, and define
+\[
+ B=\max\{1,M-m\}>0.
+\]
+Since $s_n\to+\infty$, there is $N$ such that $n>N$
+implies $s_n>B$. For those indices,
+\[
+ s_n+t_n\geq s_n+m>B+m\geq(M-m)+m=M.
+\]
+The first inequality uses the global lower bound; the last uses
+$B\geq M-m$. This proves the positive-infinity limit.
+
+\step{(b) Derive an eventual lower bound in every allowed limit case.}
+Assume $s_n\to+\infty$ and $T=\lim t_n>-\infty$.
+The existing limit $T$ is either a real number or $+\infty$.
+\begin{itemize}
+ \item If $T\in\R$, apply finite convergence with
+       $\varepsilon=1$. For some $N_1$, every $n>N_1$
+       has $\abs{t_n-T}<1$, implying $t_n>T-1$.
+       Thus we may take $m=T-1$ as an eventual lower bound.
+ \item If $T=+\infty$, use the positive threshold $1$ in
+       Definition 9.8. For some $N_1$, every $n>N_1$
+       has $t_n>1$. Thus we may take $m=1$.
+\end{itemize}
+In either case there are a real $m$ and a threshold $N_1$ such
+that $t_n\geq m$ whenever $n>N_1$. This is a tail bound;
+no assertion about the earlier terms is needed.
+
+Now fix $M>0$. Set $B=\max\{1,M-m\}>0$, and use
+$s_n\to+\infty$ to choose $N_2$ such that $s_n>B$
+for $n>N_2$. For
+$n>\max\{N_1,N_2\}$, both estimates hold and
+\[
+ s_n+t_n\geq s_n+m>B+m\geq M.
+\]
+This proves the desired limit using the eventual bound directly,
+without applying a global hypothesis to an unexamined prefix.
+
+\step{(c) A bounded sequence is bounded below.}
+If $(t_n)$ is bounded, there is a real $C\geq0$ with
+$\abs{t_n}\leq C$ for every $n$. Therefore $t_n\geq-C$
+for every $n$, a global lower bound, and part (a) applies.
+One can also see the threshold explicitly: for $M>0$, choose
+$N$ such that $s_n>M+C$ whenever $n>N$; this is a valid
+positive threshold because $M+C>0$. Then
+\[
+ s_n+t_n\geq s_n-C>M+C-C=M.
+\]
+
+\answer{In (a), (b), and (c), the sum $s_n+t_n$ tends to
+$+\infty$. An eventual lower bound on the added sequence already
+suffices, as the proof of (b) shows.}
+
+\exercise{9.12}{The ratio test for the size of a sequence}
+
+\goal Suppose $s_n\ne0$ for every $n$, and the limit
+\[
+ L=\lim_{n\to\infty}r_n,
+ \qquad r_n=\abs{\frac{s_{n+1}}{s_n}},
+\]
+exists. Prove $s_n\to0$ if $L<1$, and
+$\abs{s_n}\to+\infty$ if $L>1$, including the case
+$L=+\infty$.
+
+\idea A ratio eventually less than a fixed $q<1$ gives a
+geometric bound. For ratios tending to a value larger than $1$,
+apply that first result to the reciprocal magnitudes.
+
+\step{First locate the possible values of $L$.}
+Every $r_n$ is positive, since its numerator and denominator are
+nonzero in absolute value. Therefore its existing limit can only
+be a nonnegative real number or $+\infty$.
+For example, if a finite limit were $L<0$, convergence with
+$\varepsilon=-L/2>0$ would eventually give
+$r_n<L+(-L/2)=L/2<0$, a contradiction. A limit $-\infty$
+would eventually give $r_n<-1$ by its definition, also a
+contradiction. This verifies the claimed restriction on $L$.
+
+\step{(a) Choose a single ratio bound valid at every sufficiently late index.}
+Suppose $L<1$. Then $0\leq L<1$, so
+\[
+ q=\frac{L+1}{2}
+ \quad\hbox{satisfies}\quad 0<q<1\quad\hbox{and}\quad L<q.
+\]
+By convergence of $r_n$ to the finite number $L$, some threshold
+$N_0$ gives $\abs{r_n-L}<q-L$ for all $n>N_0$.
+In particular $r_n<q$ at all those indices.
+Choose an integer $N\in\N$ with $N>N_0$.
+Then every integer $n\geq N$ has $n>N_0$, so
+\[
+ \abs{s_{n+1}}=r_n\abs{s_n}<q\abs{s_n}
+ \qquad(n\geq N).
+\]
+The integer choice makes the starting index and the validity of
+every subsequent ratio inequality explicit.
+
+\step{(a) Prove the geometric estimate by induction.}
+For $n=N+1$, the preceding inequality gives
+\[
+ \abs{s_{N+1}}<q\abs{s_N}=q^{(N+1)-N}\abs{s_N}.
+\]
+Assume for some integer $n>N$ that
+$\abs{s_n}<q^{n-N}\abs{s_N}$. Since the ratio estimate
+also applies at this $n$, multiplication by $q>0$ gives
+\[
+ \abs{s_{n+1}}<q\abs{s_n}
+ <q\,q^{n-N}\abs{s_N}
+ =q^{(n+1)-N}\abs{s_N}.
+\]
+Induction proves
+\[
+ \abs{s_n}<q^{n-N}\abs{s_N}\qquad(n>N).
+\]
+
+Since $0<q<1$, Theorem 9.7(b) gives $q^m\to0$ as
+$m\to\infty$. To spell out the use of this fact, let
+$\varepsilon>0$. The number $C=\abs{s_N}$ is positive,
+because $s_N\ne0$. Choose a threshold $K$ such that
+$m>K$ implies $q^m<\varepsilon/C$.
+If $n>N+\max\{K,0\}$, then $m=n-N>K$ and $n>N$,
+so
+\[
+ \abs{s_n-0}<q^{n-N}C<\frac{\varepsilon}{C}C
+ =\varepsilon.
+\]
+This is precisely finite convergence to $0$.
+
+\step{(b) Form the reciprocal sequence and compute its ratio.}
+Suppose $L>1$, and define
+\[
+ t_n=\frac1{\abs{s_n}}>0.
+\]
+It is defined and nonzero for every $n$. Its absolute ratio is
+\begin{align*}
+ \abs{\frac{t_{n+1}}{t_n}}
+ &=\frac{1/\abs{s_{n+1}}}{1/\abs{s_n}}\\
+ &=\frac{\abs{s_n}}{\abs{s_{n+1}}}
+ =\frac1{r_n}.
+\end{align*}
+There are two distinct cases for the ratio limit:
+\begin{itemize}
+ \item If $1<L<+\infty$, the finite reciprocal law applies
+       to $r_n\to L$, since every $r_n\ne0$ and $L\ne0$.
+       It gives $1/r_n\to1/L$, with $0<1/L<1$.
+ \item If $L=+\infty$, every $r_n$ is positive, so
+       Theorem 9.10 gives $1/r_n\to0$. This conclusion uses
+       the infinite-limit reciprocal theorem, not the finite
+       quotient law with an infinite denominator.
+\end{itemize}
+In either case, the absolute ratio for $t_n$ has a finite limit
+strictly less than $1$. Part (a) therefore proves $t_n\to0$.
+Finally apply Theorem 9.10 to the positive sequence
+$\abs{s_n}$: its reciprocal is $t_n\to0$, so
+\[
+ \abs{s_n}\longrightarrow+\infty.
+\]
+
+\answer{If $L<1$, the sequence itself converges to $0$.
+If $L>1$, including $L=+\infty$, its magnitudes tend to
+$+\infty$. No conclusion for the boundary value $L=1$ is
+asserted by either part.}
+
+\exercise{9.13}{All real bases in a geometric sequence}
+
+\goal Prove the complete classification of $a^n$ as the fixed
+real base $a$ varies, including $a=0$, $a=1$, $a=-1$, and
+both intervals of negative bases.
+
+\idea Use Exercise 9.12 where the terms are nonzero. For a
+negative base with magnitude at least $1$, check that no finite
+limit and neither infinite limit can accommodate the alternating
+signs.
+
+\step{Case 1: $a=0$, and then $0<\abs a<1$.}
+If $a=0$, every term $a^n$ is $0$ because $n\geq1$.
+Thus the sequence converges to $0$ directly.
+If $0<\abs a<1$, every term is nonzero and
+\[
+ \abs{\frac{a^{n+1}}{a^n}}=\abs a<1.
+\]
+This constant ratio has limit $\abs a$, so Exercise 9.12(a)
+proves $a^n\to0$. The two cases together cover all
+$\abs a<1$, including negative $a$ of magnitude less than $1$.
+
+\step{Case 2: $a=1$.}
+Every term equals $1^n=1$. Thus for every $\varepsilon>0$,
+$\abs{a^n-1}=0<\varepsilon$ at every index, giving limit $1$.
+
+\step{Case 3: $a>1$.}
+The terms $a^n$ are positive and nonzero. Their absolute ratio
+is the constant $a>1$. Exercise 9.12(b) gives
+$\abs{a^n}\to+\infty$. Since $a^n>0$,
+$\abs{a^n}=a^n$, so the sequence itself tends to $+\infty$.
+
+\step{Case 4: $a=-1$.}
+The terms are $1$ at even indices and $-1$ at odd indices.
+If there were a finite limit $L$, convergence with
+$\varepsilon=1/2$ would put every sufficiently late term
+within $1/2$ of $L$. Choose a late even index $p$ and a late
+odd index $q$. The triangle inequality would give
+\[
+ 2=\abs{1-(-1)}
+ \leq\abs{a^p-L}+\abs{L-a^q}<\frac12+\frac12=1,
+\]
+a contradiction. A limit $+\infty$ fails the threshold $M=1$
+because late odd terms equal $-1$. A limit $-\infty$ fails
+the threshold $M=-1$ because late even terms equal $1$.
+Thus no extended limit exists.
+
+\step{Case 5: $a<-1$.}
+Set $b=\abs a=-a>1$. By Case 3, $b^n\to+\infty$.
+The terms satisfy
+\[
+ a^n=(-1)^n b^n,\qquad\abs{a^n}=b^n.
+\]
+Suppose first that $a^n$ had a finite limit $L$.
+Convergence with $\varepsilon=1$ would give, eventually,
+\[
+ \abs{a^n}\leq\abs{a^n-L}+\abs L<1+\abs L.
+\]
+But $b^n\to+\infty$ means that eventually
+$b^n>1+\abs L$, contradicting $\abs{a^n}=b^n$.
+Thus there is no finite limit.
+
+There is also no limit $+\infty$, since for every threshold
+index there is a later odd index with $a^n<0$, defeating
+the positive threshold $M=1$. There is no limit $-\infty$,
+since there is always a later even index with $a^n>0$,
+defeating the negative threshold $M=-1$.
+The required even and odd indices can be taken as $2m$ and
+$2m+1$, where $m$ is any positive integer larger than the
+proposed threshold index.
+
+\answer{For every real $a$,
+\[
+ \lim_{n\to\infty}a^n=
+ \begin{cases}
+  0,&\abs a<1,\\
+  1,&a=1,\\
+  +\infty,&a>1,\\
+  \text{does not exist},&a\leq-1.
+ \end{cases}
+\]
+The last line excludes finite limits and both infinite limits.}
+
+\exercise{9.14}{Geometric growth compared with a real power}
+
+\goal Fix $p>0$ and determine the limit of $a^n/n^p$
+for every real $a$, using Exercise 9.12 where its hypotheses
+apply. In particular, include both boundary bases $a=1$ and
+$a=-1$.
+
+\idea The absolute ratio is
+$\abs a\,(n/(n+1))^p$. Prove its second factor tends to $1$,
+then distinguish ratios below $1$, above $1$, and the boundary
+cases where the ratio test does not decide the answer.
+
+\step{1. State the real-power facts and justify the needed limit.}
+As in Theorem 9.7(a), positive bases with real exponents use
+the usual real-power algebra and order: products and quotients
+obey the exponent rules; and $r^v\leq r^u$ whenever
+$0<r<1$ and $0<u<v$. These are the elementary
+real-power properties already implicit in the statement of
+Theorem 9.7(a). We do not assume a continuity theorem for
+real powers from a later section.
+
+Set $r_n=n/(n+1)$, so $0<r_n<1$. Choose an integer $m>p$,
+possible by the Archimedean property. Then
+\[
+ r_n^m\leq r_n^p\leq1,
+ \qquad
+ 0\leq1-r_n^p\leq1-r_n^m.
+\]
+For the integer exponent $m$, finite multiplication gives the
+factorization
+\[
+ 1-r_n^m=(1-r_n)(1+r_n+\cdots+r_n^{m-1}).
+\]
+Every one of the $m$ terms in the parenthesized sum is at
+most $1$, and $1-r_n=1/(n+1)$. Therefore
+\[
+ 0\leq1-r_n^p\leq1-r_n^m
+ \leq\frac{m}{n+1}.
+\]
+The final expression tends to $0$: for $\varepsilon>0$,
+$n>m/\varepsilon$ makes $m/(n+1)<\varepsilon$.
+This direct error estimate proves
+\[
+ \left(\frac n{n+1}\right)^p\longrightarrow1
+\]
+for the possibly nonintegral exponent $p>0$.
+
+\step{2. Compute the ratio when $a\ne0$.}
+Let $u_n=a^n/n^p$. Since $n>0$, its denominator is positive.
+If $a\ne0$, all $u_n$ are nonzero, and the real-power
+quotient rule yields
+\begin{align*}
+ \abs{\frac{u_{n+1}}{u_n}}
+ &=\abs{\frac{a^{n+1}}{(n+1)^p}\cdot\frac{n^p}{a^n}}\\
+ &=\abs a\,\frac{n^p}{(n+1)^p}\\
+ &=\abs a\left(\frac n{n+1}\right)^p.
+\end{align*}
+Step 1 and the finite scalar-multiple limit theorem show that
+this ratio has limit $\abs a$.
+
+\step{3. Treat $a=0$ and the cases $0<\abs a<1$.}
+For $a=0$, every numerator is $0$ and every denominator is
+positive, so $u_n=0$ and the limit is $0$.
+For $0<\abs a<1$, Step 2 gives an absolute ratio limit
+less than $1$, so Exercise 9.12(a) applies and gives $u_n\to0$.
+
+\step{4. Treat the two boundary cases $\abs a=1$.}
+If $a=1$ or $a=-1$, then $\abs{a^n}=1$, and hence
+\[
+ \abs{u_n-0}=\frac1{n^p}.
+\]
+Theorem 9.7(a), whose hypothesis is precisely $p>0$, says
+$1/n^p\to0$. Thus $u_n\to0$ in both boundary cases.
+The ratio limit here is $1$; the conclusion comes from the
+direct error bound rather than from an inapplicable strict
+case of Exercise 9.12.
+
+\step{5. Treat $a>1$.}
+The absolute ratio limit is $a>1$, so Exercise 9.12(b) gives
+$\abs{u_n}\to+\infty$. Since $a^n>0$ and $n^p>0$,
+the terms themselves are positive: $u_n=\abs{u_n}$.
+Consequently $u_n\to+\infty$.
+
+\step{6. Treat $a<-1$ and exclude all three types of limit.}
+Exercise 9.12(b) gives $\abs{u_n}\to+\infty$, since
+the absolute ratio limit is $\abs a>1$.
+If $u_n$ converged to a finite $L$, then eventually
+\[
+ \abs{u_n}\leq\abs{u_n-L}+\abs L<1+\abs L
+\]
+by the error bound $\abs{u_n-L}<1$. This contradicts
+$\abs{u_n}\to+\infty$.
+At even indices $u_n>0$, while at odd indices $u_n<0$.
+Every tail has an odd index, so the positive-infinity test
+with $M=1$ fails. Every tail also has an even index, so
+the negative-infinity test with $M=-1$ fails.
+Thus no extended limit exists in this last case.
+
+\answer{For $p>0$ and real $a$,
+\[
+ \lim_{n\to\infty}\frac{a^n}{n^p}=
+ \begin{cases}
+  0,&\abs a\leq1,\\
+  +\infty,&a>1,\\
+  \text{does not exist},&a<-1.
+ \end{cases}
+\]
+In particular, the base $a=-1$ now gives limit $0$, unlike
+the unscaled sequence in Exercise 9.13.}
+
+\exercise{9.15}{Every fixed geometric sequence is dominated by a factorial}
+
+\goal Prove $a^n/n!\to0$ for every $a\in\R$, including
+zero and negative values.
+
+\idea After the zero-base case is separated, the absolute
+ratio is $\abs a/(n+1)$, which tends to $0$. This gives
+the strict ratio condition from Exercise 9.12(a).
+
+\step{1. Handle $a=0$ without dividing by a zero term.}
+When $a=0$ and $n\geq1$, $a^n=0$. Since $n!>0$,
+every term is $0$, and the limit is $0$.
+
+\step{2. Compute the absolute ratio for $a\ne0$.}
+Fix a nonzero real $a$ and write $s_n=a^n/n!$.
+Then every $s_n$ is nonzero. By the factorial identity
+$(n+1)!=(n+1)n!$,
+\begin{align*}
+ \abs{\frac{s_{n+1}}{s_n}}
+ &=\abs{\frac{a^{n+1}}{(n+1)!}\cdot\frac{n!}{a^n}}\\
+ &=\abs{\frac{a\,n!}{(n+1)n!}}\\
+ &=\frac{\abs a}{n+1}.
+\end{align*}
+For $\varepsilon>0$, choosing $N>\abs a/\varepsilon$
+makes $n>N$ imply $\abs a/(n+1)<\varepsilon$.
+Thus the ratio limit is $L=0<1$.
+Exercise 9.12(a) now proves $s_n\to0$. Its hypothesis is
+about absolute ratios, so this argument applies to negative
+$a$ as well as positive $a$.
+
+\answer{For every real $a$, $\displaystyle\lim_{n\to\infty}a^n/n!=0$.}
+
+\exercise{9.16}{Three applications of the infinite-limit results}
+
+\goal Establish positive-infinity limits for all three given
+expressions, using the proved infinite-limit theorems or
+Exercises 9.9--9.15 with their hypotheses checked.
+
+\idea In (a), isolate a factor with limit $+\infty$ and
+another with a positive finite limit. In (b) and (c), use
+Exercise 9.14 for the growing term and then control the
+added term from below.
+
+\step{(a) The expression $(n^4+8n)/(n^2+9)$.}
+Every denominator $n^2+9$ is positive. Factor the expression
+exactly as
+\[
+ \frac{n^4+8n}{n^2+9}
+ =n^2\,\frac{1+8/n^3}{1+9/n^2}.
+\]
+Indeed, multiplying the numerator and denominator of the
+right-hand fraction by $n^2$ gives
+\[
+ n^2\,\frac{n^2+8/n}{n^2+9}
+ =\frac{n^4+8n}{n^2+9}.
+\]
+Theorem 9.7(a) gives $1/n^3\to0$ and $1/n^2\to0$.
+The finite scalar and sum laws therefore give
+$1+8/n^3\to1$ and $1+9/n^2\to1$.
+All the latter denominators are positive, and the limit
+denominator is $1\ne0$, so the finite quotient theorem
+applies to this fraction and gives
+\[
+ v_n=\frac{1+8/n^3}{1+9/n^2}\longrightarrow1>0.
+\]
+Also $n^2\to+\infty$: for each $M>0$, every
+$n>\sqrt M$ has $n^2>M$. Thus Theorem 9.9 applies to
+$s_n=n^2$ and $t_n=v_n$, since its first limit is
+$+\infty$ and its second limit is the positive number $1$.
+It gives the desired product limit.
+
+\answer{In part (a),
+$\displaystyle\lim_{n\to\infty}\frac{n^4+8n}{n^2+9}=+\infty$.}
+
+\step{(b) The expression $2^n/n^2+(-1)^n$.}
+Exercise 9.14 with $a=2>1$ and $p=2>0$ gives
+\[
+ u_n=\frac{2^n}{n^2}\longrightarrow+\infty.
+\]
+The second sequence is bounded: $-1\leq(-1)^n\leq1$
+for every $n$. Exercise 9.11(c) therefore applies to the
+sum. In explicit threshold form, given $M>0$, choose $N$
+so that $n>N$ implies $u_n>M+1$. Then
+\[
+ \frac{2^n}{n^2}+(-1)^n\geq u_n-1>M.
+\]
+This verifies the limit without requiring the oscillating
+sequence $(-1)^n$ itself to have a limit.
+
+\answer{In part (b),
+$\displaystyle\lim_{n\to\infty}\left[\frac{2^n}{n^2}+(-1)^n\right]=+\infty$.}
+
+\step{(c) The expression $3^n/n^3-3^n/n!$.}
+Exercise 9.14 with $a=3$, $p=3$ and Exercise 9.15 with
+$a=3$ give, respectively,
+\[
+ u_n=\frac{3^n}{n^3}\longrightarrow+\infty,
+ \qquad
+ v_n=\frac{3^n}{n!}\longrightarrow0.
+\]
+Thus $-v_n\to0$ by the finite scalar-multiple theorem.
+Exercise 9.11(b) applies to $u_n+(-v_n)$, since the second
+limit $0$ is greater than $-\infty$.
+To verify the threshold directly, fix $M>0$.
+Choose $N_1$ such that $n>N_1$ implies $u_n>M+1$.
+Choose $N_2$ such that $n>N_2$ implies
+$\abs{v_n}<1$, using its convergence to $0$.
+For $n>\max\{N_1,N_2\}$ we have $v_n<1$ and hence
+\[
+ u_n-v_n>u_n-1>M.
+\]
+This is a growing term minus a term tending to $0$;
+the proof does not subtract two infinite limits.
+
+\answer{In part (c),
+$\displaystyle\lim_{n\to\infty}\left[\frac{3^n}{n^3}-\frac{3^n}{n!}\right]=+\infty$.}
+
+\exercise{9.17}{A definition-only proof for the sequence of squares}
+
+\goal Use only Definition 9.8 to prove $n^2\to+\infty$.
+
+\idea Given the positive height $M$, solve $n^2>M$ by
+requiring $n>\sqrt M$. Both sides are positive, so squaring
+this comparison preserves its direction.
+
+\step{Formal proof with the quantifiers explicit.}
+Let $M>0$ be arbitrary, and set $N=\sqrt M$.
+If $n\in\N$ and $n>N$, then $n>\sqrt M>0$.
+Multiplying positive inequalities, or using the strictly
+increasing square function on the positive numbers, gives
+\[
+ n^2>(\sqrt M)^2=M.
+\]
+More explicitly, $n>\sqrt M$ gives
+$n^2>n\sqrt M>(\sqrt M)^2$ after multiplication first
+by $n>0$ and then by $\sqrt M>0$.
+We have therefore proved that for every $M>0$ there is
+$N=\sqrt M$ such that every positive integer $n>N$
+satisfies $n^2>M$. This is exactly Definition 9.8.
+
+\answer{$\displaystyle\lim_{n\to\infty}n^2=+\infty$, with the
+explicit threshold $N=\sqrt M$ for each $M>0$.}
+
+\exercise{9.18}{Finite geometric sums and their limits}
+
+\goal Prove the finite-sum identity in (a), then determine
+the limits in (b), (c), and (d), including the base $a=1$
+where the identity's quotient is not defined.
+
+\idea Subtract $a$ times the finite sum from the original
+sum. Every interior power cancels. After the identity is
+proved, use the established geometric-sequence limit for
+$\abs a<1$, and a direct lower comparison for $a\geq1$.
+
+\step{(a) Prove the identity for every allowed base and every index.}
+Fix a real $a\ne1$ and a positive integer $n$, and define
+\[
+ S_n=1+a+a^2+\cdots+a^n=\sum_{k=0}^{n}a^k.
+\]
+Here $a^0$ denotes the constant empty product $1$, including
+when $a=0$. Multiplication and reindexing a finite sum give
+\[
+ aS_n=\sum_{k=0}^{n}a^{k+1}
+ =\sum_{j=1}^{n+1}a^j
+ =a+a^2+\cdots+a^n+a^{n+1}.
+\]
+The reindexing sets $j=k+1$, so the lower bound $k=0$
+becomes $j=1$ and the upper bound $k=n$ becomes $j=n+1$.
+Subtracting the two finite sums cancels exactly the terms
+$a,a^2,\ldots,a^n$:
+\begin{align*}
+ S_n-aS_n
+ &=(1+a+\cdots+a^n)-(a+\cdots+a^n+a^{n+1})\\
+ &=1-a^{n+1}.
+\end{align*}
+The left side factors as $(1-a)S_n$. Since $a\ne1$,
+$1-a\ne0$, and division by this nonzero number yields
+\[
+ S_n=\frac{1-a^{n+1}}{1-a}.
+\]
+The base and index were arbitrary, so this proves the identity
+for every real $a\ne1$ and every positive integer $n$.
+The cancellation also works for $n=0$, if that index is
+included, since then the identity is $1=(1-a)/(1-a)$.
+
+\step{(b) Pass to the limit for $\abs a<1$.}
+Now fix $a$ with $\abs a<1$. Then $a\ne1$, so (a)
+applies. Exercise 9.13 gives $a^n\to0$.
+Since $a^{n+1}=a\,a^n$, multiplication by the fixed real
+number $a$ gives $a^{n+1}\to a\cdot0=0$ by the finite
+scalar-multiple theorem. The denominator $1-a$ is a fixed
+nonzero real number. Consequently the finite sum and quotient
+laws applied to the identity give
+\[
+ \lim_{n\to\infty}S_n=\frac{1-0}{1-a}=\frac1{1-a}.
+\]
+One can read the same conclusion directly as an error
+estimate, avoiding any ambiguity about division:
+\begin{align*}
+ \abs{S_n-\frac1{1-a}}
+ &=\abs{\frac{1-a^{n+1}-1}{1-a}}\\
+ &=\frac{\abs a^{\,n+1}}{\abs{1-a}}\longrightarrow0.
+\end{align*}
+The denominator in this expression is positive and constant;
+the numerator tends to $0$. This includes $a=0$, when every
+sum is exactly $1$.
+
+\answer{For part (b), if $\abs a<1$, then
+$\displaystyle\lim_{n\to\infty}(1+a+\cdots+a^n)=1/(1-a)$.}
+
+\step{(c) Substitute $a=1/3$ and simplify the fraction.}
+The displayed sequence of sums is
+\[
+ 1+\frac13+\frac19+\frac1{27}+\cdots+\frac1{3^n}
+ =\sum_{k=0}^{n}\left(\frac13\right)^k.
+\]
+Since $0<1/3<1$, part (b) applies. Its limit is
+\[
+ \frac1{1-1/3}
+ =\frac1{(3-1)/3}
+ =\frac1{2/3}
+ =\frac32.
+\]
+
+\answer{The limit in part (c) is $3/2$.}
+
+\step{(d) Handle $a=1$ and $a>1$ explicitly.}
+If $a=1$, the sum contains $n+1$ terms, each equal to $1$,
+so $S_n=n+1$. For an arbitrary $M>0$, $n>M$ implies
+$S_n=n+1>M$. Therefore $S_n\to+\infty$ in this case.
+The quotient in (a) was not used at $a=1$, where its
+denominator would be zero.
+
+If $a>1$, every term $a^k$ for $k=0,1,\ldots,n$ is at
+least $1$: the exponent $0$ gives $1$, and a positive
+exponent gives a product of factors greater than $1$.
+Adding the $n+1$ inequalities gives
+\[
+ S_n=\sum_{k=0}^{n}a^k\geq\sum_{k=0}^{n}1=n+1.
+\]
+Since $n+1\to+\infty$, Exercise 9.9(a) proves
+$S_n\to+\infty$. Equivalently, the same threshold $N=M$
+works directly: $n>N$ implies $S_n\geq n+1>M$.
+
+\answer{For part (d), every base $a\geq1$ gives
+$\displaystyle\lim_{n\to\infty}(1+a+\cdots+a^n)=+\infty$.}

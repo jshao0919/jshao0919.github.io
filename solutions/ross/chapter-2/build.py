@@ -8,8 +8,10 @@ import tempfile
 import zipfile
 
 ROOT = Path(__file__).resolve().parent
-TARGETS = ["ross-section-07", "ross-section-08", "ross-chapter-2-sections-7-8"]
-EXPECTED = {7: 5, 8: 10}
+TARGETS = [f"ross-section-{section:02}" for section in range(7, 11)] + [
+    "ross-chapter-2-sections-7-10", "ross-chapter-2-sections-9-10",
+    "ross-chapter-2-sections-7-8"]
+EXPECTED = {7: 5, 8: 10, 9: 18, 10: 12}
 
 
 def expanded_source(path, ancestors=()):
