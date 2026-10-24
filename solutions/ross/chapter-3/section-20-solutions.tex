@@ -1,0 +1,683 @@
+\section{Limits of functions}
+\label{sec:function-limits}
+\input{section-20-sketches.tex}
+The approach set is part of a limit's meaning. A two-sided limit at
+$a$ uses nearby points different from $a$; a right-hand limit uses
+points strictly greater than $a$. The value at $a$ is irrelevant to
+these punctured limits. Limits may be finite or may equal one of
+the two infinite symbols. ``Does not exist'' means that none of
+these possibilities is a limit.
+
+The sketches below are original schematic plots in finite windows.
+Open circles mark missing points. Dashed lines mark asymptotes;
+the axes themselves also mark an asymptote when appropriate.
+No finite drawing can show all the oscillations accumulating at zero.
+The formulas and estimates specify those oscillations exactly.
+
+\exercise{20.1}{A sign graph and its five limiting behaviors}
+\goal Sketch $f(x)=x/\abs{x}$ and inspect the five limits requested
+in the exercise, in their stated order.
+
+\step{Separate the positive and negative halves of the domain.}
+The denominator is zero at $x=0$, so the domain is $\R\setminus\{0\}$.
+For $x>0$, $\abs{x}=x$, whereas for $x<0$, $\abs{x}=-x$.
+Consequently
+\[
+ f(x)=\begin{cases}1,&x>0,\\-1,&x<0.\end{cases}
+\]
+The graph consists of two horizontal half-lines, with the endpoints
+at $(0,1)$ and $(0,-1)$ omitted.
+\begin{center}\rossSketchSign\end{center}
+
+\step{Read the limits, keeping the two sides separate.}
+\[
+\begin{array}{c|ccccc}
+ \text{approach}&+\infty&0^+&0^-&-\infty&0\\ \hline
+ \text{limit}&1&1&-1&-1&\text{does not exist}
+\end{array}
+\]
+The right-hand values are constantly $1$ and the left-hand values
+are constantly $-1$. Since these two one-sided limits differ,
+Theorem~20.10 excludes a two-sided limit. Detailed verification
+of the assertions is given in Exercise~20.5.
+\answer{The five answers are $1,1,-1,-1$, and nonexistence.}
+
+\exercise{20.2}{Two halves of a quadratic graph}
+\goal Repeat the five-limit inspection for $f(x)=x^3/\abs{x}$.
+
+\step{Cancel only where the denominator is nonzero.}
+For $x>0$, $x^3/\abs{x}=x^2$. For $x<0$, division by $-x$
+gives $x^3/\abs{x}=-x^2$. Thus
+\[
+ f(x)=\begin{cases}x^2,&x>0,\\-x^2,&x<0.\end{cases}
+\]
+The right branch rises to $+\infty$, the left branch falls to
+$-\infty$ as $x$ runs toward the corresponding infinity, and both
+branches approach the missing point $(0,0)$.
+\begin{center}\rossSketchSignedSquare\end{center}
+\[
+\begin{array}{c|ccccc}
+ \text{approach}&+\infty&0^+&0^-&-\infty&0\\ \hline
+ \text{limit}&+\infty&0&0&-\infty&0
+\end{array}
+\]
+The two-sided limit is $0$ even though $f(0)$ is undefined.
+\answer{The five answers are $+\infty,0,0,-\infty,0$.
+Exercise~20.6 proves them.}
+
+\exercise{20.3}{The sine quotient and its removable hole}
+\goal Sketch $f(x)=\sin x/x$, $x\ne0$, and inspect the five limits.
+
+\step{Identify the hole, symmetry, and distant oscillations.}
+Since $\sin(-x)=-\sin x$, division by $-x$ shows that
+$f(-x)=f(x)$. The graph is even. Its zeros are the nonzero
+integer multiples of $\pi$, and
+\[
+ \abs{f(x)}\le\frac1{\abs{x}}\qquad(x\ne0).
+\]
+The oscillations therefore shrink at either infinity. Near zero,
+the curve approaches height $1$, with $(0,1)$ omitted.
+\begin{center}\rossSketchSinc\end{center}
+\[
+\begin{array}{c|ccccc}
+ \text{approach}&+\infty&0^+&0^-&-\infty&0\\ \hline
+ \text{limit}&0&1&1&0&1
+\end{array}
+\]
+\answer{The five limits are $0,1,1,0,1$.
+Exercise~20.7 supplies the estimates and the proof near zero.}
+
+\exercise{20.4}{Oscillations at zero and a horizontal asymptote}
+\goal Repeat the inspection for $f(x)=x\sin(1/x)$, $x\ne0$.
+
+\step{Describe both scales of the graph.}
+The function is even, since
+$(-x)\sin(-1/x)=x\sin(1/x)$. Its zeros are
+$x=1/(k\pi)$ for nonzero integers $k$. Near zero they accumulate,
+but
+\[
+ \abs{x\sin(1/x)}\le\abs{x},
+\]
+so the entire oscillating graph is squeezed into a narrowing pair
+of straight lines. The origin is a hole. At either infinity put
+$u=1/x$; then $x\sin(1/x)=\sin u/u$ approaches $1$.
+\begin{center}\rossSketchOscillatingProduct\end{center}
+The dashed horizontal line is $y=1$. Only finitely many of the
+oscillations near the missing origin can be displayed.
+\[
+\begin{array}{c|ccccc}
+ \text{approach}&+\infty&0^+&0^-&-\infty&0\\ \hline
+ \text{limit}&1&0&0&1&0
+\end{array}
+\]
+\answer{The five answers are $1,0,0,1,0$.
+Exercise~20.8 proves both the zero and infinity assertions.}
+
+\exercise{20.5}{Proof of the sign-function limit assertions}
+\goal Prove every limit and nonexistence assertion in Exercise~20.1.
+
+\step{The two positive-side limits.}
+For $x>0$, $f(x)=1$, so $\abs{f(x)-1}=0<\varepsilon$
+for every $\varepsilon>0$. For the right-hand limit at zero,
+any $\delta>0$ works, because $0<x<\delta$ implies $x>0$.
+For the limit at $+\infty$, the threshold $x>0$ works for every
+$\varepsilon$. Thus these limits both equal $1$.
+
+\step{The two negative-side limits.}
+For $x<0$, $f(x)=-1$, so $\abs{f(x)-(-1)}=0$.
+For the left-hand limit at zero, any $\delta>0$ works whenever
+$-\delta<x<0$. For the limit at $-\infty$, all $x<0$ already
+have the required value. Thus these two limits equal $-1$.
+
+\step{Why zero has no two-sided limit of any kind.}
+The one-sided limits are distinct finite numbers. By
+Theorem~20.10 a two-sided limit, including an infinite limit,
+would have to agree with both. It cannot. Equivalently, the
+sequences $x_n=1/n$ and $y_n=-1/n$ both approach zero, but their
+function values are constantly $1$ and $-1$, respectively.
+\answer{All four one-sided or infinity limits hold, and the
+two-sided limit at zero does not exist.}
+
+\exercise{20.6}{Proof of the signed-quadratic limit assertions}
+\goal Prove all five assertions in Exercise~20.2.
+
+\step{The absolute value controls every approach to zero.}
+For $x\ne0$, the piecewise formula gives $\abs{f(x)}=x^2$.
+Given $\varepsilon>0$, take $\delta=\sqrt\varepsilon>0$.
+Then
+\[
+ 0<\abs{x}<\delta\quad\Longrightarrow\quad
+ \abs{f(x)-0}=x^2<\delta^2=\varepsilon.
+\]
+This is the two-sided limit $0$. The same implication restricted
+to $x>0$ or $x<0$ proves the corresponding one-sided limits.
+
+\step{The two infinities have different signs.}
+Fix $M>0$. If $x>\sqrt M$, then $x>0$ and
+$f(x)=x^2>M$. Hence $f(x)\to+\infty$ as $x\to+\infty$.
+If $x<-\sqrt M$, then $x<0$, $x^2>M$, and
+$f(x)=-x^2<-M$. This is $f(x)\to-\infty$ as $x\to-\infty$.
+\answer{The three limits at zero are $0$; the limits at positive
+and negative infinity are $+\infty$ and $-\infty$, respectively.}
+
+\exercise{20.7}{Proof of the sine-quotient limit assertions}
+\goal Justify all five limits in Exercise~20.3.
+
+\step{At either infinity, use a bound that does not depend on phase.}
+For $x\ne0$, $\abs{\sin x/x}\le1/\abs{x}$.
+Given $\varepsilon>0$, if $\abs{x}>1/\varepsilon$, then
+\[
+ \abs{\frac{\sin x}{x}-0}\le\frac1{\abs{x}}<\varepsilon.
+\]
+Taking either $x>1/\varepsilon$ or $x<-1/\varepsilon$ proves
+the limits $0$ at $+\infty$ and $-\infty$.
+
+\step{At zero, justify the familiar sine limit.}
+We use the Mean Value Theorem, already permitted in Section~19,
+and the familiar identities $(\sin t)'=\cos t$ and $\sin0=0$.
+For every nonzero $x$, the theorem on the interval with endpoints
+$0$ and $x$ gives a point $c_x$ strictly between these endpoints
+such that
+\[
+ \frac{\sin x-\sin0}{x-0}=\cos c_x,
+ \qquad \abs{c_x}<\abs{x}.
+\]
+The hypotheses hold because sine is continuous on that closed
+interval and differentiable on its interior.
+
+Let $\varepsilon>0$. Continuity of cosine at zero, and $\cos0=1$,
+give $\eta>0$ such that $\abs{t}<\eta$ implies
+$\abs{\cos t-1}<\varepsilon$. If $0<\abs{x}<\eta$, then
+$\abs{c_x}<\eta$, so
+\[
+ \abs{\frac{\sin x}{x}-1}
+ =\abs{\cos c_x-1}<\varepsilon.
+\]
+This proves the two-sided limit $1$. Restricting the same
+estimate to positive or negative $x$ proves both one-sided limits.
+It also verifies directly the continuous extension discussed in
+Section~19, Example~9.
+\answer{The two infinity limits are $0$ and all three limits
+at zero equal $1$.}
+
+\exercise{20.8}{Proof for the oscillating product}
+\goal Prove the five assertions in Exercise~20.4.
+
+\step{At zero, the small prefactor controls every oscillation.}
+The bound $\abs{\sin t}\le1$ gives
+\[
+ \abs{x\sin(1/x)-0}\le\abs{x}\qquad(x\ne0).
+\]
+Given $\varepsilon>0$, choose $\delta=\varepsilon$.
+Then $0<\abs{x}<\delta$ forces the displayed error to be less
+than $\varepsilon$. Hence the two-sided limit is $0$, and so
+are its two one-sided restrictions.
+
+\step{At infinity, transform the expression rather than its factors separately.}
+For $u=1/x$, one has $u\ne0$ and
+\[
+ x\sin(1/x)=\frac{\sin u}{u}.
+\]
+Exercise~20.7 proved that for every $\varepsilon>0$ there is
+$\eta>0$ with
+\[
+ 0<\abs{u}<\eta\quad\Longrightarrow\quad
+ \abs{\frac{\sin u}{u}-1}<\varepsilon.
+\]
+If $\abs{x}>1/\eta$, then $0<\abs{1/x}<\eta$, so this bound
+applies. It works for positive and negative $x$, proving a limit
+of $1$ at both infinities. Multiplying the separate informal
+limits $x\to\infty$ and $\sin(1/x)\to0$ would not be a valid
+finite product-limit calculation; the quotient identity supplies
+the needed control.
+\answer{All three zero limits equal $0$ and both infinity
+limits equal $1$.}
+
+\exercise{20.9}{A reciprocal term and a slant asymptote}
+\goal Sketch $f(x)=(1-x^2)/x$ and inspect the same five limits.
+
+\step{Rewrite the function and identify the branches.}
+The domain excludes zero, and for $x\ne0$,
+\[
+ f(x)=\frac1x-x.
+\]
+The graph is odd, since $f(-x)=-f(x)$. It crosses the $x$-axis
+at $x=\pm1$. The line $x=0$ is a vertical asymptote, while
+$y=-x$ is a slant asymptote because $f(x)-(-x)=1/x\to0$
+at either infinity.
+\begin{center}\rossSketchReciprocalMinusX\end{center}
+The dotted diagonal is $y=-x$. The vertical axis is the other
+asymptote; neither branch contains a point at $x=0$.
+\[
+\begin{array}{c|ccccc}
+ \text{approach}&+\infty&0^+&0^-&-\infty&0\\ \hline
+ \text{limit}&-\infty&+\infty&-\infty&+\infty&\text{does not exist}
+\end{array}
+\]
+\answer{The answers are $-\infty,+\infty,-\infty,+\infty$,
+and nonexistence. Exercise~20.10 proves them.}
+
+\exercise{20.10}{Proof for the reciprocal-minus-linear function}
+\goal Prove every limit assertion in Exercise~20.9.
+
+\step{At positive infinity, the negative linear term dominates.}
+Fix $M>0$, and choose $R=\max\{1,M+1\}$.
+If $x>R$, then $1/x<1$ and $x>M+1$. Consequently
+\[
+ f(x)=\frac1x-x<1-x<-M.
+\]
+This proves the limit $-\infty$ at positive infinity.
+For $x<-R$, put $t=-x>R$. Oddness gives
+$f(x)=f(-t)=-f(t)>M$. Hence the limit at negative infinity
+is $+\infty$.
+
+\step{At zero, the reciprocal term dominates.}
+For the same arbitrary $M>0$, choose
+$\delta=\min\{1,1/(M+1)\}>0$.
+If $0<x<\delta$, then $1/x>M+1$ and $x<1$, giving
+\[
+ f(x)=\frac1x-x>(M+1)-1=M.
+\]
+This proves the right-hand limit $+\infty$ at zero.
+If $-\delta<x<0$, put $t=-x\in(0,\delta)$. Then
+$f(x)=-f(t)<-M$, proving the left-hand limit $-\infty$.
+The one-sided limits differ, so Theorem~20.10 shows that the
+two-sided limit does not exist, even as an infinite limit.
+\answer{All five assertions follow from explicit threshold
+estimates, with the signs preserved on each side of zero.}
+
+\exercise{20.11}{Three removable algebraic quotients}
+\goal Find the three limits by simplifying only at points where
+the original quotients are defined.
+
+\step{(a) Factor the difference of squares.}
+For $x\ne a$,
+\[
+ \frac{x^2-a^2}{x-a}
+ =\frac{(x-a)(x+a)}{x-a}=x+a.
+\]
+The expression on the right is continuous at $a$. Since the
+punctured expressions agree, their limits agree, and the answer
+is $a+a=2a$. No value of the original quotient at $a$ is needed.
+
+\step{(b) Multiply by the conjugate, with the domain checked.}
+Here $b>0$. For example, $\abs{x-b}<b/2$ ensures $x>b/2>0$,
+so both square roots exist. If also $x\ne b$, then
+\[
+ \frac{\sqrt x-\sqrt b}{x-b}
+ =\frac{(\sqrt x-\sqrt b)(\sqrt x+\sqrt b)}
+        {(x-b)(\sqrt x+\sqrt b)}
+ =\frac1{\sqrt x+\sqrt b}.
+\]
+The conjugate is positive, and the cancellation uses $x-b\ne0$.
+As $x\to b$, continuity of the square-root function gives a
+denominator tending to $2\sqrt b>0$. The reciprocal limit is
+therefore $1/(2\sqrt b)$.
+
+\step{(c) Factor the difference of cubes.}
+The identity
+$x^3-a^3=(x-a)(x^2+ax+a^2)$ follows by multiplying out; the
+two mixed terms cancel. For $x\ne a$ it gives
+\[
+ \frac{x^3-a^3}{x-a}=x^2+ax+a^2.
+\]
+This polynomial is continuous at $a$, so the limit is
+$a^2+a^2+a^2=3a^2$.
+\answer{The limits in (a), (b), and (c) are
+$2a$, $1/(2\sqrt b)$, and $3a^2$, respectively.}
+
+\exercise{20.12}{One simple pole and one squared pole}
+\goal Sketch $f(x)=1/[(x-1)(x-2)^2]$, determine all four
+requested one-sided limits, and decide the two two-sided limits.
+
+\step{(a) Use signs and poles to organize the sketch.}
+The domain is $\R\setminus\{1,2\}$.
+For $x\ne2$, $(x-2)^2>0$, so the sign of $f(x)$ is the sign
+of $x-1$. The graph is negative to the left of $1$ and positive
+on both $(1,2)$ and $(2,\infty)$. There are vertical asymptotes
+at $1$ and $2$ and a horizontal asymptote $y=0$ at both infinities.
+For additional shape information, differentiation on each domain
+interval gives
+\[
+ f'(x)=-\frac{3x-4}{(x-1)^2(x-2)^3}.
+\]
+Thus the middle positive branch decreases on $(1,4/3)$ and
+increases on $(4/3,2)$, reaching $f(4/3)=27/4$.
+The left branch decreases, and the branch to the right of $2$
+decreases to zero. These derivative facts concern only the sketch;
+the limit estimates below do not require them.
+\begin{center}\rossSketchTwoPoles\end{center}
+The dashed vertical lines are $x=1$ and $x=2$. The portions
+outside the finite plotting window continue toward the indicated
+infinite limits.
+
+\step{(b), near $2$: the squared factor is positive on both sides.}
+If $0<\abs{x-2}<1/2$, then $1/2<x-1<3/2$. Hence
+\[
+ f(x)=\frac1{(x-1)(x-2)^2}
+ >\frac{2}{3\abs{x-2}^2}>0.
+\]
+Given $M>0$, choose
+$\delta=\min\{1/2,\sqrt{2/(3M)}\}$.
+Then $0<\abs{x-2}<\delta$ makes this last lower bound exceed
+$M$. Thus both $\lim_{x\to2^+}f(x)$ and
+$\lim_{x\to2^-}f(x)$ equal $+\infty$.
+
+\step{(b), near $1$: the unsquared factor changes sign.}
+If $0<\abs{x-1}<1/2$, then $1/2<\abs{x-2}<3/2$, so
+\[
+ \abs{f(x)}=\frac1{\abs{x-1}(x-2)^2}
+ >\frac4{9\abs{x-1}}.
+\]
+For $M>0$, taking
+$\delta=\min\{1/2,4/(9M)\}$ makes the magnitude exceed $M$.
+For $x>1$ the function is positive, so the right-hand limit is
+$+\infty$. For $x<1$ it is negative, so the left-hand limit is
+$-\infty$.
+
+\step{(c) Compare the two sides at each pole.}
+At $2$ the two sides agree, giving
+$\lim_{x\to2}f(x)=+\infty$ by Theorem~20.10.
+At $1$ they disagree, so $\lim_{x\to1}f(x)$ does not exist.
+\answer{In the requested order the one-sided limits are
+$+\infty,+\infty,+\infty,-\infty$.
+The two-sided limit at $2$ is $+\infty$; the one at $1$ does
+not exist.}
+
+\exercise{20.13}{Finite limit laws with reciprocal and square root}
+\goal From $\lim_{x\to a}f(x)=3$ and
+$\lim_{x\to a}g(x)=2$, prove all three asserted limits.
+
+\step{(a) Apply the finite sum and product laws.}
+The limits are finite, so Theorem~20.4 gives
+\[
+ \lim_{x\to a}g(x)^2=2\cdot2=4,
+ \qquad\lim_{x\to a}3f(x)=3\cdot3=9.
+\]
+Adding these limits gives
+\[
+ \lim_{x\to a}[3f(x)+g(x)^2]=9+4=13.
+\]
+
+\step{(b) Ensure the reciprocal is defined before using its law.}
+Since $g(x)\to2$, there is a punctured neighborhood of $a$
+on which $\abs{g(x)-2}<1$. There $g(x)>1$, so $g(x)\ne0$.
+On that neighborhood the quotient law applies, with the constant
+numerator $1$ and denominator limit $2\ne0$. Therefore
+\[
+ \lim_{x\to a}\frac1{g(x)}=\frac12.
+\]
+
+\step{(c) Check the square-root domain near the limiting point.}
+The sum and scalar laws first give
+\[
+ h(x)=3f(x)+8g(x)\longrightarrow3\cdot3+8\cdot2=25.
+\]
+For all sufficiently close $x\ne a$, one has
+$\abs{h(x)-25}<1$, hence $h(x)>24>0$.
+Thus the square root is defined throughout a punctured
+neighborhood. The square-root function is continuous at $25$;
+Theorem~20.5, applied on this neighborhood, gives
+\[
+ \lim_{x\to a}\sqrt{3f(x)+8g(x)}=\sqrt{25}=5.
+\]
+\answer{The three limits are $13$, $1/2$, and $5$.
+Both nonzero-denominator and nonnegative-radicand conditions hold
+on a sufficiently small punctured neighborhood.}
+
+\exercise{20.14}{The two one-sided infinite reciprocal limits}
+\goal Prove $\lim_{x\to0^+}1/x=+\infty$ and
+$\lim_{x\to0^-}1/x=-\infty$ directly.
+
+\step{Right side: choose the distance from the target height.}
+Fix $M>0$ and put $\delta=1/M>0$.
+If $0<x<\delta$, reciprocation of positive numbers reverses
+the strict inequality and yields $1/x>1/\delta=M$.
+This is precisely the threshold definition of the first limit.
+
+\step{Left side: keep track of the negative sign.}
+For the same $M$ and $\delta$, if $-\delta<x<0$, then
+$0<-x<\delta$. The previous positive estimate gives
+$1/(-x)>M$. Multiplying by $-1$ reverses the inequality:
+$1/x<-M$. Since every negative threshold is $-M$ for some
+$M>0$, this proves the second limit.
+\answer{The reciprocal tends to $+\infty$ from the right and
+to $-\infty$ from the left.}
+
+\exercise{20.15}{Two limits of the shifted reciprocal cube}
+\goal For the function in Example~4,
+$f(x)=1/(x-2)^3$ with $x\ne2$, prove the limits at $-\infty$
+and $2^+$ requested in the exercise.
+
+\step{At negative infinity, bound the absolute error from zero.}
+Let $\varepsilon>0$ and set $A=-\varepsilon^{-1/3}<0$.
+If $x<A$, then $x<0$ and
+$\abs{x-2}=2-x>-x>\varepsilon^{-1/3}$.
+Cubing positive quantities and then reciprocating gives
+\[
+ \abs{f(x)-0}=\frac1{\abs{x-2}^3}<\varepsilon.
+\]
+This proves $\lim_{x\to-\infty}f(x)=0$.
+
+\step{At the pole from the right, choose a small positive denominator.}
+Given $M>0$, put $\delta=M^{-1/3}>0$.
+If $2<x<2+\delta$, then $0<x-2<\delta$. Hence
+$(x-2)^3<\delta^3=1/M$ and
+$f(x)=1/(x-2)^3>M$.
+Thus $\lim_{x\to2^+}f(x)=+\infty$.
+\answer{The two limits are $0$ and $+\infty$, respectively.}
+
+\exercise{20.16}{Order of right-hand limits and the loss of strictness}
+\goal Prove the order assertion in part (a), and determine whether
+strict pointwise order implies strict order of limits in part (b).
+The existing limits may be finite or infinite.
+
+\step{(a) Approach through one common sequence.}
+Shrink $b>a$ if necessary so that the interval $(a,b)$ lies
+in the neighborhoods used to define both right-hand limits.
+Let
+\[
+ x_n=a+\frac{b-a}{n+1}.
+\]
+Then $a<x_n<b$ and $x_n\to a$. The hypotheses therefore give
+\[
+ f_1(x_n)\longrightarrow L_1,\qquad
+ f_2(x_n)\longrightarrow L_2,\qquad
+ f_1(x_n)\le f_2(x_n)\quad(n\in\N).
+\]
+The order rule for existing sequence limits, Exercise~9.9(c),
+now gives $L_1\le L_2$, including the possible infinite values.
+To recall why that order rule includes these values, if
+$L_1>L_2$, choose a finite real $c$ strictly between them.
+Convergence would eventually give both $f_1(x_n)>c$ and
+$f_2(x_n)<c$, contrary to the pointwise inequality.
+
+\step{(b) Give a counterexample with strictly ordered values.}
+On $(a,a+1)$ put $f_1(x)=0$ and $f_2(x)=x-a$.
+Every point satisfies $f_1(x)<f_2(x)$, since $x>a$.
+Nevertheless both right-hand limits at $a$ equal $0$.
+The positive gap $x-a$ shrinks to zero, so no strict gap remains
+between the limits.
+\answer{Part (a) gives $L_1\le L_2$. The answer to part (b)
+is no: equality of limits is possible despite strict inequality
+at every point.}
+
+\exercise{20.17}{The squeeze lemma proves existence of the middle limit}
+\goal Suppose $f_1(x)\le f_2(x)\le f_3(x)$ on $(a,b)$, and
+both outside functions have right-hand limit $L$ at $a$.
+Prove that $f_2$ has that same limit, without assuming it exists.
+
+\step{Finite $L$: enclose all middle values in a prescribed error interval.}
+Let $\varepsilon>0$. The two given limits supply
+$\delta_1,\delta_3>0$ such that
+\[
+ \begin{split}
+ a<x<a+\delta_1&\quad\Longrightarrow\quad
+             L-\varepsilon<f_1(x)<L+\varepsilon,\\
+ a<x<a+\delta_3&\quad\Longrightarrow\quad
+             L-\varepsilon<f_3(x)<L+\varepsilon.
+ \end{split}
+\]
+Take $\delta=\min\{\delta_1,\delta_3,b-a\}>0$.
+Whenever $a<x<a+\delta$, the point lies in $(a,b)$ and
+\[
+ L-\varepsilon<f_1(x)\le f_2(x)\le f_3(x)<L+\varepsilon.
+\]
+Thus $\abs{f_2(x)-L}<\varepsilon$. This verifies the
+definition of its limit and establishes existence as part
+of the conclusion.
+
+\step{Infinite $L$: one of the outside functions already forces the threshold.}
+If $L=+\infty$, let $M>0$. The limit of $f_1$ gives
+$\delta_1>0$ such that $a<x<a+\delta_1$ implies $f_1(x)>M$.
+Restrict also to $x<b$. Then $f_2(x)\ge f_1(x)>M$, proving
+$f_2(x)\to+\infty$.
+If $L=-\infty$, let $M>0$ and use the upper function instead:
+eventually $f_3(x)<-M$, so $f_2(x)\le f_3(x)<-M$.
+This proves $f_2(x)\to-\infty$.
+\answer{The middle limit exists and equals $L$ in every finite
+or infinite case. No order theorem requiring its prior existence
+was used.}
+
+\exercise{20.18}{Rationalizing a square-root difference}
+\goal Show the limit at zero exists for
+\[
+ f(x)=\frac{\sqrt{1+3x^2}-1}{x^2}\qquad(x\ne0),
+\]
+and determine its value.
+
+\step{Check every factor used in the rationalization.}
+For every real $x$, $1+3x^2\ge1$, so the square root exists
+and $\sqrt{1+3x^2}+1\ge2>0$. If $x\ne0$, then $x^2>0$.
+We may therefore multiply the numerator and denominator by the
+conjugate and cancel the nonzero factor $x^2$:
+\[
+ \begin{aligned}
+ f(x)&=\frac{(\sqrt{1+3x^2}-1)(\sqrt{1+3x^2}+1)}
+             {x^2(\sqrt{1+3x^2}+1)}\\
+ &=\frac{(1+3x^2)-1}{x^2(\sqrt{1+3x^2}+1)}
+ =\frac3{\sqrt{1+3x^2}+1}.
+ \end{aligned}
+\]
+
+\step{Use a continuous expression that also makes sense at zero.}
+The polynomial $1+3x^2$ tends to $1$ as $x\to0$.
+Continuity of square root gives a denominator tending to
+$\sqrt1+1=2\ne0$. The reciprocal and scalar limit laws yield
+\[
+ \lim_{x\to0}f(x)=\frac32.
+\]
+This establishes existence, not just a possible value: the
+original function agrees on every nonzero point with an
+expression continuous at zero.
+\answer{The limit exists and equals $3/2$.}
+
+\exercise{20.19}{Changing the right-hand approach interval}
+\goal Let $a<b_1<b_2$ and let $f$ be defined on $(a,b_2)$.
+Show that existence and value of the limit along $(a,b_i)$
+are independent of choosing $i=1$ or $i=2$.
+
+\step{A limit along the larger interval restricts to the smaller one.}
+Suppose the limit along $S_2=(a,b_2)$ exists and equals $L$.
+Every sequence in $S_1=(a,b_1)$ is also a sequence in $S_2$,
+since $S_1\subseteq S_2$. Thus whenever a sequence in $S_1$
+tends to $a$, its function values tend to $L$ by the given
+limit. This is the sequential definition of the limit along
+$S_1$, with the same value.
+
+\step{A sequence in the larger interval eventually enters the smaller one.}
+Conversely, suppose the limit along $S_1$ exists and equals $L$.
+Take an arbitrary sequence $(x_n)$ in $S_2$ tending to $a$.
+The positive number $b_1-a$ is an allowable tolerance for
+convergence. Therefore for some integer $N$,
+\[
+ n>N\quad\Longrightarrow\quad
+ \abs{x_n-a}<b_1-a.
+\]
+Since all these $x_n>a$, the inequality says $a<x_n<b_1$.
+Hence the tail $x_{N+1},x_{N+2},\ldots$ is a sequence in
+$S_1$ and still tends to $a$. By the assumed smaller-interval
+limit, the corresponding function values tend to $L$.
+Adding back finitely many initial terms does not change a
+finite or infinite sequence limit. Thus $f(x_n)\to L$ for the
+whole arbitrary sequence, proving the limit along $S_2$.
+
+Both approach sets admit sequences tending to $a$, for example
+$a+(b_1-a)/(n+1)$, so their limits are meaningful under
+Definition~20.1 and are unique. The proof did not require $L$
+to be finite.
+\answer{Either interval defines the same right-hand limit,
+finite or infinite, which is denoted $\lim_{x\to a^+}f(x)$.}
+
+\exercise{20.20}{Infinite sum and product limit rules}
+\goal Assume $\lim_{x\to a^S}f_1(x)=+\infty$ and that
+$L_2=\lim_{x\to a^S}f_2(x)$ exists. Prove all three asserted
+rules and analyze the zero case in part (d).
+Here $a$ may be finite or infinite, with the approach set $S$
+as in Definition~20.1.
+
+\step{Use an arbitrary admissible sequence, so all approach types are covered.}
+Take any sequence $x_n\in S$ with $x_n\to a$, and write
+$u_n=f_1(x_n)$, $v_n=f_2(x_n)$. The hypotheses give
+$u_n\to+\infty$ and $v_n\to L_2$. We prove each conclusion
+for this arbitrary sequence. Definition~20.1 will then give
+the corresponding function limit.
+
+\step{(a) A finite or positive-infinite second limit cannot cancel the first.}
+Suppose $L_2\ne-\infty$. There is a finite real lower bound
+$c$ for all sufficiently late $v_n$: if $L_2$ is finite, take
+$c=L_2-1$; if $L_2=+\infty$, take $c=0$.
+For any $M>0$, the limit $u_n\to+\infty$ eventually gives
+$u_n>M-c$ (or a larger positive threshold if needed).
+On the common tail,
+\[
+ u_n+v_n\ge u_n+c>M.
+\]
+Hence $u_n+v_n\to+\infty$, so
+$\lim_{x\to a^S}(f_1+f_2)(x)=+\infty$.
+
+\step{(b) A positive second limit gives a fixed positive factor.}
+Suppose $0<L_2\le+\infty$.
+If $L_2$ is finite, take $c=L_2/2>0$.
+If $L_2=+\infty$, take $c=1$.
+In either case $v_n\ge c$ eventually.
+For any $M>0$, eventually $u_n>M/c>0$ as well. Multiplication
+by this positive $u_n$ preserves the inequality, giving
+\[
+ u_nv_n\ge cu_n>M.
+\]
+Thus $u_nv_n\to+\infty$, proving the asserted product rule.
+
+\step{(c) Reflect a negative second limit before applying the positive rule.}
+Suppose $-\infty\le L_2<0$. Then $-v_n\to-L_2>0$,
+where $-L_2=+\infty$ if $L_2=-\infty$.
+Part (b)'s argument applied to $u_n$ and $-v_n$ gives
+$u_n(-v_n)\to+\infty$.
+Negating reverses every threshold inequality, so
+$u_nv_n\to-\infty$. Since the admissible sequence was
+arbitrary, this proves
+$\lim_{x\to a^S}(f_1f_2)(x)=-\infty$.
+
+\step{(d) A zero second limit does not determine the product.}
+Use the common approach $x\to0^+$ on $S=(0,1)$, and fix
+$f_1(x)=1/x^2$, which tends to $+\infty$.
+For any prescribed real $c$, choose $f_2(x)=cx^2$.
+Then $f_2(x)\to0$ but $f_1(x)f_2(x)=c$, so any finite real
+limit can occur. If $f_2(x)=x$, its limit is again $0$ but
+the product is $1/x\to+\infty$.
+If $f_2(x)=-x$, the product tends to $-\infty$.
+
+There need not be any product limit: choose
+$f_2(x)=x^2\sin(1/x)$. The bound $\abs{f_2(x)}\le x^2$
+gives $f_2(x)\to0$, while the product is $\sin(1/x)$.
+Along
+\[
+ x_n=\frac1{2\pi n+\pi/2},\qquad
+ y_n=\frac1{2\pi n+3\pi/2},
+\]
+both of which belong to $(0,1)$ and tend to zero, its values
+are $1$ and $-1$, respectively. These incompatible sequence
+limits exclude a function limit.
+\answer{Parts (a), (b), and (c) give $+\infty$, $+\infty$,
+and $-\infty$, respectively. When $L_2=0$, the product may
+have any finite limit, either infinite limit, or no limit.}

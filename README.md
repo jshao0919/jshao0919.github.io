@@ -19,6 +19,13 @@ Individual section PDFs and a LaTeX source archive are
 linked on the website. See
 [the Chapter 2 source and build instructions](solutions/ross/chapter-2/README.md).
 
+[Chapter 3, Sections 17–20](solutions/ross/chapter-3/ross-chapter-3-sections-17-20.pdf)
+adds detailed solutions to all 60 exercises on continuity, extreme and
+intermediate values, uniform continuity, and limits of functions. It includes
+every subpart, the requested graph sketches, and direct epsilon–delta proofs.
+Individual section PDFs and a separate LaTeX source archive are linked on the
+website. See [the Chapter 3 source and build instructions](solutions/ross/chapter-3/README.md).
+
 ## Arithmetic Lab
 
 The homepage links to [Arithmetic Lab](arithmetic/), a Zetamac-inspired mental math

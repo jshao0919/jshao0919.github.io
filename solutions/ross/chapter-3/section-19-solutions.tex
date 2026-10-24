@@ -1,0 +1,646 @@
+\section{Uniform continuity}
+\label{sec:uniform-continuity}
+Uniform continuity on a set $S$ means that, for each $\varepsilon>0$,
+one positive $\delta$ works for \emph{every} pair $x,y\in S$:
+\[
+ \abs{x-y}<\delta\quad\Longrightarrow\quad
+ \abs{f(x)-f(y)}<\varepsilon.
+\]
+The choice may depend on $\varepsilon$ and on the fixed set $S$,
+but not on the chosen points. Restricting a uniformly continuous
+function to a smaller set preserves this implication, since it
+reduces the number of pairs to check.
+
+We use Theorem~19.2 for continuous functions on closed bounded
+intervals and Theorem~19.6 for continuous interval functions with
+bounded derivative. A bound $\abs{f'}\le M$ with $M>0$ gives
+$\abs{f(x)-f(y)}\le M\abs{x-y}$ by the Mean Value theorem, so
+$\delta=\varepsilon/M$ works. Derivatives are used only where
+the stated interval and differentiability hypotheses are satisfied.
+
+\exercise{19.1}{Seven tests for uniform continuity}
+\goal Decide uniform continuity on each specified domain, and justify
+each answer. In part (e) the function is $1/x^3$, and in part (f)
+the sine argument is $1/x^2$.
+
+\step{(a) The continuous expression on $[0,\pi]$.}
+For
+\[
+ f(x)=x^{17}\sin x-e^x\cos(3x),
+\]
+the power, sine, exponential, and cosine functions are continuous.
+Composition gives continuity of $\cos(3x)$, multiplication gives
+continuity of both products, and subtraction gives continuity of
+$f$ on $\R$. In particular it is continuous on the closed bounded
+interval $[0,\pi]$. Theorem~19.2 makes $f$ uniformly continuous
+there. No estimate involving its complicated derivative is needed.
+
+\step{(b) The cube on $[0,1]$.}
+The polynomial $x^3$ is continuous on $\R$, hence on $[0,1]$.
+Theorem~19.2 therefore proves uniform continuity on $[0,1]$.
+One can also see a point-independent estimate directly: if
+$0\le x,y\le1$, then
+\[
+ \abs{x^3-y^3}
+ =\abs{x-y}\abs{x^2+xy+y^2}\le3\abs{x-y}.
+\]
+Thus $\delta=\varepsilon/3$ works.
+
+\step{(c) The cube on $(0,1)$.}
+The function in (c) is the restriction of the uniformly continuous
+function in (b). The same $\delta$ therefore works for all pairs
+in $(0,1)$. A domain need not be closed for its function to be
+uniformly continuous.
+
+\step{(d) The cube on all of $\R$.}
+For $n\in\N$, choose
+\[
+ x_n=n,\qquad y_n=n+\frac1{n^2}.
+\]
+Their distance $\abs{x_n-y_n}=1/n^2$ tends to zero, but expansion
+of the cube gives
+\[
+ y_n^3-x_n^3
+ =3n^2\frac1{n^2}+3n\frac1{n^4}+\frac1{n^6}
+ =3+\frac3{n^3}+\frac1{n^6}\ge3.
+\]
+Fix $\varepsilon_0=1$. For any proposed $\delta>0$, choose
+$n$ so large that $1/n^2<\delta$. The corresponding pair is
+closer than $\delta$, but its function values differ by at least
+$3>\varepsilon_0$. This violates Definition~19.1. The cube is
+not uniformly continuous on $\R$.
+
+\step{(e) The reciprocal cube on $(0,1]$.}
+The sequence $x_n=1/n$ lies in $(0,1]$ and converges to zero,
+so it is a Cauchy sequence. For $f(x)=1/x^3$ its image is
+$f(x_n)=n^3$, which is unbounded. Every real Cauchy sequence is
+bounded, so this image is not a Cauchy sequence. If $f$ were
+uniformly continuous, Theorem~19.4 would make the image of every
+Cauchy sequence a Cauchy sequence. This contradiction proves
+that $1/x^3$ is not uniformly continuous on $(0,1]$.
+
+\step{(f) The rapidly oscillating sine on $(0,1]$.}
+Let $f(x)=\sin(1/x^2)$ and choose
+\[
+ x_n=\frac1{\sqrt{2\pi n+\pi/2}},\qquad
+ y_n=\frac1{\sqrt{2\pi n+3\pi/2}}.
+\]
+The denominators exceed $1$, so both sequences lie in $(0,1]$.
+Both tend to zero, whence
+$\abs{x_n-y_n}\le x_n+y_n\to0$. On the other hand,
+\[
+ f(x_n)=\sin(2\pi n+\pi/2)=1,\qquad
+ f(y_n)=\sin(2\pi n+3\pi/2)=-1.
+\]
+Their images always differ by $2$. Taking $\varepsilon_0=1$,
+every proposed $\delta>0$ is defeated by a sufficiently late
+pair with $\abs{x_n-y_n}<\delta$. Thus $f$ is not uniformly
+continuous on this interval.
+
+\step{(g) The damped oscillation on $(0,1]$.}
+For $x>0$ let $f(x)=x^2\sin(1/x)$, and extend the formula by
+$F(0)=0$, $F(x)=f(x)$ for $0<x\le1$. For positive $x$ it is a
+product and composition of continuous functions. At zero,
+\[
+ \abs{F(x)-F(0)}=\abs{x^2\sin(1/x)}\le x^2.
+\]
+Given $\varepsilon>0$, the choice $\delta=\sqrt\varepsilon$
+makes this error less than $\varepsilon$ whenever
+$0\le x<\delta$. Thus $F$ is continuous on $[0,1]$.
+Theorem~19.2 makes $F$ uniformly continuous there, and restriction
+proves uniform continuity of $f$ on $(0,1]$.
+\answer{Parts (a), (b), (c), and (g) are uniformly continuous on
+their specified sets. Parts (d), (e), and (f) are not.}
+
+\exercise{19.2}{Three direct epsilon--delta proofs}
+\goal Verify Definition~19.1 directly for each function, choosing
+$\delta$ independently of the pair of points.
+
+\step{(a) The affine function $3x+11$ on $\R$.}
+Let $\varepsilon>0$ and set $\delta=\varepsilon/3>0$.
+For arbitrary $x,y\in\R$ with $\abs{x-y}<\delta$, cancellation
+of the constants gives
+\[
+ \abs{(3x+11)-(3y+11)}
+ =3\abs{x-y}<3\delta=\varepsilon.
+\]
+This one $\delta$ works throughout the unbounded domain.
+
+\step{(b) The square on $[0,3]$.}
+For $x,y\in[0,3]$, one has $0\le x+y\le6$. Factor the
+difference of squares to get
+\[
+ \abs{x^2-y^2}=\abs{x-y}\abs{x+y}\le6\abs{x-y}.
+\]
+For any $\varepsilon>0$, take $\delta=\varepsilon/6$.
+Then $\abs{x-y}<\delta$ makes the displayed error less than
+$6\delta=\varepsilon$, for every such pair.
+
+\step{(c) The reciprocal on $[1/2,+\infty)$.}
+If $x,y\ge1/2$, both denominators are positive and
+$xy\ge1/4$. Consequently
+\[
+ \abs{\frac1x-\frac1y}
+ =\frac{\abs{y-x}}{xy}\le4\abs{x-y}.
+\]
+Choose $\delta=\varepsilon/4$. For every pair in the domain
+with distance less than $\delta$, the function-value distance is
+less than $4\delta=\varepsilon$.
+\answer{The respective choices $\varepsilon/3$, $\varepsilon/6$,
+and $\varepsilon/4$ establish all three uniform-continuity claims
+directly from the definition.}
+
+\exercise{19.3}{Direct proofs for two rational functions}
+\goal Repeat the direct epsilon--delta verification for
+$x/(x+1)$ on $[0,2]$ and $5x/(2x-1)$ on $[1,+\infty)$.
+
+\step{(a) Subtract with the denominator kept explicit.}
+For $x,y\in[0,2]$, both $x+1$ and $y+1$ are at least $1$.
+Common denominators and cancellation give
+\[
+ \begin{aligned}
+ \abs{\frac{x}{x+1}-\frac{y}{y+1}}
+ &=\frac{\abs{x(y+1)-y(x+1)}}{(x+1)(y+1)}\\
+ &=\frac{\abs{xy+x-xy-y}}{(x+1)(y+1)}
+ =\frac{\abs{x-y}}{(x+1)(y+1)}\le\abs{x-y}.
+ \end{aligned}
+\]
+Given $\varepsilon>0$, set $\delta=\varepsilon$. The final bound
+then becomes less than $\varepsilon$ for every pair with
+$\abs{x-y}<\delta$.
+
+\step{(b) Do the same calculation on the unbounded interval.}
+For $x,y\ge1$, one has $2x-1\ge1$ and $2y-1\ge1$.
+Thus
+\[
+ \begin{aligned}
+ \abs{\frac{5x}{2x-1}-\frac{5y}{2y-1}}
+ &=\frac{\abs{5x(2y-1)-5y(2x-1)}}{(2x-1)(2y-1)}\\
+ &=\frac{5\abs{-x+y}}{(2x-1)(2y-1)}
+ \le5\abs{x-y}.
+ \end{aligned}
+\]
+Set $\delta=\varepsilon/5$. The error is then less than
+$5\delta=\varepsilon$ whenever $\abs{x-y}<\delta$.
+\answer{Both functions are uniformly continuous. The direct
+choices are $\delta=\varepsilon$ in (a) and
+$\delta=\varepsilon/5$ in (b).}
+
+\exercise{19.4}{A uniformly continuous function on a bounded set is bounded}
+\goal Prove the boundedness assertion in (a), without assuming
+the domain is an interval or is closed, and apply it to part (b).
+
+\step{(a), preparation: account for the empty domain.}
+If $S=\varnothing$, every bound is a bound on its function values,
+so the conclusion is immediate. Suppose henceforth that $S$ is
+nonempty and bounded, and that $f$ is uniformly continuous on $S$.
+
+\step{(a), contradiction: select values that are too large.}
+If $f$ were unbounded, then for every integer $n\ge1$ some
+$x_n\in S$ would satisfy $\abs{f(x_n)}>n$. Otherwise a bound
+on all $\abs{f(x)}$ would exist, which is exactly boundedness
+of $f$. Since $S$ is bounded, the real sequence $(x_n)$ is
+bounded. Bolzano--Weierstrass (Theorem~11.5) supplies a subsequence
+$x_{n_j}$ converging to some real number $x_0$.
+It is not necessary that $x_0$ belong to $S$.
+
+Every convergent real sequence is Cauchy, so $(x_{n_j})$ is a
+Cauchy sequence of points in $S$. Theorem~19.4 then makes
+$(f(x_{n_j}))$ a Cauchy sequence, hence a bounded sequence.
+However, its construction gives
+\[
+ \abs{f(x_{n_j})}>n_j\ge j.
+\]
+Here $n_j\ge j$ because the selected indices are strictly
+increasing positive integers. The displayed lower bound makes
+the image sequence unbounded, a contradiction. Thus $f$ is bounded.
+
+\step{(b) Apply the assertion to the reciprocal square.}
+The set $(0,1)$ is bounded. For $n\ge1$ the points
+$x_n=1/(n+1)$ lie in $(0,1)$, while
+\[
+ \frac1{x_n^2}=(n+1)^2\longrightarrow+\infty.
+\]
+The function $1/x^2$ is therefore unbounded on this bounded
+domain. If it were uniformly continuous, part (a) would make
+it bounded. Hence it is not uniformly continuous on $(0,1)$.
+\answer{Uniform continuity implies boundedness on every bounded
+real domain, including domains with missing limit points.
+This excludes uniform continuity of $1/x^2$ on $(0,1)$.}
+
+\exercise{19.5}{Six domains for trigonometric and reciprocal functions}
+\goal Determine which of the six specified restrictions are
+uniformly continuous, with the domain included in each argument.
+
+\step{(a) The tangent on $[0,\pi/4]$.}
+Cosine has no zero in this closed interval. Thus
+$\tan x=\sin x/\cos x$ is continuous there, and Theorem~19.2
+gives uniform continuity.
+
+\step{(b) The tangent on $[0,\pi/2)$.}
+This domain is bounded, but tangent is unbounded on it.
+For example, let $x_n=\pi/2-1/n$, which lies in the domain.
+Then
+\[
+ \sin x_n\to1,\qquad \cos x_n\to0,
+ \qquad \cos x_n>0.
+\]
+For any $M>0$, the first convergence gives $\sin x_n>1/2$
+eventually, and the second gives $0<\cos x_n<1/(2M)$
+eventually. At indices satisfying both estimates,
+$\tan x_n>M$. Thus tangent is unbounded and cannot be
+uniformly continuous on this bounded set by Exercise~19.4(a).
+
+\step{(c) The function $(\sin^2x)/x$ on $(0,\pi]$.}
+We need the elementary estimate $\abs{\sin t}\le\abs{t}$.
+It follows from the Mean Value theorem applied to sine between
+$0$ and $t$: its derivative is cosine, with absolute value at
+most $1$. Exercise~19.8 supplies the more general version.
+For $x>0$ this gives
+\[
+ 0\le\frac{\sin^2x}{x}\le\frac{x^2}{x}=x.
+\]
+Extend the function to $[0,\pi]$ by assigning value $0$ at zero.
+The displayed bound proves continuity at zero: if
+$0\le x<\varepsilon$, its value has absolute value less than
+$\varepsilon$. Away from zero the quotient is continuous.
+The extension is therefore continuous on $[0,\pi]$, hence
+uniformly continuous by Theorem~19.2. Its restriction to
+$(0,\pi]$ is uniformly continuous.
+
+\step{(d) The function $1/(x-3)$ on $(0,3)$.}
+For $x_n=3-1/n$, one has $2\le x_n<3$, so $x_n$ is in
+the domain, and
+\[
+ \frac1{x_n-3}=-n.
+\]
+The function is unbounded on the bounded set $(0,3)$.
+Exercise~19.4(a) therefore excludes uniform continuity.
+
+\step{(e) The same function on $(3,+\infty)$.}
+This domain is unbounded, so unboundedness of the function alone
+would not settle uniform continuity. Instead take
+$x_n=3+1/n$. This converges to $3$ and is therefore a Cauchy
+sequence of points in the domain. Its image is
+\[
+ \frac1{x_n-3}=n,
+\]
+which is unbounded and hence is not Cauchy. The Cauchy-sequence
+preservation theorem (Theorem~19.4) excludes uniform continuity.
+
+\step{(f) The same function on $(4,+\infty)$.}
+For $x,y>4$, both $x-3$ and $y-3$ exceed $1$.
+Thus
+\[
+ \abs{\frac1{x-3}-\frac1{y-3}}
+ =\frac{\abs{x-y}}{(x-3)(y-3)}\le\abs{x-y}.
+\]
+The choice $\delta=\varepsilon$ works for every pair in this
+domain. Hence the function is uniformly continuous here.
+\answer{Parts (a), (c), and (f) are uniformly continuous;
+parts (b), (d), and (e) are not.}
+
+\exercise{19.6}{Uniform continuity without a bounded derivative}
+\goal For $f(x)=\sqrt x$, show the derivative is unbounded on
+$(0,1]$ while $f$ is uniformly continuous there, and prove uniform
+continuity on $[1,+\infty)$.
+
+\step{(a), derivative: exhibit arbitrarily large values.}
+For $x>0$, elementary differentiation gives
+$f'(x)=1/(2\sqrt x)$. The points $x_n=1/n^2$ belong to
+$(0,1]$ and satisfy
+\[
+ f'(x_n)=\frac{1}{2(1/n)}=\frac n2\longrightarrow+\infty.
+\]
+Thus the derivative is unbounded on this interval.
+
+\step{(a), the function: use the square-root difference estimate.}
+For $x\ge y\ge0$, both $\sqrt x-\sqrt y$ and
+$\sqrt x+\sqrt y$ are nonnegative, and the latter is at least
+the former. Therefore
+\[
+ x-y=(\sqrt x-\sqrt y)(\sqrt x+\sqrt y)
+ \ge(\sqrt x-\sqrt y)^2.
+\]
+Taking nonnegative square roots yields
+$\abs{\sqrt x-\sqrt y}\le\sqrt{\abs{x-y}}$.
+If $y>x$, interchange the two points to obtain the same estimate.
+For $\varepsilon>0$, choose $\delta=\varepsilon^2$.
+Whenever $x,y\in(0,1]$ and $\abs{x-y}<\delta$, it follows that
+\[
+ \abs{\sqrt x-\sqrt y}\le\sqrt{\abs{x-y}}
+ <\sqrt\delta=\varepsilon.
+\]
+This establishes uniform continuity despite the unbounded
+derivative. Theorem~19.6 gives a sufficient condition, not a
+necessary condition, so there is no contradiction.
+
+\step{(b) Rationalize on the domain bounded away from zero.}
+For $x,y\ge1$, one has $\sqrt x+\sqrt y\ge2$. Hence
+\[
+ \abs{\sqrt x-\sqrt y}
+ =\frac{\abs{x-y}}{\sqrt x+\sqrt y}\le\frac12\abs{x-y}.
+\]
+Taking $\delta=2\varepsilon$ proves uniform continuity on
+$[1,+\infty)$ directly.
+\answer{The square root is uniformly continuous on both specified
+domains. Its derivative is nevertheless unbounded near zero.}
+
+\exercise{19.7}{Joining a compact initial interval to a uniform tail}
+\goal Prove part (a)'s extension from a tail to the whole
+nonnegative half-line, and apply it to square root in part (b).
+
+\step{(a), preparation: choose overlapping intervals.}
+Let $f$ be continuous on $[0,+\infty)$ and uniformly continuous
+on $[k,+\infty)$ as in the hypothesis. We only need the part
+of that tail contained in its domain. Put $K=\max\{k,0\}$;
+restriction gives uniform continuity on $[K,+\infty)$.
+If $k\le0$ and the stated tail hypothesis is meaningful, it
+already includes $[0,+\infty)$, but the argument below also works.
+
+The restriction to $[0,K+1]$ is continuous on a closed bounded
+interval, hence uniformly continuous by Theorem~19.2. These two
+intervals overlap on $[K,K+1]$. The overlap will handle pairs
+that are close but lie on opposite sides of the cutoff.
+
+\step{(a), verification: use one delta for every pair.}
+Fix $\varepsilon>0$. Choose $\delta_0>0$ for uniform continuity
+on $[0,K+1]$, and $\delta_1>0$ for uniform continuity on
+$[K,+\infty)$, both for this same tolerance $\varepsilon$.
+Set
+\[
+ \delta=\min\{\delta_0,\delta_1,1\}>0.
+\]
+Take $x,y\ge0$ with $\abs{x-y}<\delta$. Interchanging them
+if necessary, assume $x\le y$.
+If $y\le K+1$, both points lie in the first interval and
+their distance is less than $\delta_0$, so their function values
+differ by less than $\varepsilon$.
+If $y>K+1$, then $y-x<1$, which rearranges to
+$x>y-1>K$. Thus both points lie in the tail, and their distance
+is less than $\delta_1$, so the same conclusion holds.
+These two cases exhaust every pair. Thus $f$ is uniformly
+continuous on the whole half-line.
+
+\step{(b) Apply part (a) to square root.}
+The function $\sqrt x$ is continuous on $[0,+\infty)$ by
+Exercise~17.4. Exercise~19.6(b) gives uniform continuity on
+$[1,+\infty)$. Part (a), with $k=1$, now proves uniform
+continuity on $[0,+\infty)$.
+\answer{A continuous function on the half-line is uniformly
+continuous whenever it is uniformly continuous on a tail.
+The square root is one such function.}
+
+\exercise{19.8}{The sine difference estimate}
+\goal Use the Mean Value theorem to prove
+$\abs{\sin x-\sin y}\le\abs{x-y}$, then deduce uniform
+continuity of sine on $\R$.
+
+\step{(a) Apply the theorem on the interval between the points.}
+If $x=y$, both sides are zero. Suppose $x<y$. Sine is
+continuous on $[x,y]$ and differentiable on $(x,y)$, so the
+Mean Value theorem gives some $c\in(x,y)$ with
+\[
+ \sin y-\sin x=(\cos c)(y-x).
+\]
+Taking absolute values and using $\abs{\cos c}\le1$ gives
+\[
+ \abs{\sin y-\sin x}
+ =\abs{\cos c}\abs{y-x}\le\abs{y-x}.
+\]
+If $x>y$, interchange the points; the absolute values make
+the desired statement unchanged. This proves the estimate for
+all pairs of real numbers.
+
+\step{(b) Read off a uniform choice.}
+Given $\varepsilon>0$, let $\delta=\varepsilon$.
+For all $x,y\in\R$ with $\abs{x-y}<\delta$, part (a) gives
+\[
+ \abs{\sin x-\sin y}\le\abs{x-y}<\delta=\varepsilon.
+\]
+The choice is independent of both points.
+\answer{Sine is uniformly continuous on $\R$, with the global
+difference bound claimed in (a). In particular,
+$\abs{\sin t}\le\abs t$ follows by setting $y=0$.}
+
+\exercise{19.9}{A damped oscillation on the whole real line}
+\goal For $f(0)=0$ and $f(x)=x\sin(1/x)$ when $x\ne0$,
+verify continuity, uniform continuity on every bounded subset,
+and decide uniform continuity on $\R$.
+
+\step{(a) Check the origin as well as the ordinary formula.}
+At every nonzero point, the reciprocal, sine composition,
+and product are continuous. At zero,
+\[
+ \abs{f(x)-f(0)}\le\abs x
+\]
+for $x\ne0$, since $\abs{\sin(1/x)}\le1$; the inequality
+also holds at zero. Thus $\delta=\varepsilon$ proves continuity
+there. The function is continuous on all of $\R$.
+
+\step{(b) Enclose any bounded set in a closed interval.}
+Let $S\subseteq\R$ be bounded. Choose $R>0$ so that
+$S\subseteq[-R,R]$. The function is continuous on this
+closed bounded interval, hence uniformly continuous there by
+Theorem~19.2. Restriction gives uniform continuity on $S$,
+even if $S$ is not closed or is empty.
+
+\step{(c), tails: bound the derivative away from the origin.}
+For $x\ne0$, the product and chain rules give
+\[
+ f'(x)=\sin(1/x)-\frac{\cos(1/x)}{x}.
+\]
+If $\abs x\ge1$, then
+\[
+ \abs{f'(x)}\le1+\frac1{\abs x}\le2.
+\]
+Theorem~19.6 therefore gives uniform continuity on each of the
+intervals $[1,+\infty)$ and $(-\infty,-1]$. More explicitly,
+the Mean Value theorem gives the bound
+$\abs{f(x)-f(y)}\le2\abs{x-y}$ whenever both points lie
+in either one of these intervals.
+
+\step{(c), combine the tails and the central interval.}
+The central restriction to $[-2,2]$ is uniformly continuous
+by part (b). For a fixed $\varepsilon>0$, choose its uniform
+parameter $\delta_0>0$ and put
+\[
+ \delta=\min\{\delta_0,\varepsilon/2,1\}>0.
+\]
+Take $x\le y$ with $y-x<\delta$.
+If both points lie in $[-2,2]$, the central estimate gives
+$\abs{f(x)-f(y)}<\varepsilon$.
+If $y>2$, then $x>y-1>1$, so both lie in the positive tail;
+the derivative bound gives
+$\abs{f(x)-f(y)}\le2\abs{x-y}<2\delta\le\varepsilon$.
+If $x<-2$, then $y<x+1<-1$, so both lie in the negative
+tail, and the same bound applies.
+These cases cover every pair: a pair outside the central square
+has either $y>2$ or $x<-2$. Thus the function is uniformly
+continuous on $\R$.
+
+This last argument also proves a useful joining fact: a continuous
+real function that is uniformly continuous on both tails
+$[1,+\infty)$ and $(-\infty,-1]$ is uniformly continuous on
+$\R$. In the general case, replace $\varepsilon/2$ above by
+the minimum of the two tail parameters. The same interval
+classification is unchanged.
+\answer{The function is continuous on $\R$, uniformly continuous
+on every bounded subset, and also uniformly continuous on all
+of $\R$.}
+
+\exercise{19.10}{The quadratic damping has uniform control as well}
+\goal Repeat all three parts of Exercise~19.9 for
+$g(0)=0$ and $g(x)=x^2\sin(1/x)$ when $x\ne0$.
+
+\step{(a) Verify continuity everywhere.}
+Away from zero, compositions and products give continuity.
+At zero,
+\[
+ \abs{g(x)-g(0)}\le x^2.
+\]
+For $\varepsilon>0$, choose $\delta=\sqrt\varepsilon$.
+Then $\abs{x}<\delta$ makes the displayed error less than
+$\varepsilon$, so $g$ is continuous at zero as well.
+
+\step{(b) Restrict a continuous function on a larger compact interval.}
+For any bounded $S\subseteq\R$, choose $R>0$ containing it
+in $[-R,R]$. Continuity on that interval implies uniform
+continuity by Theorem~19.2. Restriction proves uniform continuity
+on $S$.
+
+\step{(c) Obtain a derivative bound on all of $\R$.}
+For $x\ne0$, differentiation gives
+\[
+ g'(x)=2x\sin(1/x)-\cos(1/x).
+\]
+By Exercise~19.8(a), $\abs{\sin(1/x)}\le1/\abs x$.
+Thus $\abs{x\sin(1/x)}\le1$ for every $x\ne0$, and
+\[
+ \abs{g'(x)}\le2\abs{x\sin(1/x)}+\abs{\cos(1/x)}
+ \le2+1=3.
+\]
+The derivative at zero exists too. Indeed, for $h\ne0$,
+\[
+ \abs{\frac{g(h)-g(0)}{h}-0}
+ =\abs{h\sin(1/h)}\le\abs h\longrightarrow0.
+\]
+This is precisely the difference quotient defining $g'(0)$,
+so $g'(0)=0$. Consequently $g$ is differentiable on all of
+$\R$ and satisfies $\abs{g'}\le3$ everywhere.
+
+The Mean Value theorem now gives
+$\abs{g(x)-g(y)}\le3\abs{x-y}$ for every pair of real
+points. The choice $\delta=\varepsilon/3$ proves uniform
+continuity on $\R$, also as an application of Theorem~19.6.
+\answer{All three conclusions are affirmative: $g$ is continuous
+on $\R$, uniformly continuous on every bounded subset, and
+uniformly continuous on $\R$. Its global derivative bound is $3$.}
+
+\exercise{19.11}{Uniform continuity of the extended sinc function}
+\goal Accept the continuity on $\R$ of the extension
+\[
+ \widetilde h(x)=
+ \begin{cases}
+  \sin x/x,&x\ne0,\\
+  1,&x=0,
+ \end{cases}
+\]
+from Example~9, and prove uniform continuity on $\R$.
+
+\step{1. Bound the derivative on both tails.}
+For $x\ne0$, the quotient rule gives
+\[
+ \widetilde h'(x)=\frac{x\cos x-\sin x}{x^2}.
+\]
+If $\abs x\ge1$, the real triangle inequality yields
+\[
+ \abs{\widetilde h'(x)}
+ \le\frac{\abs x\abs{\cos x}+\abs{\sin x}}{x^2}
+ \le\frac1{\abs x}+\frac1{x^2}\le2.
+\]
+The function is continuous on each tail and differentiable in
+its interior, so Theorem~19.6 gives uniform continuity on
+$[1,+\infty)$ and on $(-\infty,-1]$.
+
+\step{2. Join the two tails through a compact middle interval.}
+The continuity assumed in the exercise gives uniform continuity
+on $[-2,2]$ by Theorem~19.2. Fix $\varepsilon>0$, let
+$\delta_0>0$ be its central parameter, and set
+$\delta=\min\{\delta_0,\varepsilon/2,1\}$.
+For a pair $x\le y$ with $y-x<\delta$, if both are in
+$[-2,2]$, the central estimate works. If $y>2$, then
+$x>y-1>1$ and both are in the positive tail. If $x<-2$,
+then $y<x+1<-1$ and both are in the negative tail.
+On either tail the Mean Value theorem and the bound $2$
+give an error at most $2\abs{x-y}<\varepsilon$.
+Every pair belongs to one of these cases, which proves the
+uniform-continuity definition on all of $\R$.
+\answer{The continuous extension of $\sin x/x$ at zero is uniformly
+continuous on the whole real line. The argument uses the stipulated
+continuity at zero and derivative bounds only away from zero.}
+
+\exercise{19.12}{The running maximum of a continuous function}
+\goal For a continuous $f:[a,b]\to\R$, prove that
+\[
+ f^*(x)=\sup\{f(t):a\le t\le x\},\qquad x\in[a,b],
+\]
+is increasing and continuous. Increasing here means nondecreasing,
+as elsewhere in the text.
+
+\step{1. Verify that every supremum is finite and attained.}
+For each $x\in[a,b]$, the interval $[a,x]$ is nonempty,
+closed, and bounded. The restriction of $f$ is continuous on it.
+The extreme value theorem (Theorem~18.1) therefore supplies
+some $z\in[a,x]$ with $f(z)=\max_{a\le t\le x}f(t)$.
+In particular the supremum defining $f^*(x)$ is a real number
+and is this maximum. When $x=a$, the interval is the singleton
+$\{a\}$ and the assertion reduces to $f^*(a)=f(a)$.
+
+\step{2. Check the order directly from set inclusion.}
+If $a\le x\le y\le b$, then $[a,x]\subseteq[a,y]$.
+Every function value used in the supremum for $x$ is therefore
+also used for $y$. Hence $f^*(x)\le f^*(y)$. This proves
+the required increasing property; it need not be strict,
+as a constant $f$ demonstrates.
+
+\step{3. Obtain one parameter from uniform continuity of $f$.}
+Theorem~19.2 makes $f$ uniformly continuous on $[a,b]$.
+For $\varepsilon>0$, choose $\delta>0$ such that
+\[
+ u,v\in[a,b],\quad\abs{u-v}<\delta
+ \quad\Longrightarrow\quad\abs{f(u)-f(v)}<\varepsilon.
+\]
+We prove that this same $\delta$ works for $f^*$.
+
+\step{4. Locate a point attaining the larger running maximum.}
+Take $x,y\in[a,b]$ with $\abs{x-y}<\delta$.
+If $x=y$, the two running maxima agree. Otherwise interchange
+the points if needed so that $x<y$. By Step~1 choose
+$z\in[a,y]$ with $f(z)=f^*(y)$.
+
+If $z\le x$, then $f(z)\le f^*(x)$, since $z$ is among
+the points considered in that smaller supremum. Combining this
+with Step~2 gives $f^*(y)\le f^*(x)\le f^*(y)$, so the
+two values agree and their difference is zero.
+
+If $z>x$, then $0<z-x\le y-x<\delta$. The chosen parameter
+therefore gives $\abs{f(z)-f(x)}<\varepsilon$.
+Since $f(x)\le f^*(x)$ and $f(z)=f^*(y)$, we get
+\[
+ 0\le f^*(y)-f^*(x)
+ =f(z)-f^*(x)
+ \le f(z)-f(x)
+ \le\abs{f(z)-f(x)}<\varepsilon.
+\]
+The initial inequality again uses monotonicity from Step~2.
+These two cases prove
+$\abs{f^*(y)-f^*(x)}<\varepsilon$ for every eligible pair.
+
+Thus $f^*$ is actually uniformly continuous on $[a,b]$.
+In particular, fixing either point as an arbitrary $x_0$ verifies
+continuity at $x_0$, including the endpoints. If $a=b$, there
+is only one point and the same assertion is immediate.
+\answer{The running supremum is a finite attained maximum,
+is nondecreasing, and is continuous on $[a,b]$; indeed, it is
+uniformly continuous there.}

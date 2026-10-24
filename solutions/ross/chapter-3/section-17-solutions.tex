@@ -1,0 +1,736 @@
+\section{Continuous functions}
+\label{sec:continuous-functions}
+Continuity is always relative to a function's domain. At a point
+$x_0$ in that domain, Definition~17.1 requires
+$f(x_n)\to f(x_0)$ for every domain sequence $x_n\to x_0$.
+The equivalent epsilon--delta condition of Theorem~17.2 tests only
+points $x$ in the domain as well. This qualification matters for
+square roots, quotients, and isolated domain points.
+
+Two simple starting functions are continuous on $\R$: the identity
+$I(x)=x$ and every constant function $C(x)=c$. Indeed, for
+$x_n\to x_0$, one has $I(x_n)=x_n\to x_0=I(x_0)$ and
+$C(x_n)=c\to c=C(x_0)$. Theorems~17.3--17.5 then supply
+scalar multiples, sums, products, quotients with nonzero
+denominators, and compositions. Each application below checks
+the domain or sign condition it needs.
+
+\exercise{17.1}{Domains and values of two compositions}
+\goal For $f(x)=\sqrt{4-x}$ on $(-\infty,4]$ and
+$g(x)=x^2$ on $\R$, answer all four domain and composition questions.
+\idea A sum or product needs both original values. A composition
+also needs the inner value to belong to the outer function's domain.
+
+\step{(a) Find the domains before evaluating anything.}
+For $f+g$ and $fg$, intersect the two domains:
+\[
+ \operatorname{dom}(f+g)=\operatorname{dom}(fg)
+ =(-\infty,4]\cap\R=(-\infty,4].
+\]
+Their formulas there are $\sqrt{4-x}+x^2$ and
+$x^2\sqrt{4-x}$, respectively.
+
+For $f\circ g$, the inner function $g$ is defined for every real
+$x$, but its value must satisfy $g(x)\le4$. This means
+$x^2\le4$, or equivalently $-2\le x\le2$. Hence
+\[
+ (f\circ g)(x)=\sqrt{4-x^2},\qquad
+ \operatorname{dom}(f\circ g)=[-2,2].
+\]
+For $g\circ f$, first $x\le4$ is required to define $f(x)$.
+The value $f(x)$ is then real, and $g$ accepts every real input.
+There is no additional restriction. Squaring the nonnegative
+square root gives
+\[
+ (g\circ f)(x)=(\sqrt{4-x})^2=4-x,\qquad
+ \operatorname{dom}(g\circ f)=(-\infty,4].
+\]
+
+\step{(b) Substitute the requested inputs into the appropriate formulas.}
+All three inputs $0,1,2$ lie in both composition domains. Their
+values, including the intermediate arithmetic, are
+\[
+ \begin{array}{c|c|c}
+ x&(f\circ g)(x)=\sqrt{4-x^2}&(g\circ f)(x)=4-x\\ \hline
+ 0&\sqrt{4-0}=2&4-0=4\\
+ 1&\sqrt{4-1}=\sqrt3&4-1=3\\
+ 2&\sqrt{4-4}=0&4-2=2
+ \end{array}
+\]
+Thus the six values in the order requested are
+$2,4,\sqrt3,3,0,2$.
+
+\step{(c) Check equality as functions, not only equality of formulas.}
+The functions have different domains. Moreover, even on their
+common domain they differ: at $0$ the first has value $2$ and
+the second value $4$. Either observation disproves equality.
+
+\step{(d) Test whether the inner value is admissible at $3$.}
+Since $g(3)=9>4$, the expression $f(g(3))=f(9)$ is not defined
+as a real value. In contrast, $3\le4$, so $f(3)=\sqrt1=1$
+is defined and $g(f(3))=g(1)=1$ is defined.
+\answer{The sum and product domains are $(-\infty,4]$; the two
+composition domains are $[-2,2]$ and $(-\infty,4]$.
+The compositions are unequal. At $3$, only $g\circ f$ is meaningful.}
+
+\exercise{17.2}{Compositions can remove or preserve a jump}
+\goal Let $f(x)=0$ for $x<0$, $f(x)=4$ for $x\ge0$, and
+$g(x)=x^2$ for every real $x$. Determine the four combinations
+in part (a), and decide which of the six functions in part (b)
+are continuous.
+
+\step{(a) Work separately on the two sides of zero.}
+Both original domains are $\R$. Sums and products are therefore
+defined on $\R$, with formulas
+\[
+ (f+g)(x)=\begin{cases}x^2,&x<0,\\x^2+4,&x\ge0,\end{cases}
+ \qquad
+ (fg)(x)=\begin{cases}0,&x<0,\\4x^2,&x\ge0.\end{cases}
+\]
+For every real $x$, $g(x)=x^2\ge0$. Thus $f(g(x))=4$,
+including at $x=0$, because $f(0)=4$. Hence
+\[
+ (f\circ g)(x)=4\qquad(x\in\R).
+\]
+For the opposite order, square the two possible values of $f$:
+\[
+ (g\circ f)(x)=\begin{cases}0^2=0,&x<0,\\4^2=16,&x\ge0.\end{cases}
+\]
+The composition domains are $\R$ as well, since all inner
+values belong to the outer domains.
+
+\step{(b) First check points other than zero.}
+At any $x_0\ne0$, a radius $\abs{x_0}/2$ keeps $x$ on the
+same side of zero as $x_0$. Each displayed function is then
+given near $x_0$ by one constant or polynomial formula.
+Such formulas are continuous by the identity, constant, sum,
+and product rules. Thus zero is the only possible discontinuity
+of any function in this exercise.
+
+\step{(b) Identify the three jumps with one sequence.}
+Take $x_n=-1/n$. Then $x_n\to0$, but
+\[
+ f(x_n)=0\to0\ne4=f(0),
+\]
+\[
+ (f+g)(x_n)=1/n^2\to0\ne4=(f+g)(0),
+\]
+and
+\[
+ (g\circ f)(x_n)=0\to0\ne16=(g\circ f)(0).
+\]
+Definition~17.1 therefore makes all three functions discontinuous
+at zero.
+
+\step{(b) Check the functions that remain continuous at zero.}
+The function $g(x)=x^2$ is a product of two identity functions,
+so it is continuous everywhere. The function $f\circ g$ is
+constant, so it is continuous everywhere too.
+
+For $fg$, its value at zero is $0$, and for every real $x$,
+$\abs{(fg)(x)}\le4x^2$. Given $\varepsilon>0$, choose
+$\delta=\sqrt{\varepsilon}/2>0$. If $\abs{x}<\delta$, then
+\[
+ \abs{(fg)(x)-(fg)(0)}\le4x^2<4\delta^2=\varepsilon.
+\]
+Hence $fg$ is continuous at zero and therefore on all of $\R$.
+\answer{The globally continuous functions are $g$, $fg$, and
+$f\circ g$. The functions $f$, $f+g$, and $g\circ f$ are
+continuous away from zero but discontinuous at zero.}
+
+\exercise{17.3}{Continuity from algebra and composition}
+\goal Prove continuity of all eight requested functions using
+the given familiar continuous functions and the section's rules.
+\idea Decompose each expression into known continuous maps,
+then check that every outer function receives an allowed input.
+
+\step{(a) The function $\log(1+\cos^4x)$.}
+The given continuity of cosine and repeated products show
+that $\cos^4x$ is continuous on $\R$. Addition of the constant
+$1$ preserves continuity. Furthermore,
+$1+\cos^4x\ge1>0$ for every real $x$.
+The logarithm is continuous on $(0,\infty)$, which contains
+all these inner values. The composition theorem therefore proves
+continuity on the natural domain $\R$.
+
+\step{(b) The function $[\sin^2x+\cos^6x]^\pi$.}
+Products and a sum show that $u(x)=\sin^2x+\cos^6x$ is
+continuous on $\R$. Both summands are nonnegative.
+They cannot both vanish: if $\sin x=0$, the identity
+$\sin^2x+\cos^2x=1$ gives $\cos^2x=1$, so $\cos^6x=1$.
+If $\sin x\ne0$, the first summand is positive instead.
+Thus $u(x)>0$ for every $x$.
+The given power function $t\mapsto t^\pi$ is continuous for
+$t>0$, so its composition with $u$ is continuous on $\R$.
+
+\step{(c) The function $2^{x^2}$.}
+The map $x\mapsto x^2=I(x)I(x)$ is continuous on $\R$.
+The given map $t\mapsto2^t$ is continuous for every real $t$.
+Its composition with $x^2$ is therefore continuous on $\R$.
+
+\step{(d) The function $8^x$.}
+Use $8^x=2^{3x}$. The inner map $x\mapsto3x$ is continuous
+as a scalar multiple of the identity, and the outer map
+$t\mapsto2^t$ is continuous on $\R$. Composition proves the
+claim on $\R$ without needing a new rule for the base $8$.
+
+\step{(e) The tangent function on its stated domain.}
+Write $\tan x=\sin x/\cos x$. Sine and cosine are continuous
+on $\R$, and cosine is nonzero exactly away from
+$x=\pi/2+k\pi$, $k\in\Z$. The quotient theorem proves
+continuity at every point of that natural domain.
+
+\step{(f) The function $x\sin(1/x)$ for $x\ne0$.}
+The constant function $1$ and identity are continuous; the
+quotient $r(x)=1/x$ is therefore continuous on
+$D=\R\setminus\{0\}$. Since sine is continuous on all of
+$\R$, $\sin(r(x))$ is continuous on $D$ by composition.
+Multiplying by the continuous identity gives continuity of
+$x\sin(1/x)$ on $D$.
+
+\step{(g) The function $x^2\sin(1/x)$ for $x\ne0$.}
+The sine factor is continuous on $D$ by part (f)'s construction.
+The factor $x^2$ is continuous on $\R$, hence on $D$.
+Their product is continuous at every point of $D$.
+
+\step{(h) The function $x^{-1}\sin(1/x^2)$ for $x\ne0$.}
+On $D$, $x^2\ne0$. The quotient $1/x^2$ is continuous there,
+and its composition with sine is continuous there.
+The other factor $1/x$ is continuous on $D$ too. Their product
+is the requested continuous function.
+\answer{Every function is continuous on its natural stated domain:
+$\R$ in (a)--(d), the nonzero-cosine domain in (e), and
+$\R\setminus\{0\}$ in (f)--(h). No value at zero is asserted
+in the last three parts.}
+
+\exercise{17.4}{Continuity of the square root including its endpoint}
+\goal Prove that $f(x)=\sqrt x$ is continuous on $[0,\infty)$.
+\idea An estimate valid even at zero avoids dividing by a
+possibly small sum of square roots.
+
+\step{Prove the estimate for any two domain points.}
+If $x\ge y\ge0$, then $\sqrt x-\sqrt y\ge0$ and
+$\sqrt x+\sqrt y\ge\sqrt x-\sqrt y$. Multiplication by
+$\sqrt x-\sqrt y$ preserves this order, giving
+\[
+ x-y=(\sqrt x-\sqrt y)(\sqrt x+\sqrt y)
+ \ge(\sqrt x-\sqrt y)^2.
+\]
+Taking nonnegative square roots yields
+$\abs{\sqrt x-\sqrt y}\le\sqrt{\abs{x-y}}$.
+If $y>x$, interchange the two variables; the same absolute-value
+inequality results. Thus it holds for every $x,y\ge0$.
+
+\step{Choose delta at an arbitrary point of the domain.}
+Fix $x_0\ge0$ and $\varepsilon>0$, and put
+$\delta=\varepsilon^2>0$. For a domain point $x\ge0$ with
+$\abs{x-x_0}<\delta$, the estimate gives
+\[
+ \abs{\sqrt x-\sqrt{x_0}}
+ \le\sqrt{\abs{x-x_0}}<\sqrt\delta=\varepsilon.
+\]
+This is Theorem~17.2. It includes $x_0=0$, because the condition
+tests only $x\ge0$ and never requires a negative input.
+\answer{The square-root function is continuous at every point of
+its domain, including zero.}
+
+\exercise{17.5}{Powers and polynomials are continuous}
+\goal Prove part (a) for every positive integer power, then
+deduce part (b) for every polynomial.
+
+\step{(a) Build powers by induction using the product rule.}
+For $m=1$, $x\mapsto x^m=x$ is the identity, already shown
+continuous. Suppose $x\mapsto x^m$ is continuous on $\R$.
+Then $x^{m+1}=x^m x$ is the product of that continuous function
+and the identity. Theorem~17.4(ii) makes it continuous on $\R$.
+Mathematical induction proves continuity for all $m\in\N$.
+
+\step{(b) Assemble a polynomial from finitely many continuous terms.}
+Let
+\[
+ p(x)=a_0+a_1x+\cdots+a_nx^n,
+ \qquad a_0,\ldots,a_n\in\R.
+\]
+The term $a_0$ is constant and continuous. For $j\ge1$,
+part (a) makes $x^j$ continuous, and Theorem~17.3 makes
+$a_jx^j$ continuous, including when $a_j=0$.
+Theorem~17.4(i) preserves continuity under addition of two
+terms. Applying it finitely many times proves continuity of
+the displayed sum at every real point. A constant polynomial
+is already covered even if there are no positive-power terms.
+\answer{Every positive integer power and every real polynomial
+is continuous on $\R$.}
+
+\exercise{17.6}{Continuity of rational functions on their domains}
+\goal Let $p,q$ be polynomial functions and define
+\[
+ D=\{x\in\R:q(x)\ne0\},\qquad f(x)=p(x)/q(x)\quad(x\in D).
+\]
+Prove $f$ is continuous.
+
+\step{Check the hypotheses at an arbitrary allowed point.}
+Fix $x_0\in D$. Exercise~17.5 makes both $p$ and $q$
+continuous at $x_0$, and membership in $D$ gives $q(x_0)\ne0$.
+The quotient theorem, Theorem~17.4(iii), therefore applies and
+gives continuity of $p/q$ at $x_0$.
+
+For a direct reading of that theorem, take any $x_n\in D$
+with $x_n\to x_0$. Continuity gives $p(x_n)\to p(x_0)$
+and $q(x_n)\to q(x_0)\ne0$. The quotient limit law gives
+\[
+ f(x_n)=\frac{p(x_n)}{q(x_n)}\longrightarrow
+ \frac{p(x_0)}{q(x_0)}=f(x_0).
+\]
+Every denominator in this display is nonzero by the domain
+conditions. Since $x_0\in D$ was arbitrary, the function is
+continuous on $D$.
+\answer{A rational function is continuous wherever its denominator
+does not vanish. Excluded zeros of the denominator are not
+points at which continuity of this domain function is tested.}
+
+\exercise{17.7}{Linear maps, absolute value, and scalar multiples}
+\goal Prove (a) continuity of $x\mapsto kx$, (b) continuity of
+absolute value, and (c) Theorem~17.3 by composition.
+
+\step{(a) A linear map is a polynomial.}
+For a fixed real $k$, the function $G(t)=kt$ is a polynomial
+with constant coefficient zero and linear coefficient $k$.
+Exercise~17.5 makes it continuous on $\R$. This includes
+$k=0$, in which case it is constant.
+
+\step{(b) Bound the error in absolute value by the input error.}
+The triangle inequality gives
+$\abs{x}\le\abs{x-x_0}+\abs{x_0}$, so
+$\abs{x}-\abs{x_0}\le\abs{x-x_0}$.
+Interchanging $x$ and $x_0$ gives
+$\abs{x_0}-\abs{x}\le\abs{x-x_0}$.
+Together these two inequalities are
+\[
+ \abs{\abs{x}-\abs{x_0}}\le\abs{x-x_0}.
+\]
+Given $\varepsilon>0$, choose $\delta=\varepsilon$.
+Then $\abs{x-x_0}<\delta$ forces
+$\abs{\abs{x}-\abs{x_0}}<\varepsilon$.
+Thus $H(t)=\abs{t}$ is continuous at every real point.
+
+\step{(c) Compose with the given function.}
+Suppose $f$ is continuous at a point $x_0$ of its domain.
+The outer maps $G$ and $H$ are continuous at the real number
+$f(x_0)$ by parts (a) and (b). Theorem~17.5 gives continuity
+at $x_0$ of
+\[
+ (G\circ f)(x)=kf(x),\qquad
+ (H\circ f)(x)=\abs{f(x)}.
+\]
+The outer maps have domain $\R$, so both compositions retain
+the whole domain of $f$. These are precisely the two functions
+in Theorem~17.3.
+\answer{Linear maps and absolute value are continuous on $\R$;
+composition with them gives a second proof of Theorem~17.3.}
+
+\exercise{17.8}{Formulas and continuity for a pointwise minimum}
+\goal Verify both pointwise identities and use one to prove
+the continuity assertion in part (c).
+
+\step{(a) Verify the absolute-value formula by cases.}
+For arbitrary real numbers $a,b$, suppose first that $a\le b$.
+Then $\abs{a-b}=b-a$, and
+\[
+ \frac{a+b-\abs{a-b}}2
+ =\frac{a+b-(b-a)}2=a=\min\{a,b\}.
+\]
+If $a>b$, then $\abs{a-b}=a-b$, and the same expression is
+$(a+b-(a-b))/2=b=\min\{a,b\}$.
+Substituting $a=f(x)$ and $b=g(x)$ wherever both are defined gives
+\[
+ \min(f,g)=\tfrac12(f+g)-\tfrac12\abs{f-g}.
+\]
+
+\step{(b) Verify the negated-maximum formula.}
+If $a\le b$, negation reverses order, so $-a\ge-b$.
+Thus $\max\{-a,-b\}=-a$ and its negative is $a$.
+If $a>b$, one has $-a<-b$, so the negative of the maximum
+is $b$. In both cases,
+$\min\{a,b\}=-\max\{-a,-b\}$.
+Pointwise substitution therefore gives
+$\min(f,g)=-\max(-f,-g)$.
+
+\step{(c) Apply the continuity rules to part (a).}
+Suppose $f$ and $g$ are continuous at $x_0$ and both are
+defined there. Their sum and difference are continuous at
+$x_0$ by the sum and scalar rules. The absolute-value rule
+makes $\abs{f-g}$ continuous there. Multiplying the two terms
+of part (a) by $1/2$ and $-1/2$, then adding, preserves
+continuity. The resulting function is $\min(f,g)$.
+Its domain is the common domain of $f$ and $g$, so the point
+$x_0$ is an allowed point throughout the argument.
+\answer{Both identities hold, and the pointwise minimum of two
+functions continuous at $x_0$ is continuous there.}
+
+\exercise{17.9}{Four explicit epsilon--delta proofs}
+\goal Verify the epsilon--delta condition directly in each
+part, with a stated positive choice of $\delta$.
+
+\step{(a) The square function at $x_0=2$.}
+Fix $\varepsilon>0$. Factor the error:
+\[
+ \abs{x^2-4}=\abs{x-2}\abs{x+2}.
+\]
+To bound the second factor, first require $\abs{x-2}<1$.
+Then
+$\abs{x+2}\le\abs{x-2}+4<5$.
+Choose
+\[
+ \delta=\min\{1,\varepsilon/5\}>0.
+\]
+If $\abs{x-2}<\delta$, both preliminary restrictions hold,
+and $\abs{x^2-4}\le5\abs{x-2}<5\delta\le\varepsilon$.
+This proves continuity at $2$.
+
+\step{(b) The square-root function at zero.}
+The domain restriction is $x\ge0$. Given $\varepsilon>0$,
+put $\delta=\varepsilon^2>0$. If $x\ge0$ and
+$\abs{x-0}<\delta$, then $0\le x<\varepsilon^2$ and
+\[
+ \abs{\sqrt x-\sqrt0}=\sqrt x<\varepsilon.
+\]
+The proof tests only domain points, as required at this endpoint.
+
+\step{(c) The function $x\sin(1/x)$ extended by zero.}
+Let $f(0)=0$ and $f(x)=x\sin(1/x)$ for $x\ne0$.
+For nonzero $x$, the bound $\abs{\sin(1/x)}\le1$ gives
+$\abs{f(x)}\le\abs{x}$. It also holds at $x=0$, where
+both sides are zero. Given $\varepsilon>0$, choose
+$\delta=\varepsilon$. If $\abs{x}<\delta$, then
+\[
+ \abs{f(x)-f(0)}=\abs{f(x)}\le\abs{x}<\varepsilon.
+\]
+Hence $f$ is continuous at zero despite the oscillating sine factor.
+
+\step{(d) The cube function at an arbitrary $x_0\in\R$.}
+Fix $\varepsilon>0$ and set $M=\abs{x_0}+1>0$.
+If $\abs{x-x_0}<1$, then
+$\abs{x}\le\abs{x-x_0}+\abs{x_0}<M$ and
+$\abs{x_0}<M$. Thus
+\[
+ \abs{x^2+xx_0+x_0^2}
+ \le\abs{x}^2+\abs{x}\abs{x_0}+\abs{x_0}^2
+ \le3M^2.
+\]
+Using the hinted factorization, choose
+\[
+ \delta=\min\left\{1,\frac{\varepsilon}{3M^2}\right\}>0.
+\]
+For $\abs{x-x_0}<\delta$, the local bound applies, and
+\[
+ \abs{x^3-x_0^3}
+ =\abs{x-x_0}\abs{x^2+xx_0+x_0^2}
+ \le3M^2\abs{x-x_0}<3M^2\delta\le\varepsilon.
+\]
+\answer{The stated delta choices verify continuity in all four
+parts directly, with all local bounds imposed before use.}
+
+\exercise{17.10}{Three explicit sequences witnessing discontinuity}
+\goal Show discontinuity at zero in parts (a)--(c) by finding
+domain sequences approaching zero whose function values do not
+approach the assigned value zero.
+
+\step{(a) The one-sided step function.}
+Here $f(x)=1$ for $x>0$ and $f(x)=0$ for $x\le0$.
+Take $x_n=1/n$. Then $x_n>0$ and $x_n\to0$, but
+$f(x_n)=1$ for all $n$. The image sequence tends to $1$,
+whereas $f(0)=0$. This violates Definition~17.1.
+
+\step{(b) The oscillating sine function.}
+Here $g(x)=\sin(1/x)$ for $x\ne0$ and $g(0)=0$.
+Put
+\[
+ x_n=\frac1{2\pi n+\pi/2}.
+\]
+The denominator is positive and tends to $+\infty$, so
+$x_n>0$ and $x_n\to0$. At these inputs,
+\[
+ g(x_n)=\sin(2\pi n+\pi/2)=1.
+\]
+Thus $g(x_n)$ tends to $1$, not to $g(0)=0$.
+
+\step{(c) The signum function.}
+For $\operatorname{sgn}(x)=1$ at positive inputs, $-1$ at
+negative inputs, and $0$ at zero, again take $x_n=1/n$.
+Then $x_n\to0$ while $\operatorname{sgn}(x_n)=1$ for all
+$n$, contrary to the image limit required by continuity.
+\answer{Each function is discontinuous at zero. In every case
+the displayed sequence stays in the domain and approaches the
+point, while its image remains at distance $1$ from the value there.}
+
+\exercise{17.11}{Testing continuity using only monotone sequences}
+\goal Prove that $f$ is continuous at a domain point $x_0$
+if and only if every monotone domain sequence $x_n\to x_0$
+satisfies $f(x_n)\to f(x_0)$.
+\idea For the reverse implication, a failure of continuity
+produces a bad sequence; Theorem~11.4 supplies a monotone
+subsequence of that sequence without repairing its bad images.
+
+\step{Forward implication: restrict the sequences already tested.}
+If $f$ is continuous at $x_0$, Definition~17.1 gives the image
+limit for every domain sequence approaching $x_0$. In particular
+it gives it for every monotone such sequence.
+
+\step{Reverse implication: express failure of continuity precisely.}
+Assume the stated condition for monotone sequences, and suppose
+for contradiction that $f$ is not continuous at $x_0$.
+The negation of Theorem~17.2 supplies one fixed
+$\varepsilon_0>0$ such that, for every $\delta>0$, there is
+$u$ in the domain with
+\[
+ \abs{u-x_0}<\delta,\qquad
+ \abs{f(u)-f(x_0)}\ge\varepsilon_0.
+\]
+For each $n\in\N$, use $\delta=1/n$ and select such a point
+$u_n$. Then $\abs{u_n-x_0}<1/n$ proves $u_n\to x_0$,
+but every image has error at least $\varepsilon_0$.
+
+\step{Select monotone inputs while retaining their bad images.}
+Theorem~11.4 gives a monotone subsequence $(u_{n_k})$.
+It still lies in the domain, and Theorem~11.3 gives
+$u_{n_k}\to x_0$. The assumed monotone-sequence criterion
+would therefore give $f(u_{n_k})\to f(x_0)$.
+That is impossible, since
+\[
+ \abs{f(u_{n_k})-f(x_0)}\ge\varepsilon_0
+ \qquad\text{for every }k.
+\]
+For example, no image can satisfy the eventual error bound
+$\varepsilon_0/2$. The contradiction proves continuity.
+\answer{Monotone test sequences suffice. The argument selects
+a monotone subsequence; it does not assume the original sequence
+of bad inputs is monotone.}
+
+\exercise{17.12}{A continuous function is determined on a dense set}
+\goal Prove (a) that zero values at all rational points of
+$(a,b)$ force zero values everywhere, and (b) that equality of
+two continuous functions at those rational points forces equality
+throughout the interval.
+
+\step{(a) Approximate an arbitrary interval point by rational points inside it.}
+Fix $x\in(a,b)$. For each $n\in\N$, put
+\[
+ \rho_n=\min\{(x-a)/2,(b-x)/2,1/n\}>0.
+\]
+The open interval $(x-\rho_n,x+\rho_n)$ lies in $(a,b)$
+and has positive length. Rational density supplies
+$r_n\in\Q$ in that interval. In particular,
+$\abs{r_n-x}<\rho_n\le1/n$, so $r_n\to x$.
+Since $f$ is continuous at $x$ and $f(r_n)=0$ for every $n$,
+\[
+ f(x)=\lim_{n\to\infty}f(r_n)=\lim_{n\to\infty}0=0.
+\]
+The point $x$ was arbitrary, so $f$ vanishes everywhere on
+$(a,b)$.
+
+\step{(b) Reduce equality to the zero-valued case.}
+The difference $h=f-g$ is continuous on $(a,b)$ by the sum
+and scalar rules. At every rational point $r$ in that interval,
+the hypothesis gives $h(r)=f(r)-g(r)=0$.
+Part (a), applied to $h$, yields $h(x)=0$ for every $x\in(a,b)$.
+Rearranging $f(x)-g(x)=0$ gives $f(x)=g(x)$ there.
+\answer{Both assertions follow by taking limits along rational
+points that stay inside the common domain.}
+
+\exercise{17.13}{Rational and irrational inputs with different values}
+\goal Prove (a) that the rational-indicator function is
+discontinuous everywhere, and (b) that the function equal to
+$x$ at rational inputs and zero at irrational inputs is continuous
+exactly at zero.
+
+\step{Preparation: obtain both kinds of inputs near any real point.}
+Rationals are dense in $\R$. Irrationals are dense as well:
+given $u<v$, rational density gives a rational $r$ in
+$(u-\sqrt2,v-\sqrt2)$. Then $r+\sqrt2\in(u,v)$ is
+irrational, since rationality of that sum would make $\sqrt2$
+the difference of two rationals.
+
+For each real $a$ and each $n$, choose a rational $r_n$ and
+an irrational $t_n$ in $(a-1/n,a+1/n)$. Both sequences tend
+to $a$, since their distances from $a$ are less than $1/n$.
+
+\step{(a) The indicator takes incompatible limits along these inputs.}
+Let $f(x)=1$ for rational $x$ and $f(x)=0$ for irrational $x$.
+At the two sequences just chosen,
+$f(r_n)=1$ and $f(t_n)=0$ for every $n$.
+If $f$ were continuous at $a$, both image sequences would have
+to tend to $f(a)$. Their limits are $1$ and $0$, which are
+different. Thus $f$ cannot be continuous at $a$.
+As $a$ was arbitrary, it is discontinuous everywhere.
+
+\step{(b) At zero, the magnitude of the function is small with the input.}
+Let $h(x)=x$ for rational $x$ and $h(x)=0$ for irrational $x$.
+Then $h(0)=0$, and in both cases $\abs{h(x)}\le\abs{x}$.
+Given $\varepsilon>0$, choose $\delta=\varepsilon$.
+For $\abs{x}<\delta$,
+\[
+ \abs{h(x)-h(0)}\le\abs{x}<\varepsilon.
+\]
+Hence $h$ is continuous at zero.
+
+\step{(b) At a nonzero point, the two dense input sets still disagree.}
+Fix $a\ne0$ and choose the rational and irrational sequences
+from the preparation step. Then
+\[
+ h(r_n)=r_n\longrightarrow a,\qquad
+ h(t_n)=0\longrightarrow0.
+\]
+Continuity at $a$ would require both limits to equal $h(a)$.
+Because $a\ne0$, the two limits differ, giving a contradiction.
+\answer{The function in (a) is nowhere continuous. The function
+in (b) is continuous at zero and at no other point.}
+
+\exercise{17.14}{A denominator-sensitive function on the rationals}
+\goal For nonzero rational $x=p/q$ in lowest terms with $q>0$,
+let $f(x)=1/q$; also let $f(0)=1$ and let $f$ vanish on
+irrationals. Prove continuity at every irrational point and
+discontinuity at every rational point.
+\idea Near an irrational point, only finitely many fractions
+in a bounded neighborhood have small denominators. Avoid those
+finitely many fractions; all remaining nonzero values of $f$
+are small.
+
+\step{Unify the notation at the rational point zero.}
+Write $0=0/1$ in lowest terms. The same denominator rule
+then gives $1/q=1=f(0)$. Thus all rational inputs, including
+zero, can be discussed with a positive reduced denominator.
+
+\step{Continuity at an irrational point: isolate the finitely many exceptions.}
+Fix $a\in\R\setminus\Q$ and $\varepsilon>0$.
+Choose an integer $Q>\max\{1,1/\varepsilon\}$, so
+$1/Q<\varepsilon$. Consider
+\[
+ F=\left\{\frac pq\in[a-1,a+1]:
+ p\in\Z,\ 1\le q\le Q,\ p/q\text{ is in lowest terms}\right\}.
+\]
+This set is finite. Indeed, for a fraction in this set,
+\[
+ \abs{p}=q\abs{p/q}\le q(\abs a+1)\le Q(\abs a+1).
+\]
+There are only finitely many possible integers $p$ in this
+fixed bounded range, and only $Q$ possible denominators.
+Their possible pairs, and hence the resulting fractions, are finite.
+The argument concerns a bounded neighborhood; fractions with
+small denominators are not a finite set on the whole real line.
+
+No member of $F$ equals $a$, because $a$ is irrational.
+If $F\ne\varnothing$, let
+$d=\min\{\abs{r-a}:r\in F\}>0$ and set
+$\delta=\min\{1,d/2\}$. If $F=\varnothing$, set
+$\delta=1$ instead. In either case $\delta>0$.
+
+\step{Check every nearby input, including rational ones.}
+Suppose $\abs{x-a}<\delta$. Then $x\in[a-1,a+1]$,
+and $x\notin F$ by the choice of $\delta$.
+If $x$ is irrational, $f(x)=0=f(a)$.
+If $x=p/q$ is rational in lowest terms, its denominator cannot
+be at most $Q$, since that would put $x$ in $F$.
+Thus $q>Q$ and
+\[
+ \abs{f(x)-f(a)}=\frac1q<\frac1Q<\varepsilon.
+\]
+The same strict error bound is immediate in the irrational case.
+This proves continuity at $a$ by Theorem~17.2.
+
+\step{Discontinuity at a rational point: approach through irrationals.}
+Fix a rational $a=p/q$ in lowest terms, allowing $0=0/1$.
+Then $f(a)=1/q>0$. By irrational density, choose irrational
+$t_n\in(a-1/n,a+1/n)$ for each $n$.
+These points tend to $a$, while $f(t_n)=0$ for every $n$.
+The image limit is zero and differs from the positive value
+$f(a)$, so $f$ is discontinuous at $a$.
+\answer{The continuity set is exactly $\R\setminus\Q$;
+the discontinuity set is exactly $\Q$.}
+
+\exercise{17.15}{A continuity test that omits the point itself}
+\goal Prove that $f$ is continuous at a domain point $x_0$
+if and only if $f(x_n)\to f(x_0)$ for every sequence in
+$\operatorname{dom}(f)\setminus\{x_0\}$ tending to $x_0$.
+
+\step{Forward implication: the omitted-point sequences are a subclass.}
+If $f$ is continuous at $x_0$, Definition~17.1 gives the image
+limit for every domain sequence approaching $x_0$.
+It therefore gives it for each sequence that avoids $x_0$.
+
+\step{Reverse implication: split an arbitrary sequence by its equal terms.}
+Assume the omitted-point condition. Let $(y_n)$ be any domain
+sequence with $y_n\to x_0$. At indices where $y_n=x_0$,
+the image error is exactly zero:
+$\abs{f(y_n)-f(x_0)}=0$.
+If only finitely many indices have $y_n\ne x_0$, the sequence
+is eventually equal to $x_0$, so its images are eventually
+equal to $f(x_0)$ and converge to that value.
+
+If infinitely many indices have $y_n\ne x_0$, list all of
+them in increasing order as $n_1<n_2<\cdots$.
+The subsequence $x_k=y_{n_k}$ avoids $x_0$ and still tends
+to $x_0$. The assumption gives $f(x_k)\to f(x_0)$.
+Given $\varepsilon>0$, choose an integer $K\ge1$ so that
+$k>K$ implies $\abs{f(x_k)-f(x_0)}<\varepsilon$.
+For any original index $n>n_K$, either $y_n=x_0$, giving
+zero error, or $n=n_k$ for some $k>K$, giving the same
+strict error bound by the selected subsequence.
+Thus $f(y_n)\to f(x_0)$ for the original full sequence.
+As the sequence was arbitrary, Definition~17.1 proves continuity.
+
+\step{Check what happens at an isolated domain point.}
+If some radius $r>0$ satisfies
+\[
+ \operatorname{dom}(f)\cap(x_0-r,x_0+r)=\{x_0\},
+\]
+there is no sequence of domain points avoiding $x_0$ that
+converges to $x_0$: convergence would eventually place its
+points in this ball, where no such points exist.
+The omitted-point condition is then vacuously true.
+Every domain sequence converging to $x_0$ is eventually
+$x_0$, so continuity is automatically true as well.
+\answer{The punctured-sequence condition is equivalent to
+continuity, including at isolated points of the domain.}
+
+\exercise{17.16}{Jumps in the postage-stamp function}
+\goal For fixed postage charges $A$ and $B$, with the additional
+ounce charge $B>0$, prove that the stated function $P$ is
+discontinuous at every positive integer.
+\idea Approach an integer from the preceding interval. Its
+charge differs from the value at the integer by exactly $B$.
+
+\step{Write the domain and the two adjacent charges.}
+The domain is $[0,\infty)$. The charge is $A$ on $[0,1)$,
+and is $A+Bn$ on $[n,n+1)$ for every positive integer $n$.
+Equivalently, the latter formula also covers $n=0$.
+Fix any positive integer $m$. Its value is
+$P(m)=A+Bm$, because $m\in[m,m+1)$.
+On the interval $[m-1,m)$, the value is instead
+$A+B(m-1)$.
+
+\step{Select domain points in the preceding interval.}
+For each $n\in\N$, set
+\[
+ x_n=m-\frac1{n+1}.
+\]
+Since $0<1/(n+1)<1$, we have $m-1<x_n<m$, so $x_n$
+belongs to the domain and to the preceding charge interval.
+Also $\abs{x_n-m}=1/(n+1)\to0$, hence $x_n\to m$.
+But
+\[
+ P(x_n)=A+B(m-1)\longrightarrow A+B(m-1)\ne A+Bm=P(m).
+\]
+The inequality holds because their difference is the nonzero
+charge $B$. Definition~17.1 therefore gives discontinuity at $m$.
+Since $m$ was any positive integer, all such integers are
+discontinuity points.
+
+\step{Record the implicit nonzero-charge assumption.}
+The proof works for any fixed $B\ne0$, although postage gives
+the natural assumption $B>0$. If $B=0$, the formula reduces
+to the constant function $P(x)=A$, which is continuous;
+the requested jump assertion necessarily presumes a nonzero
+additional-ounce charge. Charges here are fixed for the rate
+schedule under consideration.
+\answer{With $B\ne0$, each positive integer has a jump of
+magnitude $\abs B$, so $P$ is discontinuous at each of them.}

@@ -1,0 +1,563 @@
+\section{Properties of continuous functions}
+\label{sec:properties-continuous}
+The extreme value theorem concerns a continuous function on a closed,
+bounded interval. The intermediate value theorem concerns a continuous
+function on any interval. These conclusions answer different questions:
+the first guarantees attained extreme values, while the second fills in
+values between two already attained values.
+
+All continuity statements below are relative to the specified domain.
+For example, an inverse defined on a half-closed interval is tested only
+at points belonging to that interval. Multiplying an inequality by a
+negative number reverses its direction; we will use that fact explicitly.
+
+\exercise{18.1}{A maximum after reflection is a minimum before reflection}
+\goal Suppose $f$ is continuous on $[a,b]$ and $-f$ assumes its
+maximum at $x_0\in[a,b]$. Show that $f$ assumes its minimum there.
+
+\step{Translate the meaning of maximum into an inequality.}
+For every $x\in[a,b]$, the maximum assumption means
+\[
+ (-f)(x)\le(-f)(x_0),\qquad\text{that is,}\qquad
+ -f(x)\le-f(x_0).
+\]
+Multiplying both sides by $-1$ reverses the order and gives
+$f(x)\ge f(x_0)$. Equivalently,
+\[
+ f(x_0)\le f(x)\qquad\text{for every }x\in[a,b].
+\]
+Because $x_0$ belongs to the domain, the value $f(x_0)$ is
+actually attained, rather than merely being a lower bound.
+\answer{The displayed inequality is exactly the definition of a
+minimum of $f$ at $x_0$. Continuity is used by the theorem to obtain
+the maximum of $-f$; this final order reversal needs no additional
+continuity argument.}
+
+\exercise{18.2}{Where the closed-interval proof uses the endpoints}
+\goal Locate the failure in the proof of Theorem~18.1 when its
+domain $[a,b]$ is replaced by $(a,b)$, and explain the consequences.
+
+\step{1. A bounded input sequence still has a convergent subsequence.}
+Every sequence $(x_n)$ in $(a,b)$ is bounded, so
+Bolzano--Weierstrass still provides a subsequence $x_{n_k}$
+converging to a real number $x_0$. The difficulty is its location.
+The inequalities $a<x_{n_k}<b$ imply only $a\le x_0\le b$.
+They do not imply the strict inequalities $a<x_0<b$.
+Thus the subsequence may tend to an omitted endpoint.
+
+\step{2. Identify the missing step in the boundedness argument.}
+In the theorem's contradiction argument, the selected inputs satisfy
+$\abs{f(x_n)}>n$. With a closed interval, the subsequential limit
+$x_0$ lies in the domain, so continuity gives
+$f(x_{n_k})\to f(x_0)$, a finite real number. On an open interval,
+$x_0$ may be outside the domain. Then $f(x_0)$ is not defined, and
+continuity of $f$ on $(a,b)$ gives no statement at $x_0$.
+The contradiction is lost precisely at that step.
+
+For a concrete example, $f(x)=1/x$ is continuous on $(0,1)$.
+The sequence $x_n=1/(n+1)$ lies in that interval and tends to the
+excluded point $0$, while $f(x_n)=n+1$ is unbounded.
+There is no value $f(0)$ to which continuity could force these
+outputs to converge.
+
+\step{3. The same missing-domain issue affects attainment of the bounds.}
+Even if $f$ is bounded, a sequence $(y_n)$ chosen so that
+$f(y_n)\to\sup f((a,b))$ may have its input subsequence tend to
+an endpoint. One then cannot identify the limiting output as a
+value of $f$ at an allowed input.
+
+For example, $f(x)=x$ is continuous and bounded on $(0,1)$, with
+infimum $0$ and supremum $1$. It has neither a minimum nor a
+maximum there. In fact, for every $x\in(0,1)$,
+\[
+ 0<\frac{x}{2}<x<\frac{x+1}{2}<1.
+\]
+The points $x/2$ and $(x+1)/2$ give strictly smaller and strictly
+larger function values than $f(x)$. The sequences approaching
+the bounds tend to the excluded endpoints $0$ and $1$.
+\answer{Bolzano--Weierstrass still works, but its limit need not
+belong to the open domain. Both the boundedness contradiction and
+the extremum-attainment step require continuity at that limit.
+An individual function on an open interval may still be bounded
+and attain extrema; those properties are no longer guaranteed.}
+
+\exercise{18.3}{A polynomial on a half-open interval}
+\goal Use calculus to determine the extreme values of
+\[
+ f(x)=x^3-6x^2+9x+1\qquad(0\le x<5).
+\]
+\idea Find the stationary points, inspect the derivative's sign,
+and remember that $5$ is not an allowed input.
+
+\step{1. Differentiate and find the interior stationary points.}
+The power rule gives
+\[
+ f'(x)=3x^2-12x+9=3(x^2-4x+3)=3(x-1)(x-3).
+\]
+Thus the only zeros of $f'$ are $1$ and $3$, both in the
+domain. Its signs on the intervening intervals are
+\[
+ \begin{array}{c|ccc}
+ x&(0,1)&(1,3)&(3,5)\\ \hline
+ x-1&-&+&+\\
+ x-3&-&-&+\\
+ f'(x)&+&-&+
+ \end{array}
+\]
+The mean value theorem therefore makes $f$ increasing on $[0,1]$,
+decreasing on $[1,3]$, and increasing on $[3,5)$.
+
+\step{2. Evaluate all the candidates and the omitted endpoint value.}
+Substitution gives
+\[
+ \begin{aligned}
+ f(0)&=1,\\
+ f(1)&=1-6+9+1=5,\\
+ f(3)&=27-54+27+1=1,\\
+ f(5)&=125-150+45+1=21.
+ \end{aligned}
+\]
+The final line evaluates the polynomial formula at $5$ to find
+the endpoint limit. It does not add $5$ to the stated domain.
+
+\step{3. Establish and locate the global minimum.}
+The useful factorization
+\[
+ f(x)=x(x-3)^2+1
+\]
+shows directly that $f(x)\ge1$ for every $x\in[0,5)$:
+the factor $x$ and the square $(x-3)^2$ are nonnegative.
+Equality requires $x(x-3)^2=0$, which holds exactly when
+$x=0$ or $x=3$. Both points are in the domain.
+
+\step{4. Explain why there is no global maximum.}
+On $[0,3]$, the derivative analysis gives $f(x)\le5$.
+On $[3,5)$, strict increase toward the omitted endpoint gives
+$f(x)<21$. In addition, $x_n=5-1/n$ lies in $[0,5)$ and
+tends to $5$, so continuity of the polynomial formula on $\R$
+gives $f(x_n)\to21$. Thus $21$ is the supremum but is not attained.
+
+One can also exclude a maximum without using the word supremum.
+For $x\in[3,5)$, the point $y=(x+5)/2$ satisfies $x<y<5$,
+and strict increase gives $f(y)>f(x)$. For $x\in[0,3]$,
+we have $f(x)\le5$, whereas $f(4)=64-96+36+1=5$ and
+strict increase on $[3,5)$ gives $f(9/2)>f(4)=5$.
+Thus every allowed input has some allowed input with a larger
+function value.
+\answer{The minimum is $1$, attained exactly at $x=0$ and $x=3$.
+There is no maximum. The supremum is $21$, approached as
+$x\to5$ from the left. The value $5$ at $x=1$ is a local
+maximum, not a global maximum on $[0,5)$.}
+
+\exercise{18.4}{A missing limit point produces an unbounded continuous function}
+\goal Suppose $S\subseteq\R$ contains a sequence $(x_n)$
+converging to $x_0\notin S$. Construct a continuous function
+on $S$ whose values are unbounded.
+
+\step{1. Choose a function that grows near the excluded point.}
+Define
+\[
+ F(x)=\frac{1}{\abs{x-x_0}}\qquad(x\in S).
+\]
+Every $x\in S$ differs from $x_0$, so the denominator is positive
+and $F(x)$ is a well-defined finite real number. The function is
+a quotient of continuous functions with a nonzero denominator,
+restricted to $S$, and hence is continuous there.
+
+\step{2. Verify continuity directly, including the domain restriction.}
+Fix $y\in S$ and let $d=\abs{y-x_0}>0$.
+If $x\in S$ and $\abs{x-y}<d/2$, the triangle inequality yields
+\[
+ \abs{x-x_0}\ge\abs{y-x_0}-\abs{x-y}>d/2.
+\]
+The reverse triangle inequality then gives
+\[
+ \begin{aligned}
+ \abs{F(x)-F(y)}
+ &=\frac{\abs{\abs{y-x_0}-\abs{x-x_0}}}
+         {\abs{x-x_0}\abs{y-x_0}}\\
+ &\le\frac{\abs{x-y}}{\abs{x-x_0}d}
+ \le\frac{2\abs{x-y}}{d^2}.
+ \end{aligned}
+\]
+Given $\varepsilon>0$, choose
+\[
+ \delta=\min\left\{\frac d2,\frac{\varepsilon d^2}{2}\right\}>0.
+\]
+For every $x\in S$ with $\abs{x-y}<\delta$, the estimate is
+strictly less than $\varepsilon$. Thus $F$ is continuous at
+every $y\in S$, in precisely the domain-relative sense.
+
+\step{3. Use the given sequence to disprove boundedness.}
+Let $M>0$. Since $x_n\to x_0$, there is an integer $N$ such
+that $n>N$ implies $\abs{x_n-x_0}<1/M$. All these distances
+are nonzero because $x_n\in S$ and $x_0\notin S$.
+Reciprocating the positive inequality gives
+\[
+ F(x_n)=\frac1{\abs{x_n-x_0}}>M\qquad(n>N).
+\]
+Thus the function takes values larger than every proposed positive
+bound. In fact, $F(x_n)\to+\infty$.
+\answer{The function $F(x)=1/\abs{x-x_0}$ is continuous on $S$
+and unbounded there. Its singular point lies outside its domain.}
+
+\exercise{18.5}{Intersecting graphs and a fixed point}
+\goal Prove (a) that the stated endpoint inequalities force
+two continuous graphs to meet, and (b) that Example~1 follows
+as a special case.
+
+\step{(a), first: subtract the functions.}
+Assume $f$ and $g$ are continuous on $[a,b]$, with
+$f(a)\ge g(a)$ and $f(b)\le g(b)$.
+Define $h(x)=f(x)-g(x)$ on this interval. The difference of
+continuous functions is continuous, and
+\[
+ h(a)\ge0,\qquad h(b)\le0.
+\]
+If $h(a)=0$, take $x_0=a$. If $h(b)=0$, take $x_0=b$.
+Either choice already gives $f(x_0)=g(x_0)$.
+
+\step{(a), second: use the strict sign change in the remaining case.}
+If neither endpoint value is zero, the weak inequalities become
+$h(a)>0$ and $h(b)<0$. Thus $0$ is strictly between those values.
+The intermediate value theorem gives $x_0\in(a,b)$ with
+$h(x_0)=0$. By the definition of $h$, this equation is
+$f(x_0)-g(x_0)=0$, or $f(x_0)=g(x_0)$.
+If the interval degenerates to $a=b$, the two given inequalities
+at that single point already force equality, so that case also
+is covered.
+
+\step{(b) Compare a map of the unit interval with the identity.}
+In Example~1, a continuous function $f$ maps $[0,1]$ into
+$[0,1]$. Let $g(x)=x$ on $[0,1]$, a continuous polynomial.
+The image restriction gives
+\[
+ f(0)\ge0=g(0),\qquad f(1)\le1=g(1).
+\]
+Part (a) therefore supplies $x_0\in[0,1]$ with
+$f(x_0)=g(x_0)=x_0$. This is the fixed-point conclusion of
+the example, and it includes possible fixed points at $0$ or $1$.
+\answer{The endpoint order reversal forces an intersection.
+Comparing a continuous map $[0,1]\to[0,1]$ with $g(x)=x$
+recovers Example~1.}
+
+\exercise{18.6}{A fixed point of cosine inside a specified interval}
+\goal Prove that $x=\cos x$ for at least one
+$x\in(0,\pi/2)$.
+
+\step{1. Move both sides to one continuous function.}
+Set $h(x)=x-\cos x$ on $[0,\pi/2]$.
+The identity and cosine are continuous, so their difference is
+continuous on this closed interval.
+
+\step{2. Compute opposite nonzero signs at the endpoints.}
+The familiar trigonometric values give
+\[
+ h(0)=0-1=-1<0,\qquad
+ h(\pi/2)=\pi/2-0=\pi/2>0.
+\]
+Consequently the target value $0$ is strictly between the
+endpoint values. By the intermediate value theorem there is
+$x\in(0,\pi/2)$ with $h(x)=0$.
+\answer{At this interior point, $h(x)=0$ means $x-\cos x=0$,
+which is the required equation $x=\cos x$.}
+
+\exercise{18.7}{An exponential equation with an interior solution}
+\goal Prove that $xe^x=2$ for some $x\in(0,1)$.
+
+\step{1. Form a continuous function whose zero solves the equation.}
+Let $h(x)=xe^x-2$ on $[0,1]$. The identity and exponential
+are continuous, and the product and subtraction rules make
+$h$ continuous as well.
+
+\step{2. Check the signs, including the inequality involving $e$.}
+At zero, $e^0=1$, so $h(0)=0\cdot1-2=-2<0$.
+At one, $h(1)=e-2$. The identity
+$e=\sum_{k=0}^{\infty}1/k!$, stated in Section~16,
+shows that
+\[
+ e\ge1+1+\frac12=\frac52>2,
+\]
+because the omitted terms are nonnegative. Hence $h(1)>0$.
+
+\step{3. Apply the intermediate value theorem with strict endpoint signs.}
+There is $x\in(0,1)$ with $h(x)=0$, since zero lies strictly
+between $h(0)$ and $h(1)$.
+\answer{The resulting equation is $xe^x-2=0$, so $xe^x=2$
+at an allowed interior point.}
+
+\exercise{18.8}{Opposite signs force a real zero}
+\goal Suppose $f:\R\to\R$ is continuous and
+$f(a)f(b)<0$. Prove that $f$ has a zero strictly between
+$a$ and $b$.
+
+\step{1. Extract the endpoint information from the product.}
+A negative product of two real numbers means one factor is
+strictly positive and the other strictly negative. In particular,
+neither factor is zero. Also $a\ne b$, since otherwise the
+product would be the square $f(a)^2\ge0$.
+
+Put $\alpha=\min\{a,b\}$ and $\beta=\max\{a,b\}$.
+Then $\alpha<\beta$, and $f(\alpha)$ and $f(\beta)$ still
+are the two values of opposite signs. Their order may be either
+positive then negative, or negative then positive; in both cases
+zero lies strictly between them.
+
+\step{2. Restrict to the ordered interval and apply the theorem.}
+The restriction of $f$ to $[\alpha,\beta]$ is continuous.
+The intermediate value theorem provides $c\in(\alpha,\beta)$
+with $f(c)=0$.
+\answer{The point $c$ is strictly between the original endpoints,
+regardless of which of $a$ and $b$ was larger.}
+
+\exercise{18.9}{Every polynomial of odd degree has a real root}
+\goal For a polynomial
+\[
+ f(x)=a_0+a_1x+\cdots+a_mx^m,
+ \qquad m\text{ odd},\quad a_m\ne0,
+\]
+prove that $f(c)=0$ for some real $c$.
+\idea At inputs of sufficiently large magnitude, the leading
+odd power dominates all the lower powers. Give an explicit
+bound rather than assume a limit theorem for functions from
+the later Section~20.
+
+\step{1. Normalize the leading coefficient without changing the zeros.}
+Since $a_m\ne0$, define
+\[
+ g(x)=\frac{f(x)}{a_m}
+ =x^m+\sum_{j=0}^{m-1}b_jx^j,
+ \qquad b_j=\frac{a_j}{a_m}.
+\]
+The functions $f$ and $g$ have exactly the same zeros:
+$g(x)=0$ if and only if $f(x)=a_mg(x)=0$.
+Both are polynomials and hence are continuous on $\R$.
+
+\step{2. Bound the lower-degree part at large positive and negative inputs.}
+Set
+\[
+ C=\sum_{j=0}^{m-1}\abs{b_j}\ge0,
+ \qquad R=\max\{1,C\}+1.
+\]
+Thus $R>1$ and $R>C$. For either $x=R$ or $x=-R$, we
+have $\abs{x}=R$. Since $0\le j\le m-1$ and $R\ge1$,
+$R^j\le R^{m-1}$. Applying the triangle inequality gives
+\[
+ \abs{\sum_{j=0}^{m-1}b_jx^j}
+ \le\sum_{j=0}^{m-1}\abs{b_j}R^j
+ \le C R^{m-1}.
+\]
+
+\step{3. Use the odd parity of $m$ to obtain opposite signs.}
+At $R$, the preceding estimate gives
+\[
+ g(R)\ge R^m-CR^{m-1}
+ =R^{m-1}(R-C)>0.
+\]
+At $-R$, the leading term is $(-R)^m=-R^m$ because $m$
+is odd, so
+\[
+ g(-R)\le -R^m+CR^{m-1}
+ =-R^{m-1}(R-C)<0.
+\]
+Both strict signs follow from $R>0$ and $R-C>0$.
+The argument includes $m=1$: the lower-degree part then is
+just the constant $b_0$.
+
+\step{4. Fill in zero between those two values.}
+Continuity of $g$ on $[-R,R]$ and its opposite endpoint
+signs give a point $c\in(-R,R)$ with $g(c)=0$ by the
+intermediate value theorem. Hence $f(c)=a_mg(c)=0$.
+\answer{Every real polynomial of odd degree has a real root.
+The proof treats every nonzero leading coefficient, including
+a negative one, through the normalization $g=f/a_m$.}
+
+\exercise{18.10}{Equal values exactly one unit apart}
+\goal Suppose $f$ is continuous on $[0,2]$ and $f(0)=f(2)$.
+Find $x,y\in[0,2]$ with $\abs{y-x}=1$ and $f(x)=f(y)$.
+
+\step{1. Compare the values separated by one unit.}
+For $t\in[0,1]$, both $t$ and $t+1$ belong to the domain
+$[0,2]$. Define
+\[
+ h(t)=f(t+1)-f(t).
+\]
+Translation $t\mapsto t+1$ is continuous, so composition
+makes $t\mapsto f(t+1)$ continuous on $[0,1]$.
+The other term is a restriction of $f$, so $h$ is continuous.
+
+\step{2. Show that its endpoint values are negatives of one another.}
+The given equality $f(2)=f(0)$ gives
+\[
+ \begin{aligned}
+ h(0)&=f(1)-f(0),\\
+ h(1)&=f(2)-f(1)=f(0)-f(1)=-h(0).
+ \end{aligned}
+\]
+If $h(0)=0$, choose $t_0=0$. If $h(0)\ne0$, these two
+endpoint values have opposite signs. The intermediate value
+theorem then supplies $t_0\in(0,1)$ with $h(t_0)=0$.
+Thus in every case there is $t_0\in[0,1]$ with $h(t_0)=0$.
+
+\step{3. Translate the zero back into the requested pair.}
+Take $x=t_0$ and $y=t_0+1$. Then $x\in[0,1]$ and
+$y\in[1,2]$, so both belong to $[0,2]$. Moreover,
+\[
+ \abs{y-x}=\abs{(t_0+1)-t_0}=1,
+ \qquad f(y)-f(x)=h(t_0)=0.
+\]
+\answer{The constructed pair has precisely the required distance
+and equal function values.}
+
+\exercise{18.11}{The decreasing versions of the inverse-function theorems}
+\goal Prove (a) that negating a strictly increasing function
+makes it strictly decreasing, and (b) state and prove the
+strictly decreasing versions of Theorems~18.4 and~18.5.
+
+\step{(a) Negation reverses each strict inequality.}
+If $f$ is strictly increasing on $I$, then $x_1<x_2$ in $I$
+implies $f(x_1)<f(x_2)$. Multiplication by $-1$ gives
+$-f(x_1)>-f(x_2)$. This is exactly the definition of strict
+decrease of $-f$ on $I$.
+The same reasoning shows that negating a strictly decreasing
+function makes it strictly increasing.
+
+\step{(b), the decreasing version of Theorem 18.5.}
+\emph{Statement.} If $g$ is strictly decreasing on an interval
+$J$ and its image $g(J)=I$ is an interval, then $g$ is
+continuous on $J$.
+
+\emph{Proof.} Let $h=-g$. Part (a), with the inequalities
+reversed, makes $h$ strictly increasing. Its image is
+\[
+ h(J)=-I=\{-y:y\in I\}.
+\]
+Reflection preserves the interval property. Indeed, if
+$u<v$ belong to $-I$ and $u<w<v$, then
+$-v<-w<-u$. The endpoints $-v,-u$ belong to $I$, so the
+interval property gives $-w\in I$, or $w\in-I$.
+Thus $-I$ is an interval, with any included endpoints and
+any infinite endpoints reflected in the usual way.
+
+The increasing version of Theorem~18.5 applies to $h$:
+its domain is the interval $J$, it is strictly increasing,
+and its image $-I$ is an interval. Therefore $h$ is continuous.
+Negation is continuous, so $g=-h$ is continuous by Theorem~17.3.
+Explicitly, the relevant errors are equal:
+\[
+ \abs{g(x)-g(x_0)}
+ =\abs{-h(x)+h(x_0)}
+ =\abs{h(x)-h(x_0)}.
+\]
+Thus the very same $\delta$ that works for $h$ at $x_0$ works
+for $g$. This proves the decreasing version of Theorem~18.5.
+
+\step{(b), the decreasing version of Theorem 18.4.}
+\emph{Statement.} If $f$ is continuous and strictly decreasing
+on an interval $I$, then its image $J=f(I)$ is an interval,
+its inverse is a function $f^{-1}:J\to I$, and that inverse
+is continuous and strictly decreasing on $J$.
+
+\emph{Proof.} The intermediate value theorem and Corollary~18.3
+make $J=f(I)$ an interval. Strict decrease makes $f$ one-to-one:
+distinct inputs can be ordered, and that order gives distinct
+outputs. Thus every $u\in J$ has exactly one preimage in $I$,
+which defines $f^{-1}(u)$.
+
+Take $u<v$ in $J$, and set $x=f^{-1}(u)$ and $y=f^{-1}(v)$.
+If $x=y$, then $u=f(x)=f(y)=v$, a contradiction.
+If $x<y$, strict decrease gives $u=f(x)>f(y)=v$, also a
+contradiction. Hence $x>y$, which means
+$f^{-1}(u)>f^{-1}(v)$. The inverse is strictly decreasing.
+
+Its domain $J$ is an interval and its image is exactly $I$,
+also an interval. The decreasing version of Theorem~18.5 just
+proved therefore makes $f^{-1}$ continuous on $J$.
+
+No openness of either image interval has been assumed.
+Continuity at an included endpoint is relative to $J$; the
+definition tests only $u\in J$. If the domain is a singleton,
+strict monotonicity is vacuous and the singleton inverse is
+continuous directly, so the statements still hold.
+\answer{Both decreasing theorems have the same conclusions as
+their increasing counterparts, with strict decrease replacing
+strict increase. Reflection and the interval-image condition
+supply the continuity argument.}
+
+\exercise{18.12}{The intermediate value property without continuity}
+\goal For
+\[
+ f(x)=\begin{cases}\sin(1/x),&x\ne0,\\0,&x=0,\end{cases}
+\]
+show (a) discontinuity at zero and (b) the intermediate value
+property on all of $\R$.
+
+\step{(a) Give an input sequence whose outputs do not approach $f(0)$.}
+Let
+\[
+ u_n=\frac1{2\pi n+\pi/2}\qquad(n\in\N).
+\]
+The positive denominators grow without bound, so $u_n\to0$.
+But periodicity of sine gives
+\[
+ f(u_n)=\sin(2\pi n+\pi/2)=1
+ \qquad\text{for every }n,
+\]
+whereas $f(0)=0$. Thus $f(u_n)$ does not tend to $f(0)$,
+contradicting the sequential condition for continuity.
+This is the same discontinuity established in Exercise~17.10(b).
+
+\step{(b), preparation: state exactly what must be checked.}
+Fix any $a<b$, and let $y$ lie strictly between $f(a)$ and
+$f(b)$. Every value of $f$ belongs to $[-1,1]$, so the strict
+intermediate value $y$ satisfies $-1<y<1$.
+We must find $x\in(a,b)$ with $f(x)=y$.
+
+\step{(b), intervals that stay away from zero.}
+If $0\notin[a,b]$, the reciprocal function $1/x$ is
+continuous on $[a,b]$, and composition with sine makes $f$
+continuous there. The ordinary intermediate value theorem
+then supplies the required interior point.
+
+\step{(b), intervals containing zero and some positive points.}
+Suppose $0\in[a,b]$ and $b>0$.
+For $n\in\N$, put
+\[
+ u_n=\frac1{2\pi n+\pi/2},\qquad
+ v_n=\frac1{2\pi n+3\pi/2}.
+\]
+Both sequences tend to zero, and $0<v_n<u_n$.
+Choose $n$ large enough that $u_n<b$.
+Since $a\le0$, the entire interval $[v_n,u_n]$ lies in
+$(a,b)$ and excludes zero. On its endpoints,
+\[
+ f(v_n)=\sin(2\pi n+3\pi/2)=-1,
+ \qquad f(u_n)=1.
+\]
+The function is continuous on $[v_n,u_n]$ by the composition
+argument. Since $-1<y<1$, the intermediate value theorem
+gives $x\in(v_n,u_n)\subseteq(a,b)$ with $f(x)=y$.
+
+\step{(b), the remaining intervals end at zero from the left.}
+If $0\in[a,b]$ but $b\le0$, then $b=0$ and $a<0$.
+Choose $n$ large enough that $u_n<-a$.
+Then
+\[
+ a<-u_n<-v_n<0=b.
+\]
+For nonzero inputs $f$ is odd, because
+$f(-t)=\sin(-1/t)=-\sin(1/t)=-f(t)$.
+Therefore $f(-u_n)=-1$ and $f(-v_n)=1$.
+The function is continuous on the zero-free interval
+$[-u_n,-v_n]$. The intermediate value theorem again gives
+an interior point with value $y$, and that point lies in
+$(a,b)$.
+
+These cases cover every possible position of $[a,b]$.
+When the endpoint values are equal there is no strictly
+intermediate $y$ to check, so that case imposes no additional
+condition.
+\answer{The function is discontinuous at zero but has the
+intermediate value property on $\R$. Continuity implies
+that property, while the property alone does not imply
+continuity.}
