@@ -3,10 +3,11 @@ Revisiting math :)
 
 ## Ross solutions
 
-[Chapter 1, Sections 1–3](solutions/ross/chapter-1/ross-chapter-1-sections-1-3.pdf)
-contains detailed LaTeX solutions to all 28 exercises and every subpart from the
-second edition of Kenneth A. Ross's *Elementary Analysis*. The website links to
-the combined PDF, individual section PDFs, and a complete LaTeX source archive.
+[Complete Chapter 1](solutions/ross/chapter-1/ross-chapter-1.pdf) contains
+detailed LaTeX solutions to all 56 exercises and every subpart across Sections
+1–6 of the second edition of Kenneth A. Ross's *Elementary Analysis*, including
+the development of the real numbers using Dedekind cuts. The website links to
+the complete chapter PDF, individual section PDFs, and a LaTeX source archive.
 See [the source and build instructions](solutions/ross/chapter-1/README.md).
 
 ## Arithmetic Lab

@@ -1,0 +1,693 @@
+\section{The symbols of positive and negative infinity}
+\label{sec:positive-negative-infinity}
+
+The symbols $+\infty$ and $-\infty$ record a failure of a real bound.
+They are not real numbers and are not elements of any of the subsets of
+$\R$ considered here. We use the extended ordering
+\[
+ -\infty<r<+\infty\qquad(r\in\R).
+\]
+For a nonempty set $E\subseteq\R$, the conventions in this section are
+\[
+ \begin{array}{ll}
+ \sup E\in\R,&\text{if $E$ is bounded above},\\
+ \sup E=+\infty,&\text{if $E$ is not bounded above},\\[2pt]
+ \inf E\in\R,&\text{if $E$ is bounded below},\\
+ \inf E=-\infty,&\text{if $E$ is not bounded below}.
+ \end{array}
+\]
+The finite supremum exists by completeness, and the finite infimum
+exists by its lower-bound version, Corollary~4.5. A set can have a finite
+infimum while being unbounded above, or a finite supremum while being
+unbounded below. A conclusion about one side does not require a bound
+on the other side.
+
+In explicit terms, not being bounded above means that for every real
+$M$ there is an $e\in E$ with $e>M$. Not being bounded below means that
+for every real $L$ there is an $e\in E$ with $e<L$. These statements
+are the negations of the definitions of an upper bound and a lower bound.
+
+For negation we use $-(+\infty)=-\infty$ and $-(-\infty)=+\infty$.
+The additions needed in Exercise~5.7 are only
+\[
+ c+(-\infty)=(-\infty)+c=-\infty\quad(c\in\R),
+ \qquad (-\infty)+(-\infty)=-\infty.
+\]
+These are extended-bound conventions. They do not make infinity a real
+number, and they do not define the indeterminate expression
+$(+\infty)+(-\infty)$.
+
+\step{Two elementary algebra facts used for the interval descriptions}
+First, if $0\le u<v$, then
+\[
+ v^2-u^2=(v-u)(v+u)>0.
+\]
+Both factors on the right are positive. Thus squaring preserves strict
+order for nonnegative numbers. The corresponding weak inequality follows
+by allowing $u=v$.
+
+Second, cubing preserves strict order on all of $\R$. To check the
+possible negative signs, suppose $u<v$. Then
+\[
+ v^3-u^3=(v-u)(v^2+vu+u^2),
+\]
+and
+\[
+ v^2+vu+u^2=\left(v+\frac u2\right)^2+\frac{3u^2}{4}.
+\]
+If $u\ne0$, the second term is positive and the first is nonnegative.
+If $u=0$, then $v>0$ and the expression is $v^2>0$. Hence in both cases
+$v^3-u^3>0$, because $v-u>0$. It follows, in particular, that
+\[
+ x^3\le8\ \Longleftrightarrow\ x\le2,
+ \qquad
+ x^3<8\ \Longleftrightarrow\ x<2.
+\]
+For example, $x\le2$ implies $x^3\le2^3=8$; conversely, $x^3\le8$
+and $x>2$ would imply $x^3>8$, a contradiction. For the strict
+equivalence, $x<2$ implies $x^3<8$, while $x\ge2$ would imply
+$x^3\ge8$.
+
+\exercise{5.1}{Four descriptions in interval notation}
+\goal Write each of the following sets as an interval:
+\[
+ \begin{array}{ll}
+ \text{(a)}\ \{x\in\R:x<0\},&
+ \text{(b)}\ \{x\in\R:x^3\le8\},\\
+ \text{(c)}\ \{x^2:x\in\R\},&
+ \text{(d)}\ \{x\in\R:x^2<8\}.
+ \end{array}
+\]
+
+\idea Translate the defining inequalities, and prove both inclusions
+when the description involves squares. An infinite endpoint always has
+a parenthesis, because it is not a real element that could be included.
+
+\step{1. Part (a): All negative real numbers}
+The notation $(-\infty,0)$ means precisely the real numbers strictly
+less than $0$. If $x$ belongs to the given set, it satisfies $x<0$ and
+therefore belongs to $(-\infty,0)$. Conversely, if $x\in(-\infty,0)$,
+then $x\in\R$ and $x<0$, so it belongs to the given set. Thus
+\[
+ \{x\in\R:x<0\}=(-\infty,0).
+\]
+The endpoint $0$ is excluded because the defining inequality is strict.
+
+\step{2. Part (b): A non-strict cubic inequality}
+The cube-order calculation above gives both directions of
+$x^3\le8\Longleftrightarrow x\le2$. Consequently
+\[
+ \{x\in\R:x^3\le8\}=\{x\in\R:x\le2\}=(-\infty,2].
+\]
+In particular, $2$ is included: $2^3=8$ satisfies the non-strict
+inequality. This is why the finite endpoint has a square bracket.
+
+\step{3. A completeness justification for the square roots needed below}
+To identify the set of all squares, we need that every nonnegative real
+number has a nonnegative real square root. Here is a proof using the
+completeness axiom from Section~4.
+
+The number $0$ has square root $0$. Fix $y>0$ and define
+\[
+ C=\{t\in\R:t\ge0\text{ and }t^2\le y\}.
+\]
+The set is nonempty because $0\in C$. It is bounded above by $y+1$:
+if $t>y+1$, then $t>1$ and
+$t^2>t>y$, so such a $t$ cannot belong to $C$. Completeness supplies
+the real number $c=\sup C$, and $c\ge0$ since $0\in C$.
+
+We claim $c^2=y$. If $c^2<y$, put $d=y-c^2>0$ and choose
+\[
+ h=\min\left\{1,\frac{d}{2(2c+1)}\right\}>0.
+\]
+We have $h\le1$ and $(2c+1)h\le d/2$. Expanding and using
+$h^2\le h$ gives
+\[
+ (c+h)^2=c^2+2ch+h^2
+ \le c^2+(2c+1)h
+ \le c^2+\frac d2
+ <c^2+d=y.
+\]
+Thus $c+h\in C$, but $c+h>c$, contradicting that $c$ is an upper
+bound for $C$.
+
+If $c^2>y$, then $c>0$. Put $d=c^2-y>0$ and choose
+\[
+ h=\min\left\{\frac c2,\frac{d}{4c}\right\}>0.
+\]
+Now $c-h\ge c/2>0$, and $2ch\le d/2$. Therefore
+\[
+ (c-h)^2=c^2-2ch+h^2
+ \ge c^2-2ch
+ \ge c^2-\frac d2
+ >c^2-d=y.
+\]
+If $t\in C$ and $t>c-h$, both numbers are nonnegative, so the
+square-order fact gives $t^2>(c-h)^2>y$, contradicting $t\in C$.
+Thus $t\le c-h$ for every $t\in C$. The smaller number $c-h<c$
+would be an upper bound for $C$, contradicting the least-upper-bound
+property of $c$.
+
+Both alternatives are impossible, so $c^2=y$. This proves existence
+of a nonnegative square root. It is unique: if $a,b\ge0$ and
+$a^2=b^2$, then $(a-b)(a+b)=0$. If $a+b=0$, nonnegativity forces
+$a=b=0$; otherwise $a-b=0$, so again $a=b$. This justifies the
+notation $\sqrt y$ without using any later result about continuity.
+
+\step{4. Part (c): The set of all squares}
+Let $P=\{x^2:x\in\R\}$. If $z\in P$, then $z=x^2$ for some
+$x\in\R$. Every real square is nonnegative, so $z\ge0$ and
+$z\in[0,+\infty)$. This proves $P\subseteq[0,+\infty)$.
+
+Conversely, let $z\in[0,+\infty)$. Then $z\ge0$, and Step~3 gives
+a real number $x=\sqrt z$ with $x^2=z$. Hence $z\in P$. We have
+proved the reverse inclusion and therefore
+\[
+ \{x^2:x\in\R\}=[0,+\infty).
+\]
+The finite endpoint is included because $0=0^2$.
+
+\step{5. Part (d): A strict square inequality}
+Put $a=\sqrt8$. Step~3 gives $a\ge0$ and $a^2=8$; in fact $a>0$
+because $8>0$. Let $D=\{x\in\R:x^2<8\}$.
+
+First suppose $x\in D$. If $x\ge a$, nonnegative square order would
+give $x^2\ge a^2=8$, a contradiction. Hence $x<a$. If $x\le-a$,
+then $-x\ge a>0$, so $x^2=(-x)^2\ge a^2=8$, again a
+contradiction. Thus $x>-a$. We have shown $-a<x<a$, so
+$D\subseteq(-a,a)$.
+
+Conversely, suppose $-a<x<a$. If $x\ge0$, then $0\le x<a$ and
+$x^2<a^2=8$. If $x<0$, the inequality $x>-a$ becomes $-x<a$
+after multiplying by $-1$, while $-x>0$. Therefore
+$x^2=(-x)^2<a^2=8$ in this case too. Thus $x\in D$, proving the
+reverse inclusion. We conclude
+\[
+ \{x\in\R:x^2<8\}=(-\sqrt8,\sqrt8).
+\]
+Neither endpoint belongs to the set, since
+$(\sqrt8)^2=(-\sqrt8)^2=8$.
+
+\answer{The intervals are
+\textup{(a)} $(-\infty,0)$,
+\textup{(b)} $(-\infty,2]$,
+\textup{(c)} $[0,+\infty)$, and
+\textup{(d)} $(-\sqrt8,\sqrt8)$.}
+
+\exercise{5.2}{Extended bounds of the four intervals}
+\goal Find the infimum and supremum, allowing the infinite symbols,
+of each set in Exercise~5.1.
+
+\idea A finite included endpoint is a minimum or maximum. For an open
+endpoint, verify that elements approach it from the allowed side.
+For an infinite endpoint, show explicitly that no real bound exists
+on that side.
+
+\step{1. Part (a): The interval $(-\infty,0)$}
+The number $0$ is an upper bound, since every member is negative.
+If $U<0$, let $x=U/2$. Then $x<0$, and
+$x-U=-U/2>0$, so $x>U$. Thus no number less than $0$ is an upper
+bound. This proves $\sup(-\infty,0)=0$.
+
+For any proposed real lower bound $L$, put
+$x=\min\{L,0\}-1$. Then $x<0$ and $x<L$, so $x$ belongs to the
+interval and disproves that $L$ is a lower bound. The interval is not
+bounded below, and its extended infimum is $-\infty$.
+
+\step{2. Part (b): The interval $(-\infty,2]$}
+Every element is at most $2$, and $2$ itself belongs to the interval.
+Hence $2$ is its maximum. Every upper bound must be at least this
+member $2$, so the supremum is $2$.
+
+Given any real $L$, the number $x=\min\{L,2\}-1$ satisfies $x<2$
+and $x<L$. It belongs to $(-\infty,2]$ and lies below the proposed
+lower bound. Thus the interval is not bounded below and has infimum
+$-\infty$.
+
+\step{3. Part (c): The interval $[0,+\infty)$}
+Every element is at least $0$, and $0$ belongs to the interval.
+Thus $0$ is a minimum. Any lower bound is at most the member $0$,
+so the greatest lower bound is $0$.
+
+For any real proposed upper bound $M$, choose
+$z=\max\{M,0\}+1$. Then $z\ge0$, so $z$ belongs to the interval,
+and $z>M$. There is no real upper bound. Therefore its supremum is
+$+\infty$.
+
+\step{4. Part (d): The interval $(-\sqrt8,\sqrt8)$}
+Write $a=\sqrt8>0$. Every $x\in(-a,a)$ satisfies $-a<x<a$.
+Thus $-a$ is a lower bound and $a$ is an upper bound. We verify
+the endpoint approximation required for them to be the greatest
+lower bound and least upper bound.
+
+Fix any $\varepsilon>0$ and set
+\[
+ \delta=\min\left\{\frac{\varepsilon}{2},a\right\}>0.
+\]
+Because $\delta\le a$, the numbers
+\[
+ x_-=-a+\delta,\qquad x_+=a-\delta
+\]
+both belong to $(-a,a)$: we have $-a<x_-\le0<a$ and
+$-a<0\le x_+<a$. Moreover, $\delta\le\varepsilon/2<\varepsilon$,
+so
+\[
+ x_-<-a+\varepsilon,
+ \qquad x_+>a-\varepsilon.
+\]
+These inequalities show that no number greater than $-a$ can be
+a lower bound, and no number less than $a$ can be an upper bound.
+For example, if $L>-a$, choose $\varepsilon=L+a>0$ to obtain
+$x_-<L$; if $U<a$, choose $\varepsilon=a-U>0$ to obtain $x_+>U$.
+Therefore the infimum is $-a$ and the supremum is $a$.
+
+\answer{The results, in the order of Exercise~5.1, are
+\[
+ \begin{array}{c|cc}
+ \text{Part}&\inf&\sup\\ \hline
+ \text{(a)}&-\infty&0\\
+ \text{(b)}&-\infty&2\\
+ \text{(c)}&0&+\infty\\
+ \text{(d)}&-\sqrt8&\sqrt8
+ \end{array}
+\]
+The finite endpoints in part \textup{(d)} are not attained.}
+
+\exercise{5.3}{The unbounded sets from Exercise 4.1}
+\goal Find the extended infimum and supremum of every unbounded set
+in Exercise~4.1.
+
+\idea The unbounded cases are precisely \textup{(h)}, \textup{(k)},
+\textup{(l)}, \textup{(o)}, \textup{(t)}, and \textup{(u)}.
+For each, determine its finite endpoint when one exists and exhibit
+elements beyond every proposed bound on the unbounded side.
+
+\step{1. Identify all the relevant cases}
+We retain the letters of Exercise~4.1:
+\begin{align*}
+ H&=\bigcup_{n=1}^{\infty}[2n,2n+1],
+ &K&=\left\{n+\frac{(-1)^n}{n}:n\in\N\right\},\\
+ L&=\{r\in\Q:r<2\},
+ &O&=\{x\in\R:x<0\},\\
+ T&=\{x\in\R:x^3<8\},
+ &P&=\{x^2:x\in\R\}.
+\end{align*}
+Here $P$ denotes the set in part \textup{(u)}. In particular, the
+inequality in part \textup{(t)} is strict; it differs from the
+non-strict cubic inequality in Exercise~5.1(b).
+
+To check that no unbounded case was omitted, the remaining sets can
+be enclosed in finite intervals as follows. The notation in the left
+column refers to the letters of Exercise~4.1:
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Parts & A finite containing interval\\
+\midrule
+\textup{(a), (b), (e), (j), (s)} & $[0,1]$\\
+\textup{(c)} & $[2,7]$\\
+\textup{(f)} & $[0,0]$\\
+\textup{(g)} & $[0,3]$\\
+\textup{(i)} & $[-1,2]$\\
+\textup{(m), (n)} & $[-2,2]$\\
+\textup{(q)} & $[0,16]$\\
+\textup{(r)} & $[0,2]$\\
+\textup{(v), (w)} & $[-1,1]$\\
+\bottomrule
+\end{tabular}
+\end{center}
+For the reciprocal terms, $n\ge1$ gives $0<1/n\le1$, and
+$0<1/3^n\le1$, which justify the bounds for \textup{(e), (j), (s)}.
+Each intersection in \textup{(i)} and \textup{(r)} is a subset of
+its $n=1$ interval, giving the displayed bounds. For \textup{(m)}
+and \textup{(n)}, a real number outside $[-2,2]$ has square greater
+than $4$ and therefore cannot have square less than $4$ or less than
+$2$. The usual ranges of sine and cosine give the bounds for
+\textup{(v)} and \textup{(w)}. The other displayed finite-interval
+inclusions follow directly from their listed elements or intervals.
+Finally, \textup{(d)} and \textup{(p)} are finite sets of real numbers.
+For a finite list $a_1,\ldots,a_m$, the number
+$C=1+\abs{a_1}+\cdots+\abs{a_m}$ satisfies
+$-C<a_j<C$ for every listed element, so each such set is bounded.
+This accounts for all the other parts.
+
+\step{2. Part (h): An infinite union of intervals}
+If $x\in H$, some $n\in\N$ satisfies $x\in[2n,2n+1]$.
+Hence $x\ge2n\ge2$. Also $2\in[2,3]\subseteq H$, so $2$ is a
+minimum and $\inf H=2$.
+
+Given any real $M$, the Archimedean property supplies an integer
+$n>\max\{1,M/2\}$. Then $2n>M$ and
+$2n\in[2n,2n+1]\subseteq H$. Thus no real $M$ is an upper bound.
+Therefore $\sup H=+\infty$.
+
+\step{3. Part (k): A growing sequence with an alternating correction}
+For every $n\in\N$, the value $(-1)^n$ is either $1$ or $-1$.
+As $n>0$, it follows that
+\[
+ n+\frac{(-1)^n}{n}
+ \ge n-\frac1n
+ =\frac{n^2-1}{n}\ge0.
+\]
+The last inequality holds because $n\ge1$ gives $n^2-1\ge0$.
+At $n=1$, the value is $1+(-1)/1=0$. Thus $0$ is the minimum
+of $K$, and $\inf K=0$.
+
+Also $1/n\le1$, so
+\[
+ n+\frac{(-1)^n}{n}\ge n-\frac1n\ge n-1.
+\]
+For a proposed real upper bound $M$, choose
+$n>\max\{1,M+1\}$ by the Archimedean property. Then $n-1>M$,
+and the corresponding member of $K$ is greater than $M$. Hence
+$K$ is not bounded above and $\sup K=+\infty$.
+
+\step{4. Part (l): The rational numbers less than $2$}
+Every member of $L$ is less than $2$, so $2$ is an upper bound.
+If $U<2$, density of $\Q$ in $\R$ supplies a rational number $r$
+with $U<r<2$. This $r$ belongs to $L$ and exceeds $U$, so $U$
+cannot be an upper bound. Thus $\sup L=2$, although $2\notin L$.
+
+Given any real $D$, choose $n\in\N$ with
+$n>\max\{1,-D\}$. Then $-n<D$, and the integer $-n$ is rational
+and satisfies $-n<0<2$. Hence $-n\in L$ lies below $D$.
+There is no real lower bound, so $\inf L=-\infty$.
+
+\step{5. Part (o): The negative half-line}
+This is $O=(-\infty,0)$, the set already considered in
+Exercise~5.2(a). For completeness, $0$ bounds it above, and if
+$U<0$ then $U/2\in O$ and $U/2>U$. Thus its supremum is $0$.
+For every real $D$, the member $\min\{D,0\}-1$ lies below $D$.
+Thus $O$ is not bounded below and $\inf O=-\infty$.
+
+\step{6. Part (t): A strict cubic inequality}
+By the cube-order fact proved at the start of the section,
+\[
+ T=\{x\in\R:x^3<8\}=(-\infty,2).
+\]
+All its elements are less than $2$, so $2$ is an upper bound.
+If $U<2$, the number $x=(U+2)/2$ satisfies
+\[
+ x-U=\frac{2-U}{2}>0,
+ \qquad 2-x=\frac{2-U}{2}>0.
+\]
+Hence $U<x<2$, so $x\in T$ and $U$ is not an upper bound.
+Therefore $\sup T=2$; the supremum is not attained.
+
+For any real $D$, set $x=\min\{D,2\}-1$. Then $x<2$ and $x<D$,
+so $x\in T$ lies below $D$. This proves $\inf T=-\infty$.
+
+\step{7. Part (u): The real squares}
+Every real square is nonnegative and $0=0^2$ belongs to $P$.
+Thus $\inf P=0$. Exercise~5.1(c) established, using completeness,
+that $P=[0,+\infty)$. For any real $M$, the number
+$y=\max\{M,0\}+1$ is nonnegative and exceeds $M$; since
+$y=(\sqrt y)^2$, it belongs to $P$. No real upper bound exists,
+and $\sup P=+\infty$.
+
+\answer{Exactly six sets in Exercise~4.1 are unbounded. Their extended
+bounds are
+\[
+ \begin{array}{c|cc}
+ \text{Part}&\inf&\sup\\ \hline
+ \text{(h)}&2&+\infty\\
+ \text{(k)}&0&+\infty\\
+ \text{(l)}&-\infty&2\\
+ \text{(o)}&-\infty&0\\
+ \text{(t)}&-\infty&2\\
+ \text{(u)}&0&+\infty
+ \end{array}
+\]}
+
+\exercise{5.4}{Reflection and extended bounds}
+\goal For every nonempty $S\subseteq\R$, with
+$-S=\{-s:s\in S\}$, prove
+\[
+ \inf S=-\sup(-S).
+\]
+
+\idea Negating an inequality changes a lower bound into an upper
+bound. Treat the case of a finite infimum and the case of no real
+lower bound separately.
+
+\step{1. Establish how reflection changes bounds}
+The set $-S$ is nonempty: if $s_0\in S$, then $-s_0\in-S$.
+If a real number $d$ is a lower bound for $S$, then
+\[
+ d\le s\quad(s\in S)
+ \quad\Longrightarrow\quad -s\le-d\quad(s\in S).
+\]
+Thus $-d$ is an upper bound for $-S$. Conversely, if $u$ is a real
+upper bound for $-S$, then $-s\le u$ for all $s\in S$.
+Multiplication by $-1$ reverses the inequality, giving $-u\le s$
+for all $s\in S$. Hence $-u$ is a lower bound for $S$.
+In particular, $S$ is bounded below if and only if $-S$ is bounded above.
+
+\step{2. The case in which $S$ is bounded below}
+Let $\alpha=\inf S\in\R$, whose existence follows from
+Corollary~4.5. This step requires no upper bound on $S$.
+Since $\alpha\le s$ for all $s\in S$, we have
+$-s\le-\alpha$ for all $s\in S$. Therefore $-\alpha$ is an
+upper bound for $-S$.
+
+Now let $u$ be any real upper bound for $-S$. By Step~1, $-u$ is
+a lower bound for $S$. The fact that $\alpha$ is the greatest lower
+bound gives $-u\le\alpha$. Reversing signs gives
+$-\alpha\le u$. Thus $-\alpha$ is less than or equal to every
+upper bound for $-S$, proving
+\[
+ \sup(-S)=-\alpha.
+\]
+Negating this real equality yields
+$-\sup(-S)=\alpha=\inf S$. This is the finite-infimum argument of
+Exercise~4.9, with the bound correspondence written out explicitly.
+
+\step{3. The case in which $S$ is not bounded below}
+Here $\inf S=-\infty$ by definition. Let $M$ be any real number.
+Since $S$ has no real lower bound, there exists $s\in S$ with
+$s<-M$. Then $-s>M$, and $-s\in-S$. Thus $-S$ has elements
+greater than every real $M$, so $\sup(-S)=+\infty$.
+Using the stated negation convention gives
+\[
+ -\sup(-S)=-(+\infty)=-\infty=\inf S.
+\]
+These two cases exhaust a nonempty subset of $\R$, because its
+infimum is either a real number or $-\infty$.
+
+\answer{$\inf S=-\sup(-S)$ holds both for finite infima and for
+the extended value $-\infty$.}
+
+\exercise{5.5}{The infimum cannot exceed the supremum}
+\goal Prove $\inf S\le\sup S$ for every nonempty $S\subseteq\R$,
+whether or not $S$ is bounded on either side.
+
+\idea Choose one real member of $S$. Its position between the
+extended lower and upper bounds supplies a common comparison point.
+
+\step{1. Compare the infimum to a chosen member}
+Because $S$ is nonempty, choose $s_0\in S$. If $S$ is bounded below,
+its finite infimum is a lower bound and therefore $\inf S\le s_0$.
+If $S$ is not bounded below, then $\inf S=-\infty<s_0$ by the
+extended order. Thus in either case
+\[
+ \inf S\le s_0.
+\]
+
+\step{2. Compare the same member to the supremum}
+If $S$ is bounded above, its finite supremum is an upper bound and
+therefore $s_0\le\sup S$. If $S$ is not bounded above, then
+$\sup S=+\infty>s_0$. Hence in either case
+\[
+ s_0\le\sup S.
+\]
+
+\step{3. Use transitivity of the extended order}
+Combining the preceding inequalities gives
+\[
+ \inf S\le s_0\le\sup S.
+\]
+The desired inequality follows. This argument includes the cases in
+which one or both bounds are infinite, without treating infinity as
+an element of $S$.
+
+\answer{For every nonempty $S\subseteq\R$, $\inf S\le\sup S$.}
+
+\exercise{5.6}{A chain of bounds under set inclusion}
+\goal If $S,T$ are nonempty subsets of $\R$ and $S\subseteq T$,
+prove
+\[
+ \inf T\le\inf S\le\sup S\le\sup T.
+\]
+
+\idea A lower bound for the larger set is also a lower bound for the
+smaller set; the same holds for upper bounds. Check the infinite cases
+on the relevant side before applying the finite greatest- or
+least-bound property.
+
+\step{1. Prove the leftmost inequality}
+If $T$ is not bounded below, then $\inf T=-\infty$.
+The number $\inf S$ is either real or $-\infty$, so the extended
+order gives $\inf T\le\inf S$, including equality when both are
+$-\infty$.
+
+If $T$ is bounded below, put $\alpha=\inf T\in\R$.
+Every $t\in T$ satisfies $\alpha\le t$. Because every $s\in S$
+also belongs to $T$, we have $\alpha\le s$ for all $s\in S$.
+Thus $S$ is bounded below as well, and $\alpha$ is one of its real
+lower bounds. Its greatest lower bound must be at least this lower
+bound, so
+\[
+ \inf T=\alpha\le\inf S.
+\]
+This argument assumes only a lower bound for $T$, not an upper bound.
+
+\step{2. Prove the middle inequality}
+Exercise~5.5 applies to the nonempty set $S$ and gives
+\[
+ \inf S\le\sup S.
+\]
+In particular, this remains valid if $S$ is unbounded on one or both
+sides.
+
+\step{3. Prove the rightmost inequality}
+If $T$ is not bounded above, then $\sup T=+\infty$.
+Since $\sup S$ is either real or $+\infty$, we have
+$\sup S\le\sup T$ in the extended order, including equality when
+both are $+\infty$.
+
+If $T$ is bounded above, put $\beta=\sup T\in\R$.
+Every element of $T$ is at most $\beta$, so every element of the
+subset $S$ is at most $\beta$. Thus $S$ is bounded above, and
+$\beta$ is an upper bound for it. The least-upper-bound property gives
+\[
+ \sup S\le\beta=\sup T.
+\]
+Here only an upper bound for $T$ was needed.
+
+\step{4. Assemble the comparisons}
+The three inequalities have been proved in all finite and infinite
+cases. Placing them in order yields the required chain.
+
+\answer{For nonempty $S\subseteq T\subseteq\R$,
+$\inf T\le\inf S\le\sup S\le\sup T$.}
+
+\exercise{5.7}{The infimum of a sum set, including unbounded cases}
+\goal For arbitrary nonempty $A,B\subseteq\R$, define
+\[
+ A+B=\{a+b:a\in A,\ b\in B\}.
+\]
+Prove the extended equality
+\[
+ \inf(A+B)=\inf A+\inf B.
+\]
+
+\idea When both sets are bounded below, add their lower bounds and
+use the defining approximation property of an infimum with an
+$\varepsilon/2$ allowance for each summand. When a set is unbounded
+below, fix one member of the other set and show that the sum set is
+unbounded below too.
+
+\step{1. Check nonemptiness and the possible extended values}
+Choose $a_0\in A$ and $b_0\in B$, which is possible because both
+sets are nonempty. The real number $a_0+b_0$ belongs to $A+B$,
+so the sum set is nonempty. Put
+\[
+ \alpha=\inf A,\qquad \beta=\inf B.
+\]
+Each of $\alpha,\beta$ is either a real number or $-\infty$.
+Neither can be $+\infty$ under the conventions for nonempty subsets
+of $\R$. Thus the expression $\alpha+\beta$ never involves the
+undefined combination $+\infty+(-\infty)$.
+
+\step{2. Suppose both $A$ and $B$ are bounded below}
+In this case $\alpha,\beta\in\R$. For every $a\in A$ and $b\in B$,
+the lower-bound properties give $a\ge\alpha$ and $b\ge\beta$.
+Adding yields
+\[
+ a+b\ge\alpha+\beta.
+\]
+Hence $\alpha+\beta$ is a real lower bound for the nonempty set
+$A+B$. Corollary~4.5 supplies its real infimum
+$\gamma=\inf(A+B)$. Because $\gamma$ is the greatest lower bound,
+\[
+ \gamma\ge\alpha+\beta.
+\]
+
+To prove the reverse inequality, fix any $\varepsilon>0$.
+The real number $\alpha+\varepsilon/2$ is larger than the greatest
+lower bound $\alpha$, so it cannot be a lower bound for $A$.
+Consequently some $a\in A$ satisfies
+\[
+ \alpha\le a<\alpha+\frac{\varepsilon}{2}.
+\]
+The first inequality holds because $\alpha$ is a lower bound.
+The same reasoning for $B$ supplies $b\in B$ with
+\[
+ \beta\le b<\beta+\frac{\varepsilon}{2}.
+\]
+Adding the two strict upper estimates gives
+\[
+ a+b<\alpha+\beta+\varepsilon.
+\]
+Since $a+b\in A+B$ and $\gamma$ is a lower bound for that set,
+\[
+ \gamma\le a+b<\alpha+\beta+\varepsilon.
+\]
+This holds for every $\varepsilon>0$. If
+$\gamma>\alpha+\beta$, choose the positive real number
+$\varepsilon=\gamma-(\alpha+\beta)$. The displayed inequality
+would then give
+\[
+ \gamma<\alpha+\beta+
+ \bigl(\gamma-(\alpha+\beta)\bigr)=\gamma,
+\]
+a contradiction. Therefore $\gamma\le\alpha+\beta$.
+Combining both comparisons proves
+\[
+ \inf(A+B)=\alpha+\beta
+\]
+when both infima are finite. No upper bound on $A$ or $B$ was used.
+Thus this case also covers sets that are unbounded above but bounded
+below.
+
+\step{3. Suppose $A$ is not bounded below}
+Here $\alpha=-\infty$. Keep the fixed real member $b_0\in B$ from
+Step~1. Let $D$ be any proposed real lower bound for $A+B$.
+Because $A$ is not bounded below and $D-b_0$ is real, there is an
+$a\in A$ satisfying
+\[
+ a<D-b_0.
+\]
+Adding the real number $b_0$ gives $a+b_0<D$. The number
+$a+b_0$ belongs to $A+B$, so $D$ is not a lower bound.
+As this works for every real $D$, the sum set is unbounded below,
+and $\inf(A+B)=-\infty$.
+
+If $B$ is bounded below, then $\beta$ is finite and
+$\alpha+\beta=(-\infty)+\beta=-\infty$.
+If $B$ is also unbounded below, then $\beta=-\infty$ and
+$\alpha+\beta=(-\infty)+(-\infty)=-\infty$.
+Thus the equality holds in both possibilities for $B$.
+
+\step{4. Suppose $A$ is bounded below and $B$ is not}
+The case with both sets unbounded below was already covered in Step~3.
+It remains to handle a finite $\alpha$ and $\beta=-\infty$.
+Fix the real member $a_0\in A$. Given any real $D$, the absence
+of a lower bound for $B$ supplies $b\in B$ with $b<D-a_0$.
+Then $a_0+b<D$ and $a_0+b\in A+B$. Hence $A+B$ is unbounded
+below and
+\[
+ \inf(A+B)=-\infty
+ =\alpha+(-\infty)
+ =\inf A+\inf B.
+\]
+
+\step{5. Account for all cases}
+Either both sets are bounded below, or $A$ is unbounded below, or
+$A$ is bounded below and $B$ is unbounded below. Steps~2--4 prove
+the equality in these exhaustive cases. Every sum used to produce a
+member of $A+B$ was a sum of two real numbers; the infinite symbols
+were used only to record the resulting extended bounds.
+
+\answer{For all nonempty $A,B\subseteq\R$,
+$\inf(A+B)=\inf A+\inf B$, with the stated extended-bound conventions.}

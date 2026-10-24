@@ -1,0 +1,718 @@
+\exercise{4.5}{When a supremum is a maximum}
+
+\goal Let $S$ be a nonempty subset of $\R$ that is bounded above. Prove
+that if $\sup S\in S$, then $\sup S=\max S$.
+
+\step{Step 1: recall the two requirements for a maximum.}
+A number $M$ is the maximum of $S$ exactly when
+\begin{enumerate}[label=(\roman*)]
+ \item $M$ is an element of $S$;
+ \item every $s\in S$ satisfies $s\le M$.
+\end{enumerate}
+The first requirement concerns membership; the second concerns order.
+
+\step{Step 2: check those requirements for the supremum.}
+Since $S$ is nonempty and bounded above, completeness supplies the real
+number $M=\sup S$. The hypothesis of the exercise is precisely $M\in S$,
+so requirement (i) holds. A supremum is an upper bound, so $s\le M$
+for every $s\in S$; requirement (ii) holds as well.
+
+\answer{The number $\sup S$ belongs to $S$ and is at least every member
+of $S$. By the definition of maximum,
+\(\boxed{\sup S=\max S}\). The additional membership hypothesis is
+essential: an upper bound need not be an element of its set.}
+
+\exercise{4.6}{Comparing the infimum and supremum}
+
+\goal For a nonempty bounded set $S\subseteq\R$, prove (a)
+$\inf S\le\sup S$, and (b) describe $S$ when these two numbers are equal.
+
+\step{Part (a), Step 1: identify the real bounds and choose an element.}
+Because $S$ is nonempty and bounded, the completeness axiom and its
+lower-bound version give real numbers
+\[
+ m=\inf S,\qquad M=\sup S.
+\]
+Nonemptiness permits us to choose a specific $s_0\in S$.
+
+\step{Part (a), Step 2: apply the meanings of lower and upper bound.}
+Since $m$ is a lower bound, $m\le s_0$. Since $M$ is an upper bound,
+$s_0\le M$. Transitivity of $\le$ gives
+\[
+ m\le s_0\le M\quad\Longrightarrow\quad m\le M.
+\]
+
+\answer{For every nonempty bounded $S\subseteq\R$,
+\(\boxed{\inf S\le\sup S}\). Choosing $s_0$ is why nonemptiness
+matters in this argument.}
+
+\step{Part (b), Step 1: let the common value be $c$.}
+Assume $\inf S=\sup S=c$. For an arbitrary $s\in S$, the lower-bound
+and upper-bound properties give
+\[
+ c\le s\le c.
+\]
+By antisymmetry of the order, $s=c$. Since $s$ was arbitrary, every
+element of $S$ equals $c$, and hence $S\subseteq\{c\}$.
+
+\step{Part (b), Step 2: use nonemptiness to get the reverse inclusion.}
+There is an $s_0\in S$. The preceding step gives $s_0=c$, so $c\in S$.
+Thus $\{c\}\subseteq S$, and the two inclusions give $S=\{c\}$.
+Conversely, for the singleton $\{c\}$, the element $c$ is both its
+maximum and its minimum. Every upper bound must be at least $c$, and
+every lower bound must be at most $c$. Therefore both its supremum
+and its infimum equal $c$.
+
+\answer{Equality of the infimum and supremum occurs exactly when $S$
+is a singleton:
+\(\boxed{\inf S=\sup S=c\ \Longleftrightarrow\ S=\{c\}}\).}
+
+\exercise{4.7}{Bounds of a subset and the supremum of a union}
+
+\goal Let $S,T$ be nonempty bounded subsets of $\R$. Prove (a) that
+$S\subseteq T$ implies
+$\inf T\le\inf S\le\sup S\le\sup T$, and (b) that
+$\sup(S\cup T)=\max\{\sup S,\sup T\}$ without assuming either set
+contains the other.
+
+\step{Part (a), Step 1: prove the comparison between the infima.}
+Assume $S\subseteq T$. Since $\inf T$ is a lower bound of $T$, it
+satisfies $\inf T\le t$ for every $t\in T$. Every $s\in S$ is also
+an element of $T$, so
+\[
+ \inf T\le s\qquad\text{for every }s\in S.
+\]
+Consequently $\inf T$ is a lower bound of $S$. The number $\inf S$
+is the \emph{greatest} lower bound of $S$, so every lower bound of
+$S$ is at most $\inf S$. In particular,
+\[
+ \inf T\le\inf S.
+\]
+
+\step{Part (a), Step 2: prove the middle comparison.}
+Exercise~4.6(a), applied to the nonempty bounded set $S$, gives
+\[
+ \inf S\le\sup S.
+\]
+
+\step{Part (a), Step 3: prove the comparison between the suprema.}
+Because $\sup T$ is an upper bound of $T$, every $s\in S\subseteq T$
+satisfies $s\le\sup T$. Thus $\sup T$ is an upper bound of $S$.
+Since $\sup S$ is the \emph{least} upper bound of $S$,
+\[
+ \sup S\le\sup T.
+\]
+
+\answer{Combining the three inequalities gives
+\(\boxed{\inf T\le\inf S\le\sup S\le\sup T}\) whenever
+$S\subseteq T$.}
+
+\step{Part (b), Step 1: verify that the union has real bounds.}
+Write
+\[
+ U=S\cup T,\qquad
+ L=\min\{\inf S,\inf T\},\qquad
+ M=\max\{\sup S,\sup T\}.
+\]
+The numbers $L,M$ are real. Since $S$ is nonempty, the union $U$ is
+nonempty. If $u\in U$, then $u\in S$ or $u\in T$.
+In the first case,
+\[
+ L\le\inf S\le u\le\sup S\le M;
+\]
+in the second case,
+\[
+ L\le\inf T\le u\le\sup T\le M.
+\]
+Therefore $U$ is bounded below by $L$ and above by $M$. In particular,
+$\sup U$ exists as a real number.
+
+\step{Part (b), Step 2: prove that $\sup U\le M$.}
+Step~1 showed $u\le M$ for every $u\in U$, so $M$ is an upper bound
+of $U$. The least-upper-bound property gives $\sup U\le M$.
+
+\step{Part (b), Step 3: prove the inequality in the other direction.}
+Since $S\subseteq U$, every member of $S$ is at most $\sup U$.
+Hence $\sup U$ is an upper bound of $S$, and $\sup S\le\sup U$.
+The same reasoning with $T\subseteq U$ gives $\sup T\le\sup U$.
+The maximum $M$ is one of these two numbers; both are at most
+$\sup U$. Thus $M\le\sup U$.
+
+\answer{The two comparisons $\sup U\le M$ and $M\le\sup U$ give
+\[
+ \boxed{\sup(S\cup T)=\max\{\sup S,\sup T\}}.
+\]
+We used the containments $S\subseteq S\cup T$ and $T\subseteq S\cup T$,
+not a containment between $S$ and $T$.}
+
+\exercise{4.8}{Two sets ordered entirely below and above each other}
+
+\goal Let $S,T\subseteq\R$ be nonempty and suppose
+\[
+ s\le t\qquad\text{for every }s\in S\text{ and every }t\in T.
+\]
+Show (a) that $S$ is bounded above and $T$ is bounded below, (b) that
+$\sup S\le\inf T$, and supply the examples requested in (c) and (d).
+
+\step{Part (a), Step 1: choose one member from each set.}
+Because both sets are nonempty, there are $s_0\in S$ and $t_0\in T$.
+Keep these two particular numbers fixed for this step.
+The hypothesis, with $t=t_0$, says
+\[
+ s\le t_0\qquad\text{for every }s\in S.
+\]
+Thus the real number $t_0$ is an upper bound of $S$.
+The hypothesis, with $s=s_0$, says
+\[
+ s_0\le t\qquad\text{for every }t\in T.
+\]
+Thus the real number $s_0$ is a lower bound of $T$.
+
+\answer{$S$ is bounded above, and $T$ is bounded below. No lower
+bound for $S$, or upper bound for $T$, is required by this conclusion.}
+
+\step{Part (b), Step 1: establish existence of the two numbers.}
+The set $S$ is nonempty and bounded above, so the completeness axiom
+gives $\sup S\in\R$. The set $T$ is nonempty and bounded below, so
+Corollary~4.5 gives $\inf T\in\R$.
+
+\step{Part (b), Step 2: turn the supremum into a lower bound of $T$.}
+Take an arbitrary $t\in T$. The hypothesis says that $s\le t$ for
+every $s\in S$, so $t$ is an upper bound of $S$. Since $\sup S$ is
+the least upper bound of $S$, we have $\sup S\le t$.
+This is true for every $t\in T$. Therefore $\sup S$ is a lower bound
+of $T$. Its greatest lower bound is $\inf T$, so
+\[
+ \sup S\le\inf T.
+\]
+
+\answer{The separation of all pairs of set elements implies
+\(\boxed{\sup S\le\inf T}\). The proof does not assume that either
+extremal bound belongs to its set.}
+
+\step{Part (c), Step 1: give sets that share an element.}
+Take
+\[
+ S=[0,1],\qquad T=[1,2].
+\]
+Both sets are nonempty because $1$ belongs to each. If $s\in S$ and
+$t\in T$, the interval definitions give $s\le1$ and $1\le t$;
+transitivity gives $s\le t$, as required.
+
+\step{Part (c), Step 2: identify their intersection and bounds.}
+If $x\in S\cap T$, membership in $S$ gives $x\le1$, and membership
+in $T$ gives $1\le x$. Antisymmetry forces $x=1$. Conversely, $1$
+belongs to both intervals, so
+\[
+ S\cap T=\{1\}.
+\]
+The number $1$ is the maximum of $S$ and the minimum of $T$.
+Hence $\sup S=1=\inf T$.
+
+\answer{The example \(\boxed{S=[0,1],\ T=[1,2]}\) meets the pairwise
+order condition and has nonempty intersection $\{1\}$.}
+
+\step{Part (d), Step 1: give disjoint sets with a common extremal bound.}
+Take
+\[
+ S=(0,1),\qquad T=(1,2).
+\]
+The first contains $1/2$, and the second contains $3/2$, so both are
+nonempty. For $s\in S$ and $t\in T$, we have $s<1<t$, and hence
+$s\le t$. If $x$ belonged to their intersection, we would have both
+$x<1$ and $x>1$, which is impossible. Thus $S\cap T=\varnothing$.
+
+\step{Part (d), Step 2: prove directly that $\sup S=1$.}
+Every $s\in(0,1)$ satisfies $s<1$, so $1$ is an upper bound of $S$.
+To prove it is the least, take any real $u<1$ and put
+\[
+ v=\max\{0,u\},\qquad s=\frac{v+1}{2}.
+\]
+Both $0$ and $u$ are less than $1$, so $v<1$. Since $v\ge0$,
+the inequalities $v<s<1$ imply $0<s<1$. For completeness,
+\[
+ s-v=\frac{1-v}{2}>0,\qquad 1-s=\frac{1-v}{2}>0.
+\]
+Thus $s\in S$ and $s>v\ge u$. Consequently $u$ cannot be an upper
+bound of $S$. Every number less than $1$ fails to be an upper bound,
+so $\sup S=1$.
+
+\step{Part (d), Step 3: prove directly that $\inf T=1$.}
+Every $t\in(1,2)$ satisfies $t>1$, so $1$ is a lower bound of $T$.
+For an arbitrary real $\ell>1$, put
+\[
+ w=\min\{2,\ell\},\qquad t=\frac{1+w}{2}.
+\]
+Both $2$ and $\ell$ exceed $1$, so $w>1$. We have
+\[
+ t-1=\frac{w-1}{2}>0,\qquad w-t=\frac{w-1}{2}>0.
+\]
+Therefore $1<t<w\le2$, which gives $t\in T$. Also $t<w\le\ell$,
+so $t<\ell$. Thus $\ell$ cannot be a lower bound of $T$.
+Every number greater than $1$ fails to be a lower bound, so $\inf T=1$.
+
+\answer{The example \(\boxed{S=(0,1),\ T=(1,2)}\) has
+$\boxed{\sup S=\inf T=1}$ and $\boxed{S\cap T=\varnothing}$.
+Equality of the bounds does not force either set to contain the common
+bound.}
+
+\exercise{4.9}{Obtain an infimum by negating a supremum}
+
+\goal Complete the proof of Corollary~4.5. For a nonempty set
+$S\subseteq\R$ that is bounded below, put
+\[
+ -S=\{-s:s\in S\},\qquad s_0=\sup(-S).
+\]
+Prove the two assertions left open in the text:
+\begin{align*}
+ \text{(1)}\quad&-s_0\le s &&\text{for every }s\in S,\\
+ \text{(2)}\quad&t\le s\text{ for every }s\in S
+       &&\Longrightarrow\quad t\le-s_0.
+\end{align*}
+
+\step{Step 1: justify that $s_0$ exists as a real number.}
+Since $S$ is nonempty, choose $s_*\in S$. Then $-s_*\in-S$, so
+$-S$ is also nonempty. Since $S$ is bounded below, there is a real
+number $m$ with $m\le s$ for every $s\in S$.
+Negating this inequality reverses it, so $-s\le-m$ for every $s\in S$.
+Every element of $-S$ has the form $-s$ for such an $s$. Therefore
+$-m$ is an upper bound of $-S$. The completeness axiom applies and
+gives the real number $s_0=\sup(-S)$.
+
+\step{Step 2: prove assertion (1), the lower-bound property.}
+Let $s\in S$ be arbitrary. By the definition of $-S$, its negative
+$-s$ belongs to $-S$. Because $s_0$ is an upper bound of that set,
+\[
+ -s\le s_0.
+\]
+Negate both sides. The direction reverses, and $-(-s)=s$, giving
+\[
+ -s_0\le s.
+\]
+This holds for every $s\in S$, so $-s_0$ is a lower bound of $S$.
+
+\step{Step 3: prove assertion (2), the greatest-lower-bound property.}
+Let $t$ be any real lower bound of $S$. This means
+$t\le s$ for every $s\in S$. Negating each of those inequalities gives
+\[
+ -s\le-t\qquad\text{for every }s\in S.
+\]
+Hence $-t$ is an upper bound of $-S$. The least-upper-bound property
+of $s_0=\sup(-S)$ now gives
+\[
+ s_0\le-t.
+\]
+Negating once more yields $t\le-s_0$. Thus every lower bound $t$ of
+$S$ is at most $-s_0$.
+
+\answer{Assertion (1) says $-s_0$ is a lower bound, and assertion (2)
+says it is greater than or equal to every lower bound. Together they
+prove
+\(\boxed{\inf S=-s_0=-\sup(-S)}\). This establishes the lower-bound
+form of completeness from its upper-bound form.}
+
+\exercise{4.10}{One natural number meeting two inequalities}
+
+\goal Given a real number $a>0$, find one $n\in\N$ such that
+$1/n<a<n$.
+
+\idea It is not enough to find one integer for $1/n<a$ and a different
+integer for $a<n$. We choose a single integer larger than both $a$ and
+$1/a$.
+
+\step{Step 1: form one positive real target.}
+Since $a>0$, its inverse $1/a$ exists and is positive. Define
+\[
+ B=\max\{a,1/a\}.
+\]
+The number $B$ is positive because both entries in this maximum are
+positive.
+
+\step{Step 2: apply the Archimedean property.}
+Use Theorem~4.6 with the positive increment $1$ and the positive target
+$B$. It gives a natural number $n$ satisfying
+\[
+ n\cdot1>B.
+\]
+Thus $n>B\ge a$, so $a<n$, and $n>B\ge1/a$, so $n>1/a$.
+
+\step{Step 3: convert $n>1/a$ into the reciprocal inequality.}
+Multiply $n>1/a$ by the positive number $a$ to get
+$na>1$. Because $n\in\N$, we have $n>0$, so division by $n$
+preserves strict inequality:
+\[
+ na>1\quad\Longrightarrow\quad a>\frac1n.
+\]
+
+\answer{The same natural number $n$ satisfies both comparisons:
+\(\boxed{\frac1n<a<n}\). Both positivity checks are needed when
+multiplying and dividing inequalities.}
+
+\exercise{4.11}{Every nonempty open interval contains infinitely many rationals}
+
+\goal If $a,b\in\R$ and $a<b$, use the denseness of $\Q$ to prove
+that there are infinitely many rational numbers $r$ with $a<r<b$.
+
+\step{Step 1: define the set whose size is at issue.}
+Let
+\[
+ E=\{r\in\Q:a<r<b\}.
+\]
+Theorem~4.7, applied to $a<b$, gives at least one rational in this
+interval. Thus $E$ is nonempty. This first application alone does not
+prove infinitude; we must rule out the possibility that the set is finite.
+
+\step{Step 2: suppose there were only finitely many.}
+Assume, for a contradiction, that
+\[
+ E=\{r_1,r_2,\ldots,r_k\}
+\]
+for some positive integer $k$. A nonempty finite set of real numbers
+has a maximum: compare its first two entries, keep the larger, and
+continue through the finitely many entries. Let
+\[
+ r_* = \max\{r_1,\ldots,r_k\}.
+\]
+Since $r_*\in E$, it satisfies $a<r_*<b$.
+
+\step{Step 3: use density in a smaller interval.}
+The strict inequality $r_*<b$ permits another application of
+Theorem~4.7. There is a rational $q$ with
+\[
+ r_*<q<b.
+\]
+Because $a<r_*<q$, transitivity gives $a<q$. Together with $q<b$ and
+$q\in\Q$, this shows $q\in E$.
+But $q>r_*$, contradicting the choice of $r_*$ as the largest member of
+$E$.
+
+\answer{The set $E$ is nonempty and cannot be finite. Therefore there
+are \textbf{infinitely many rational numbers between $a$ and $b$}.
+The same density theorem can always be applied above the largest
+member of any proposed finite list.}
+
+\exercise{4.12}{Irrational numbers are dense as well}
+
+\goal Let $I=\R\setminus\Q$. Prove that for any real numbers $a<b$
+there is an $x\in I$ such that $a<x<b$.
+
+\step{Step 1: prove that a rational translate of $\sqrt2$ is irrational.}
+The irrationality of $\sqrt2$ was established in Section~2.
+Let $r\in\Q$ be arbitrary and suppose, for a contradiction, that
+$r+\sqrt2$ were rational. Write
+\[
+ r=\frac mn,\qquad r+\sqrt2=\frac hk,
+\]
+where $m,n,h,k\in\Z$, $n\ne0$, and $k\ne0$.
+Subtracting gives
+\[
+ \sqrt2=\frac hk-\frac mn=\frac{hn-mk}{kn}.
+\]
+The numerator $hn-mk$ is an integer, the denominator $kn$ is an
+integer, and $kn\ne0$ because both $k$ and $n$ are nonzero.
+The last quotient would make $\sqrt2$ rational, a contradiction.
+Thus $r+\sqrt2$ is irrational for every $r\in\Q$, proving
+\[
+ \{r+\sqrt2:r\in\Q\}\subseteq I.
+\]
+
+\step{Step 2: shift the desired interval before choosing a rational.}
+Adding $-\sqrt2$ to $a<b$ preserves strict inequality:
+\[
+ a-\sqrt2<b-\sqrt2.
+\]
+By Theorem~4.7, there is a rational number $r$ satisfying
+\[
+ a-\sqrt2<r<b-\sqrt2.
+\]
+The endpoints here are real numbers; they need not themselves be
+rational for the density theorem to apply.
+
+\step{Step 3: shift that rational back.}
+Define $x=r+\sqrt2$. Step~1 gives $x\in I$. Add $\sqrt2$ to all three
+expressions in the preceding two inequalities:
+\[
+ (a-\sqrt2)+\sqrt2<r+\sqrt2<(b-\sqrt2)+\sqrt2.
+\]
+Associativity and additive cancellation simplify the endpoints, giving
+$a<x<b$.
+
+\answer{The irrational number \(\boxed{x=r+\sqrt2}\), where
+$a-\sqrt2<r<b-\sqrt2$ and $r\in\Q$, lies strictly between $a$ and
+$b$. The initial shift is what ensures that adding $\sqrt2$ does not
+move our chosen point outside the desired interval.}
+
+\exercise{4.13}{Three descriptions of an open interval}
+
+\goal For real $a,b,c$, prove the equivalence of
+\begin{align*}
+ \text{(i)}\quad&\abs{a-b}<c,\\
+ \text{(ii)}\quad&b-c<a<b+c,\\
+ \text{(iii)}\quad&a\in(b-c,b+c).
+\end{align*}
+We interpret $(u,v)$ as the set $\{x\in\R:u<x<v\}$; this set is
+empty when $u\ge v$.
+
+\step{Step 1: prove that (i) implies (ii).}
+Assume $\abs{a-b}<c$. Exercise~3.7(a), with bounded number $a-b$ and
+bound $c$, gives
+\[
+ -c<a-b<c.
+\]
+Add $b$ throughout. Strict inequalities are preserved by addition, so
+\[
+ -c+b<(a-b)+b<c+b.
+\]
+Associativity and the additive inverse rule simplify the middle
+expression to $a$. Commutativity turns the endpoints into $b-c$ and
+$b+c$. We have obtained $b-c<a<b+c$, which is (ii).
+
+\step{Step 2: prove that (ii) implies (i).}
+Assume $b-c<a<b+c$. Add $-b$ throughout and simplify to obtain
+\[
+ -c<a-b<c.
+\]
+Exercise~3.7(a) now gives $\abs{a-b}<c$. This is (i).
+
+\step{Step 3: prove the equivalence of (ii) and (iii).}
+By the definition of the open interval,
+\[
+ (b-c,b+c)=\{x\in\R:b-c<x<b+c\}.
+\]
+Membership of the particular number $a$ in this set means exactly
+that $b-c<a<b+c$. Thus (ii) implies (iii), and (iii) implies (ii).
+
+\step{Step 4: verify explicitly what happens when $c\le0$.}
+If $c\le0$, statement (i) is false because every absolute value is
+nonnegative: it cannot satisfy $0\le\abs{a-b}<c\le0$.
+Also $c\le0$ implies $c\le-c$, so adding $b$ gives
+$b+c\le b-c$. Statement (ii) would imply $b-c<b+c$, contrary to
+that inequality. Thus (ii) is false. The interval in (iii) has its left
+endpoint at least as large as its right endpoint, so it is empty;
+statement (iii) is false too. This includes $c=0$, when both endpoints
+equal $b$.
+
+\answer{For $c>0$, the steps above show that the three statements are
+equivalent; for $c\le0$, all three are false. Consequently, for every
+real $a,b,c$,
+\(\boxed{\text{(i)}\Longleftrightarrow\text{(ii)}\Longleftrightarrow\text{(iii)}}\).}
+
+\exercise{4.14}{Supremum and infimum of the sum of two sets}
+
+\goal Let $A,B\subseteq\R$ be nonempty and bounded. Define
+\[
+ A+B=\{a+b:a\in A,\ b\in B\}.
+\]
+Prove
+\[
+ \text{(a)}\quad\sup(A+B)=\sup A+\sup B,
+ \qquad
+ \text{(b)}\quad\inf(A+B)=\inf A+\inf B.
+\]
+The notation $A+B$ means the set of all such sums, not a union.
+
+\step{Preliminary step: check nonemptiness, boundedness, and existence.}
+Since $A$ and $B$ are nonempty and bounded, their extrema as bounds
+exist as real numbers. Write
+\[
+ m_A=\inf A,\quad M_A=\sup A,\qquad
+ m_B=\inf B,\quad M_B=\sup B.
+\]
+Choose $a_0\in A$ and $b_0\in B$. Then $a_0+b_0\in A+B$, so the
+sum set is nonempty. For arbitrary $a\in A$ and $b\in B$, we have
+\[
+ m_A\le a\le M_A,\qquad m_B\le b\le M_B.
+\]
+Adding the lower comparisons and then the upper comparisons gives
+\[
+ m_A+m_B\le a+m_B\le a+b\le M_A+b\le M_A+M_B.
+\]
+Thus $A+B$ is bounded below by $m_A+m_B$ and above by $M_A+M_B$.
+Completeness and its lower-bound corollary supply real numbers
+\[
+ m=\inf(A+B),\qquad M=\sup(A+B).
+\]
+No assertion that an infimum or supremum belongs to $A$ or $B$ has
+been made.
+
+\step{Part (a), Step 1: prove the first inequality.}
+We just showed that every $a+b\in A+B$ satisfies
+$a+b\le M_A+M_B$. Hence $M_A+M_B$ is an upper bound of $A+B$.
+Its least upper bound is $M$, so
+\[
+ M\le M_A+M_B.
+\]
+
+\step{Part (a), Step 2: explain how to approach each separate supremum.}
+Let $\varepsilon>0$. Because $\varepsilon/2>0$,
+$M_A-\varepsilon/2<M_A$. The number $M_A-\varepsilon/2$ cannot be
+an upper bound of $A$: such an upper bound would be strictly smaller
+than the least upper bound $M_A$. Therefore there is an
+$a_\varepsilon\in A$ with
+\[
+ M_A-\frac\varepsilon2<a_\varepsilon\le M_A.
+\]
+The same argument for $B$ gives a $b_\varepsilon\in B$ with
+\[
+ M_B-\frac\varepsilon2<b_\varepsilon\le M_B.
+\]
+These are approximation statements, not claims that $M_A\in A$ or
+$M_B\in B$.
+
+\step{Part (a), Step 3: prove the reverse inequality using a gap.}
+Suppose, for a contradiction, that $M<M_A+M_B$. Set
+\[
+ \varepsilon=M_A+M_B-M>0.
+\]
+Choose $a_\varepsilon,b_\varepsilon$ as in Step~2. Adding their two
+strict lower bounds gives
+\begin{align*}
+ a_\varepsilon+b_\varepsilon
+   &>\left(M_A-\frac\varepsilon2\right)
+       +\left(M_B-\frac\varepsilon2\right),\\
+   &=M_A+M_B-\varepsilon,\\
+   &=M.
+\end{align*}
+But $a_\varepsilon+b_\varepsilon\in A+B$, and $M$ is an upper bound
+of this set, so the same sum must be at most $M$. This is a
+contradiction. Therefore $M_A+M_B\le M$.
+
+\answer{Both $M\le M_A+M_B$ and $M_A+M_B\le M$ hold. By
+antisymmetry,
+\[
+ \boxed{\sup(A+B)=\sup A+\sup B}.
+\]
+Splitting the positive gap
+into two halves leaves enough room to choose one near-maximal element
+from each set.}
+
+\step{Part (b), Step 1: prove the first inequality.}
+The preliminary step showed $m_A+m_B\le a+b$ for every $a+b\in A+B$.
+Thus $m_A+m_B$ is a lower bound of the sum set. Since $m$ is the
+greatest lower bound,
+\[
+ m_A+m_B\le m.
+\]
+
+\step{Part (b), Step 2: explain how to approach the separate infima.}
+Let $\varepsilon>0$. The number $m_A+\varepsilon/2$ is strictly larger
+than $m_A$. It cannot be a lower bound of $A$, since $m_A$ is its
+greatest lower bound. Therefore there is an $a_\varepsilon\in A$ with
+\[
+ m_A\le a_\varepsilon<m_A+\frac\varepsilon2.
+\]
+Likewise there is a $b_\varepsilon\in B$ with
+\[
+ m_B\le b_\varepsilon<m_B+\frac\varepsilon2.
+\]
+Again no attainment of either infimum is being assumed.
+
+\step{Part (b), Step 3: prove the reverse inequality using a gap.}
+Suppose, for a contradiction, that $m>m_A+m_B$. Put
+\[
+ \varepsilon=m-m_A-m_B>0.
+\]
+Choose $a_\varepsilon,b_\varepsilon$ from Step~2. Adding their two
+strict upper bounds gives
+\begin{align*}
+ a_\varepsilon+b_\varepsilon
+   &<\left(m_A+\frac\varepsilon2\right)
+       +\left(m_B+\frac\varepsilon2\right),\\
+   &=m_A+m_B+\varepsilon,\\
+   &=m.
+\end{align*}
+This sum belongs to $A+B$. But $m$ is a lower bound, so every member
+of that set must be at least $m$. The contradiction rules out
+$m>m_A+m_B$, giving $m\le m_A+m_B$.
+
+\answer{Combining the two comparisons gives
+\(\boxed{\inf(A+B)=\inf A+\inf B}\). The argument applies whether
+or not the extremal bounds of the original sets are attained.}
+
+\exercise{4.15}{Comparison using reciprocal natural-number errors}
+
+\goal Suppose $a,b\in\R$ and
+\[
+ a\le b+\frac1n\qquad\text{for every }n\in\N.
+\]
+Prove $a\le b$.
+
+\idea If $a>b$, the positive gap $a-b$ can be made larger than one
+of the numbers $1/n$. That particular $n$ contradicts the hypothesis.
+
+\step{Step 1: assume the opposite of the desired conclusion.}
+Suppose $a\le b$ is false. Total ordering then gives $a>b$, so
+\[
+ d=a-b>0.
+\]
+
+\step{Step 2: obtain a strict reciprocal estimate from the Archimedean property.}
+Apply Theorem~4.6 to the positive numbers $d$ and $1$. There is an
+$n\in\N$ with $nd>1$. Since $n>0$, division by $n$ gives
+\[
+ d>\frac1n.
+\]
+The strict inequality is needed: an estimate $1/n\le d$ alone would
+not exclude equality at the next step.
+
+\step{Step 3: compare with the hypothesis for that particular $n$.}
+Substitute $d=a-b$ and add $b$ to get
+\[
+ \frac1n<a-b\quad\Longrightarrow\quad b+\frac1n<a.
+\]
+The hypothesis applies to every natural number, so it applies to this
+one and gives $a\le b+1/n$. These inequalities cannot both hold:
+they would give $a\le b+1/n<a$.
+
+\answer{The contradiction proves \(\boxed{a\le b}\).
+Exercise~3.8 tested $a$ against every real number above $b$.
+Here only the particular numbers $b+1/n$ are tested; the Archimedean
+property guarantees that at least one of them detects any hypothetical
+positive gap $a-b$.}
+
+\exercise{4.16}{A real number as the supremum of the rationals below it}
+
+\goal For each $a\in\R$, prove
+\[
+ \sup\{r\in\Q:r<a\}=a.
+\]
+
+\step{Step 1: define the set and prove that it is nonempty.}
+Fix an arbitrary real $a$ and let
+\[
+ S_a=\{r\in\Q:r<a\}.
+\]
+The inequality $a-1<a$ is strict because $1>0$. Apply the denseness
+of $\Q$ to the interval $(a-1,a)$. It gives a rational $r_0$ with
+\[
+ a-1<r_0<a.
+\]
+Thus $r_0\in S_a$, proving nonemptiness. This construction works
+even for $a\le0$; one must not assume that $0$ belongs to $S_a$.
+
+\step{Step 2: prove that $a$ is an upper bound.}
+By definition, every $r\in S_a$ satisfies $r<a$, and therefore
+$r\le a$. Hence $a$ is an upper bound of $S_a$.
+In particular, $S_a$ is nonempty and bounded above, so its real
+supremum exists by completeness.
+
+\step{Step 3: prove that every smaller candidate fails to be an upper bound.}
+Take any real $u<a$. Denseness of $\Q$ gives a rational $r$ with
+\[
+ u<r<a.
+\]
+Since $r\in\Q$ and $r<a$, this $r$ belongs to $S_a$.
+The additional inequality $u<r$ shows that $u$ is not an upper bound
+of $S_a$: it is exceeded by the specific element $r\in S_a$.
+
+\step{Step 4: express the least-upper-bound conclusion.}
+Step~2 showed that $a$ is an upper bound. Step~3 showed that every
+number strictly less than $a$ fails to be an upper bound.
+Equivalently, if $U$ is any upper bound, $U<a$ is impossible, and
+the real order therefore forces $a\le U$.
+Thus $a$ is at most every upper bound while being one itself.
+
+\answer{The two defining obligations for a supremum are satisfied, so
+\(\boxed{\sup\{r\in\Q:r<a\}=a}\) for every real $a$.
+The number $a$ need not be rational, and it is excluded from the set
+even when it is rational; the supremum need not be attained.}

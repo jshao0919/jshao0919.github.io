@@ -8,9 +8,24 @@ import tempfile
 import zipfile
 
 ROOT = Path(__file__).resolve().parent
-TARGETS = ["ross-section-01", "ross-section-02", "ross-section-03",
-           "ross-chapter-1-sections-1-3"]
-EXPECTED = {1: 12, 2: 8, 3: 8}
+TARGETS = [f"ross-section-{section:02}" for section in range(1, 7)] + [
+    "ross-chapter-1", "ross-chapter-1-sections-1-3"]
+EXPECTED = {1: 12, 2: 8, 3: 8, 4: 16, 5: 7, 6: 5}
+
+
+def expanded_source(path, ancestors=()):
+    """Read split section files in the same order as their LaTeX inputs."""
+    path = path.resolve()
+    if path.parent != ROOT or path in ancestors:
+        raise SystemExit(f"Invalid or circular section input: {path.name}")
+
+    def include(match):
+        name = match.group(1)
+        if not name.endswith(".tex"):
+            name += ".tex"
+        return expanded_source(ROOT / name, ancestors + (path,))
+
+    return re.sub(r"\\input\{([^}]+)\}", include, path.read_text())
 
 
 def main():
@@ -18,7 +33,7 @@ def main():
         raise SystemExit("latexmk is required; install a TeX distribution first.")
     for section, count in EXPECTED.items():
         source = ROOT / f"section-{section:02}-solutions.tex"
-        exercises = re.findall(r"\\exercise\{(\d+\.\d+)\}", source.read_text())
+        exercises = re.findall(r"\\exercise\{(\d+\.\d+)\}", expanded_source(source))
         expected = [f"{section}.{i}" for i in range(1, count + 1)]
         if exercises != expected:
             raise SystemExit(f"{source.name}: expected exercises {expected}, got {exercises}")

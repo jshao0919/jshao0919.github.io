@@ -1,0 +1,760 @@
+\exercise{4.1}{Three upper bounds and a common analysis of the sets}
+
+\goal For each of the twenty-three sets in parts (a)--(w), give
+three distinct real upper bounds when such bounds exist. Otherwise,
+give the requested answer ``NBA,'' meaning ``not bounded above.''
+
+\idea Exercises 4.2, 4.3, and 4.4 ask about the very same sets.
+We first analyze each set once, including the sharpness of its endpoint
+bounds. Four answer lists then state the answer to every part of every
+exercise and link it to its proof. This keeps the proofs of the
+intersections, the prime-number assertion, and the trigonometric values
+available without repeating them four times.
+
+\subsubsection*{Definitions and tools for all four exercises}
+
+An \emph{upper bound} $U\in\R$ for a set $S$ must satisfy $s\leq U$
+for every $s\in S$. A \emph{lower bound} $L\in\R$ must satisfy
+$L\leq s$ for every $s\in S$. Thus, once $U$ is known to be an upper
+bound, every number at least $U$ is another upper bound: if $s\leq U$
+and $U\leq V$, then $s\leq V$. Similarly, every number at most a known
+lower bound is another lower bound.
+
+For a proposed supremum $u$, we prove two things:
+\begin{enumerate}
+ \item $s\leq u$ for every member $s$ of the set;
+ \item for each real $U<u$, there is a member $s>U$.
+\end{enumerate}
+The second condition means that no number smaller than $u$ is an
+upper bound, so $u$ is the \emph{least} upper bound. For a proposed
+infimum $\ell$, the corresponding conditions are that $\ell\leq s$
+for every member, and that every real $L>\ell$ has some member $s<L$.
+If a bound belongs to the set, that member itself proves sharpness:
+any smaller upper bound, or larger lower bound, fails on that member.
+Thus a maximum is a supremum, and a minimum is an infimum.
+
+All suprema and infima in these four exercises are \emph{real}
+numbers. An unbounded-above set has ``NO sup,'' and an unbounded-below
+set has ``NO inf,'' in the conventions of this section. These answers
+are not assignments of extended-real values.
+
+\step{Tool 1: The Archimedean property and small reciprocals.}
+The Archimedean property implies that, for every real $B$, there is
+$n\in\N$ with $n>B$. If $B\leq0$, $n=1$ works; if $B>0$, apply
+the Archimedean property with $a=1$ and $b=B$.
+Consequently, for every $\delta>0$, there is an $n\in\N$ such that
+\[
+ n>\frac1\delta
+ \quad\hbox{and therefore}\quad
+ 0<\frac1n<\delta.
+\]
+To justify the last strict inequality, multiply $n>1/\delta$ by
+the positive number $\delta$, obtaining $n\delta>1$, and then
+divide by the positive integer $n$.
+
+\step{Tool 2: Rational points in an open interval make its endpoints sharp.}
+Let $c,d\in\R$ with $c<d$, and consider
+\[
+ T=\{r\in\Q:c<r<d\}.
+\]
+The density of $\Q$ shows that $T$ is nonempty. Its defining
+inequalities give the upper bound $d$ and the lower bound $c$.
+If $U<d$, put $v=\max\{U,c\}$. Both $U$ and $c$ are less than
+$d$, so $v<d$. Density provides a rational $r$ with
+\[
+ \max\{U,c\}<r<d.
+\]
+Then $c<r<d$, so $r\in T$, and $r>U$, so $U$ is not an upper
+bound. This proves $\sup T=d$.
+
+If $L>c$, put $w=\min\{L,d\}$. Both $L$ and $d$ are greater than
+$c$, so $c<w$. Density provides a rational $r$ with
+\[
+ c<r<\min\{L,d\}.
+\]
+This $r$ belongs to $T$ and satisfies $r<L$, proving that $L$ is
+not a lower bound. Hence $\inf T=c$. Neither endpoint belongs to
+$T$, since membership requires strict inequalities. The same witnesses
+also prove that the real interval $(c,d)$ has supremum $d$ and
+infimum $c$, because those rational witnesses are real members of it.
+
+\step{Tool 3: Converting a quadratic inequality into an interval.}
+For $c>0$ and $x\in\R$,
+\[
+ x^2<c^2\quad\Longleftrightarrow\quad -c<x<c.
+\]
+For the reverse direction, if $-c<x<c$, then $c+x>0$ and
+$c-x>0$. Their product is positive, so
+\[
+ 0<(c-x)(c+x)=c^2-x^2,
+\]
+which says $x^2<c^2$. For the forward direction, if $x\geq c>0$,
+then $x^2\geq c^2$, contradicting the strict inequality. If
+$x\leq-c$, then $-x\geq c>0$ and
+$x^2=(-x)^2\geq c^2$, again a contradiction. Thus neither
+$x\geq c$ nor $x\leq-c$ is possible, proving $-c<x<c$.
+
+\step{Tool 4: Named numerical bounds used for the familiar constants.}
+We use the familiar estimates
+\[
+ 3<\pi<\frac{22}{7},\qquad 2<e<3.
+\]
+In particular $2<e<3<\pi<4$, because $22/7<4$ follows from
+$22<28$. These estimates suffice to order the finite sets involving
+$\pi$ and $e$; decimal approximations are unnecessary.
+
+\subsubsection*{A proof for every set (a)--(w)}
+
+\phantomsection\label{bounds:a}
+\step{Analysis (a): The closed interval $[0,1]$.}
+Every member $s$ satisfies $0\leq s\leq1$, by the definition of this
+interval. Both $0$ and $1$ belong to it. Thus $0$ is its minimum and
+infimum, and $1$ is its maximum and supremum. In particular $1,2,3$
+are upper bounds and $0,-1,-2$ are lower bounds.
+
+\phantomsection\label{bounds:b}
+\step{Analysis (b): The open interval $(0,1)$.}
+Every member satisfies $0<s<1$, so $0$ is a lower bound and $1$ is
+an upper bound. Tool 2 with $c=0$, $d=1$ proves that no upper bound
+smaller than $1$, and no lower bound larger than $0$, can work.
+Therefore $\sup(0,1)=1$ and $\inf(0,1)=0$. Neither endpoint is a
+member, so neither extremal bound is attained. Upper bounds include
+$1,2,3$; lower bounds include $0,-1,-2$.
+
+\phantomsection\label{bounds:c}
+\step{Analysis (c): The finite set $\{2,7\}$.}
+Its two members satisfy $2\leq2\leq7$ and $2\leq7\leq7$.
+Consequently $2$ bounds every member from below and $7$ bounds every
+member from above. Each is itself in the set. Hence the minimum and
+infimum are $2$, while the maximum and supremum are $7$.
+Examples of upper bounds are $7,8,9$; examples of lower bounds are
+$2,1,0$.
+
+\phantomsection\label{bounds:d}
+\step{Analysis (d): The finite set $\{\pi,e\}$.}
+Tool 4 gives $2<e<3<\pi<4$, and therefore $e<\pi$.
+Thus every member of this two-element set is at least $e$ and at
+most $\pi$. Both endpoints are members, so its infimum is $e$ and
+its supremum is $\pi$, both attained. Since every member is less
+than $4$, the three distinct numbers $4,5,6$ are upper bounds.
+Since every member is greater than $2$, the distinct numbers $2,1,0$
+are lower bounds.
+
+\phantomsection\label{bounds:e}
+\step{Analysis (e): The reciprocal set $\{1/n:n\in\N\}$.}
+For $n\geq1$, positivity and $n\geq1$ give
+\[
+ 0<\frac1n\leq1.
+\]
+At $n=1$, the value is $1$, so $1$ is the maximum and supremum.
+The number $0$ is a lower bound, but it is not a member since a
+positive reciprocal cannot equal $0$. If $L>0$, Tool 1 supplies
+$n$ with $1/n<L$. This member defeats $L$ as a lower bound, so
+$0$ is the greatest lower bound. Thus the infimum is $0$ and is
+not attained. Upper bounds include $1,2,3$; lower bounds include
+$0,-1,-2$.
+
+\phantomsection\label{bounds:f}
+\step{Analysis (f): The singleton $\{0\}$.}
+Its only member is $0$. Therefore $0$ is both a lower and an upper
+bound, and is both the minimum and the maximum. It follows that
+the supremum and infimum both equal $0$. The numbers $0,1,2$ are
+three distinct upper bounds, and $0,-1,-2$ are three distinct lower
+bounds.
+
+\phantomsection\label{bounds:g}
+\step{Analysis (g): The union $[0,1]\cup[2,3]$.}
+A member $s$ belongs to at least one of the two intervals.
+If $s\in[0,1]$, then $0\leq s\leq1\leq3$. If $s\in[2,3]$,
+then $0\leq2\leq s\leq3$. Thus every member satisfies
+$0\leq s\leq3$. The member $0$ comes from the first interval,
+and the member $3$ comes from the second. Hence the infimum is
+the attained minimum $0$, and the supremum is the attained maximum
+$3$. The gap between the two intervals changes neither endpoint
+bound. Upper bounds include $3,4,5$ and lower bounds include
+$0,-1,-2$.
+
+\phantomsection\label{bounds:h}
+\step{Analysis (h): The infinite union $\bigcup_{n=1}^{\infty}[2n,2n+1]$.}
+Membership in the union means membership in \emph{at least one}
+interval. If $s$ belongs to it, there is an $n\in\N$ with
+$2n\leq s\leq2n+1$. Because $n\geq1$, we obtain
+$2\leq2n\leq s$. The number $2$ belongs to the interval at
+$n=1$, namely $[2,3]$. Thus $2$ is the minimum and infimum,
+and $2,1,0$ are lower bounds.
+
+There is no upper bound. To see this for an arbitrary proposed
+$M\in\R$, use Tool 1 to choose
+\[
+ n>\max\{1,M/2\}.
+\]
+The member $2n\in[2n,2n+1]$ satisfies $2n>M$. Thus every proposed
+real upper bound fails. This set is NBA and has NO sup.
+
+\phantomsection\label{bounds:i}
+\step{Analysis (i): The intersection $\bigcap_{n=1}^{\infty}[-1/n,1+1/n]$.}
+Call this set $I$. We prove the exact identity $I=[0,1]$ by both
+inclusions. If $0\leq x\leq1$, then for every $n\in\N$,
+\[
+ -\frac1n<0\leq x\leq1<1+\frac1n.
+\]
+Thus $x$ belongs to every displayed closed interval, proving
+$[0,1]\subseteq I$.
+
+For the other inclusion, suppose $x\notin[0,1]$. If $x<0$, let
+$\delta=-x>0$. Tool 1 gives an $n$ with $1/n<\delta=-x$.
+Multiplying this inequality by $-1$ reverses its direction:
+\[
+ -\frac1n>x.
+\]
+Therefore $x$ fails the lower-endpoint requirement in that particular
+interval, so $x\notin I$. If $x>1$, let $\delta=x-1>0$ and
+choose $n$ with $1/n<x-1$. Then $1+1/n<x$, so $x$ fails the
+upper-endpoint requirement and again is not in $I$. These two cases
+exclude every real number outside $[0,1]$, proving $I\subseteq[0,1]$.
+
+It follows that $I=[0,1]$. Its infimum is the member $0$ and its
+supremum is the member $1$. Upper bounds are $1,2,3$, for example,
+and lower bounds are $0,-1,-2$.
+
+\phantomsection\label{bounds:j}
+\step{Analysis (j): The set $\{1-1/3^n:n\in\N\}$.}
+The denominator is $3^n$, so the expression is $1-3^{-n}$.
+For $n\geq1$, $3^n\geq3$, and hence
+\[
+ 0<\frac1{3^n}\leq\frac13,
+ \qquad
+ \frac23=1-\frac13\leq1-\frac1{3^n}<1.
+\]
+At $n=1$, the lower value $2/3$ occurs. Thus $2/3$ is the minimum
+and infimum. The number $1$ is an upper bound but is not a member.
+
+To prove that this upper bound is sharp without assuming convergence,
+we first verify $3^n\geq n$ for $n\in\N$. At $n=1$, $3\geq1$.
+If $3^n\geq n$, multiplication by $3>0$ gives
+$3^{n+1}\geq3n$. Also
+$3n-(n+1)=2n-1\geq1>0$, so $3n\geq n+1$.
+Induction proves the auxiliary inequality.
+
+Now fix a proposed smaller bound $U<1$ and set $\delta=1-U>0$.
+Choose $n$ by Tool 1 so that $1/n<\delta$. Since $3^n\geq n>0$,
+\[
+ \frac1{3^n}\leq\frac1n<1-U,
+ \qquad
+ 1-\frac1{3^n}>U.
+\]
+This member exceeds $U$, so $U$ is not an upper bound. Therefore
+the supremum is $1$, not attained. Upper bounds include $1,2,3$;
+lower bounds include $2/3,0,-1$.
+
+\phantomsection\label{bounds:k}
+\step{Analysis (k): The set $\{n+(-1)^n/n:n\in\N\}$.}
+The numerator $(-1)^n$ equals either $1$ or $-1$. Therefore,
+for each $n\in\N$,
+\[
+ n+\frac{(-1)^n}{n}
+ \geq n-\frac1n
+ \geq n-1
+ \geq0.
+\]
+Here the first inequality uses $(-1)^n\geq-1$ and division by
+$n>0$; the second uses $1/n\leq1$; the third uses $n\geq1$.
+At $n=1$, the expression is $1+(-1)/1=0$. Thus $0$ is the
+minimum and infimum, and $0,-1,-2$ are lower bounds.
+
+For any proposed real upper bound $M$, choose $n\in\N$ with
+$n>M+1$, using Tool 1. The same estimate gives
+\[
+ n+\frac{(-1)^n}{n}\geq n-1>M.
+\]
+Thus the set is NBA and has NO sup. The oscillating correction
+$(-1)^n/n$ does not keep the growing term $n$ bounded.
+
+\phantomsection\label{bounds:l}
+\step{Analysis (l): The rational half-line $\{r\in\Q:r<2\}$.}
+All members are less than $2$, so $2$ is an upper bound. If $U<2$,
+density provides a rational $r$ with $U<r<2$. That $r$ is a member
+and is larger than $U$, so no $U<2$ is an upper bound. Hence the
+supremum is $2$. It is not attained because $r=2$ fails the strict
+membership inequality. Upper bounds include $2,3,4$.
+
+There is no lower bound: for a proposed $L\in\R$, choose
+$n\in\N$ with $n>\max\{1,-L\}$. Then $-n$ is an integer,
+hence rational, and $-n<0<2$, so $-n$ is in the set. Also
+$n>-L$ gives $-n<L$. Thus every proposed lower bound fails.
+The answers for lower boundedness and infimum are NBB and NO inf.
+
+\phantomsection\label{bounds:m}
+\step{Analysis (m): The rational set $\{r\in\Q:r^2<4\}$.}
+Tool 3 with $c=2$ gives
+\[
+ \{r\in\Q:r^2<4\}=\{r\in\Q:-2<r<2\}.
+\]
+Thus $-2$ is a lower bound and $2$ is an upper bound. To see
+sharpness explicitly, for $U<2$ density supplies a rational
+$\max\{U,-2\}<r<2$, a member exceeding $U$. For $L>-2$ it
+supplies a rational $-2<r<\min\{L,2\}$, a member below $L$.
+These are exactly the two endpoint arguments of Tool 2. Thus
+the supremum is $2$ and the infimum is $-2$.
+Neither is a member: $(2)^2=(-2)^2=4$, whereas membership requires
+a square strictly less than $4$. Three upper bounds are $2,3,4$;
+three lower bounds are $-2,-3,-4$.
+
+\phantomsection\label{bounds:n}
+\step{Analysis (n): The rational set $\{r\in\Q:r^2<2\}$.}
+Let $c=\sqrt2$, the positive real number with $c^2=2$.
+Tool 3 gives
+\[
+ \{r\in\Q:r^2<2\}=\{r\in\Q:-\sqrt2<r<\sqrt2\}.
+\]
+For $U<\sqrt2$, density gives a rational
+$\max\{U,-\sqrt2\}<r<\sqrt2$; it is a member above $U$.
+For $L>-\sqrt2$, density gives a rational
+$-\sqrt2<r<\min\{L,\sqrt2\}$; it is a member below $L$.
+Together with the bounding inequalities, this proves
+\[
+ \sup S=\sqrt2,\qquad \inf S=-\sqrt2.
+\]
+Neither endpoint belongs to the set, since its square equals $2$
+instead of being less than $2$. This exclusion already follows from
+the strict inequality; it does not require a separate irrationality
+argument.
+
+Since $0<\sqrt2<2$, every member lies strictly between $-2$ and
+$2$. For the last comparison, $\sqrt2\geq2$ would imply
+$2=(\sqrt2)^2\geq4$, a contradiction. Therefore $2,3,4$ are
+upper bounds and $-2,-3,-4$ are lower bounds.
+
+\phantomsection\label{bounds:o}
+\step{Analysis (o): The negative half-line $\{x\in\R:x<0\}$.}
+The number $0$ is an upper bound. If $U<0$, then
+\[
+ U<\frac U2<0,
+\]
+because $U/2-U=-U/2>0$ and $U/2$ is still negative.
+Thus $U/2$ is a member above the proposed bound $U$, proving
+that the supremum is $0$. The value $0$ is not a member.
+Upper bounds include $0,1,2$.
+
+For an arbitrary proposed lower bound $L\in\R$, take
+$x=\min\{L,0\}-1$. Then
+\[
+ x<\min\{L,0\}\leq L,
+ \qquad x<\min\{L,0\}\leq0.
+\]
+Hence $x$ is a negative real number below $L$. This proves NBB
+and therefore NO inf.
+
+\phantomsection\label{bounds:p}
+\step{Analysis (p): The finite set $\{1,\pi/3,\pi^2,10\}$.}
+The third entry is $\pi^2$, not a cube. We verify the ordering
+using Tool 4. Dividing $3<\pi<22/7$ by the positive number $3$
+gives
+\[
+ 1<\frac\pi3<\frac{22}{21}<2,
+\]
+where $22/21<2$ follows from $22<42$. Squaring the positive
+inequalities $3<\pi<22/7$ gives
+\[
+ 9<\pi^2<\frac{484}{49}<10.
+\]
+The final strict inequality holds since $484<490=10\cdot49$.
+Combining these comparisons with $2<9$, we obtain
+\[
+ 1<\frac\pi3<2<9<\pi^2<10.
+\]
+Thus $1$ is the member of smallest value, and $10$ is the member
+of largest value. The infimum is the attained minimum $1$, and
+the supremum is the attained maximum $10$. Upper bounds include
+$10,11,12$; lower bounds include $1,0,-1$.
+
+\phantomsection\label{bounds:q}
+\step{Analysis (q): The finite set $\{0,1,2,4,8,16\}$.}
+The displayed members satisfy
+\[
+ 0<1<2<4<8<16.
+\]
+Every member is at least $0$ and at most $16$, and both $0$ and
+$16$ appear in the set. Hence the minimum and infimum equal $0$,
+and the maximum and supremum equal $16$. Upper bounds include
+$16,17,18$, while lower bounds include $0,-1,-2$.
+
+\phantomsection\label{bounds:r}
+\step{Analysis (r): The intersection $\bigcap_{n=1}^{\infty}(1-1/n,1+1/n)$.}
+Let $J$ denote this intersection. For each $n\in\N$, $1/n>0$,
+so $1-1/n<1<1+1/n$. Therefore $1$ belongs to every one of
+the open intervals and hence to $J$.
+
+Now suppose $x\ne1$. If $x<1$, take $\delta=1-x>0$ and use
+Tool 1 to choose $n$ with $1/n<1-x$. Rearranging gives
+$x<1-1/n$. Thus $x$ lies below the lower endpoint of that
+particular open interval and cannot belong to $J$.
+If $x>1$, choose $n$ with $1/n<x-1$. Then $1+1/n<x$, and
+$x$ lies above the upper endpoint of that interval, so again
+$x\notin J$. These two cases exclude every $x\ne1$.
+
+It follows that $J=\{1\}$. Thus both its infimum and its supremum
+are $1$, and both are attained. The fact that the intersected
+intervals are open does not prevent their intersection from being a
+singleton. Three upper bounds are $1,2,3$; three lower bounds are
+$1,0,-1$.
+
+\phantomsection\label{bounds:s}
+\step{Analysis (s): Reciprocals of positive primes.}
+The set is
+\[
+ P=\{1/p:p\in\N\text{ and }p\text{ is prime}\}.
+\]
+Every positive prime $p$ satisfies $p\geq2$, so
+$0<1/p\leq1/2$. The integer $2$ is prime: its only positive
+integer factors are $1$ and $2$. Consequently $1/2$ belongs to
+$P$, and is its maximum and supremum. The number $0$ is a lower
+bound and is not a member. To show it is the \emph{greatest}
+lower bound, we need primes as large as we wish.
+
+\textbf{The needed prime-number fact, with proof.}
+First, each integer $m\geq2$ has a prime divisor. The finite
+nonempty set
+\[
+ D=\{d\in\{2,3,\ldots,m\}:d\text{ divides }m\}
+\]
+contains $m$, so it has a smallest member $p$. If $p$ were not
+prime, it would have a positive divisor $a$ other than $1$ and
+$p$, with $2\leq a<p$. Writing $p=ab$ and $m=pc$ with integers
+$b,c$ gives $m=a(bc)$, so $a$ would divide $m$ and belong to
+$D$. That contradicts the minimality of $p$. Hence $p$ is prime.
+
+Now let $B\in\R$ be arbitrary. By Tool 1 choose an integer
+$N>\max\{B,2\}$. The integer $m=N!+1$ is at least $2$, so it
+has a prime divisor $p$. If $p\leq N$, then $p$ is one of the
+factors in the product $N!=1\cdot2\cdots N$. Thus both $N!$ and
+$N!+1$ would be divisible by $p$. Subtracting their integer-multiple
+representations would make
+\[
+ (N!+1)-N!=1
+\]
+divisible by $p$. This is impossible for an integer $p\geq2$:
+if $1=pq$ for an integer $q$, then $q\ne0$ and
+$1=p\abs q\geq p\geq2$ after taking absolute values, a
+contradiction. Therefore $p>N>B$. This proves that the primes
+are unbounded above.
+
+Finally let $L>0$ be an arbitrary proposed lower bound for $P$.
+Apply the fact just proved with $B=1/L$ to obtain a prime $p>1/L$.
+Multiplication by $L>0$ gives $pL>1$, and division by $p>0$
+then gives $1/p<L$. This member of $P$ defeats the proposed
+lower bound $L$. Therefore
+\[
+ \inf P=0,\qquad \sup P=\frac12.
+\]
+Only the supremum is attained. Three upper bounds are $1/2,1,2$;
+three lower bounds are $0,-1,-2$.
+
+\phantomsection\label{bounds:t}
+\step{Analysis (t): The real set $\{x\in\R:x^3<8\}$.}
+We first identify the inequality's exact solution set. Multiplication
+shows
+\begin{align*}
+ (x-2)(x^2+2x+4)
+ &=x^3+2x^2+4x-2x^2-4x-8\\
+ &=x^3-8.
+\end{align*}
+The second factor is always positive, because
+\[
+ x^2+2x+4=(x+1)^2+3\geq3>0.
+\]
+The sign of $x^3-8$ is therefore the sign of $x-2$. It follows
+that $x^3<8$ if and only if $x<2$.
+
+Thus $2$ is an upper bound. If $U<2$, the midpoint
+$x=(U+2)/2$ satisfies
+\[
+ x-U=\frac{2-U}{2}>0,
+ \qquad 2-x=\frac{2-U}{2}>0.
+\]
+Hence $U<x<2$, so $x$ belongs to the set and is above $U$.
+This proves that the supremum is $2$. It is not attained since
+$2^3=8$ fails the strict inequality. Upper bounds include $2,3,4$.
+
+For any $L\in\R$, let $x=\min\{L,2\}-1$. Then $x<L$ and
+$x<2$, so $x$ is a member below the proposed lower bound $L$.
+Thus the set is NBB and has NO inf.
+
+\phantomsection\label{bounds:u}
+\step{Analysis (u): The set of real squares $\{x^2:x\in\R\}$.}
+Every square is nonnegative, so $0$ is a lower bound. Taking
+$x=0$ gives the member $0^2=0$. Therefore $0$ is the minimum
+and infimum, and $0,-1,-2$ are lower bounds.
+
+To defeat a proposed upper bound $M\in\R$, use Tool 1 to choose
+$n\in\N$ with $n>\max\{M,1\}$. Since $n\geq1$,
+$n^2\geq n>M$. Taking $x=n$ produces the member $x^2=n^2$
+above $M$. Thus this set is NBA and has NO sup.
+
+\phantomsection\label{bounds:v}
+\step{Analysis (v): The values of $\cos(n\pi/3)$.}
+We record a period table, which also supplies the proof for (w).
+For a positive integer $n$, division of $n-1$ by $6$ gives
+$n=6q+r$ with $q\geq0$ an integer and $r\in\{1,2,3,4,5,6\}$.
+Therefore
+\[
+ \frac{n\pi}{3}=2q\pi+\frac{r\pi}{3}.
+\]
+The period $2\pi$ of sine and cosine shows that their values depend
+only on $r$. The familiar unit-circle values are
+\[
+\begin{array}{c|c|c|c}
+ r&r\pi/3&\cos(r\pi/3)&\sin(r\pi/3)\\ \hline
+ 1&\pi/3&1/2&\sqrt3/2\\
+ 2&2\pi/3&-1/2&\sqrt3/2\\
+ 3&\pi&-1&0\\
+ 4&4\pi/3&-1/2&-\sqrt3/2\\
+ 5&5\pi/3&1/2&-\sqrt3/2\\
+ 6&2\pi&1&0
+\end{array}
+\]
+Every positive integer has one of these residues, so no other values
+occur. Every row occurs at $n=r$, so none of the listed values is
+missing from the corresponding set.
+
+In particular the cosine set is exactly
+\[
+ \{-1,-1/2,1/2,1\}.
+\]
+Its minimum and infimum are $-1$, attained at $n=3$, and its
+maximum and supremum are $1$, attained at $n=6$. Upper bounds
+include $1,2,3$; lower bounds include $-1,-2,-3$.
+
+\phantomsection\label{bounds:w}
+\step{Analysis (w): The values of $\sin(n\pi/3)$.}
+The period argument and all six sine values were displayed in
+Analysis (v). They show that the sine set is exactly
+\[
+ \{-\sqrt3/2,0,\sqrt3/2\}.
+\]
+Because $\sqrt3>0$, these three numbers have the displayed
+increasing order. Thus its infimum is the member $-\sqrt3/2$
+at $n=4$, and its supremum is the member $\sqrt3/2$ at $n=1$.
+Also $\sqrt3<2$: the contrary inequality would imply
+$3=(\sqrt3)^2\geq4$. Hence $0<\sqrt3/2<1$, so all members
+are between $-1$ and $1$. Three upper bounds are $1,2,3$;
+three lower bounds are $-1,-2,-3$.
+
+\subsubsection*{Exercise 4.1: Explicit answers for all twenty-three parts}
+
+Each row gives three \emph{distinct} upper bounds, or NBA. A number
+equal to the supremum is permitted as an upper bound whether or not
+it belongs to the set. In a bounded row, the reason proves that the
+smallest listed number is an upper bound; the larger two then follow
+by transitivity of $\leq$. The linked analysis supplies the full
+membership or unboundedness argument.
+
+\begin{center}
+\begin{tabular}{@{}c@{\quad}p{0.27\linewidth}@{\quad}p{0.59\linewidth}@{}}
+\toprule
+Part&Three upper bounds / NBA&Why these are valid\\ \midrule
+(a)&$1,2,3$&Every member is at most $1$; \hyperref[bounds:a]{Analysis (a)}.\\
+(b)&$1,2,3$&Every member is less than $1$; \hyperref[bounds:b]{Analysis (b)}.\\
+(c)&$7,8,9$&Both members are at most $7$; \hyperref[bounds:c]{Analysis (c)}.\\
+(d)&$4,5,6$&$e<3<\pi<4$; \hyperref[bounds:d]{Analysis (d)}.\\
+(e)&$1,2,3$&$1/n\leq1$ for every $n\geq1$; \hyperref[bounds:e]{Analysis (e)}.\\
+(f)&$0,1,2$&The only member is $0$; \hyperref[bounds:f]{Analysis (f)}.\\
+(g)&$3,4,5$&Each interval lies at or below $3$; \hyperref[bounds:g]{Analysis (g)}.\\
+(h)&NBA&The members $2n$ exceed any proposed bound; \hyperref[bounds:h]{Analysis (h)}.\\
+(i)&$1,2,3$&The intersection equals $[0,1]$; \hyperref[bounds:i]{Analysis (i)}.\\
+(j)&$1,2,3$&$1-3^{-n}<1$; \hyperref[bounds:j]{Analysis (j)}.\\
+(k)&NBA&Members are at least $n-1$, unbounded above; \hyperref[bounds:k]{Analysis (k)}.\\
+(l)&$2,3,4$&Membership requires $r<2$; \hyperref[bounds:l]{Analysis (l)}.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{@{}c@{\quad}p{0.27\linewidth}@{\quad}p{0.59\linewidth}@{}}
+\toprule
+Part&Three upper bounds / NBA&Why these are valid\\ \midrule
+(m)&$2,3,4$&$r^2<4$ implies $r<2$; \hyperref[bounds:m]{Analysis (m)}.\\
+(n)&$2,3,4$&$r<\sqrt2<2$; \hyperref[bounds:n]{Analysis (n)}.\\
+(o)&$0,1,2$&Membership requires $x<0$; \hyperref[bounds:o]{Analysis (o)}.\\
+(p)&$10,11,12$&$10$ is the largest of the four members; \hyperref[bounds:p]{Analysis (p)}.\\
+(q)&$16,17,18$&$16$ is the largest listed member; \hyperref[bounds:q]{Analysis (q)}.\\
+(r)&$1,2,3$&The intersection is $\{1\}$; \hyperref[bounds:r]{Analysis (r)}.\\
+(s)&$1/2,1,2$&Every prime is at least $2$; \hyperref[bounds:s]{Analysis (s)}.\\
+(t)&$2,3,4$&$x^3<8$ is equivalent to $x<2$; \hyperref[bounds:t]{Analysis (t)}.\\
+(u)&NBA&Squares $n^2$ exceed any real bound; \hyperref[bounds:u]{Analysis (u)}.\\
+(v)&$1,2,3$&The four cosine values are at most $1$; \hyperref[bounds:v]{Analysis (v)}.\\
+(w)&$1,2,3$&The largest sine value is $\sqrt3/2<1$; \hyperref[bounds:w]{Analysis (w)}.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\answer{The only sets in Exercise 4.1 that are not bounded above
+are (h), (k), and (u). Every other part has the three distinct upper
+bounds explicitly listed and justified above.}
+
+\exercise{4.2}{Three lower bounds for each of the same sets}
+
+\goal For each set (a)--(w) from Exercise 4.1, list three distinct
+real lower bounds or give NBB, meaning ``not bounded below.''
+
+\idea Use the lower-endpoint conclusions of the shared analyses.
+If $\ell$ is a lower bound and $L\leq\ell$, then
+$L\leq\ell\leq s$ for each member $s$, so $L$ is also a lower
+bound. Consequently it suffices in each bounded row to justify the
+largest of the three listed candidates; the other two are smaller.
+For an NBB row, the linked proof constructs, for every $L\in\R$,
+a member strictly below $L$.
+
+\begin{center}
+\begin{tabular}{@{}c@{\quad}p{0.27\linewidth}@{\quad}p{0.59\linewidth}@{}}
+\toprule
+Part&Three lower bounds / NBB&Why these are valid\\ \midrule
+(a)&$0,-1,-2$&Every member is at least $0$; \hyperref[bounds:a]{Analysis (a)}.\\
+(b)&$0,-1,-2$&Every member is positive; \hyperref[bounds:b]{Analysis (b)}.\\
+(c)&$2,1,0$&Both members are at least $2$; \hyperref[bounds:c]{Analysis (c)}.\\
+(d)&$2,1,0$&$2<e<\pi$; \hyperref[bounds:d]{Analysis (d)}.\\
+(e)&$0,-1,-2$&Every $1/n$ is positive; \hyperref[bounds:e]{Analysis (e)}.\\
+(f)&$0,-1,-2$&The only member is $0$; \hyperref[bounds:f]{Analysis (f)}.\\
+(g)&$0,-1,-2$&Both intervals lie at or above $0$; \hyperref[bounds:g]{Analysis (g)}.\\
+(h)&$2,1,0$&Each interval starts at $2n\geq2$; \hyperref[bounds:h]{Analysis (h)}.\\
+(i)&$0,-1,-2$&The intersection is $[0,1]$; \hyperref[bounds:i]{Analysis (i)}.\\
+(j)&$2/3,0,-1$&$1-3^{-n}\geq2/3$; \hyperref[bounds:j]{Analysis (j)}.\\
+(k)&$0,-1,-2$&$n+(-1)^n/n\geq0$; \hyperref[bounds:k]{Analysis (k)}.\\
+(l)&NBB&Negative integers in the set go below any $L$; \hyperref[bounds:l]{Analysis (l)}.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{@{}c@{\quad}p{0.27\linewidth}@{\quad}p{0.59\linewidth}@{}}
+\toprule
+Part&Three lower bounds / NBB&Why these are valid\\ \midrule
+(m)&$-2,-3,-4$&$r^2<4$ implies $r>-2$; \hyperref[bounds:m]{Analysis (m)}.\\
+(n)&$-2,-3,-4$&$r>-\sqrt2>-2$; \hyperref[bounds:n]{Analysis (n)}.\\
+(o)&NBB&$\min\{L,0\}-1$ is a member below $L$; \hyperref[bounds:o]{Analysis (o)}.\\
+(p)&$1,0,-1$&$1$ is the smallest of the four members; \hyperref[bounds:p]{Analysis (p)}.\\
+(q)&$0,-1,-2$&$0$ is the smallest listed member; \hyperref[bounds:q]{Analysis (q)}.\\
+(r)&$1,0,-1$&The only member of the intersection is $1$; \hyperref[bounds:r]{Analysis (r)}.\\
+(s)&$0,-1,-2$&All prime reciprocals are positive; \hyperref[bounds:s]{Analysis (s)}.\\
+(t)&NBB&$\min\{L,2\}-1$ satisfies $x^3<8$ and $x<L$; \hyperref[bounds:t]{Analysis (t)}.\\
+(u)&$0,-1,-2$&Every real square is nonnegative; \hyperref[bounds:u]{Analysis (u)}.\\
+(v)&$-1,-2,-3$&The cosine values are at least $-1$; \hyperref[bounds:v]{Analysis (v)}.\\
+(w)&$-1,-2,-3$&The least sine value is $-\sqrt3/2>-1$; \hyperref[bounds:w]{Analysis (w)}.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\answer{The only sets in Exercise 4.2 that are not bounded below
+are (l), (o), and (t). Each remaining part has three distinct lower
+bounds in its row.}
+
+\exercise{4.3}{The real supremum of each set}
+
+\goal For each of the twenty-three sets, give its supremum when
+that real least upper bound exists; otherwise write NO sup.
+
+\idea A mere upper bound is insufficient: we also need leastness.
+The shared analyses prove leastness either by exhibiting the proposed
+bound as a member or by constructing members above every smaller
+candidate. The word ``attained'' in the table means the supremum
+belongs to the set, in which case it is also the maximum. Failure
+of attainment does not prevent a supremum from existing.
+
+\begin{center}
+\begin{tabular}{@{}c@{\quad}p{0.27\linewidth}@{\quad}p{0.59\linewidth}@{}}
+\toprule
+Part&Supremum&Bound and leastness proof\\ \midrule
+(a)&$1$&An upper bound and a member; attained. \hyperref[bounds:a]{Analysis (a)}.\\
+(b)&$1$&Upper endpoint is sharp by Tool 2; not attained. \hyperref[bounds:b]{Analysis (b)}.\\
+(c)&$7$&The larger member is an upper bound; attained. \hyperref[bounds:c]{Analysis (c)}.\\
+(d)&$\pi$&$e<\pi$ and $\pi$ is a member; attained. \hyperref[bounds:d]{Analysis (d)}.\\
+(e)&$1$&$1/n\leq1$, with equality at $n=1$; attained. \hyperref[bounds:e]{Analysis (e)}.\\
+(f)&$0$&The sole member is its upper bound; attained. \hyperref[bounds:f]{Analysis (f)}.\\
+(g)&$3$&All members are at most $3$ and $3$ is a member; attained. \hyperref[bounds:g]{Analysis (g)}.\\
+(h)&NO sup&There is no real upper bound at all. \hyperref[bounds:h]{Analysis (h)}.\\
+(i)&$1$&The intersection equals $[0,1]$; attained. \hyperref[bounds:i]{Analysis (i)}.\\
+(j)&$1$&Members exceed any $U<1$ but never equal $1$; not attained. \hyperref[bounds:j]{Analysis (j)}.\\
+(k)&NO sup&The members exceed every real upper-bound candidate. \hyperref[bounds:k]{Analysis (k)}.\\
+(l)&$2$&Density gives a rational member above any $U<2$; not attained. \hyperref[bounds:l]{Analysis (l)}.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{@{}c@{\quad}p{0.27\linewidth}@{\quad}p{0.59\linewidth}@{}}
+\toprule
+Part&Supremum&Bound and leastness proof\\ \midrule
+(m)&$2$&The rational interval has sharp upper endpoint $2$; not attained. \hyperref[bounds:m]{Analysis (m)}.\\
+(n)&$\sqrt2$&Density proves the upper endpoint is sharp; not attained. \hyperref[bounds:n]{Analysis (n)}.\\
+(o)&$0$&For $U<0$, the member $U/2$ is above $U$; not attained. \hyperref[bounds:o]{Analysis (o)}.\\
+(p)&$10$&All four values are at most the member $10$; attained. \hyperref[bounds:p]{Analysis (p)}.\\
+(q)&$16$&The largest listed member is $16$; attained. \hyperref[bounds:q]{Analysis (q)}.\\
+(r)&$1$&The intersection is the singleton $\{1\}$; attained. \hyperref[bounds:r]{Analysis (r)}.\\
+(s)&$1/2$&Every prime is at least $2$, and $2$ is prime; attained. \hyperref[bounds:s]{Analysis (s)}.\\
+(t)&$2$&The set is $\{x:x<2\}$, with members above every $U<2$; not attained. \hyperref[bounds:t]{Analysis (t)}.\\
+(u)&NO sup&Real squares exceed every proposed upper bound. \hyperref[bounds:u]{Analysis (u)}.\\
+(v)&$1$&The period table has maximum $1$, occurring at $n=6$; attained. \hyperref[bounds:v]{Analysis (v)}.\\
+(w)&$\sqrt3/2$&The period table has this largest value at $n=1$; attained. \hyperref[bounds:w]{Analysis (w)}.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\answer{Parts (h), (k), and (u) have NO sup in $\R$. Every other
+supremum is the real number stated in its row, with its upper-bound
+and leastness requirements proved in the linked analysis.}
+
+\exercise{4.4}{The real infimum of each set}
+
+\goal Give the real greatest lower bound of each set (a)--(w),
+or write NO inf if the set has no real infimum.
+
+\idea Reverse the roles of upper and lower bounds in Exercise 4.3.
+For an attained lower bound, the member itself defeats every larger
+candidate. For a nonattained infimum, the linked analysis constructs
+members below every larger candidate. ``NO inf'' is used exactly
+where there is no real lower bound.
+
+\begin{center}
+\begin{tabular}{@{}c@{\quad}p{0.27\linewidth}@{\quad}p{0.59\linewidth}@{}}
+\toprule
+Part&Infimum&Bound and greatestness proof\\ \midrule
+(a)&$0$&A lower bound and a member; attained. \hyperref[bounds:a]{Analysis (a)}.\\
+(b)&$0$&The open interval has sharp lower endpoint $0$; not attained. \hyperref[bounds:b]{Analysis (b)}.\\
+(c)&$2$&The smaller member is a lower bound; attained. \hyperref[bounds:c]{Analysis (c)}.\\
+(d)&$e$&$e<\pi$ and $e$ is a member; attained. \hyperref[bounds:d]{Analysis (d)}.\\
+(e)&$0$&Positive reciprocals lie below any $L>0$; not attained. \hyperref[bounds:e]{Analysis (e)}.\\
+(f)&$0$&The sole member is its lower bound; attained. \hyperref[bounds:f]{Analysis (f)}.\\
+(g)&$0$&Every member is at least the member $0$; attained. \hyperref[bounds:g]{Analysis (g)}.\\
+(h)&$2$&Every interval starts at least at $2$, and $2$ occurs; attained. \hyperref[bounds:h]{Analysis (h)}.\\
+(i)&$0$&The intersection is $[0,1]$; attained. \hyperref[bounds:i]{Analysis (i)}.\\
+(j)&$2/3$&Every value is at least $2/3$, with equality at $n=1$; attained. \hyperref[bounds:j]{Analysis (j)}.\\
+(k)&$0$&Every value is nonnegative, with equality at $n=1$; attained. \hyperref[bounds:k]{Analysis (k)}.\\
+(l)&NO inf&Negative integer members go below any proposed lower bound. \hyperref[bounds:l]{Analysis (l)}.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{@{}c@{\quad}p{0.27\linewidth}@{\quad}p{0.59\linewidth}@{}}
+\toprule
+Part&Infimum&Bound and greatestness proof\\ \midrule
+(m)&$-2$&Density makes the strict lower endpoint sharp; not attained. \hyperref[bounds:m]{Analysis (m)}.\\
+(n)&$-\sqrt2$&Density makes the strict lower endpoint sharp; not attained. \hyperref[bounds:n]{Analysis (n)}.\\
+(o)&NO inf&Negative real members go below every real $L$. \hyperref[bounds:o]{Analysis (o)}.\\
+(p)&$1$&The other three members are greater than the member $1$; attained. \hyperref[bounds:p]{Analysis (p)}.\\
+(q)&$0$&The least of the listed members is $0$; attained. \hyperref[bounds:q]{Analysis (q)}.\\
+(r)&$1$&The intersection equals $\{1\}$; attained. \hyperref[bounds:r]{Analysis (r)}.\\
+(s)&$0$&Unbounded primes give a reciprocal below any $L>0$; not attained. \hyperref[bounds:s]{Analysis (s)}.\\
+(t)&NO inf&The half-line $x<2$ has members below every real $L$. \hyperref[bounds:t]{Analysis (t)}.\\
+(u)&$0$&Every square is nonnegative and $0^2=0$; attained. \hyperref[bounds:u]{Analysis (u)}.\\
+(v)&$-1$&The smallest period-table value occurs at $n=3$; attained. \hyperref[bounds:v]{Analysis (v)}.\\
+(w)&$-\sqrt3/2$&The smallest sine value occurs at $n=4$; attained. \hyperref[bounds:w]{Analysis (w)}.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\answer{Parts (l), (o), and (t) have NO inf in $\R$. Every other
+part has the real infimum in its row. In particular, (e) and (s)
+have infimum $0$ without containing $0$, while the open-interval
+intersection in (r) has both supremum and infimum equal to its
+actual member $1$.}

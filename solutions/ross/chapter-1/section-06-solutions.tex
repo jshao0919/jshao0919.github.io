@@ -1,0 +1,679 @@
+\section{A development of the real numbers}
+\label{sec:dedekind-cuts}
+
+This section changes the point of view. A real number is to be constructed
+from rational numbers, rather than assumed in advance. Accordingly,
+\emph{all elements of cuts and all auxiliary numbers in the construction
+below are rational}. We use the ordered-field rules for $\Q$, the
+Archimedean property for $\Q$, and elementary properties of integers.
+We do not assume that an irrational square root or cube root already
+exists in order to prove that a set is a cut.
+
+\subsection*{The definition and two preliminary facts}
+A subset $\alpha$ of $\Q$ is a \emph{Dedekind cut} when:
+\begin{enumerate}[label=(\roman*)]
+ \item $\alpha$ is nonempty and is not all of $\Q$;
+ \item it is downward closed: if $a\in\alpha$, $q\in\Q$, and $q<a$,
+       then $q\in\alpha$;
+ \item it has no greatest element: for each $a\in\alpha$, there is
+       $a'\in\alpha$ with $a<a'$.
+\end{enumerate}
+An \emph{outside element} is a rational number not belonging to the cut.
+The cut associated with a rational $s$ is
+\[
+ s^*=\{q\in\Q:q<s\}.
+\]
+For example, $0^*$ consists of the negative rational numbers. Its
+elements are numbers, whereas $0^*$ itself is a set of numbers.
+
+\step{Preliminary fact 1: an inside element is below every outside element.}
+Let $a\in\alpha$ and $b\in\Q\setminus\alpha$.
+Equality $a=b$ is impossible because one number cannot both belong
+and not belong to the same set. If $b<a$, downward closure would
+put $b$ in $\alpha$, also a contradiction. The order of $\Q$ gives
+\[
+ a<b.
+\]
+Consequently, if $b\notin\alpha$ and $b\le c$ with $c\in\Q$, then
+$c\notin\alpha$: otherwise either $c=b$ contradicts the choice of $b$,
+or $b<c$ and downward closure puts $b$ in $\alpha$.
+
+\step{Preliminary fact 2: rational cuts satisfy the definition.}
+Fix $s\in\Q$. The number $s-1$ belongs to $s^*$, so $s^*$ is nonempty.
+The rational number $s$ does not belong to $s^*$, so $s^*\ne\Q$.
+If $q<r$ and $r<s$, transitivity gives $q<s$, proving downward closure.
+Finally, if $q<s$, the rational midpoint
+\[
+ q'=\frac{q+s}{2}
+\]
+satisfies
+\[
+ q'-q=\frac{s-q}{2}>0,\qquad s-q'=\frac{s-q}{2}>0.
+\]
+Thus $q<q'<s$, and $s^*$ has no greatest element.
+
+\exercise{6.1}{Order, equality, and addition for rational cuts}
+
+\goal For rational $s,t$, prove
+\[
+ s\le t\ \Longleftrightarrow\ s^*\subseteq t^*,\qquad
+ s=t\ \Longleftrightarrow\ s^*=t^*,\qquad
+ (s+t)^*=s^*+t^*.
+\]
+Here the addition on the right of the last equality means
+\[
+ s^*+t^*=\{r+u:r\in s^*,\ u\in t^*\},
+\]
+an operation on sets.
+
+\step{Part (a), Step 1: turn an inequality into an inclusion.}
+Assume $s\le t$. Take any $q\in s^*$. The definition gives $q<s$.
+Combining $q<s$ with $s\le t$ gives $q<t$. Therefore $q\in t^*$.
+This works for every $q\in s^*$, so $s^*\subseteq t^*$.
+
+\step{Part (a), Step 2: prove the converse by testing a midpoint.}
+Assume $s^*\subseteq t^*$. Suppose, for a contradiction, that $s>t$.
+Set $q=(s+t)/2$. This is rational, and
+\[
+ q-t=\frac{s-t}{2}>0,\qquad s-q=\frac{s-t}{2}>0.
+\]
+Hence $t<q<s$. The inequality $q<s$ puts $q$ in $s^*$, but $q>t$
+prevents $q$ from belonging to $t^*$. This contradicts the inclusion.
+Thus $s>t$ is impossible, and the total order gives $s\le t$.
+
+\answer{Both directions have been proved:
+\[
+ \boxed{s\le t\ \Longleftrightarrow\ s^*\subseteq t^*.}
+\]}
+
+\step{Part (b), Step 1: equal rational numbers give the same set.}
+If $s=t$, the conditions $q<s$ and $q<t$ are identical.
+They select the same rational numbers, so $s^*=t^*$.
+
+\step{Part (b), Step 2: the same set determines only one rational endpoint.}
+If $s^*=t^*$, both $s^*\subseteq t^*$ and $t^*\subseteq s^*$ hold.
+Part (a), applied in both orders, gives $s\le t$ and $t\le s$.
+Antisymmetry gives $s=t$.
+
+\answer{The rational-to-cut correspondence is injective:
+\[
+ \boxed{s=t\ \Longleftrightarrow\ s^*=t^*.}
+\]}
+
+\step{Part (c), Step 1: prove the sum is contained in the target cut.}
+Let $q\in s^*+t^*$. There are rational $r<s$ and $u<t$ with $q=r+u$.
+Adding $u$ to the first inequality and $s$ to the second gives
+\[
+ q=r+u<s+u<s+t.
+\]
+Consequently $q\in(s+t)^*$.
+
+\step{Part (c), Step 2: split a number below the target endpoint.}
+Conversely, take $q\in(s+t)^*$. Then $q<s+t$, so
+\[
+ \delta=\frac{s+t-q}{2}
+\]
+is a positive rational number. Put $r=s-\delta$ and $u=t-\delta$.
+Since $\delta>0$, we have $r<s$ and $u<t$, hence $r\in s^*$ and
+$u\in t^*$. Moreover,
+\[
+ r+u=s+t-2\delta=s+t-(s+t-q)=q.
+\]
+Thus $q\in s^*+t^*$.
+
+\answer{The two inclusions establish
+\[
+ \boxed{(s+t)^*=s^*+t^*.}
+\]
+Ordinary rational addition agrees with addition of rational cuts.}
+
+\exercise{6.2}{Why the sum of two cuts is another cut}
+
+\goal Given Dedekind cuts $\alpha,\beta$, verify every defining condition for
+\[
+ \gamma=\alpha+\beta=\{a+b:a\in\alpha,\ b\in\beta\}.
+\]
+All such sums are rational because $\Q$ is closed under addition.
+
+\step{Step 1: verify that the sum is nonempty.}
+Choose $a_0\in\alpha$ and $b_0\in\beta$, possible because both cuts
+are nonempty. Then $a_0+b_0\in\gamma$, so $\gamma$ is nonempty.
+
+\step{Step 2: exhibit a rational missing from the sum.}
+Choose rational outside elements $A\notin\alpha$ and $B\notin\beta$.
+Preliminary fact 1 gives
+\[
+ a<A\quad(a\in\alpha),\qquad b<B\quad(b\in\beta).
+\]
+Adding gives $a+b<A+B$ for every member $a+b$ of $\gamma$.
+In particular, the rational $A+B$ cannot belong to $\gamma$.
+Therefore $\gamma\ne\Q$.
+
+\step{Step 3: prove downward closure by changing one summand.}
+Let $x\in\gamma$ and let $y\in\Q$ satisfy $y<x$.
+Write $x=a+b$ with $a\in\alpha$, $b\in\beta$, and define
+\[
+ a'=a+(y-x).
+\]
+Since $y-x<0$, the rational number $a'$ is less than $a$.
+Downward closure of $\alpha$ gives $a'\in\alpha$. Also
+\[
+ a'+b=a+(y-x)+b=(a+b)+(y-x)=x+y-x=y.
+\]
+Thus $y\in\gamma$.
+
+\step{Step 4: prove that no member is greatest.}
+Take $x=a+b\in\gamma$. Choose $a'\in\alpha$ with $a'>a$,
+using the no-greatest-element property of $\alpha$. Then
+\[
+ x'=a'+b\in\gamma,\qquad x'-x=a'-a>0.
+\]
+Every member $x$ therefore has a larger member $x'$.
+
+\answer{The set $\alpha+\beta$ is nonempty, proper, downward closed,
+and has no greatest element. Hence
+\[
+ \boxed{\alpha+\beta\text{ is a Dedekind cut}.}
+\]}
+
+\exercise{6.3}{The zero cut and a correctly defined negative cut}
+
+\goal Prove (a) $\alpha+0^*=\alpha$, and (b) define a cut $-\alpha$
+and prove $\alpha+(-\alpha)=0^*$.
+
+\step{Part (a), Step 1: prove the forward inclusion.}
+If $x\in\alpha+0^*$, write $x=a+z$ with $a\in\alpha$ and $z<0$.
+Then $x<a$, and downward closure gives $x\in\alpha$.
+Thus $\alpha+0^*\subseteq\alpha$.
+
+\step{Part (a), Step 2: represent every original member as a sum.}
+Take $x\in\alpha$. Choose $a\in\alpha$ with $x<a$ and put $z=x-a$.
+Then $z\in\Q$, $z<0$, and $a+z=x$. Hence $z\in0^*$ and
+$x\in\alpha+0^*$.
+
+\answer{The two inclusions give
+\[
+ \boxed{\alpha+0^*=\alpha.}
+\]}
+
+\step{Part (b), Step 1: define the negative with a strict endpoint.}
+Set
+\[
+ \boxed{-\alpha
+  =\{q\in\Q:\text{there exists }r\in\Q\setminus\alpha
+                         \text{ with }q<-r\}.}
+ \tag{6.3.1}
+\]
+This includes rational numbers strictly below negatives of outside
+elements.
+
+The strict inequality is necessary. If $\alpha=0^*$, simply negating
+every member of its complement would give $\{q\in\Q:q\le0\}$.
+That set has the greatest member $0$, and hence is not a cut.
+Definition (6.3.1) avoids including such a boundary point.
+
+\step{Part (b), Step 2: prove nonemptiness.}
+Choose $r_0\notin\alpha$. The rational $q_0=-r_0-1$ satisfies
+$q_0<-r_0$, so $q_0\in-\alpha$.
+
+\step{Part (b), Step 3: prove properness.}
+Choose $a_0\in\alpha$. For every rational $r\notin\alpha$,
+preliminary fact 1 gives $a_0<r$, hence $-r<-a_0$.
+Therefore $-a_0<-r$ cannot hold for any outside element $r$.
+Definition (6.3.1) shows $-a_0\notin-\alpha$, so $-\alpha\ne\Q$.
+
+\step{Part (b), Step 4: prove downward closure.}
+If $q\in-\alpha$, choose $r\notin\alpha$ with $q<-r$.
+For any rational $p<q$, we have $p<q<-r$, so the same $r$
+witnesses $p\in-\alpha$.
+
+\step{Part (b), Step 5: prove there is no greatest member.}
+Let $q\in-\alpha$, with outside witness $r$ such that $q<-r$.
+The rational midpoint $q'=(q-r)/2$ satisfies
+\[
+ q'-q=\frac{-r-q}{2}>0,\qquad
+ -r-q'=\frac{-r-q}{2}>0.
+\]
+Thus $q<q'<-r$, and $q'\in-\alpha$.
+Steps 2--5 prove that the proposed negative is a cut.
+
+\step{Part (b), Step 6: establish a rational small-gap lemma.}
+We need to find an inside point close to an outside point without
+assuming that a real endpoint already exists.
+
+\emph{Claim.} For every positive rational $h$, there is $a\in\alpha$
+such that $a+h\notin\alpha$.
+
+Choose $a_0\in\alpha$, $b_0\notin\alpha$. Preliminary fact 1 gives
+$b_0-a_0>0$. The rational Archimedean property supplies $N\in\N$ with
+\[
+ Nh>b_0-a_0.
+\]
+Then $a_0+Nh>b_0$, so $a_0+Nh\notin\alpha$ by preliminary fact 1.
+Consider the finite set
+\[
+ J=\{j\in\{1,\ldots,N\}:a_0+jh\notin\alpha\}.
+\]
+It contains $N$ and is nonempty. Let $j$ be its smallest member.
+The preceding point $a_0+(j-1)h$ lies inside $\alpha$: it is $a_0$
+if $j=1$, and otherwise its index is below the first outside index.
+Taking
+\[
+ a=a_0+(j-1)h
+\]
+gives $a\in\alpha$ and $a+h=a_0+jh\notin\alpha$, as claimed.
+Only the rational Archimedean property and a finite least-index
+choice were used.
+
+\step{Part (b), Step 7: show that every sum lies in the zero cut.}
+Take $x=a+q\in\alpha+(-\alpha)$ with $a\in\alpha$, $q\in-\alpha$.
+Choose $r\notin\alpha$ with $q<-r$. Since $a<r$,
+\[
+ x=a+q<a-r<0.
+\]
+Hence $x\in0^*$, proving $\alpha+(-\alpha)\subseteq0^*$.
+
+\step{Part (b), Step 8: represent every negative rational as a sum.}
+Take $z\in0^*$, so $z<0$, and set $h=-z/2>0$.
+The small-gap lemma supplies $a\in\alpha$ with $r:=a+h\notin\alpha$.
+Put $q=z-a$. Then
+\[
+ q+r=(z-a)+(a+h)=z+h=z-\frac z2=\frac z2<0.
+\]
+Thus $q<-r$. The outside witness $r$ proves $q\in-\alpha$.
+Finally, $a+q=a+(z-a)=z$, so $z\in\alpha+(-\alpha)$.
+
+\answer{Definition (6.3.1) gives a Dedekind cut satisfying
+\[
+ \boxed{\alpha+(-\alpha)=0^*.}
+\]
+It constructs the additive inverse required by A4 using rational
+numbers alone.}
+
+As a check, when $\alpha=s^*$, every outside element satisfies $r\ge s$.
+If $q<-r$, then $q<-s$, so $-\alpha\subseteq(-s)^*$.
+Conversely, if $q<-s$, the outside element $r=s$ witnesses
+$q\in-\alpha$. Hence $-(s^*)=(-s)^*$.
+
+\exercise{6.4}{Why the proposed product of cuts fails}
+
+\goal Examine the proposed rule
+\[
+ \alpha\mathbin{\cdot_{\rm naive}}\beta
+   =\{ab:a\in\alpha,\ b\in\beta\}
+\]
+using $0^*$, $1^*$, and $(-1)^*$, and explain why it cannot define
+multiplication of real numbers.
+
+\step{Part (a), Step 1: identify the three input sets.}
+Write
+\[
+ A=0^*=\{q\in\Q:q<0\},\quad
+ B=1^*=\{q\in\Q:q<1\},\quad
+ C=(-1)^*=\{q\in\Q:q<-1\}.
+\]
+In this exercise, a product of letters means the proposed set of
+pairwise products. Rational multiplication is commutative, so
+$AB=BA$, $AC=CA$, and $BC=CB$. Six calculations suffice.
+
+\step{Part (a), Step 2: calculate $AA$.}
+Two negative rationals have a positive product, so
+$AA\subseteq\{q\in\Q:q>0\}$. Conversely, for any rational $q>0$,
+\[
+ q=(-1)(-q),
+\]
+and both factors belong to $A$. Therefore
+\[
+ AA=\{q\in\Q:q>0\}.
+\]
+
+\step{Part (a), Step 3: calculate $AC$.}
+A member of $A$ and a member of $C$ are both negative, so their
+product is positive. For a rational $q>0$, write
+\[
+ q=\left(-\frac q2\right)(-2),
+\]
+where $-q/2\in A$ and $-2\in C$. Consequently
+\[
+ AC=\{q\in\Q:q>0\}.
+\]
+
+\step{Part (a), Step 4: calculate $CC$.}
+Members of $C$ have the forms $-u,-v$ with $u,v>1$.
+Their product is $uv>1$. Hence $CC\subseteq\{q\in\Q:q>1\}$.
+
+For the reverse inclusion, let $q>1$ be rational and put
+\[
+ r=-\frac{q+1}{2},\qquad t=-\frac{2q}{q+1}.
+\]
+The denominator $q+1>2$ is nonzero, and $q+1>2$ gives $r<-1$.
+Since the denominator is positive,
+\[
+ \frac{2q}{q+1}>1
+ \ \Longleftrightarrow\ 2q>q+1
+ \ \Longleftrightarrow\ q>1.
+\]
+Thus $t<-1$. Both factors belong to $C$, and
+\[
+ rt=\frac{q+1}{2}\frac{2q}{q+1}=q.
+\]
+We conclude
+\[
+ CC=\{q\in\Q:q>1\}.
+\]
+
+\step{Part (a), Step 5: calculate $AB$.}
+Every product is rational. Conversely, each rational $q$ has a
+representation with one factor in $A$ and one in $B$:
+\begin{itemize}
+ \item If $q>0$, use $q=(-q)(-1)$.
+ \item If $q=0$, use $q=(-1)\cdot0$; the second factor satisfies $0<1$.
+ \item If $q<0$, use $q=(2q)(1/2)$; the first factor is negative
+       and the second is less than $1$.
+\end{itemize}
+Therefore $AB=\Q$.
+
+\step{Part (a), Step 6: calculate $BB$.}
+Because $q<0$ implies $q<1$, we have $A\subseteq B$. Hence
+\[
+ \Q=AB\subseteq BB\subseteq\Q.
+\]
+The final inclusion is closure of rational multiplication.
+Thus $BB=\Q$.
+
+\step{Part (a), Step 7: calculate $BC$.}
+Every product again is rational. To represent any rational $q$:
+\begin{itemize}
+ \item For $q>0$, use $q=(-q/2)(-2)$.
+ \item For $q=0$, use $q=0\cdot(-2)$.
+ \item For $q<0$, put $u=-q>0$ and use
+       \[
+        q=\frac{u}{2(u+1)}\bigl(-2(u+1)\bigr).
+       \]
+       The second factor is less than $-2$, so it belongs to $C$.
+       The first is positive and less than $1$ because
+       $2(u+1)-u=u+2>0$. It belongs to $B$.
+\end{itemize}
+Thus $BC=\Q$.
+
+\step{Part (a), Step 8: collect the answers.}
+Let $\Q_{>0}=\{q\in\Q:q>0\}$ and
+$\Q_{>1}=\{q\in\Q:q>1\}$. All six answers are in the table:
+\[
+ \begin{array}{c|ccc}
+  \mathbin{\cdot_{\rm naive}}&0^*&1^*&(-1)^*\\ \hline
+  0^*&\Q_{>0}&\Q&\Q_{>0}\\
+  1^*&\Q&\Q&\Q\\
+  (-1)^*&\Q_{>0}&\Q&\Q_{>1}
+ \end{array}
+\]
+
+\step{Part (b), Step 1: none of these outputs is a cut.}
+The set $\Q$ is not a cut because it is not a proper subset of itself.
+The set $\Q_{>0}$ is not downward closed: it contains $1$ but not the
+smaller rational $0$. The set $\Q_{>1}$ is not downward closed either:
+it contains $2$ but not the smaller rational $0$.
+
+\step{Part (b), Step 2: rational multiplication would give different outputs.}
+A multiplication consistent with the rational correspondence would require
+\[
+ 0^*\cdot0^*=(0\cdot0)^*=0^*.
+\]
+Instead, the proposed rule gives the positive rationals, which are
+disjoint from $0^*$. Likewise, it should give
+\[
+ (-1)^*\cdot(-1)^*=1^*,
+\]
+but instead gives $\Q_{>1}$. For example, $0\in1^*$ but
+$0\notin\Q_{>1}$.
+
+\answer{The proposed pairwise-product rule is not a binary operation
+on the Dedekind cuts and does not reproduce rational multiplication.
+A valid definition has to account for signs and downward closure.}
+
+\exercise{6.5}{Constructing irrational cuts using rational inequalities}
+
+\goal Prove all three claims:
+\begin{enumerate}[label=(\alph*)]
+ \item $\alpha=\{q\in\Q:q^3<2\}$ is a cut, but
+       $\{q\in\Q:q^2<2\}$ is not;
+ \item $\alpha$ is not the cut of any rational number;
+ \item
+       \[
+        \beta=0^*\cup\{q\in\Q:q\ge0\text{ and }q^2<2\}
+       \]
+       is a cut and is not the cut of any rational number.
+\end{enumerate}
+
+\idea Rational polynomial inequalities will verify the cut conditions.
+Explicit positive rational increments will rule out a greatest element
+and will rule out rational endpoints. No pre-existing irrational root
+is needed.
+
+\step{Preliminary calculation 1: cubes preserve strict order.}
+For rational $u<v$,
+\[
+ v^3-u^3=(v-u)(v^2+uv+u^2).
+\]
+The first factor is positive. The other factor satisfies
+\[
+ v^2+uv+u^2=\left(v+\frac u2\right)^2+\frac{3u^2}{4}.
+\]
+If $u\ne0$, the last term is positive and the square is nonnegative.
+If $u=0$, then $v>0$ and the factor equals $v^2>0$.
+Thus $v^3-u^3>0$ for all rational signs, proving $u^3<v^3$.
+
+\step{Preliminary calculation 2: bound explicit small increments.}
+Fix $s\in\Q$, let $h$ be rational with $0<h\le1$, and put
+\[
+ C_3(s)=3s^2+3\abs{s}+1>0.
+\]
+The absolute value is rational because it is either $s$ or $-s$.
+Multiplying $h\le1$ by $h>0$ gives $h^2\le h$; multiplying again
+gives $h^3\le h^2\le h$. Expansion yields
+\begin{align*}
+ (s+h)^3-s^3
+   &=3s^2h+3sh^2+h^3\\
+   &\le3s^2h+3\abs{s}h^2+h^3\\
+   &\le\bigl(3s^2+3\abs{s}+1\bigr)h=C_3(s)h.
+\end{align*}
+Using $-s\le\abs{s}$ gives the corresponding decrement bound:
+\begin{align*}
+ s^3-(s-h)^3
+   &=3s^2h-3sh^2+h^3\\
+   &\le3s^2h+3\abs{s}h^2+h^3\\
+   &\le C_3(s)h.
+\end{align*}
+The bounds hold even when $s$ is negative or zero.
+
+For squares, define the positive rational $C_2(s)=2\abs{s}+1$.
+Expansion gives
+\begin{align*}
+ (s+h)^2-s^2&=2sh+h^2\le C_2(s)h,\\
+ s^2-(s-h)^2&=2sh-h^2\le2\abs{s}h\le C_2(s)h.
+\end{align*}
+Every denominator $2C_3(s)$ and $2C_2(s)$ below is positive.
+
+\step{Part (a), Step 1: prove that the cubic set is nonempty and proper.}
+The rational $0$ lies in $\alpha$, since $0^3=0<2$.
+The rational $2$ does not lie in $\alpha$, since $2^3=8>2$.
+Hence $\alpha$ is a nonempty proper subset of $\Q$.
+
+\step{Part (a), Step 2: prove downward closure of the cubic set.}
+Let $q\in\alpha$ and let rational $p<q$.
+Strict increase of cubes gives
+\[
+ p^3<q^3<2.
+\]
+Thus $p\in\alpha$. This argument includes negative $p$ and $q$.
+
+\step{Part (a), Step 3: construct a larger cubic-set member.}
+Let $q\in\alpha$, so the rational $\delta=2-q^3$ is positive.
+Choose
+\[
+ h=\min\left\{\frac12,\frac{\delta}{2C_3(q)}\right\}.
+\]
+Both entries of the minimum are positive rational numbers.
+Therefore $h$ is rational, $0<h\le1/2<1$, and
+$C_3(q)h\le\delta/2$. The increment bound gives
+\[
+ (q+h)^3\le q^3+C_3(q)h
+          \le q^3+\frac\delta2
+          <q^3+\delta=2.
+\]
+Hence $q+h\in\alpha$ and $q+h>q$. Thus $\alpha$ has no greatest member.
+
+\answer{The cubic set $\{q\in\Q:q^3<2\}$ satisfies all defining
+conditions and is a Dedekind cut.}
+
+\step{Part (a), Step 4: test the unmodified square condition.}
+Let $E=\{q\in\Q:q^2<2\}$. It contains $0$, since $0^2<2$.
+But $-2<0$ and $(-2)^2=4>2$, so $-2\notin E$.
+This contradicts the downward closure that any cut containing $0$
+would have to satisfy.
+
+\answer{The set $\{q\in\Q:q^2<2\}$ is not a cut. Its exclusion of
+sufficiently negative rationals prevents downward closure.}
+
+\step{Part (b), Step 1: suppose the cubic cut has a rational endpoint.}
+Suppose $\alpha=s^*$ for some $s\in\Q$.
+If $s^3<2$, then $s\in\alpha$. But $s\notin s^*$ because $s<s$
+is false. This contradicts equality of the two sets.
+Thus $s^3<2$ is impossible.
+
+\step{Part (b), Step 2: exclude an endpoint whose cube is too large.}
+If $s^3>2$, put $\delta=s^3-2>0$ and choose
+\[
+ h=\min\left\{\frac12,\frac{\delta}{2C_3(s)}\right\}>0.
+\]
+The rational $r=s-h$ satisfies $r<s$, so $r\in s^*$.
+However,
+\[
+ s^3-r^3\le C_3(s)h\le\frac\delta2.
+\]
+Rearranging gives
+\[
+ r^3\ge s^3-\frac\delta2>s^3-\delta=2.
+\]
+Therefore $r\notin\alpha$, another contradiction.
+The total order excludes both strict alternatives and forces $s^3=2$.
+
+\step{Part (b), Step 3: prove that a rational cube cannot equal $2$.}
+Write $s=m/n$ in lowest terms, with $m,n\in\Z$ and $n>0$.
+The equation $s^3=2$ gives $m^3=2n^3$, so $m^3$ is even.
+An odd integer has the form $2k+1$ and has odd cube:
+\[
+ (2k+1)^3=8k^3+12k^2+6k+1
+         =2(4k^3+6k^2+3k)+1.
+\]
+Hence $m$ must be even; put $m=2u$ with $u\in\Z$.
+Substitution gives
+\[
+ 8u^3=2n^3,\qquad n^3=4u^3.
+\]
+Now $n^3$ is even, so the same parity argument makes $n$ even.
+Then $m$ and $n$ have the common positive factor $2$, contradicting
+lowest terms.
+
+\answer{The cubic cut is not $s^*$ for any rational $s$.
+It represents an irrational element of the cut construction, later
+identified with the positive cube root of $2$ after the real-number
+construction is completed.}
+
+\step{Part (c), Step 1: prove nonemptiness and properness.}
+The corrected set is
+\[
+ \beta=\{q\in\Q:q<0\}\ \cup\
+       \{q\in\Q:q\ge0\text{ and }q^2<2\}.
+\]
+The rational $0$ belongs to its second part, since $0\ge0$ and $0^2<2$.
+Thus $\beta$ is nonempty.
+The rational $2$ is not negative and its square $4$ is not less than $2$.
+It lies in neither part, so $\beta\ne\Q$.
+
+\step{Part (c), Step 2: verify downward closure by separating signs.}
+Let $q\in\beta$ and let $p\in\Q$ satisfy $p<q$.
+If $p<0$, it belongs to $0^*\subseteq\beta$.
+If $p\ge0$, then $q>p\ge0$. Thus $q$ cannot belong to the negative
+part of $\beta$, and its membership must give $q^2<2$.
+Moreover,
+\[
+ q^2-p^2=(q-p)(q+p)>0,
+\]
+since $q-p>0$ and $q+p>0$. Hence $p^2<q^2<2$.
+Together with $p\ge0$, this puts $p$ in the second part of $\beta$.
+Both signs of $p$ therefore give membership.
+
+\step{Part (c), Step 3: find a larger member when the chosen member is negative.}
+If $q\in\beta$ and $q<0$, put $q'=q/2$.
+Then $q'-q=-q/2>0$ and $q'<0$.
+So $q'>q$ and $q'\in0^*\subseteq\beta$.
+
+\step{Part (c), Step 4: find a larger member in the nonnegative case.}
+If $q\in\beta$ and $q\ge0$, then $\delta=2-q^2>0$.
+Choose the rational
+\[
+ h=\min\left\{\frac12,\frac{\delta}{2C_2(q)}\right\}>0.
+\]
+It satisfies $h\le1$ and $C_2(q)h\le\delta/2$, so
+\[
+ (q+h)^2\le q^2+C_2(q)h
+          \le q^2+\frac\delta2
+          <q^2+\delta=2.
+\]
+Because $q+h\ge0$, it lies in $\beta$, and $q+h>q$.
+This case includes $q=0$.
+
+\answer{The corrected square set $\beta$ is nonempty, proper,
+downward closed, and has no greatest rational. It is a Dedekind cut.
+Including all negative rationals repairs the failure in part (a).}
+
+\step{Part (c), Step 5: suppose the corrected square cut is rational.}
+Assume $\beta=s^*$ for some rational $s$.
+The rational $1$ belongs to $\beta$, because $1\ge0$ and $1^2<2$.
+Therefore $1\in s^*$, which means $1<s$. In particular, $s>0$.
+
+If $s^2<2$, then $s\ge0$ and $s^2<2$ put $s$ in $\beta$.
+But $s\notin s^*$, contradicting equality. Thus $s^2<2$ is impossible.
+
+\step{Part (c), Step 6: exclude an endpoint whose square is too large.}
+If $s^2>2$, let $\delta=s^2-2>0$ and choose
+\[
+ h=\min\left\{\frac12,\frac s2,
+                      \frac{\delta}{2C_2(s)}\right\}.
+\]
+All entries are positive rationals. Thus $0<h\le1$, $h\le s/2$,
+and $C_2(s)h\le\delta/2$. The rational $r=s-h$ satisfies
+\[
+ r\ge\frac s2>0,\qquad r<s.
+\]
+The latter inequality puts $r$ in $s^*$, but
+\[
+ r^2\ge s^2-C_2(s)h
+      \ge s^2-\frac\delta2
+      >s^2-\delta=2.
+\]
+Since $r>0$ and $r^2>2$, it is not in either part of $\beta$.
+This contradicts $\beta=s^*$. Both strict alternatives have been
+excluded, so equality of these cuts would force $s^2=2$.
+
+\step{Part (c), Step 7: exclude a rational square equal to $2$.}
+Write $s=m/n$ in lowest terms, with $m,n\in\Z$ and $n>0$.
+Then $s^2=2$ implies $m^2=2n^2$, so $m^2$ is even.
+An odd integer $2k+1$ has odd square:
+\[
+ (2k+1)^2=4k^2+4k+1=2(2k^2+2k)+1.
+\]
+Hence $m$ is even; write $m=2u$. Substitution gives
+\[
+ 4u^2=2n^2,\qquad n^2=2u^2.
+\]
+Now $n^2$ is even, so the same argument makes $n$ even.
+Both numerator and denominator would be divisible by $2$,
+contrary to lowest terms.
+
+\answer{The corrected square cut is not the cut of a rational number.
+It represents the irrational element later identified with the
+positive square root of $2$. Its cut conditions and irrationality
+were established using rational arithmetic, explicit inequalities,
+and the cut axioms, without assuming that real square root in advance.}
