@@ -21,6 +21,10 @@
 \setlist[itemize]{leftmargin=*,itemsep=0.25em}
 \allowdisplaybreaks
 \emergencystretch=2em
+% Leave a visible gap after two-digit exercise numbers in the contents.
+\makeatletter
+\renewcommand*{\l@subsection}{\@dottedtocline{2}{1.5em}{3.5em}}
+\makeatother
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\small Mathjock \textbar\ Ross, Chapter 2}

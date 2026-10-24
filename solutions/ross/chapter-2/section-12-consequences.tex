@@ -1,0 +1,413 @@
+\exercise{12.9}{A positive lower bound and products tending upward}
+\goal Prove the product assertions in parts (a) and (b), and identify
+Exercise~12.7 as the special case requested in part (c).
+
+\step{A preliminary fact: extracting one positive lower bound.}
+Write $\alpha=\liminf t_n$, and suppose $\alpha>0$. The value
+$\alpha=+\infty$ is allowed. We claim that there are a real number
+$c>0$ and an integer $N_0$ such that
+\[
+ t_n\ge c\qquad(n>N_0).
+\]
+If $\alpha$ is finite, choose $c=\alpha/2$; then $0<c<\alpha$.
+If $\alpha=+\infty$, choose $c=1$ instead. In either case, the tail
+infima $\inf\{t_n:n>N\}$ eventually exceed $c$, by their convergence
+to $\alpha$. Each term in such a tail is at least its infimum, and
+therefore exceeds $c$. Replacing this strict inequality by $\ge c$
+gives the claim. This argument also covers an initially unbounded
+sequence: since $\liminf t_n>0$, some tail has a finite lower bound.
+
+\step{(a) An ordinary limit of $+\infty$.}
+Assume $s_n\to+\infty$. To prove $s_nt_n\to+\infty$, fix an
+arbitrary real threshold $M>0$. By the definition of this limit,
+there is $N_1$ such that
+\[
+ n>N_1\quad\Longrightarrow\quad s_n>M/c.
+\]
+Since $M/c>0$, these $s_n$ are positive. If
+$n>\max\{N_0,N_1\}$, we can multiply $t_n\ge c$ by the positive
+number $s_n$, obtaining
+\[
+ s_nt_n\ge cs_n>c(M/c)=M.
+\]
+Thus every sufficiently late product exceeds $M$. Checking positive
+thresholds suffices: exceeding any positive number also exceeds all
+smaller, possibly negative, thresholds. Hence $s_nt_n\to+\infty$.
+
+\step{(b) A limit superior of $+\infty$.}
+Now assume only $\limsup s_n=+\infty$. Every tail of $(s_n)$ is
+unbounded above. Indeed, a tail bounded above, together with the
+finitely many preceding real terms, would bound the whole sequence
+above and force its limit superior to be at most a real upper bound.
+
+Fix a tail index $N$ and a positive threshold $M$. The unbounded
+tail beyond $\max\{N,N_0\}$ contains an index $n$ for which
+$s_n>M/c$. At that index $n>N$, and the same sign calculation as
+in part (a) gives $s_nt_n>M$. Thus every tail of the product sequence
+is unbounded above. Its tail suprema are all $+\infty$, so its
+limit superior is $+\infty$.
+
+The distinction between (a) and (b) is in the quantifiers: part (a)
+puts every sufficiently late product above $M$; part (b) produces
+at least one such product in every tail.
+
+\step{(c) Recover Exercise 12.7.}
+If $t_n=k>0$ for every $n$, then $\liminf t_n=k>0$ and
+$s_nt_n=ks_n$. Part (b) therefore states exactly that
+\[
+ \limsup s_n=+\infty\quad\Longrightarrow\quad
+ \limsup(ks_n)=+\infty\qquad(k>0).
+\]
+\answer{Both product conclusions hold; a positive constant second
+factor gives Exercise~12.7.}
+
+\exercise{12.10}{Detecting boundedness with the limit superior of absolute values}
+\goal Prove both directions of
+\[
+ (s_n)\text{ is bounded}\quad\Longleftrightarrow\quad
+ \limsup\abs{s_n}<+\infty.
+\]
+\idea Absolute values express upper and lower bounds on $s_n$ in one
+nonnegative sequence. An eventual bound becomes a bound on all terms
+after we include the finite initial segment.
+
+\step{A bounded sequence gives a finite limit superior.}
+If $(s_n)$ is bounded, there is a finite $B\ge0$ with
+$\abs{s_n}\le B$ for every $n$. Thus for every $N$,
+\[
+ 0\le\sup\{\abs{s_n}:n>N\}\le B.
+\]
+These tail suprema decrease as $N$ increases. The monotone sequence
+theorem gives a limit in $[0,B]$, and by definition that limit is
+$\limsup\abs{s_n}$. In particular it is less than $+\infty$.
+
+\step{A finite limit superior gives an eventual bound.}
+Conversely, suppose $L=\limsup\abs{s_n}<+\infty$. Since all the
+absolute values are nonnegative, $L\ge0$, so $L$ is a real number.
+The sequence $(\abs{s_n})$ cannot be unbounded above: if it were,
+every tail would be unbounded above, since deleting finitely many
+real terms cannot remove unboundedness. All its tail suprema would
+then be $+\infty$, contradicting the finite value of $L$.
+
+Equivalently, some tail has a finite supremum. Once that happens,
+all subsequent tail suprema are finite and converge to $L$.
+Their convergence yields an integer $N\ge1$ with
+\[
+ \abs{s_n}\le\sup\{\abs{s_j}:j>N\}<L+1
+ \qquad(n>N).
+\]
+
+\step{Include the early terms.}
+The finite set of real numbers
+$\{\abs{s_1},\ldots,\abs{s_N},L+1\}$ has a finite maximum $B$.
+If $n\le N$, the definition of $B$ gives $\abs{s_n}\le B$.
+If $n>N$, the tail estimate gives $\abs{s_n}<L+1\le B$.
+Consequently $\abs{s_n}\le B$ for every index $n$.
+\answer{The two conditions are equivalent. The limit superior bounds
+the tail, and a finite maximum absorbs the initial terms.}
+
+\exercise{12.11}{The lower ratio--root inequality}
+\goal For a sequence with $s_n\ne0$ at every index, prove the first
+inequality of Theorem~12.2:
+\[
+ \liminf\abs{\frac{s_{n+1}}{s_n}}
+ \ \le\ \liminf\abs{s_n}^{1/n}.
+\]
+\idea A lower bound on successive ratios becomes a geometric lower
+bound on the terms. Taking $n$th roots removes the fixed factor.
+
+\step{Name the two nonnegative extended limits.}
+Set
+\[
+ A=\liminf\abs{\frac{s_{n+1}}{s_n}},\qquad
+ B=\liminf\abs{s_n}^{1/n}.
+\]
+Every ratio is well defined and positive because no $s_n$ is zero.
+The roots are positive as well. Therefore $A,B\in[0,+\infty]$.
+If $A=0$, then $A\le B$ follows immediately from $B\ge0$.
+
+\step{An arbitrary positive number below $A$ is an eventual ratio bound.}
+Suppose $A>0$, and choose any real $a$ with $0<a<A$. When
+$A=+\infty$, this means that $a$ can be any positive real number.
+The definition of the limit inferior gives an integer $K\ge1$
+such that
+\[
+ \abs{\frac{s_{j+1}}{s_j}}>a\qquad(j\ge K).
+\]
+To see this directly, some tail infimum of these ratios exceeds $a$;
+each ratio in that tail is at least the infimum. Increase the starting
+index to $K$ if needed.
+
+\step{Multiply the consecutive inequalities.}
+For $n>K$, cancellation of the nonzero terms gives
+\[
+ \abs{s_n}
+ =\abs{s_K}\prod_{j=K}^{n-1}\abs{\frac{s_{j+1}}{s_j}}
+ \ge \abs{s_K}a^{n-K}.
+\]
+The weak inequality also holds when $n=K$, since the product then
+has no factors and equals $1$. Define the fixed positive constant
+$C=\abs{s_K}a^{-K}$. The estimate becomes
+\[
+ \abs{s_n}\ge Ca^n\qquad(n\ge K).
+\]
+The map $x\mapsto x^{1/n}$ is increasing on nonnegative reals, so
+\[
+ \abs{s_n}^{1/n}\ge aC^{1/n}\qquad(n\ge K).
+\]
+
+\step{Pass to the limit inferior and then let $a$ approach $A$.}
+Since $C>0$, the elementary root limit gives $C^{1/n}\to1$.
+Thus $aC^{1/n}\to a$, and eventual order (Exercise~12.1) yields
+$B\ge a$.
+
+If $A$ is finite and $B<A$, then $B$ is finite and a number
+$a$ strictly between $B$ and $A$ satisfies $a>0$. This contradicts
+$B\ge a$. Hence $B\ge A$ in the finite case. If $A=+\infty$,
+the inequality $B\ge a$ holds for every positive real $a$; a finite
+$B$ would be contradicted by taking $a>B$. Therefore $B=+\infty$.
+\answer{In every case the lower ratio limit inferior is at most the
+root limit inferior. This proof does not rely on Corollary~12.3,
+whose proof uses the inequality being established here.}
+
+\exercise{12.12}{Arithmetic means and the limits of the original sequence}
+\goal For $s_n\ge0$, put
+\[
+ \sigma_n=\frac{s_1+\cdots+s_n}{n}.
+\]
+Prove the four-term inequality in part (a), deduce part (b), and give
+the counterexample requested in part (c).
+
+\step{(a), preparation: name the bounds and check nonnegativity.}
+Write $\alpha=\liminf s_n$ and $\beta=\limsup s_n$.
+Because $s_n\ge0$, all averages are nonnegative, and
+$\alpha,\beta,\liminf\sigma_n,\limsup\sigma_n$ belong to
+$[0,+\infty]$. The inequality
+$\liminf\sigma_n\le\limsup\sigma_n$ holds for every sequence
+by Theorem~10.7. We prove the two outside inequalities separately.
+
+\step{(a), upper bound: verify the estimate in the hint.}
+First suppose $\beta<+\infty$. The sequence $(s_n)$ must then be
+bounded above: otherwise every tail would be unbounded above, and
+its limit superior would be $+\infty$. Set
+\[
+ U_N=\sup\{s_n:n>N\},\qquad P_N=s_1+\cdots+s_N.
+\]
+These are finite, with $U_N,P_N\ge0$. If $n>N$, each of the
+$n-N$ remaining terms is at most $U_N$, so
+\[
+ \sigma_n\le\frac{P_N}{n}+\frac{n-N}{n}U_N
+ \le\frac{P_N}{n}+U_N.
+\]
+The second inequality uses $U_N\ge0$ and $(n-N)/n\le1$.
+If $n>M>N$, the inequality $P_N/n\le P_N/M$ uses $P_N\ge0$.
+Taking the supremum over $n>M$ gives the hint exactly:
+\[
+ \sup\{\sigma_n:n>M\}\le\frac{P_N}{M}+U_N.
+\]
+Hold $N$ fixed and let $M\to\infty$. The left side tends to
+$\limsup\sigma_n$, while $P_N/M\to0$, yielding
+$\limsup\sigma_n\le U_N$. This holds for every $N$.
+Letting $N\to\infty$ and using $U_N\to\beta$, we get
+$\limsup\sigma_n\le\beta$. All the relevant quantities are finite
+here, since a global bound on $s_n$ also bounds each average.
+
+If instead $\beta=+\infty$, the desired upper bound is simply
+$\limsup\sigma_n\le+\infty$, which always holds. No finite-tail
+estimate involving an infinite supremum is required.
+
+\step{(a), lower bound: retain a uniformly positive tail.}
+If $\alpha=0$, nonnegativity already gives
+$\liminf\sigma_n\ge0=\alpha$.
+If $\alpha>0$, choose an arbitrary real $c$ with $0<c<\alpha$.
+For $\alpha=+\infty$, take any $c>0$. There is $N$ such that
+$s_j\ge c$ for all $j>N$, by the definition of the limit inferior.
+For $n>N$, discard the nonnegative initial sum and estimate the tail:
+\[
+ \sigma_n
+ =\frac{P_N+s_{N+1}+\cdots+s_n}{n}
+ \ge\frac{(n-N)c}{n}
+ =c\left(1-\frac{N}{n}\right).
+\]
+The expression on the right tends to $c$, since $N$ is fixed.
+Exercise~12.1 gives $\liminf\sigma_n\ge c$. When $\alpha$ is
+finite, letting $c$ range over all positive numbers below $\alpha$
+forces $\liminf\sigma_n\ge\alpha$: otherwise choose $c$ between
+these two quantities. When $\alpha=+\infty$, the same inequality
+for every $c>0$ forces $\liminf\sigma_n=+\infty$.
+Combining the three inequalities proves
+\[
+ \boxed{\liminf s_n\le\liminf\sigma_n\le
+ \limsup\sigma_n\le\limsup s_n.}
+\]
+
+\step{(b) Convergence passes to the averages.}
+Suppose $s_n\to L$. Nonnegativity means that either $L\ge0$ is
+finite or $L=+\infty$; a limit of $-\infty$ is impossible.
+Then $\liminf s_n=\limsup s_n=L$, and part (a) gives
+\[
+ L\le\liminf\sigma_n\le\limsup\sigma_n\le L.
+\]
+Thus both middle quantities equal $L$. Theorem~10.7, which
+characterizes convergence by equality of the limit inferior and
+limit superior, implies $\sigma_n\to L$. If $L=+\infty$, this
+statement means that the averages also tend to $+\infty$.
+
+\step{(c) Convergent averages need not imply convergent terms.}
+Take $s_n=1+(-1)^n$. Its terms alternate $0,2,0,2,\ldots$, and
+are nonnegative. The odd subsequence is constantly $0$ and the even
+subsequence is constantly $2$, so $(s_n)$ has no limit.
+
+For $n=2k$, there are $k$ zeros and $k$ twos, so
+$\sigma_{2k}=2k/(2k)=1$. For $n=2k-1$, there are $k$ zeros and
+$k-1$ twos, so
+\[
+ \sigma_{2k-1}=\frac{2(k-1)}{2k-1}
+ =1-\frac{1}{2k-1}.
+\]
+In both cases $\abs{\sigma_n-1}\le1/n$. Given $\varepsilon>0$,
+choose $N>1/\varepsilon$; then $n>N$ implies
+$\abs{\sigma_n-1}\le1/n<\varepsilon$. Thus $\sigma_n\to1$.
+\answer{The averages satisfy the four-term bounds and inherit every
+limit of a nonnegative sequence. The converse fails for alternating
+zeros and twos.}
+
+\exercise{12.13}{Limit inferior and superior as eventual bounds}
+\goal For a bounded real sequence define
+\[
+ \begin{split}
+ A&=\{a\in\R:\{n\in\N:s_n<a\}\text{ is finite}\},\\
+ B&=\{b\in\R:\{n\in\N:s_n>b\}\text{ is finite}\}.
+ \end{split}
+\]
+Prove $\sup A=\liminf s_n$ and $\inf B=\limsup s_n$.
+\idea A finite set of exceptional indices can be placed before a
+single cutoff. Thus $A$ consists of eventual lower bounds and $B$
+of eventual upper bounds. The boundary value itself need not belong
+to the respective set.
+
+\step{Check existence of the real suprema and infima.}
+Choose $C\ge0$ with $-C\le s_n\le C$ for every $n$.
+For $a=-C$, no term satisfies $s_n<a$, so $-C\in A$.
+If $a>C$, every index satisfies $s_n<a$, so $a\notin A$.
+Thus $A$ is nonempty and bounded above by $C$.
+Similarly, $C\in B$, and every $b<-C$ lies outside $B$, since
+$s_n>b$ for every $n$. Hence $B$ is nonempty and bounded below
+by $-C$. Completeness gives finite real values $\sup A$ and $\inf B$.
+Write
+\[
+ \alpha=\liminf s_n,\quad\beta=\limsup s_n,\quad
+ L_N=\inf\{s_n:n>N\},\quad U_N=\sup\{s_n:n>N\}.
+\]
+All these numbers are finite, and $L_N\to\alpha$, $U_N\to\beta$.
+
+\step{Every eventual lower bound is at most $\alpha$.}
+If $a\in A$, its finitely many exceptional indices lie at most at
+some index $N_0$; if there are none, take $N_0=1$.
+Then $s_n\ge a$ whenever $n>N_0$. For $N\ge N_0$, it follows
+that $L_N\ge a$, and passage to the limit gives $\alpha\ge a$.
+Thus $\alpha$ is an upper bound of $A$, so $\sup A\le\alpha$.
+
+\step{No number below $\alpha$ can be an upper bound of $A$.}
+If $a<\alpha$, convergence $L_N\to\alpha$ implies $L_N>a$
+for some $N$. For every $n>N$, we have $s_n\ge L_N>a$.
+Consequently the indices with $s_n<a$ are contained in
+$\{1,\ldots,N\}$, a finite set; hence $a\in A$.
+Now fix any $d<\alpha$ and take $a=(d+\alpha)/2$.
+Then $d<a<\alpha$, so $a\in A$ and $a>d$. Therefore $d$ fails
+to be an upper bound of $A$. This proves that $\alpha$ is the
+least upper bound: $\sup A=\alpha$.
+
+\step{Repeat the two directions for eventual upper bounds.}
+If $b\in B$, there is $N_0$ such that $s_n\le b$ whenever
+$n>N_0$. Then $U_N\le b$ for all $N\ge N_0$; taking limits gives
+$\beta\le b$. Thus $\beta$ is a lower bound of $B$.
+
+If $b>\beta$, convergence $U_N\to\beta$ gives some $N$ with
+$U_N<b$. For every $n>N$, we have $s_n\le U_N<b$, so the
+indices satisfying $s_n>b$ form a finite set. Thus $b\in B$.
+If $d>\beta$, the number $b=(\beta+d)/2$ satisfies
+$\beta<b<d$ and belongs to $B$, so $d$ cannot be a lower bound
+of $B$. Hence $\beta$ is its greatest lower bound:
+$\inf B=\beta$.
+
+\step{Why the boundary is not asserted to lie in the set.}
+For $s_n=-1/n$, one has $\alpha=0$, but every $s_n<0$,
+so $0\notin A$. For $s_n=1/n$, one has $\beta=0$, but every
+$s_n>0$, so $0\notin B$. Suprema and infima need not be attained.
+\answer{The least eventual upper bound is $\limsup s_n$, and the
+greatest eventual lower bound is $\liminf s_n$, in the precise
+supremum/infimum sense above.}
+
+\exercise{12.14}{The growth of the geometric mean of the first integers}
+\goal Calculate the limits of $(n!)^{1/n}$ and $(n!)^{1/n}/n$.
+\idea Apply the ratio--root corollary to two different positive
+sequences. For the second limit we also justify the elementary
+sequence that defines $e$, without using Stirling's formula.
+
+\step{(a) Apply the ratio--root corollary to the factorials.}
+Let $v_n=n!$, which is positive. Cancelling the common product
+$1\cdot2\cdots n$ gives
+\[
+ \frac{v_{n+1}}{v_n}=\frac{(n+1)!}{n!}=n+1\longrightarrow+\infty.
+\]
+Corollary~12.3 states that a limit of the absolute successive ratios
+is also the limit of the $n$th roots, including the value $+\infty$.
+Therefore
+\[
+ \boxed{\lim_{n\to\infty}(n!)^{1/n}=+\infty.}
+\]
+
+\step{(b), preparation: justify the sequence defining $e$.}
+Set $b_n=(1+1/n)^n$. The standard constant $e$ is the limit of
+this sequence, as described in the text's Section~7, Example~1(e).
+For completeness we verify that this limit exists and is positive.
+By the binomial theorem,
+\[
+ b_n=\sum_{k=0}^{n}\binom{n}{k}\frac{1}{n^k}
+ =\sum_{k=0}^{n}\frac{1}{k!}
+      \prod_{j=0}^{k-1}\left(1-\frac{j}{n}\right).
+\]
+For $k=0$ the product is empty and equals $1$.
+For fixed $k\le n$, each displayed factor is nonnegative and
+does not decrease when $n$ is replaced by $n+1$. Thus each of the
+old summands does not decrease. The extra summand with $k=n+1$
+in the expression for $b_{n+1}$ is positive, so $b_{n+1}>b_n$.
+
+Every factor is at most $1$. For $k\ge2$, the $k-1$ factors
+$2,3,\ldots,k$ in $k!$ are each at least $2$, whence
+$k!\ge2^{k-1}$. It follows that
+\[
+ b_n\le\sum_{k=0}^{n}\frac{1}{k!}
+ \le 2+\sum_{k=2}^{n}\frac{1}{2^{k-1}}<3.
+\]
+For $n=1$ the last sum is empty, and the same bound holds.
+Since $b_1=2$, the monotone sequence theorem now gives
+$b_n\to e$ for a finite number $e\ge2>0$.
+
+\step{(b), normalization: put the denominator inside the root.}
+Define $u_n=n!/n^n>0$. Its positive $n$th root is
+\[
+ u_n^{1/n}=\frac{(n!)^{1/n}}{n},
+\]
+because the $n$th power of the expression on the right is
+$n!/n^n$ and the positive $n$th root is unique.
+The successive ratio simplifies one factor at a time:
+\[
+ \begin{aligned}
+ \frac{u_{n+1}}{u_n}
+ &=\frac{(n+1)!}{(n+1)^{n+1}}\frac{n^n}{n!}\\
+ &=\frac{(n+1)n^n}{(n+1)^{n+1}}
+ =\left(\frac{n}{n+1}\right)^n
+ =\frac{1}{(1+1/n)^n}
+ =\frac{1}{b_n}.
+ \end{aligned}
+\]
+Since $b_n\to e\ne0$, the reciprocal limit law gives
+$u_{n+1}/u_n\to1/e$. Corollary~12.3 therefore gives
+$u_n^{1/n}\to1/e$, which is exactly
+\[
+ \boxed{\lim_{n\to\infty}\frac{(n!)^{1/n}}{n}=\frac{1}{e}.}
+\]
+\answer{The unnormalized geometric mean tends to $+\infty$;
+after division by $n$, it tends to $1/e$.}

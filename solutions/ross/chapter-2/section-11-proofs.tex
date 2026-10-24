@@ -1,0 +1,589 @@
+\exercise{11.5}{Subsequential limits of an enumeration of a rational interval}
+\goal Let $(q_n)$ enumerate all rational numbers in $(0,1]$.
+Find \textup{(a)} its set of subsequential limits and
+\textup{(b)} its limit superior and limit inferior.
+
+\idea Every term lies between $0$ and $1$, so a subsequential limit
+must lie in $[0,1]$. Conversely, every neighborhood of a point of
+$[0,1]$ contains infinitely many distinct rational values in $(0,1]$.
+Removing a finite prefix of the enumeration cannot remove all those
+values. This will allow a construction with strictly increasing indices.
+
+\step{1. Explain the role of enumeration and distinct values}
+The enumeration hypothesis says that each rational number in $(0,1]$
+occurs somewhere in the list. It does not require a particular rational
+number to occur infinitely often. For example, the value $1$ may occur
+only once. The proof below uses infinitely many \emph{different}
+rational values near a proposed limit, so it works both with and
+without repeated terms.
+
+Every nonempty open interval $(c,d)$ contains infinitely many rational
+numbers. To prove this from density, suppose its rational numbers
+formed a finite set. Density ensures the set is nonempty, so it would
+have a largest member $r<d$. Density applied to $(r,d)$ would produce
+a rational number larger than $r$ still belonging to $(c,d)$,
+contradicting the choice of $r$. Thus there are infinitely many distinct
+rational numbers in the interval.
+
+\step{2. Part (a): Find infinitely many eligible values near every target}
+Fix $t\in[0,1]$ and $\varepsilon>0$. Consider
+\[
+ c=\max\{0,t-\varepsilon\},
+ \qquad d=\min\{1,t+\varepsilon\}.
+\]
+We have $c<d$. At $t=0$, this follows from
+$c=0<\min\{1,\varepsilon\}=d$. At $t=1$, it follows from
+$c=\max\{0,1-\varepsilon\}<1=d$. For $0<t<1$, both
+$0<t$ and $t-\varepsilon<t$ give $c<t$, while
+$t<1$ and $t<t+\varepsilon$ give $t<d$.
+
+Every rational number $r\in(c,d)$ satisfies
+\[
+ 0<r<1,
+ \qquad t-\varepsilon<r<t+\varepsilon.
+\]
+It therefore belongs to the enumerated set and satisfies
+$\abs{r-t}<\varepsilon$.
+By Step~1, there are infinitely many distinct such rational values.
+A finite prefix $q_1,\ldots,q_N$ contains only finitely many values,
+so it cannot contain them all. Hence for every finite index bound $N$
+there is an index $n>N$ such that
+\[
+ \abs{q_n-t}<\varepsilon.
+\]
+This reasoning includes the endpoints $t=0$ and $t=1$.
+
+\step{3. Construct a subsequence converging to the chosen target}
+Put $n_0=0$. At stage $k\ge1$, apply Step~2 with
+$\varepsilon=1/k$ and with the finite index bound $n_{k-1}$.
+Choose an index $n_k>n_{k-1}$ satisfying
+\[
+ \abs{q_{n_k}-t}<\frac1k.
+\]
+For definiteness, one may take the least eligible index, since a
+nonempty set of positive integers has a least element.
+The inequalities $n_1<n_2<\cdots$ ensure that $(q_{n_k})$
+is a subsequence.
+
+Let $\eta>0$ and choose an integer $K>1/\eta$ by the Archimedean
+property. If $k>K$, then
+\[
+ \abs{q_{n_k}-t}<\frac1k<\eta.
+\]
+Thus $q_{n_k}\to t$. Since $t\in[0,1]$ was arbitrary, every
+point of that interval is a subsequential limit. This is also the
+infinite-neighborhood criterion of Theorem~11.2(i).
+
+\step{4. Exclude every other finite or infinite limit}
+Every subsequence still satisfies $0<q_{n_k}\le1$.
+If it had a finite limit $t<0$, use the positive tolerance
+$\eta=-t/2$. Eventually its terms would be less than
+$t+\eta=t/2<0$, a contradiction. If it had a finite limit $t>1$,
+use $\eta=(t-1)/2$. Eventually its terms would be greater than
+$t-\eta=(t+1)/2>1$, again a contradiction. Hence every finite
+subsequential limit lies in $[0,1]$.
+
+No subsequence can tend to $+\infty$, because its terms never exceed
+$1$ and so cannot eventually exceed the positive threshold $2$.
+No subsequence can tend to $-\infty$, because its terms are positive
+and so cannot eventually be less than $-1$.
+Combining this exclusion with Step~3 proves that the exact set of
+subsequential limits is $[0,1]$.
+
+\step{5. Part (b): Take the extreme subsequential limits}
+By Theorem~11.8(ii), the limit superior is the supremum of the set
+of subsequential limits, and the limit inferior is its infimum.
+The interval $[0,1]$ has maximum $1$ and minimum $0$, so
+\[
+ \limsup_{n\to\infty}q_n=1,
+ \qquad \liminf_{n\to\infty}q_n=0.
+\]
+
+\answer{\textup{(a)} The set of subsequential limits is $[0,1]$.
+\textup{(b)} The limit superior is $1$ and the limit inferior is $0$.
+No repeated occurrence of an individual rational value is assumed.}
+
+\exercise{11.6}{A subsequence of a subsequence}
+\goal Prove that a subsequence of a subsequence of a given sequence
+is itself a subsequence of the original sequence.
+
+\idea Use Definition~11.1 in terms of strictly increasing selection
+functions. Compose the two selection functions and verify that the
+composition remains strictly increasing.
+
+\step{1. Write the two selections precisely}
+Let $s:\N\to\R$ represent the original sequence.
+Suppose $t$ is a subsequence of $s$. There is a strictly increasing
+function $\sigma:\N\to\N$ with
+\[
+ t_k=s_{\sigma(k)}\qquad(k\in\N).
+\]
+Now suppose $u$ is a subsequence of $t$. There is a strictly
+increasing function $\tau:\N\to\N$ with
+\[
+ u_j=t_{\tau(j)}\qquad(j\in\N).
+\]
+Here strictly increasing refers to the \emph{indices} selected by
+the functions; the numerical sequence values themselves need not
+increase or be distinct.
+
+\step{2. Form and check the composite selection}
+Define $\rho=\sigma\circ\tau$; explicitly,
+$\rho(j)=\sigma(\tau(j))$.
+Because $\tau$ takes positive integer values and $\sigma$ is defined
+on every positive integer, $\rho$ is a function from $\N$ to $\N$.
+If $j<\ell$, strict increase of $\tau$ gives
+$\tau(j)<\tau(\ell)$. Strict increase of $\sigma$ then gives
+\[
+ \rho(j)=\sigma(\tau(j))
+ <\sigma(\tau(\ell))=\rho(\ell).
+\]
+Thus $\rho$ is strictly increasing.
+
+\step{3. Identify the selected values}
+Substituting the first selection into the second yields, for each $j$,
+\[
+ u_j=t_{\tau(j)}
+     =s_{\sigma(\tau(j))}
+     =s_{\rho(j)}.
+\]
+The values $u_j$ therefore select terms of $s$ in the strictly
+increasing index order $\rho(1)<\rho(2)<\cdots$.
+Definition~11.1 says exactly that this makes $u$ a subsequence of $s$.
+
+\answer{The composite selection function $\sigma\circ\tau$ proves
+that every subsequence of a subsequence is a subsequence of the
+original sequence.}
+
+\exercise{11.7}{A subsequence of an enumeration of all rational numbers}
+\goal If $(r_n)$ enumerates $\Q$, construct a subsequence
+$(r_{n_k})$ tending to $+\infty$.
+
+\idea Every tail of the enumeration remains unbounded above.
+Prove that statement with explicit control of a finite prefix,
+then select successive terms that exceed their subsequence indices.
+
+\step{1. Show that arbitrarily large rational values occur after any prefix}
+Fix a positive integer $N$ and a real threshold $M$.
+The finite prefix has a finite maximum
+\[
+ P=\max\{r_1,\ldots,r_N\}.
+\]
+By the Archimedean property, choose a positive integer
+$p>\max\{M,P,1\}$. Since $p\in\Q$, the enumeration contains $p$:
+there is an index $j$ with $r_j=p$.
+The inequality $p>P$ prevents $j\le N$, because every term of
+that prefix is at most $P$. Thus $j>N$ and $r_j>M$.
+This proves that the tail after any finite prefix is unbounded above.
+Before any terms are excluded, the same conclusion follows by
+choosing an integer $p>M$ in the enumeration.
+
+\step{2. Select terms recursively with increasing indices}
+Choose $n_1$ so that $r_{n_1}>1$; this is possible by Step~1.
+Suppose $n_1<\cdots<n_{k-1}$ have been chosen.
+Apply Step~1 to the prefix ending at $n_{k-1}$ and to the real
+threshold
+\[
+ M_k=\max\{k,r_{n_{k-1}}\}.
+\]
+It supplies an index $n_k>n_{k-1}$ with
+\[
+ r_{n_k}>M_k\ge k,
+ \qquad r_{n_k}>r_{n_{k-1}}.
+\]
+The resulting indices are strictly increasing, so they define a
+subsequence. The selected values are strictly increasing as well,
+although this latter property is not needed just to be a subsequence.
+
+\step{3. Check the definition of divergence to positive infinity}
+Let $M>0$ be arbitrary. Choose an integer $K>M$.
+If $k>K$, the construction gives
+\[
+ r_{n_k}>k>K>M.
+\]
+Thus the selected values eventually exceed every prescribed positive
+real threshold. By Definition~9.8, $r_{n_k}\to+\infty$.
+
+\answer{Such a subsequence exists; the construction ensures both
+$n_1<n_2<\cdots$ and $r_{n_k}>k$, which proves its limit is $+\infty$.}
+
+\exercise{11.8}{Reflection exchanges the limit inferior and limit superior}
+\goal For every real sequence $(s_n)$, prove
+\[
+ \liminf_{n\to\infty}s_n
+ =-\limsup_{n\to\infty}(-s_n)
+\]
+using Definition~10.6 and the reflection identity of Exercise~5.4.
+
+\idea Reflect each tail before taking its extremum.
+If the original sequence is unbounded below, use the infinite-value
+conventions in Definition~10.6 directly. Otherwise all relevant tail
+bounds are real numbers, and their limits can be compared using
+finite convergence or the definition of an infinite limit.
+
+\step{1. Apply reflection to the nonempty tails}
+For each positive integer $N$, let
+\[
+ E_N=\{s_n:n>N\},\qquad
+ -E_N=\{-s_n:n>N\}.
+\]
+Each set is nonempty, since it contains the corresponding term
+with index $N+1$. Exercise~5.4 gives the extended equality
+\[
+ \inf E_N=-\sup(-E_N).
+\]
+Write $u_N=\inf E_N$ and $v_N=\sup(-E_N)$.
+The equality says $u_N=-v_N$, or equivalently $v_N=-u_N$,
+with the negation conventions of Section~5.
+
+\step{2. Handle a sequence that is unbounded below}
+Suppose $(s_n)$ is unbounded below. Every tail $E_N$ is also
+unbounded below. Indeed, if some $E_N$ had a real lower bound $c$,
+then
+\[
+ \min\{c,s_1,\ldots,s_N\}
+\]
+would be a real lower bound for the entire sequence, a contradiction.
+Hence $u_N=-\infty$ for every $N$.
+
+The reflected sequence $(-s_n)$ is unbounded above: for every real
+$M$, a term $s_n<-M$ yields $-s_n>M$.
+Thus $v_N=+\infty$ for every $N$.
+Definition~10.6 explicitly decrees, in these respective cases,
+\[
+ \liminf s_n=-\infty,
+ \qquad \limsup(-s_n)=+\infty.
+\]
+Consequently
+\[
+ -\limsup(-s_n)=-(+\infty)=-\infty=\liminf s_n.
+\]
+This step uses the stated conventions, not a real-sequence limit
+law applied to a sequence of infinite symbols.
+
+\step{3. When the original sequence is bounded below, all these tail bounds are real}
+Suppose $c\in\R$ is a lower bound for all the $s_n$.
+Then every nonempty tail $E_N$ is bounded below by $c$, so
+$u_N\in\R$ by Corollary~4.5. The reflected tail is bounded above
+by $-c$, so $v_N\in\R$ by completeness. The identity from Step~1
+is now an identity of real numbers:
+\[
+ v_N=-u_N\qquad(N\in\N).
+\]
+Moreover $E_{N+1}\subseteq E_N$, and restricting the set cannot
+decrease its infimum. Thus $u_N\le u_{N+1}$.
+The real sequence $(u_N)$ is increasing and is bounded below by $c$.
+The monotone-sequence results of Section~10 show that it either
+converges to a finite real number or diverges to $+\infty$.
+These are the only two cases to consider here.
+
+\step{4. Treat a finite limit of the real tail infima}
+If $u_N\to u\in\R$, then Theorem~9.2, applied to the real
+sequence $(u_N)$ with scalar $-1$, gives $v_N=-u_N\to-u$.
+Definition~10.6 now identifies
+\[
+ \liminf s_n=u,
+ \qquad \limsup(-s_n)=-u.
+\]
+Negating the second real equality proves
+$-\limsup(-s_n)=u=\liminf s_n$.
+
+\step{5. Treat divergence of the real tail infima to positive infinity}
+If $u_N\to+\infty$, we show directly that $v_N=-u_N\to-\infty$.
+Let $M<0$. The number $-M$ is positive, so the hypothesis supplies
+a threshold $N_0$ such that $N>N_0$ implies $u_N>-M$.
+Negating gives $v_N=-u_N<M$ for all such $N$.
+This is precisely the definition of $v_N\to-\infty$.
+Consequently Definition~10.6 gives
+\[
+ \liminf s_n=+\infty,
+ \qquad \limsup(-s_n)=-\infty.
+\]
+The convention $-(-\infty)=+\infty$ then proves the desired identity.
+
+\answer{In all cases,
+$\displaystyle\liminf s_n=-\limsup(-s_n)$.
+The infinite cases follow from tail unboundedness and the infinite-limit
+definitions, with finite limit laws used only for real tail bounds
+having a finite limit.}
+
+\exercise{11.9}{Closed intervals and an impossible set of subsequential limits}
+\goal \textup{(a)} Show that $[a,b]$ is closed for real $a\le b$.
+\textup{(b)} Decide whether some real sequence can have exactly
+$(0,1)$ as its set of subsequential limits.
+
+\idea Use the sequential meaning of closed stated with Theorem~11.9:
+the set contains every limit of a convergent sequence of its points.
+For part \textup{(b)}, Theorem~11.9 requires the set of subsequential
+limits itself to have this property.
+
+\step{1. Part (a): Verify the sequential closedness condition}
+Let $(t_k)$ be a sequence with $t_k\in[a,b]$ for every $k$, and
+suppose $t_k\to t\in\R$. Thus
+\[
+ a\le t_k\le b\qquad(k\in\N).
+\]
+If $t<a$, take $\varepsilon=(a-t)/2>0$.
+Eventually $\abs{t_k-t}<\varepsilon$, so
+\[
+ t_k<t+\varepsilon=\frac{a+t}{2}<a,
+\]
+contradicting $t_k\ge a$.
+If $t>b$, take $\varepsilon=(t-b)/2>0$.
+Eventually $\abs{t_k-t}<\varepsilon$, so
+\[
+ t_k>t-\varepsilon=\frac{b+t}{2}>b,
+\]
+contradicting $t_k\le b$.
+Both alternatives are impossible. Hence $a\le t\le b$, so
+$t\in[a,b]$. This proves that $[a,b]$ is closed in the required
+sequential sense.
+
+The argument includes $a=b$: in that case all terms equal $a$
+and the only possible limit is $a$. If extended limits are also
+considered, neither infinite symbol can arise from such a bounded
+sequence. For $+\infty$, the positive threshold
+$\max\{1,b+1\}>b$ cannot be exceeded; for $-\infty$, the negative
+threshold $\min\{-1,a-1\}<a$ cannot be crossed downwards.
+
+\step{2. Part (b): Apply Theorem 11.9 to a sequence of proposed limits}
+Suppose, for a contradiction, that a real sequence $(s_n)$ has
+exactly $S=(0,1)$ as its set of subsequential limits.
+Define
+\[
+ t_k=\frac1{k+1}\qquad(k\in\N).
+\]
+Since $k+1\ge2$, we have $0<t_k\le1/2<1$. Thus $t_k\in S$
+for every $k$.
+Also $t_k\to0$: for any $\varepsilon>0$, choose an integer
+$K>1/\varepsilon$; then $k>K$ gives
+\[
+ \abs{t_k-0}=\frac1{k+1}<\frac1k<\varepsilon.
+\]
+Theorem~11.9 applies to this sequence of finite members of $S$
+and forces its limit $0$ to belong to $S$.
+But $0\notin(0,1)$, a contradiction.
+
+\answer{\textup{(a)} Every closed interval $[a,b]$, including a
+one-point interval, is closed in the sequential sense.
+\textup{(b)} No sequence has $(0,1)$ as exactly its set of
+subsequential limits.}
+
+\exercise{11.10}{The alternating diagonal traversal in Figure 11.2}
+\goal For the sequence listed by the arrows of Figure~11.2, find
+\textup{(a)} its exact set of subsequential limits and
+\textup{(b)} its limit superior and limit inferior.
+
+\idea The figure has the same row repeated infinitely many times.
+Each reciprocal value therefore occurs at arbitrarily large indices.
+The top row also supplies a subsequence of values tending to $0$.
+To prove completeness of the answer, isolate any other positive
+proposed limit from all reciprocal values.
+
+\step{1. Describe the array and its order precisely}
+Number rows and columns by $i,j\in\N$. The entry in position
+$(i,j)$ is $1/j$, so the array is
+\[
+ \begin{pmatrix}
+ 1&\frac12&\frac13&\frac14&\frac15&\cdots\\
+ 1&\frac12&\frac13&\frac14&\frac15&\cdots\\
+ 1&\frac12&\frac13&\frac14&\frac15&\cdots\\
+ 1&\frac12&\frac13&\frac14&\frac15&\cdots\\
+ \vdots&\vdots&\vdots&\vdots&\vdots&\ddots
+ \end{pmatrix}.
+\]
+The traversal groups the entries by diagonals
+$i+j=m+1$, with $m=1,2,3,\ldots$.
+Diagonal $m$ has exactly $m$ entries.
+For odd $m$, the traversal lists columns $1,2,\ldots,m$;
+for even $m$, it lists columns $m,m-1,\ldots,1$.
+Thus the successive diagonal blocks begin
+\[
+ \underbrace{1}_{m=1},\quad
+ \underbrace{\tfrac12,1}_{m=2},\quad
+ \underbrace{1,\tfrac12,\tfrac13}_{m=3},\quad
+ \underbrace{\tfrac14,\tfrac13,\tfrac12,1}_{m=4},\quad\ldots.
+\]
+This order agrees with the alternating directions of the arrows.
+
+\step{2. Check explicitly that choosing later diagonals gives later indices}
+Before diagonal $m$ there are
+\[
+ T_{m-1}=1+2+\cdots+(m-1)=\frac{m(m-1)}2
+\]
+listed entries, with $T_0=0$.
+For $m\ge j$, the occurrence of $1/j$ in diagonal $m$ has index
+\[
+ I(m,j)=
+ \begin{cases}
+ \dfrac{m(m-1)}2+j,&m\text{ odd},\\[4pt]
+ \dfrac{m(m-1)}2+(m-j+1),&m\text{ even}.
+ \end{cases}
+\]
+Indeed, its position within that diagonal is $j$ when columns are
+in increasing order, and $m-j+1$ when they are in decreasing order.
+In both cases
+\[
+ T_{m-1}+1\le I(m,j)\le T_m,
+ \qquad T_m=\frac{m(m+1)}2.
+\]
+Every index of diagonal $m+1$ is at least $T_m+1$, which is
+strictly larger than every index of diagonal $m$.
+Consequently selections made from successive diagonals always
+have strictly increasing indices.
+
+\step{3. Part (a): Obtain every reciprocal as a subsequential limit}
+Fix $j\in\N$. Every diagonal $m\ge j$ contains column $j$
+once, at the matrix position $(m+1-j,j)$.
+Choose the indices
+\[
+ n_k=I(j+k-1,j)\qquad(k\in\N).
+\]
+They are strictly increasing by Step~2, and the corresponding
+sequence values satisfy $s_{n_k}=1/j$ for every $k$.
+This constant subsequence converges to $1/j$.
+Thus every member of $\{1/j:j\in\N\}$ is a subsequential limit.
+
+\step{4. Part (a): Obtain zero from the top row}
+The top-row entry in column $k$ lies in diagonal $k$ and has
+value $1/k$. Select it at index
+\[
+ n_k=I(k,k)=
+ \begin{cases}
+ \dfrac{k(k+1)}2,&k\text{ odd},\\[4pt]
+ \dfrac{k(k-1)}2+1,&k\text{ even}.
+ \end{cases}
+\]
+These indices are strictly increasing because they come from
+successive diagonals. For example, they begin $1,2,6,7,15,\ldots$.
+The selected values are exactly $s_{n_k}=1/k$.
+Given $\varepsilon>0$, an integer $K>1/\varepsilon$ ensures
+$k>K$ implies $\abs{1/k-0}<\varepsilon$.
+Therefore $s_{n_k}\to0$, and $0$ is also a subsequential limit.
+
+\step{5. Part (a): Exclude every other proposed limit}
+Every term of the full sequence belongs to
+$D=\{1/j:j\in\N\}\subseteq(0,1]$.
+Hence any finite subsequential limit is in $[0,1]$, by the
+same eventual-bound argument used in Exercise~11.5.
+The bounds also rule out both infinite subsequential limits.
+
+Suppose $t>0$ and $t\notin D$. We show that a fixed positive
+neighborhood of $t$ contains no term of the sequence.
+Choose an integer $J>\max\{2,2/t\}$.
+For every $j\ge J$, we have
+\[
+ \frac1j\le\frac1J<\frac t2,
+ \qquad \abs{\frac1j-t}=t-\frac1j>\frac t2.
+\]
+For the finitely many indices $1\le j<J$, none of the values
+$1/j$ equals $t$. Their distances from $t$ are strictly positive,
+so the finite minimum
+\[
+ d=\min_{1\le j<J}\abs{\frac1j-t}
+\]
+exists and is positive. Define
+$\delta=\min\{t/4,d/2\}>0$.
+If $j\ge J$, then $\abs{1/j-t}>t/2>\delta$.
+If $j<J$, then $\abs{1/j-t}\ge d>\delta$.
+Thus every term of the original sequence satisfies
+$\abs{s_n-t}>\delta$.
+No subsequence can converge to $t$, since convergence would require
+its terms eventually to have distance less than $\delta$ from $t$.
+
+Every possible finite limit is either $0$, a member of $D$, or
+a positive number not in $D$. Steps~3--5 account for all these
+possibilities, and the infinite cases were excluded. Therefore
+\[
+ S=\{0\}\cup\left\{\frac1j:j\in\N\right\}
+\]
+is exactly the set of subsequential limits.
+
+\step{6. Part (b): Use the extreme members of the computed set}
+The set $S$ has minimum $0$ and maximum $1$.
+Theorem~11.8(ii) therefore gives
+\[
+ \limsup_{n\to\infty}s_n=\sup S=1,
+ \qquad \liminf_{n\to\infty}s_n=\inf S=0.
+\]
+
+\answer{\textup{(a)} The exact set is
+$\displaystyle S=\{0\}\cup\{1/j:j\in\N\}$.
+\textup{(b)} The limit superior is $1$ and the limit inferior is $0$.}
+
+\exercise{11.11}{An increasing sequence approaching a supremum from the set}
+\goal For a nonempty bounded set $S\subseteq\R$, construct an
+increasing sequence $(s_n)$ with every $s_n\in S$ and
+$s_n\to\sup S$.
+
+\idea If the supremum belongs to the set, use the constant sequence
+at that point. Otherwise, at each stage choose a point of $S$ above
+both the previous value and a closer lower approximation to the
+supremum.
+
+\step{1. State the necessary nonemptiness condition and the meaning of increasing}
+The exercise's statement needs the implicit assumption $S\ne\varnothing$.
+For the empty set there is no sequence of points in $S$, and its
+supremum is not defined by the real-supremum conventions being used.
+We therefore assume that $S$ is nonempty and bounded.
+In fact, the construction needs only that it be bounded above.
+Completeness gives the finite real number
+\[
+ M=\sup S.
+\]
+As in Section~10 and in the note to this exercise, increasing means
+nondecreasing: $s_n\le s_{n+1}$. A constant sequence is allowed.
+When $M\notin S$, the construction below will give strict increase.
+
+\step{2. The case in which the supremum belongs to the set}
+If $M\in S$, define $s_n=M$ for every $n\in\N$.
+Then all terms belong to $S$ and $s_n=s_{n+1}$, so the sequence
+is increasing in the stated sense. For every $\varepsilon>0$,
+\[
+ \abs{s_n-M}=0<\varepsilon
+\]
+at every index. Hence $s_n\to M$.
+
+\step{3. Begin the construction when $M$ is not a member}
+Suppose $M\notin S$. Since $M$ is an upper bound, every $s\in S$
+satisfies $s\le M$; the nonmembership of $M$ strengthens this to
+$s<M$ for every $s\in S$.
+The number $M-1<M$ cannot be an upper bound for $S$, because
+$M$ is its least upper bound. Therefore some $s_1\in S$ satisfies
+\[
+ M-1<s_1<M.
+\]
+
+\step{4. Continue the construction with an explicitly admissible threshold}
+Suppose $s_{n-1}\in S$ has been chosen, where $n\ge2$.
+Both $s_{n-1}<M$ and $M-1/n<M$ hold. Therefore
+\[
+ c_n=\max\left\{s_{n-1},M-\frac1n\right\}<M.
+\]
+As $c_n<M=\sup S$, the number $c_n$ is not an upper bound for $S$.
+Choose $s_n\in S$ with $s_n>c_n$.
+Every point of $S$ is less than $M$, so this choice satisfies
+\[
+ s_{n-1}<s_n<M,
+ \qquad M-\frac1n<s_n<M.
+\]
+The procedure can be repeated at every positive integer stage.
+It gives a sequence in $S$ that is strictly increasing.
+The displayed approximation bound also holds at $n=1$ by Step~3.
+
+\step{5. Verify convergence to the supremum}
+For every $n$, the construction gives
+\[
+ 0<M-s_n<\frac1n.
+\]
+Let $\varepsilon>0$. Choose an integer $N>1/\varepsilon$ by the
+Archimedean property. If $n>N$, then
+\[
+ \abs{s_n-M}=M-s_n<\frac1n<\varepsilon.
+\]
+Thus $s_n\to M$ by the definition of convergence.
+
+\answer{With the necessary hypothesis $S\ne\varnothing$, an increasing
+sequence in $S$ converging to $\sup S$ always exists. It may be taken
+constant when $\sup S\in S$, and strictly increasing when
+$\sup S\notin S$.}

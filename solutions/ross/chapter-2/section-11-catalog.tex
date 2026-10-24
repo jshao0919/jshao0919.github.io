@@ -1,0 +1,745 @@
+\exercise{11.1}{A constant subsequence of a two-valued sequence}
+
+\goal For $a_n=3+2(-1)^n$, list the first eight terms and
+give a constant subsequence together with its selection function.
+
+\idea Separate even and odd indices. The selection function
+must choose positive integer indices in strictly increasing order;
+specifying a repeated value without its indices is not enough.
+
+\step{(a) Compute the first eight terms.}
+At an odd index, $(-1)^n=-1$, so
+$a_n=3+2(-1)=3-2=1$. At an even index, $(-1)^n=1$, so
+$a_n=3+2(1)=3+2=5$. Substituting the first eight indices gives
+\[
+\begin{array}{c|rrrrrrrr}
+ n&1&2&3&4&5&6&7&8\\ \hline
+ (-1)^n&-1&1&-1&1&-1&1&-1&1\\
+ a_n&1&5&1&5&1&5&1&5
+\end{array}
+\]
+
+\step{(b) Specify and verify a selection function.}
+Define $\sigma:\N\to\N$ by $\sigma(k)=2k$.
+For every $k\geq1$, $\sigma(k)\geq2>0$, and
+\[
+ \sigma(k+1)-\sigma(k)=2(k+1)-2k=2>0.
+\]
+Thus this is a valid strictly increasing sequence of indices.
+The selected values are
+\[
+ a_{\sigma(k)}=a_{2k}=3+2(-1)^{2k}=3+2=5
+ \qquad(k\in\N).
+\]
+They form the constant subsequence $(5,5,5,\ldots)$.
+
+\answer{The first eight terms are $1,5,1,5,1,5,1,5$.
+One constant subsequence is $a_{2k}=5$, selected by $\sigma(k)=2k$.
+Selecting $\sigma(k)=2k-1$ would instead give the constant value $1$.}
+
+\exercise{11.2}{Five questions for each of four elementary sequences}
+
+\goal For each of
+\[
+ a_n=(-1)^n,\qquad b_n=\frac1n,\qquad c_n=n^2,
+ \qquad d_n=\frac{6n+4}{7n-3},
+\]
+answer all five questions: (a) a monotone subsequence with its
+indices; (b) the entire set of subsequential limits; (c) the
+limsup and liminf; (d) finite convergence or divergence to either
+infinity; and (e) boundedness. Subsequential limits here include
+the symbols $+\infty$ and $-\infty$ as in Definition 11.6.
+
+\idea We first record the tools used throughout Exercises
+11.2--11.4. Each sequence then receives its own answers (a)--(e).
+In particular, constructing some subsequential limits will always
+be followed by a reason that no additional ones have been missed.
+
+\subsubsection*{Tools shared by the three catalogues}
+
+\step{Tool 1: Selection indices tend to infinity.}
+For any strictly increasing positive integer indices
+$n_1<n_2<\cdots$, one has $n_k\geq k$.
+At $k=1$, $n_1\geq1$. If $n_k\geq k$, then the integer
+$n_{k+1}>n_k$ satisfies
+$n_{k+1}\geq n_k+1\geq k+1$. Induction proves the claim.
+Consequently $k>N$ implies $n_k>N$.
+
+The identity selection $n_k=k$ is allowed: a subsequence may
+retain all the terms of the original sequence. A constant
+subsequence is monotone under the book's non-strict definition,
+since its consecutive values satisfy both $u_{k+1}\geq u_k$
+and $u_{k+1}\leq u_k$.
+
+\step{Tool 2: Every subsequence inherits an existing finite or infinite limit.}
+For a finite limit, this is Theorem 11.3. Its proof uses
+Tool 1: once every original index $n>N$ satisfies an error
+bound, every selected index $n_k$ with $k>N$ satisfies it too.
+The same index argument proves the infinite cases directly.
+If $u_n\to+\infty$ and $M>0$, choose $N$ with
+$n>N\Longrightarrow u_n>M$. For $k>N$, $n_k\geq k>N$
+gives $u_{n_k}>M$, so $u_{n_k}\to+\infty$.
+If $u_n\to-\infty$ and $M<0$, choose $N$ with
+$n>N\Longrightarrow u_n<M$; the identical implication
+$n_k\geq k>N$ gives $u_{n_k}<M$ and hence the negative
+infinite limit.
+
+These alternatives are mutually exclusive. A finite limit $L$
+puts all sufficiently late terms in $(L-1,L+1)$, which prevents
+either infinite limit. The two signs of infinity are incompatible
+because their threshold tests with $1$ and $-1$ would require a
+late term to be both greater than $1$ and less than $-1$.
+Finite limits are unique by Theorem 7.3. Thus, if the original
+sequence has any existing limit $L$, its set of subsequential
+limits is exactly $\{L\}$: every subsequence has that limit,
+and the identity selection itself supplies a subsequence.
+
+\step{Tool 3: A sequence with only finitely many values.}
+Suppose every term belongs to a finite set
+$F=\{f_1,\ldots,f_m\}$ and every member of $F$ occurs infinitely
+often. For each particular sequence below, we will display
+constant selections proving that every member of $F$ is a
+subsequential limit.
+There can be no other finite subsequential limit. Indeed,
+if $L\notin F$, then the finite set of positive distances
+$\{\abs{L-f_i}:1\leq i\leq m\}$ has a positive minimum
+$\delta$. Every term, including every selected term,
+satisfies $\abs{u_n-L}\geq\delta$, so convergence to $L$
+fails the error test with $\varepsilon=\delta/2$.
+
+There are no infinite subsequential limits either. With
+$C=\max\{\abs{f_1},\ldots,\abs{f_m}\}$, every term lies
+between $-C$ and $C$. Neither the positive threshold $C+1$
+nor the negative threshold $-C-1$ can ever be crossed in
+the required direction. Therefore the full subsequential-limit
+set is precisely $F$.
+
+\step{Tool 4: Extract limsup, liminf, and full-sequence behavior from the set.}
+If $S$ is the full set of subsequential limits, Theorem 11.8(ii)
+gives
+\[
+ \limsup_{n\to\infty}u_n=\sup S,
+ \qquad
+ \liminf_{n\to\infty}u_n=\inf S.
+\]
+In the explicit sets below these are their greatest and least
+elements in the extended order. Theorem 11.8(iii) says that
+the original sequence has a limit if and only if $S$ has
+exactly one element. A singleton real element means finite
+convergence; a singleton $\{+\infty\}$ or $\{-\infty\}$
+means divergence of the corresponding sign. If $S$ contains
+two or more elements, there is no finite limit and neither
+infinite limit exists.
+
+\subsubsection*{The sequence $a_n=(-1)^n$}
+
+\textbf{(a) A monotone subsequence.}
+Choose $n_k=2k$. The indices start at $2$ and increase by $2$,
+so they are positive and strictly increasing. Then
+$a_{n_k}=(-1)^{2k}=1$ at every $k$. This constant
+subsequence is monotone.
+
+\textbf{(b) All subsequential limits.}
+At the indices $2k-1$ the values are $-1$, and at the
+indices $2k$ they are $1$. Both selections have positive
+indices and successive differences $2$. Thus constant
+subsequences give both $-1$ and $1$ as limits.
+The original sequence takes only these two values, so Tool 3
+excludes every other finite or infinite subsequential limit:
+\[
+ S_a=\{-1,1\}.
+\]
+
+\textbf{(c) Limsup and liminf.}
+The greatest element of $S_a$ is $1$ and the least is $-1$.
+Tool 4 therefore gives $\limsup a_n=1$ and $\liminf a_n=-1$.
+
+\textbf{(d) Full-sequence behavior.}
+Since $S_a$ has two distinct elements, Tool 4 excludes all
+three possibilities: $(a_n)$ does not converge to a real
+number, does not diverge to $+\infty$, and does not diverge
+to $-\infty$.
+
+\textbf{(e) Boundedness.}
+Every term is either $-1$ or $1$, so
+$-1\leq a_n\leq1$ for every $n$. Thus $(a_n)$ is bounded.
+
+\subsubsection*{The sequence $b_n=1/n$}
+
+\textbf{(a) A monotone subsequence.}
+Take the identity selection $n_k=k$, whose indices start at
+$1$ and increase by $1$. It gives $b_{n_k}=1/k$.
+Its consecutive differences are
+\[
+ \frac1{k+1}-\frac1k
+ =\frac{k-(k+1)}{k(k+1)}
+ =-\frac1{k(k+1)}<0.
+\]
+The denominator is positive for $k\geq1$, so the selected
+sequence is strictly decreasing.
+
+\textbf{(b) All subsequential limits.}
+The original sequence converges to $0$: given
+$\varepsilon>0$, $n>1/\varepsilon$ implies
+$\abs{1/n-0}=1/n<\varepsilon$.
+Tool 2 therefore proves that every subsequence has limit $0$,
+and excludes any additional finite or infinite limit. Thus
+$S_b=\{0\}$.
+
+\textbf{(c) Limsup and liminf.}
+The supremum and infimum of $\{0\}$ are both $0$.
+Hence $\limsup b_n=\liminf b_n=0$ by Tool 4.
+
+\textbf{(d) Full-sequence behavior.}
+The preceding error estimate proves finite convergence to $0$.
+It does not diverge to either sign of infinity, by the
+mutual exclusivity recorded in Tool 2.
+
+\textbf{(e) Boundedness.}
+For every positive integer $n$, $0<1/n\leq1$.
+Thus $0<b_n\leq1$, providing a lower and an upper bound.
+
+\subsubsection*{The sequence $c_n=n^2$}
+
+\textbf{(a) A monotone subsequence.}
+Take $n_k=k$. Then $c_{n_k}=k^2$, and
+\[
+ (k+1)^2-k^2=k^2+2k+1-k^2=2k+1>0.
+\]
+Thus the identity subsequence is strictly increasing.
+
+\textbf{(b) All subsequential limits.}
+The original sequence has limit $+\infty$: for $M>0$,
+$n>\sqrt M$ implies $n^2>M$.
+Tool 2 proves that every subsequence has this same infinite
+limit. Consequently the exact set is $S_c=\{+\infty\}$;
+in particular, no finite limit or negative-infinity limit
+has been omitted.
+
+\textbf{(c) Limsup and liminf.}
+Both the greatest and least elements of this singleton are
+$+\infty$. Thus
+$\limsup c_n=\liminf c_n=+\infty$.
+
+\textbf{(d) Full-sequence behavior.}
+The sequence diverges to $+\infty$. It has no finite real
+limit and does not diverge to $-\infty$.
+
+\textbf{(e) Boundedness.}
+It is bounded below by $1$, since $n\geq1$.
+It is not bounded above: for any proposed upper bound $B$,
+choose $n>\max\{1,B\}$. Then $n^2\geq n>B$.
+Thus $(c_n)$ is not a bounded sequence.
+
+\subsubsection*{The sequence $d_n=(6n+4)/(7n-3)$}
+
+For every $n\geq1$, $7n-3\geq4>0$, so each term is
+defined with a positive denominator. An exact subtraction
+identifies both its limit and its side of approach:
+\begin{align*}
+ d_n-\frac67
+ &=\frac{7(6n+4)-6(7n-3)}{7(7n-3)}\\
+ &=\frac{42n+28-42n+18}{7(7n-3)}\\
+ &=\frac{46}{7(7n-3)}>0.
+\end{align*}
+
+\textbf{(a) A monotone subsequence.}
+Use $n_k=k$. Subtract consecutive values using the error
+formula just established:
+\begin{align*}
+ d_{k+1}-d_k
+ &=\frac{46}{7}\left(\frac1{7k+4}-\frac1{7k-3}\right)\\
+ &=\frac{46}{7}\,
+    \frac{(7k-3)-(7k+4)}{(7k+4)(7k-3)}\\
+ &=\frac{46}{7}\,\frac{-7}{(7k+4)(7k-3)}\\
+ &=-\frac{46}{(7k+4)(7k-3)}<0.
+\end{align*}
+Both denominator factors are positive for $k\geq1$.
+Thus the full sequence, and hence the identity subsequence,
+is strictly decreasing.
+
+\textbf{(b) All subsequential limits.}
+For $n\geq1$,
+$7n-3\geq4n$ because $(7n-3)-4n=3(n-1)\geq0$.
+Therefore
+\[
+ \abs{d_n-\frac67}
+ =\frac{46}{7(7n-3)}
+ \leq\frac{46}{28n}
+ =\frac{23}{14n}.
+\]
+For $\varepsilon>0$, any threshold
+$N>23/(14\varepsilon)$ makes this error less than
+$\varepsilon$ for $n>N$. Thus $d_n\to6/7$.
+Tool 2 supplies exhaustiveness, so $S_d=\{6/7\}$.
+
+\textbf{(c) Limsup and liminf.}
+Tool 4 applied to the singleton gives
+$\limsup d_n=\liminf d_n=6/7$.
+
+\textbf{(d) Full-sequence behavior.}
+The sequence converges to the finite value $6/7$.
+Neither sign of infinite divergence is possible.
+
+\textbf{(e) Boundedness.}
+The positive error formula shows $d_n>6/7$ for every $n$.
+Strict decrease shows no term is larger than the first:
+\[
+ d_1=\frac{6+4}{7-3}=\frac{10}{4}=\frac52.
+\]
+Thus $6/7<d_n\leq5/2$ for every $n$, so the sequence is bounded.
+
+\answer{In Exercise 11.2, $(b_n)$ and $(d_n)$ converge, to $0$
+and $6/7$ respectively; $(c_n)$ diverges to $+\infty$; and
+$(a_n)$ has no extended limit. None diverges to $-\infty$.
+Exactly $(a_n),(b_n),(d_n)$ are bounded. Each of the four
+sequences has been given a monotone selection and its complete
+subsequential-limit set above.}
+
+\exercise{11.3}{Five questions for four bounded sequences}
+
+\goal Answer (a)--(e) of Exercise 11.2 separately for
+\[
+ s_n=\cos(n\pi/3),\qquad t_n=\frac3{4n+1},
+ \qquad u_n=\left(-\frac12\right)^n,
+ \qquad v_n=(-1)^n+\frac1n.
+\]
+We continue to use the four shared tools, so all sets of
+subsequential limits are understood in the extended sense.
+
+\subsubsection*{The sequence $s_n=\cos(n\pi/3)$}
+
+The cosine values are determined by the residue of $n$
+modulo $6$. Write $n=6q+r$, with $q\geq0$ an integer
+and $r\in\{1,2,3,4,5,6\}$. Then
+$n\pi/3=2q\pi+r\pi/3$, so the period $2\pi$ gives
+\[
+\begin{array}{c|rrrrrr}
+ r&1&2&3&4&5&6\\ \hline
+ \cos(r\pi/3)&1/2&-1/2&-1&-1/2&1/2&1
+\end{array}
+\]
+
+\textbf{(a) A monotone subsequence.}
+Select $n_k=6k$. These positive indices start at $6$ and
+increase by $6$. The selected terms satisfy
+$s_{6k}=\cos(2k\pi)=1$, so this is a constant monotone
+subsequence.
+
+\textbf{(b) All subsequential limits.}
+The table gives precisely four different values. The following
+explicit selections show that each occurs as a constant
+subsequence:
+\[
+\begin{array}{c|c|c}
+ \text{indices }n_k&\text{first index}&s_{n_k}\\ \hline
+ 6k-5&1&1/2\\
+ 6k-4&2&-1/2\\
+ 6k-3&3&-1\\
+ 6k&6&1
+\end{array}
+\]
+Each first index is positive and each sequence of indices
+increases by $6$. The period table proves there are no
+other values; Tool 3 excludes any other finite or infinite
+subsequential limit. Hence
+\[
+ S_s=\{-1,-1/2,1/2,1\}.
+\]
+
+\textbf{(c) Limsup and liminf.}
+The greatest element is $1$ and the least is $-1$, so
+$\limsup s_n=1$ and $\liminf s_n=-1$.
+
+\textbf{(d) Full-sequence behavior.}
+The set $S_s$ has four distinct elements, rather than one.
+Tool 4 shows that the original sequence does not converge
+to a finite value and does not diverge to either infinity.
+
+\textbf{(e) Boundedness.}
+The table puts every value between $-1$ and $1$, so
+$-1\leq s_n\leq1$ for every $n$ and the sequence is bounded.
+
+\subsubsection*{The sequence $t_n=3/(4n+1)$}
+
+\textbf{(a) A monotone subsequence.}
+The denominators are positive because $4n+1\geq5$.
+Choose $n_k=k$. The difference between consecutive selected
+terms is
+\begin{align*}
+ t_{k+1}-t_k
+ &=\frac3{4k+5}-\frac3{4k+1}\\
+ &=\frac{3[(4k+1)-(4k+5)]}{(4k+5)(4k+1)}\\
+ &=-\frac{12}{(4k+5)(4k+1)}<0.
+\end{align*}
+Thus the identity subsequence is strictly decreasing.
+
+\textbf{(b) All subsequential limits.}
+For every $n\geq1$,
+\[
+ 0<t_n=\frac3{4n+1}\leq\frac3{4n}.
+\]
+For $\varepsilon>0$, $n>3/(4\varepsilon)$ makes the
+last expression less than $\varepsilon$. Hence $t_n\to0$.
+Tool 2 proves that all subsequences have the same limit,
+so $S_t=\{0\}$, with no additional extended limits.
+
+\textbf{(c) Limsup and liminf.}
+Both extremal elements of this singleton are $0$.
+Thus $\limsup t_n=\liminf t_n=0$.
+
+\textbf{(d) Full-sequence behavior.}
+The sequence converges to $0$ and diverges to neither
+$+\infty$ nor $-\infty$.
+
+\textbf{(e) Boundedness.}
+The inequality $4n+1\geq5$ gives
+$0<t_n\leq3/5$. Therefore the sequence is bounded.
+
+\subsubsection*{The sequence $u_n=(-1/2)^n$}
+
+\textbf{(a) A monotone subsequence.}
+Choose the even indices $n_k=2k$, positive and increasing
+by $2$. Then
+\[
+ u_{2k}=\left(-\frac12\right)^{2k}
+ =\left(\frac14\right)^k>0.
+\]
+The next selected term is $u_{2(k+1)}=(1/4)u_{2k}$.
+Since $0<1/4<1$ and $u_{2k}>0$, it is strictly smaller
+than $u_{2k}$. Thus this subsequence is strictly decreasing.
+
+\textbf{(b) All subsequential limits.}
+The base has magnitude $1/2<1$. Theorem 9.7(b), or
+Exercise 9.13, gives
+$(-1/2)^n\to0$. Equivalently its distance from $0$ is
+$(1/2)^n\to0$, independently of the alternating sign.
+Tool 2 then gives the exhaustive set $S_u=\{0\}$.
+
+\textbf{(c) Limsup and liminf.}
+The singleton has both supremum and infimum $0$, so
+$\limsup u_n=\liminf u_n=0$.
+
+\textbf{(d) Full-sequence behavior.}
+It converges to the finite value $0$, and diverges to neither
+sign of infinity.
+
+\textbf{(e) Boundedness.}
+For $n\geq1$,
+\[
+ \abs{u_n}=\left(\frac12\right)^n
+ =\frac12\left(\frac12\right)^{n-1}\leq\frac12.
+\]
+The final product is at most $1/2$ because its remaining
+$n-1$ factors are at most $1$; at $n=1$ that remaining
+product is empty and equals $1$. Hence
+$-1/2\leq u_n\leq1/2$, a bound valid at every index.
+
+\subsubsection*{The sequence $v_n=(-1)^n+1/n$}
+
+\textbf{(a) A monotone subsequence.}
+Choose $n_k=2k$, again positive and increasing by $2$.
+The selected terms are $v_{2k}=1+1/(2k)$, and
+\begin{align*}
+ v_{2(k+1)}-v_{2k}
+ &=\frac1{2k+2}-\frac1{2k}\\
+ &=\frac{2k-(2k+2)}{(2k+2)(2k)}\\
+ &=-\frac1{2k(k+1)}<0.
+\end{align*}
+This is a strictly decreasing subsequence.
+
+\textbf{(b) All subsequential limits.}
+The even and odd selections respectively give
+\[
+ v_{2k}=1+\frac1{2k}\longrightarrow1,
+ \qquad
+ v_{2k-1}=-1+\frac1{2k-1}\longrightarrow-1.
+\]
+Both index formulas start at positive integers and increase
+by $2$. The reciprocal errors tend to $0$: for example,
+$1/(2k)\leq1/k$ and $1/(2k-1)\leq1/k$ for $k\geq1$.
+Thus $-1$ and $1$ are both subsequential limits.
+
+To exclude every other finite candidate, let $L\notin\{-1,1\}$
+and set
+\[
+ \delta=\min\{\abs{L-1},\abs{L+1}\}>0.
+\]
+Consider any subsequence with indices $n_k$. Since $n_k\geq k$,
+we have $1/n_k\leq1/k$. For $k>2/\delta$, this is less
+than $\delta/2$. The reverse triangle inequality then yields
+\begin{align*}
+ \abs{v_{n_k}-L}
+ &=\abs{((-1)^{n_k}-L)+1/n_k}\\
+ &\geq\abs{(-1)^{n_k}-L}-\frac1{n_k}\\
+ &\geq\delta-\frac1{n_k}>\frac\delta2.
+\end{align*}
+This defeats the convergence test with error tolerance
+$\delta/2$ for every such subsequence. Finally,
+\[
+ \abs{v_n}\leq\abs{(-1)^n}+\frac1n
+ =1+\frac1n\leq2,
+\]
+so no subsequence can tend to either infinity. The complete
+set is therefore $S_v=\{-1,1\}$.
+
+\textbf{(c) Limsup and liminf.}
+Tool 4 gives $\limsup v_n=1$ and $\liminf v_n=-1$.
+The values of the sequence approach these numbers along
+the even and odd selections, respectively.
+
+\textbf{(d) Full-sequence behavior.}
+There are two distinct subsequential limits. Thus the full
+sequence has no finite limit and diverges to neither infinity.
+
+\textbf{(e) Boundedness.}
+The absolute-value estimate $\abs{v_n}\leq2$ already proves
+boundedness. A sharper bound follows directly from parity:
+at even indices $n=2k$,
+$1<v_{2k}=1+1/(2k)\leq3/2$; at odd indices $n=2k-1$,
+$-1<v_{2k-1}=-1+1/(2k-1)\leq0$.
+Combining the cases gives $-1<v_n\leq3/2$ for every $n$.
+
+\answer{In Exercise 11.3 all four sequences are bounded.
+The sequences $(t_n)$ and $(u_n)$ converge to $0$;
+$(s_n)$ and $(v_n)$ have no extended limit.
+None diverges to either infinity. Their exact subsequential-limit
+sets are, in order,
+$\{-1,-1/2,1/2,1\}$, $\{0\}$, $\{0\}$, and $\{-1,1\}$,
+with limsup and liminf the largest and smallest elements of
+these sets.}
+
+\exercise{11.4}{Five questions for oscillation with and without growth}
+
+\goal Answer (a)--(e) of Exercise 11.2 separately for
+\[
+ w_n=(-2)^n,\qquad x_n=5^{(-1)^n},\qquad
+ y_n=1+(-1)^n,\qquad z_n=n\cos(n\pi/4).
+\]
+In the second expression, $(-1)^n$ is the \emph{exponent}
+of $5$; the expression is not multiplication by $(-1)^n$.
+
+\idea Parity resolves the first three sequences. For the last,
+a complete eight-residue table identifies the zero terms and
+the growing positive and negative terms. A separate bounded-tail
+argument then excludes any unlisted finite subsequential limit.
+
+\subsubsection*{The sequence $w_n=(-2)^n$}
+
+\textbf{(a) A monotone subsequence.}
+Take $n_k=2k$, whose positive indices increase by $2$.
+Then $w_{2k}=4^k>0$. The next selected value is
+$4^{k+1}=4\cdot4^k>4^k$, so this subsequence is strictly
+increasing.
+
+\textbf{(b) All subsequential limits.}
+The even selection gives $w_{2k}=4^k\to+\infty$ by
+Exercise 9.13, since the base $4$ is greater than $1$.
+The odd selection $n_k=2k-1$ gives
+\[
+ w_{2k-1}=-2^{2k-1}=-\frac12\,4^k\longrightarrow-\infty
+\]
+by the negative scaling result of Exercise 9.10.
+Both selections are valid positive increasing indices.
+
+There is no finite subsequential limit. Indeed,
+$\abs{w_n}=2^n\to+\infty$ by Exercise 9.13.
+Tool 2 applied to this positive magnitude sequence gives
+$\abs{w_{n_k}}\to+\infty$ for every selection.
+If $w_{n_k}\to L\in\R$, the error tolerance $1$ would
+give, eventually,
+\[
+ \abs{w_{n_k}}\leq\abs{w_{n_k}-L}+\abs L<1+\abs L,
+\]
+contradicting that magnitude limit. The only remaining
+extended candidates are the two already constructed, so
+\[
+ S_w=\{-\infty,+\infty\}.
+\]
+
+\textbf{(c) Limsup and liminf.}
+The extremal elements of $S_w$ give
+$\limsup w_n=+\infty$ and $\liminf w_n=-\infty$.
+
+\textbf{(d) Full-sequence behavior.}
+Since $S_w$ has two elements, the full sequence has no
+extended limit. In particular it does not converge to a real
+number and does not diverge to either single sign of infinity.
+Its large positive and negative terms do not constitute a
+limit of one sign.
+
+\textbf{(e) Boundedness.}
+The even terms exceed every real upper bound and the odd
+terms go below every real lower bound, by their infinite
+limits just proved. Hence $(w_n)$ is bounded neither above
+nor below, and is not a bounded sequence.
+
+\subsubsection*{The sequence $x_n=5^{(-1)^n}$}
+
+At even indices the exponent equals $1$, and at odd indices
+it equals $-1$. Therefore
+\[
+ x_{2k}=5^1=5,\qquad x_{2k-1}=5^{-1}=\frac15.
+\]
+
+\textbf{(a) A monotone subsequence.}
+Choose $n_k=2k$, positive and increasing by $2$.
+Then $x_{n_k}=5$ at every index, a constant monotone subsequence.
+
+\textbf{(b) All subsequential limits.}
+The even and odd index selections are constant with values
+$5$ and $1/5$ respectively, so both are subsequential limits.
+They are the only values the original sequence ever takes;
+Tool 3 therefore excludes all other finite and infinite
+subsequential limits. Thus $S_x=\{1/5,5\}$.
+
+\textbf{(c) Limsup and liminf.}
+Since $1/5<5$, Tool 4 gives
+$\limsup x_n=5$ and $\liminf x_n=1/5$.
+
+\textbf{(d) Full-sequence behavior.}
+The two distinct subsequential limits show that $(x_n)$
+does not converge to a finite number and diverges to neither
+sign of infinity.
+
+\textbf{(e) Boundedness.}
+Every term is either $1/5$ or $5$, so
+$1/5\leq x_n\leq5$. Both bounding values are attained,
+and the sequence is bounded.
+
+\subsubsection*{The sequence $y_n=1+(-1)^n$}
+
+\textbf{(a) A monotone subsequence.}
+Select $n_k=2k$, positive and increasing by $2$.
+Then $y_{2k}=1+1=2$ at every selected index.
+This constant subsequence is monotone.
+
+\textbf{(b) All subsequential limits.}
+At odd indices, $y_{2k-1}=1-1=0$, while at even indices
+$y_{2k}=2$. The two valid selections give constant subsequences
+with limits $0$ and $2$. Because these are the only values
+taken by any term, Tool 3 proves the exhaustive set
+$S_y=\{0,2\}$, with no infinite subsequential limit.
+
+\textbf{(c) Limsup and liminf.}
+The largest and smallest elements give
+$\limsup y_n=2$ and $\liminf y_n=0$.
+
+\textbf{(d) Full-sequence behavior.}
+The set of subsequential limits has two distinct elements.
+Thus there is no finite limit and no divergence to either
+$+\infty$ or $-\infty$.
+
+\textbf{(e) Boundedness.}
+The values satisfy $0\leq y_n\leq2$ at every index,
+so the sequence is bounded.
+
+\subsubsection*{The sequence $z_n=n\cos(n\pi/4)$}
+
+Write $n=8q+r$, with $q\geq0$ an integer and
+$r\in\{1,2,3,4,5,6,7,8\}$. Then
+$n\pi/4=2q\pi+r\pi/4$. The cosine period and its
+unit-circle values give the complete table
+\[
+\begin{array}{c|c|c}
+ r&\cos(r\pi/4)&z_n\text{ when }n=8q+r\\ \hline
+ 1&1/\sqrt2&n/\sqrt2\\
+ 2&0&0\\
+ 3&-1/\sqrt2&-n/\sqrt2\\
+ 4&-1&-n\\
+ 5&-1/\sqrt2&-n/\sqrt2\\
+ 6&0&0\\
+ 7&1/\sqrt2&n/\sqrt2\\
+ 8&1&n
+\end{array}
+\]
+Thus every nonzero term has magnitude at least $n/\sqrt2$;
+the only other possibility is the exact value $0$.
+
+\textbf{(a) A monotone subsequence.}
+Take $n_k=8k$, with first index $8$ and successive difference
+$8>0$. The selected values are
+\[
+ z_{8k}=8k\cos(2k\pi)=8k.
+\]
+Their consecutive differences equal $8>0$, so this is a
+strictly increasing subsequence.
+
+\textbf{(b) Construct the three candidate limits.}
+The same even-period selection gives $z_{8k}=8k\to+\infty$:
+given $M>0$, every $k>M/8$ makes $8k>M$.
+For negative infinity, choose $n_k=8k-4$, starting at $4$
+and increasing by $8$. Then
+\[
+ z_{8k-4}=(8k-4)\cos((2k-1)\pi)=-(8k-4)=-8k+4.
+\]
+For $M<0$, every $k>(4-M)/8$ satisfies $-8k+4<M$,
+so this subsequence tends to $-\infty$.
+
+For the finite value $0$, choose $n_k=4k-2$, starting at
+$2$ and increasing by $4$. The angle is
+$(4k-2)\pi/4=k\pi-\pi/2$, whose cosine is $0$.
+Thus $z_{4k-2}=0$ for every $k$, giving a constant
+subsequence with limit $0$.
+
+\textbf{(b) Exclude every other finite limit.}
+Suppose a subsequence $z_{n_k}$ converges to a finite
+$L\in\R$. Convergence with error tolerance $1$ gives a
+threshold $K_1$ such that for $k>K_1$,
+\[
+ \abs{z_{n_k}}
+ \leq\abs{z_{n_k}-L}+\abs L<1+\abs L.
+\]
+Choose $K_2>\sqrt2(1+\abs L)$. For $k>K_2$, Tool 1
+gives $n_k\geq k>\sqrt2(1+\abs L)$, so
+\[
+ \frac{n_k}{\sqrt2}>1+\abs L.
+\]
+At an index with $k>\max\{K_1,K_2\}$, a nonzero selected
+term would have, by the period table,
+$\abs{z_{n_k}}\geq n_k/\sqrt2>1+\abs L$, contradicting
+the bounded-tail estimate. Thus every sufficiently late
+selected term must be exactly $0$.
+
+Such a subsequence has limit $0$ directly from the definition.
+It cannot have a different finite limit $L\ne0$, because
+its late errors from $L$ would all equal $\abs L$, failing
+the tolerance $\varepsilon=\abs L/2$.
+Consequently $0$ is the only possible finite subsequential
+limit. The only infinite possibilities, $+\infty$ and
+$-\infty$, have already been constructed. The complete set is
+\[
+ S_z=\{-\infty,0,+\infty\}.
+\]
+
+\textbf{(c) Limsup and liminf.}
+The greatest and least elements of this set are
+$+\infty$ and $-\infty$. Hence
+$\limsup z_n=+\infty$ and $\liminf z_n=-\infty$.
+
+\textbf{(d) Full-sequence behavior.}
+There are three distinct subsequential limits. By Tool 4
+the original sequence does not converge to a finite real
+number and does not diverge to either infinity.
+In particular, the growing magnitudes in some residue classes
+do not remove the infinitely many exact zero terms.
+
+\textbf{(e) Boundedness.}
+The values $z_{8k}=8k$ are unbounded above, and the values
+$z_{8k-4}=-8k+4$ are unbounded below. Thus $(z_n)$ is
+bounded neither above nor below, and is not a bounded sequence.
+
+\answer{In Exercise 11.4 none of the four full sequences has
+a finite or infinite limit. The sequences $(x_n)$ and $(y_n)$
+are bounded, while $(w_n)$ and $(z_n)$ are unbounded above
+and below. Their complete subsequential-limit sets are,
+respectively,
+\[
+ \{-\infty,+\infty\},\qquad
+ \{1/5,5\},\qquad
+ \{0,2\},\qquad
+ \{-\infty,0,+\infty\}.
+\]
+The limsup and liminf for each sequence are the greatest
+and least elements of its displayed set, as proved in the
+individual answers to (c).}

@@ -1,0 +1,557 @@
+\subsection*{Tail notation and the meaning of infinite bounds}
+For a real sequence $(x_n)$ and an integer $N\ge1$, write
+\[
+ X_N=\{x_n:n>N\},\qquad
+ u_N(x)=\inf X_N,\qquad v_N(x)=\sup X_N.
+\]
+The set $X_N$ is nonempty because it contains $x_{N+1}$. We use the
+extended-bound conventions of Section~5: $u_N(x)=-\infty$ if the
+tail is unbounded below, and $v_N(x)=+\infty$ if it is unbounded
+above. For a nonempty set of real terms, a tail infimum cannot be
+$+\infty$, and a tail supremum cannot be $-\infty$.
+By Definition~10.6,
+\[
+ \liminf_{n\to\infty}x_n=\lim_{N\to\infty}u_N(x),\qquad
+ \limsup_{n\to\infty}x_n=\lim_{N\to\infty}v_N(x).
+\]
+Removing more terms enlarges the infimum and decreases the supremum,
+since $X_{N+1}\subseteq X_N$.
+
+We will also use a finite-prefix observation. If a tail of a real
+sequence has an upper bound $U$, then adjoining its finitely many
+omitted terms still gives a bounded-above set: take the maximum of
+$U$ and those finitely many terms. The corresponding minimum proves
+the analogous statement for lower bounds. Thus a sequence that is
+unbounded above, or unbounded below, has the same property on every
+tail. Infinite symbols will be handled through order and these
+conventions, rather than through real-number algebra.
+
+\exercise{12.1}{Eventual comparison passes to both limiting bounds}
+
+\goal Suppose there is an $N_0$ such that $s_n\le t_n$ for all
+$n>N_0$. Prove
+\[
+ \liminf s_n\le\liminf t_n,
+ \qquad
+ \limsup s_n\le\limsup t_n.
+\]
+No boundedness assumption is imposed on the two sequences.
+
+\step{Step 1: make the eventual comparison valid on the tails under discussion.}
+Enlarge $N_0$, if necessary, to a positive integer. This keeps the
+hypothesis true, because it discards additional initial terms.
+Fix any integer $N\ge N_0$. For every $n>N$ we then have
+$s_n\le t_n$.
+
+For the upper tail bounds, if $v_N(t)=+\infty$, the extended-order
+comparison $v_N(s)\le v_N(t)$ holds immediately. Otherwise $v_N(t)$
+is real, and
+\[
+ s_n\le t_n\le v_N(t)\qquad(n>N).
+\]
+Thus $v_N(t)$ is an upper bound of the tail of $(s_n)$, so its least
+upper bound satisfies $v_N(s)\le v_N(t)$.
+
+For the lower tail bounds, if $u_N(s)=-\infty$, the comparison
+$u_N(s)\le u_N(t)$ is automatic in the extended order.
+Otherwise $u_N(s)$ is real, and
+\[
+ u_N(s)\le s_n\le t_n\qquad(n>N).
+\]
+Thus $u_N(s)$ is a lower bound of the tail of $(t_n)$, so it is at
+most that tail's greatest lower bound. We have proved
+\[
+ u_N(s)\le u_N(t),\qquad v_N(s)\le v_N(t)
+ \qquad(N\ge N_0).
+\]
+
+\step{Step 2: pass to the lower limiting bounds, checking infinite cases.}
+If $(s_n)$ is unbounded below, every tail infimum $u_N(s)$ equals
+$-\infty$. Therefore $\liminf s_n=-\infty\le\liminf t_n$, and
+there is nothing further to prove for the lower bounds in this case.
+
+If $(s_n)$ is bounded below, choose a real lower bound $a$.
+For $n>N_0$, the hypothesis gives $t_n\ge s_n\ge a$. The
+finite-prefix observation shows that $(t_n)$ is bounded below too.
+Consequently both $u_N(s)$ and $u_N(t)$ are real for every $N$.
+Their limits exist in the extended sense by Definition~10.6.
+Apply Exercise~9.9(c), the order rule for existing limits of
+real-valued sequences, to $u_N(s)\le u_N(t)$:
+\[
+ \lim_{N\to\infty}u_N(s)\le\lim_{N\to\infty}u_N(t).
+\]
+The limits may be $+\infty$, but the terms to which the exercise
+was applied are real. By definition this is
+$\liminf s_n\le\liminf t_n$.
+
+\step{Step 3: pass to the upper limiting bounds, checking infinite cases.}
+If $(t_n)$ is unbounded above, then every $v_N(t)=+\infty$, so
+$\limsup s_n\le+\infty=\limsup t_n$.
+If $(t_n)$ is bounded above by a real number $b$, then
+$s_n\le t_n\le b$ for $n>N_0$. The finite-prefix observation
+shows that $(s_n)$ is bounded above as well. Hence $v_N(s)$ and
+$v_N(t)$ are real-valued sequences, with existing extended limits.
+Applying Exercise~9.9(c) to their eventual inequality gives
+\[
+ \lim_{N\to\infty}v_N(s)\le\lim_{N\to\infty}v_N(t),
+\]
+which is $\limsup s_n\le\limsup t_n$.
+
+\answer{Both comparisons hold:
+\[
+ \boxed{\liminf s_n\le\liminf t_n,
+ \qquad\limsup s_n\le\limsup t_n}.
+\]
+The proof includes infinite limiting bounds. It does not treat
+$+\infty$ or $-\infty$ as individual real terms in an application
+of a real-sequence limit rule.}
+
+\exercise{12.2}{A zero limit superior of absolute values}
+
+\goal Prove the equivalence
+\[
+ \limsup\abs{s_n}=0\quad\Longleftrightarrow\quad s_n\longrightarrow0.
+\]
+
+\step{Forward direction, Step 1: derive the boundedness needed for finite tail suprema.}
+Assume $\limsup\abs{s_n}=0$ and put $a_n=\abs{s_n}\ge0$.
+If $(a_n)$ were unbounded above, every tail would be unbounded above
+by the finite-prefix observation. Its every tail supremum would
+therefore be $+\infty$, giving $\limsup a_n=+\infty$, contrary to
+the assumed value $0$. Thus $(a_n)$ is bounded above.
+Because all $a_n\ge0$, it is bounded below as well.
+
+It follows that the numbers
+\[
+ V_N=\sup\{\abs{s_n}:n>N\}
+\]
+are finite and nonnegative for every positive integer $N$.
+Their nonnegativity follows, for example, by comparing $V_N$ with
+the member $\abs{s_{N+1}}\ge0$ of the tail.
+The hypothesis and Definition~10.6 now say $V_N\to0$.
+
+\step{Forward direction, Step 2: control every term in one sufficiently late tail.}
+Let $\varepsilon>0$. From $V_N\to0$, choose a positive integer $N_*$
+large enough that $\abs{V_{N_*}-0}<\varepsilon$.
+Since $V_{N_*}\ge0$, this means $V_{N_*}<\varepsilon$.
+For every integer $n>N_*$, the definition of tail supremum gives
+\[
+ \abs{s_n-0}=\abs{s_n}\le V_{N_*}<\varepsilon.
+\]
+This is Definition~7.1 for $s_n\to0$. Boundedness was obtained from
+the hypothesis before any finite-tail estimate was used.
+
+\step{Reverse direction, Step 1: verify convergence of the absolute values.}
+Assume $s_n\to0$. Let $\varepsilon>0$. The definition gives a
+threshold $N$ such that $n>N$ implies $\abs{s_n-0}<\varepsilon$.
+Since $\abs{s_n}\ge0$, the error in the sequence of absolute values
+is exactly
+\[
+ \abs{\abs{s_n}-0}=\abs{s_n}=\abs{s_n-0}<\varepsilon.
+\]
+Thus $\abs{s_n}\to0$ directly from the definition.
+
+\step{Reverse direction, Step 2: identify its limit superior.}
+Theorem~10.7 says that when a sequence has a limit, its limit
+inferior and limit superior equal that limit. Applying it to the
+convergent sequence $(\abs{s_n})$ gives $\limsup\abs{s_n}=0$.
+
+\answer{The two implications prove
+\(\boxed{\limsup\abs{s_n}=0\ \Longleftrightarrow\ s_n\to0}\).}
+
+\exercise{12.3}{Two synchronized sequences of period four}
+
+\goal Compute all seven requested combinations for the sequences
+whose repeated blocks are $(0,1,2,1)$ and $(2,1,1,0)$.
+
+\step{Step 1: keep the phases aligned in one residue table.}
+The index $n$ has one of four residues modulo $4$. Reading the
+entries at the same index gives
+\begin{center}
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+Residue of $n$ & $s_n$ & $t_n$ & $s_n+t_n$ & $s_nt_n$\\
+\midrule
+$1$ & $0$ & $2$ & $2$ & $0$\\
+$2$ & $1$ & $1$ & $2$ & $1$\\
+$3$ & $2$ & $1$ & $3$ & $2$\\
+$0$ & $1$ & $0$ & $1$ & $0$\\
+\bottomrule
+\end{tabular}
+\end{center}
+For instance, at indices $n=4j+3$ the entries are $s_n=2$ and
+$t_n=1$, so the sum is $3$ and the product is $2$.
+Every row occurs at arbitrarily large indices: by taking the integer
+$j$ sufficiently large, its index exceeds any prescribed threshold.
+For the residue $0$, use indices $4,8,12,\ldots$.
+
+\step{Step 2: identify each tail's minimum and maximum.}
+Every tail of $(s_n)$ contains the values $0,1,2$ and no others.
+Thus its infimum is $0$ and its supremum is $2$. The same is true
+for every tail of $(t_n)$. The sum has the repeated block
+$(2,2,3,1)$, so every tail of the sum contains exactly the values
+$1,2,3$; its infimum is $1$ and its supremum is $3$.
+The product has the repeated block $(0,1,2,0)$, so its tail infima
+are $0$ and its tail suprema are $2$.
+Taking the limits of these constant sequences of tail bounds gives
+\[
+ \liminf s_n=0,\quad\limsup s_n=2,\qquad
+ \liminf t_n=0,\quad\limsup t_n=2,
+\]
+\[
+ \liminf(s_n+t_n)=1,\quad\limsup(s_n+t_n)=3,
+ \qquad
+ \liminf(s_nt_n)=0,\quad\limsup(s_nt_n)=2.
+\]
+
+\step{Step 3: evaluate every requested expression.}
+\begin{align*}
+ \text{(a)}\quad&\liminf s_n+\liminf t_n=0+0=\boxed{0},\\
+ \text{(b)}\quad&\liminf(s_n+t_n)=\boxed{1},\\
+ \text{(c)}\quad&\liminf s_n+\limsup t_n=0+2=\boxed{2},\\
+ \text{(d)}\quad&\limsup(s_n+t_n)=\boxed{3},\\
+ \text{(e)}\quad&\limsup s_n+\limsup t_n=2+2=\boxed{4},\\
+ \text{(f)}\quad&\liminf(s_nt_n)=\boxed{0},\\
+ \text{(g)}\quad&\limsup(s_nt_n)=\boxed{2}.
+\end{align*}
+
+\answer{The phase alignment matters. The largest value of $(s_n)$
+occurs when $t_n=1$, whereas the largest value of $(t_n)$ occurs
+when $s_n=0$. Adding the separate maxima therefore gives $4$, even
+though the paired sum has maximum $3$.}
+
+\exercise{12.4}{The limit superior of a sum is at most the sum of the limit superiors}
+
+\goal For bounded real sequences $(s_n)$ and $(t_n)$, prove
+\[
+ \limsup(s_n+t_n)\le\limsup s_n+\limsup t_n.
+\]
+
+\step{Step 1: establish that all relevant tail bounds are finite.}
+Choose real constants $A,B\ge0$ with $\abs{s_n}\le A$ and
+$\abs{t_n}\le B$ for every $n$. The triangle inequality gives
+$\abs{s_n+t_n}\le A+B$, so the sum sequence is bounded as well.
+For every positive integer $N$, the three tails are nonempty and
+bounded, and hence the numbers
+\[
+ S_N=\sup\{s_n:n>N\},\quad T_N=\sup\{t_n:n>N\},\quad
+ W_N=\sup\{s_n+t_n:n>N\}
+\]
+are real. Their limits as $N\to\infty$ are also finite, since the
+underlying sequences are bounded.
+
+\step{Step 2: prove the finite-tail inequality.}
+For every integer $n>N$, the upper-bound properties give
+$s_n\le S_N$ and $t_n\le T_N$. Adding yields
+\[
+ s_n+t_n\le S_N+T_N.
+\]
+Thus the real number $S_N+T_N$ is an upper bound of the paired-sum
+tail. Its least upper bound satisfies
+\[
+ W_N\le S_N+T_N.
+\]
+This argument does not require $S_N$ or $T_N$ to be attained. It
+also does not require a single index where both separate bounds
+are approached at once.
+
+\step{Step 3: take limits of the real tail-bound sequences.}
+By Definition~10.6,
+\[
+ S_N\to\limsup s_n,\qquad T_N\to\limsup t_n,
+ \qquad W_N\to\limsup(s_n+t_n).
+\]
+The sum law from Section~9 gives
+\[
+ S_N+T_N\longrightarrow\limsup s_n+\limsup t_n.
+\]
+Apply Exercise~9.9(c) to the termwise comparison $W_N\le S_N+T_N$.
+The resulting comparison of limits is
+\[
+ \limsup(s_n+t_n)\le\limsup s_n+\limsup t_n.
+\]
+
+\answer{This proves the desired inequality. The boundedness
+hypotheses ensure that every sum of limiting bounds used here is a
+sum of real numbers; no undefined combination of infinite symbols
+has been introduced.}
+
+\exercise{12.5}{The corresponding lower bound for the limit inferior of a sum}
+
+\goal Use Exercises~11.8 and 12.4 to prove, for bounded real
+sequences,
+\[
+ \liminf(s_n+t_n)\ge\liminf s_n+\liminf t_n.
+\]
+
+\step{Step 1: verify that the reflected sequences meet the hypotheses.}
+The sequences $(-s_n)$ and $(-t_n)$ are bounded because
+$\abs{-s_n}=\abs{s_n}$ and $\abs{-t_n}=\abs{t_n}$.
+Their sum is $-s_n-t_n=-(s_n+t_n)$, which is bounded too.
+Exercise~12.4 therefore applies and gives
+\[
+ \limsup\bigl(-(s_n+t_n)\bigr)
+    \le\limsup(-s_n)+\limsup(-t_n).
+\]
+
+\step{Step 2: replace each reflected upper limiting bound.}
+Exercise~11.8 states
+$\liminf x_n=-\limsup(-x_n)$.
+For the bounded sequences here, all these values are real. Taking
+their negatives also gives
+$\limsup(-x_n)=-\liminf x_n$. Substitute this identity in the
+three places in Step~1:
+\[
+ -\liminf(s_n+t_n)
+    \le-\liminf s_n-\liminf t_n
+    =-\bigl(\liminf s_n+\liminf t_n\bigr).
+\]
+
+\step{Step 3: reverse the inequality by negation.}
+Multiplying a real inequality by $-1$ reverses its direction.
+Negating both sides of the last comparison, and taking the negative
+twice in each expression, yields
+\[
+ \liminf(s_n+t_n)\ge\liminf s_n+\liminf t_n.
+\]
+
+\answer{The claimed lower inequality follows. The sign reversal is
+the reason that reflecting the upper inequality from Exercise~12.4
+produces a lower inequality here.}
+
+\exercise{12.6}{Scaling the upper and lower limiting bounds}
+
+\goal For bounded $(s_n)$ and $k\ge0$, prove (a)
+$\limsup(ks_n)=k\limsup s_n$ and (b)
+$\liminf(ks_n)=k\liminf s_n$. Determine the correct formulas in
+(c) when $k<0$.
+
+\step{Preliminary step: scaling preserves boundedness.}
+Choose $A\ge0$ with $\abs{s_n}\le A$ for every $n$.
+For any fixed real $k$, the identity
+$\abs{ks_n}=\abs{k}\abs{s_n}\le\abs{k}A$ shows that $(ks_n)$
+is bounded. Its tails are nonempty. Hence all tail bounds for
+$(s_n)$ and $(ks_n)$ below are real numbers.
+Write
+\[
+ m_N=\inf\{s_n:n>N\},\qquad M_N=\sup\{s_n:n>N\}.
+\]
+The limits of these two sequences are $\liminf s_n$ and
+$\limsup s_n$, respectively, and are finite by boundedness.
+
+\step{Parts (a) and (b), the case $k=0$.}
+If $k=0$, every scaled term is zero. Every scaled tail is the
+singleton $\{0\}$, whose infimum and supremum are zero.
+Therefore both limiting bounds of $(ks_n)$ are zero. The expressions
+$0\cdot\liminf s_n$ and $0\cdot\limsup s_n$ are also zero,
+because their other factors are finite real numbers. Thus both
+requested formulas hold in this case.
+
+\step{Part (a), Step 1: prove the upper-tail scaling formula for $k>0$.}
+Fix $k>0$ and an integer $N\ge1$. Since $s_n\le M_N$ for all
+$n>N$, multiplication by $k$ gives $ks_n\le kM_N$.
+Thus $kM_N$ is an upper bound of the scaled tail.
+
+To check that it is the least upper bound, let $U$ be any real upper
+bound of that tail. Then $ks_n\le U$ for every $n>N$.
+Division by $k>0$ gives $s_n\le U/k$ for all these indices, so
+$U/k$ is an upper bound of the original tail. The least-upper-bound
+property gives $M_N\le U/k$. Multiplying by $k>0$ gives
+$kM_N\le U$. We have proved both defining properties of a
+supremum, so
+\[
+ \sup\{ks_n:n>N\}=kM_N.
+\]
+
+\step{Part (a), Step 2: take the limit of the real tail bounds.}
+By the constant-multiple limit law from Section~9,
+\[
+ kM_N\longrightarrow k\limsup s_n.
+\]
+Definition~10.6 identifies the limit of the left side of the tail
+identity as $\limsup(ks_n)$. Hence
+\[
+ \boxed{\limsup(ks_n)=k\limsup s_n}\qquad(k>0).
+\]
+Together with the zero case, this proves part (a) for all $k\ge0$.
+
+\step{Part (b), Step 1: prove the lower-tail scaling formula for $k>0$.}
+For every $n>N$, $m_N\le s_n$; multiplying by $k>0$ gives
+$km_N\le ks_n$. Thus $km_N$ is a lower bound of the scaled tail.
+If $L$ is any real lower bound of that tail, then $L\le ks_n$
+for every $n>N$. Divide by $k>0$ to obtain $L/k\le s_n$.
+Consequently $L/k$ is a lower bound of the original tail. Since
+$m_N$ is its greatest lower bound, $L/k\le m_N$, and hence
+$L\le km_N$. These two properties establish
+\[
+ \inf\{ks_n:n>N\}=km_N.
+\]
+Taking limits of this equality and using the constant-multiple law
+gives
+\[
+ \boxed{\liminf(ks_n)=k\liminf s_n}\qquad(k>0).
+\]
+The zero case already proved extends it to all $k\ge0$.
+
+\step{Part (b), Step 2: relate the formula to the reflection hint.}
+For completeness, the same lower formula follows from part (a)
+and Exercise~11.8. When $k>0$,
+\begin{align*}
+ \liminf(ks_n)
+   &=-\limsup(-ks_n),\\
+   &=-\limsup\bigl(k(-s_n)\bigr),\\
+   &=-k\limsup(-s_n),\\
+   &=k\liminf s_n.
+\end{align*}
+The third equality uses part (a) for the bounded sequence $(-s_n)$;
+the first and last use reflection. All negatives here are negatives
+of finite real numbers.
+
+\step{Part (c), Step 1: a negative multiplier exchanges the tail bounds.}
+Now let $k<0$ and fix $N$. Multiplication by $k$ reverses order.
+Since $m_N\le s_n$ for every $n>N$, we have $ks_n\le km_N$;
+thus $km_N$ is an upper bound of the scaled tail.
+For any other upper bound $U$, the inequalities $ks_n\le U$
+become $s_n\ge U/k$ after division by $k<0$.
+Hence $U/k$ is a lower bound of the original tail, so
+$U/k\le m_N$. Multiplying this last inequality by $k<0$ reverses
+it and gives $U\ge km_N$. Therefore
+\[
+ \sup\{ks_n:n>N\}=km_N\qquad(k<0).
+\]
+
+Similarly, $s_n\le M_N$ gives $ks_n\ge kM_N$, so $kM_N$ is a
+lower bound of the scaled tail. If $L$ is any other lower bound,
+$L\le ks_n$ gives $L/k\ge s_n$ after division by $k<0$.
+Thus $L/k$ is an upper bound of the original tail and
+$M_N\le L/k$. Multiplying by $k<0$ gives $kM_N\ge L$.
+It follows that
+\[
+ \inf\{ks_n:n>N\}=kM_N\qquad(k<0).
+\]
+
+\step{Part (c), Step 2: take finite limits.}
+The constant-multiple law, now with a fixed negative constant, still
+applies to these real convergent tail-bound sequences. Taking limits
+of the two identities gives
+\[
+ \boxed{\limsup(ks_n)=k\liminf s_n,
+ \qquad\liminf(ks_n)=k\limsup s_n}\qquad(k<0).
+\]
+
+\answer{A positive multiplier preserves the upper and lower limiting
+bounds separately. A zero multiplier makes both zero. A negative
+multiplier exchanges their roles, as the two formulas in part (c)
+state. All statements were proved without assuming that any tail
+supremum or infimum is attained.}
+
+\exercise{12.7}{A positive multiplier preserves an infinite limit superior}
+
+\goal Suppose $\limsup s_n=+\infty$ and $k>0$. Prove
+$\limsup(ks_n)=+\infty$ without assuming that $(s_n)$ is bounded.
+
+\step{Step 1: prove that every tail of the original sequence is unbounded above.}
+Suppose some tail were bounded above by a real $U$. Then $s_n\le U$
+for every index in that tail, so the eventual comparison result of
+Exercise~12.1, applied to $(s_n)$ and the constant sequence $U$,
+would give
+\[
+ \limsup s_n\le\limsup U=U.
+\]
+This contradicts $\limsup s_n=+\infty$. Thus no such tail bound
+exists: for each integer $N$ and each real $R$, some index $n>N$
+satisfies $s_n>R$.
+
+\step{Step 2: prove that every scaled tail is unbounded above.}
+Fix any positive integer $N$ and any proposed real upper bound $M$
+for the scaled tail. Since $k>0$, the quotient $M/k$ is real.
+Step~1, with $R=M/k$, gives an index $n>N$ such that $s_n>M/k$.
+Multiplying by the positive number $k$ preserves strict inequality:
+\[
+ ks_n>M.
+\]
+Thus $M$ is not an upper bound. Because $M$ was arbitrary, the
+scaled tail is unbounded above. Because $N$ was arbitrary, every
+scaled tail has this property.
+
+\step{Step 3: apply the definition of the infinite tail bound.}
+For every $N$, the extended-bound convention gives
+\[
+ \sup\{ks_n:n>N\}=+\infty.
+\]
+Its limiting value is therefore $+\infty$, which is exactly
+$\limsup(ks_n)$ by Definition~10.6.
+
+\answer{We obtain \(\boxed{\limsup(ks_n)=+\infty}\).
+The proof divided and multiplied only real numbers, such as $M$ and
+$M/k$, and used unboundedness to interpret the infinite result.}
+
+\exercise{12.8}{A product bound for bounded nonnegative sequences}
+
+\goal Let $(s_n)$ and $(t_n)$ be bounded sequences with $s_n\ge0$
+and $t_n\ge0$ for every $n$. Prove
+\[
+ \limsup(s_nt_n)\le(\limsup s_n)(\limsup t_n).
+\]
+
+\step{Step 1: give finite bounds for the three sequences.}
+Choose $A,B\ge0$ such that $0\le s_n\le A$ and $0\le t_n\le B$
+for every $n$. Because $t_n\ge0$, multiplication of $s_n\le A$
+by $t_n$ gives $s_nt_n\le At_n$. Because $A\ge0$, multiplication
+of $t_n\le B$ by $A$ gives $At_n\le AB$. Thus
+\[
+ 0\le s_nt_n\le At_n\le AB.
+\]
+The product sequence is bounded and nonnegative too.
+For every $N$, all three tails are nonempty and bounded, and their
+suprema
+\[
+ S_N=\sup\{s_n:n>N\},\quad
+ T_N=\sup\{t_n:n>N\},\quad
+ P_N=\sup\{s_nt_n:n>N\}
+\]
+are finite and nonnegative. For example,
+$0\le s_{N+1}\le S_N$, which proves $S_N\ge0$; the other two
+nonnegativity statements follow in the same way from their tails.
+
+\step{Step 2: prove the paired-product tail inequality.}
+For each $n>N$, the tail upper bounds give $s_n\le S_N$ and
+$t_n\le T_N$. Multiply the first inequality by $t_n\ge0$:
+\[
+ s_nt_n\le S_Nt_n.
+\]
+Multiply the second by $S_N\ge0$:
+\[
+ S_Nt_n\le S_NT_N.
+\]
+The sign checks are necessary for both comparisons. Combining them
+shows $s_nt_n\le S_NT_N$ for every $n>N$.
+Hence $S_NT_N$ is an upper bound of the product tail. Its least
+upper bound satisfies
+\[
+ P_N\le S_NT_N.
+\]
+Neither separate tail supremum needs to be attained, and no common
+index attaining both was selected.
+
+\step{Step 3: compare the finite limits of the tail-bound sequences.}
+Definition~10.6 gives
+\[
+ S_N\to\limsup s_n,\qquad T_N\to\limsup t_n,
+ \qquad P_N\to\limsup(s_nt_n).
+\]
+All limits here are finite because the original sequences and the
+product sequence are bounded. The product limit law from Section~9
+therefore yields
+\[
+ S_NT_N\longrightarrow(\limsup s_n)(\limsup t_n).
+\]
+Applying Exercise~9.9(c) to $P_N\le S_NT_N$ gives the requested
+comparison of limiting values.
+
+\answer{We have proved
+\[
+ \boxed{\limsup(s_nt_n)\le(\limsup s_n)(\limsup t_n)}.
+\]
+The proof includes the case where either upper limiting bound is
+zero, because no division by one of those bounds was used.}
