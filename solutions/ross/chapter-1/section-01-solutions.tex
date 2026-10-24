@@ -1,0 +1,995 @@
+\section{The set of natural numbers}
+
+Throughout this section, $\N=\{1,2,3,\ldots\}$. An induction proof has
+two separate obligations: establish an initial statement, and establish the
+implication from an arbitrary statement to the next one. In the second
+obligation, the induction hypothesis is an assumption used inside that
+implication; it is not a substitute for the initial case. When induction
+begins at an integer $m$ instead of at $1$, its conclusion concerns precisely
+the integers $n\geq m$.
+
+We write $\sum_{k=r}^{s}u_k$ for the sum of the terms indexed by
+$r,r+1,\ldots,s$; if $r>s$, the sum is empty and equals $0$.
+For integers $d\ne0$ and $M$, saying that $d$ divides $M$ means that
+$M=dq$ for some integer $q$. The proofs of divisibility below identify this
+integer explicitly.
+
+\exercise{1.1}{Sum of the first squares}
+
+\goal For every $n\in\N$, establish
+\[
+ \sum_{k=1}^{n} k^2=\frac{n(n+1)(2n+1)}{6}.
+\]
+
+\idea Increasing the upper limit from $n$ to $n+1$ adds exactly the
+new term $(n+1)^2$. We substitute the proposed formula for the old sum,
+then factor the resulting polynomial into the expression required at $n+1$.
+
+\step{1. Specify the proposition and check the initial case.}
+Let $P_n$ be the displayed identity. At $n=1$, its left side is $1^2=1$,
+and its right side is
+\[
+ \frac{1(1+1)(2\cdot1+1)}{6}
+ =\frac{1\cdot2\cdot3}{6}=1.
+\]
+Thus $P_1$ is true.
+
+\step{2. State the hypothesis and the next target.}
+Fix an arbitrary $n\in\N$ and assume $P_n$, namely
+\[
+ \sum_{k=1}^{n}k^2=\frac{n(n+1)(2n+1)}{6}.
+\]
+We must prove
+\[
+ \sum_{k=1}^{n+1}k^2
+ =\frac{(n+1)((n+1)+1)(2(n+1)+1)}{6}
+ =\frac{(n+1)(n+2)(2n+3)}{6}.
+\]
+
+\step{3. Add the new square and carry out the factorization.}
+The induction hypothesis gives
+\begin{align*}
+ \sum_{k=1}^{n+1} k^2
+ &=\left(\sum_{k=1}^{n}k^2\right)+(n+1)^2\\
+ &=\frac{n(n+1)(2n+1)}{6}+(n+1)^2\\
+ &=\frac{n(n+1)(2n+1)+6(n+1)^2}{6}\\
+ &=\frac{(n+1)\bigl[n(2n+1)+6(n+1)\bigr]}{6}.
+\end{align*}
+To identify the bracket, expand its two products:
+\[
+ n(2n+1)+6(n+1)
+ =2n^2+n+6n+6
+ =2n^2+7n+6.
+\]
+The needed factorization is verified by multiplying it back out:
+\[
+ (n+2)(2n+3)
+ =2n^2+3n+4n+6
+ =2n^2+7n+6.
+\]
+Consequently,
+\[
+ \sum_{k=1}^{n+1} k^2
+ =\frac{(n+1)(n+2)(2n+3)}{6},
+\]
+which is exactly $P_{n+1}$.
+
+\answer{The initial case and the implication $P_n\Rightarrow P_{n+1}$
+have both been proved. Mathematical induction therefore establishes the
+formula for every positive integer $n$.}
+
+\exercise{1.2}{An arithmetic progression}
+
+\goal For every $n\in\N$, prove
+\[
+ \sum_{k=1}^{n}(8k-5)=4n^2-n.
+\]
+The summands at $k=1$ and $k=2$ are $8-5=3$ and $16-5=11$, so this
+notation describes the progression in the exercise.
+
+\idea Append its next term, $8(n+1)-5$, and compare the result with
+the proposed expression evaluated at $n+1$.
+
+\step{1. Initial case.}
+For $n=1$, the left side is $3$, and the right side is
+$4\cdot1^2-1=4-1=3$. Thus the statement holds at $1$.
+
+\step{2. Induction hypothesis and target.}
+Let $n\geq1$ and assume
+\[
+ \sum_{k=1}^{n}(8k-5)=4n^2-n.
+\]
+The required statement at the next index is
+\[
+ \sum_{k=1}^{n+1}(8k-5)=4(n+1)^2-(n+1).
+\]
+Before manipulating the sum, expand this target:
+\begin{align*}
+ 4(n+1)^2-(n+1)
+ &=4(n^2+2n+1)-n-1\\
+ &=4n^2+8n+4-n-1\\
+ &=4n^2+7n+3.
+\end{align*}
+
+\step{3. Compute the new sum.}
+The appended term is
+\[
+ 8(n+1)-5=8n+8-5=8n+3.
+\]
+Using the induction hypothesis,
+\begin{align*}
+ \sum_{k=1}^{n+1}(8k-5)
+ &=\sum_{k=1}^{n}(8k-5)+\bigl(8(n+1)-5\bigr)\\
+ &=(4n^2-n)+(8n+3)\\
+ &=4n^2+(-n+8n)+3\\
+ &=4n^2+7n+3\\
+ &=4(n+1)^2-(n+1).
+\end{align*}
+This proves the next statement from the assumed one.
+
+\answer{By induction, $3+11+\cdots+(8n-5)=4n^2-n$ for all $n\in\N$.}
+
+\exercise{1.3}{Sum of cubes and the square of a sum}
+
+\goal Prove, for every $n\in\N$, that
+\[
+ \sum_{k=1}^{n}k^3=\left(\sum_{k=1}^{n}k\right)^2.
+\]
+
+\idea First record the formula for the sum inside the square. Then
+the asserted identity becomes a formula whose right side can be factored
+after the next cube is added. All square expansions used here follow from
+ordinary multiplication; no binomial theorem is being assumed.
+
+\step{1. Establish the needed formula for the first-power sum.}
+Write $T_n=1+2+\cdots+n$. We claim
+\[
+ T_n=\frac{n(n+1)}{2}\qquad(n\in\N).
+\]
+For $n=1$, both sides are $1$. If
+$T_n=n(n+1)/2$ for some $n\geq1$, then
+\begin{align*}
+ T_{n+1}
+ &=T_n+(n+1)\\
+ &=\frac{n(n+1)}{2}+\frac{2(n+1)}{2}\\
+ &=\frac{(n+1)(n+2)}{2}.
+\end{align*}
+This is the same formula with $n$ replaced by $n+1$. Induction therefore
+proves the claim for every positive integer $n$.
+
+It follows that the target identity can be written equivalently as
+\[
+ \sum_{k=1}^{n} k^3
+ =\left(\frac{n(n+1)}{2}\right)^2
+ =\frac{n^2(n+1)^2}{4}.
+\]
+
+\step{2. Check the initial case for the cube identity.}
+For $n=1$, the sum of cubes is $1^3=1$, while
+\[
+ \frac{1^2(1+1)^2}{4}=
+ \frac{1\cdot4}{4}=1.
+\]
+Thus the proposed formula holds at $1$.
+
+\step{3. State the induction hypothesis and next target.}
+Fix $n\geq1$ and suppose
+\[
+ \sum_{k=1}^{n} k^3=\frac{n^2(n+1)^2}{4}.
+\]
+We must show
+\[
+ \sum_{k=1}^{n+1} k^3
+ =\frac{(n+1)^2(n+2)^2}{4}.
+\]
+
+\step{4. Append the next cube and factor.}
+Using the hypothesis and a common denominator,
+\begin{align*}
+ \sum_{k=1}^{n+1}k^3
+ &=\sum_{k=1}^{n}k^3+(n+1)^3\\
+ &=\frac{n^2(n+1)^2}{4}+(n+1)^3\\
+ &=\frac{n^2(n+1)^2+4(n+1)^3}{4}\\
+ &=\frac{(n+1)^2\bigl[n^2+4(n+1)\bigr]}{4}\\
+ &=\frac{(n+1)^2(n^2+4n+4)}{4}.
+\end{align*}
+Multiplication gives
+\[
+ (n+2)^2=(n+2)(n+2)
+ =n^2+2n+2n+4=n^2+4n+4.
+\]
+Substituting this identity yields
+\[
+ \sum_{k=1}^{n+1}k^3
+ =\frac{(n+1)^2(n+2)^2}{4}
+ =\left(\frac{(n+1)(n+2)}{2}\right)^2
+ =T_{n+1}^2.
+\]
+This is precisely the assertion required at $n+1$.
+
+\answer{Mathematical induction proves
+$1^3+2^3+\cdots+n^3=(1+2+\cdots+n)^2$ for every positive integer $n$.}
+
+\exercise{1.4}{The sum of consecutive odd numbers}
+
+\goal In part (a), use the first four sums to propose a formula. In
+part (b), prove the proposed formula for every positive integer $n$.
+
+\step{(a) Compute the requested examples and formulate the claim.}
+Let
+\[
+ O_n=1+3+\cdots+(2n-1)=\sum_{k=1}^{n}(2k-1).
+\]
+The index $k$ runs from $1$ through $n$, so there are $n$ summands.
+The requested calculations are
+\[
+\begin{array}{c|l|c|c}
+ n&\text{sum}&O_n&n^2\\ \hline
+ 1&1&1&1\\
+ 2&1+3&4&4\\
+ 3&1+3+5&9&9\\
+ 4&1+3+5+7&16&16
+\end{array}
+\]
+These examples suggest $O_n=n^2$. Checking four values gives a candidate
+formula, but it does not establish what happens at every larger integer.
+
+\step{(b) Check the initial case.}
+At $n=1$, $O_1=1=1^2$, so the formula starts correctly.
+
+\step{(b) State the induction hypothesis and next target.}
+Fix $n\geq1$ and assume $O_n=n^2$. The target is
+\[
+ O_{n+1}=(n+1)^2.
+\]
+The new last summand is the $(n+1)$st odd number:
+\[
+ 2(n+1)-1=2n+2-1=2n+1.
+\]
+
+\step{(b) Add the new odd number.}
+The hypothesis gives
+\begin{align*}
+ O_{n+1}
+ &=O_n+\bigl(2(n+1)-1\bigr)\\
+ &=n^2+(2n+1)\\
+ &=n^2+2n+1\\
+ &=(n+1)^2.
+\end{align*}
+For the last equality, expanding $(n+1)(n+1)$ gives
+$n^2+n+n+1=n^2+2n+1$.
+
+\answer{The formula guessed in (a) is
+$1+3+\cdots+(2n-1)=n^2$. Part (b) proves it for all $n\in\N$ by induction.}
+
+\exercise{1.5}{A finite geometric sum}
+
+\goal For every positive integer $n$, prove
+\[
+ 1+\frac12+\frac14+\cdots+\frac1{2^n}
+ =2-\frac1{2^n}.
+\]
+There are $n+1$ terms on the left, since the leading $1$ is $2^0$.
+Equivalently, the sum is $G_n=\sum_{k=0}^{n}2^{-k}$.
+
+\idea The next sum adds $1/2^{n+1}$. Expressing the old final
+fraction with denominator $2^{n+1}$ leaves precisely the new final fraction.
+
+\step{1. Initial case.}
+For $n=1$, the left side is $1+1/2=3/2$, and the right side is
+$2-1/2=4/2-1/2=3/2$. Thus the required statement holds at $1$.
+
+\step{2. Hypothesis and target.}
+Let $n\geq1$ and assume $G_n=2-1/2^n$. We must prove
+\[
+ G_{n+1}=2-\frac1{2^{n+1}}.
+\]
+
+\step{3. Add the next fraction with a common denominator.}
+Because $2^{n+1}=2\cdot2^n$, we have
+$1/2^n=2/2^{n+1}$. Hence
+\begin{align*}
+ G_{n+1}
+ &=G_n+\frac1{2^{n+1}}\\
+ &=2-\frac1{2^n}+\frac1{2^{n+1}}\\
+ &=2-\frac2{2^{n+1}}+\frac1{2^{n+1}}\\
+ &=2+\frac{-2+1}{2^{n+1}}\\
+ &=2-\frac1{2^{n+1}}.
+\end{align*}
+All denominators are nonzero because powers of $2$ are positive.
+
+\answer{The identity holds for every $n\in\N$ by mathematical induction.}
+
+\exercise{1.6}{A difference of powers divisible by seven}
+
+\goal Show that, for every $n\in\N$, there is an integer $q$ such that
+\[
+ 11^n-4^n=7q.
+\]
+Here both $11$ and $4$ are raised to the power $n$.
+
+\idea Express the next difference of powers as $11$ times the old
+difference plus a term with a visible factor of $7$.
+
+\step{1. Initial case and its integer witness.}
+For $n=1$,
+\[
+ 11^1-4^1=11-4=7=7\cdot1.
+\]
+The witness is the integer $q=1$, so $7$ divides the difference at $1$.
+
+\step{2. Induction hypothesis and next target.}
+Fix an arbitrary $n\geq1$ and assume $7$ divides $11^n-4^n$.
+By the definition of divisibility, there is some $q\in\Z$ satisfying
+\[
+ 11^n-4^n=7q.
+\]
+We must produce an integer $q'$ such that
+$11^{n+1}-4^{n+1}=7q'$.
+
+\step{3. Add and subtract a useful intermediate term.}
+Exponent rules give $11^{n+1}=11\cdot11^n$ and
+$4^{n+1}=4\cdot4^n$. Therefore
+\begin{align*}
+ 11^{n+1}-4^{n+1}
+ &=11\cdot11^n-4\cdot4^n\\
+ &=11\cdot11^n-11\cdot4^n+11\cdot4^n-4\cdot4^n\\
+ &=11(11^n-4^n)+(11-4)4^n\\
+ &=11(7q)+7\cdot4^n\\
+ &=7(11q+4^n).
+\end{align*}
+The second line adds $-11\cdot4^n+11\cdot4^n=0$, so it leaves the
+quantity unchanged. Define $q'=11q+4^n$. Since $q$ is an integer and
+$4^n$ is an integer, $q'$ is an integer. The last displayed equality
+is the required divisibility witness at $n+1$.
+
+\answer{Induction proves that $7$ divides $11^n-4^n$ for every positive
+integer $n$.}
+
+\exercise{1.7}{An exponential expression divisible by thirty-six}
+
+\goal Prove that $36$ divides $7^n-6n-1$ for every $n\in\N$.
+
+\idea Multiplying the old expression by $7$ nearly produces the
+next one. The remaining difference will be $36n$.
+
+\step{1. Initial case.}
+At $n=1$,
+\[
+ 7^1-6\cdot1-1=7-6-1=0=36\cdot0.
+\]
+Thus the divisibility statement holds, with integer witness $0$.
+
+\step{2. Hypothesis and next target.}
+Let $n\geq1$ and assume the current statement. Then some $q\in\Z$
+satisfies
+\[
+ 7^n-6n-1=36q.
+\]
+Our task is to express $7^{n+1}-6(n+1)-1$ as $36$ times an integer.
+
+\step{3. Relate the next expression to the old one.}
+First expand the expression at $n+1$:
+\[
+ 7^{n+1}-6(n+1)-1
+ =7\cdot7^n-6n-6-1
+ =7\cdot7^n-6n-7.
+\]
+On the other hand,
+\begin{align*}
+ 7(7^n-6n-1)+36n
+ &=7\cdot7^n-42n-7+36n\\
+ &=7\cdot7^n+(-42+36)n-7\\
+ &=7\cdot7^n-6n-7.
+\end{align*}
+These two computations establish the exact identity
+\[
+ 7^{n+1}-6(n+1)-1=7(7^n-6n-1)+36n.
+\]
+Now insert the induction hypothesis:
+\begin{align*}
+ 7^{n+1}-6(n+1)-1
+ &=7(36q)+36n\\
+ &=36(7q+n).
+\end{align*}
+The number $7q+n$ is an integer because $q,n\in\Z$. It is therefore
+the needed witness for divisibility at $n+1$.
+
+\answer{The base case and the induction step show that
+$36\mid(7^n-6n-1)$ for every positive integer $n$.}
+
+\exercise{1.8}{Induction with a later starting index}
+
+\goal Prove the inequality in (a) for all integers $n\geq2$, and
+the inequality in (b) for all integers $n\geq4$.
+
+\idea Use induction beginning at the first integer in each stated
+domain. In part (b), the inequality from (a) will supply the comparison
+needed after multiplying the induction hypothesis by $n+1$.
+
+\step{(a) Initial case for $n^2>n+1$.}
+At $n=2$, the inequality is
+\[
+ 2^2=4>3=2+1.
+\]
+This gives the required base at the starting index $2$.
+
+\step{(a) Induction hypothesis and next target.}
+Let $n$ be an arbitrary integer with $n\geq2$ and assume $n^2>n+1$.
+We must show
+\[
+ (n+1)^2>(n+1)+1=n+2.
+\]
+Expand and then use the assumed strict inequality:
+\begin{align*}
+ (n+1)^2
+ &=n^2+2n+1\\
+ &>(n+1)+2n+1\\
+ &=3n+2.
+\end{align*}
+The inequality in the second line comes from adding the same number
+$2n+1$ to both sides of $n^2>n+1$. Also,
+\[
+ (3n+2)-(n+2)=2n\geq4>0,
+\]
+so $3n+2>n+2$. Combining the two strict inequalities yields
+$(n+1)^2>n+2$, as required.
+
+\answer{Induction starting at $2$ proves $n^2>n+1$ for every integer
+$n\geq2$.}
+
+\step{(b) Initial case for $n!>n^2$.}
+Recall that $n!=1\cdot2\cdots n$. At $n=4$,
+\[
+ 4!=1\cdot2\cdot3\cdot4=24>16=4^2.
+\]
+Thus the required base is true at $4$.
+
+\step{(b) Induction hypothesis and next target.}
+Let $n\geq4$ be an integer and assume $n!>n^2$. The next target is
+\[
+ (n+1)!>(n+1)^2.
+\]
+The factorial definition gives $(n+1)!=(n+1)n!$. Since $n+1>0$,
+multiplying the induction hypothesis by $n+1$ preserves its direction:
+\[
+ (n+1)!=(n+1)n!>(n+1)n^2.
+\]
+Because $n\geq4$ also implies $n\geq2$, part (a) applies and gives
+$n^2>n+1$. Multiplying this inequality by the positive number $n+1$
+gives the second comparison
+\[
+ (n+1)n^2>(n+1)(n+1)=(n+1)^2.
+\]
+Putting the comparisons together,
+\[
+ (n+1)!>(n+1)n^2>(n+1)^2.
+\]
+This is the needed induction step.
+
+\answer{Induction beginning at $4$ proves $n!>n^2$ for every integer
+$n\geq4$. The different starting indices are essential: the conclusions
+of the two induction arguments are restricted to their stated domains.}
+
+\exercise{1.9}{Exactly when an exponential exceeds a square}
+
+\goal Determine the integers $n$ for which $2^n>n^2$, then justify
+the infinite portion of the answer by induction.
+
+\idea The strict inequality fails at some small positive integers,
+so an induction argument cannot begin at $1$ and continue through every
+subsequent index. We check the exceptional small cases separately, begin
+the induction at $5$, and also address zero and negative integers because
+the question says ``integers.''
+
+\step{(a) Exclude every negative integer.}
+Suppose $n\leq-1$ is an integer, and put $m=-n$. Then $m$ is a positive
+integer and $n^2=m^2\geq1$. By the definition of negative powers,
+\[
+ 2^n=2^{-m}=\frac1{2^m}.
+\]
+The denominator $2^m$ is a product of $m\geq1$ factors equal to $2$,
+so $2^m\geq2$. Since the denominator is positive, taking reciprocals gives
+$0<1/2^m\leq1/2$. Hence
+\[
+ 0<2^n\leq\frac12<1\leq n^2.
+\]
+In particular, $2^n>n^2$ is false for every negative integer $n$.
+
+\step{(a) Compute zero and the first five positive cases.}
+\[
+\begin{array}{c|r|r|c}
+ n&2^n&n^2&2^n>n^2\text{?}\\ \hline
+ 0&1&0&\text{yes}\\
+ 1&2&1&\text{yes}\\
+ 2&4&4&\text{no: equality}\\
+ 3&8&9&\text{no: }8<9\\
+ 4&16&16&\text{no: equality}\\
+ 5&32&25&\text{yes}
+\end{array}
+\]
+These calculations suggest that all integers at least $5$ work. They also
+show that $0$ and $1$ are additional solutions, while $2,3,4$ are not.
+
+\step{(b) Set up the induction beginning at $5$.}
+Let $P_n$ denote $2^n>n^2$, now with the domain $n\geq5$.
+The initial case is the checked inequality
+\[
+ 2^5=32>25=5^2.
+\]
+Fix an arbitrary integer $n\geq5$ and assume $2^n>n^2$.
+We must prove
+\[
+ 2^{n+1}>(n+1)^2.
+\]
+Multiplication of the hypothesis by the positive number $2$ gives
+\[
+ 2^{n+1}=2\cdot2^n>2n^2.
+\]
+To complete the step, we compare $2n^2$ with the next square.
+
+\step{(b) Verify the remaining polynomial inequality.}
+Expand the difference:
+\begin{align*}
+ 2n^2-(n+1)^2
+ &=2n^2-(n^2+2n+1)\\
+ &=n^2-2n-1\\
+ &=n(n-2)-1.
+\end{align*}
+Since $n\geq5$, we have $n-2\geq3>0$. Multiplication by $n-2$
+therefore preserves the inequality $n\geq5$, and multiplication by $5$
+preserves $n-2\geq3$. Thus
+\[
+ n(n-2)\geq5(n-2)\geq5\cdot3=15.
+\]
+It follows that
+\[
+ 2n^2-(n+1)^2=n(n-2)-1\geq15-1=14>0.
+\]
+Consequently $2n^2>(n+1)^2$, and hence
+\[
+ 2^{n+1}>2n^2>(n+1)^2.
+\]
+This proves the implication $P_n\Rightarrow P_{n+1}$ for every integer
+$n\geq5$. Induction now proves $P_n$ for every such integer.
+
+\answer{Taken literally over $\Z$, the complete solution set is
+\[
+ \{0,1\}\ \cup\ \{n\in\Z:n\geq5\}.
+\]
+If ``integers'' is restricted to the positive integers in the surrounding
+discussion, the answer is $n=1$ or $n\geq5$. Zero is a solution whenever
+zero is included in the domain. The negative integers and $2,3,4$ have all
+been excluded, so no cases remain undecided.}
+
+\exercise{1.10}{A sum whose lower and upper limits both change}
+
+\goal Show that for every positive integer $n$,
+\[
+ (2n+1)+(2n+3)+\cdots+(4n-1)=3n^2.
+\]
+
+\idea Write the sum using an index before attempting induction.
+When $n$ increases, the first old term disappears and two new terms enter.
+Accounting for all three changes is the central step.
+
+\step{1. Identify the summation limits and check the initial case.}
+Define
+\[
+ S_n=\sum_{k=n}^{2n-1}(2k+1).
+\]
+At the lower limit $k=n$, the term is $2n+1$; at the upper limit
+$k=2n-1$, it is $2(2n-1)+1=4n-1$. Consecutive values of $k$ increase
+the term by $2$. There are $(2n-1)-n+1=n$ terms, so this is exactly
+the sum in the question.
+
+For $n=1$, both limits equal $1$. Thus
+\[
+ S_1=2\cdot1+1=3=3\cdot1^2.
+\]
+The formula is true at its first index.
+
+\step{2. State the hypothesis and identify the next sum.}
+Fix $n\geq1$ and assume $S_n=3n^2$. We must prove
+$S_{n+1}=3(n+1)^2$. Replacing $n$ by $n+1$ in \emph{both} limits gives
+\[
+ S_{n+1}
+ =\sum_{k=n+1}^{2(n+1)-1}(2k+1)
+ =\sum_{k=n+1}^{2n+1}(2k+1).
+\]
+The old sum used the indices $n,n+1,\ldots,2n-1$. The new sum uses
+$n+1,\ldots,2n-1,2n,2n+1$. Therefore it removes the old index $n$
+and adds the indices $2n$ and $2n+1$.
+
+\step{3. Record the common portion, including the empty case.}
+Let
+\[
+ R_n=\sum_{k=n+1}^{2n-1}(2k+1).
+\]
+For $n=1$, this is the empty sum $\sum_{k=2}^{1}(2k+1)=0$;
+the following decomposition remains valid in that case. For every $n\geq1$,
+\begin{align*}
+ S_n&=(2n+1)+R_n,\\
+ S_{n+1}&=R_n+\bigl(2(2n)+1\bigr)+\bigl(2(2n+1)+1\bigr)\\
+ &=R_n+(4n+1)+(4n+3).
+\end{align*}
+Solving the first equation for $R_n$ and substituting it into the second
+establishes
+\[
+ S_{n+1}=S_n-(2n+1)+(4n+1)+(4n+3).
+\]
+In particular, the change cannot be described merely by appending one
+term to $S_n$, since its lower limit also changes.
+
+\step{4. Substitute the hypothesis and simplify the new value.}
+\begin{align*}
+ S_{n+1}
+ &=3n^2-(2n+1)+(4n+1)+(4n+3)\\
+ &=3n^2-2n-1+4n+1+4n+3\\
+ &=3n^2+(-2+4+4)n+(-1+1+3)\\
+ &=3n^2+6n+3\\
+ &=3(n^2+2n+1)\\
+ &=3(n+1)^2.
+\end{align*}
+This is exactly the next assertion.
+
+\answer{Induction proves the stated sum equals $3n^2$ for all $n\in\N$.}
+
+\exercise{1.11}{A valid induction implication without a true base}
+
+\goal For $P_n$ defined by ``$n^2+5n+1$ is an even integer,'' prove
+the implication requested in (a), determine its actual truth values in
+(b), and explain what this teaches about induction.
+
+\idea The difference between two consecutive expressions is even.
+That fact proves the requested implication but does not supply a single
+true initial statement. A separate parity calculation determines whether
+any initial statement could exist.
+
+\step{(a) Assume $P_n$ and state what must follow.}
+Fix any $n\in\N$ and suppose $P_n$ is true. An integer is even when
+it has the form $2q$ with $q\in\Z$, so the assumption says that
+\[
+ n^2+5n+1=2q
+\]
+for some integer $q$. We must prove $(n+1)^2+5(n+1)+1$ is also twice
+an integer.
+
+\step{(a) Expand the next expression and give its witness.}
+Distributing the products gives
+\begin{align*}
+ (n+1)^2+5(n+1)+1
+ &=(n^2+2n+1)+(5n+5)+1\\
+ &=n^2+7n+7\\
+ &=(n^2+5n+1)+(2n+6)\\
+ &=(n^2+5n+1)+2(n+3).
+\end{align*}
+Substitute the assumed representation:
+\[
+ (n+1)^2+5(n+1)+1
+ =2q+2(n+3)=2(q+n+3).
+\]
+Because $q+n+3\in\Z$, this expression is even. We have proved
+$P_n\Rightarrow P_{n+1}$ for every $n\in\N$.
+
+\step{(b) Determine the parity for an arbitrary $n$.}
+Rewrite the expression as
+\[
+ n^2+5n+1=n(n+5)+1.
+\]
+Every integer is either even or odd. Consider each case explicitly.
+
+If $n$ is even, write $n=2r$ for some $r\in\Z$. Then
+\[
+ n(n+5)+1=2r(n+5)+1=2\bigl[r(n+5)\bigr]+1.
+\]
+The bracket is an integer, so this has the form $2\ell+1$ and is odd.
+
+If $n$ is odd, write $n=2r+1$ for some $r\in\Z$. Now
+\[
+ n+5=2r+1+5=2r+6=2(r+3),
+\]
+and hence
+\[
+ n(n+5)+1=n\cdot2(r+3)+1=2\bigl[n(r+3)\bigr]+1.
+\]
+Again the bracket is an integer, so the expression is odd.
+
+Both cases show that $n^2+5n+1$ is odd for every $n\in\N$.
+An odd integer cannot also be even: equality $2\ell+1=2q$ would imply
+$1=2(q-\ell)$, whereas no integer multiplied by $2$ equals $1$.
+Thus $P_n$ is false for every positive integer $n$.
+
+\step{(b) Explain the missing logical requirement.}
+The proposed initial statement $P_1$ is false because
+\[
+ 1^2+5\cdot1+1=1+5+1=7,
+\]
+and $7$ is odd. Starting induction at a larger positive integer would
+not help, since every one of the proposed starting statements is false.
+
+Part (a) is nevertheless a valid implication. It says that \emph{if}
+one of these expressions were even, then the next would be even too.
+Its antecedent $P_n$ is never true, so the implication has no true
+antecedent at which to start a chain of conclusions. In logical terms,
+the implication is \emph{vacuously true}; it does not assert that either
+$P_n$ or $P_{n+1}$ is actually true.
+
+\answer{There is no $n\in\N$ for which $P_n$ is true, despite the validity
+of $P_n\Rightarrow P_{n+1}$ at every index. The moral is that induction
+requires both a true base case and the induction implication. Proving only
+the implication proves none of the assertions unconditionally.}
+
+\exercise{1.12}{The binomial theorem from factorials and induction}
+
+\goal With
+\[
+ \binom{n}{k}=\frac{n!}{k!(n-k)!},\qquad 0\leq k\leq n,
+\]
+verify the first three cases, prove the identity in (b), and then prove
+\[
+ (a+b)^n=\sum_{k=0}^{n}\binom{n}{k}a^{n-k}b^k
+ \qquad(n\in\N,\ a,b\in\R).
+\]
+
+\idea Multiplication by $a+b$ produces two sums. After shifting
+the index in the sum multiplied by $b$, the terms with the same powers
+have adjacent coefficients. Part (b) combines those coefficients into
+the ones required for exponent $n+1$.
+
+\step{Conventions and endpoint coefficients.}
+For a positive integer $r$, $r!=1\cdot2\cdots r$, and $0!=1$.
+All factorials used in denominators are therefore positive. In particular,
+for each positive integer $n$,
+\[
+ \binom{n}{0}=\frac{n!}{0!n!}
+ =\frac{n!}{1\cdot n!}=1,
+ \qquad
+ \binom{n}{n}=\frac{n!}{n!0!}
+ =\frac{n!}{n!\cdot1}=1.
+\]
+The endpoint coefficients will be treated separately from the interior
+ones, so no factorial of a negative integer will be needed.
+
+For the polynomial expressions here, a power with exponent $0$ is an
+empty product and denotes the constant $1$. Thus the expression $x^0$
+in a monomial has value $1$ even when the value substituted for $x$ is
+$0$. This convention identifies the endpoint monomials as $a^n$ and
+$b^n$. No step below divides by $a$ or by $b$, so zero values of either
+variable are permitted.
+
+\step{(a) Verify the theorem at $n=1$.}
+Here $1!=1$ and $0!=1$, so
+\[
+ \binom10=\frac{1!}{0!1!}=1,
+ \qquad
+ \binom11=\frac{1!}{1!0!}=1.
+\]
+The proposed right side is
+\[
+ \binom10a^1b^0+\binom11a^0b^1
+ =1\cdot a\cdot1+1\cdot1\cdot b=a+b,
+\]
+which equals $(a+b)^1$. The identity therefore holds for every pair of
+real numbers $a,b$ at $n=1$.
+
+\step{(a) Verify the theorem at $n=2$ by multiplication.}
+Since $2!=2$, the coefficients are
+\[
+ \binom20=\frac{2}{1\cdot2}=1,
+ \qquad
+ \binom21=\frac{2}{1\cdot1}=2,
+ \qquad
+ \binom22=\frac{2}{2\cdot1}=1.
+\]
+The distributive law and commutativity of real multiplication give
+\begin{align*}
+ (a+b)^2
+ &=(a+b)(a+b)\\
+ &=a(a+b)+b(a+b)\\
+ &=a^2+ab+ba+b^2\\
+ &=a^2+ab+ab+b^2\\
+ &=a^2+2ab+b^2.
+\end{align*}
+Using the coefficients just computed, this is
+\[
+ \binom20a^2b^0+\binom21a^1b^1+\binom22a^0b^2,
+\]
+as required. This calculation does not appeal to a binomial expansion;
+it establishes this particular expansion directly.
+
+\step{(a) Verify the theorem at $n=3$ by another multiplication.}
+The relevant factorials are $3!=6$, $2!=2$, $1!=1$, and $0!=1$.
+Consequently
+\[
+ \binom30=\frac{6}{1\cdot6}=1,
+ \quad
+ \binom31=\frac{6}{1\cdot2}=3,
+ \quad
+ \binom32=\frac{6}{2\cdot1}=3,
+ \quad
+ \binom33=\frac{6}{6\cdot1}=1.
+\]
+Multiply the identity already established for the square by $a+b$:
+\begin{align*}
+ (a+b)^3
+ &=(a+b)(a^2+2ab+b^2)\\
+ &=a(a^2+2ab+b^2)+b(a^2+2ab+b^2)\\
+ &=a^3+2a^2b+ab^2+a^2b+2ab^2+b^3\\
+ &=a^3+(2+1)a^2b+(1+2)ab^2+b^3\\
+ &=a^3+3a^2b+3ab^2+b^3.
+\end{align*}
+The coefficients are exactly $\binom30,\binom31,\binom32,\binom33$,
+so this is the asserted formula at $n=3$, for all real $a,b$.
+
+\step{(b) Set the range of the indices and obtain a common denominator.}
+Fix $n\in\N$ and an integer $k$ with $1\leq k\leq n$. We must prove
+\[
+ \binom nk+\binom n{k-1}=\binom{n+1}{k}.
+\]
+The bounds on $k$ give $k-1\geq0$ and $n-k\geq0$, so every
+factorial in the two coefficients is defined. From the factorial
+definition,
+\[
+ (n-k+1)!=(n-k+1)(n-k)!,
+ \qquad
+ k!=k(k-1)!.
+\]
+The numbers $k$ and $n-k+1$ are both positive. Therefore the following
+rewritings use nonzero factors and are valid:
+\begin{align*}
+ \binom nk
+ &=\frac{n!}{k!(n-k)!}
+ =\frac{n!(n-k+1)}{k!(n-k+1)!},\\
+ \binom n{k-1}
+ &=\frac{n!}{(k-1)!(n-(k-1))!}
+ =\frac{n!}{(k-1)!(n-k+1)!}
+ =\frac{n!k}{k!(n-k+1)!}.
+\end{align*}
+
+\step{(b) Add the numerators and identify the next coefficient.}
+Both fractions now have denominator $k!(n-k+1)!$, and hence
+\begin{align*}
+ \binom nk+\binom n{k-1}
+ &=\frac{n!(n-k+1)+n!k}{k!(n-k+1)!}\\
+ &=\frac{n!\bigl[(n-k+1)+k\bigr]}{k!(n-k+1)!}\\
+ &=\frac{n!(n+1)}{k!(n-k+1)!}\\
+ &=\frac{(n+1)!}{k!((n+1)-k)!}\\
+ &=\binom{n+1}{k}.
+\end{align*}
+The penultimate line uses $(n+1)!=(n+1)n!$ and
+$n-k+1=(n+1)-k$. This proves the claimed identity for every integer
+$k$ in the stipulated range $1,\ldots,n$. It is often called
+Pascal's identity. This derivation uses only the definition of the
+coefficients, not the binomial theorem being proved.
+
+\step{(c) State the induction proposition and verify its base.}
+Let $P_n$ be the statement that
+\[
+ (a+b)^n=\sum_{k=0}^{n}\binom nk a^{n-k}b^k
+ \quad\text{for every }a,b\in\R.
+\]
+Part (a) established $P_1$: the two terms in that sum are $a$ and $b$.
+Thus this proposition has a valid starting case. The checks at $2$ and
+$3$ in (a) are consistent with the result but are not needed as additional
+bases for induction.
+
+\step{(c) State the induction hypothesis and the complete next target.}
+Let $n\geq1$ be arbitrary and assume $P_n$. Fix arbitrary real numbers
+$a$ and $b$. The hypothesis gives
+\[
+ (a+b)^n=\sum_{k=0}^{n}\binom nk a^{n-k}b^k
+\]
+for these particular numbers. We must prove
+\[
+ (a+b)^{n+1}
+ =\sum_{k=0}^{n+1}\binom{n+1}{k}a^{n+1-k}b^k.
+\]
+Because $a$ and $b$ were chosen arbitrarily, obtaining this equality
+will prove the assertion for every pair of real numbers, as $P_{n+1}$
+requires.
+
+\step{(c) Multiply the assumed identity and distribute both sums.}
+Multiply the induction hypothesis by $a+b$. Distributivity of finite
+sums gives
+\begin{align*}
+ (a+b)^{n+1}
+ &=(a+b)(a+b)^n\\
+ &=(a+b)\sum_{k=0}^{n}\binom nk a^{n-k}b^k\\
+ &=a\sum_{k=0}^{n}\binom nk a^{n-k}b^k
+   +b\sum_{k=0}^{n}\binom nk a^{n-k}b^k\\
+ &=\sum_{k=0}^{n}\binom nk a^{n+1-k}b^k
+   +\sum_{k=0}^{n}\binom nk a^{n-k}b^{k+1}.
+\end{align*}
+In the first sum, multiplying $a^{n-k}$ by $a$ raises its exponent
+to $n-k+1=n+1-k$. In the second sum, multiplying $b^k$ by $b$
+raises its exponent to $k+1$. All of these are products of nonnegative
+integer powers, so these rules are valid at $a=0$ and $b=0$ as well.
+
+\step{(c) Reindex the second sum with its new bounds.}
+In that second sum, set $j=k+1$. Then $k=j-1$, and the bounds change
+as follows:
+\[
+ k=0\ \Longrightarrow\ j=1,
+ \qquad
+ k=n\ \Longrightarrow\ j=n+1.
+\]
+Also the power of $a$ becomes
+\[
+ n-k=n-(j-1)=n+1-j.
+\]
+Every old index corresponds to exactly one new index and conversely.
+Therefore
+\[
+ \sum_{k=0}^{n}\binom nk a^{n-k}b^{k+1}
+ =\sum_{j=1}^{n+1}\binom n{j-1}a^{n+1-j}b^j.
+\]
+Substituting the reindexed sum into the preceding expression gives
+\[
+ (a+b)^{n+1}
+ =\sum_{k=0}^{n}\binom nk a^{n+1-k}b^k
+  +\sum_{j=1}^{n+1}\binom n{j-1}a^{n+1-j}b^j.
+\]
+
+\step{(c) Separate the two endpoints before combining interior terms.}
+The first sum contains an endpoint at $k=0$, equal to
+\[
+ \binom n0 a^{n+1}b^0=1\cdot a^{n+1}\cdot1=a^{n+1}.
+\]
+The second sum contains an endpoint at $j=n+1$, equal to
+\[
+ \binom nn a^0b^{n+1}=1\cdot1\cdot b^{n+1}=b^{n+1}.
+\]
+Removing these endpoints leaves the common index range $1,\ldots,n$.
+Rename the dummy index $j$ in the second interior sum as $k$; this
+changes only the name of the summation variable. We obtain
+\begin{align*}
+ (a+b)^{n+1}
+ &=a^{n+1}
+  +\sum_{k=1}^{n}\binom nk a^{n+1-k}b^k
+  +\sum_{k=1}^{n}\binom n{k-1}a^{n+1-k}b^k
+  +b^{n+1}\\
+ &=a^{n+1}
+  +\sum_{k=1}^{n}
+     \left(\binom nk+\binom n{k-1}\right)a^{n+1-k}b^k
+  +b^{n+1}.
+\end{align*}
+For each interior index $k$, both terms contain the identical monomial
+$a^{n+1-k}b^k$; the distributive law combines their coefficients.
+
+\step{(c) Apply part (b) and restore the full target sum.}
+Every index in the remaining sum satisfies $1\leq k\leq n$, so
+part (b) applies to every coefficient. Thus
+\[
+ (a+b)^{n+1}
+ =a^{n+1}
+  +\sum_{k=1}^{n}\binom{n+1}{k}a^{n+1-k}b^k
+  +b^{n+1}.
+\]
+The endpoint computations at the beginning of the exercise, applied
+with $n+1$ in place of $n$, give
+\[
+ \binom{n+1}{0}=1,
+ \qquad
+ \binom{n+1}{n+1}=1.
+\]
+Consequently the first and last terms can be written as
+\[
+ a^{n+1}=\binom{n+1}{0}a^{n+1}b^0,
+ \qquad
+ b^{n+1}=\binom{n+1}{n+1}a^0b^{n+1}.
+\]
+Including these two endpoint terms with the interior sum produces
+\[
+ (a+b)^{n+1}
+ =\sum_{k=0}^{n+1}\binom{n+1}{k}a^{n+1-k}b^k,
+\]
+which is exactly the required next statement for the arbitrary real
+numbers $a,b$. Therefore $P_n$ implies $P_{n+1}$.
+
+\answer{Part (a) verifies the first three cases, part (b) establishes
+Pascal's identity directly from factorials, and part (c) proves the
+binomial theorem for every positive integer $n$ and every $a,b\in\R$
+by mathematical induction. The proof includes $a=0$, $b=0$, and
+$a=b=0$, since it uses no division by either variable and interprets
+zero exponents as constant monomials.}

@@ -1,6 +1,14 @@
 # jshao0919.github.io
 Revisiting math :)
 
+## Ross solutions
+
+[Chapter 1, Sections 1–3](solutions/ross/chapter-1/ross-chapter-1-sections-1-3.pdf)
+contains detailed LaTeX solutions to all 28 exercises and every subpart from the
+second edition of Kenneth A. Ross's *Elementary Analysis*. The website links to
+the combined PDF, individual section PDFs, and a complete LaTeX source archive.
+See [the source and build instructions](solutions/ross/chapter-1/README.md).
+
 ## Arithmetic Lab
 
 The homepage links to [Arithmetic Lab](arithmetic/), a Zetamac-inspired mental math

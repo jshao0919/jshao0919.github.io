@@ -1,0 +1,588 @@
+\section{The set of rational numbers}
+\label{sec:rational-numbers}
+
+The exercises in this section ask whether particular numbers belong to
+$\Q$. Recall that a number is rational when it can be written as $m/n$,
+where $m,n\in\Z$ and $n\ne0$. A number is irrational when it is a real
+number that is not rational. The following elementary tools explain the
+steps used in the solutions.
+
+\step{Tool 1: Why rational arithmetic stays rational}
+Suppose $r=m/n$ and $s=p/q$, where $m,n,p,q\in\Z$ and $n,q\ne0$.
+Putting fractions over a common denominator gives
+\[
+ r+s=\frac{mq+pn}{nq},\qquad
+ r-s=\frac{mq-pn}{nq},\qquad
+ rs=\frac{mp}{nq}.
+\]
+Each numerator is an integer, and $nq$ is a nonzero integer. Each displayed
+quantity is therefore rational by the definition of $\Q$. If $s\ne0$,
+then $p\ne0$, and
+\[
+ \frac{r}{s}=\frac{mq}{np}
+\]
+also has an integer numerator and a nonzero integer denominator. Thus
+division by a nonzero rational number preserves rationality. Integers
+are rational because $j=j/1$. In particular, multiplication by an integer
+and subtraction of an integer preserve rationality.
+
+For a positive integer $k$, repeated multiplication gives
+\[
+ r^k=\underbrace{r\cdot r\cdots r}_{k\text{ factors}}
+     =\frac{m^k}{n^k}\in\Q,
+\]
+since $m^k,n^k\in\Z$ and $n^k\ne0$. These formulas justify every use of
+``rational closure'' below.
+
+\step{Tool 2: The integer cancellation fact behind the rational zeros theorem}
+Two integers are relatively prime when they have no common positive
+divisor other than $1$. We use this elementary fact: if $u,v\in\Z$ are
+relatively prime, $v\ne0$, and $v$ divides $uw$, then $v$ divides $w$.
+Here ``$v$ divides $z$'' means that $z=vk$ for some $k\in\Z$.
+
+For completeness, the cancellation fact follows from a short integer
+argument. The positive integers of the form $Au+Bv$, with $A,B\in\Z$,
+form a nonempty set: one of $v$ and $-v$ is positive. Let $d$ be the
+least such positive integer, and write $d=A_0u+B_0v$. The division
+algorithm gives $u=hd+t$, with $h\in\Z$ and $0\le t<d$. Then
+\[
+ t=u-hd=(1-hA_0)u-hB_0v.
+\]
+If $t>0$, this would be a smaller positive integer of the same form,
+contradicting the choice of $d$. Hence $t=0$, so $d$ divides $u$.
+Applying the same argument to division of $v$ by $d$ shows that $d$
+divides $v$. Relative primality forces $d=1$. Consequently there are
+integers $A_0,B_0$ with
+\[
+ A_0u+B_0v=1.
+\]
+Multiplying this identity by $w$ gives
+\[
+ w=A_0(uw)+B_0vw.
+\]
+If $v$ divides $uw$, both terms on the right are integer multiples of
+$v$, so $w$ is also an integer multiple of $v$. This proves the
+cancellation fact. The integer division algorithm and the existence
+of a least positive integer are the only integer facts used here.
+
+One consequence needed below is worth spelling out. If $u,v$ are
+relatively prime and $v$ divides $u^k$, then cancellation in
+$u^k=u\,u^{k-1}$ shows that $v$ divides $u^{k-1}$. Repeating this step
+eventually shows that $v$ divides $1$. When $u\ne0$, the last power in
+this argument is $u^0=1$. When $u=0$, relative primality already forces
+$\abs{v}=1$, so the same conclusion holds directly.
+
+\step{Tool 3: A monic polynomial can have only integer rational zeros}
+A polynomial is \emph{monic} when the coefficient of its highest power
+is $1$. Suppose
+\[
+ P(x)=x^d+a_{d-1}x^{d-1}+\cdots+a_1x+a_0,
+ \qquad a_0,\ldots,a_{d-1}\in\Z,
+\]
+where $d\ge1$. Assume that $r\in\Q$ and $P(r)=0$. Write
+$r=m/n$ in lowest terms, with $n>0$. Thus $m,n\in\Z$ are relatively
+prime. If $m=0$, then $r=0$ is already an integer. For the denominator
+argument we may therefore assume $m\ne0$. Substituting and multiplying
+by $n^d$ gives
+\[
+ m^d+\sum_{j=0}^{d-1}a_jm^j n^{d-j}=0.
+\]
+Every term in the sum contains a factor $n$. Equivalently,
+\[
+ m^d=-n\left(\sum_{j=0}^{d-1}a_jm^j n^{d-j-1}\right).
+\]
+The expression in parentheses is an integer, so $n$ divides $m^d$.
+Tool~2, applied repeatedly to the relatively prime integers $m,n$,
+shows that $n$ divides $1$. As $n$ is positive, $n=1$. Therefore
+$r=m\in\Z$.
+
+There is a further restriction if $a_0\ne0$. In that case $r\ne0$,
+because $P(0)=a_0\ne0$. Substituting the integer $m$ into $P(m)=0$
+and collecting all terms other than the constant gives
+\[
+ a_0=-m\left(m^{d-1}+\sum_{j=1}^{d-1}a_jm^{j-1}\right).
+\]
+For $d=1$ the sum is empty and equals $0$. In every case the expression
+in parentheses is an integer. Hence $m$ divides $a_0$.
+
+We have proved the monic case of Ross's Rational Zeros Theorem
+(Theorem~2.2 and Corollary~2.3):
+\begin{quote}
+A rational zero of a monic polynomial with integer coefficients must
+be an integer. If the constant coefficient is nonzero, that integer
+must divide the constant coefficient.
+\end{quote}
+In particular, if $N$ is a positive integer and $k$ is a positive integer,
+then a rational solution of $x^k=N$ must be an integer, because it is
+a zero of the monic integer polynomial $x^k-N$.
+
+\step{Tool 4: Bounding a positive root by consecutive integers}
+For $0\le u<v$ and a positive integer $k$,
+\[
+ v^k-u^k=(v-u)
+ \bigl(v^{k-1}+v^{k-2}u+\cdots+u^{k-1}\bigr)>0.
+\]
+For $k=1$ the factor in parentheses is $1$. For $k\ge2$, all its
+terms are nonnegative and its first term $v^{k-1}$ is positive.
+Thus raising nonnegative numbers to the $k$th power preserves their
+strict order. This is an algebraic fact; no limiting argument is needed.
+
+Let $x$ be the nonnegative $k$th root of a positive integer $N$.
+Suppose a nonnegative integer $a$ satisfies
+\[
+ a^k<N<(a+1)^k.
+\]
+If $x\le a$, then $x^k\le a^k<N$, contradicting $x^k=N$.
+If $x\ge a+1$, then $x^k\ge(a+1)^k>N$, giving the same contradiction.
+It follows that
+\[
+ a<x<a+1.
+\]
+There is no integer strictly between the consecutive integers $a$ and
+$a+1$. Tool~3 therefore implies that $x$ is irrational. This gives the
+criterion used in the first two exercises:
+\begin{quote}
+If a positive integer lies strictly between two consecutive nonnegative
+integer $k$th powers, its positive $k$th root is irrational.
+\end{quote}
+
+\exercise{2.1}{Five square roots of integers}
+\goal Prove that $\sqrt3$, $\sqrt5$, $\sqrt7$, $\sqrt{24}$, and
+$\sqrt{31}$ are irrational.
+
+\idea Each number is a root of a monic integer polynomial $x^2-N$.
+If it were rational, Tool~3 would make it an integer. We locate each
+root strictly between consecutive integers to rule that out.
+
+\step{1. Record the exact integer-square comparisons}
+The needed computations are
+\[
+ 1^2=1,\quad 2^2=4,\quad 3^2=9,\quad
+ 4^2=16,\quad 5^2=25,\quad 6^2=36.
+\]
+They give the following bounds by Tool~4:
+\begin{center}
+\begin{tabular}{@{}ccc@{}}
+\toprule
+$N$ & Consecutive square bounds & Consequent root bounds\\
+\midrule
+$3$  & $1^2=1<3<4=2^2$   & $1<\sqrt3<2$\\
+$5$  & $2^2=4<5<9=3^2$   & $2<\sqrt5<3$\\
+$7$  & $2^2=4<7<9=3^2$   & $2<\sqrt7<3$\\
+$24$ & $4^2=16<24<25=5^2$ & $4<\sqrt{24}<5$\\
+$31$ & $5^2=25<31<36=6^2$ & $5<\sqrt{31}<6$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\step{2. Apply the rational-root argument to each number}
+\begin{enumerate}[label=(\alph*)]
+\item Suppose $\sqrt3$ were rational. Since
+$(\sqrt3)^2-3=0$, Tool~3 applied to $x^2-3$ would imply
+$\sqrt3\in\Z$. But $1<\sqrt3<2$, and no integer satisfies those
+two inequalities. This contradiction proves $\sqrt3\notin\Q$.
+
+\item Suppose $\sqrt5$ were rational. The equation
+$(\sqrt5)^2-5=0$ and Tool~3 imply $\sqrt5\in\Z$. The bounds
+$2<\sqrt5<3$ exclude every integer, so $\sqrt5\notin\Q$.
+
+\item Suppose $\sqrt7$ were rational. The monic integer equation
+$(\sqrt7)^2-7=0$ would make $\sqrt7$ an integer. The strict bounds
+$2<\sqrt7<3$ make this impossible. Hence $\sqrt7\notin\Q$.
+
+\item Suppose $\sqrt{24}$ were rational. Because it satisfies
+$x^2-24=0$, it would be an integer by Tool~3. Its bounds
+$4<\sqrt{24}<5$ contradict that conclusion. Thus
+$\sqrt{24}\notin\Q$.
+
+\item Suppose $\sqrt{31}$ were rational. Tool~3 applied to
+$x^2-31$ would make it an integer. Since $5<\sqrt{31}<6$, there is
+no such integer. Therefore $\sqrt{31}\notin\Q$.
+\end{enumerate}
+
+\step{3. Establish one auxiliary case for later exercises}
+We will also need that $\sqrt2$ is irrational. If it were rational,
+the equation $(\sqrt2)^2-2=0$ would make it an integer. But
+\[
+ 1^2=1<2<4=2^2
+ \quad\Longrightarrow\quad 1<\sqrt2<2,
+\]
+which is impossible for an integer. Thus $\sqrt2\notin\Q$ as well.
+
+\answer{All five requested square roots are irrational. The same argument
+also proves the auxiliary fact $\sqrt2\notin\Q$.}
+
+\exercise{2.2}{Three higher roots of integers}
+\goal Prove that $\sqrt[3]{2}$, $\sqrt[7]{5}$, and $\sqrt[4]{13}$
+are irrational.
+
+\idea Tool~3 applies to $x^3-2$, $x^7-5$, and $x^4-13$.
+We compute suitable consecutive integer powers, then apply Tool~4.
+
+\step{1. The cube root of $2$}
+Let $x=\sqrt[3]{2}$. By the definition of the positive cube root,
+$x>0$ and $x^3=2$. Assume that $x\in\Q$. Since $x$ is a zero of
+the monic polynomial $x^3-2$, whose coefficients are integers,
+Tool~3 gives $x\in\Z$.
+
+Now $1^3=1$ and $2^3=2\cdot2\cdot2=8$. Consequently
+\[
+ 1^3=1<2<8=2^3.
+\]
+Tool~4 gives $1<x<2$. No integer lies in that interval, contradicting
+$x\in\Z$. Hence $\sqrt[3]{2}$ is irrational.
+
+\step{2. The seventh root of $5$}
+Let $y=\sqrt[7]{5}$. Then $y>0$ and $y^7=5$. If $y$ were rational,
+Tool~3 applied to $x^7-5$ would imply $y\in\Z$. The exact powers are
+\[
+ 1^7=1,\qquad
+ 2^7=2\cdot2\cdot2\cdot2\cdot2\cdot2\cdot2=128.
+\]
+Thus
+\[
+ 1^7=1<5<128=2^7,
+\]
+so $1<y<2$. This excludes all integers and contradicts the consequence
+of the rationality assumption. Therefore $\sqrt[7]{5}$ is irrational.
+
+\step{3. The fourth root of $13$}
+Let $z=\sqrt[4]{13}$, where the fourth-root notation denotes the
+positive real root. Then $z>0$ and $z^4=13$. If $z\in\Q$, the monic
+integer equation $z^4-13=0$ gives $z\in\Z$ by Tool~3. However,
+\[
+ 1^4=1<13<16=2\cdot2\cdot2\cdot2=2^4.
+\]
+It follows that $1<z<2$, contradicting integer membership. Hence
+$\sqrt[4]{13}$ is irrational.
+
+\answer{The numbers $\sqrt[3]{2}$, $\sqrt[7]{5}$, and
+$\sqrt[4]{13}$ are all irrational.}
+
+\exercise{2.3}{A nested square root}
+\goal Prove that $\sqrt{2+\sqrt2}$ is irrational.
+
+\idea Assume the outer square root is rational. Square it and isolate
+$\sqrt2$. Rational closure would then force $\sqrt2$ to be rational,
+contradicting the auxiliary case in Exercise~2.1.
+
+\step{1. Name the number and record its defining equation}
+Put
+\[
+ a=\sqrt{2+\sqrt2}.
+\]
+The inner root $\sqrt2$ is positive, so $2+\sqrt2>0$. The outer square
+root therefore denotes a positive real number. Its defining equation is
+\[
+ a^2=2+\sqrt2.
+\]
+
+\step{2. Assume rationality and rearrange}
+Suppose, for a contradiction, that $a\in\Q$. Then $a^2\in\Q$ by
+rational closure under multiplication. Subtracting the rational integer
+$2$ from both sides gives
+\[
+ \sqrt2=a^2-2\in\Q.
+\]
+In fraction form, if $a=m/n$ with $m,n\in\Z$ and $n\ne0$, this is
+\[
+ a^2-2=\frac{m^2}{n^2}-\frac{2n^2}{n^2}
+       =\frac{m^2-2n^2}{n^2},
+\]
+an integer divided by a nonzero integer. Thus the rationality conclusion
+is justified directly by the definition, as well as by Tool~1.
+
+\step{3. Identify the contradiction}
+Exercise~2.1 established $\sqrt2\notin\Q$. The rationality assumption
+for $a$ has produced its negation, $\sqrt2\in\Q$. Therefore the
+assumption is false.
+
+\answer{$\sqrt{2+\sqrt2}$ is irrational.}
+
+\exercise{2.4}{A nested cube root}
+\goal Prove that $\sqrt[3]{5-\sqrt3}$ is irrational.
+
+\idea Cube the number to remove the outer radical, then isolate
+$\sqrt3$. If the original number were rational, this rearrangement
+would express $\sqrt3$ using rational operations only.
+
+\step{1. Check the sign and write the cube equation}
+Exercise~2.1 gives $1<\sqrt3<2$. In particular,
+\[
+ 5-\sqrt3>5-2=3>0.
+\]
+Thus
+\[
+ a=\sqrt[3]{5-\sqrt3}
+\]
+is a positive real number, and the definition of cube root gives
+\[
+ a^3=5-\sqrt3.
+\]
+
+\step{2. Derive a rational expression for $\sqrt3$ under the assumption}
+Assume $a\in\Q$. Then $a^3\in\Q$ by Tool~1. Adding $\sqrt3$ to the
+cube equation and subtracting $a^3$ gives
+\[
+ a^3+\sqrt3=5,
+ \qquad\text{hence}\qquad
+ \sqrt3=5-a^3.
+\]
+Both $5$ and $a^3$ are rational, so their difference is rational.
+Explicitly, if $a=m/n$ with integer $m,n$ and $n\ne0$, then
+\[
+ 5-a^3=\frac{5n^3-m^3}{n^3}\in\Q.
+\]
+
+\step{3. Finish the contradiction}
+The preceding step gives $\sqrt3\in\Q$, contrary to Exercise~2.1.
+Therefore $a\notin\Q$.
+
+\answer{$\sqrt[3]{5-\sqrt3}$ is irrational.}
+
+\exercise{2.5}{A positive real fractional power}
+\goal Prove that $(3+\sqrt2)^{2/3}$ is irrational.
+
+\idea First explain the fractional exponent using the positive real
+cube root. Cubing the proposed number then produces a simple expression
+$11+6\sqrt2$, from which $\sqrt2$ can be isolated.
+
+\step{1. Interpret the exponent without a sign ambiguity}
+Since $\sqrt2>0$, the base
+\[
+ u=3+\sqrt2
+\]
+is positive. Let $t=\sqrt[3]{u}>0$. Thus $t^3=u$, and the positive real
+fractional power in the problem is
+\[
+ a=u^{2/3}=(\sqrt[3]{u})^2=t^2.
+\]
+It follows from integer power rules that
+\[
+ a^3=(t^2)^3=t^6=(t^3)^2=u^2=(3+\sqrt2)^2.
+\]
+This explains precisely why cubing removes the exponent $2/3$.
+
+\step{2. Expand the square completely}
+Using $(v+w)^2=v^2+2vw+w^2$ gives
+\begin{align*}
+ a^3
+  &=(3+\sqrt2)^2\\
+  &=3^2+2\cdot3\cdot\sqrt2+(\sqrt2)^2\\
+  &=9+6\sqrt2+2\\
+  &=11+6\sqrt2.
+\end{align*}
+Subtracting $11$ and dividing by $6$ therefore yields
+\[
+ a^3-11=6\sqrt2,
+ \qquad
+ \sqrt2=\frac{a^3-11}{6}.
+\]
+
+\step{3. Use rational closure to obtain the contradiction}
+Suppose $a\in\Q$. Then $a^3\in\Q$, hence $a^3-11\in\Q$.
+Because $6$ is a nonzero rational integer, division by $6$ preserves
+rationality. The last displayed equation would imply $\sqrt2\in\Q$.
+This contradicts the auxiliary irrationality result in Exercise~2.1.
+
+\answer{$(3+\sqrt2)^{2/3}$, with the positive real interpretation of the
+fractional power, is irrational.}
+
+\exercise{2.6}{A rational quadratic expression}
+\goal Explain why $b\in\Q$ implies $4-7b^2\in\Q$.
+
+\idea Start with the defining fraction for a rational number and write
+$4-7b^2$ as one fraction. Check its numerator and denominator separately.
+
+\step{1. Write the rationality hypothesis explicitly}
+Assume $b\in\Q$. By definition, there are integers $m,n$ such that
+\[
+ b=\frac mn,\qquad n\ne0.
+\]
+The numerator $m$ may be positive, negative, or zero. No restriction on
+the sign of $b$ is needed for this argument.
+
+\step{2. Perform the arithmetic over one denominator}
+Squaring and multiplying gives
+\[
+ b^2=\frac{m^2}{n^2},
+ \qquad 7b^2=\frac{7m^2}{n^2}.
+\]
+As $n\ne0$, its square $n^2$ is nonzero, so we may also write
+$4=4n^2/n^2$. Subtracting now gives
+\[
+ 4-7b^2
+ =\frac{4n^2}{n^2}-\frac{7m^2}{n^2}
+ =\frac{4n^2-7m^2}{n^2}.
+\]
+The integer operations of squaring, multiplication, and subtraction
+show that $4n^2-7m^2\in\Z$. The denominator $n^2$ is a nonzero
+integer. The displayed fraction is therefore rational by definition.
+
+\step{3. Explain the connection with Example 6}
+The same reasoning can be summarized using Tool~1: $b\in\Q$ implies
+$b^2\in\Q$, then $7b^2\in\Q$, and then $4-7b^2\in\Q$.
+This is the rational-closure step used in Example~6. For the particular
+number considered there, the radical equation also gives
+\[
+ 7b^2=4-2\sqrt3,
+ \qquad\text{so}\qquad
+ 4-7b^2=2\sqrt3.
+\]
+If that $b$ were rational, the result just proved would make
+$2\sqrt3$ rational. Dividing by the nonzero rational number $2$ would
+make $\sqrt3$ rational, contradicting Exercise~2.1. This shows how the
+closure statement supplies the needed step in an irrationality proof.
+
+\answer{For every rational $b=m/n$ with $n\ne0$,
+$4-7b^2=(4n^2-7m^2)/n^2\in\Q$.}
+
+\exercise{2.7}{Two radicals that simplify to rational numbers}
+\goal Show that
+\[
+ \text{(a)}\quad \sqrt{4+2\sqrt3}-\sqrt3,
+ \qquad
+ \text{(b)}\quad \sqrt{6+4\sqrt2}-\sqrt2
+\]
+are rational, and find their values. In each expression the final
+subtracted square root lies outside the first radical.
+
+\idea Recognize each radicand as the square of a positive sum. Positivity
+is essential: for a real $v$, the principal square root satisfies
+$\sqrt{v^2}=\abs{v}$. To replace that absolute value by $v$, we check
+that $v>0$.
+
+\step{1. Part (a): Expand the proposed positive square root}
+Consider $v=1+\sqrt3$. Because $\sqrt3>0$, we have $v>0$. Expanding
+its square gives
+\begin{align*}
+ (1+\sqrt3)^2
+  &=1^2+2\cdot1\cdot\sqrt3+(\sqrt3)^2\\
+  &=1+2\sqrt3+3\\
+  &=4+2\sqrt3.
+\end{align*}
+The radicand is positive, and $1+\sqrt3$ is a positive number whose
+square equals that radicand. It is therefore the principal square root:
+\[
+ \sqrt{4+2\sqrt3}=1+\sqrt3.
+\]
+One can also justify the choice of sign from uniqueness. If two
+nonnegative numbers $v,w$ have the same positive square, then
+$(v-w)(v+w)=v^2-w^2=0$. Since $v+w>0$, it follows that $v-w=0$,
+so $v=w$. There is thus only one nonnegative square root here.
+
+Substituting the identity into the expression in part (a) gives
+\[
+ \sqrt{4+2\sqrt3}-\sqrt3
+ =(1+\sqrt3)-\sqrt3
+ =1+(\sqrt3-\sqrt3)
+ =1+0=1.
+\]
+As $1=1/1$, this value is rational.
+
+\step{2. Part (b): Expand the second proposed positive square root}
+Now consider $w=2+\sqrt2$. It is positive because $\sqrt2>0$.
+Its square expands as
+\begin{align*}
+ (2+\sqrt2)^2
+  &=2^2+2\cdot2\cdot\sqrt2+(\sqrt2)^2\\
+  &=4+4\sqrt2+2\\
+  &=6+4\sqrt2.
+\end{align*}
+Thus $2+\sqrt2$ is the positive square root of $6+4\sqrt2$.
+The sign check permits the identity
+\[
+ \sqrt{6+4\sqrt2}=2+\sqrt2.
+\]
+It follows that
+\[
+ \sqrt{6+4\sqrt2}-\sqrt2
+ =(2+\sqrt2)-\sqrt2
+ =2+(\sqrt2-\sqrt2)
+ =2+0=2.
+\]
+Since $2=2/1$, this value is rational as well.
+
+\answer{Part (a) equals $1$ and part (b) equals $2$; both expressions
+are rational numbers.}
+
+\exercise{2.8}{All rational zeros of an eighth-degree polynomial}
+\goal Find every rational solution of
+\[
+ x^8-4x^5+13x^3-7x+1=0.
+\]
+
+\idea The polynomial is monic, has integer coefficients, and has constant
+term $1$. The monic rational-zero result restricts every rational root
+to an integer divisor of $1$. We must test both candidates and explain
+why this exhausts the rational possibilities.
+
+\step{1. Obtain the complete candidate list}
+Let
+\[
+ P(x)=x^8-4x^5+13x^3-7x+1.
+\]
+The coefficient of $x^8$ is $1$, so $P$ is monic. Its missing powers
+have coefficient $0$, which is also an integer. Its constant coefficient
+is $1\ne0$. Thus Tool~3 applies to every rational zero of $P$.
+It says that such a zero must be an integer dividing $1$. If an integer
+$m$ divides $1$, then $1=mk$ for some integer $k$. Taking absolute
+values gives $1=\abs{m}\abs{k}$, so both nonnegative integer factors
+must equal $1$. In particular $\abs{m}=1$, and hence $m=1$ or $m=-1$.
+The full rational candidate list is therefore
+\[
+ \{1,-1\}.
+\]
+
+Here is the denominator step directly for this particular polynomial.
+If a rational root is $m/n$ in lowest terms, with $n>0$, multiplication
+of $P(m/n)=0$ by $n^8$ gives
+\[
+ m^8-4m^5n^3+13m^3n^5-7mn^7+n^8=0.
+\]
+Solving for $m^8$ gives
+\[
+ m^8=n\bigl(4m^5n^2-13m^3n^4+7mn^6-n^7\bigr),
+\]
+so $n$ divides $m^8$. Since $m,n$ are relatively prime, repeated
+coprime cancellation gives $n\mid1$, hence $n=1$.
+After this reduction, $P(m)=0$ can be rearranged as
+\[
+ 1=-m^8+4m^5-13m^3+7m
+   =m\bigl(-m^7+4m^4-13m^2+7\bigr).
+\]
+This proves $m\mid1$ and recovers precisely the two candidates above.
+Also $P(0)=1$, so zero has not been omitted as a possible root.
+
+\step{2. Evaluate the candidate $1$}
+Every positive power of $1$ equals $1$. Consequently
+\begin{align*}
+ P(1)
+ &=1^8-4\cdot1^5+13\cdot1^3-7\cdot1+1\\
+ &=1-4+13-7+1\\
+ &=-3+13-7+1\\
+ &=10-7+1\\
+ &=3+1=4.
+\end{align*}
+Since $4\ne0$, the number $1$ is not a solution.
+
+\step{3. Evaluate the candidate $-1$}
+The eighth power of $-1$ is $1$, while its fifth and third powers
+are $-1$. Substituting with the signs retained gives
+\begin{align*}
+ P(-1)
+ &=(-1)^8-4(-1)^5+13(-1)^3-7(-1)+1\\
+ &=1-4(-1)+13(-1)+7+1\\
+ &=1+4-13+7+1\\
+ &=5-13+7+1\\
+ &=-8+7+1\\
+ &=-1+1=0.
+\end{align*}
+Thus $-1$ is a solution, and it is rational because $-1=(-1)/1$.
+
+\step{4. Explain why the search is complete}
+Every rational solution must belong to the candidate set $\{1,-1\}$
+from Step~1. Step~2 rejects $1$, and Step~3 verifies $-1$. There are
+no other rational candidates to examine.
+
+\answer{The set of all rational solutions is $\{-1\}$.}

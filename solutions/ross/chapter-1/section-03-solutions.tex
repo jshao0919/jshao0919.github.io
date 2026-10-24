@@ -1,0 +1,701 @@
+\section{The set of real numbers}
+
+This section concerns the rules of arithmetic, inequalities, and absolute
+values. We work with the usual operations on real numbers. In particular,
+\emph{an inverse must belong to the set under discussion}: an integer does
+not have a multiplicative inverse \emph{in the integers} merely because it
+has one in the real numbers.
+
+\subsection*{A reference sheet for the rules}
+Ross's labels will be useful when explaining individual steps. For real
+numbers $x,y,z$, the field rules are
+\begin{align*}
+ \mathrm{A1}:&\quad x+(y+z)=(x+y)+z,
+ &\mathrm{A2}:&\quad x+y=y+x,\\
+ \mathrm{A3}:&\quad x+0=x,
+ &\mathrm{A4}:&\quad x+(-x)=0,\\
+ \mathrm{M1}:&\quad x(yz)=(xy)z,
+ &\mathrm{M2}:&\quad xy=yx,\\
+ \mathrm{M3}:&\quad x\cdot1=x,
+ &\mathrm{M4}:&\quad xx^{-1}=1\quad(x\ne0),\\
+ \mathrm{DL}:&\quad x(y+z)=xy+xz.
+\end{align*}
+The additive identity $0$, the multiplicative identity $1$, the additive
+inverse $-x$, and (when $x\ne0$) the multiplicative inverse $x^{-1}$ must
+be elements of the field. A field has more than one element.
+
+The order rules say that any two real numbers can be compared (O1),
+$x\le y$ and $y\le x$ together imply $x=y$ (O2), and
+$x\le y\le z$ implies $x\le z$ (O3). They also give
+\[
+ \mathrm{O4}:\quad x\le y\ \Longrightarrow\ x+z\le y+z,
+ \qquad
+ \mathrm{O5}:\quad x\le y,\ 0\le z\ \Longrightarrow\ xz\le yz.
+\]
+By definition, $x<y$ means that $x\le y$ and $x\ne y$.
+Subtraction is addition of the additive inverse:
+$x-y=x+(-y)$. Division by a nonzero number is multiplication by its
+multiplicative inverse: $x/y=xy^{-1}$.
+
+We may use the results already established in the text before these
+exercises, including additive cancellation, $x\cdot0=0$,
+$(-x)y=-(xy)$, nonnegativity of squares, and the triangle inequality.
+When an exercise asks for a missing part of a theorem, that missing part
+is proved below rather than assumed.
+
+\exercise{3.1}{Which rules fail for natural numbers and integers?}
+
+\goal Determine which of A1--A4, M1--M4, DL, and O1--O5 are valid when the
+operations and order are the usual ones and all required elements must lie
+in the specified set.
+
+\step{(a), Step 1: fix the convention for natural numbers.}
+Ross uses $\N=\{1,2,3,\ldots\}$. Thus $1\in\N$ but $0\notin\N$.
+This distinction matters for the identity requirement A3.
+
+\step{(a), Step 2: test the additive identity.}
+A3 requires an additive identity \emph{in the set}. The usual identity is
+$0$, which is not in $\N$. There is no replacement positive integer $e$:
+if $e\in\N$, then $e\ge1$, so
+\[
+ 1+e\ge1+1=2>1.
+\]
+Consequently $1+e\ne1$. Hence no natural number can act as an additive
+identity, and the internal identity requirement A3 fails.
+
+There is a small interpretive issue here. The equality $n+0=n$ is true if
+we calculate in $\Z$ or $\R$. It is not a false numerical equation.
+It fails as a \emph{field axiom for $\N$} because its required constant
+$0$ is outside $\N$. We use this internal interpretation in the answer.
+
+\step{(a), Step 3: test additive inverses.}
+A4 would require an element of $\N$ that can be added to $1$ to give $0$.
+But if $m\in\N$, then $m\ge1$, and therefore $1+m\ge2$.
+In particular, $1+m\ne0$. The additive inverse $-1$ exists in $\Z$ and
+$\R$, but not in $\N$. Thus A4 fails.
+
+\step{(a), Step 4: test multiplicative inverses.}
+M4 would require an element $m\in\N$ with $2m=1$.
+Every such $m$ satisfies $m\ge1$, so $2m\ge2$. Therefore $2m\ne1$.
+Equivalently, the required inverse $1/2$ is not a natural number.
+Thus M4 fails. It is enough to find the single nonzero element $2$ for
+which the requirement fails; M4 must hold for \emph{every} nonzero element.
+
+\step{(a), Step 5: check the remaining rules.}
+Addition and multiplication of positive integers again give positive
+integers. Associativity and commutativity remain true, so A1, A2, M1,
+and M2 hold. Since $1\in\N$ and $n\cdot1=n$, M3 holds. The distributive
+identity holds for positive integers, so DL holds. The usual comparisons
+of natural numbers satisfy O1--O4. Finally, multiplying an inequality
+between natural numbers by a natural number, which is positive, preserves
+its direction; this verifies the numerical inequality in O5.
+The occurrence of $0$ in the condition of O5 is understood in the ambient
+usual order. No additional order inequality becomes false upon
+restricting its variables to $\N$.
+
+\answer{For $\N$ the failed internal field requirements are
+\(\boxed{\mathrm{A3},\ \mathrm{A4},\ \mathrm{M4}}\).
+The remaining listed arithmetic identities and order implications are
+valid with the usual arithmetic and order.}
+
+\step{(b), Step 1: identify what changes for integers.}
+Now the set is $\Z$, so $0\in\Z$ and $-n\in\Z$ whenever $n\in\Z$.
+Thus $n+0=n$ takes place inside the set, and $n+(-n)=0$ also takes place
+inside the set. A3 and A4 both hold.
+
+\step{(b), Step 2: exhibit the remaining failure.}
+The element $2$ is a nonzero integer. If it had an inverse $m\in\Z$,
+we would have $2m=1$. The left side is an even integer, since it is twice
+an integer; the right side is odd. Hence no such integer $m$ exists.
+This again says that $1/2\notin\Z$, so M4 fails.
+
+\step{(b), Step 3: check every other requirement.}
+The sum and product of integers are integers. The associative,
+commutative, and distributive identities remain valid. Both identities,
+$0$ and $1$, are integers. Additive inverses are integers. The usual
+order of integers satisfies O1--O4, and multiplication by a nonnegative
+integer preserves a weak inequality, as required by O5.
+
+\answer{For $\Z$ the only failed listed requirement is
+\(\boxed{\mathrm{M4}}\). Some integers, namely $1$ and $-1$, do have
+integer multiplicative inverses, but that does not meet a requirement
+imposed on every nonzero integer.}
+
+\exercise{3.2}{Locate the hidden uses of additive commutativity}
+
+\goal Find the uses of A2 in the proofs of Theorem~3.1(ii) and (iii).
+
+\idea The cancellation rule proved in Theorem~3.1(i) is written with the
+common term on the \emph{right}:
+\[
+ x+c=y+c\quad\Longrightarrow\quad x=y.
+\]
+Before using this particular form, both equalities must have that shape.
+
+\step{(a), Step 1: write what distributivity actually gives.}
+Set $t=a\cdot0$. Since $0+0=0$ by A3, distributivity gives
+\[
+ t=a\cdot0=a(0+0)=a\cdot0+a\cdot0=t+t.
+\]
+To use right cancellation with the common term $t$, the proof rewrites
+the leftmost $t$ as $0+t$.
+
+\step{(a), Step 2: justify that rewriting.}
+A3 gives $t+0=t$, with the zero on the \emph{right}. A2 is needed to move
+it to the left:
+\[
+ 0+t=t+0=t.
+\]
+Thus $t=t+t$ becomes $0+t=t+t$. Right cancellation of $t$ now gives
+$0=t=a\cdot0$.
+
+\answer{The hidden use of A2 is the passage from $a\cdot0$ to
+$0+a\cdot0$: first A3 permits $a\cdot0+0$, then A2 switches the two
+summands.}
+
+\step{(b), Step 1: identify the equality just before cancellation.}
+The proof obtains
+\[
+ ab+(-a)b=ab+\bigl(-(ab)\bigr).
+\]
+Here the common summand $ab$ is on the \emph{left}, whereas the previously
+proved cancellation statement has the common summand on the right.
+
+\step{(b), Step 2: apply A2 to both sums.}
+The two relevant switches are
+\[
+ ab+(-a)b=(-a)b+ab,
+ \qquad
+ ab+\bigl(-(ab)\bigr)=\bigl(-(ab)\bigr)+ab.
+\]
+The equality therefore becomes
+\[
+ (-a)b+ab=\bigl(-(ab)\bigr)+ab.
+\]
+Now right cancellation with common term $ab$ proves
+$(-a)b=-(ab)$.
+
+\step{(b), Step 3: distinguish addition from multiplication.}
+There are also commutative switches in the preceding factorization, but
+those use M2, not A2. For example,
+\begin{align*}
+ ab+(-a)b
+   &=ba+b(-a) &&\text{by M2 in the two products},\\
+   &=b\bigl(a+(-a)\bigr) &&\text{by DL, read in reverse},\\
+   &=b\cdot0 &&\text{by A4},\\
+   &=0 &&\text{by Theorem~3.1(ii)}.
+\end{align*}
+No exchange of \emph{summands} occurs in this displayed chain.
+
+\answer{The A2 needed for the final use of Theorem~3.1(i) moves the
+common additive term $ab$ from the left to the right on both sides.
+Product switches elsewhere in the argument use M2.}
+
+\exercise{3.3}{A product of two negatives and multiplicative cancellation}
+
+\goal Prove Theorem~3.1(iv), $(-a)(-b)=ab$, and Theorem~3.1(v),
+$ac=bc$ with $c\ne0$ implies $a=b$.
+
+\step{Part (iv), Step 1: prove that taking the negative twice returns the number.}
+For any real $u$, A4 gives
+\[
+ u+(-u)=0.
+\]
+Apply A4 again, now to the number $-u$:
+\[
+ (-u)+\bigl(-(-u)\bigr)=0.
+\]
+By A2 the second left side is $-(-u)+(-u)$. Hence
+\[
+ u+(-u)=-(-u)+(-u).
+\]
+The common right summand is $-u$. Additive cancellation gives
+\[
+ u=-(-u).
+\]
+This proves the double-negative rule without using a product of two
+negative numbers.
+
+\step{Part (iv), Step 2: reduce the product to the rule already proved.}
+Theorem~3.1(iii) states $(-x)y=-(xy)$ for all real $x,y$.
+First apply it with $x=a$ and $y=-b$:
+\[
+ (-a)(-b)=-\bigl(a(-b)\bigr).
+\]
+Next rewrite the product inside the parentheses:
+\begin{align*}
+ a(-b)
+   &=(-b)a &&\text{by M2},\\
+   &=-(ba) &&\text{by Theorem~3.1(iii) with $x=b$, $y=a$},\\
+   &=-(ab) &&\text{by M2 inside the negative}.
+\end{align*}
+Substitute this expression into the previous equality:
+\[
+ (-a)(-b)=-\bigl(-(ab)\bigr)=ab.
+\]
+The last equality is Step~1 with $u=ab$.
+
+\answer{For all real $a,b$, \(\boxed{(-a)(-b)=ab}\).}
+
+\step{Part (v), Step 1: use the nonzero assumption.}
+Suppose $ac=bc$ and $c\ne0$. By M4 the number $c^{-1}$ exists and
+satisfies $cc^{-1}=1$. Multiply both sides of the given equality on the
+right by this \emph{same} real number:
+\[
+ (ac)c^{-1}=(bc)c^{-1}.
+\]
+
+\step{Part (v), Step 2: simplify each side, naming each rule.}
+For the left side,
+\[
+ (ac)c^{-1}=a(cc^{-1})=a\cdot1=a.
+\]
+These equalities use M1, M4, and M3, respectively. The same rules give
+\[
+ (bc)c^{-1}=b(cc^{-1})=b\cdot1=b.
+\]
+Replacing the two sides of $(ac)c^{-1}=(bc)c^{-1}$ by these simplified
+forms gives $a=b$.
+
+\answer{If $ac=bc$ and $c\ne0$, then \(\boxed{a=b}\).
+The condition $c\ne0$ is necessary: $1\cdot0=2\cdot0$, but $1\ne2$.}
+
+\exercise{3.4}{Positivity of one and reversal of reciprocals}
+
+\goal Prove Theorem~3.2(v), $0<1$, and Theorem~3.2(vii):
+\[
+ 0<a<b\quad\Longrightarrow\quad0<b^{-1}<a^{-1}.
+\]
+
+\step{Part (v), Step 1: show that $1$ is nonnegative.}
+Theorem~3.2(iv), already proved in the text, says $0\le x^2$ for every
+real $x$. Take $x=1$. By M3, $1^2=1\cdot1=1$. Therefore
+\[
+ 0\le1.
+\]
+
+\step{Part (v), Step 2: rule out equality with zero.}
+Suppose, for a contradiction, that $1=0$. Let $x$ be any element of the
+field. Then
+\[
+ x=x\cdot1=x\cdot0=0.
+\]
+The first equality uses M3; the second substitutes $1=0$; the third uses
+Theorem~3.1(ii). Thus \emph{every} field element would equal $0$, leaving
+only one element. This contradicts the requirement that a field have
+more than one element. Consequently $1\ne0$.
+
+\answer{Since $0\le1$ and $0\ne1$, the definition of strict inequality
+gives \(\boxed{0<1}\).}
+
+\step{Part (vii), Step 1: record why the inverses are positive.}
+If $t>0$, then $t\ne0$, so M4 supplies $t^{-1}$ with $tt^{-1}=1$.
+Here is the proof of its positivity, as in Theorem~3.2(vi).
+First $t^{-1}$ cannot be zero, because then
+$1=tt^{-1}=t\cdot0=0$, contradicting Part~(v).
+If $t^{-1}<0$, order reversal under negation gives $0<-t^{-1}$.
+The product of nonnegative numbers is nonnegative
+(Theorem~3.2(iii)), so
+\[
+ 0\le t(-t^{-1})=-(tt^{-1})=-1.
+\]
+The product identity in the middle follows from Theorem~3.1(iii) and
+M2. Negating $0\le-1$ reverses its direction and gives $1\le0$.
+Together with $0\le1$, O2 would give $1=0$, again contradicting
+Part~(v). Thus $t^{-1}$ is neither zero nor negative, so $t^{-1}>0$.
+
+In the hypothesis $0<a<b$, we have $a>0$ and $b>0$.
+Applying the preceding argument to $t=a$ and $t=b$ gives
+\[
+ a^{-1}>0,\qquad b^{-1}>0.
+\]
+
+\step{Part (vii), Step 2: justify multiplication of strict inequalities.}
+If $x<y$ and $c>0$, then O5 first gives the weak inequality $xc\le yc$.
+Equality $xc=yc$ would imply $x=y$ by Exercise~3.3(v), since $c\ne0$.
+But $x<y$ includes $x\ne y$. Therefore equality is impossible, and
+\[
+ x<y,\quad c>0\quad\Longrightarrow\quad xc<yc.
+\]
+This explains why strictness is retained in the following two steps.
+
+\step{Part (vii), Step 3: multiply first by $a^{-1}$.}
+Start from $a<b$ and use the positive multiplier $a^{-1}$:
+\[
+ aa^{-1}<ba^{-1}.
+\]
+M4 turns the left side into $1$, so
+\[
+ 1<ba^{-1}.
+\]
+
+\step{Part (vii), Step 4: multiply next by $b^{-1}$.}
+The multiplier $b^{-1}$ is also positive. Thus
+\[
+ 1\cdot b^{-1}<(ba^{-1})b^{-1}.
+\]
+The left side equals $b^{-1}$ by M2 and M3. On the right,
+\[
+ (ba^{-1})b^{-1}
+   =(a^{-1}b)b^{-1}
+   =a^{-1}(bb^{-1})
+   =a^{-1}\cdot1
+   =a^{-1}.
+\]
+These steps use M2, M1, M4, and M3, in that order. Hence
+$b^{-1}<a^{-1}$.
+
+\answer{Combining this strict inequality with $b^{-1}>0$ gives
+\(\boxed{0<b^{-1}<a^{-1}}\). Positivity of $a$ and $b$ is essential
+to the choice of positive multipliers.}
+
+\exercise{3.5}{Absolute-value bounds and the reverse triangle inequality}
+
+\goal Prove (a) $\abs{b}\le a$ if and only if $-a\le b\le a$, and
+(b) $\abs{\abs{a}-\abs{b}}\le\abs{a-b}$.
+
+\step{Part (a), Step 1: unpack the definition of absolute value.}
+For a real number $x$,
+\[
+ \abs{x}=\begin{cases}x,&x\ge0,\\-x,&x<0.\end{cases}
+\]
+In both cases $\abs{x}\ge0$. We also have
+\[
+ -\abs{x}\le x\le\abs{x}.
+\]
+To verify the second statement rather than assume it, consider the two
+cases. If $x\ge0$, then $\abs{x}=x$, the upper inequality is equality,
+and the lower inequality is $-x\le x$, since $-x\le0\le x$.
+If $x<0$, then $\abs{x}=-x$, the lower inequality is equality
+$-\abs{x}=x$, and the upper inequality follows from $x<0<-x$.
+
+\step{Part (a), Step 2: prove the forward implication.}
+Assume $\abs{b}\le a$. The bounds from Step~1 give $b\le\abs{b}$.
+Transitivity then gives
+\[
+ b\le\abs{b}\le a,
+\]
+so $b\le a$. Negating the assumed inequality reverses its direction:
+\[
+ -a\le-\abs{b}.
+\]
+Since $-\abs{b}\le b$ by Step~1, transitivity gives $-a\le b$.
+The two conclusions together are $-a\le b\le a$.
+
+\step{Part (a), Step 3: prove the reverse implication.}
+Assume both $-a\le b$ and $b\le a$.
+If $b\ge0$, then $\abs{b}=b$, so the second assumption gives
+$\abs{b}\le a$.
+If $b<0$, negate the first assumption $-a\le b$ to obtain
+$-b\le a$. In this case $\abs{b}=-b$, so again $\abs{b}\le a$.
+These two cases exhaust all real $b$ by O1.
+
+\step{Part (a), Step 4: check zero and negative bounds.}
+If $a=0$, the left condition says $\abs{b}\le0$, which forces
+$\abs{b}=0$ and hence $b=0$ by the definition. The right condition is
+$0\le b\le0$, which forces $b=0$ by O2.
+If $a<0$, the left condition is impossible because
+$0\le\abs{b}$, whereas the right condition is impossible because
+$-a>0>a$: no real $b$ can simultaneously be at least $-a$ and at most
+$a$. Thus the equivalence includes these bounds as well.
+
+\answer{For all real $a,b$, including $a\le0$,
+\(\boxed{\abs{b}\le a\ \Longleftrightarrow\ -a\le b\le a}\).}
+
+\step{Part (b), Step 1: obtain a one-sided bound from the triangle inequality.}
+The equality $a=(a-b)+b$ follows by associating $a+((-b)+b)$ and
+using $(-b)+b=0$. Apply the triangle inequality to the sum $(a-b)+b$:
+\[
+ \abs{a}=\abs{(a-b)+b}\le\abs{a-b}+\abs{b}.
+\]
+Add $-\abs{b}$ to both sides using O4. After associating and cancelling
+$\abs{b}+(-\abs{b})$, the result is
+\[
+ \abs{a}-\abs{b}\le\abs{a-b}. \tag{1}
+\]
+
+\step{Part (b), Step 2: bound the negative of the same expression.}
+Interchange the roles of $a$ and $b$ in the preceding argument:
+\[
+ \abs{b}-\abs{a}\le\abs{b-a}. \tag{2}
+\]
+We need to identify the right side. First, $b-a=-(a-b)$, as follows by
+distributing the negative over $a+(-b)$ and using the double-negative
+rule. Also $\abs{-x}=\abs{x}$ for any real $x$: when $x>0$, the two
+absolute values are $-(-x)=x$ and $x$; when $x<0$, both are $-x$;
+when $x=0$, both are $0$. Therefore
+\[
+ \abs{b-a}=\abs{-(a-b)}=\abs{a-b}.
+\]
+Substitute this into (2):
+\[
+ \abs{b}-\abs{a}\le\abs{a-b}.
+\]
+Negating both sides reverses the inequality, so
+\[
+ -\abs{a-b}\le\abs{a}-\abs{b}. \tag{3}
+\]
+
+\step{Part (b), Step 3: combine and apply part (a).}
+Together (1) and (3) give the two-sided bound
+\[
+ -\abs{a-b}\le\abs{a}-\abs{b}\le\abs{a-b}.
+\]
+In part (a), take its bounded number to be
+$\abs{a}-\abs{b}$ and its bound to be $\abs{a-b}$. That equivalence
+turns this two-sided bound into
+\[
+ \abs{\abs{a}-\abs{b}}\le\abs{a-b}.
+\]
+
+\answer{The reverse triangle inequality is
+\(\boxed{\abs{\abs{a}-\abs{b}}\le\abs{a-b}}\) for every real $a,b$.}
+
+\exercise{3.6}{The triangle inequality for three and for finitely many terms}
+
+\goal Prove (a) $\abs{a+b+c}\le\abs{a}+\abs{b}+\abs{c}$ and
+(b) $\abs{a_1+\cdots+a_n}\le\abs{a_1}+\cdots+\abs{a_n}$
+for every positive integer $n$ and every choice of real summands.
+
+\step{Part (a), Step 1: group the sum into two terms.}
+By A1, $a+b+c=(a+b)+c$. The two-term triangle inequality, applied to
+the real numbers $a+b$ and $c$, gives
+\[
+ \abs{a+b+c}\le\abs{a+b}+\abs{c}. \tag{4}
+\]
+
+\step{Part (a), Step 2: apply the two-term inequality again.}
+Apply it to $a$ and $b$:
+\[
+ \abs{a+b}\le\abs{a}+\abs{b}.
+\]
+Add $\abs{c}$ to both sides by O4:
+\[
+ \abs{a+b}+\abs{c}\le\abs{a}+\abs{b}+\abs{c}. \tag{5}
+\]
+By transitivity, combining (4) with (5) gives
+\[
+ \abs{a+b+c}\le\abs{a}+\abs{b}+\abs{c}.
+\]
+
+\answer{The three-term inequality follows from two applications of the
+two-term inequality; no enumeration of the signs of $a,b,c$ is needed.}
+
+\step{Part (b), Step 1: state exactly what is being proved by induction.}
+Let $P_n$ be the assertion that
+\[
+ \abs{a_1+\cdots+a_n}\le\abs{a_1}+\cdots+\abs{a_n}
+\]
+for \emph{every} list of $n$ real numbers $a_1,\ldots,a_n$.
+This quantifier is important: in the induction step we may choose any
+list of $n+1$ numbers and apply $P_n$ to its first $n$ entries.
+
+\step{Part (b), Step 2: verify the base case.}
+For $n=1$, the claimed inequality is simply $\abs{a_1}\le\abs{a_1}$.
+The two sides are equal, so $P_1$ holds for every real $a_1$.
+
+\step{Part (b), Step 3: state the induction hypothesis and the next target.}
+Fix $n\ge1$ and assume $P_n$. Let
+$a_1,\ldots,a_n,a_{n+1}$ be arbitrary real numbers. The target is
+\[
+ \abs{a_1+\cdots+a_n+a_{n+1}}
+   \le\abs{a_1}+\cdots+\abs{a_n}+\abs{a_{n+1}}.
+\]
+Set $s=a_1+\cdots+a_n$. The induction hypothesis gives
+$\abs{s}\le\sum_{j=1}^{n}\abs{a_j}$.
+
+\step{Part (b), Step 4: prove the induction step.}
+The two-term triangle inequality and then the induction hypothesis give
+\begin{align*}
+ \abs{a_1+\cdots+a_n+a_{n+1}}
+   &=\abs{s+a_{n+1}} &&\text{by the definition of $s$ and A1},\\
+   &\le\abs{s}+\abs{a_{n+1}} &&\text{by the triangle inequality},\\
+   &\le\sum_{j=1}^{n}\abs{a_j}+\abs{a_{n+1}}
+       &&\text{by the induction hypothesis and O4},\\
+   &=\sum_{j=1}^{n+1}\abs{a_j} &&\text{by the definition of the sum}.
+\end{align*}
+The list of $n+1$ real numbers was arbitrary, so $P_{n+1}$ follows.
+
+\answer{Since $P_1$ holds and $P_n$ implies $P_{n+1}$ for every
+$n\ge1$, mathematical induction proves the finite-sum triangle
+inequality for every $n\in\N$.}
+
+\exercise{3.7}{Strict absolute-value bounds and intervals centered at a point}
+
+\goal Establish all three equivalences:
+\begin{align*}
+ \text{(a)}\quad&\abs{b}<a
+    &&\Longleftrightarrow&&-a<b<a,\\
+ \text{(b)}\quad&\abs{a-b}<c
+    &&\Longleftrightarrow&&b-c<a<b+c,\\
+ \text{(c)}\quad&\abs{a-b}\le c
+    &&\Longleftrightarrow&&b-c\le a\le b+c.
+\end{align*}
+
+\step{Part (a), Step 1: prove the forward implication.}
+Suppose $\abs{b}<a$. From Exercise~3.5(a), Step~1, we know
+$b\le\abs{b}$ and $-\abs{b}\le b$.
+Thus
+\[
+ b\le\abs{b}<a\quad\Longrightarrow\quad b<a.
+\]
+Negating $\abs{b}<a$ gives $-a<-\abs{b}$. This strict reversal is
+justified by Theorem~3.2(i) for the weak inequality; equality of the
+negatives would imply equality of the originals by taking their
+negatives again, so equality is excluded. Combining it with
+$-\abs{b}\le b$ gives $-a<b$. Together these conclusions are
+$-a<b<a$.
+
+\step{Part (a), Step 2: prove the reverse implication.}
+Assume $-a<b<a$.
+If $b\ge0$, then $\abs{b}=b<a$ by the right-hand assumed inequality.
+If $b<0$, negate the left-hand assumed inequality $-a<b$ to get
+$-b<a$; since $\abs{b}=-b$ in this case, we again obtain $\abs{b}<a$.
+The case $b=0$ belongs to the first case.
+
+\step{Part (a), Step 3: check nonpositive values of the bound.}
+If $a\le0$, the left condition cannot hold: it would give
+$0\le\abs{b}<a\le0$. The right condition cannot hold either.
+Indeed $a\le0$ implies $0\le-a$, hence $a\le-a$, while
+$-a<b<a$ would imply $-a<a$. Those inequalities contradict each other.
+Thus the equivalence remains true when both conditions are false.
+
+\answer{For all real $a,b$,
+\(\boxed{\abs{b}<a\ \Longleftrightarrow\ -a<b<a}\).
+Either condition, when true, forces $a>0$.}
+
+\step{Part (b), Step 1: prove the forward implication.}
+Assume $\abs{a-b}<c$. Apply part (a) to the real number $a-b$ with
+bound $c$. It gives
+\[
+ -c<a-b<c.
+\]
+Add $b$ to the three expressions. Addition preserves strict inequality:
+O4 preserves the weak inequality, and equality after addition would
+contradict additive cancellation. Thus
+\[
+ -c+b<(a-b)+b<c+b.
+\]
+A1 and A4 give $(a-b)+b=a$; A2 gives $-c+b=b-c$ and $c+b=b+c$.
+Therefore $b-c<a<b+c$.
+
+\step{Part (b), Step 2: prove the reverse implication.}
+Assume $b-c<a<b+c$. Add $-b$ to every expression:
+\[
+ (b-c)-b<a-b<(b+c)-b.
+\]
+Associativity and commutativity let $b$ and $-b$ become adjacent;
+A4 and A3 then give $(b-c)-b=-c$ and $(b+c)-b=c$.
+We obtain $-c<a-b<c$, and part (a) gives $\abs{a-b}<c$.
+
+\answer{For all real $a,b,c$,
+\(\boxed{\abs{a-b}<c\ \Longleftrightarrow\ b-c<a<b+c}\).
+If $c\le0$, both conditions are false, as follows from part (a);
+thus no unstated assumption $c>0$ is needed for the equivalence.}
+
+\step{Part (c), Step 1: prove the forward implication.}
+Assume $\abs{a-b}\le c$. Exercise~3.5(a), with bounded number $a-b$
+and bound $c$, gives
+\[
+ -c\le a-b\le c.
+\]
+Use O4 to add $b$ throughout:
+\[
+ -c+b\le(a-b)+b\le c+b.
+\]
+The same algebra as in part (b) simplifies the three expressions,
+giving $b-c\le a\le b+c$.
+
+\step{Part (c), Step 2: prove the reverse implication.}
+Assume $b-c\le a\le b+c$. Add $-b$ throughout by O4 and simplify:
+\[
+ (b-c)-b\le a-b\le(b+c)-b
+ \quad\Longrightarrow\quad
+ -c\le a-b\le c.
+\]
+Exercise~3.5(a) now gives $\abs{a-b}\le c$.
+
+\step{Part (c), Step 3: check the boundary cases.}
+If $c<0$, an absolute value cannot be at most $c$, so the left condition
+is false. Also $b-c>b+c$, since subtracting gives
+$(b-c)-(b+c)=-2c>0$; hence no $a$ can lie between those endpoints in
+the specified order. The right condition is false as well.
+If $c=0$, the left condition forces $a-b=0$, or $a=b$; the right
+condition becomes $b\le a\le b$, which also forces $a=b$ by O2.
+
+\answer{For all real $a,b,c$,
+\(\boxed{\abs{a-b}\le c\ \Longleftrightarrow\ b-c\le a\le b+c}\).}
+
+\exercise{3.8}{Comparison with every number above a fixed bound}
+
+\goal Suppose that $a,b\in\R$ and
+\[
+ a\le b_1\qquad\text{for every real number $b_1$ satisfying $b_1>b$}.
+ \tag{6}
+\]
+Prove $a\le b$.
+
+\idea If $a$ were above $b$, the arithmetic midpoint between $a$ and $b$
+would be above $b$ but still below $a$. That specific choice would
+contradict (6). We will calculate both comparisons explicitly.
+
+\step{Step 1: negate the desired conclusion.}
+Suppose, for a contradiction, that $a\le b$ is false. By O1, either
+$a\le b$ or $b\le a$. Since the first alternative is excluded,
+$b\le a$. Equality $a=b$ would imply $a\le b$, so equality is also
+excluded. Consequently $b<a$, or equivalently $a>b$.
+Adding $-b$ to this strict inequality gives
+\[
+ d:=a-b>0.
+\]
+
+\step{Step 2: justify division by two and its sign.}
+Exercise~3.4 gives $1>0$. Adding $1$ to $0<1$ gives $1<2$, and
+transitivity with $0<1$ gives $2>0$. Thus $2\ne0$, so its inverse
+$1/2$ exists and is positive by Theorem~3.2(vi).
+Multiplying $0<d$ by the positive number $1/2$ preserves strict
+inequality, by the argument in Exercise~3.4(vii), Step~2. Hence
+\[
+ \frac d2>0.
+\]
+
+\step{Step 3: construct a number to which the hypothesis applies.}
+Define
+\[
+ m=\frac{a+b}{2}.
+\]
+We compute its difference from $b$ using a common denominator:
+\begin{align*}
+ m-b
+   &=\frac{a+b}{2}-\frac{2b}{2}
+       &&\text{because $2\ne0$ and $(2b)/2=b$},\\
+   &=\frac{a+b-2b}{2}
+       &&\text{by DL and the definition of division},\\
+   &=\frac{a-b}{2}
+       &&\text{since $b-2b=-b$},\\
+   &=\frac d2>0
+       &&\text{by the definition of $d$ and Step~2}.
+\end{align*}
+Adding $b$ to $m-b>0$ gives $m>b$. Thus $b_1=m$ satisfies the
+restriction in (6).
+
+\step{Step 4: show that this same number is below $a$.}
+Again use a common denominator:
+\begin{align*}
+ a-m
+   &=\frac{2a}{2}-\frac{a+b}{2},\\
+   &=\frac{2a-a-b}{2},\\
+   &=\frac{a-b}{2},\\
+   &=\frac d2>0.
+\end{align*}
+Adding $m$ throughout $a-m>0$ gives $a>m$, or $m<a$.
+
+\step{Step 5: apply the universal hypothesis and exhibit the contradiction.}
+Since $m>b$, (6) applies with $b_1=m$ and gives $a\le m$.
+Step~4 gave $m<a$, which includes $m\le a$ and $m\ne a$.
+From $a\le m$ and $m\le a$, O2 gives $a=m$, contrary to $m\ne a$.
+The assumption $a>b$ leads to a contradiction. Therefore $a\le b$.
+
+\answer{The hypothesis forces \(\boxed{a\le b}\).
+Only ordered-field arithmetic was used: the point $m$ was constructed
+directly, without a completeness axiom or an appeal to a limit.}
