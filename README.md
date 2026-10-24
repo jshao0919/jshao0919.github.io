@@ -8,7 +8,13 @@ detailed LaTeX solutions to all 56 exercises and every subpart across Sections
 1–6 of the second edition of Kenneth A. Ross's *Elementary Analysis*, including
 the development of the real numbers using Dedekind cuts. The website links to
 the complete chapter PDF, individual section PDFs, and a LaTeX source archive.
-See [the source and build instructions](solutions/ross/chapter-1/README.md).
+See [the Chapter 1 source and build instructions](solutions/ross/chapter-1/README.md).
+
+[Chapter 2, Sections 7–8](solutions/ross/chapter-2/ross-chapter-2-sections-7-8.pdf)
+adds all 15 exercises from those sections, including explicit term calculations,
+limit classifications, and detailed epsilon–N proofs. Individual section PDFs
+and a separate LaTeX source archive are linked on the website. See
+[the Chapter 2 source and build instructions](solutions/ross/chapter-2/README.md).
 
 ## Arithmetic Lab
 

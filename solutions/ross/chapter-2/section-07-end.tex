@@ -1,0 +1,245 @@
+\exercise{7.4}{Rational and irrational terms can have different kinds of limits}
+\goal Give \textup{(a)} a sequence of irrational numbers converging to a
+rational number, and \textup{(b)} a sequence of rational numbers
+converging to an irrational number.
+
+\idea For part \textup{(a)}, divide $\sqrt2$ by larger positive integers.
+For part \textup{(b)}, use the lower decimal truncations of $\sqrt2$.
+We verify both the nature of every term and convergence.
+
+\step{1. Recall why $\sqrt2$ is irrational}
+The irrationality of $\sqrt2$ was established in Section~2.
+Here is the short integer argument as well. If
+$\sqrt2=p/q$ in lowest terms, with integers $p,q$ and $q>0$,
+then $p^2=2q^2$, so $p^2$ is even. The square of an odd integer
+$2j+1$ is $4j(j+1)+1$, which is odd. Thus $p$ must be even;
+write $p=2j$. Substitution gives
+\[
+ 4j^2=2q^2,\qquad q^2=2j^2.
+\]
+Now $q^2$ is even, so the same odd-square argument makes $q$ even.
+The numerator and denominator would have the common factor $2$,
+contrary to lowest terms. Hence $\sqrt2\notin\Q$.
+
+\step{2. Part (a): Irrational terms with rational limit}
+Define, for every $n\in\N$,
+\[
+ x_n=\frac{\sqrt2}{n}.
+\]
+Since $n\ge1$, division is legitimate. If any term $x_n$ were
+rational, multiplication by the rational integer $n$ would make
+$nx_n=\sqrt2$ rational. This contradicts Step~1.
+Thus every term $x_n$ is irrational.
+
+To prove convergence, let $\varepsilon>0$ and choose an integer
+$N>\sqrt2/\varepsilon$ by the Archimedean property. For $n>N$,
+\[
+ \abs{x_n-0}=\frac{\sqrt2}{n}<\varepsilon.
+\]
+Therefore $x_n\to0$. The limit is rational because $0=0/1$.
+
+\step{3. Part (b): Define each decimal truncation using a finite maximum}
+For a real $t\ge0$, the notation $\lfloor t\rfloor$ denotes the
+integer $m$ satisfying
+\[
+ m\le t<m+1.
+\]
+To justify existence, choose a positive integer $M>t$ using the
+Archimedean property. The finite set
+\[
+ F=\{j\in\Z:0\le j\le M\text{ and }j\le t\}
+\]
+is nonempty because it contains $0$. Let $m=\max F$, which exists
+for a nonempty finite set of integers. Then $m\le t$.
+If $m+1\le t$, the inequalities
+$0\le m+1\le t<M$ would give $m+1\in F$, contradicting the
+maximality of $m$. Hence $t<m+1$, as required.
+
+This integer is unique. If two integers $m<j$ satisfied their
+respective inequalities, then $m+1\le j\le t$ would contradict
+$t<m+1$. Interchanging them handles the other possible order.
+Thus the floor notation is well-defined here.
+
+Apply this construction to $t=10^n\sqrt2$ and put
+\[
+ m_n=\left\lfloor10^n\sqrt2\right\rfloor,
+ \qquad r_n=\frac{m_n}{10^n}\quad(n\in\N).
+\]
+Every $m_n$ is an integer and $10^n$ is a positive integer.
+Therefore every $r_n$ is rational by the definition of $\Q$.
+The defining floor inequalities give
+\[
+ m_n\le10^n\sqrt2<m_n+1.
+\]
+Dividing by $10^n>0$ preserves order and yields
+\[
+ r_n\le\sqrt2<r_n+\frac1{10^n}.
+\]
+After subtracting $r_n$, this becomes the precise truncation error
+estimate
+\[
+ 0\le\sqrt2-r_n<\frac1{10^n}.
+\]
+In fact the left inequality is strict, because a rational $r_n$
+cannot equal the irrational number $\sqrt2$.
+
+\step{4. Prove convergence of the rational truncations}
+We may compare the error with $1/n$. The inequality $10^n\ge n$
+holds for all positive integers $n$: the base case is $10\ge1$;
+if it holds for $n$, then
+\[
+ 10^{n+1}=10\cdot10^n\ge10n\ge n+1,
+\]
+because $10n-(n+1)=9n-1\ge8>0$ for $n\ge1$.
+Induction proves the inequality. Taking reciprocals of positive
+quantities gives $1/10^n\le1/n$.
+
+Let $\varepsilon>0$ and choose an integer $N>1/\varepsilon$.
+For $n>N$, we obtain
+\[
+ \abs{r_n-\sqrt2}
+ =\sqrt2-r_n<\frac1{10^n}\le\frac1n<\varepsilon.
+\]
+Thus $r_n\to\sqrt2$, and its limit is irrational by Step~1.
+
+\answer{For \textup{(a)}, take $x_n=\sqrt2/n\to0$, with every
+term irrational and the limit rational. For \textup{(b)}, take
+$r_n=\lfloor10^n\sqrt2\rfloor/10^n\to\sqrt2$, with every term
+rational and the limit irrational.}
+
+\exercise{7.5}{Three differences of large square roots}
+\goal Find the limits of
+\[
+ \text{(a)}\ \sqrt{n^2+1}-n,\qquad
+ \text{(b)}\ \sqrt{n^2+n}-n,\qquad
+ \text{(c)}\ \sqrt{4n^2+n}-2n.
+\]
+
+\idea Multiply each difference by its conjugate divided by that
+same conjugate. The difference-of-squares identity removes the
+subtraction in the numerator. We then bound the error from the
+proposed limit directly, so no later limit laws are needed.
+
+\step{1. Part (a): Expand the product with the conjugate}
+Let $a_n=\sqrt{n^2+1}-n$. For $n\ge1$, the square root is
+nonnegative and $n>0$, so the conjugate
+$\sqrt{n^2+1}+n$ is positive. Dividing by it is valid.
+Using $(u-v)(u+v)=u^2-v^2$ gives
+\begin{align*}
+ a_n
+ &=\frac{(\sqrt{n^2+1}-n)(\sqrt{n^2+1}+n)}
+         {\sqrt{n^2+1}+n}\\
+ &=\frac{(\sqrt{n^2+1})^2-n^2}{\sqrt{n^2+1}+n}\\
+ &=\frac{n^2+1-n^2}{\sqrt{n^2+1}+n}\\
+ &=\frac1{\sqrt{n^2+1}+n}.
+\end{align*}
+Since $n^2+1>n^2$ and $n\ge0$, the nonnegative square root
+$\sqrt{n^2+1}$ is greater than $n$. Indeed, the contrary inequality
+would give $n^2+1\le n^2$ upon squaring nonnegative quantities.
+Therefore
+\[
+ 0<a_n=\frac1{\sqrt{n^2+1}+n}\le\frac1{2n}.
+\]
+Given $\varepsilon>0$, choose an integer $N>1/(2\varepsilon)$.
+For $n>N$, this estimate gives
+\[
+ \abs{a_n-0}=a_n\le\frac1{2n}<\varepsilon.
+\]
+Thus the limit in part \textup{(a)} is $0$.
+
+\step{2. Part (b): Rationalize and divide by the positive index}
+Write $b_n=\sqrt{n^2+n}-n$. Its conjugate is positive for
+$n\ge1$, and the same multiplication gives
+\begin{align*}
+ b_n
+ &=\frac{(\sqrt{n^2+n}-n)(\sqrt{n^2+n}+n)}
+         {\sqrt{n^2+n}+n}\\
+ &=\frac{(n^2+n)-n^2}{\sqrt{n^2+n}+n}\\
+ &=\frac n{\sqrt{n^2+n}+n}.
+\end{align*}
+The radicand factors as $n^2+n=n^2(1+1/n)$. Because $n>0$,
+\[
+ \sqrt{n^2+n}=n\sqrt{1+\frac1n}.
+\]
+To check this identity, the right-hand side is nonnegative, and
+its square is $n^2(1+1/n)=n^2+n$; uniqueness of the nonnegative
+square root then gives the equality. Define
+$q_n=\sqrt{1+1/n}$. Substitution and cancellation of $n\ne0$ yield
+\[
+ b_n=\frac n{nq_n+n}
+     =\frac n{n(q_n+1)}
+     =\frac1{q_n+1}.
+\]
+Here $q_n>1$, since $q_n\ge0$ and
+$q_n^2=1+1/n>1$; a nonnegative $q_n\le1$ would have square
+at most $1$. Hence $q_n+1>2$, so $0<b_n<1/2$.
+
+\step{3. Part (b): Compute the exact error from $1/2$}
+All the denominators below are positive. Since $b_n<1/2$,
+\begin{align*}
+ \abs{b_n-\frac12}
+ &=\frac12-\frac1{q_n+1}\\
+ &=\frac{q_n+1-2}{2(q_n+1)}\\
+ &=\frac{q_n-1}{2(q_n+1)}\\
+ &=\frac{(q_n-1)(q_n+1)}{2(q_n+1)^2}\\
+ &=\frac{q_n^2-1}{2(q_n+1)^2}\\
+ &=\frac{(1+1/n)-1}{2(q_n+1)^2}\\
+ &=\frac1{2n(q_n+1)^2}
+ \le\frac1{8n}.
+\end{align*}
+The last inequality uses $(q_n+1)^2\ge2^2=4$ and $n>0$.
+For any $\varepsilon>0$, choose an integer $N>1/(8\varepsilon)$.
+Then $n>N$ implies
+$\abs{b_n-1/2}\le1/(8n)<\varepsilon$.
+Therefore the limit in part \textup{(b)} is $1/2$.
+
+\step{4. Part (c): Rationalize and factor the square root}
+Put $c_n=\sqrt{4n^2+n}-2n$. Since $n\ge1$, its conjugate
+$\sqrt{4n^2+n}+2n$ is positive. Consequently
+\begin{align*}
+ c_n
+ &=\frac{(\sqrt{4n^2+n}-2n)(\sqrt{4n^2+n}+2n)}
+         {\sqrt{4n^2+n}+2n}\\
+ &=\frac{(4n^2+n)-(2n)^2}{\sqrt{4n^2+n}+2n}\\
+ &=\frac{4n^2+n-4n^2}{\sqrt{4n^2+n}+2n}\\
+ &=\frac n{\sqrt{4n^2+n}+2n}.
+\end{align*}
+Now $4n^2+n=n^2(4+1/n)$. The positive-index square-root
+identity gives
+\[
+ \sqrt{4n^2+n}=n\sqrt{4+\frac1n},
+\]
+because both sides are nonnegative and the square of the right-hand
+side is $n^2(4+1/n)=4n^2+n$. Let
+$p_n=\sqrt{4+1/n}$. Canceling the nonzero factor $n$ gives
+\[
+ c_n=\frac n{np_n+2n}
+     =\frac n{n(p_n+2)}
+     =\frac1{p_n+2}.
+\]
+Since $p_n\ge0$ and $p_n^2=4+1/n>4$, we have $p_n>2$.
+Thus $p_n+2>4$ and $0<c_n<1/4$.
+
+\step{5. Part (c): Compute the exact error from $1/4$}
+Using $c_n<1/4$ and then multiplying numerator and denominator
+by the positive number $p_n+2$, we obtain
+\begin{align*}
+ \abs{c_n-\frac14}
+ &=\frac14-\frac1{p_n+2}\\
+ &=\frac{p_n+2-4}{4(p_n+2)}\\
+ &=\frac{p_n-2}{4(p_n+2)}\\
+ &=\frac{(p_n-2)(p_n+2)}{4(p_n+2)^2}\\
+ &=\frac{p_n^2-4}{4(p_n+2)^2}\\
+ &=\frac{(4+1/n)-4}{4(p_n+2)^2}\\
+ &=\frac1{4n(p_n+2)^2}
+ \le\frac1{64n}.
+\end{align*}
+Here $(p_n+2)^2\ge4^2=16$, so the denominator is at least
+$4n\cdot16=64n$. For any $\varepsilon>0$, choose an integer
+$N>1/(64\varepsilon)$. Then $n>N$ gives
+$\abs{c_n-1/4}\le1/(64n)<\varepsilon$.
+This proves that the limit in part \textup{(c)} is $1/4$.
+
+\answer{The limits are \textup{(a)} $0$, \textup{(b)} $1/2$,
+and \textup{(c)} $1/4$. The displayed conjugate identities and
+error estimates justify all three values directly.}

@@ -1,0 +1,54 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{booktabs,array}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\definecolor{mathjockgreen}{HTML}{355439}
+\hypersetup{colorlinks=true,linkcolor=mathjockgreen,urlcolor=mathjockgreen,
+  pdftitle={Ross Elementary Analysis: Chapter 2 worked solutions},
+  pdfauthor={Mathjock},pdfsubject={Detailed Chapter 2 solutions, second edition}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\setlength{\headheight}{14pt}
+\setlist[enumerate]{leftmargin=*,itemsep=0.4em,topsep=0.4em}
+\setlist[itemize]{leftmargin=*,itemsep=0.25em}
+\allowdisplaybreaks
+\emergencystretch=2em
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Mathjock \textbar\ Ross, Chapter 2}
+\fancyhead[R]{\small Step-by-step solutions}
+\fancyfoot[C]{\thepage}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\exercise}[2]{\subsection{Exercise #1: #2}\label{ex:#1}}
+\newcommand{\goal}{\par\textbf{What we must show.} }
+\newcommand{\idea}{\par\textbf{Plan.} }
+\newcommand{\step}[1]{\par\medskip\textbf{#1}\par}
+\newcommand{\answer}[1]{\par\textbf{Conclusion.} #1\par}
+\newcommand{\bookinfo}{%
+\textbf{Text and numbering.} Kenneth A. Ross, \emph{Elementary Analysis:
+The Theory of Calculus}, second edition (Springer, 2013), Chapter~2.
+Exercise numbers follow the copy already linked on Mathjock. These are
+independently written worked solutions, not the publisher's solutions manual.
+Each exercise is identified by a short mathematical description.\par
+\textbf{Reading philosophy.} Every argument states its goal, records the
+assumptions being used, and explains the intermediate algebra or logical
+inference. Definitions, sign conditions, and both directions of an
+``if and only if'' are made explicit. A cited rule is named at the point
+where it is used.\par
+\textbf{Conventions.} $\N=\{1,2,3,\ldots\}$,
+$\Z=\{\ldots,-2,-1,0,1,2,\ldots\}$, and
+$\Q=\{p/q:p,q\in\Z,\ q\ne0\}$. Unless a different domain is stated,
+sequence indices run through $\N$ and all terms and finite limits are real. The empty sum is $0$, and $0!=1$.
+}

@@ -1,0 +1,629 @@
+\exercise{7.3}{A catalogue of twenty sequences and their limits}
+
+\goal Determine convergence or divergence for every sequence in
+parts (a)--(t), and give the real limit whenever one exists.
+Although the exercise does not require proofs, we include a justification
+of every answer. The arguments use the definition of convergence
+directly, rather than the limit laws developed later in Section~9.
+
+\idea For a convergent sequence, subtract the proposed limit and
+bound the resulting error by a reciprocal that becomes arbitrarily
+small. For a divergent sequence, find either arbitrarily late values
+that are arbitrarily large, or two arbitrarily late values separated
+by a fixed positive distance.
+
+\subsubsection*{Elementary facts used in the individual parts}
+
+\step{Fact 1: Reciprocal error estimates imply convergence.}
+The definition says that $u_n\to L$ if, for every $\varepsilon>0$,
+there is a threshold $N$ such that
+\[
+ n>N\quad\Longrightarrow\quad\abs{u_n-L}<\varepsilon.
+\]
+Suppose we prove $\abs{u_n-L}\leq C/n$ for every $n\geq n_0$,
+where $C>0$ is fixed. Given $\varepsilon>0$, choose a positive
+integer $N>\max\{n_0,C/\varepsilon\}$, using the Archimedean
+property. Then $n>N$ implies both $n\geq n_0$ and
+$n>C/\varepsilon$. Multiplying the latter inequality by
+$\varepsilon>0$ and dividing by $n>0$ gives
+\[
+ \abs{u_n-L}\leq\frac Cn<\varepsilon.
+\]
+This proves convergence from the definition. In particular,
+$1/n\to0$. If an error is identically $0$, it is less than every
+$\varepsilon>0$ without any additional estimate.
+
+We will also use a shifted version. If, for all sufficiently large
+$n$, $\abs{u_n-L}\leq C/(n-r)$, with fixed real $r$ and $n>r$,
+choose $N$ larger than the starting index and $r+C/\varepsilon$.
+Then $n>N$ gives $n-r>C/\varepsilon$, and the same calculation
+gives $\abs{u_n-L}<\varepsilon$. This proves the shifted version
+without any new limit theorem.
+
+Only the tail is used in either proof. Thus a finite number of unusual
+initial values does not affect the conclusion: increase $N$ to exceed
+all their indices, and every $n>N$ still satisfies the required
+estimate. This observation will matter when an initial denominator
+is negative but never zero.
+
+\step{Fact 2: Powers of two dominate a simple linear expression.}
+For every integer $m\geq0$,
+\[
+ 2^m\geq m+1.
+\]
+At $m=0$, both sides equal $1$. If the inequality holds at $m$,
+then multiplication by $2>0$ gives
+\[
+ 2^{m+1}=2\cdot2^m\geq2(m+1)=2m+2\geq m+2,
+\]
+where the last difference is $(2m+2)-(m+2)=m\geq0$.
+Induction proves the assertion. Taking reciprocals of positive
+quantities consequently gives
+\[
+ 0<2^{-m}\leq\frac1{m+1}.
+\]
+
+\step{Fact 3: Separated arbitrarily late values rule out a real limit.}
+Suppose some fixed $D>0$ has this property: for every threshold
+$N$, there are indices $p,q>N$ with $\abs{u_p-u_q}\geq D$.
+Assume, to obtain a contradiction, that $u_n\to L\in\R$.
+Apply the definition with $\varepsilon=D/3$. It supplies $N$ such
+that both late terms obey
+$\abs{u_p-L}<D/3$ and $\abs{u_q-L}<D/3$. The triangle inequality
+would then give
+\[
+ \abs{u_p-u_q}
+ =\abs{(u_p-L)+(L-u_q)}
+ \leq\abs{u_p-L}+\abs{L-u_q}
+ <\frac D3+\frac D3=\frac{2D}{3}<D,
+\]
+contradicting the stipulated separation. Thus such a sequence
+does not converge to a real number. This argument does not assume
+any theorem about subsequences.
+
+\step{Fact 4: Arbitrarily large late values also rule out a real limit.}
+Suppose that for every $B\in\R$ and every threshold $N$, some
+$n>N$ satisfies $u_n>B$. If $u_n\to L\in\R$, the definition
+with $\varepsilon=1$ would supply $N$ for which
+$\abs{u_n-L}<1$ whenever $n>N$. Choose a late value with
+$u_n>L+1$. It satisfies $u_n-L>1$, and therefore
+$\abs{u_n-L}=u_n-L>1$, a contradiction. This is a direct
+nonconvergence argument; it does not invoke a later boundedness
+theorem for convergent sequences.
+
+\subsubsection*{Solutions of parts (a)--(t)}
+
+\step{(a) The sequence $a_n=n/(n+1)$.}
+For every $n\in\N$, $n+1\geq2>0$, so every term is defined.
+To test the candidate $1$, subtract it using the common denominator
+$n+1$:
+\[
+ a_n-1=\frac n{n+1}-\frac{n+1}{n+1}
+ =\frac{n-(n+1)}{n+1}
+ =-\frac1{n+1}.
+\]
+It follows that
+\[
+ \abs{a_n-1}=\frac1{n+1}\leq\frac1n.
+\]
+The inequality uses $n+1\geq n>0$ and the reversal of order for
+positive reciprocals. Fact 1 with $C=1$ now proves the limit.
+
+\answer{Part (a) converges, and $\displaystyle\lim_{n\to\infty}\frac n{n+1}=1$.}
+
+\step{(b) The sequence $b_n=(n^2+3)/(n^2-3)$.}
+The denominator is nonzero at every positive integer. At $n=1$
+it is $1-3=-2$, while $n\geq2$ implies $n^2\geq4$ and
+$n^2-3\geq1>0$. Thus there is no undefined term, including in
+the initial part of the sequence.
+
+Subtracting the candidate $1$ gives
+\[
+ b_n-1
+ =\frac{n^2+3-(n^2-3)}{n^2-3}
+ =\frac{n^2+3-n^2+3}{n^2-3}
+ =\frac6{n^2-3}.
+\]
+For $n\geq3$, we have $n^2\geq9\geq6$, so $3\leq n^2/2$.
+Subtracting $3$ from $n^2$ therefore gives
+\[
+ n^2-3\geq n^2-\frac{n^2}{2}=\frac{n^2}{2}>0.
+\]
+Consequently
+\[
+ \abs{b_n-1}
+ =\frac6{n^2-3}
+ \leq\frac6{n^2/2}
+ =\frac{12}{n^2}
+ \leq\frac{12}{n}.
+\]
+The last inequality follows from $n^2\geq n>0$ for $n\geq1$.
+Fact 1 with $C=12$ and starting index $3$ proves convergence.
+The negative first denominator does not enter the tail estimate.
+
+\answer{Part (b) converges to $1$.}
+
+\step{(c) The sequence $c_n=2^{-n}$.}
+The expression means the positive reciprocal $1/2^n$.
+Fact 2 gives
+\[
+ \abs{c_n-0}=\frac1{2^n}\leq\frac1{n+1}\leq\frac1n
+ \qquad(n\geq1).
+\]
+The error is thus bounded by $1/n$. Applying Fact 1 proves the
+limit directly.
+
+\answer{Part (c) converges to $0$.}
+
+\step{(d) The sequence $t_n=1+2/n$.}
+Since $n>0$, every term is defined, and subtracting $1$ gives
+\[
+ \abs{t_n-1}
+ =\abs{1+\frac2n-1}
+ =\abs{\frac2n}
+ =\frac2n.
+\]
+For each $\varepsilon>0$, choosing $N>2/\varepsilon$ makes this
+error smaller than $\varepsilon$ whenever $n>N$. This is Fact 1
+with $C=2$.
+
+\answer{Part (d) converges to $1$.}
+
+\step{(e) The sequence $x_n=73+(-1)^n$.}
+If $n$ is even, $(-1)^n=1$ and $x_n=73+1=74$.
+If $n$ is odd, $(-1)^n=-1$ and $x_n=73-1=72$.
+These values do not merely occur at the start: for any threshold
+$N$, choose a positive integer $m>N$. Then $2m>N$ and
+$2m+1>N$, and
+\[
+ x_{2m}=74,\qquad x_{2m+1}=72,\qquad
+ \abs{x_{2m}-x_{2m+1}}=\abs{74-72}=2.
+\]
+Thus Fact 3 applies with $D=2$. No real number can be approached
+by every term, because every tail still contains these two values
+at distance $2$.
+
+\answer{Part (e) does not converge.}
+
+\step{(f) The sequence $s_n=2^{1/n}$.}
+Write $r_n=2^{1/n}$ for the positive real $n$th root of $2$;
+thus $r_n>0$ and $r_n^n=2$. We prove the concrete estimate
+\[
+ 0\leq r_n-1\leq\frac1n.
+\]
+It will imply convergence by Fact 1 without any theorem about
+limits of roots or logarithms.
+
+\textbf{First prove the auxiliary Bernoulli inequality.}
+For every $x\geq0$ and every positive integer $m$,
+\[
+ (1+x)^m\geq1+mx.
+\]
+Fix $x\geq0$. At $m=1$ the two sides are equal. If the inequality
+holds at $m$, multiplying by the positive number $1+x$ gives
+\begin{align*}
+ (1+x)^{m+1}
+ &\geq(1+mx)(1+x)\\
+ &=1+x+mx+mx^2\\
+ &=1+(m+1)x+mx^2\\
+ &\geq1+(m+1)x,
+\end{align*}
+because $mx^2\geq0$. This is the required step at $m+1$,
+so induction proves the inequality for the fixed $x$, and hence
+for every $x\geq0$.
+
+Apply it with $x=1/n$ and $m=n$. We obtain
+\[
+ \left(1+\frac1n\right)^n
+ \geq1+n\frac1n=2.
+\]
+For positive real numbers, raising to a positive integer power
+preserves strict order. For example, if $u>v>0$, then
+$u/v>1$, so the product of $n$ factors $u/v$ is greater than
+$1$; multiplication by $v^n>0$ gives $u^n>v^n$.
+If $r_n>1+1/n$, this order property would give
+\[
+ 2=r_n^n>\left(1+\frac1n\right)^n\geq2,
+\]
+a contradiction. Hence $r_n\leq1+1/n$. Also $r_n\geq1$:
+if $0<r_n<1$, multiplying $n$ factors each less than $1$
+would give $r_n^n<1$, contradicting $r_n^n=2$.
+
+Thus $1\leq r_n\leq1+1/n$, and subtraction of $1$ yields
+\[
+ \abs{r_n-1}=r_n-1\leq\frac1n.
+\]
+Fact 1 proves the asserted limit.
+
+\answer{Part (f) converges to $1$.}
+
+\step{(g) The sequence $y_n=n!$.}
+For $n\geq1$, the factorial can be written
+\[
+ n!=n\,(1\cdot2\cdots(n-1)).
+\]
+At $n=1$, the parenthesized product is empty and equals $1$.
+For $n\geq2$, every factor in that product is at least $1$,
+so its product is at least $1$. In all cases, therefore,
+\[
+ n!\geq n.
+\]
+Now let a real number $B$ and a threshold $N$ be arbitrary.
+Choose $n\in\N$ with $n>\max\{N,B,1\}$. Then $n>N$ and
+$y_n=n!\geq n>B$. Thus arbitrarily late values exceed every
+prescribed real size. Fact 4 rules out convergence to any real
+number. This argument establishes the needed nonconvergence
+without citing a boundedness theorem.
+
+\answer{Part (g) does not converge to a real limit; its values
+grow beyond every real bound.}
+
+\step{(h) The sequence $d_n=(-1)^n n$.}
+At an even index $2m$ the value is $2m$, while at an odd index
+$2m+1$ the value is $-(2m+1)$. Given any threshold $N$, choose
+a positive integer $m>N$. Both indices $2m$ and $2m+1$ are then
+greater than $N$, and
+\begin{align*}
+ \abs{d_{2m}-d_{2m+1}}
+ &=\abs{2m-(-(2m+1))}\\
+ &=\abs{4m+1}\\
+ &=4m+1\geq5>1.
+\end{align*}
+Here $m\geq1$, so $4m+1$ is positive, justifying the removal
+of the absolute value. Every tail has two values separated by
+at least $1$. Fact 3 with $D=1$ rules out a real limit.
+
+\answer{Part (h) does not converge. The signs alternate while
+the magnitudes increase.}
+
+\step{(i) The sequence $u_n=(-1)^n/n$.}
+Although its sign alternates, its distance from $0$ is
+\[
+ \abs{u_n-0}
+ =\frac{\abs{(-1)^n}}{\abs n}
+ =\frac1n,
+\]
+because $\abs{(-1)^n}=1$ and $n>0$. Fact 1 applies with
+$C=1$. In contrast with (h), the alternating values now have
+small magnitude for every sufficiently large index.
+
+\answer{Part (i) converges to $0$.}
+
+\step{(j) The sequence $u_n=(7n^3+8n)/(2n^3-3)$.}
+At $n=1$, the denominator is $2-3=-1$, so it is nonzero.
+For $n\geq2$, $n^3\geq8$, giving
+$2n^3-3\geq16-3=13>0$. Thus the sequence is defined at every
+positive integer.
+
+We test the candidate $7/2$ by exact subtraction:
+\begin{align*}
+ u_n-\frac72
+ &=\frac{2(7n^3+8n)-7(2n^3-3)}{2(2n^3-3)}\\
+ &=\frac{14n^3+16n-14n^3+21}{2(2n^3-3)}\\
+ &=\frac{16n+21}{2(2n^3-3)}.
+\end{align*}
+For $n\geq2$, we have $n^3\geq8>3$, so
+\[
+ 2n^3-3\geq n^3>0.
+\]
+Also $n\geq1$ implies $21\leq21n$ and hence
+$16n+21\leq37n$. Using these positive denominator bounds gives
+\[
+ \abs{u_n-\frac72}
+ =\frac{16n+21}{2(2n^3-3)}
+ \leq\frac{37n}{2n^3}
+ =\frac{37}{2n^2}
+ \leq\frac{37}{2n}.
+\]
+The last step again uses $n^2\geq n>0$. Fact 1, with
+$C=37/2$ and starting index $2$, proves convergence.
+
+\answer{Part (j) converges to $7/2$.}
+
+\step{(k) The sequence $u_n=(9n^2-18)/(6n+18)$.}
+The denominator $6n+18$ is positive for every $n\geq1$.
+We establish a lower estimate that becomes arbitrarily large.
+For $n\geq3$, $n^2\geq9$, so $3n^2\geq27>18$ and
+\[
+ 9n^2-18\geq9n^2-3n^2=6n^2>0.
+\]
+Also $n\geq3$ implies $18\leq6n$, giving
+\[
+ 0<6n+18\leq12n.
+\]
+First lower the numerator while keeping the positive denominator
+fixed, then increase that denominator:
+\[
+ u_n=\frac{9n^2-18}{6n+18}
+ \geq\frac{6n^2}{6n+18}
+ \geq\frac{6n^2}{12n}
+ =\frac n2.
+\]
+The second comparison follows from order reversal for positive
+reciprocals, followed by multiplication by $6n^2>0$.
+
+Let $B\in\R$ and a threshold $N$ be arbitrary. Choose a positive
+integer $n>\max\{N,3,2B\}$. The estimate applies and gives
+$u_n\geq n/2>B$, with $n>N$. Fact 4 therefore rules out
+convergence to every real candidate.
+
+\answer{Part (k) does not converge to a real limit; its values
+grow beyond every real bound.}
+
+\step{(l) The sequence $u_n=\sin(n\pi/2)$.}
+Every positive integer has the form $n=4q+r$, with $q\geq0$
+an integer and $r\in\{1,2,3,4\}$. Since
+$n\pi/2=2q\pi+r\pi/2$, the period $2\pi$ of sine gives
+the repeating values
+\[
+\begin{array}{c|cccc}
+ r&1&2&3&4\\ \hline
+ \sin(r\pi/2)&1&0&-1&0
+\end{array}
+\]
+The repetition alone suggests nonconvergence; we now check the
+arbitrarily late separation required by Fact 3. Given a threshold
+$N$, choose $m\in\N$ with $m>N$. Then
+$p=4m+1>N$ and $q=4m+3>N$, and periodicity gives
+\[
+ u_p=\sin(2m\pi+\pi/2)=1,
+ \qquad
+ u_q=\sin(2m\pi+3\pi/2)=-1.
+\]
+Their distance is $\abs{1-(-1)}=2$. Fact 3 applies with
+$D=2$ and proves nonconvergence.
+
+\answer{Part (l) does not converge.}
+
+\step{(m) The sequence $u_n=\sin(n\pi)$.}
+For every integer $n$, the angle $n\pi$ lies at an integer multiple
+of a half-turn, so its sine is $0$. Explicitly, if $n=2m$ is
+even, then $\sin(n\pi)=\sin(2m\pi)=0$ by periodicity.
+If $n=2m+1$ is odd, then
+\[
+ \sin(n\pi)=\sin(2m\pi+\pi)=\sin\pi=0.
+\]
+These two cases cover every positive integer. Thus $u_n=0$
+for every index, and for every $\varepsilon>0$,
+\[
+ \abs{u_n-0}=0<\varepsilon
+\]
+holds at every index. This verifies convergence directly from
+the definition.
+
+\answer{Part (m) converges to $0$.}
+
+\step{(n) The sequence $u_n=\sin(2n\pi/3)$.}
+Write $n=3q+r$, with $q\geq0$ and $r\in\{1,2,3\}$.
+Then $2n\pi/3=2q\pi+2r\pi/3$, giving the period table
+\[
+\begin{array}{c|ccc}
+ r&1&2&3\\ \hline
+ \sin(2r\pi/3)&\sqrt3/2&-\sqrt3/2&0
+\end{array}
+\]
+For any threshold $N$, choose a positive integer $m>N$.
+The indices $p=3m+1$ and $q=3m+2$ both exceed $N$, and
+\[
+ u_p=\frac{\sqrt3}{2},\qquad
+ u_q=-\frac{\sqrt3}{2}.
+\]
+Their distance is
+\[
+ \abs{u_p-u_q}
+ =\abs{\frac{\sqrt3}{2}+\frac{\sqrt3}{2}}
+ =\sqrt3>0.
+\]
+Consequently Fact 3 with $D=\sqrt3$ excludes every real limit.
+
+\answer{Part (n) does not converge.}
+
+\step{(o) The sequence $u_n=(\sin n)/n$.}
+Here the argument is $n$ radians, with no factor of $\pi$.
+We do not need to classify the behavior of $\sin n$ itself.
+The elementary trigonometric inequality
+$\abs{\sin x}\leq1$ for every real $x$ gives
+\[
+ \abs{u_n-0}
+ =\abs{\frac{\sin n}{n}}
+ =\frac{\abs{\sin n}}{n}
+ \leq\frac1n,
+\]
+where division by $n>0$ preserves the inequality.
+Fact 1 with $C=1$ proves the limit.
+
+\answer{Part (o) converges to $0$.}
+
+\step{(p) The sequence $u_n=(2^{n+1}+5)/(2^n-7)$.}
+The denominator is $2^n-7$. At $n=1$ it
+is $2-7=-5$, and at $n=2$ it is $4-7=-3$.
+For $n\geq3$, $2^n\geq8$ and therefore $2^n-7\geq1>0$.
+These cases show that every term is defined. For example the
+first three terms are
+\[
+ u_1=\frac{4+5}{2-7}=-\frac95,
+ \qquad u_2=\frac{8+5}{4-7}=-\frac{13}{3},
+ \qquad u_3=\frac{16+5}{8-7}=21.
+\]
+They do not by themselves determine the limiting behavior.
+
+Subtract the candidate $2$ exactly:
+\begin{align*}
+ u_n-2
+ &=\frac{2^{n+1}+5-2(2^n-7)}{2^n-7}\\
+ &=\frac{2\cdot2^n+5-2\cdot2^n+14}{2^n-7}\\
+ &=\frac{19}{2^n-7}.
+\end{align*}
+For $n\geq4$, $2^n\geq16\geq14$, so $7\leq2^n/2$.
+It follows that
+\[
+ 2^n-7\geq2^n-\frac{2^n}{2}=\frac{2^n}{2}>0.
+\]
+Using this bound and Fact 2 yields
+\begin{align*}
+ \abs{u_n-2}
+ &=\frac{19}{2^n-7}\\
+ &\leq\frac{19}{2^n/2}
+ =\frac{38}{2^n}
+ \leq\frac{38}{n+1}
+ \leq\frac{38}{n}.
+\end{align*}
+Fact 1 with $C=38$ and starting index $4$ proves convergence.
+It also explains why the negative initial terms and the relatively
+large value $u_3=21$ do not change the tail conclusion.
+
+\answer{Part (p) converges to $2$.}
+
+\step{(q) The sequence $a_n=3^n/n!$.}
+Both $3^n$ and $n!$ are positive for every $n\in\N$, so
+$a_n>0$ and every ratio below is defined. Compare successive
+terms using $(n+1)!=(n+1)n!$:
+\begin{align*}
+ \frac{a_{n+1}}{a_n}
+ &=\frac{3^{n+1}}{(n+1)!}\cdot\frac{n!}{3^n}\\
+ &=\frac{3\cdot3^n\cdot n!}{(n+1)n!\,3^n}\\
+ &=\frac3{n+1}.
+\end{align*}
+For $n\geq5$, $n+1\geq6$, giving
+\[
+ 0<\frac3{n+1}\leq\frac36=\frac12,
+ \qquad
+ a_{n+1}\leq\frac12a_n.
+\]
+We will turn this ratio estimate into an explicit reciprocal bound;
+no theorem about ratios of sequences is being invoked.
+
+The value at the starting index is
+\[
+ C=a_5=\frac{3^5}{5!}
+ =\frac{243}{120}=\frac{81}{40}>0.
+\]
+We claim, for every integer $m\geq0$, that
+\[
+ a_{5+m}\leq C\,2^{-m}.
+\]
+At $m=0$, this is equality $a_5=C$. If the estimate holds
+at $m$, the ratio bound applies at $n=5+m\geq5$, and gives
+\[
+ a_{5+(m+1)}=a_{6+m}
+ \leq\frac12a_{5+m}
+ \leq\frac12C\,2^{-m}
+ =C\,2^{-(m+1)}.
+\]
+This is the next estimate, so induction proves the claim.
+Putting $m=n-5$ now yields, for every $n\geq5$,
+\[
+ 0<a_n\leq C\,2^{-(n-5)}.
+\]
+Fact 2, applied to $m=n-5\geq0$, supplies
+\[
+ 2^{n-5}\geq(n-5)+1=n-4>0.
+\]
+Taking reciprocals and multiplying by $C>0$ therefore gives
+\[
+ \abs{a_n-0}=a_n
+ \leq C\,2^{-(n-5)}
+ \leq\frac{C}{n-4}
+ =\frac{81/40}{n-4}.
+\]
+For any $\varepsilon>0$, choose an integer
+$N>\max\{5,4+C/\varepsilon\}$. If $n>N$, then
+$n-4>C/\varepsilon$, so the displayed error is less than
+$\varepsilon$. This is the shifted estimate of Fact 1, proving
+the limit directly.
+
+\answer{Part (q) converges to $0$.}
+
+\step{(r) The sequence $u_n=(1+1/n)^2$.}
+Expand by multiplying its two factors, not by assuming a rule
+about limits of squares:
+\begin{align*}
+ u_n
+ &=\left(1+\frac1n\right)\left(1+\frac1n\right)\\
+ &=1+\frac1n+\frac1n+\frac1{n^2}\\
+ &=1+\frac2n+\frac1{n^2}.
+\end{align*}
+All terms after the leading $1$ are positive. Since
+$n^2\geq n>0$, we have $1/n^2\leq1/n$, giving
+\[
+ \abs{u_n-1}
+ =\frac2n+\frac1{n^2}
+ \leq\frac2n+\frac1n
+ =\frac3n.
+\]
+Fact 1 with $C=3$ proves convergence.
+
+\answer{Part (r) converges to $1$.}
+
+\step{(s) The sequence $u_n=(4n^2+3)/(3n^2-2)$.}
+For all $n\geq1$, $n^2\geq1$, so
+$3n^2-2\geq3-2=1>0$. Thus every term is defined and
+the denominator has a fixed positive sign.
+Subtracting $4/3$ with a common denominator gives
+\begin{align*}
+ u_n-\frac43
+ &=\frac{3(4n^2+3)-4(3n^2-2)}{3(3n^2-2)}\\
+ &=\frac{12n^2+9-12n^2+8}{3(3n^2-2)}\\
+ &=\frac{17}{3(3n^2-2)}.
+\end{align*}
+The estimate $n^2\geq1$ also yields
+\[
+ (3n^2-2)-n^2=2n^2-2=2(n^2-1)\geq0,
+\]
+so $3n^2-2\geq n^2>0$. Therefore
+\[
+ \abs{u_n-\frac43}
+ =\frac{17}{3(3n^2-2)}
+ \leq\frac{17}{3n^2}
+ \leq\frac{17}{3n}.
+\]
+Fact 1 with $C=17/3$ verifies the limit from the definition.
+
+\answer{Part (s) converges to $4/3$.}
+
+\step{(t) The sequence $u_n=(6n+4)/(9n^2+7)$.}
+For $n\geq1$, both $6n+4$ and $9n^2+7$ are positive,
+so the absolute value of $u_n$ is $u_n$ itself.
+We have
+\[
+ 9n^2+7\geq9n^2>0,
+ \qquad 6n+4\leq6n+4n=10n,
+\]
+where $4\leq4n$ uses $n\geq1$. Taking reciprocals in the
+denominator comparison and then applying the numerator comparison,
+\[
+ \abs{u_n-0}
+ =\frac{6n+4}{9n^2+7}
+ \leq\frac{6n+4}{9n^2}
+ \leq\frac{10n}{9n^2}
+ =\frac{10}{9n}.
+\]
+Fact 1 with $C=10/9$ proves convergence to the proposed value $0$.
+
+\answer{Part (t) converges to $0$.}
+
+\subsubsection*{Complete answer list}
+
+In this list, ``does not converge'' means that there is no finite
+real limit. Every entry is justified in its corresponding part above.
+The growth cases (g) and (k), the persistent oscillations (e), (h),
+(l), and (n), and the shrinking oscillations (i) and (o) have been
+distinguished by direct estimates and the definition.
+
+\begin{center}
+\begin{tabular}{@{}cl@{\qquad}cl@{}}
+\toprule
+Part&Answer&Part&Answer\\ \midrule
+(a)&Converges to $1$&(k)&Does not converge\\
+(b)&Converges to $1$&(l)&Does not converge\\
+(c)&Converges to $0$&(m)&Converges to $0$\\
+(d)&Converges to $1$&(n)&Does not converge\\
+(e)&Does not converge&(o)&Converges to $0$\\
+(f)&Converges to $1$&(p)&Converges to $2$\\
+(g)&Does not converge&(q)&Converges to $0$\\
+(h)&Does not converge&(r)&Converges to $1$\\
+(i)&Converges to $0$&(s)&Converges to $4/3$\\
+(j)&Converges to $7/2$&(t)&Converges to $0$\\
+\bottomrule
+\end{tabular}
+\end{center}

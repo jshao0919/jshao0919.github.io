@@ -1,0 +1,563 @@
+\subsection*{A proof template for the first exercises}
+Definition~7.1 says that $x_n\to L$ means
+\[
+ \text{for every real }\varepsilon>0\text{ there exists a number }N
+ \text{ such that every integer }n>N\text{ satisfies }
+ \abs{x_n-L}<\varepsilon.
+\]
+The order of these choices matters: the reader supplies an arbitrary
+positive $\varepsilon$; we choose $N$ in terms of that $\varepsilon$;
+then we verify the estimate for \emph{every} sequence index $n>N$.
+Our choice of $N$ cannot depend on which later index is tested.
+
+Ross permits a real threshold $N$. If an integer threshold is preferred,
+the Archimedean property supplies a natural number larger than our
+chosen $N$, and the same proof applies to all indices above that larger
+threshold. The first finitely many terms need not obey the error
+estimate: the definition requires it only after the threshold.
+
+All the limit assertions below are proved from this definition.
+Algebraic simplifications, sign rules, and absolute-value identities are
+used as rules about individual real numbers, without invoking the limit
+theorems of Section~9.
+
+\exercise{8.1}{Four limits proved directly from the definition}
+
+\goal Prove each of the four stated limits with a complete
+$\varepsilon$--$N$ argument.
+
+\step{Part (a): the alternating reciprocal sequence.}
+We must prove
+\[
+ \lim_{n\to\infty}\frac{(-1)^n}{n}=0.
+\]
+For an integer $n$, $(-1)^n$ is either $1$ or $-1$, according to the
+parity of $n$. Its absolute value is therefore always $1$. Since
+$n\in\N$ implies $n>0$, the exact error is
+\begin{align*}
+ \abs{\frac{(-1)^n}{n}-0}
+   &=\frac{\abs{(-1)^n}}{n},\\
+   &=\frac1n.
+\end{align*}
+We need this error to be strictly less than $\varepsilon$.
+
+Let $\varepsilon>0$ be arbitrary and choose
+\[
+ N=\max\left\{1,\frac1\varepsilon\right\}.
+\]
+Take any integer $n>N$. Then $n>1/\varepsilon$. Multiplication by
+the positive number $\varepsilon$ gives $\varepsilon n>1$;
+division by the positive number $n$ gives $\varepsilon>1/n$.
+Consequently
+\[
+ \abs{\frac{(-1)^n}{n}-0}=\frac1n<\varepsilon.
+\]
+The estimate holds for every integer $n>N$, as the definition requires.
+
+\answer{For every $\varepsilon>0$ the displayed threshold works, so
+\(\boxed{(-1)^n/n\longrightarrow0}\). Alternation does not interfere
+with the estimate because both possible signs have absolute value $1$.}
+
+\step{Part (b), Step 1: compute the error and the needed threshold.}
+We must prove $1/n^{1/3}\to0$, where $n^{1/3}$ is the positive real
+cube root of $n$. Since $n^{1/3}>0$,
+\[
+ \abs{\frac1{n^{1/3}}-0}=\frac1{n^{1/3}}.
+\]
+To make this less than $\varepsilon$, it suffices to have
+$n^{1/3}>1/\varepsilon$, or $n>1/\varepsilon^3$.
+These implications concern ordinary positive real numbers.
+For example, strict comparison of their cubes follows from
+\[
+ u^3-v^3=(u-v)(u^2+uv+v^2)
+ \qquad(u,v>0).
+\]
+If $u>v>0$, both factors on the right are positive, so $u^3>v^3$.
+Conversely, if $u^3>v^3$ but $u\le v$, cubing the nonnegative
+numbers would give $u^3\le v^3$, a contradiction. Thus comparing
+positive cubes is equivalent to comparing their positive cube roots.
+
+\step{Part (b), Step 2: give the formal proof.}
+Let $\varepsilon>0$ be arbitrary and choose
+\[
+ N=\max\left\{1,\frac1{\varepsilon^3}\right\}.
+\]
+For an arbitrary integer $n>N$, we have
+\[
+ n>\frac1{\varepsilon^3}=\left(\frac1\varepsilon\right)^3.
+\]
+Taking positive cube roots gives $n^{1/3}>1/\varepsilon$.
+Multiplying this inequality by $\varepsilon>0$ and then dividing by
+$n^{1/3}>0$ gives
+\[
+ \varepsilon n^{1/3}>1
+ \quad\Longrightarrow\quad
+ \frac1{n^{1/3}}<\varepsilon.
+\]
+Hence the exact error satisfies
+$\abs{1/n^{1/3}-0}<\varepsilon$ for every integer $n>N$.
+
+\answer{Definition~7.1 therefore gives
+\(\boxed{1/n^{1/3}\longrightarrow0}\). The threshold depends on
+$\varepsilon^{-3}$ because the denominator is a cube root.}
+
+\step{Part (c), Step 1: simplify the exact difference from the proposed limit.}
+The sequence in the printed exercise is
+\[
+ x_n=\frac{2n-1}{3n+2},
+ \qquad\text{and the proposed limit is }\frac23.
+\]
+For every $n\in\N$, $3n+2>0$, so the denominator is nonzero.
+Putting the two fractions over the common denominator $3(3n+2)$ gives
+\begin{align*}
+ x_n-\frac23
+   &=\frac{3(2n-1)-2(3n+2)}{3(3n+2)},\\
+   &=\frac{6n-3-6n-4}{9n+6},\\
+   &=\frac{-7}{9n+6}.
+\end{align*}
+Because $9n+6>0$, taking absolute values yields
+\[
+ \abs{x_n-\frac23}=\frac7{9n+6}.
+\]
+Also $9n+6\ge9n>0$, so increasing the positive denominator decreases
+the quotient:
+\[
+ \frac7{9n+6}\le\frac7{9n}.
+\]
+
+\step{Part (c), Step 2: choose a threshold and check all later indices.}
+Let $\varepsilon>0$ and set
+\[
+ N=\max\left\{1,\frac7{9\varepsilon}\right\}.
+\]
+If an integer $n>N$, then $n>7/(9\varepsilon)$.
+Multiplication by $9\varepsilon>0$ gives $9\varepsilon n>7$;
+division by $9n>0$ gives $\varepsilon>7/(9n)$. Thus
+\[
+ \abs{x_n-\frac23}=\frac7{9n+6}\le\frac7{9n}<\varepsilon.
+\]
+
+\answer{The estimate holds for every integer $n>N$, proving
+\[
+ \boxed{\displaystyle\lim_{n\to\infty}\frac{2n-1}{3n+2}=\frac23}.
+\]}
+
+\step{Part (d), Step 1: isolate a positive tail of the denominator.}
+We must prove
+\[
+ x_n=\frac{n+6}{n^2-6}\longrightarrow0.
+\]
+The denominator is nonzero for every positive integer $n$: if $n\le2$,
+then $n^2\le4<6$; if $n\ge3$, then $n^2\ge9>6$.
+For the limit estimate, we will use only indices $n\ge4$.
+For such $n$, we have $n^2/2\ge8\ge6$, and therefore
+\[
+ n^2-6\ge n^2-\frac{n^2}{2}=\frac{n^2}{2}>0.
+\]
+This is a lower bound on the denominator, with its sign recorded.
+
+\step{Part (d), Step 2: bound the numerator and then the entire error.}
+For $n\ge1$, the inequality $6\le6n$ gives
+\[
+ n+6\le n+6n=7n.
+\]
+If $n\ge4$, both the numerator $n+6$ and denominator $n^2-6$ are
+positive. Thus
+\begin{align*}
+ \abs{x_n-0}
+   &=\frac{n+6}{n^2-6},\\
+   &\le\frac{7n}{n^2-6}
+      &&\text{by the upper bound on the numerator},\\
+   &\le\frac{7n}{n^2/2}
+      &&\text{by the positive lower bound on the denominator},\\
+   &=\frac{14n}{n^2}=\frac{14}{n}.
+\end{align*}
+The cancellation in the last line is valid because $n>0$.
+
+\step{Part (d), Step 3: give the formal threshold.}
+Let $\varepsilon>0$ and choose
+\[
+ N=\max\left\{4,\frac{14}{\varepsilon}\right\}.
+\]
+An arbitrary integer $n>N$ satisfies $n>4$, so every preceding tail
+estimate applies. It also satisfies $n>14/\varepsilon$; multiplying
+by $\varepsilon>0$ and dividing by $n>0$ gives $14/n<\varepsilon$.
+Hence
+\[
+ \abs{\frac{n+6}{n^2-6}-0}\le\frac{14}{n}<\varepsilon
+ \qquad\text{for every integer }n>N.
+\]
+
+\answer{The threshold supplies the estimate required by Definition~7.1,
+so
+\[
+ \boxed{\frac{n+6}{n^2-6}\longrightarrow0}.
+\]
+We did not require the first few terms to have a positive denominator.}
+
+\exercise{8.2}{Determine five limits and justify each one formally}
+
+\goal Find the limits of the five stated sequences and prove every
+answer directly from Definition~7.1. The candidate for a quotient of
+linear expressions can be suggested by its leading coefficients, but
+the error calculations below are what establish the limits.
+
+\step{Part (a), Step 1: estimate the difference from zero.}
+For $a_n=n/(n^2+1)$, the numerator and denominator are positive for
+every $n\in\N$. Since $n^2+1\ge n^2>0$,
+\begin{align*}
+ \abs{a_n-0}
+   &=\frac{n}{n^2+1},\\
+   &\le\frac{n}{n^2},\\
+   &=\frac1n.
+\end{align*}
+We will prove that $0$ is the limit.
+
+\step{Part (a), Step 2: supply the quantified proof.}
+Let $\varepsilon>0$ and set
+\[
+ N=\max\left\{1,\frac1\varepsilon\right\}.
+\]
+For every integer $n>N$, we have $n>1/\varepsilon$.
+Because $\varepsilon$ and $n$ are positive, this implies
+$1/n<\varepsilon$. The error bound from Step~1 then gives
+\[
+ \abs{a_n-0}\le\frac1n<\varepsilon.
+\]
+
+\answer{The limit is \(\boxed{\displaystyle\lim_{n\to\infty}
+\frac{n}{n^2+1}=0}\), as verified for every positive error tolerance.}
+
+\step{Part (b), Step 1: compute the exact difference from $7/3$.}
+Let $b_n=(7n-19)/(3n+7)$. Since $n\ge1$, its denominator satisfies
+$3n+7\ge10>0$. Compute
+\begin{align*}
+ b_n-\frac73
+   &=\frac{3(7n-19)-7(3n+7)}{3(3n+7)},\\
+   &=\frac{21n-57-21n-49}{9n+21},\\
+   &=\frac{-106}{9n+21}.
+\end{align*}
+Thus
+\[
+ \abs{b_n-\frac73}=\frac{106}{9n+21}
+   \le\frac{106}{9n},
+\]
+because $9n+21\ge9n>0$.
+
+\step{Part (b), Step 2: choose and verify a threshold.}
+Given any $\varepsilon>0$, choose
+\[
+ N=\max\left\{1,\frac{106}{9\varepsilon}\right\}.
+\]
+Take any integer $n>N$. Then $n>106/(9\varepsilon)$, so
+$9\varepsilon n>106$ and hence $106/(9n)<\varepsilon$.
+It follows that
+\[
+ \abs{b_n-\frac73}
+   =\frac{106}{9n+21}\le\frac{106}{9n}<\varepsilon.
+\]
+
+\answer{Since this works for every $\varepsilon>0$,
+\[
+ \boxed{\displaystyle\lim_{n\to\infty}\frac{7n-19}{3n+7}=\frac73}.
+\]}
+
+\step{Part (c), Step 1: compute the exact difference from $4/7$.}
+Let $c_n=(4n+3)/(7n-5)$. Its denominator is positive for all natural
+indices, since $7n-5\ge7-5=2>0$. Cross-multiplication gives
+\begin{align*}
+ c_n-\frac47
+   &=\frac{7(4n+3)-4(7n-5)}{7(7n-5)},\\
+   &=\frac{28n+21-28n+20}{49n-35},\\
+   &=\frac{41}{49n-35}.
+\end{align*}
+The error is already positive, so its absolute value has the same
+expression.
+
+\step{Part (c), Step 2: bound the denominator below by a multiple of $n$.}
+For $n\ge1$,
+\[
+ (7n-5)-2n=5n-5=5(n-1)\ge0.
+\]
+Consequently $7n-5\ge2n>0$, and multiplying by $7>0$ gives
+$49n-35\ge14n>0$. Hence
+\[
+ \abs{c_n-\frac47}=\frac{41}{49n-35}\le\frac{41}{14n}.
+\]
+
+\step{Part (c), Step 3: prove the definition with an explicit threshold.}
+Let $\varepsilon>0$ and put
+\[
+ N=\max\left\{1,\frac{41}{14\varepsilon}\right\}.
+\]
+For an arbitrary integer $n>N$, the inequality
+$n>41/(14\varepsilon)$ gives $14\varepsilon n>41$ and thus
+$41/(14n)<\varepsilon$. Therefore
+\[
+ \abs{c_n-\frac47}\le\frac{41}{14n}<\varepsilon.
+\]
+The estimates used here hold for every such index, not merely for a
+selected collection of large indices.
+
+\answer{The limit is
+\[
+ \boxed{\displaystyle\lim_{n\to\infty}\frac{4n+3}{7n-5}=\frac47}.
+\]}
+
+\step{Part (d), Step 1: simplify the difference from $2/5$.}
+For $d_n=(2n+4)/(5n+2)$, the denominator satisfies $5n+2\ge7>0$.
+The exact calculation is
+\begin{align*}
+ d_n-\frac25
+   &=\frac{5(2n+4)-2(5n+2)}{5(5n+2)},\\
+   &=\frac{10n+20-10n-4}{25n+10},\\
+   &=\frac{16}{25n+10}.
+\end{align*}
+Thus
+\[
+ \abs{d_n-\frac25}=\frac{16}{25n+10}\le\frac{16}{25n},
+\]
+where the comparison uses $25n+10\ge25n>0$.
+
+\step{Part (d), Step 2: choose a threshold and verify the required error.}
+For an arbitrary $\varepsilon>0$, set
+\[
+ N=\max\left\{1,\frac{16}{25\varepsilon}\right\}.
+\]
+If an integer $n>N$, then $n>16/(25\varepsilon)$.
+Multiplication by $25\varepsilon>0$ gives $25\varepsilon n>16$;
+division by $25n>0$ gives $16/(25n)<\varepsilon$. Hence
+\[
+ \abs{d_n-\frac25}\le\frac{16}{25n}<\varepsilon.
+\]
+
+\answer{Definition~7.1 gives
+\[
+ \boxed{\displaystyle\lim_{n\to\infty}\frac{2n+4}{5n+2}=\frac25}.
+\]}
+
+\step{Part (e), Step 1: bound the error using the elementary sine bound.}
+The sequence is $s_n=(\sin n)/n$. For every real $x$, the elementary
+trigonometric inequality $-1\le\sin x\le1$ gives
+$\abs{\sin x}\le1$. Applying it at $x=n$ and using $n>0$ yields
+\begin{align*}
+ \abs{s_n-0}
+   &=\abs{\frac{\sin n}{n}},\\
+   &=\frac{\abs{\sin n}}{n},\\
+   &\le\frac1n.
+\end{align*}
+The bound holds for every natural $n$ regardless of the sign of
+$\sin n$.
+
+\step{Part (e), Step 2: carry out the formal proof.}
+Let $\varepsilon>0$ and choose
+\[
+ N=\max\left\{1,\frac1\varepsilon\right\}.
+\]
+For every integer $n>N$, multiplication of $n>1/\varepsilon$ by
+$\varepsilon>0$ and division by $n>0$ give $1/n<\varepsilon$.
+Consequently
+\[
+ \abs{s_n-0}\le\frac1n<\varepsilon.
+\]
+
+\answer{Thus \(\boxed{(\sin n)/n\longrightarrow0}\).
+The proof uses a uniform bound on sine, not a claim that the sequence
+$(\sin n)$ has a limit.}
+
+\exercise{8.3}{Taking square roots when the limit is zero}
+
+\goal Suppose $s_n\ge0$ for every $n\in\N$ and $s_n\to0$. Prove
+that $\sqrt{s_n}\to0$ directly from Definition~7.1.
+
+\idea To make the nonnegative square root smaller than
+$\varepsilon$, it suffices to make the original number smaller than
+$\varepsilon^2$. The input error tolerance for the given convergence
+will therefore be $\delta=\varepsilon^2$.
+
+\step{Step 1: choose the input tolerance and use the hypothesis.}
+Let $\varepsilon>0$ be arbitrary. Then
+\[
+ \delta=\varepsilon^2>0.
+\]
+The assertion $s_n\to0$ means that the definition applies to every
+positive tolerance, including this particular $\delta$. Hence there is
+an $N$ such that every integer $n>N$ satisfies
+\[
+ \abs{s_n-0}<\delta=\varepsilon^2.
+\]
+Because $s_n\ge0$, its absolute value is itself, and the last estimate
+is exactly
+\[
+ 0\le s_n<\varepsilon^2.
+\]
+
+\step{Step 2: justify the strict comparison of square roots.}
+Fix any integer $n>N$ and put $u=\sqrt{s_n}$. The nonnegative square
+root exists because $s_n\ge0$, and it satisfies $u\ge0$ and $u^2=s_n$.
+If $u\ge\varepsilon$, then
+\[
+ u^2-\varepsilon^2=(u-\varepsilon)(u+\varepsilon)\ge0,
+\]
+since $u-\varepsilon\ge0$ and $u+\varepsilon>0$. This would imply
+$s_n=u^2\ge\varepsilon^2$, contradicting the estimate from Step~1.
+Thus $u<\varepsilon$.
+
+\step{Step 3: verify the target absolute-value estimate.}
+Since $u\ge0$,
+\[
+ \abs{\sqrt{s_n}-0}=\sqrt{s_n}=u<\varepsilon
+ \qquad\text{for every integer }n>N.
+\]
+The threshold $N$ was supplied by the given convergence for the
+tolerance $\varepsilon^2$; it does not depend on the later index $n$.
+
+\answer{For every target tolerance $\varepsilon>0$ we obtained the
+required threshold, proving \(\boxed{\sqrt{s_n}\longrightarrow0}\).
+No division by $\sqrt{s_n}$ was used, so the argument includes terms
+equal to zero.}
+
+\exercise{8.4}{A sequence tending to zero times a bounded sequence}
+
+\goal Assume $(t_n)$ is bounded, so there is a real number $M$ with
+$\abs{t_n}\le M$ for every $n\in\N$, and assume $s_n\to0$.
+Prove $s_nt_n\to0$ directly from the definition.
+
+\step{Step 1: choose a positive bound that can be used as a divisor.}
+The given bound satisfies $M\ge\abs{t_1}\ge0$, so $M\ge0$.
+It need not be strictly positive. Define instead
+\[
+ B=\max\{1,M\}.
+\]
+Then $B\ge1>0$, and for every $n$,
+\[
+ \abs{t_n}\le M\le B.
+\]
+The constant $B$ is fixed for the whole sequence; it does not depend
+on the index $n$ or on our later choice of error tolerance.
+
+\step{Step 2: ask the sequence tending to zero for a sufficiently small error.}
+Let $\varepsilon>0$ be arbitrary and put
+\[
+ \delta=\frac{\varepsilon}{B}>0.
+\]
+Since $s_n\to0$, there is an $N$ such that, for every integer $n>N$,
+\[
+ \abs{s_n-0}<\delta=\frac{\varepsilon}{B}.
+\]
+
+\step{Step 3: verify the product estimate term by term.}
+Take an arbitrary integer $n>N$. Multiplication of
+$\abs{t_n}\le B$ by the nonnegative number $\abs{s_n}$ gives
+$\abs{s_n}\abs{t_n}\le B\abs{s_n}$.
+Multiplication of $\abs{s_n}<\varepsilon/B$ by the strictly positive
+number $B$ preserves the strict inequality. Therefore
+\begin{align*}
+ \abs{s_nt_n-0}
+   &=\abs{s_n}\abs{t_n},\\
+   &\le B\abs{s_n},\\
+   &<B\frac{\varepsilon}{B},\\
+   &=\varepsilon.
+\end{align*}
+This bound holds for every integer $n>N$.
+
+\step{Step 4: check the possible zero-bound case.}
+If the original $M$ was zero, then $0\le\abs{t_n}\le0$ forces
+$t_n=0$ for every $n$. The products are then all zero. Our proof
+already covers this case because it used $B=\max\{1,0\}=1$ rather
+than dividing by $M=0$.
+
+\answer{The error estimate establishes
+\(\boxed{s_nt_n\longrightarrow0}\) by Definition~7.1.
+The sequence $(t_n)$ need only be bounded; its own convergence was
+not assumed or used.}
+
+\exercise{8.5}{The squeeze lemma and an absolute-value comparison}
+
+\goal Prove (a) that $a_n\le s_n\le b_n$ for all $n$, together with
+$a_n\to s$ and $b_n\to s$, implies $s_n\to s$; and (b) that
+$\abs{s_n}\le t_n$ for all $n$, together with $t_n\to0$, implies
+$s_n\to0$.
+
+\step{Part (a), Step 1: obtain two thresholds for the same tolerance.}
+Let $\varepsilon>0$ be arbitrary. Because $a_n\to s$, there is an
+$N_1$ such that
+\[
+ n>N_1\quad\Longrightarrow\quad\abs{a_n-s}<\varepsilon.
+\]
+Because $b_n\to s$, there is an $N_2$ such that
+\[
+ n>N_2\quad\Longrightarrow\quad\abs{b_n-s}<\varepsilon.
+\]
+Each implication is required for every integer index exceeding the
+corresponding threshold.
+
+\step{Part (a), Step 2: make both estimates valid at once.}
+Choose
+\[
+ N=\max\{N_1,N_2\}.
+\]
+For an arbitrary integer $n>N$, we have both $n>N_1$ and $n>N_2$.
+Thus both error estimates apply at this same index. The elementary
+absolute-value equivalence from Exercise~3.7(a) gives
+\[
+ -\varepsilon<a_n-s<\varepsilon,
+ \qquad
+ -\varepsilon<b_n-s<\varepsilon.
+\]
+
+\step{Part (a), Step 3: insert the middle term between these errors.}
+The order assumption holds for every $n$, so in particular for our
+chosen $n>N$ we have $a_n\le s_n\le b_n$. Add $-s$ throughout:
+\[
+ a_n-s\le s_n-s\le b_n-s.
+\]
+Combine the strict lower bound from $a_n$ with the strict upper bound
+from $b_n$:
+\[
+ -\varepsilon<a_n-s\le s_n-s\le b_n-s<\varepsilon.
+\]
+The middle inequalities are permitted to be weak. The outer strict
+inequalities still give
+$-\varepsilon<s_n-s<\varepsilon$ by transitivity. Applying
+Exercise~3.7(a) once more gives $\abs{s_n-s}<\varepsilon$.
+
+\step{Part (a), Step 4: record the quantifiers of the conclusion.}
+The number $\varepsilon>0$ was arbitrary. We chose a single $N$ for
+that tolerance and verified $\abs{s_n-s}<\varepsilon$ for every
+integer $n>N$. This is exactly the definition of convergence to $s$.
+
+\answer{The squeeze lemma is
+\[
+ \boxed{a_n\le s_n\le b_n,\quad a_n\to s,\quad b_n\to s
+       \quad\Longrightarrow\quad s_n\to s}.
+\]
+The two enclosing sequences may approach $s$ from either side; only
+their common limit and the displayed order comparisons were used.}
+
+\step{Part (b), Step 1: extract the sign information contained in the hypothesis.}
+For each $n$, $\abs{s_n}\ge0$. The assumed inequality therefore gives
+\[
+ 0\le\abs{s_n}\le t_n.
+\]
+In particular, $t_n\ge0$ for every index. This is a consequence of
+the hypothesis, not an extra assumption.
+
+\step{Part (b), Step 2: apply the definition to the given sequence.}
+Let $\varepsilon>0$ be arbitrary. Since $t_n\to0$, there is an $N$
+such that every integer $n>N$ satisfies
+\[
+ \abs{t_n-0}<\varepsilon.
+\]
+As $t_n\ge0$, this is the same as $t_n<\varepsilon$.
+
+\step{Part (b), Step 3: finish the required error estimate.}
+For every integer $n>N$, combine Step~1 with Step~2:
+\[
+ 0\le\abs{s_n-0}=\abs{s_n}\le t_n<\varepsilon.
+\]
+Thus $\abs{s_n-0}<\varepsilon$ for every such $n$.
+
+\answer{For every $\varepsilon>0$ the preceding threshold works,
+so \(\boxed{s_n\longrightarrow0}\). This direct proof records why
+the sign of $t_n$ causes no difficulty.}

@@ -1,0 +1,198 @@
+\exercise{7.1}{The first five terms of four sequences}
+\goal Compute the terms with indices $n=1,2,3,4,5$ for
+\[
+ \text{(a)}\ s_n=\frac1{3n+1},\qquad
+ \text{(b)}\ b_n=\frac{3n+1}{4n-1},\qquad
+ \text{(c)}\ c_n=\frac n{3^n},\qquad
+ \text{(d)}\ d_n=\sin\left(\frac{n\pi}{4}\right).
+\]
+
+\idea Substitute the index into every occurrence of $n$, evaluate
+the numerator and denominator separately, and simplify where possible.
+Indices start at $1$. In part \textup{(a)}, the denominator $3n+1$
+means $3$ times $n$, followed by addition of $1$.
+
+\step{1. Part (a): A reciprocal with a linear denominator}
+For $n\in\N$, we have $3n+1\ge4>0$, so all the indicated fractions
+are defined. The five substitutions give
+\begin{align*}
+ s_1&=\frac1{3\cdot1+1}=\frac1{3+1}=\frac14,\\
+ s_2&=\frac1{3\cdot2+1}=\frac1{6+1}=\frac17,\\
+ s_3&=\frac1{3\cdot3+1}=\frac1{9+1}=\frac1{10},\\
+ s_4&=\frac1{3\cdot4+1}=\frac1{12+1}=\frac1{13},\\
+ s_5&=\frac1{3\cdot5+1}=\frac1{15+1}=\frac1{16}.
+\end{align*}
+
+\step{2. Part (b): A quotient of two linear expressions}
+Here $4n-1\ge3>0$ for every $n\ge1$, so there is again no zero
+denominator. Compute both parts of each fraction:
+\begin{align*}
+ b_1&=\frac{3\cdot1+1}{4\cdot1-1}
+      =\frac{3+1}{4-1}=\frac43,\\
+ b_2&=\frac{3\cdot2+1}{4\cdot2-1}
+      =\frac{6+1}{8-1}=\frac77=1,\\
+ b_3&=\frac{3\cdot3+1}{4\cdot3-1}
+      =\frac{9+1}{12-1}=\frac{10}{11},\\
+ b_4&=\frac{3\cdot4+1}{4\cdot4-1}
+      =\frac{12+1}{16-1}=\frac{13}{15},\\
+ b_5&=\frac{3\cdot5+1}{4\cdot5-1}
+      =\frac{15+1}{20-1}=\frac{16}{19}.
+\end{align*}
+
+\step{3. Part (c): A linear numerator and an exponential denominator}
+The denominator is the positive integer power $3^n$. In particular,
+$3^1=3$, $3^2=9$, $3^3=27$, $3^4=81$, and $3^5=243$.
+Substitution yields
+\begin{align*}
+ c_1&=\frac1{3^1}=\frac13,\\
+ c_2&=\frac2{3^2}=\frac29,\\
+ c_3&=\frac3{3^3}=\frac3{27}=\frac19,\\
+ c_4&=\frac4{3^4}=\frac4{81},\\
+ c_5&=\frac5{3^5}=\frac5{243}.
+\end{align*}
+The cancellation in the third term divides numerator and denominator
+by $3$; it does not change the value of that term.
+
+\step{4. Part (d): Sine at multiples of an eighth-turn angle}
+On the unit circle at angle $\pi/4$, the two coordinates are equal
+and positive. If each is $t$, then $t^2+t^2=1$, so
+$t^2=1/2$ and $t=\sqrt2/2$. Thus $\sin(\pi/4)=\sqrt2/2$.
+The unit-circle values at $\pi/2$ and $\pi$ are $1$ and $0$.
+Using these values and the identities
+$\sin(\pi-\theta)=\sin\theta$ and
+$\sin(\pi+\theta)=-\sin\theta$, we obtain
+\begin{align*}
+ d_1&=\sin\left(\frac{1\pi}{4}\right)
+      =\sin\left(\frac\pi4\right)=\frac{\sqrt2}{2},\\
+ d_2&=\sin\left(\frac{2\pi}{4}\right)
+      =\sin\left(\frac\pi2\right)=1,\\
+ d_3&=\sin\left(\frac{3\pi}{4}\right)
+      =\sin\left(\pi-\frac\pi4\right)=\frac{\sqrt2}{2},\\
+ d_4&=\sin\left(\frac{4\pi}{4}\right)=\sin\pi=0,\\
+ d_5&=\sin\left(\frac{5\pi}{4}\right)
+      =\sin\left(\pi+\frac\pi4\right)=-\frac{\sqrt2}{2}.
+\end{align*}
+
+\answer{The requested five-term lists are
+\[
+ \begin{array}{c|ccccc}
+ \text{Part}&1&2&3&4&5\\ \hline
+ \text{(a)}&\frac14&\frac17&\frac1{10}&\frac1{13}&\frac1{16}\\[3pt]
+ \text{(b)}&\frac43&1&\frac{10}{11}&\frac{13}{15}&\frac{16}{19}\\[3pt]
+ \text{(c)}&\frac13&\frac29&\frac19&\frac4{81}&\frac5{243}\\[3pt]
+ \text{(d)}&\frac{\sqrt2}{2}&1&\frac{\sqrt2}{2}&0&-\frac{\sqrt2}{2}
+ \end{array}
+\]}
+
+\exercise{7.2}{Convergence of the four preceding sequences}
+\goal Decide which sequences in Exercise~7.1 converge and give
+each finite limit when it exists.
+
+\idea Use exact error estimates for the first three sequences.
+For the sine sequence, find values $1$ and $-1$ at arbitrarily large
+indices, then compare them with any proposed common limit.
+The arguments use the limit definition directly: $u_n\to L$ means
+that for every $\varepsilon>0$ there is a threshold $N$ such that
+$n>N$ implies $\abs{u_n-L}<\varepsilon$.
+
+\step{1. Part (a): The limit of $1/(3n+1)$}
+For every positive integer $n$,
+\[
+ \abs{\frac1{3n+1}-0}
+ =\frac1{3n+1}<\frac1{3n}.
+\]
+The reciprocal inequality follows because $3n+1>3n>0$.
+Let $\varepsilon>0$. By the Archimedean property, choose an integer
+$N>1/(3\varepsilon)$. If $n>N$, then $3n>1/\varepsilon$ and
+\[
+ \abs{\frac1{3n+1}-0}<\frac1{3n}<\varepsilon.
+\]
+This verifies the definition and proves $s_n\to0$.
+
+\step{2. Part (b): The limit of $(3n+1)/(4n-1)$}
+The ratio of the leading coefficients suggests $3/4$.
+Compute the error over a common denominator to verify it:
+\begin{align*}
+ b_n-\frac34
+ &=\frac{3n+1}{4n-1}-\frac34\\
+ &=\frac{4(3n+1)-3(4n-1)}{4(4n-1)}\\
+ &=\frac{12n+4-12n+3}{4(4n-1)}\\
+ &=\frac7{4(4n-1)}.
+\end{align*}
+The denominator is positive for $n\ge1$, so this is also the
+absolute error. Moreover,
+$4n-1-3n=n-1\ge0$, hence $4n-1\ge3n$. Therefore
+\[
+ \abs{b_n-\frac34}
+ =\frac7{4(4n-1)}\le\frac7{12n}.
+\]
+Given $\varepsilon>0$, choose an integer
+$N>\max\{1,7/(12\varepsilon)\}$. For $n>N$ we get
+\[
+ \abs{b_n-\frac34}\le\frac7{12n}<\varepsilon.
+\]
+Thus $b_n\to3/4$. No quotient limit law is needed for this conclusion.
+
+\step{3. Part (c): Bound the exponential denominator by a square}
+We first prove $3^n\ge n^2$ for every integer $n\ge2$.
+For $n=2$, this reads $9\ge4$. Suppose it holds for an integer
+$n\ge2$. Then
+\[
+ 3^{n+1}=3\cdot3^n\ge3n^2.
+\]
+Expanding the next square gives
+\[
+ 3n^2-(n+1)^2
+ =3n^2-(n^2+2n+1)
+ =2n(n-1)-1\ge3>0,
+\]
+where $n\ge2$ gives $2n(n-1)\ge4$.
+Hence $3n^2\ge(n+1)^2$, so $3^{n+1}\ge(n+1)^2$.
+Mathematical induction proves the claimed bound.
+
+Because all denominators are positive, the bound implies, for $n\ge2$,
+\[
+ 0<\frac n{3^n}\le\frac n{n^2}=\frac1n.
+\]
+Let $\varepsilon>0$ and choose an integer
+$N>\max\{2,1/\varepsilon\}$. Then $n>N$ gives
+\[
+ \abs{\frac n{3^n}-0}
+ =\frac n{3^n}\le\frac1n<\varepsilon.
+\]
+It follows directly that $c_n\to0$.
+
+\step{4. Part (d): Values separated by $2$ persist arbitrarily far out}
+For every nonnegative integer $k$, periodicity of sine gives
+\begin{align*}
+ d_{8k+2}
+ &=\sin\left(\frac{(8k+2)\pi}{4}\right)
+  =\sin\left(2k\pi+\frac\pi2\right)=1,\\
+ d_{8k+6}
+ &=\sin\left(\frac{(8k+6)\pi}{4}\right)
+  =\sin\left(2k\pi+\frac{3\pi}{2}\right)=-1.
+\end{align*}
+Both families of indices can be made larger than any given real
+threshold $N$: choose an integer $k>\max\{0,N/8\}$.
+Then $8k+2>N$ and $8k+6>N$.
+
+Suppose, for a contradiction, that $d_n\to L\in\R$.
+Use $\varepsilon=1/2$ in the definition. There is a threshold $N$
+such that $n>N$ implies $\abs{d_n-L}<1/2$.
+Choose $k$ so that both indices above exceed this $N$. Then
+\[
+ \abs{1-L}<\frac12,
+ \qquad \abs{-1-L}<\frac12.
+\]
+The triangle inequality, together with
+$\abs{L+1}=\abs{-1-L}$, would imply
+\[
+ 2=\abs{1-(-1)}
+   =\abs{(1-L)+(L+1)}
+   \le\abs{1-L}+\abs{L+1}
+   <\frac12+\frac12=1.
+\]
+This contradicts $2>1$. Therefore the sine sequence has no real limit.
+
+\answer{Parts \textup{(a)}, \textup{(b)}, and \textup{(c)} converge
+to $0$, $3/4$, and $0$, respectively. Part \textup{(d)} diverges.}

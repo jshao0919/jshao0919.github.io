@@ -1,0 +1,534 @@
+\exercise{8.6}{Absolute values at zero and an alternating counterexample}
+
+\goal Prove (a) $s_n\to0$ if and only if $\abs{s_n}\to0$, and
+(b) the sequence $s_n=(-1)^n$ has convergent absolute values but is
+itself divergent.
+
+Throughout these exercises, convergence is used in the precise form of
+Definition~7.1: $x_n\to L$ means that for every $\varepsilon>0$
+there is a real number $N$ such that
+\[
+ n\in\N,\quad n>N\quad\Longrightarrow\quad
+ \abs{x_n-L}<\varepsilon.
+\]
+A threshold $N$ need not be an integer. Whenever an index above a
+specified threshold is needed, the Archimedean property supplies a
+positive integer above it.
+
+\step{Part (a), Step 1: compare the two errors exactly.}
+For every $n\in\N$, the number $\abs{s_n}$ is nonnegative. Therefore
+\[
+ \abs{\abs{s_n}-0}=\abs{\abs{s_n}}=\abs{s_n}
+                =\abs{s_n-0}.
+\]
+The errors in the two proposed zero limits are the same real number,
+not merely bounded by each other.
+
+\step{Part (a), Step 2: prove the forward implication.}
+Assume $s_n\to0$, and let $\varepsilon>0$ be arbitrary.
+The definition supplies $N$ such that
+\[
+ n>N\quad\Longrightarrow\quad\abs{s_n-0}<\varepsilon.
+\]
+For each such index, the identity in Step~1 gives
+\[
+ \abs{\abs{s_n}-0}=\abs{s_n-0}<\varepsilon.
+\]
+Thus the same threshold $N$ verifies convergence of $\abs{s_n}$ to $0$.
+
+\step{Part (a), Step 3: prove the reverse implication.}
+Assume $\abs{s_n}\to0$, and let $\varepsilon>0$ be arbitrary.
+Choose $N$ from this convergence so that
+\[
+ n>N\quad\Longrightarrow\quad\abs{\abs{s_n}-0}<\varepsilon.
+\]
+Using Step~1 again yields
+\[
+ \abs{s_n-0}=\abs{\abs{s_n}-0}<\varepsilon
+ \qquad(n>N).
+\]
+This is the definition of $s_n\to0$.
+
+\answer{Both implications have been proved with the same error and
+the same threshold:
+\[
+ \boxed{s_n\to0\quad\Longleftrightarrow\quad\abs{s_n}\to0.}
+\]}
+
+\step{Part (b), Step 1: prove convergence of the absolute values.}
+If $s_n=(-1)^n$, then $s_n$ equals either $1$ or $-1$. Hence
+$\abs{s_n}=1$ for every $n$.
+For any $\varepsilon>0$, choose $N=0$. Every positive integer $n>N$
+satisfies
+\[
+ \abs{\abs{s_n}-1}=\abs{1-1}=0<\varepsilon.
+\]
+Therefore $\abs{s_n}\to1$.
+
+\step{Part (b), Step 2: rule out every possible limit of the original sequence.}
+Suppose, for a contradiction, that $s_n\to L$ for some real $L$.
+Apply the definition with the fixed positive tolerance $\varepsilon=1$.
+There is a real $N$ such that
+\[
+ n>N\quad\Longrightarrow\quad\abs{s_n-L}<1.
+\]
+Choose an integer $k>\max\{N,1\}$. Then both $2k$ and $2k+1$ are
+positive integers larger than $N$. Their terms are
+\[
+ s_{2k}=1,\qquad s_{2k+1}=-1.
+\]
+The triangle inequality gives
+\begin{align*}
+ 2
+   &=\abs{1-(-1)}\\
+   &=\abs{(1-L)+(L-(-1))}\\
+   &\le\abs{1-L}+\abs{L-(-1)}\\
+   &=\abs{s_{2k}-L}+\abs{s_{2k+1}-L}\\
+   &<1+1=2.
+\end{align*}
+The equality of the absolute values in the fourth line uses
+$\abs{-x}=\abs{x}$. The resulting strict inequality $2<2$ is impossible.
+
+\answer{The absolute-value sequence converges to $1$, but
+$((-1)^n)$ has no real limit. Thus existence of a limit for
+$\abs{s_n}$ alone does not guarantee existence of a limit for $s_n$.}
+
+\exercise{8.7}{Three divergent sequences}
+
+\goal Show that none of the following sequences converges:
+\[
+ \cos\left(\frac{n\pi}{3}\right),\qquad
+ (-1)^n n,\qquad
+ \sin\left(\frac{n\pi}{3}\right).
+\]
+
+\idea We will use only the definition of convergence and the triangle
+inequality. If a sequence converged to $L$, then for any chosen
+$\varepsilon>0$, all sufficiently late terms would be within
+$\varepsilon$ of $L$. Any two such terms would satisfy
+\[
+ \abs{s_p-s_q}
+  =\abs{(s_p-L)+(L-s_q)}
+  \le\abs{s_p-L}+\abs{s_q-L}
+  <2\varepsilon.
+\]
+For each proposed sequence, we will produce two arbitrarily late terms
+whose distance contradicts this inequality. This displayed observation
+has just been proved directly, so no theorem about subsequences or
+bounded convergent sequences is needed.
+
+\step{Part (a), Step 1: select a tolerance under an assumed limit.}
+Suppose
+\[
+ s_n=\cos\left(\frac{n\pi}{3}\right)\to L.
+\]
+With $\varepsilon=1$, choose $N$ such that every positive integer
+$n>N$ satisfies $\abs{s_n-L}<1$.
+
+\step{Part (a), Step 2: find late terms equal to $1$ and $-1$.}
+Choose an integer $k>\max\{N,1\}$, and put
+\[
+ p=6k,\qquad q=6k+3.
+\]
+Both indices exceed $N$. The period $2\pi$ of cosine gives
+\[
+ s_p=\cos(2k\pi)=1,\qquad
+ s_q=\cos(2k\pi+\pi)=-1.
+\]
+Their distance is therefore $\abs{s_p-s_q}=2$.
+The two-late-terms estimate gives
+\[
+ 2=\abs{s_p-s_q}
+   \le\abs{s_p-L}+\abs{s_q-L}
+   <1+1=2,
+\]
+a contradiction.
+
+\answer{The sequence $\bigl(\cos(n\pi/3)\bigr)$ does not converge.}
+
+\step{Part (b), Step 1: use the definition with a fixed tolerance.}
+Suppose $s_n=(-1)^n n\to L$.
+Choose $N$ from the definition with $\varepsilon=1$.
+
+\step{Part (b), Step 2: compute the distance between late even and odd terms.}
+Choose an integer $k>\max\{N,1\}$.
+Then $p=2k$ and $q=2k+1$ are larger than $N$ and
+\[
+ s_p=2k,\qquad s_q=-(2k+1).
+\]
+Their difference is
+\[
+ s_p-s_q=2k+(2k+1)=4k+1>2.
+\]
+Since this difference is positive, its absolute value is also $4k+1$.
+But convergence would give
+\[
+ 4k+1
+ =\abs{s_p-s_q}
+ \le\abs{s_p-L}+\abs{s_q-L}
+ <1+1=2.
+\]
+This contradicts $4k+1>2$.
+
+\answer{The sequence $\bigl((-1)^n n\bigr)$ does not converge.
+The proof uses two explicit terms in every sufficiently late tail,
+rather than assuming a boundedness theorem from a later section.}
+
+\step{Part (c), Step 1: choose a tolerance suited to the sine values.}
+Suppose
+\[
+ s_n=\sin\left(\frac{n\pi}{3}\right)\to L.
+\]
+Choose the positive tolerance $\varepsilon=\sqrt3/2$.
+The definition gives $N$ such that $n>N$ implies
+$\abs{s_n-L}<\sqrt3/2$.
+
+\step{Part (c), Step 2: use two positions in the six-term period.}
+Choose an integer $k>\max\{N,1\}$ and let
+\[
+ p=6k+1,\qquad q=6k+4.
+\]
+Both are larger than $N$. By the period $2\pi$ of sine,
+\[
+ s_p=\sin\left(2k\pi+\frac{\pi}{3}\right)=\frac{\sqrt3}{2},
+ \qquad
+ s_q=\sin\left(2k\pi+\frac{4\pi}{3}\right)=-\frac{\sqrt3}{2}.
+\]
+In particular, $\abs{s_p-s_q}=\sqrt3$.
+The convergence estimates would imply
+\[
+ \sqrt3
+ =\abs{s_p-s_q}
+ \le\abs{s_p-L}+\abs{s_q-L}
+ <\frac{\sqrt3}{2}+\frac{\sqrt3}{2}
+ =\sqrt3.
+\]
+This is impossible.
+
+\answer{The sequence $\bigl(\sin(n\pi/3)\bigr)$ does not converge.
+Every sequence in the exercise has now been ruled out by the
+definition of convergence itself.}
+
+\exercise{8.8}{Three radical limits with explicit error bounds}
+
+\goal Prove the three stated limits:
+\begin{align*}
+ \sqrt{n^2+1}-n&\longrightarrow0,\\
+ \sqrt{n^2+n}-n&\longrightarrow\frac12,\\
+ \sqrt{4n^2+n}-2n&\longrightarrow\frac14.
+\end{align*}
+The index $n$ is always a positive integer. In particular, division by
+$n$ is legitimate, and $\sqrt{n^2}=n$ rather than $-n$.
+
+\idea Multiplication by a conjugate removes the subtraction of large
+radicals. We will then bound each \emph{error from its claimed limit}
+by a positive multiple of $1/n$. The estimates below are ordinary
+algebraic identities and inequalities, not applications of limit laws.
+
+\step{Part (a), Step 1: rationalize the expression and check its sign.}
+Let $u_n=\sqrt{n^2+1}-n$.
+Because $n\ge1$, both $n$ and $\sqrt{n^2+1}$ are positive.
+Moreover, $\sqrt{n^2+1}>n$: otherwise squaring a supposed inequality
+$\sqrt{n^2+1}\le n$ between nonnegative numbers would give
+$n^2+1\le n^2$, a contradiction. Thus $u_n>0$.
+Its conjugate $\sqrt{n^2+1}+n$ is positive, so
+\begin{align*}
+ u_n
+  &=\frac{(\sqrt{n^2+1}-n)(\sqrt{n^2+1}+n)}
+          {\sqrt{n^2+1}+n}\\
+  &=\frac{(n^2+1)-n^2}{\sqrt{n^2+1}+n}\\
+  &=\frac1{\sqrt{n^2+1}+n}.
+\end{align*}
+
+\step{Part (a), Step 2: obtain an error estimate valid for every index.}
+The denominator satisfies $\sqrt{n^2+1}+n\ge2n>0$.
+Taking reciprocals of positive quantities reverses the comparison, so
+\[
+ \abs{u_n-0}=u_n\le\frac1{2n}.
+\]
+
+\step{Part (a), Step 3: choose and verify a threshold.}
+Let $\varepsilon>0$ be arbitrary, and choose
+\[
+ N=\frac1{2\varepsilon}.
+\]
+For every positive integer $n>N$, multiplying by $2\varepsilon>0$
+gives $2\varepsilon n>1$. Division by $2n>0$ gives
+$1/(2n)<\varepsilon$. Hence
+\[
+ n>N\quad\Longrightarrow\quad
+ \abs{u_n-0}\le\frac1{2n}<\varepsilon.
+\]
+This is precisely $u_n\to0$.
+
+\answer{\(\boxed{\displaystyle\lim_{n\to\infty}
+(\sqrt{n^2+1}-n)=0}\). An explicit error bound is $1/(2n)$.}
+
+\step{Part (b), Step 1: rationalize and factor out the positive index.}
+Let $v_n=\sqrt{n^2+n}-n$. Multiplying by its positive conjugate gives
+\[
+ v_n=\frac{(n^2+n)-n^2}{\sqrt{n^2+n}+n}
+     =\frac{n}{\sqrt{n^2+n}+n}.
+\]
+Set
+\[
+ r_n=\sqrt{1+\frac1n}.
+\]
+The quantity $nr_n$ is positive, and its square is
+\[
+ (nr_n)^2=n^2\left(1+\frac1n\right)=n^2+n.
+\]
+By uniqueness of the nonnegative square root,
+$\sqrt{n^2+n}=nr_n$. Substitution gives the exact identity
+\[
+ v_n=\frac{n}{nr_n+n}
+     =\frac1{r_n+1}.
+\]
+The number $r_n$ is greater than $1$, because $r_n^2=1+1/n>1$.
+Thus $r_n+1>2$, and $0<v_n<1/2$.
+
+\step{Part (b), Step 2: rationalize the error from $1/2$.}
+The sign information in Step~1 gives
+\begin{align*}
+ \abs{v_n-\tfrac12}
+  &=\frac12-\frac1{r_n+1}\\
+  &=\frac{(r_n+1)-2}{2(r_n+1)}\\
+  &=\frac{r_n-1}{2(r_n+1)}.
+\end{align*}
+A second conjugate calculation yields
+\[
+ r_n-1
+   =\frac{(r_n-1)(r_n+1)}{r_n+1}
+   =\frac{r_n^2-1}{r_n+1}
+   =\frac{1/n}{r_n+1}.
+\]
+Therefore
+\[
+ \abs{v_n-\tfrac12}
+   =\frac1{2n(r_n+1)^2}.
+\]
+Since $r_n\ge1$, we have $(r_n+1)^2\ge4$, so
+\[
+ \abs{v_n-\tfrac12}\le\frac1{8n}.
+\]
+
+\step{Part (b), Step 3: verify the definition of convergence.}
+Let $\varepsilon>0$ be arbitrary and choose $N=1/(8\varepsilon)$.
+For every positive integer $n>N$, multiplication and division by
+positive quantities give $1/(8n)<\varepsilon$.
+Consequently
+\[
+ \abs{v_n-\tfrac12}\le\frac1{8n}<\varepsilon
+ \qquad(n>N).
+\]
+The definition proves the desired limit.
+
+\answer{\(\boxed{\displaystyle\lim_{n\to\infty}
+(\sqrt{n^2+n}-n)=\tfrac12}\). An explicit error bound is $1/(8n)$.}
+
+\step{Part (c), Step 1: rationalize and identify a simpler denominator.}
+Let $w_n=\sqrt{4n^2+n}-2n$.
+Its conjugate is positive, and multiplication gives
+\[
+ w_n=\frac{(4n^2+n)-4n^2}{\sqrt{4n^2+n}+2n}
+     =\frac{n}{\sqrt{4n^2+n}+2n}.
+\]
+Define $R_n=\sqrt{4+1/n}$. Since $n>0$, the quantity $nR_n$ is
+the nonnegative square root of $4n^2+n$:
+\[
+ (nR_n)^2=n^2\left(4+\frac1n\right)=4n^2+n.
+\]
+Hence
+\[
+ w_n=\frac{n}{nR_n+2n}=\frac1{R_n+2}.
+\]
+Because $R_n^2=4+1/n>4$ and $R_n\ge0$, we have $R_n>2$.
+Thus $R_n+2>4$ and $0<w_n<1/4$.
+
+\step{Part (c), Step 2: compute and bound the error from $1/4$.}
+Using the sign of the error, put the fractions over one denominator:
+\begin{align*}
+ \abs{w_n-\tfrac14}
+   &=\frac14-\frac1{R_n+2}\\
+   &=\frac{(R_n+2)-4}{4(R_n+2)}\\
+   &=\frac{R_n-2}{4(R_n+2)}.
+\end{align*}
+The second rationalization gives
+\[
+ R_n-2
+   =\frac{R_n^2-4}{R_n+2}
+   =\frac{1/n}{R_n+2}.
+\]
+It follows that
+\[
+ \abs{w_n-\tfrac14}
+   =\frac1{4n(R_n+2)^2}
+   \le\frac1{64n},
+\]
+because $R_n\ge2$ implies $(R_n+2)^2\ge16$.
+
+\step{Part (c), Step 3: give the final tolerance-dependent threshold.}
+Let $\varepsilon>0$ be arbitrary and choose $N=1/(64\varepsilon)$.
+Then $n>N$ implies $1/(64n)<\varepsilon$, so
+\[
+ \abs{w_n-\tfrac14}\le\frac1{64n}<\varepsilon
+ \qquad(n\in\N,\ n>N).
+\]
+This verifies convergence directly.
+
+\answer{\(\boxed{\displaystyle\lim_{n\to\infty}
+(\sqrt{4n^2+n}-2n)=\tfrac14}\).
+All three limits were proved by explicit inequalities, without
+using algebraic limit theorems from Section~9.}
+
+\exercise{8.9}{Eventual bounds pass to a convergent limit}
+
+\goal Let $s_n\to s$. Prove:
+\begin{enumerate}[label=(\alph*)]
+ \item If $s_n\ge a$ for all but finitely many indices, then $s\ge a$.
+ \item If $s_n\le b$ for all but finitely many indices, then $s\le b$.
+ \item If $s_n\in[a,b]$ for all but finitely many indices, then
+       $s\in[a,b]$.
+\end{enumerate}
+
+\step{A preliminary detail: replace finitely many exceptions by one threshold.}
+If a property fails only on a finite set $E\subseteq\N$ of indices,
+define $K=0$ if $E$ is empty and $K=\max E$ otherwise.
+Every positive integer $n>K$ is outside $E$, so every such index
+satisfies the property. This explains each use of an eventual-bound
+threshold below.
+
+\step{Part (a), Step 1: suppose the limit violates the eventual lower bound.}
+Choose $K$ so that $n>K$ implies $s_n\ge a$.
+Suppose, for a contradiction, that $s<a$. Then the gap $a-s$ is
+positive. Set
+\[
+ \varepsilon=\frac{a-s}{2}>0.
+\]
+Convergence supplies $N_0$ such that $n>N_0$ implies
+$\abs{s_n-s}<\varepsilon$.
+
+\step{Part (a), Step 2: combine the two tail conditions.}
+Choose a positive integer $n>\max\{K,N_0\}$.
+The condition $n>K$ gives $s_n\ge a$. The condition $n>N_0$ gives
+\[
+ s_n-s<\varepsilon,\qquad
+ s_n<s+\varepsilon=\frac{s+a}{2}.
+\]
+But
+\[
+ a-\frac{s+a}{2}=\frac{a-s}{2}>0.
+\]
+Thus $s_n<(s+a)/2<a$, contradicting $s_n\ge a$.
+
+\answer{The inequality $s<a$ is impossible. Therefore
+\(\boxed{s\ge a}\). Equality $s=a$ is permitted; for example, the
+constant sequence $s_n=a$ has limit $a$ and satisfies every lower bound
+in the hypothesis.}
+
+\step{Part (b), Step 1: suppose the limit violates the eventual upper bound.}
+Choose $K$ so that $n>K$ implies $s_n\le b$.
+Suppose $s>b$, and choose the positive tolerance
+\[
+ \varepsilon=\frac{s-b}{2}.
+\]
+Convergence gives $N_0$ such that $n>N_0$ implies
+$\abs{s_n-s}<\varepsilon$.
+
+\step{Part (b), Step 2: choose one index after both thresholds.}
+Take a positive integer $n>\max\{K,N_0\}$.
+Then $s_n\le b$, whereas the convergence inequality gives
+\[
+ -\varepsilon<s_n-s,\qquad
+ s_n>s-\varepsilon=\frac{s+b}{2}.
+\]
+The midpoint exceeds $b$ because
+\[
+ \frac{s+b}{2}-b=\frac{s-b}{2}>0.
+\]
+Hence $s_n>b$, contradicting $s_n\le b$.
+
+\answer{The inequality $s>b$ is impossible. Therefore
+\(\boxed{s\le b}\). The endpoint $s=b$ is allowed.}
+
+\step{Part (c), Step 1: unpack membership of a closed interval.}
+For $a\le b$,
+\[
+ x\in[a,b]\quad\Longleftrightarrow\quad a\le x\le b.
+\]
+If all but finitely many $s_n$ belong to this interval, then all but
+finitely many satisfy $s_n\ge a$, and all but finitely many satisfy
+$s_n\le b$. The finite-exception threshold may be chosen from the
+indices where interval membership fails, so both inequalities hold
+beyond the same threshold.
+
+\step{Part (c), Step 2: apply both proved statements to the same limit.}
+Part (a) gives $s\ge a$, and part (b) gives $s\le b$.
+Together these say $a\le s\le b$, which is exactly $s\in[a,b]$.
+If $a=b$, the two inequalities force $s=a=b$, so the singleton case
+is included as well.
+
+\answer{For a convergent sequence,
+\[
+ \boxed{s_n\in[a,b]\text{ for all but finitely many }n
+          \quad\Longrightarrow\quad \lim s_n\in[a,b].}
+\]
+The finitely many exceptional early terms do not affect any of these
+conclusions because an index can be chosen after every exception
+and after the convergence threshold.}
+
+\exercise{8.10}{A strict bound for the limit becomes an eventual strict bound}
+
+\goal If $s_n\to s$ and $s>a$, prove that there is a real $N$ such that
+\[
+ n\in\N,\quad n>N\quad\Longrightarrow\quad s_n>a.
+\]
+
+\idea The positive gap $s-a$ allows us to place a whole
+$\varepsilon$-neighborhood of the limit above $a$.
+
+\step{Step 1: choose a tolerance smaller than the gap.}
+Because $s>a$, the real number $s-a$ is positive. Define
+\[
+ \varepsilon=\frac{s-a}{2}>0.
+\]
+The tolerance is fixed from the limit and the bound; it does not depend
+on the index $n$.
+
+\step{Step 2: obtain a threshold from convergence.}
+The definition of $s_n\to s$ gives a real number $N$ such that
+\[
+ n\in\N,\quad n>N\quad\Longrightarrow\quad
+ \abs{s_n-s}<\varepsilon.
+\]
+For any index in this tail, the absolute-value inequality implies
+\[
+ -\varepsilon<s_n-s<\varepsilon.
+\]
+The left inequality gives $s_n>s-\varepsilon$.
+
+\step{Step 3: check that the lower edge is above the desired bound.}
+Substitution and simplification give
+\[
+ s-\varepsilon
+   =s-\frac{s-a}{2}
+   =\frac{2s-s+a}{2}
+   =\frac{s+a}{2}.
+\]
+Also
+\[
+ \frac{s+a}{2}-a=\frac{s-a}{2}>0,
+\]
+so $(s+a)/2>a$. Combining these strict comparisons yields
+\[
+ s_n>s-\varepsilon=\frac{s+a}{2}>a
+ \qquad(n\in\N,\ n>N).
+\]
+
+\answer{The threshold supplied for
+$\varepsilon=(s-a)/2$ satisfies the required implication:
+\[
+ \boxed{n>N\quad\Longrightarrow\quad s_n>a.}
+\]
+The strict hypothesis $s>a$ matters: if $s=a$ and $s_n=a$ for all $n$,
+the sequence converges to $a$ but none of its terms is greater than $a$.}
