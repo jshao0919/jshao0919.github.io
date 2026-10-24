@@ -1,0 +1,371 @@
+\section{Properties of the Riemann integral}
+The Darboux criterion converts integrability into an estimate of the total
+oscillation of a function over short intervals. Once integrability has been
+established, linearity, comparison, and interval additivity make calculations
+much easier. Keep two issues separate: first justify that an integral exists;
+then use its algebraic properties. A pointwise limit alone does not usually
+allow us to move a limit through an integral.
+
+\exercise{33.1}{Decreasing functions are integrable}
+\goal Complete the monotone-function integrability proof.
+Let $f$ be decreasing on $[a,b]$, meaning nonincreasing. It is bounded
+between $f(b)$ and $f(a)$. If these values agree, $f$ is constant and every
+upper and lower sum agrees. Otherwise $D=f(a)-f(b)>0$.
+For a partition $P=\{t_0,\ldots,t_n\}$, decreasingness gives
+\[
+ U(f,P)-L(f,P)
+ =\sum_{j=1}^n [f(t_{j-1})-f(t_j)](t_j-t_{j-1})
+ \le\operatorname{mesh}(P)\sum_{j=1}^n[f(t_{j-1})-f(t_j)].
+\]
+The last sum telescopes to $D$. Given $\varepsilon>0$, choose an equal
+partition with mesh less than $\varepsilon/D$. Then the gap is below
+$\varepsilon$.
+\answer{The Darboux criterion proves integrability, including the constant case.}
+
+\exercise{33.2}{Scaling suprema and infima}
+\goal For a nonempty bounded $S\subseteq\R$ and $c>0$, prove
+$\sup(cS)=c\sup S$ and $\inf(cS)=c\inf S$.
+\step{Prove the supremum statement using both defining properties.}
+Write $M=\sup S$. Every $s\in S$ satisfies $s\le M$;
+multiplication by the positive number $c$ gives $cs\le cM$.
+Thus $cM$ is an upper bound for $cS$. To show it is the least one,
+let $\varepsilon>0$. Since $M-\varepsilon/c<M$, it is not an upper
+bound for $S$, so there is $s\in S$ with
+$M-\varepsilon/c<s\le M$. Multiplying gives
+$cM-\varepsilon<cs\le cM$. Hence no number below $cM$ can be an
+upper bound for $cS$, proving the desired equality.
+\step{Repeat with lower bounds.}
+If $m=\inf S$, then $m\le s$ implies $cm\le cs$, so $cm$ is a
+lower bound for $cS$. Given $\varepsilon>0$, the number
+$m+\varepsilon/c$ is not a lower bound for $S$. Thus some $s\in S$
+satisfies $m\le s<m+\varepsilon/c$, and
+$cm\le cs<cm+\varepsilon$. No number greater than $cm$ is a lower
+bound for $cS$.
+\answer{Both scaling identities follow; positivity of $c$ was needed to
+preserve the inequality directions.}
+
+\exercise{33.3}{Step functions and postage}
+\goal Integrate a finite step function and the postage-stamp example.
+\step{(a) Work one subinterval at a time.}
+Suppose $f=c_j$ on $(u_{j-1},u_j)$ for the finite partition in the
+exercise. On the closed interval $[u_{j-1},u_j]$, the function differs
+from the constant $c_j$ at most at its two endpoints. Exercise 32.7
+therefore proves integrability there and gives integral
+$c_j(u_j-u_{j-1})$. Interval additivity, applied successively to the
+finitely many intervals, proves
+\[
+ \int_a^b f(x)\,dx=\sum_{j=1}^m c_j(u_j-u_{j-1}).
+\]
+There is no condition on the finitely many partition-point values,
+except that they are real numbers.
+\step{(b) Apply the formula to the postage function.}
+On the four open unit intervals between $0$ and $4$, the values of $P$
+are $A,A+B,A+2B,A+3B$. Each interval has length $1$; the value at $4$
+does not change the integral. Consequently
+\[
+ \int_0^4 P(x)\,dx=A+(A+B)+(A+2B)+(A+3B)=4A+6B.
+\]
+\answer{Step functions are integrable, with integral equal to the sum of
+height times width; the postage integral is $4A+6B$.}
+
+\exercise{33.4}{An integrable absolute value does not suffice}
+\goal Find a nonintegrable $f$ on $[0,1]$ with integrable $\abs f$.
+Set $f(x)=1$ at rational points and $f(x)=-1$ at irrational points.
+Every nondegenerate interval contains both sorts of points. Thus every
+upper sum is $1$ and every lower sum is $-1$; the two Darboux integrals
+differ, so $f$ is not integrable. However, $\abs{f(x)}=1$ for every $x$,
+and a constant function is integrable, with integral $1$ on $[0,1]$.
+\answer{This example shows that the converse of integrability of $f$
+implying integrability of $\abs f$ is false.}
+
+\exercise{33.5}{Bounding an integral without evaluating it}
+\goal Bound the absolute integral of $x^2\sin^8(e^x)$ on $[-2\pi,2\pi]$.
+The integrand is continuous, hence integrable. Since
+$0\le\sin^8(e^x)\le1$, we have
+$\abs{x^2\sin^8(e^x)}\le x^2$. The absolute-integral inequality and
+comparison give
+\[
+ \left|\int_{-2\pi}^{2\pi}x^2\sin^8(e^x)\,dx\right|
+ \le\int_{-2\pi}^{2\pi}x^2\,dx
+ =2\frac{(2\pi)^3}{3}=\frac{16\pi^3}{3}.
+\]
+The integral of the square follows from the Darboux calculation in
+Section 32 (or, once established, the Fundamental Theorem).
+\answer{The requested bound is $16\pi^3/3$.}
+
+\exercise{33.6}{Absolute value does not increase oscillation}
+\goal Show, for a nonempty set $S$ on which $f$ is bounded,
+\[
+ \sup_S\abs f-\inf_S\abs f\le\sup_S f-\inf_S f.
+\]
+\step{Compare two values before taking extrema.}
+For arbitrary $x,y\in S$, the reverse triangle inequality gives
+\[
+ \abs{f(x)}-\abs{f(y)}\le\abs{f(x)-f(y)}
+ \le M-m,
+ \quad M=\sup_S f,\quad m=\inf_S f.
+\]
+The last inequality holds because both $f(x)$ and $f(y)$ lie in $[m,M]$.
+Fix $y$ and take the supremum over $x$. This yields
+$\sup_S\abs f\le\abs{f(y)}+M-m$ for every $y\in S$.
+Taking the infimum over $y$ gives
+$\sup_S\abs f\le\inf_S\abs f+M-m$.
+No maximum or minimum needs to be attained.
+\answer{Rearrangement gives exactly the oscillation inequality needed
+in the proof of Theorem 33.5.}
+
+\exercise{33.7}{Squaring preserves integrability}
+\goal Prove the Darboux-gap estimate and deduce integrability of $f^2$.
+Assume $\abs{f(x)}\le B$ on $[a,b]$, with $B>0$.
+\step{(a) Estimate the oscillation on one cell.}
+For any $x,y$ in a partition cell $J$,
+\[
+ \abs{f(x)^2-f(y)^2}
+ =\abs{f(x)+f(y)}\abs{f(x)-f(y)}
+ \le2B(\sup_J f-\inf_J f).
+\]
+Taking the supremum over pairs $x,y\in J$ gives
+\[
+ \sup_J f^2-\inf_J f^2\le2B(\sup_J f-\inf_J f).
+\]
+Indeed, the difference of a supremum and an infimum equals the
+supremum of all differences; the values need not be attained.
+Multiply by the length of $J$ and sum over the partition to obtain
+\[
+ U(f^2,P)-L(f^2,P)\le2B[U(f,P)-L(f,P)].
+\]
+\step{(b) Use the integrability criterion.}
+If $f$ is integrable, choose $P$ with
+$U(f,P)-L(f,P)<\varepsilon/(2B)$. The estimate makes the gap for
+$f^2$ smaller than $\varepsilon$. Also $f^2$ is bounded by $B^2$,
+as required by the criterion.
+\answer{$f^2$ is integrable whenever $f$ is integrable.}
+
+\exercise{33.8}{Products, maxima, and minima}
+\goal Prove integrability of three combinations of integrable $f,g$.
+\step{(a) Turn a product into a linear combination of squares.}
+Linearity already proves that $f+g$ and $f-g$ are integrable.
+By Exercise 33.7 their squares are integrable. Since
+\[
+ fg=\frac{(f+g)^2-(f-g)^2}{4},
+\]
+linearity proves integrability of $fg$. This argument establishes the
+existence of the integral, without claiming that an integral of a product
+is a product of integrals.
+\step{(b) Express maxima and minima using absolute value.}
+For any two real numbers $u,v$,
+$\max(u,v)=(u+v+\abs{u-v})/2$ and
+$\min(u,v)=(u+v-\abs{u-v})/2$. Check these identities separately
+when $u\ge v$ and $u<v$. Substituting $f(x),g(x)$ gives pointwise formulas.
+The absolute value of the integrable function $f-g$ is integrable by
+Theorem 33.5, and linearity now proves both conclusions.
+\answer{The functions $fg$, $\max(f,g)$, and $\min(f,g)$ are integrable.}
+
+\exercise{33.9}{Uniform limits of integrable functions}
+\goal Show that a uniform limit $f$ is integrable and its integral is the
+limit of the integrals.
+\step{First check boundedness.}
+Choose one index $m$ such that $\abs{f-f_m}<1$ everywhere.
+Since $f_m$ is bounded, this also bounds $f$.
+\step{Make a Darboux gap small.}
+Given $\varepsilon>0$, choose $m$ with
+$\sup_{[a,b]}\abs{f-f_m}<\varepsilon/[4(b-a)]$.
+Call this upper bound $\eta$. For every cell $J$,
+\[
+ \sup_J f\le\sup_J f_m+\eta,\qquad
+ \inf_J f\ge\inf_J f_m-\eta.
+\]
+Since $f_m$ is integrable, choose $P$ with its gap below $\varepsilon/2$.
+Then
+\[
+ U(f,P)-L(f,P)
+ \le U(f_m,P)-L(f_m,P)+2\eta(b-a)<\varepsilon.
+\]
+The Darboux criterion proves integrability of $f$.
+\step{Estimate the difference of integrals.}
+Now $f-f_n$ is integrable, and
+\[
+ \left|\int_a^b f-\int_a^b f_n\right|
+ \le\int_a^b\abs{f-f_n}
+ \le(b-a)\sup_{[a,b]}\abs{f-f_n}\longrightarrow0.
+\]
+Uniform convergence is what makes the final supremum tend to zero.
+Theorem 25.2 treated continuous functions; this proof needs only
+integrability. The dominated-convergence result has weaker convergence
+hypotheses but additional boundedness and limit-integrability assumptions.
+\answer{Uniform limits preserve Riemann integrability and allow the limit
+to pass through the integral.}
+
+\exercise{33.10}{An oscillatory function that is still integrable}
+\goal Prove integrability on $[-1,1]$ of $f(x)=\sin(1/x)$ for $x\ne0$,
+with $f(0)=0$.
+\idea Isolate the only troublesome point in a short interval.
+Given $\varepsilon>0$, choose $0<\delta<1$ with $4\delta<\varepsilon/2$.
+The function is continuous on $[-1,-\delta]$ and $[\delta,1]$,
+so those intervals have partitions whose combined Darboux gaps are
+less than $\varepsilon/2$. Combine these partitions with the middle
+cell $[-\delta,\delta]$.
+On that cell $-1\le f\le1$, so its gap contribution is at most
+$2(2\delta)=4\delta<\varepsilon/2$.
+The complete partition therefore has gap below $\varepsilon$.
+\answer{The function is Riemann integrable. Infinitely many oscillations
+near one point can be confined to intervals of arbitrarily small length.}
+
+\exercise{33.11}{An integrable function beyond the piecewise criteria}
+\goal Study $f(x)=x\operatorname{sgn}(\sin(1/x))$ for $x\ne0$ and
+$f(0)=0$, with $\operatorname{sgn}(0)=0$.
+\step{(a) Rule out piecewise continuity.}
+At $x_k=1/(k\pi)>0$, the sine changes sign and the two one-sided
+limits of $f$ are $x_k$ and $-x_k$, in one order or the other.
+They differ because $x_k>0$, so each $x_k$ is a discontinuity.
+Every interval $(0,\delta)$ contains infinitely many of these points.
+A finite partition always leaves an interval $(0,\delta)$ without any
+interior partition point, and continuity on its interior is impossible.
+Thus $f$ is not piecewise continuous on $[-1,1]$.
+\step{(b) Rule out piecewise monotonicity.}
+The sign of $\sin(1/x)$ alternates on the infinitely many successive
+intervals between the $x_k$. In any $(0,\delta)$ choose ordered points
+$u<v<w$ in three consecutive sign intervals with signs $+,-,+$.
+Then $f(u)>0$, $f(v)<0$, and $f(w)>0$. These values are neither
+nondecreasing nor nonincreasing. Hence $f$ is not monotonic on any
+$(0,\delta)$, which again rules out any finite monotonicity partition.
+\step{(c) Estimate the Darboux gap directly.}
+Given $\varepsilon>0$, choose $\delta\in(0,1)$ with
+$4\delta^2<\varepsilon/2$. On each of $[-1,-\delta]$ and
+$[\delta,1]$ there are only finitely many zeros of $\sin(1/x)$.
+Between them the function equals $x$ or $-x$; it is thus a finite
+piecewise continuous function, hence integrable there. Choose outer
+partitions with combined gaps below $\varepsilon/2$.
+On $[-\delta,\delta]$, $\abs f\le\abs x\le\delta$, so the gap
+contribution is at most $(2\delta)(2\delta)=4\delta^2$.
+The combined gap is below $\varepsilon$.
+\answer{$f$ is neither piecewise continuous nor piecewise monotonic,
+but it is Riemann integrable. The two piecewise conditions are sufficient,
+not necessary.}
+
+\exercise{33.12}{The rational-denominator function has zero integral}
+\goal For the function of Exercise 17.14, prove the two non-piecewise
+claims and compute the integral on every $[a,b]$.
+Recall that $f=0$ at irrationals and $f(p/q)=1/q$ for rationals in
+lowest terms with $q>0$, including $f(0)=1$.
+\step{(a) Examine every nondegenerate subinterval.}
+The function is discontinuous at every rational point: its value there
+is positive, whereas nearby irrational values are zero.
+Every nondegenerate interval contains a rational, so it cannot be an
+interval of continuity. Thus no finite continuity partition exists.
+It cannot be monotonic on any such interval either: choose a rational
+$r$ strictly inside it and irrational points $u<r<v$ in it.
+Then $f(u)=f(v)=0<f(r)$, violating both possible monotonicities.
+Thus a finite monotonicity partition is also impossible.
+\step{(b) Isolate the finitely many large values.}
+Every cell contains an irrational, so every lower sum is zero.
+To make an upper sum small, let $\varepsilon>0$ and choose $N$ with
+$(b-a)/N<\varepsilon/2$. There are only finitely many rationals in
+$[a,b]$ with denominator $q\le N$: for each fixed $q$, only finitely
+many integers $p$ have $a\le p/q\le b$.
+Make a partition whose cells meeting these finitely many points have
+total length less than $\varepsilon/2$. On these cells, use the bound
+$f\le1$. On all other cells, all nonzero values have denominator
+$q>N$, and hence $f\le1/N$. Therefore
+\[
+ U(f,P)\le1\cdot\frac{\varepsilon}{2}
+          +\frac1N(b-a)<\varepsilon.
+\]
+This proves the upper integral is also zero.
+\answer{$f$ is integrable on every bounded closed interval and
+$\int_a^b f=0$, although it is neither of the two piecewise types.}
+
+\exercise{33.13}{Equal integrals force an interior intersection}
+\goal For continuous $f,g$ with equal integrals on $[a,b]$, find
+$x\in(a,b)$ with $f(x)=g(x)$.
+Let $h=f-g$. It is continuous and $\int_a^b h=0$.
+Suppose $h$ never vanishes in $(a,b)$. By the Intermediate Value theorem
+it cannot take both a positive and a negative value there, since that
+would force a zero between them. Thus it is either positive everywhere
+in $(a,b)$ or negative everywhere there.
+In the positive case, continuity gives $h\ge0$ at the endpoints as well.
+At any chosen interior point $x_0$, continuity gives a small interval
+of positive length on which $h\ge h(x_0)/2>0$. Its integral is
+strictly positive, and the rest is nonnegative, contradicting the zero
+integral. Apply the same reasoning to $-h$ in the negative case.
+\answer{The assumption was impossible, so $f(x)=g(x)$ for some interior $x$.}
+
+\exercise{33.14}{A weighted mean-value theorem}
+\goal Prove the weighted formula, identify the ordinary case, and test
+the sign hypothesis.
+\step{(a) Separate the zero-weight case.}
+Let $G=\int_a^b g\ge0$. If $G=0$, nonnegative continuous $g$ must
+be identically zero: a positive value would, by continuity, contribute
+a positive integral on a short interval. Thus $\int_a^b fg=0$ too,
+and every interior $x$ satisfies the formula.
+If $G>0$, put $c=G^{-1}\int_a^b fg$. We need $f(x)=c$ at an
+interior point. Suppose no such point exists. As in Exercise 33.13,
+continuity forces $f-c$ to have one strict sign throughout $(a,b)$.
+Because $G>0$, $g$ is positive at some interior point $t_0$;
+otherwise it would vanish on $(a,b)$ and hence also at both endpoints.
+Thus $(f-c)g$ has one weak sign throughout $[a,b]$ and the corresponding
+strict sign on a neighborhood of $t_0$. Its integral cannot be zero.
+But linearity gives
+\[
+ \int_a^b(f-c)g=\int_a^b fg-cG=0,
+\]
+a contradiction. Therefore an interior $x$ has $f(x)=c$, and
+$\int_a^b fg=f(x)\int_a^b g$.
+\step{(b) Recover the ordinary integral mean-value theorem.}
+Take $g\equiv1$, so $G=b-a$. The formula becomes
+$f(x)=(b-a)^{-1}\int_a^b f$, exactly Theorem 33.9.
+\step{(c) Test a weight that changes sign.}
+On $[-1,1]$, set $f(t)=g(t)=t$. Then
+$\int_{-1}^1 fg=\int_{-1}^1t^2\,dt=2/3$, but
+$f(x)\int_{-1}^1g=x\cdot0=0$ for every $x$.
+\answer{The weighted theorem holds for nonnegative continuous weights;
+part (c) shows that dropping the sign condition can destroy it.}
+
+\exercise{33.15}{Narrow triangular peaks}
+\goal Sketch the first three peaks, find their pointwise limit, and compare
+limits of integrals.
+The line-segment description gives the convenient formula
+\[
+ f_n(x)=\begin{cases}
+ n^2x,&0\le x\le1/n,\\
+ 2n-n^2x,&1/n\le x\le2/n,\\
+ 0,&2/n\le x\le1.
+ \end{cases}
+\]
+\step{(a) Draw the vertices and join them by straight segments.}
+The following sketches use the same horizontal and vertical scales;
+the vertical unit is $8$ picture units and the horizontal unit is $100$.
+The vertices are $(0,0),(1/n,n),(2/n,0),(1,0)$.
+\begin{center}
+\setlength{\unitlength}{1pt}
+\begin{picture}(365,78)
+\put(10,16){\vector(1,0){105}}\put(10,16){\vector(0,1){47}}
+\put(10,16){\polyline(0,0)(33.333,24)(66.667,0)(100,0)}
+\put(45,65){$f_3$}\put(4,5){$0$}\put(106,5){$1$}
+\put(25,46){\scriptsize$(1/3,3)$}
+\put(132,16){\vector(1,0){105}}\put(132,16){\vector(0,1){47}}
+\put(132,16){\polyline(0,0)(25,32)(50,0)(100,0)}
+\put(167,65){$f_4$}\put(126,5){$0$}\put(228,5){$1$}
+\put(151,51){\scriptsize$(1/4,4)$}
+\put(254,16){\vector(1,0){105}}\put(254,16){\vector(0,1){47}}
+\put(254,16){\polyline(0,0)(20,40)(40,0)(100,0)}
+\put(289,65){$f_5$}\put(248,5){$0$}\put(350,5){$1$}
+\put(277,51){\scriptsize$(1/5,5)$}
+\end{picture}
+\end{center}
+\step{(b) Fix the point before choosing how large $n$ must be.}
+At $x=0$, every value is zero. For a fixed $x>0$, choose $N>2/x$.
+If $n\ge N$, then $2/n<x$ and the last branch of the formula gives
+$f_n(x)=0$. Thus $f_n(x)\to0$ for every $x\in[0,1]$.
+\step{(c) Compute areas and check the theorem's hypothesis.}
+Each graph is a triangle of base $2/n$ and height $n$, followed by
+a zero segment. Its integral is
+\[
+ \int_0^1 f_n(x)\,dx=\frac12\frac2n\,n=1.
+\]
+Hence the limit of the integrals is $1$, whereas the integral of the
+pointwise limit is $0$. There is no contradiction with Ross's Dominated
+Convergence theorem: it requires a single constant $M$ bounding
+$\abs{f_n(x)}$ for all $n,x$, but $f_n(1/n)=n$ is unbounded as $n$ varies.
+\answer{Pointwise convergence to zero does not force the integrals to
+tend to zero; the increasingly tall peaks retain area $1$.}

@@ -1,0 +1,439 @@
+\section{Improper integrals}
+\label{sec:improper-integrals}
+An improper integral is a \emph{limit of ordinary integrals}; it is not
+an instruction to substitute an infinite number into an antiderivative.
+For example,
+\[
+ \int_a^b f=\lim_{d\to b^-}\int_a^d f
+\]
+when the left endpoint is harmless. If both endpoints are troublesome,
+choose an interior point $\alpha$ and take the two limits separately.
+A finite limit means convergence. A limit $+\infty$ or $-\infty$ is an
+extended value, not convergence. An oscillating limit has no value.
+In particular, a symmetric limit on $[-R,R]$ cannot replace the two
+one-sided limits in the definition.
+
+For Stieltjes integrals, $F$ is increasing. Its increment
+$F(v)-F(u)$ replaces the interval length $v-u$. We use Ross's
+endpoint convention from Section~35, so that adjacent integrals add
+without counting a jump twice. A distribution function has total
+increment $F(\infty)-F(-\infty)=1$.
+
+\exercise{36.1}{Agreement with an ordinary integral}
+\goal If $f$ is Riemann integrable on the finite interval $[a,b]$,
+prove that $\lim_{d\to b^-}\int_a^d f=\int_a^b f$.
+\idea The only omitted contribution is over the short interval $[d,b]$.
+\step{Bound that contribution.}
+Riemann integrability includes boundedness. Choose $B\geq0$ with
+$|f(x)|\leq B$ on $[a,b]$. Restrictions of an integrable function are
+integrable, and additivity and the integral inequality give
+\[
+ \left|\int_a^b f-\int_a^d f\right|
+ =\left|\int_d^b f\right|\leq\int_d^b |f|
+ \leq B(b-d).
+\]
+If $B=0$, the difference is already zero. If $B>0$, given
+$\varepsilon>0$, choosing $0<b-d<\varepsilon/B$ makes the difference
+less than $\varepsilon$.
+\answer{The difference tends to zero, so the two definitions agree.}
+
+\exercise{36.2}{The splitting point does not change the value}
+\goal Show that the definition of an integral on $(a,b)$ is independent
+of the chosen interior point.
+\step{Compare two splitting points by a finite integral.}
+Suppose $a<\alpha<\beta<b$ and set
+$C=\int_\alpha^\beta f$. This is a finite ordinary integral by the
+local integrability hypothesis. For $a<c<\alpha$ and $\beta<d<b$,
+\[
+ \int_c^\beta f=\int_c^\alpha f+C,
+ \qquad
+ \int_\beta^d f=\int_\alpha^d f-C.
+\]
+Pass to the endpoint limits. Adding or subtracting a finite number
+preserves the existence and sign of an infinite limit. Thus, if
+$A=\int_a^\alpha f$ and $B=\int_\alpha^b f$ exist, then
+\[
+ \int_a^\beta f=A+C,\qquad \int_\beta^b f=B-C.
+\]
+\step{Check that the permitted sum is unchanged.}
+If $A,B$ are finite, their sum is plainly unchanged. If one is infinite
+and their sum is permitted, the finite changes do not alter either
+infinite sign. An excluded sum $+\infty+(-\infty)$ remains excluded.
+The same argument in reverse proves the converse, and interchanging
+$\alpha,\beta$ covers either order.
+\answer{The existence and the value of the improper integral do not
+depend on the split.}
+
+\exercise{36.3}{Power singularities at zero and at infinity}
+\goal Analyze $\int_0^1 x^{-p}\,dx$ and $\int_0^\infty x^{-p}\,dx$
+for $p>0$.
+\step{(a) Cut off the singular endpoint before integrating.}
+For $0<c<1$ and $p\ne1$, the power rule gives
+\[
+ \int_c^1 x^{-p}\,dx=\frac{1-c^{1-p}}{1-p}.
+\]
+If $0<p<1$, the exponent $1-p$ is positive, so $c^{1-p}\to0$;
+the answer is $1/(1-p)$. If $p>1$, then
+$c^{1-p}=1/c^{p-1}\to+\infty$. Rewriting the last display as
+$(c^{1-p}-1)/(p-1)$ shows that the integral tends to $+\infty$.
+For completeness, the boundary case $p=1$ has
+$\int_c^1 dx/x=-\log c\to+\infty$.
+\step{(b) Treat both ends separately.}
+For $p\ne1$,
+\[
+ \int_1^d x^{-p}\,dx=\frac{d^{1-p}-1}{1-p}.
+\]
+This tends to $1/(p-1)$ if $p>1$, and to $+\infty$ if $0<p<1$.
+For $p=1$ it equals $\log d\to+\infty$. Thus $p>1$ fails at
+zero, $0<p<1$ fails at infinity, and $p=1$ fails at both ends.
+All integrands are nonnegative, so there is no cancellation issue.
+\answer{The integral on $(0,1)$ converges exactly for $0<p<1$;
+the integral on $(0,\infty)$ is $+\infty$ for every $p>0$.}
+
+\exercise{36.4}{Three explicit improper integrals}
+\step{(a) The logarithm near zero.}
+Integration by parts on $[c,1]$, where $c>0$, yields
+\[
+ \int_c^1\log x\,dx=[x\log x-x]_c^1=-1-c\log c+c.
+\]
+To justify $c\log c\to0$, put $t=1/c$. The elementary estimate
+$\log t=\int_1^t du/u\leq\int_1^t du/\sqrt u
+=2(\sqrt t-1)$ for $t\geq1$ gives
+$0\leq(\log t)/t\leq2/\sqrt t\to0$.
+Consequently $\int_0^1\log x\,dx=-1$.
+\step{(b) A logarithm divided by its argument.}
+For $d>2$, substitution $u=\log x$, $du=dx/x$, gives
+\[
+ \int_2^d\frac{\log x}{x}\,dx
+ =\frac{(\log d)^2-(\log2)^2}{2}\longrightarrow+\infty.
+\]
+\step{(c) The reciprocal quadratic.}
+Since $(\arctan x)'=1/(1+x^2)$,
+\[
+ \int_0^d\frac{dx}{1+x^2}=\arctan d\longrightarrow\frac\pi2.
+\]
+\answer{The values, in order, are $-1$, $+\infty$, and $\pi/2$.}
+
+\exercise{36.5}{A nonnegative integral as a supremum}
+\goal For continuous $f\geq0$ on $(a,b)$, identify its improper
+integral with the supremum of all integrals over compact subintervals.
+\step{Establish the two one-sided limits.}
+Choose $\alpha\in(a,b)$. Define
+\[
+ A(c)=\int_c^\alpha f\quad(a<c<\alpha),\qquad
+ B(d)=\int_\alpha^d f\quad(\alpha<d<b).
+\]
+Because $f\geq0$, $A(c)$ increases as $c$ moves toward $a$,
+and $B(d)$ increases as $d$ moves toward $b$. The monotone-limit
+property therefore gives limits $A,B\in[0,\infty]$, equal to their
+respective suprema. The improper integral exists and equals $A+B$;
+this sum can never have the forbidden form $+\infty+(-\infty)$.
+\step{Compare with all compact subintervals.}
+Let $M=\sup\{\int_c^d f:[c,d]\subset(a,b)\}$. Enlarging any
+$[c,d]$ so that it contains $\alpha$ can only increase its integral.
+An enlarged interval has integral $A(c')+B(d')\leq A+B$; thus
+$M\leq A+B$. Conversely, all intervals with $c<\alpha<d$ are
+allowed in the supremum, so $M\geq A(c)+B(d)$. If $A,B$ are
+finite, choose $c,d$ making these terms within $\varepsilon/2$ of
+their suprema, and obtain $M\geq A+B-\varepsilon$. If either
+supremum is infinite, these same integrals exceed every prescribed
+bound, so $M=+\infty$.
+\answer{$\displaystyle\int_a^b f=\sup_{[c,d]\subset(a,b)}\int_c^d f$,
+with $+\infty$ allowed.}
+
+\exercise{36.6}{Comparison tests}
+\goal Suppose $0\leq f\leq g$ and both functions are continuous on
+$(a,b)$. Prove the convergence and divergence comparisons.
+\step{Compare finite intervals first.}
+For every compact $[c,d]\subset(a,b)$, ordinary integral monotonicity
+gives $0\leq\int_c^d f\leq\int_c^d g$. Exercise~36.5 allows us to
+take suprema, giving
+\[
+ 0\leq\int_a^b f\leq\int_a^b g\leq+\infty.
+\]
+\step{(a) Finite upper bound.}
+If $\int_a^b g$ is finite, the middle quantity is bounded above by
+that finite number. The nonnegative integral of $f$ therefore converges.
+\step{(b) Infinite lower bound.}
+If $\int_a^b f=+\infty$, no finite number can bound the integral
+of $g$ from above. Therefore $\int_a^b g=+\infty$.
+\answer{A smaller nonnegative function inherits convergence; a larger
+one inherits divergence to $+\infty$.}
+
+\exercise{36.7}{The Gaussian integral}
+\step{(a) Prove finiteness before attempting evaluation.}
+The integrand is even. On $[0,1]$ it is at most $1$; on $[1,\infty)$,
+$x^2\geq x$, so $e^{-x^2}\leq e^{-x}$. The comparison test gives
+\[
+ 0<I:=\int_{-\infty}^{\infty}e^{-x^2}\,dx
+ \leq2\left(1+\int_1^\infty e^{-x}\,dx\right)
+ =2(1+e^{-1})<\infty.
+\]
+\step{(b) Explain the double-integral calculation.}
+This part uses polar coordinates for a double integral, as requested
+by the exercise. The following bounded-region argument avoids assuming
+in advance that improper iterated integrals may be interchanged.
+Set $I_R=\int_{-R}^R e^{-x^2}\,dx$. On the square
+$Q_R=[-R,R]^2$, integration of the continuous product gives
+\[
+ \iint_{Q_R}e^{-x^2-y^2}\,dx\,dy=I_R^2.
+\]
+Let $D_R$ be the disk of radius $R$. The inclusions
+$D_R\subset Q_R\subset D_{\sqrt2R}$ and positivity give a lower
+and an upper bound for $I_R^2$. In polar coordinates,
+\[
+ \iint_{D_R}e^{-x^2-y^2}\,dx\,dy
+ =\int_0^{2\pi}\int_0^R e^{-r^2}r\,dr\,d\theta
+ =\pi(1-e^{-R^2}).
+\]
+Here the extra factor $r$ is the polar area factor, and
+$\int_0^R e^{-r^2}r\,dr=(1-e^{-R^2})/2$. Hence
+\[
+ \pi(1-e^{-R^2})\leq I_R^2\leq\pi(1-e^{-2R^2}).
+\]
+Both outer expressions tend to $\pi$. Since part (a) shows
+$I_R\to I$, we obtain $I^2=\pi$; and $I>0$ selects the positive root.
+\answer{$\displaystyle\int_{-\infty}^{\infty}e^{-x^2}\,dx=\sqrt\pi$.}
+
+\exercise{36.8}{Absolute convergence implies convergence}
+\goal If $f$ is continuous on $(a,b)$ and $\int_a^b|f|<\infty$,
+prove that $\int_a^b f$ exists and is finite.
+\idea Write $f$ as the difference of two nonnegative functions whose
+integrals are bounded above by integrals already known to converge.
+\step{Use positive and negative parts.}
+Define
+\[
+ f_+(x)=\max\{f(x),0\},\qquad
+ f_-(x)=\max\{-f(x),0\}.
+\]
+These are continuous because, for example,
+$f_+=(|f|+f)/2$. Pointwise, $0\leq f_+,f_-\leq|f|$ and
+$f=f_+-f_-$. Exercise~36.6 proves that both nonnegative improper
+integrals are finite.
+\step{Pass to limits without subtracting infinities.}
+On each compact subinterval, ordinary linearity gives
+$\int_c^d f=\int_c^d f_+-\int_c^d f_-$. Fix an interior split,
+and take the left and right endpoint limits separately. Each term
+has a finite limit, so the limit law for subtraction applies.
+\answer{$\int_a^b f$ converges and
+$\left|\int_a^b f\right|\leq\int_a^b|f|$.}
+
+\exercise{36.9}{Integrals for the normal distribution}
+Write $\varphi(x)=(2\pi)^{-1/2}e^{-x^2/2}$ and
+$F(t)=\int_{-\infty}^t\varphi(x)\,dx$. Substitution
+$x=\sqrt2u$ in Exercise~36.7 gives $\int_\R\varphi=1$.
+\step{(a) Replace the Stieltjes integrator by its density.}
+The Fundamental Theorem of Calculus gives $F'=\varphi$, a continuous
+function. For continuous $f$, Theorem~35.13 on each finite $[a,b]$
+therefore yields
+\[
+ \int_a^b f\,dF=\int_a^b f(x)F'(x)\,dx
+ =\frac1{\sqrt{2\pi}}\int_a^b f(x)e^{-x^2/2}\,dx.
+\]
+Taking the two endpoint limits separately proves the same identity
+on $\R$ whenever the integral specified in the question exists;
+positive constant multiplication preserves finite and infinite limits.
+\step{(b) The second moment.}
+Since $\varphi'(x)=-x\varphi(x)$, integration by parts on $[a,b]$ gives
+\[
+ \int_a^b x^2\varphi(x)\,dx
+ =[-x\varphi(x)]_a^b+\int_a^b\varphi(x)\,dx.
+\]
+The boundary term tends to zero at either infinity. For instance,
+$e^t\geq t^2/2$ for $t\geq0$ implies
+$xe^{-x^2/2}\leq8/x^3$ for $x>0$, and negative $x$ are handled
+by absolute values. Thus $\int_\R x^2\,dF=1$.
+\step{(c) The exponential of the square.}
+The integrand here is $e^{x^2}$, not $e^x$. Its density product is
+\[
+ e^{x^2}\varphi(x)=\frac1{\sqrt{2\pi}}e^{x^2/2}
+ \geq\frac1{\sqrt{2\pi}}.
+\]
+The integral of this positive constant over an infinite half-line
+is infinite, so comparison proves $\int_\R e^{x^2}\,dF=+\infty$.
+\step{(d) The absolute first moment.}
+Evenness and the antiderivative of $x e^{-x^2/2}$ give
+\[
+ \int_\R |x|\,dF
+ =\frac2{\sqrt{2\pi}}\int_0^\infty x e^{-x^2/2}\,dx
+ =\frac2{\sqrt{2\pi}}[-e^{-x^2/2}]_0^\infty
+ =\sqrt{\frac2\pi}.
+\]
+\step{(e) The first moment and a necessary convergence check.}
+Part (d) shows absolute convergence. Each half-integral is therefore
+finite. Because $x\varphi(x)$ is odd, substitution $u=-x$ in the
+negative half-integral makes it the negative of the positive half.
+Their sum is zero. Oddness alone would not suffice without the
+existence of both halves.
+\answer{The values in (b)--(e) are $1$, $+\infty$,
+$\sqrt{2/\pi}$, and $0$.}
+
+\exercise{36.10}{Linearity on the whole real line}
+\goal For $F$-integrable $f,g$ on $\R$, prove integrability and
+the sum rule for $f+g$.
+\step{Apply finite-interval linearity.}
+For every finite $a<0<b$, Theorem~35.8 gives
+\[
+ \int_a^0(f+g)\,dF=\int_a^0 f\,dF+\int_a^0 g\,dF,
+ \qquad
+ \int_0^b(f+g)\,dF=\int_0^b f\,dF+\int_0^b g\,dF.
+\]
+Since $f,g$ are $F$-integrable on $\R$, all four half-line limits
+are finite. The limit law for addition proves that the two limits
+for $f+g$ exist and are finite. Add them and regroup finite real numbers.
+\answer{$f+g$ is $F$-integrable and
+$\int_\R(f+g)\,dF=\int_\R f\,dF+\int_\R g\,dF$. The same
+argument proves scalar multiplication, including multiplication by $-1$.}
+
+\exercise{36.11}{Monotonicity on the whole real line}
+\goal If $f,g$ are $F$-integrable and $f\leq g$, prove the integral
+inequality.
+\step{Preserve the inequality through finite limits.}
+Theorem~35.9 gives
+$\int_a^0 f\,dF\leq\int_a^0 g\,dF$ for each $a<0$, and
+$\int_0^b f\,dF\leq\int_0^b g\,dF$ for each $b>0$.
+Both sides have finite limits by hypothesis. If real-valued
+quantities satisfy an inequality before taking a limit, the limits
+satisfy the same weak inequality. Pass to $a\to-\infty$ and
+$b\to+\infty$ separately, and add.
+\answer{$\displaystyle\int_\R f\,dF\leq\int_\R g\,dF$.}
+
+\exercise{36.12}{Comparison for improper Stieltjes integrals}
+\goal State and prove the analogue of Exercise~36.6.
+Assume $F$ is increasing and $f,g$ are $F$-integrable on every
+finite interval, with $0\leq f\leq g$. Continuity of $f,g$ is
+one sufficient condition for local integrability.
+\step{Nonnegativity supplies the endpoint limits.}
+For $b>0$, $\int_0^b f\,dF$ is increasing in $b$, since its
+increment over an added interval is nonnegative. Likewise,
+$\int_a^0 f\,dF$ increases as $a\to-\infty$. Thus both limits
+exist in $[0,\infty]$. The same holds for $g$.
+\step{Compare before and after the limits.}
+Finite-interval monotonicity gives
+\[
+ 0\leq\int_a^0 f\,dF\leq\int_a^0 g\,dF,
+ \qquad
+ 0\leq\int_0^b f\,dF\leq\int_0^b g\,dF.
+\]
+Taking limits and adding nonnegative extended values proves
+$0\leq\int_\R f\,dF\leq\int_\R g\,dF$.
+\answer{If $\int_\R g\,dF<\infty$, then $\int_\R f\,dF<\infty$.
+If $\int_\R f\,dF=+\infty$, then $\int_\R g\,dF=+\infty$.}
+
+\exercise{36.13}{Absolute convergence for Stieltjes integrals}
+\goal If $f$ is continuous on $\R$ and $\int_\R|f|\,dF<\infty$,
+prove $f$ is $F$-integrable on $\R$.
+\step{Obtain finite nonnegative integrals.}
+Continuity makes $f$, $|f|$, and $h=f+|f|$ locally $F$-integrable.
+Pointwise, $0\leq h\leq2|f|$. Exercise~36.12 shows that
+$h$ has a finite integral, since $2|f|$ does.
+\step{Subtract a function with a known finite integral.}
+Scalar multiplication shows $-|f|$ is $F$-integrable.
+Exercise~36.10 now applies to $f=h+(-|f|)$, so $f$ is
+$F$-integrable. Applying monotonicity to $-|f|\leq f\leq|f|$
+also gives $|\int_\R f\,dF|\leq\int_\R|f|\,dF$.
+\answer{Absolute $F$-integrability implies $F$-integrability. The
+argument still works if continuity is replaced by local
+$F$-integrability of $f$ and $|f|$.}
+
+\exercise{36.14}{A countable collection of point masses}
+\goal Let the distinct points be $u_j\in\R$, let $c_j\geq0$, and
+suppose $C=\sum_{j=1}^\infty c_j<\infty$. Analyze
+$F(t)=\sum_j c_j J_{u_j}(t)$, where $J_u(t)=0$ for $t<u$ and
+$J_u(t)=1$ for $t\geq u$ on $\R$.
+\step{(a) Existence and monotonicity.}
+For each $t$, $0\leq c_jJ_{u_j}(t)\leq c_j$. The series therefore
+converges, and its tail is at most $\sum_{j>N}c_j$, independently
+of $t$. Thus convergence is uniform. Each summand is increasing;
+for $s<t$, termwise comparison gives $F(s)\leq F(t)$.
+\step{(b) Finite intervals and their endpoint convention.}
+Let $|f|\leq B$ on $\R$. Theorem~35.12(b), or its finite-mass
+tail estimate, makes every bounded $f$ $F$-integrable on $[a,b]$.
+For this right-continuous $F$, the formula is
+\[
+ \int_a^b f\,dF=\sum_{j:\,a<u_j\leq b}c_j f(u_j).
+\]
+Indeed a single global step contributes its mass exactly when
+$a<u_j\leq b$; a jump at $a$ has already occurred before the
+interval's increment begins. Summing the steps is justified because
+the absolute value of the contribution from all indices $j>N$ is
+at most $B\sum_{j>N}c_j$. This tends to zero.
+\step{Pass to the whole line, controlling the tails.}
+The numerical series $\sum_j c_jf(u_j)$ is absolutely convergent,
+because $\sum_j|c_jf(u_j)|\leq BC$. To see directly that the
+finite-interval sums approach it, choose $N$ with
+$B\sum_{j>N}c_j<\varepsilon$ (the case $B=0$ is immediate),
+then choose $a<\min_{j\leq N}u_j$ and
+$b>\max_{j\leq N}u_j$. All first $N$ terms are included, and
+the omitted terms have total absolute value below $\varepsilon$.
+The same argument on the two halves treats $u_j=0$ in the negative
+half only. Hence
+\[
+ \int_{-\infty}^{\infty}f\,dF=\sum_{j=1}^\infty c_jf(u_j).
+\]
+\step{(c) The total mass condition.}
+The same finite-head/small-tail argument gives
+$F(-\infty)=0$ and $F(\infty)=C$. Consequently $F$ is a
+distribution function exactly when $\sum_jc_j=1$. It is also
+right-continuous: each finite partial sum is right-continuous,
+and uniform convergence preserves this one-sided continuity.
+\step{(d) Dense jumps and a necessary qualification.}
+For $s<t$,
+\[
+ F(t)-F(s)=\sum_{j:\,s<u_j\leq t}c_j.
+\]
+If the $u_j$ enumerate $\Q$ and \emph{every $c_j>0$}, there is a
+rational $u_j$ strictly between $s$ and $t$, so this difference is
+positive. Thus $F$ is strictly increasing. More generally the exact
+condition is that $\{u_j:c_j>0\}$ is dense in $\R$.
+\answer{Parts (a)--(c) hold for nonnegative coefficients as stated.
+Part (d), read with merely nonnegative coefficients, needs the
+additional density condition: all $c_j=0$ would give $F=0$.
+This is the positive-coefficient situation of Exercise~35.12.}
+
+\exercise{36.15}{Uniform convergence on spaces of infinite and finite mass}
+\step{(a) Small height can be offset by large width.}
+Define $f_n(x)=1/n$ on $[0,n]$, and $f_n(x)=0$ elsewhere.
+Each function is piecewise constant and has a finite improper
+Riemann integral. Its rectangle has height $1/n$ and width $n$, so
+\[
+ \int_\R f_n(x)\,dx=1,\qquad
+ \sup_{x\in\R}|f_n(x)-0|=\frac1n\longrightarrow0.
+\]
+Thus uniform convergence alone does not preserve an integral over
+a domain of infinite ordinary length.
+\step{(b) Local integrability of the uniform limit.}
+Now suppose $F$ is a distribution function, all $f_n$ are
+$F$-integrable on $\R$, and $f_n\to f$ uniformly on $\R$.
+On each finite $[a,b]$, the uniform-limit theorem for Stieltjes
+integrals (Exercise~35.6) makes $f$ $F$-integrable there.
+For clarity, that theorem follows from
+\[
+ U_F(f,P)-L_F(f,P)
+ \leq U_F(f_n,P)-L_F(f_n,P)
+       +2\|f-f_n\|_\infty [F(b)-F(a)]:
+\]
+first choose $n$ to make the second term small, then choose $P$
+using integrability of $f_n$.
+\step{Prove global integrability without assuming global boundedness.}
+Choose one index $N$ with $\|f-f_N\|_\infty\leq1$. The difference
+$h=f-f_N$ is bounded and locally $F$-integrable. Since $F$ has
+finite total increment, Theorem~36.4 makes $h$ $F$-integrable
+on $\R$. Exercise~36.10 now shows that $f=f_N+h$ is
+$F$-integrable. This argument does not require $f_N$, or $f$,
+to be bounded on all of $\R$.
+\step{Estimate the difference of the integrals.}
+For any sufficiently large $n$, put
+$\eta_n=\|f-f_n\|_\infty$. By monotonicity and the total-mass
+identity $\int_\R1\,dF=F(\infty)-F(-\infty)=1$,
+\[
+ -\eta_n\leq\int_\R(f-f_n)\,dF\leq\eta_n.
+\]
+Linearity therefore gives
+\[
+ \left|\int_\R f\,dF-\int_\R f_n\,dF\right|
+ \leq\eta_n\longrightarrow0.
+\]
+\answer{For a distribution function, uniform convergence does preserve
+the integral. The decisive bound is the finite total mass $1$,
+rather than the geometric length of the real line.}

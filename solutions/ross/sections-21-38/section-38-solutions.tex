@@ -1,0 +1,171 @@
+\section{Continuous nowhere-differentiable functions}
+\label{sec:nowhere-differentiable}
+No point of a nowhere differentiable function has a finite derivative.
+Such a function can nevertheless be continuous. Section~38
+constructs examples with both properties.
+When an exercise needs such a function, Theorem~38.1 supplies
+a bounded continuous example on $\R$.
+
+One useful strategy is to suppose a derivative exists and use
+derivative rules to force a derivative of the known nowhere-differentiable
+function. This is a contradiction argument: the rules are applied
+only to functions that are differentiable under the temporary
+assumption, never directly to a function already known to be
+nondifferentiable.
+
+In the metric-space notation used in this section, $C(\R)$ consists
+of \emph{bounded} continuous functions, and
+$d(f,g)=\sup_{x\in\R}|f(x)-g(x)|$. The notation $C^\infty$
+instead means that derivatives of every finite order exist and are
+continuous. These are two different uses of the letter $C$.
+
+\exercise{38.1}{Why a Taylor series cannot produce the desired example}
+\goal Explain the obstruction to constructing a continuous
+nowhere-differentiable function as a convergent Taylor series.
+\step{Recall what a positive-radius power series guarantees.}
+Suppose
+\[
+ f(x)=\sum_{n=0}^\infty a_n(x-c)^n
+\]
+has radius of convergence $R>0$. On the open interval
+$(c-R,c+R)$, the power-series differentiation theorem gives
+\[
+ f'(x)=\sum_{n=1}^\infty n a_n(x-c)^{n-1}.
+\]
+In particular $f$ is differentiable at every interior point of its
+convergence interval, however complicated the coefficients might be.
+Repeating the theorem gives derivatives of every order there.
+\step{Check the possible loopholes.}
+Behavior at the two endpoints of a finite convergence interval
+can be different, but those endpoints do not remove differentiability
+at all the interior points. A radius of convergence $R=0$ gives
+only a value at the center, not a function on an interval.
+Moreover, a literal Taylor series of a function requires derivatives
+at its center in order to define the coefficients in the first place.
+\answer{A positive-radius Taylor series is necessarily differentiable
+on its interior, so it cannot be a nowhere-differentiable function.}
+
+\exercise{38.2}{A polynomial derivative forces a polynomial function}
+\goal If $f^{(n)}$ is a polynomial on $\R$ for some nonnegative
+integer $n$, prove that $f$ is a polynomial.
+\step{Build a polynomial with the prescribed $n$th derivative.}
+The case $n=0$ already says that $f$ is a polynomial. For $n\geq1$,
+write
+\[
+ f^{(n)}(x)=p(x)=\sum_{k=0}^m a_kx^k,
+ \qquad
+ P(x)=\sum_{k=0}^m a_k\frac{k!}{(k+n)!}x^{k+n}.
+\]
+Differentiating $x^{k+n}$ exactly $n$ times multiplies it by
+$(k+n)!/k!$ and leaves $x^k$. Hence $P^{(n)}=p$.
+\step{Subtract and use the zero-derivative principle.}
+Let $h=f-P$. Then $h^{(n)}=0$ everywhere. Proposition~38.4
+implies that $h$ is a polynomial of degree at most $n-1$.
+To recall why: $h^{(n-1)}$ has derivative zero, so the Mean Value
+Theorem makes it constant. Subtract an antiderivative of that
+constant from $h^{(n-2)}$; the resulting derivative is zero,
+so that difference is constant as well. Repeating gives a polynomial
+expression for $h$ after $n$ steps.
+\answer{$f=P+h$ is a sum of polynomials and is therefore a polynomial.}
+
+\exercise{38.3}{A differentiable function with a nowhere-differentiable derivative}
+\goal Construct a differentiable function whose first derivative
+is nowhere differentiable.
+\step{Integrate a continuous nowhere-differentiable function.}
+Let $w$ be a continuous nowhere-differentiable function on $\R$,
+whose existence is proved in this section. Define
+\[
+ H(x)=\int_0^x w(t)\,dt.
+\]
+For every real $x$, this is an ordinary integral over a finite
+interval (with reversed orientation if $x<0$), so it exists.
+\step{Use the hypothesis that makes the Fundamental Theorem applicable.}
+Since $w$ is continuous at every $x$, the Fundamental Theorem of
+Calculus gives $H'(x)=w(x)$ at every real $x$. Thus $H$ is
+differentiable everywhere, and $H'$ is nowhere differentiable.
+Equivalently, $H$ has no second derivative at any point.
+\answer{An antiderivative of a continuous nowhere-differentiable
+function is the required example.}
+
+\exercise{38.4}{Adding a differentiable function cannot repair a derivative}
+\goal If $f$ is nowhere differentiable and $g$ is differentiable
+on $\R$, decide whether $f+g$ must be nowhere differentiable.
+\step{Suppose there were an exceptional point.}
+Assume, for contradiction, that $f+g$ is differentiable at some
+$a$. By hypothesis $g$ is differentiable at that same $a$.
+The difference of two functions differentiable at a point is
+differentiable there. Thus
+\[
+ f=(f+g)-g
+\]
+would be differentiable at $a$, with derivative
+$(f+g)'(a)-g'(a)$. This contradicts nowhere differentiability of $f$.
+\answer{Yes. The sum $f+g$ is nowhere differentiable.}
+
+\exercise{38.5}{Two rough functions can cancel in a sum or a product}
+\step{(a) A sum need not remain nowhere differentiable.}
+Take any continuous nowhere-differentiable function $w$ and let
+$f=w$, $g=-w$. The function $g$ is also nowhere differentiable:
+if $g'(a)$ existed, multiplying by $-1$ would give $w'(a)$.
+Both are continuous, but $f+g=0$, which is differentiable everywhere.
+\step{(b) Arrange a nonzero function before taking its reciprocal.}
+Choose a bounded continuous nowhere-differentiable $w$ and a finite
+bound $M\geq0$ with $|w(x)|\leq M$. Define
+\[
+ f(x)=1+\frac{w(x)}{2(M+1)}.
+\]
+This is continuous, satisfies
+\[
+ d(f,1^*)\leq\frac{M}{2(M+1)}<\frac12<1,
+ \qquad \frac12<f(x)<\frac32,
+\]
+and is nowhere differentiable: differentiability of $f$ would imply
+differentiability of $w=2(M+1)(f-1)$ at the same point.
+\step{Verify that the reciprocal is itself nowhere differentiable.}
+Let $g(x)=1/f(x)$. It is continuous because $f$ never vanishes.
+Suppose $g$ were differentiable at a point $a$. We have
+$g(a)=1/f(a)\ne0$. The reciprocal differentiation rule, applied
+to this temporarily differentiable function $g$, would then make
+$1/g=f$ differentiable at $a$, with derivative
+$-g'(a)/g(a)^2$. This contradicts the established property of $f$.
+Thus $g$ is nowhere differentiable too, yet $f(x)g(x)=1$ everywhere.
+\answer{Neither a sum nor a product of two continuous
+nowhere-differentiable functions must be nowhere differentiable.}
+
+\exercise{38.6}{A quotient of smooth functions is smooth}
+\goal Suppose $f,g\in C^\infty(\R)$ and $g(x)\ne0$ for every $x$.
+Prove $f/g\in C^\infty(\R)$.
+\idea Inductively describe each derivative so that its denominator
+is a power of the nonvanishing function $g$.
+\step{State a formula suited to induction.}
+We claim that, for every integer $n\geq0$, there is
+$h_n\in C^\infty(\R)$ for which
+\[
+ \left(\frac fg\right)^{(n)}=\frac{h_n}{g^{2^n}}.
+\]
+For $n=0$, choose $h_0=f$; the denominator is $g^{2^0}=g$,
+so the formula is correct.
+\step{Differentiate the inductive expression.}
+Suppose the formula holds for some $n$, and write $m=2^n$.
+The function $g^m$ is smooth, by the product rule applied a finite
+number of times, and it never vanishes. Thus the ordinary quotient
+rule, requiring only first derivatives at this step, gives
+\[
+ \left(\frac{h_n}{g^m}\right)'
+ =\frac{h_n'g^m-h_n\,m g^{m-1}g'}{g^{2m}}.
+\]
+Define
+\[
+ h_{n+1}=h_n'g^m-mh_n g^{m-1}g'.
+\]
+All factors are smooth, so finite sums and products show that
+$h_{n+1}$ is smooth. Since $2m=2^{n+1}$, this is the desired
+formula at the next order. The induction also proves the existence
+of that next derivative.
+\step{Check continuity, not only existence.}
+For each $n$, the formula expresses the $n$th derivative as a
+quotient of continuous functions with a denominator that is nowhere
+zero. That derivative is therefore continuous. We have proved the
+existence and continuity of derivatives of every order.
+\answer{$f/g$ is infinitely differentiable. The nonvanishing
+assumption is what allows every quotient-rule step.}

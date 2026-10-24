@@ -1,0 +1,203 @@
+\section{The Riemann integral}
+For a bounded function $f$ and a partition
+$P=\{a=t_0<t_1<\cdots<t_n=b\}$, let $I_j=[t_{j-1},t_j]$.
+The lower and upper sums are
+\[
+ L(f,P)=\sum_j(\inf_{I_j}f)\abs{I_j},\qquad
+ U(f,P)=\sum_j(\sup_{I_j}f)\abs{I_j},
+\]
+where $\abs{I_j}=t_j-t_{j-1}$ denotes interval length. The lower integral
+is the supremum of all lower sums; the upper integral is the infimum of
+all upper sums. Write these as $\underline I(f)$ and $\overline I(f)$.
+Integrability means they are equal. A practical equivalent test is that
+$U(f,P)-L(f,P)$ can be made arbitrarily small. No antiderivative formula
+is assumed in the Darboux calculations below.
+
+\exercise{32.1}{The integral of a cube from sums}
+\goal Compute both Darboux integrals of $x^3$ on $[0,b]$, where $b>0$.
+\step{Choose equal subintervals and identify maxima and minima.}
+The cube is increasing on $[0,b]$. For $t_k=kb/n$, its maximum on
+$[t_{k-1},t_k]$ is $t_k^3$ and its minimum is $t_{k-1}^3$. Therefore
+\[
+ U_n=\frac{b^4}{n^4}\sum_{k=1}^n k^3
+     =\frac{b^4(n+1)^2}{4n^2},\qquad
+ L_n=\frac{b^4}{n^4}\sum_{k=0}^{n-1} k^3
+     =\frac{b^4(n-1)^2}{4n^2}.
+\]
+Here we used $\sum_{k=1}^n k^3=[n(n+1)/2]^2$.
+\step{Squeeze the integrals.}
+For every $n$,
+$L_n\le\underline I(f)\le\overline I(f)\le U_n$.
+Both outer sequences tend to $b^4/4$, because $(n\pm1)^2/n^2\to1$.
+Thus the two integrals coincide at that value.
+\answer{The function is integrable and $\int_0^b x^3\,dx=b^4/4$.}
+
+\exercise{32.2}{A rational-only linear function}
+\goal For $f(x)=x$ on rational points and $f(x)=0$ on irrational points
+of $[0,b]$, compute its lower and upper integrals.
+\step{Use density on each interval.}
+Every nondegenerate interval $[u,v]\subseteq[0,b]$ contains irrational
+points, so its infimum is zero. Its rational points can approach $v$
+from below; their values approach $v$, while no value exceeds $v$.
+Thus its supremum is $v$, whether or not $v$ itself is rational.
+For any partition, consequently,
+\[
+ L(f,P)=0,\qquad U(f,P)=\sum_{j=1}^n t_j(t_j-t_{j-1}).
+\]
+In particular, the lower integral is $0$.
+\step{Find the infimum of the upper sums.}
+Since $t_j\ge t_{j-1}\ge0$,
+\[
+ t_j(t_j-t_{j-1})\ge
+ \frac{t_j+t_{j-1}}2(t_j-t_{j-1})
+ =\frac{t_j^2-t_{j-1}^2}{2}.
+\]
+Summing telescopes to $U(f,P)\ge b^2/2$. For the equal partition,
+\[
+ U(f,P_n)=\frac{b^2}{n^2}\sum_{j=1}^n j
+ =\frac{b^2(n+1)}{2n}\longrightarrow\frac{b^2}{2}.
+\]
+An infimum bounded below by $b^2/2$ and approached by such sums equals
+$b^2/2$.
+\answer{(a) The lower integral is $0$ and the upper integral is $b^2/2$.
+(b) They differ for $b>0$, so $f$ is not integrable.}
+
+\exercise{32.3}{A rational-only quadratic function}
+\goal Repeat the calculation for $g(x)=x^2$ on rational points and
+$g(x)=0$ on irrational points of $[0,b]$.
+\step{Identify each interval's extrema.}
+Density and nonnegativity give $\inf_{[u,v]}g=0$ and
+$\sup_{[u,v]}g=v^2$. Thus all lower sums vanish and
+$U(g,P)=\sum_j t_j^2(t_j-t_{j-1})$.
+\step{Compute the infimum of these upper sums.}
+For $0\le u\le v$ we have $v^2\ge(v^2+vu+u^2)/3$, whence
+\[
+ v^2(v-u)\ge\frac{v^3-u^3}{3}.
+\]
+This telescopes to $U(g,P)\ge b^3/3$ for every $P$.
+For equal subintervals,
+\[
+ U(g,P_n)=\frac{b^3}{n^3}\sum_{j=1}^n j^2
+ =\frac{b^3n(n+1)(2n+1)}{6n^3}\longrightarrow\frac{b^3}{3}.
+\]
+\answer{(a) The lower and upper integrals are $0$ and $b^3/3$.
+(b) The function is not integrable on $[0,b]$ for $b>0$.}
+
+\exercise{32.4}{Refinement by induction}
+\goal Extend the one-point refinement argument in Lemma 32.2 to any
+finite refinement $P\subseteq Q$.
+\step{State precisely what is being inducted on.}
+Let $r$ be the number of points of $Q$ not already in $P$.
+We claim
+\[
+ L(f,P)\le L(f,Q)\le U(f,Q)\le U(f,P).
+\]
+For $r=0$ the partitions are equal; the middle inequality follows
+because each interval's infimum is at most its supremum.
+\step{Insert one more point.}
+Suppose the result is established for $r$ extra points. If $Q$ has
+$r+1$ extra points, choose one of them, $q$, and set $Q'=Q\setminus\{q\}$.
+By the induction hypothesis,
+$L(f,P)\le L(f,Q')$ and $U(f,Q')\le U(f,P)$.
+The proved one-point case, applied to $Q'$ and $Q$, gives
+$L(f,Q')\le L(f,Q)$ and $U(f,Q)\le U(f,Q')$.
+Combining the inequalities proves the two outer comparisons for $Q$.
+The middle comparison always holds interval by interval.
+\answer{Adding finitely many partition points can only increase a lower
+sum and decrease an upper sum.}
+
+\exercise{32.5}{Why the lower integral cannot exceed the upper}
+\goal Apply the order property of suprema and infima to Theorem 32.4.
+\step{Name the two sets.}
+Let
+\[
+ S=\{L(f,P):P\text{ is a partition of }[a,b]\},\qquad
+ T=\{U(f,Q):Q\text{ is a partition of }[a,b]\}.
+\]
+Both are nonempty and bounded because $f$ is bounded and the total
+interval length is $b-a$.
+\step{Compare sums from different partitions.}
+For any $P,Q$, their union $R=P\cup Q$ refines both. Lemma 32.2 gives
+\[
+ L(f,P)\le L(f,R)\le U(f,R)\le U(f,Q).
+\]
+Thus every $s\in S$ is at most every $t\in T$. By Exercise 4.8,
+$\sup S\le\inf T$. To see the order reasoning directly, each $t\in T$
+is an upper bound for $S$, so $\sup S\le t$ for all $t\in T$;
+therefore $\sup S$ is a lower bound for $T$, and hence is at most
+$\inf T$.
+\answer{$\underline I(f)=\sup S\le\inf T=\overline I(f)$.}
+
+\exercise{32.6}{Upper and lower sums whose gap tends to zero}
+\goal Prove integrability and identify the limits of the given sums.
+The sums $U_n$ and $L_n$ need not come from the same partition.
+Nevertheless, the cross-partition comparison just established gives
+\[
+ L_n\le\underline I(f)\le\overline I(f)\le U_n.
+\]
+Subtracting shows
+$0\le\overline I(f)-\underline I(f)\le U_n-L_n\to0$.
+The fixed middle difference must therefore be zero. Write the common
+integral as $I$. Then
+\[
+ 0\le U_n-I\le U_n-L_n,\qquad
+ 0\le I-L_n\le U_n-L_n.
+\]
+Each right-hand side tends to zero, so both $U_n\to I$ and $L_n\to I$.
+\answer{$f$ is integrable and $\int_a^b f=\lim_n U_n=\lim_n L_n$.}
+
+\exercise{32.7}{Changing finitely many values}
+\goal Show that changing an integrable function at finitely many points
+preserves its integral.
+\step{First understand the finite-support error.}
+Put $h=g-f$. It is zero except at finitely many points
+$c_1,\ldots,c_m$, so it is bounded; choose $H>0$ with $\abs{h}\le H$.
+Given any $\eta>0$, make a partition that contains the exceptional points
+and nearby points on each available side, so the total length of cells
+meeting these points is less than $\eta$. This is possible because there
+are only finitely many points. If a point is $a$ or $b$, only its one
+adjacent side is needed. On every other cell $h=0$; on the exceptional
+cells $-H\le h\le H$. Thus
+\[
+ -H\eta\le L(h,P)\le U(h,P)\le H\eta.
+\]
+This proves that a finite-support function has lower and upper integrals
+both zero, by letting $\eta\downarrow0$.
+\step{Combine the estimate with the original integrable function.}
+Here is a direct argument that does not assume a later linearity theorem.
+Given $\varepsilon>0$, choose a partition for $f$ with upper-minus-lower
+gap less than $\varepsilon/2$. Refine it to the partition just described,
+with exceptional-cell total length less than $\eta$ and
+$2H\eta<\varepsilon/2$. Refinement preserves the bound for $f$.
+On any cell $J$, $g=f+h$ implies
+\[
+ \sup_J g\le\sup_J f+\sup_J h,\qquad
+ \inf_J g\ge\inf_J f+\inf_J h.
+\]
+Consequently $U(g,P)-L(g,P)<\varepsilon/2+2H\eta<\varepsilon$.
+This proves $g$ is integrable.
+\step{Compare the two integral values.}
+For the same partition,
+$L(g,P)\ge L(f,P)-H\eta$ and $U(g,P)\le U(f,P)+H\eta$.
+Both integrals lie between the respective sums. Hence their difference
+in absolute value is at most
+$U(f,P)-L(f,P)+H\eta$.
+The original gap and $\eta$ can both be made arbitrarily small.
+\answer{$\int_a^b g=\int_a^b f$. Isolated values do not change area.}
+
+\exercise{32.8}{Restriction to a smaller interval}
+\goal Prove integrability of $f$ on $[c,d]\subseteq[a,b]$.
+Assume $c<d$; the zero-length case has integral zero by convention.
+Given $\varepsilon>0$, choose a partition $P$ of $[a,b]$ with
+$U(f,P)-L(f,P)<\varepsilon$. Add $c$ and $d$ to form the refinement
+$Q$. Its gap is still less than $\varepsilon$.
+The points of $Q$ lying in $[c,d]$ form a partition $Q_0$ of that interval.
+Its gap is a sub-sum of the gap for $Q$:
+\[
+ U_{[c,d]}(f,Q_0)-L_{[c,d]}(f,Q_0)
+ =\sum_{J\subseteq[c,d]}(\sup_J f-\inf_J f)\abs J
+ \le U_{[a,b]}(f,Q)-L_{[a,b]}(f,Q).
+\]
+Every term omitted on the right is nonnegative. Thus the smaller
+interval has partitions with gap below every positive $\varepsilon$.
+\answer{The Darboux criterion proves that $f|_{[c,d]}$ is integrable.}

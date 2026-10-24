@@ -1,0 +1,212 @@
+\section{A discussion of exponents and logarithms}
+\label{sec:exponents-logarithms}
+In this section we must avoid using familiar exponential and logarithm
+rules before they have been proved. Our starting point is
+\[
+ L(y)=\int_1^y\frac{dt}{t}\quad(y>0).
+\]
+Theorem~37.4 proves that $L'(y)=1/y$, that $L$ is strictly increasing
+onto $\R$, and that $L(yz)=L(y)+L(z)$. Its inverse is $E$, so
+$L(E(x))=x$ and $E(L(y))=y$. Theorem~37.6 proves
+$E'=E$ and $E(u+v)=E(u)E(v)$. Real powers are then \emph{defined} by
+\[
+ b^x=E(xL(b))\quad(b>0,\ x\in\R).
+\]
+These are the integral-based results permitted by the exercise
+instructions. No result from the informal approaches in 37.1 or 37.2
+is needed below. We write $\log_e y=L(y)$ after that identification
+has been established.
+
+\exercise{37.1}{Prove the product law directly from the integral}
+\goal For $y,z>0$, show directly that
+$\int_1^{yz}dt/t=\int_1^y dt/t+\int_1^z dt/t$.
+\idea Split at $y$ and rescale the remaining interval by $t=yu$.
+\step{Use additivity with oriented endpoints.}
+All endpoints are positive, so $1/t$ is continuous on the compact
+interval containing $1,y,yz$. The oriented-integral convention gives
+\[
+ \int_1^{yz}\frac{dt}{t}
+ =\int_1^y\frac{dt}{t}+\int_y^{yz}\frac{dt}{t}.
+\]
+This equality remains true even when $y<1$ or $yz<y$; reversing
+endpoints changes the sign of an integral.
+\step{Make the substitution, including its scale factor.}
+Set $t=yu$, so $dt=y\,du$. The lower endpoint $t=y$ becomes
+$u=1$, and $t=yz$ becomes $u=z$. Therefore
+\[
+ \int_y^{yz}\frac{dt}{t}
+ =\int_1^z\frac{y\,du}{yu}=\int_1^z\frac{du}{u}.
+\]
+Because $y>0$, this is a valid continuously differentiable change
+of variable, with oriented endpoints also handling $z<1$.
+\answer{Substituting this last identity into the split integral gives
+the desired formula, without assuming a logarithm product rule.}
+
+\exercise{37.2}{The limits of the inverse logarithm}
+\goal Prove $E(x)\to+\infty$ as $x\to+\infty$ and
+$E(x)\to0$ as $x\to-\infty$.
+\step{Translate a large-output condition through the inverse.}
+To show the first limit, let $M>0$ be any proposed lower bound.
+The number $L(M)$ is real. Since $E$ is strictly increasing,
+\[
+ x>L(M)\quad\Longrightarrow\quad E(x)>E(L(M))=M.
+\]
+Thus $E(x)$ eventually exceeds every positive bound, which is
+exactly the definition of divergence to $+\infty$.
+\step{Translate a small-output condition in the same way.}
+Let $\varepsilon>0$. The range of $E$ is $(0,\infty)$, and
+\[
+ x<L(\varepsilon)
+ \quad\Longrightarrow\quad0<E(x)<E(L(\varepsilon))=\varepsilon.
+\]
+This is exactly the condition for $E(x)\to0$ at $-\infty$.
+\answer{The two claims follow from monotonicity and the inverse
+identities; there is no need to assume exponential limit rules.}
+
+\exercise{37.3}{All four properties of a general exponential base}
+\goal Prove the assertions of Theorem~37.8 for fixed $b>0$ and
+$B(x)=b^x=E(xL(b))$.
+\step{(i) Continuity and differentiability.}
+The inner function $x\mapsto xL(b)$ is linear; its derivative is
+the constant $L(b)$. Since $E$ is differentiable on all of $\R$,
+the chain rule gives
+\[
+ B'(x)=E'(xL(b))L(b)=L(b)E(xL(b))=L(b)b^x.
+\]
+Differentiability also implies continuity. This includes $b=1$:
+$L(1)=0$, so $B(x)=E(0)=1$ and $B'=0$.
+\step{(ii) Determine the direction of monotonicity.}
+Because $L$ is strictly increasing and $L(1)=0$, $L(b)>0$ for
+$b>1$, whereas $L(b)<0$ for $0<b<1$. In the first case the
+linear inner function is strictly increasing, so its composition
+with increasing $E$ is strictly increasing. In the second case it
+is strictly decreasing, so the composition is strictly decreasing.
+\step{(iii) Verify the range, rather than merely stating it.}
+Assume $b\ne1$, so $L(b)\ne0$. Every value $B(x)$ is positive,
+because $E$ is positive. Conversely, given $y>0$, choose
+\[
+ x=\frac{L(y)}{L(b)}.
+\]
+Then $B(x)=E(L(y))=y$. Thus every positive value is reached, and
+the range is exactly $(0,\infty)$.
+\step{(iv) The addition rule in the exponent.}
+The defining formula and Theorem~37.6(ii) yield
+\[
+ b^{u+v}=E((u+v)L(b))
+ =E(uL(b)+vL(b))=E(uL(b))E(vL(b))=b^u b^v.
+\]
+\answer{All assertions are proved, with the constant-base case $b=1$
+kept separate where invertibility is required.}
+
+\exercise{37.4}{Change of logarithm base}
+\goal For $b>0$, $b\ne1$, prove $\log_b y=L(y)/L(b)$ for $y>0$.
+\step{Use the definition of the inverse function.}
+Let $x=\log_b y$. By definition, $b^x=y$. Since
+$b^x=E(xL(b))$, applying $L$ to both sides gives
+\[
+ xL(b)=L(E(xL(b)))=L(y).
+\]
+The denominator $L(b)$ is nonzero because $L$ is one-to-one
+and $L(1)=0$. Division therefore gives $x=L(y)/L(b)$.
+\answer{$\displaystyle\log_b y=\frac{L(y)}{L(b)}$. In particular,
+since $L(e)=1$, $\log_e y=L(y)$.}
+
+\exercise{37.5}{Differentiate a real power}
+\goal For fixed $p\in\R$, prove that $f(x)=x^p$ on $(0,\infty)$
+has derivative $px^{p-1}$.
+\step{Start with the definition of a real power.}
+For a positive base $x$, the definition says
+$f(x)=E(pL(x))$. Both functions in this composition are
+differentiable on the relevant domains. The chain rule gives
+\[
+ f'(x)=E'(pL(x))\frac{p}{x}
+ =\frac{p}{x}E(pL(x))=\frac{p}{x}x^p.
+\]
+\step{Justify the exponent simplification.}
+The product rule for $E$ gives $E(t)E(-t)=E(0)=1$, so
+$E(-L(x))=1/x$. Consequently
+\[
+ \frac{x^p}{x}=E(pL(x))E(-L(x))
+ =E((p-1)L(x))=x^{p-1}.
+\]
+This also works for $p=0$, since then the derivative is zero.
+\answer{$(x^p)'=px^{p-1}$ for every real $p$ and every $x>0$.}
+
+\exercise{37.6}{A common real power of a product}
+\goal Show $x^p y^p=(xy)^p$ when $x,y>0$ and $p\in\R$.
+\step{Rewrite both powers using $E$ and $L$.}
+The product law for $L$ and the sum law for $E$ give
+\begin{align*}
+ (xy)^p
+ &=E(pL(xy))\\
+ &=E(p[L(x)+L(y)])\\
+ &=E(pL(x)+pL(y))\\
+ &=E(pL(x))E(pL(y))=x^p y^p.
+\end{align*}
+Each logarithm is defined because the two bases and their product
+are positive. Multiplication by a negative $p$ causes no problem;
+no inequality has been multiplied by $p$.
+\answer{The identity holds for all real exponents under the stated
+positive-base assumption.}
+
+\exercise{37.7}{Derivatives of exponential and logarithmic functions}
+\step{(a) Differentiate $B(x)=b^x$.}
+For $b>0$, the chain-rule calculation from Exercise~37.3 gives
+\[
+ B'(x)=E'(xL(b))L(b)=L(b)b^x=(\log_e b)b^x.
+\]
+When $b=1$ the formula correctly reads $B'=0$.
+\step{(b) Differentiate the inverse, checking the base restriction.}
+The logarithm $\log_b$ exists only for $b>0$, $b\ne1$.
+Exercise~37.4 expresses it as a constant multiple of $L$:
+\[
+ \frac{d}{dy}\log_b y
+ =\frac{1}{L(b)}L'(y)
+ =\frac{1}{yL(b)}=\frac{1}{y\log_e b},\qquad y>0.
+\]
+For $0<b<1$ this derivative is negative, agreeing with the
+decreasing character of that logarithm.
+\answer{$(b^x)'=(\log_e b)b^x$ and
+$(\log_b y)'=1/(y\log_e b)$ on their stated domains.}
+
+\exercise{37.8}{A variable base and a variable exponent}
+\goal Differentiate $f(x)=x^x$ for $x>0$.
+\idea The fixed-exponent power rule cannot be applied directly,
+because the exponent now changes with $x$.
+\step{Rewrite before differentiating.}
+By the definition of real powers, $f(x)=E(xL(x))$. The product
+rule gives
+\[
+ \frac{d}{dx}[xL(x)]=L(x)+x\frac1x=L(x)+1.
+\]
+Applying the chain rule and $E'=E$ now yields
+\[
+ f'(x)=E(xL(x))[L(x)+1]=x^x[1+\log_e x].
+\]
+\answer{$(x^x)'=(1+\log_e x)x^x$ for $x>0$.}
+
+\exercise{37.9}{An elementary growth comparison for the logarithm}
+\goal Prove the requested inequalities and then
+$\lim_{y\to\infty}(\log_e y)/y=0$ without L'Hospital's rule.
+\step{(a) Bound the defining integral.}
+For $y>1$, we have $0<1/t\leq1$ on $[1,y]$. Monotonicity of
+the ordinary integral gives
+\[
+ 0<\log_e y=\int_1^y\frac{dt}{t}\leq\int_1^y1\,dt=y-1<y.
+\]
+\step{(b) Apply the first estimate at a square root.}
+Since $\sqrt y>1$, part (a) gives $\log_e\sqrt y<\sqrt y$.
+The product identity for $L$ gives
+$\log_e y=\log_e(\sqrt y\sqrt y)=2\log_e\sqrt y$.
+Dividing by positive $y$ preserves the inequality:
+\[
+ 0<\frac{\log_e y}{y}
+ <\frac{2\sqrt y}{y}=\frac2{\sqrt y}.
+\]
+\step{(c) Turn the estimate into a limit.}
+The rightmost term tends to zero. More explicitly, if
+$\varepsilon>0$ and $y>\max\{1,4/\varepsilon^2\}$, then
+$0<(\log_e y)/y<\varepsilon$. This is precisely the required
+limit definition.
+\answer{The logarithm grows more slowly than $y$:
+$\displaystyle\lim_{y\to\infty}\frac{\log_e y}{y}=0$.}

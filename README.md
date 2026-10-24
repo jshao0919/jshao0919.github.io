@@ -26,6 +26,24 @@ every subpart, the requested graph sketches, and direct epsilon–delta proofs.
 Individual section PDFs and a separate LaTeX source archive are linked on the
 website. See [the Chapter 3 source and build instructions](solutions/ross/chapter-3/README.md).
 
+## Ross continuation: Sections 21–38
+
+[Complete Sections 21–38](solutions/ross/sections-21-38/ross-sections-21-38.pdf)
+adds original, step-by-step solutions to all **214 exercises and their subparts**
+in the remaining sections of the second edition. The intended reader is a
+beginning undergraduate: the solutions explain definitions, proof strategy,
+intermediate calculations, and why each theorem applies.
+
+Topics include metric-space continuity and connectedness, power series,
+uniform convergence, polynomial approximation, derivatives, mean values,
+Taylor's theorem, Riemann and Riemann–Stieltjes integration, improper
+integrals, logarithms, and continuous nowhere-differentiable functions.
+The Ross website page links to all 18 individual section PDFs, five chapter
+group PDFs, the complete continuation, and a portable LaTeX source archive.
+The earlier Sections 1–20 PDFs remain available at their existing paths.
+See the [source and build instructions](solutions/ross/sections-21-38/README.md)
+for exercise counts, build commands, and notes about printed source errors.
+
 ## Arithmetic Lab
 
 The homepage links to [Arithmetic Lab](arithmetic/), a Zetamac-inspired mental math

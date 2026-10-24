@@ -1,0 +1,110 @@
+[
+  {
+    "section": 21,
+    "count": 14,
+    "title": "More on Metric Spaces: Continuity",
+    "chapter": 3
+  },
+  {
+    "section": 22,
+    "count": 14,
+    "title": "More on Metric Spaces: Connectedness",
+    "chapter": 3
+  },
+  {
+    "section": 23,
+    "count": 9,
+    "title": "Power Series",
+    "chapter": 4
+  },
+  {
+    "section": 24,
+    "count": 17,
+    "title": "Uniform Convergence",
+    "chapter": 4
+  },
+  {
+    "section": 25,
+    "count": 15,
+    "title": "More on Uniform Convergence",
+    "chapter": 4
+  },
+  {
+    "section": 26,
+    "count": 8,
+    "title": "Differentiation and Integration of Power Series",
+    "chapter": 4
+  },
+  {
+    "section": 27,
+    "count": 7,
+    "title": "Weierstrass's Approximation Theorem",
+    "chapter": 4
+  },
+  {
+    "section": 28,
+    "count": 16,
+    "title": "Basic Properties of the Derivative",
+    "chapter": 5
+  },
+  {
+    "section": 29,
+    "count": 18,
+    "title": "The Mean Value Theorem",
+    "chapter": 5
+  },
+  {
+    "section": 30,
+    "count": 7,
+    "title": "L'Hospital's Rule",
+    "chapter": 5
+  },
+  {
+    "section": 31,
+    "count": 12,
+    "title": "Taylor's Theorem",
+    "chapter": 5
+  },
+  {
+    "section": 32,
+    "count": 8,
+    "title": "The Riemann Integral",
+    "chapter": 6
+  },
+  {
+    "section": 33,
+    "count": 15,
+    "title": "Properties of the Riemann Integral",
+    "chapter": 6
+  },
+  {
+    "section": 34,
+    "count": 12,
+    "title": "Fundamental Theorem of Calculus",
+    "chapter": 6
+  },
+  {
+    "section": 35,
+    "count": 12,
+    "title": "Riemann--Stieltjes Integrals",
+    "chapter": 6
+  },
+  {
+    "section": 36,
+    "count": 15,
+    "title": "Improper Integrals",
+    "chapter": 6
+  },
+  {
+    "section": 37,
+    "count": 9,
+    "title": "A Discussion of Exponents and Logarithms",
+    "chapter": 7
+  },
+  {
+    "section": 38,
+    "count": 6,
+    "title": "Continuous Nowhere-Differentiable Functions",
+    "chapter": 7
+  }
+]

@@ -1,0 +1,313 @@
+\section{More on uniform convergence}
+\label{sec:more-uniform-new}
+\textbf{Three useful tools.} A uniform error bound can be integrated on a
+finite interval: $|\int_a^b(f_n-f)|\le(b-a)\sup|f_n-f|$.
+A series of functions converges uniformly precisely when its partial sums do.
+Finally, the Weierstrass M-test says that $|g_k(x)|\le M_k$ for all inputs,
+together with $\sum M_k<\infty$, guarantees uniform convergence of
+$\sum g_k$. If all summands are continuous, its sum is continuous too.
+An M-test bound must not depend on the input $x$.
+
+\exercise{25.1}{Bounding an integral by the integral of an absolute value}
+\goal Deduce $|\int_a^b g|\le\int_a^b|g|$ from monotonicity of the integral.
+The integrals in the statement are assumed to exist.
+\step{Place the function between two integrable bounds.}
+For every $x$, $-|g(x)|\le g(x)\le|g(x)|$.
+Applying monotonicity first to the lower pair and then to the upper pair gives
+\[
+ -\int_a^b|g(x)|\,dx\le\int_a^b g(x)\,dx
+ \le\int_a^b|g(x)|\,dx.
+\]
+Write the middle integral as $A$ and the nonnegative right-hand integral as
+$B$. The statement $-B\le A\le B$ is exactly the statement $|A|\le B$.
+\answer{$\displaystyle\left|\int_a^b g(x)\,dx\right|
+\le\int_a^b|g(x)|\,dx$.}
+
+\exercise{25.2}{Powers divided by their indices}
+\goal Show uniform convergence of $f_n(x)=x^n/n$ on $[-1,1]$.
+\step{Find a common error bound.}
+Since $|x|\le1$, $|x^n/n|\le1/n$ for every input in this interval.
+Therefore the pointwise limit is $f(x)=0$.
+Given $\varepsilon>0$, choose an integer $N>1/\varepsilon$.
+Then $n>N$ implies $|f_n(x)-0|\le1/n<\varepsilon$ for \emph{all}
+$x\in[-1,1]$ simultaneously.
+\answer{The convergence is uniform and the limit function is identically zero.}
+
+\exercise{25.3}{A rational trigonometric expression and its integral}
+\goal Study $f_n(x)=(n+\cos x)/(2n+\sin^2x)$ on $\R$.
+\step{(a) Guess the limit, then calculate its exact error.}
+Dividing by $n$ suggests the limit $1/2$. Subtract it with a common denominator:
+\[
+ f_n(x)-\frac12
+ =\frac{2\cos x-\sin^2x}{2(2n+\sin^2x)}.
+\]
+Since $|2\cos x-\sin^2x|\le2+1=3$ and the denominator is at least $4n$,
+\[
+ \left|f_n(x)-\frac12\right|\le\frac3{4n}
+ \qquad(x\in\R).
+\]
+The right-hand side tends to zero independently of $x$, proving uniform convergence.
+\step{(b) Apply the integral theorem after checking its hypotheses.}
+The denominator is positive, so every $f_n$ is continuous on $[2,7]$.
+The convergence is uniform on that interval by part (a).
+Theorem~25.2 therefore gives
+\[
+ \lim_{n\to\infty}\int_2^7 f_n(x)\,dx
+ =\int_2^7\frac12\,dx=\frac52.
+\]
+\answer{The uniform limit on $\R$ is $1/2$, and the integral limit is $5/2$.}
+
+\exercise{25.4}{Uniform convergence implies the uniform Cauchy property}
+\goal Show that $f_n\to f$ uniformly on $S$ makes $(f_n)$ uniformly Cauchy.
+\step{Use the same approximating limit for two indices.}
+Given $\varepsilon>0$, choose $N$ so that
+$|f_k(x)-f(x)|<\varepsilon/2$ whenever $k>N$ and $x\in S$.
+For \emph{both} $m>N$ and $n>N$, the triangle inequality then gives
+\[
+ |f_n(x)-f_m(x)|\le |f_n(x)-f(x)|+|f(x)-f_m(x)|<\varepsilon
+ \qquad(x\in S).
+\]
+The same $N$ works for every pair of sufficiently large indices and every input,
+which is exactly uniform Cauchyness.
+\answer{Every uniformly convergent sequence is uniformly Cauchy.}
+
+\exercise{25.5}{A uniform limit of bounded functions is bounded}
+\goal If all $f_n$ are bounded on $S$ and $f_n\to f$ uniformly, prove that $f$ is bounded.
+\idea The bounds of all the $f_n$ need not be the same. One suitably chosen
+approximating function is enough.
+\step{Choose one function within distance one of the limit.}
+Uniform convergence gives an index $m$ such that $|f(x)-f_m(x)|<1$ for all
+$x\in S$. Since $f_m$ is bounded, some finite $M$ satisfies
+$|f_m(x)|\le M$ for every $x\in S$.
+\step{Add the approximation error to that fixed bound.}
+For every input,
+\[
+ |f(x)|\le |f(x)-f_m(x)|+|f_m(x)|<1+M.
+\]
+This single finite bound establishes boundedness of $f$.
+\answer{$f$ is bounded; a bound is $M+1$ for the chosen approximant.}
+
+\exercise{25.6}{Absolute summability gives continuity at the endpoints too}
+\goal Relate $\sum|a_k|<\infty$ to the power series on $[-1,1]$.
+\step{(a) Apply the M-test on the full closed interval.}
+For every $x\in[-1,1]$, $|a_kx^k|\le|a_k|$.
+The numerical majorant series $\sum|a_k|$ converges by assumption.
+The M-test therefore gives uniform convergence of $\sum a_kx^k$ on $[-1,1]$.
+Every partial sum is a polynomial and hence continuous. Its uniform limit is
+continuous on $[-1,1]$, including the endpoints with the relative notion of continuity.
+\step{(b) Check the coefficient condition in the given example.}
+For $a_n=1/n^2$, $n\ge1$, the numerical series $\sum1/n^2$ converges
+by the $p$-series test, since $2>1$.
+Part (a) therefore applies directly to $\sum_{n=1}^\infty x^n/n^2$.
+\answer{Both the general series and the specified example have continuous
+sums on the whole closed interval $[-1,1]$.}
+
+\exercise{25.7}{A uniformly convergent trigonometric series}
+\goal Prove that $\sum_{n=1}^\infty\cos(nx)/n^2$ defines a continuous function on $\R$.
+\step{Bound every summand on the unbounded domain.}
+The elementary estimate $|\cos(nx)|\le1$ gives
+$|\cos(nx)/n^2|\le1/n^2$ for all real $x$.
+Since $\sum1/n^2$ converges, the M-test proves uniform convergence on $\R$.
+\step{Transfer continuity from finite sums to the limit.}
+Each summand is continuous, so every partial sum is continuous.
+Theorem~24.3 applied to this uniformly convergent sequence of partial sums
+makes the sum continuous on $\R$.
+\answer{The series converges uniformly on $\R$ to a continuous function.}
+
+\exercise{25.8}{A power series uniform on its entire convergence interval}
+\goal Find the radius and endpoint behavior of
+$\sum_{n=1}^\infty x^n/(n^2 2^n)$.
+\step{Compute the radius using coefficient roots.}
+With $a_n=1/(n^2 2^n)$,
+\[
+ |a_n|^{1/n}=\frac1{2n^{2/n}}\longrightarrow\frac12,
+\]
+since $n^{1/n}\to1$. Thus the radius is $R=1/(1/2)=2$.
+\step{Bound the terms at all inputs, including the two endpoints.}
+For $|x|\le2$,
+\[
+ \left|\frac{x^n}{n^2 2^n}\right|\le\frac1{n^2}.
+\]
+The M-test proves uniform convergence on $[-2,2]$, not merely on smaller
+intervals. The summands are polynomials, so the sum is continuous there.
+\answer{The radius is $2$, and the series converges uniformly to a
+continuous function on its full interval of convergence $[-2,2]$.}
+
+\exercise{25.9}{Geometric series on a smaller and a maximal open interval}
+\goal Compare uniform convergence of $\sum_{n=0}^\infty x^n$ on $[-a,a]$
+and $(-1,1)$, where $0<a<1$.
+\step{(a) Estimate the geometric remainder on the smaller interval.}
+For $|x|<1$, the sum is $1/(1-x)$ and the partial sum through $N$ has remainder
+\[
+ \frac1{1-x}-\sum_{n=0}^N x^n=\frac{x^{N+1}}{1-x}.
+\]
+For $|x|\le a$, its absolute value is at most $a^{N+1}/(1-a)$,
+which tends to zero because $0<a<1$. The estimate is uniform in $x$.
+\step{(b) Show that terms do not even tend uniformly to zero on $(-1,1)$.}
+If the partial sums converged uniformly, their successive differences $x^N$
+would converge uniformly to zero: indeed each difference is bounded by the
+two uniform errors of the corresponding partial sums.
+But at $x_N=2^{-1/N}\in(0,1)$, we have $x_N^N=1/2$ for every $N\ge1$.
+Thus the necessary uniform vanishing of the terms fails.
+\answer{Uniform convergence holds on every $[-a,a]$ with $a<1$, and fails
+on $(-1,1)$. Pointwise convergence on the latter interval still holds.}
+
+\exercise{25.10}{A non-geometric series compared with a geometric one}
+\goal Analyze $\sum x^n/(1+x^n)$ on $[0,1)$.
+The starting index may be taken as $n=0$; its term is just the constant $1/2$
+and does not affect any convergence decision below.
+\step{(a) Prove convergence for a fixed input.}
+For $0\le x<1$ and $n\ge1$,
+\[
+ 0\le\frac{x^n}{1+x^n}\le x^n.
+\]
+The majorant $\sum_{n=1}^\infty x^n$ converges, so comparison proves convergence
+of the given nonnegative series at every such fixed $x$.
+\step{(b) Obtain a majorant independent of the input in $[0,a]$.}
+If $0\le x\le a<1$, then $x^n/(1+x^n)\le a^n$.
+Since $\sum a^n$ converges, the M-test proves uniform convergence on $[0,a]$.
+\step{(c) Test the necessary uniform vanishing of the summands.}
+Take $x_n=2^{-1/n}\in(0,1)$. Then $x_n^n=1/2$ and
+\[
+ \frac{x_n^n}{1+x_n^n}=\frac{1/2}{3/2}=\frac13.
+\]
+Thus the terms do not tend uniformly to zero on $[0,1)$.
+Uniform convergence of the series would force that property by subtracting
+successive partial sums, as in Exercise~25.9. Hence uniform convergence fails.
+\answer{There is pointwise convergence on $[0,1)$ and uniform convergence
+on every $[0,a]$ with $a<1$, but no uniform convergence on $[0,1)$.}
+
+\exercise{25.11}{Four increasingly compressed triangular waves}
+\goal Sketch the $g_n(x)=g(4^n x)$ from Example~3 and prove continuity of
+$f(x)=\sum_{n=0}^\infty(3/4)^n g_n(x)$.
+\step{(a) Describe the graphs by exact vertices.}
+The base function $g$ is the triangular wave of period $2$: for every integer
+$j$, $g(2j)=0$, $g(2j+1)=1$, and its graph is straight between consecutive
+integer inputs. Thus $g_n$ has zeros at $2j/4^n$, peaks of height $1$ at
+$(2j+1)/4^n$, and period $2/4^n$. Multiplication of the input compresses the
+horizontal scale; it does not change the heights.
+
+The sketches below show $0\le x\le2$, with the same horizontal and vertical
+scales in all four rows; repeat each graph periodically in both directions.
+For $g_3$, the closely spaced peaks are intentional.
+\begin{center}
+\setlength{\unitlength}{1cm}
+\begin{tabular}{cl}
+$g_0$ & \begin{picture}(8.5,1.5)
+ \put(0,0.2){\vector(1,0){8.3}}\put(0,0.2){\vector(0,1){1.2}}
+ \put(0,0.2){\polyline(0,0)(4,1)(8,0)}
+ \put(0,0){\makebox(0,0){\scriptsize0}}\put(8,0){\makebox(0,0){\scriptsize2}}
+\end{picture}\\
+$g_1$ & \begin{picture}(8.5,1.5)
+ \put(0,0.2){\vector(1,0){8.3}}\put(0,0.2){\vector(0,1){1.2}}
+ \multiput(0,0.2)(2,0){4}{\polyline(0,0)(1,1)(2,0)}
+ \put(0,0){\makebox(0,0){\scriptsize0}}\put(8,0){\makebox(0,0){\scriptsize2}}
+\end{picture}\\
+$g_2$ & \begin{picture}(8.5,1.5)
+ \put(0,0.2){\vector(1,0){8.3}}\put(0,0.2){\vector(0,1){1.2}}
+ \multiput(0,0.2)(0.5,0){16}{\polyline(0,0)(0.25,1)(0.5,0)}
+ \put(0,0){\makebox(0,0){\scriptsize0}}\put(8,0){\makebox(0,0){\scriptsize2}}
+\end{picture}\\
+$g_3$ & \begin{picture}(8.5,1.5)
+ \put(0,0.2){\vector(1,0){8.3}}\put(0,0.2){\vector(0,1){1.2}}
+ \multiput(0,0.2)(0.125,0){64}{\polyline(0,0)(0.0625,1)(0.125,0)}
+ \put(0,0){\makebox(0,0){\scriptsize0}}\put(8,0){\makebox(0,0){\scriptsize2}}
+\end{picture}
+\end{tabular}
+\end{center}
+\step{(b) Bound the vertically weighted waves.}
+The triangular wave is continuous, with $0\le g\le1$.
+Thus every $g_n$ is continuous as the composition of $g$ with the continuous
+map $x\mapsto4^n x$, and
+\[
+ \left|\left(\frac34\right)^n g_n(x)\right|
+ \le\left(\frac34\right)^n\qquad(x\in\R).
+\]
+The numerical geometric series $\sum_{n=0}^\infty(3/4)^n$ converges.
+The M-test gives uniform convergence on $\R$, and the uniform-limit theorem
+gives continuity of $f$ on $\R$.
+\answer{The graphs have periods $2$, $1/2$, $1/8$, $1/32$ and height $1$.
+The weighted infinite sum is continuous everywhere. No differentiability claim
+is needed for this exercise.}
+
+\exercise{25.12}{Integrating a uniformly convergent series}
+\goal If continuous $g_k$ have a uniformly convergent sum $g$ on $[a,b]$,
+prove $\int_a^b g=\sum_{k=1}^\infty\int_a^b g_k$.
+\step{Apply the known theorem to partial sums, not directly to infinite sums.}
+Set $s_n(x)=\sum_{k=1}^n g_k(x)$.
+Each $s_n$ is continuous, and the hypothesis means $s_n\to g$ uniformly.
+Theorem~25.2 therefore gives $\int_a^b s_n\to\int_a^b g$.
+\step{Use linearity only for the finite sum, then take its limit.}
+For every $n$,
+\[
+ \int_a^b s_n(x)\,dx=\sum_{k=1}^n\int_a^b g_k(x)\,dx.
+\]
+Consequently the numerical series on the right converges, and its sum is
+$\int_a^b g(x)\,dx$ by the definition of an infinite series as a limit of
+finite partial sums.
+\answer{Term-by-term integration is valid under the stated uniform convergence
+and continuity assumptions.}
+
+\exercise{25.13}{Adding two uniformly convergent series}
+\goal Show that $\sum(g_k+h_k)$ converges uniformly if $\sum g_k$ and $\sum h_k$ do.
+\step{Name the two limits and their partial sums.}
+Write $G_n=\sum_{k=1}^n g_k\to G$ uniformly and
+$H_n=\sum_{k=1}^n h_k\to H$ uniformly.
+The partial sum of the proposed series is exactly $G_n+H_n$.
+\step{Estimate the error of that partial sum.}
+For every input $x$,
+\[
+ |(G_n+H_n)(x)-(G+H)(x)|
+ \le|G_n(x)-G(x)|+|H_n(x)-H(x)|.
+\]
+Given $\varepsilon>0$, make each error smaller than $\varepsilon/2$
+uniformly, and take the larger of the two index thresholds.
+This gives uniform convergence to $G+H$.
+\answer{The sum series is uniformly convergent, with sum equal to the sum
+of the two original sum functions.}
+
+\exercise{25.14}{Multiplying a series by one bounded function}
+\goal If $\sum g_k$ converges uniformly on $S$ and $h$ is bounded there,
+prove uniform convergence of $\sum hg_k$.
+\step{Write the new partial sums as a product with the old ones.}
+Let $G_n=\sum_{k=1}^n g_k\to G$ uniformly and choose a finite $M\ge0$ with
+$|h(x)|\le M$ for all $x\in S$. Then
+\[
+ \sum_{k=1}^n h(x)g_k(x)=h(x)G_n(x),\qquad
+ |h(x)G_n(x)-h(x)G(x)|\le M|G_n(x)-G(x)|.
+\]
+\step{Choose the uniform error tolerance after accounting for the bound.}
+If $M=0$, every new term is zero and there is nothing to prove.
+If $M>0$, choose $N$ so that $|G_n(x)-G(x)|<\varepsilon/M$ for every
+$x\in S$ and $n>N$. The displayed inequality then bounds the new error
+by $\varepsilon$, uniformly in $x$.
+\answer{The new series converges uniformly to $hG$. No continuity of $h$
+is required, only its boundedness.}
+
+\exercise{25.15}{Monotone convergence on a compact interval: Dini's theorem}
+\goal Prove both monotone versions of the uniform-convergence assertion.
+\step{(a) First note that decreasing terms converging to zero are nonnegative.}
+For each fixed $x$, $f_n(x)\ge\lim_m f_m(x)=0$.
+We must show that the nonnegative errors $f_n(x)$ become small at one common index.
+\step{Use continuity to turn each strict error bound into an open set.}
+Fix $\varepsilon>0$, and let
+\[
+ U_n=\{x\in[a,b]:f_n(x)<\varepsilon\}.
+\]
+Continuity makes $U_n$ relatively open in $[a,b]$.
+Since $f_{n+1}\le f_n$, these sets increase: $U_n\subseteq U_{n+1}$.
+Pointwise convergence to zero implies every $x$ lies in some $U_n$, so
+$\{U_n:n\ge1\}$ is an open cover of $[a,b]$.
+\step{Compactness turns the varying pointwise indices into one common index.}
+The closed bounded interval is compact, so finitely many of the $U_n$ cover it.
+Let $N$ be the largest of their indices. Because the sets are nested,
+$U_N$ alone covers the whole interval. Thus
+$0\le f_n(x)\le f_N(x)<\varepsilon$ for all $x\in[a,b]$ and $n\ge N$.
+This is uniform convergence to zero.
+\step{(b) Reduce increasing convergence to the decreasing case.}
+Suppose now $f_n(x)$ increases to a continuous function $f(x)$.
+Set $h_n=f-f_n$. Each $h_n$ is continuous because both $f$ and $f_n$ are.
+At every input $h_n$ decreases to zero, and $h_n\ge0$.
+Part (a) gives $h_n\to0$ uniformly, which is exactly $f_n\to f$ uniformly.
+\answer{Both claims hold. Compactness and continuity of the limiting function
+are essential ingredients in turning the pointwise monotonicity into a uniform bound.}

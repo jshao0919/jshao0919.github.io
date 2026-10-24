@@ -1,0 +1,177 @@
+\section{Weierstrass's approximation theorem}
+\label{sec:weierstrass-new}
+\textbf{Approximation is different from equality with a power series.}
+A continuous function on a closed bounded interval can be approximated uniformly
+by polynomials, even when it has corners. The approximating polynomials need
+not be successive partial sums of a single power series.
+The Bernstein polynomials on $[0,1]$ are
+\[
+ B_nf(x)=\sum_{k=0}^n f(k/n)\binom nk x^k(1-x)^{n-k}\qquad(n\ge1).
+\]
+For $x\in[0,1]$, the weights $\binom nk x^k(1-x)^{n-k}$ are nonnegative
+and sum to $1$. Thus $B_nf(x)$ is a weighted average of sampled values of $f$.
+Products with exponent zero are interpreted as $1$, including at endpoints.
+
+\exercise{27.1}{Transferring approximation from $[0,1]$ to $[a,b]$}
+\goal Deduce the general Weierstrass approximation theorem from the
+Bernstein theorem on $[0,1]$.
+\step{Move the input interval to the standard one.}
+Assume first $a<b$. The affine function $\phi(t)=a+(b-a)t$ maps $[0,1]$
+onto $[a,b]$, with inverse $\phi^{-1}(x)=(x-a)/(b-a)$.
+If $f$ is continuous on $[a,b]$, then $g=f\circ\phi$ is continuous on $[0,1]$.
+Theorem~27.4 supplies polynomials $q_n=B_ng$ converging uniformly to $g$ there.
+\step{Move the approximating polynomials back.}
+Define
+\[
+ p_n(x)=q_n\left(\frac{x-a}{b-a}\right).
+\]
+A polynomial composed with an affine function is again a polynomial.
+For every $x\in[a,b]$, let $t=(x-a)/(b-a)\in[0,1]$. Then
+\[
+ |p_n(x)-f(x)|=|q_n(t)-g(t)|.
+\]
+Because the substitution is a bijection between the intervals, the suprema
+of these errors on the two intervals are equal. The supremum on $[0,1]$
+tends to zero, so the one on $[a,b]$ does too.
+\step{Include the degenerate interval if needed.}
+If $a=b$, the constant polynomial $p_n(x)=f(a)$ is already exact on the
+one-point interval.
+\answer{Every continuous function on $[a,b]$ is a uniform limit of polynomials.}
+
+\exercise{27.2}{One sequence that works on every bounded subset of $\R$}
+\goal For continuous $f$ on $\R$, find polynomials $p_n$ converging uniformly
+to $f$ on each bounded subset.
+\step{Use a larger interval and a smaller tolerance at each stage.}
+For each integer $n\ge1$, Weierstrass approximation on $[-n,n]$ gives
+one polynomial $p_n$ with
+\[
+ |p_n(x)-f(x)|<\frac1n\qquad(|x|\le n).
+\]
+We choose one such polynomial for each $n$.
+\step{Verify convergence on an arbitrary bounded set.}
+Let $E\subseteq\R$ be bounded. Choose $M$ so that $|x|\le M$ for every
+$x\in E$. Given $\varepsilon>0$, choose an integer $N$ larger than both
+$M$ and $1/\varepsilon$. For $n>N$, every $x\in E$ belongs to $[-n,n]$,
+so $|p_n(x)-f(x)|<1/n<\varepsilon$.
+\answer{The constructed sequence converges uniformly on every bounded
+subset of $\R$. The index threshold can depend on that bounded set;
+this does not assert uniform convergence on all of $\R$.}
+
+\exercise{27.3}{Why the entire real line is too large}
+\goal Show that neither $\sin x$ nor $e^x$ is a uniform limit of polynomials on $\R$.
+\step{(a) A polynomial uniformly close to sine would have to be constant.}
+Suppose $p_n\to\sin$ uniformly. Then for some index $m$,
+$|p_m(x)-\sin x|<1/2$ for every real $x$.
+Consequently $|p_m(x)|\le|\sin x|+1/2\le3/2$ everywhere.
+A nonconstant polynomial is unbounded on $\R$: its leading term dominates
+all terms of smaller degree as $|x|\to\infty$. Thus $p_m$ must be a constant $c$.
+At $x=\pi/2$ and $x=3\pi/2$, the proposed approximation requires
+$|c-1|<1/2$ and $|c+1|<1/2$. But the triangle inequality would then give
+$2\le|1-c|+|c+1|<1$, an impossibility.
+\step{(b) No polynomial can stay within a fixed error of the exponential.}
+Let $p$ be any polynomial. Choose an integer $d\ge0$ at least its degree,
+and $C>0$ such that $|p(x)|\le Cx^d$ for $x\ge1$; the sum of the absolute
+values of its coefficients, enlarged if necessary, supplies such a $C$.
+The exponential series has nonnegative terms at nonnegative inputs, so
+\[
+ e^x\ge\frac{x^{d+1}}{(d+1)!}\qquad(x\ge0).
+\]
+Therefore, for $x\ge1$,
+\[
+ e^x-p(x)\ge\frac{x^{d+1}}{(d+1)!}-Cx^d
+ =x^d\left(\frac{x}{(d+1)!}-C\right)\longrightarrow+\infty.
+\]
+In particular, no polynomial has $|p(x)-e^x|<1$ for all real $x$.
+Uniform convergence would eventually require exactly such a polynomial, so it is impossible.
+\answer{Uniform polynomial approximation on each bounded interval does
+not extend to uniform approximation on the whole real line in either example.}
+
+\exercise{27.4}{Correcting the two endpoint values}
+\goal Construct approximating polynomials with $p_n(a)=f(a)$ and $p_n(b)=f(b)$.
+\step{Start with any uniformly approximating sequence.}
+For $a<b$, choose polynomials $q_n\to f$ uniformly on $[a,b]$.
+Write $E_n=\sup_{x\in[a,b]}|q_n(x)-f(x)|$, so $E_n\to0$.
+The desired corrections at the two endpoints are
+$A_n=f(a)-q_n(a)$ and $B_n=f(b)-q_n(b)$.
+\step{Interpolate those corrections with a straight line.}
+Define
+\[
+ s_n(x)=\frac{b-x}{b-a}A_n+\frac{x-a}{b-a}B_n,
+ \qquad p_n(x)=q_n(x)+s_n(x).
+\]
+The function $s_n$ is affine, so $p_n$ is a polynomial.
+At $x=a$ its correction is $A_n$, and at $x=b$ its correction is $B_n$.
+Thus $p_n(a)=f(a)$ and $p_n(b)=f(b)$ exactly.
+\step{Show that the correction stays small throughout the interval.}
+On $[a,b]$ the two coefficients in $s_n$ are nonnegative and sum to $1$.
+Also $|A_n|,|B_n|\le E_n$. Hence $|s_n(x)|\le E_n$ for all such $x$, and
+\[
+ |p_n(x)-f(x)|\le|q_n(x)-f(x)|+|s_n(x)|\le2E_n\longrightarrow0.
+\]
+The bound is uniform in $x$. If $a=b$, the constant polynomial $f(a)$
+settles the one-point case directly.
+\answer{The endpoint-corrected polynomials retain uniform convergence.}
+
+\exercise{27.5}{Bernstein polynomials for the first two powers}
+\goal Compute $B_nf$ when $f(x)=x$ and when $f(x)=x^2$.
+\step{(a) Use the first binomial moment.}
+For $f(t)=t$,
+\[
+ B_nf(x)=\frac1n\sum_{k=0}^n k\binom nk x^k(1-x)^{n-k}.
+\]
+For $k\ge1$, $k\binom nk=n\binom{n-1}{k-1}$. Substitution and the
+binomial theorem give
+\[
+ \sum_{k=0}^n k\binom nk x^k(1-x)^{n-k}
+ =nx\sum_{j=0}^{n-1}\binom{n-1}{j}x^j(1-x)^{n-1-j}=nx.
+\]
+Therefore $B_nf(x)=x$ for every $n\ge1$: linear functions of this form
+are reproduced exactly.
+\step{(b) Decompose the square into two binomial moments.}
+For $f(t)=t^2$, use $k^2=k(k-1)+k$.
+For $n\ge2$, the factorial identity
+$k(k-1)\binom nk=n(n-1)\binom{n-2}{k-2}$ gives
+\[
+ \sum_{k=0}^n k(k-1)\binom nk x^k(1-x)^{n-k}=n(n-1)x^2.
+\]
+The same identity is zero on both sides for $n=1$.
+Adding the first moment $nx$ and dividing by $n^2$ yields
+\[
+ B_nf(x)=\frac{n(n-1)x^2+nx}{n^2}
+ =x^2+\frac{x(1-x)}n.
+\]
+As a check, $0\le x(1-x)\le1/4$ on $[0,1]$, so the error is at most
+$1/(4n)$, consistent with uniform convergence.
+\answer{$B_n(t\mapsto t)(x)=x$ and
+$B_n(t\mapsto t^2)(x)=x^2+x(1-x)/n$.}
+
+\exercise{27.6}{A necessary condition for uniform Bernstein approximation}
+\goal If $B_nf\to f$ uniformly on $[0,1]$, prove that $f$ is continuous,
+without initially assuming continuity of $f$.
+\step{Notice what kind of function each approximant is.}
+For each fixed $n$, the finitely many sampled values $f(k/n)$ are real constants.
+Thus the formula defining $B_nf$ is a finite linear combination of polynomials,
+so $B_nf$ is a polynomial and is continuous on $[0,1]$.
+\step{Use the uniform-limit theorem.}
+The assumption is uniform convergence of this sequence of continuous functions
+to $f$. Theorem~24.3 therefore makes $f$ continuous on $[0,1]$.
+\answer{Continuity is necessary for uniform convergence of the Bernstein
+polynomials to the original function. Together with Theorem~27.4, it is also sufficient.}
+
+\exercise{27.7}{A Bernstein bound from nonnegative weights}
+\goal If $|f(t)|\le M$ for every $t\in[0,1]$, prove $|B_nf(x)|\le M$
+for all $n\ge1$ and $x\in[0,1]$.
+\step{Use the triangle inequality with signs of the weights checked.}
+For $0\le x\le1$, every weight $w_k=\binom nkx^k(1-x)^{n-k}$ is nonnegative.
+Also each sample point $k/n$ belongs to $[0,1]$, so $|f(k/n)|\le M$.
+Hence
+\[
+ |B_nf(x)|\le\sum_{k=0}^n|f(k/n)|w_k
+ \le M\sum_{k=0}^n w_k.
+\]
+\step{Evaluate the total weight.}
+By the binomial theorem,
+$\sum_{k=0}^n w_k=(x+(1-x))^n=1$.
+The preceding bound is therefore $M$.
+\answer{Every Bernstein polynomial obeys the same bound $M$ as $f$ on $[0,1]$.
+The interval matters: outside it the weights need not be nonnegative.}

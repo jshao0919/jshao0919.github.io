@@ -1,0 +1,248 @@
+\section{Power series}
+For a power series $\sum_{n\ge0}a_nx^n$, write
+$\beta=\limsup_{n\to\infty}|a_n|^{1/n}$. The radius of convergence is
+$R=1/\beta$, with $1/0=\infty$ and $1/\infty=0$. The series converges
+absolutely for $|x|<R$ and diverges for $|x|>R$. \emph{Neither endpoint
+is decided by the radius calculation}: substitute $x=R$ and $x=-R$
+into the original series and test them separately. Finite initial terms
+do not affect convergence. Thus all series containing $1/n$ start at
+$n=1$, and harmless choices of starting index do not change the answers.
+We use $n^{c/n}\to1$ for fixed $c$, which follows by taking logarithms:
+$\log(n^{c/n})=c\log n/n\to0$.
+
+\exercise{23.1}{Eight radii and their endpoint tests}
+\goal Find the exact convergence interval in each case.
+\step{(a) The series $\sum n^2x^n$.}
+Here $|a_n|^{1/n}=n^{2/n}\to1$, so $R=1$. At $x=1$ the terms
+are $n^2$, and at $x=-1$ they are $(-1)^nn^2$. In both cases the
+terms fail to tend to zero, a necessary condition for series convergence.
+Thus the exact interval is $\boxed{(-1,1)}$.
+\step{(b) The series $\sum(x/n)^n$.}
+The coefficient of $x^n$ is $1/n^n$, whose $n$th root is $1/n\to0$.
+Thus $R=\infty$. To see this directly, for fixed real $x$ and sufficiently
+large $n$ we have $|x|/n\le1/2$, and hence
+$|(x/n)^n|\le2^{-n}$. The geometric comparison proves absolute
+convergence. The exact interval is $\boxed{\R}$.
+\step{(c) The series $\sum (2^n/n^2)x^n$.}
+The coefficient root $2/n^{2/n}$ tends to $2$, so $R=1/2$.
+At $x=1/2$ the series becomes $\sum1/n^2$, which converges. At
+$x=-1/2$ it becomes $\sum(-1)^n/n^2$, which converges absolutely by
+the same $p$-series. The exact interval is $\boxed{[-1/2,1/2]}$.
+\step{(d) The series $\sum (n^3/3^n)x^n$.}
+The coefficient root $n^{3/n}/3$ tends to $1/3$, giving $R=3$.
+At $x=3$ the terms are $n^3$; at $x=-3$ they are $(-1)^nn^3$.
+Neither tends to zero. The exact interval is $\boxed{(-3,3)}$.
+\step{(e) The series $\sum (2^n/n!)x^n$.}
+For $x\ne0$ the ratio of successive absolute terms is
+\[
+ \frac{2^{n+1}|x|^{n+1}/(n+1)!}{2^n|x|^n/n!}
+ =\frac{2|x|}{n+1}\longrightarrow0<1.
+\]
+The ratio test proves absolute convergence for every such $x$.
+At $x=0$ convergence is immediate. Thus $R=\infty$ and the interval
+is $\boxed{\R}$.
+\step{(f) The series $\sum x^n/((n+1)^22^n)$.}
+Its coefficient root is $1/(2(n+1)^{2/n})\to1/2$, so $R=2$.
+At $x=2$ it is $\sum1/(n+1)^2$; at $x=-2$ it is
+$\sum(-1)^n/(n+1)^2$. Both converge absolutely. The interval is
+$\boxed{[-2,2]}$.
+\step{(g) The series $\sum (3^n/(n4^n))x^n$.}
+The coefficient root $(3/4)n^{-1/n}$ tends to $3/4$, so $R=4/3$.
+At $x=4/3$ we obtain the divergent harmonic series $\sum1/n$.
+At $x=-4/3$ we obtain $\sum(-1)^n/n$, which converges by the
+alternating-series test: $1/n$ decreases to zero. It is conditionally
+convergent because its absolute-value series is harmonic. The interval
+is $\boxed{[-4/3,4/3)}$.
+\step{(h) The series $\sum ((-1)^n/(n^24^n))x^n$.}
+Taking absolute values before the root removes the alternating sign:
+$|a_n|^{1/n}=1/(4n^{2/n})\to1/4$. Hence $R=4$.
+At $x=4$ the series is $\sum(-1)^n/n^2$, and at $x=-4$ it is
+$\sum1/n^2$, since the two factors $(-1)^n$ multiply to $1$.
+Both converge absolutely, giving $\boxed{[-4,4]}$.
+\answer{The radii in order are $1,\infty,1/2,3,\infty,2,4/3,4$.
+The separate endpoint tests determine the displayed intervals.}
+
+\exercise{23.2}{Four more series, including missing powers}
+\step{(a) The series $\sum\sqrt n\,x^n$.}
+The coefficient root is $n^{1/(2n)}\to1$, giving $R=1$.
+At $x=1$ and $x=-1$, the term magnitudes are $\sqrt n$, which do
+not tend to zero. Thus the exact interval is $\boxed{(-1,1)}$.
+\step{(b) The series $\sum x^n/(n\sqrt n)$.}
+The denominator here is $n\sqrt n=n^{3/2}$, not an $n$th root.
+We have $|a_n|^{1/n}=n^{-3/(2n)}\to1$, so $R=1$.
+At either endpoint the absolute series is $\sum n^{-3/2}$, a
+convergent $p$-series because $3/2>1$. Thus the exact interval is
+$\boxed{[-1,1]}$.
+\step{(c) The sparse series $\sum x^{n!}$.}
+For $|x|<1$, since $n!\ge n$,
+$|x|^{n!}\le|x|^n$. The right side has a convergent geometric sum,
+so absolute convergence follows. At $x=1$ every term is $1$.
+At $x=-1$, all terms with $n\ge2$ are $1$ because $n!$ is even.
+Both endpoint series diverge. For $|x|>1$, the term magnitudes
+$|x|^{n!}$ do not approach zero. Therefore the radius is $R=1$ and
+the exact interval is $\boxed{(-1,1)}$.
+\step{(d) The series $\sum(3^n/\sqrt n)x^{2n+1}$.}
+The exponent is $2n+1$, so treating $3^n/\sqrt n$ as the coefficient
+of $x^n$ would give the wrong radius. Instead write
+\[
+ \sum_{n\ge1}\frac{3^n}{\sqrt n}x^{2n+1}
+ =x\sum_{n\ge1}\frac{(3x^2)^n}{\sqrt n}.
+\]
+For $x\ne0$, the absolute-term ratio tends to $3x^2$. Thus the series
+converges absolutely when $3x^2<1$ and diverges when $3x^2>1$.
+At $x=0$ all terms vanish. At $x=1/\sqrt3$, its terms equal
+$1/(\sqrt3\sqrt n)$; at $x=-1/\sqrt3$, they equal
+$-1/(\sqrt3\sqrt n)$. Each endpoint gives a constant multiple of the
+divergent $p$-series $\sum n^{-1/2}$. Thus
+\[
+ \boxed{R=1/\sqrt3,\qquad\text{interval }(-1/\sqrt3,1/\sqrt3).}
+\]
+\answer{Missing powers must be respected. Testing the actual terms,
+rather than a misindexed coefficient sequence, avoids that error.}
+
+\exercise{23.3}{The endpoint test for the sparse series in Example 6}
+\goal Determine the exact interval for $\sum_{n\ge0}2^{-n}x^{3n}$.
+\step{Recognize a geometric series in a new quantity.}
+Since $2^{-n}x^{3n}=(x^3/2)^n$, this is geometric with ratio
+$r=x^3/2$. It converges exactly when $|r|<1$, equivalently
+$|x|<2^{1/3}$. At $x=2^{1/3}$ the terms are $1$; at
+$x=-2^{1/3}$ they are $(-1)^n$. Neither term sequence tends to zero.
+\answer{The exact interval is $(-2^{1/3},2^{1/3})$. The radius is
+$2^{1/3}$, not $2$, because the powers are $x^{3n}$.}
+
+\exercise{23.4}{Roots and ratios with oscillating coefficients}
+\goal Analyze $a_n=[(4+2(-1)^n)/5]^n$.
+\step{Separate even and odd indices before calculating.}
+For even $n$, $a_n=(6/5)^n$; for odd $n$, $a_n=(2/5)^n$.
+The term $a_0=1$ does not affect any limiting or convergence question.
+\step{(a) Compute the four requested extended limits.}
+The sequence $a_n^{1/n}$ alternates between $6/5$ and $2/5$, so
+\[
+ \limsup a_n^{1/n}=6/5,\qquad \liminf a_n^{1/n}=2/5.
+\]
+For even $n$, the next index is odd and
+\[
+ \frac{a_{n+1}}{a_n}
+ =\frac{(2/5)^{n+1}}{(6/5)^n}=\frac25\,3^{-n}\longrightarrow0.
+\]
+For odd $n$, the next index is even and
+\[
+ \frac{a_{n+1}}{a_n}
+ =\frac{(6/5)^{n+1}}{(2/5)^n}=\frac65\,3^n\longrightarrow+\infty.
+\]
+All coefficients are positive, so absolute values change nothing.
+Thus the ratio limsup is $+\infty$ and the ratio liminf is $0$.
+\step{(b) Apply the necessary term test to the two numerical series.}
+Along even indices, $a_{2k}=(6/5)^{2k}\to+\infty$. Hence $a_n$
+does not tend to zero and $\sum a_n$ diverges. Also
+$(-1)^{2k}a_{2k}=a_{2k}$, so the signed series
+$\sum(-1)^na_n$ diverges for the same reason. Alternating signs
+cannot make a series converge unless its terms tend to zero.
+\step{(c) Find the power-series interval.}
+The root limsup gives $R=1/(6/5)=5/6$. At either $x=5/6$ or
+$x=-5/6$, the even terms satisfy
+\[
+ a_{2k}x^{2k}=(6/5)^{2k}(5/6)^{2k}=1.
+\]
+Neither endpoint series has terms tending to zero. Therefore
+\[
+ \boxed{R=5/6,\qquad\text{interval }(-5/6,5/6).}
+\]
+\answer{The ordinary ratio limit does not exist. Its extreme
+subsequences illustrate why the root limsup is the general formula.}
+
+\exercise{23.5}{Two coefficient conditions forcing radius at most one}
+\step{(a) Infinitely many nonzero integer coefficients.}
+A nonzero integer has absolute value at least $1$. There are
+therefore arbitrarily large indices $n$ with
+$|a_n|^{1/n}\ge1$. Consequently
+$\limsup|a_n|^{1/n}\ge1$, and the reciprocal-radius formula yields
+$R\le1$. If that limsup is infinite, the radius is zero, which also
+satisfies the conclusion.
+\step{(b) A positive limsup of coefficient magnitudes.}
+If $\limsup|a_n|>0$ (including $+\infty$), choose $c>0$ below this
+limsup. Infinitely many indices $n_j\to\infty$ satisfy $|a_{n_j}|>c$.
+At those indices $|a_{n_j}|^{1/n_j}\ge c^{1/n_j}$, and
+$c^{1/n_j}\to1$. Thus
+$\limsup_n|a_n|^{1/n}\ge1$ and again $R\le1$.
+\answer{The coefficients need not stay large at every index. A
+single infinite subsequence bounded away from zero already suffices.}
+
+\exercise{23.6}{Endpoint asymmetry and nonnegative coefficients}
+\step{(a) Convergence at the positive endpoint implies convergence at the negative one.}
+Suppose $a_n\ge0$ and the finite radius is $R\ge0$. If $R>0$ and
+$\sum a_nR^n$ converges, then
+\[
+ \sum|a_n(-R)^n|=\sum a_nR^n<\infty.
+\]
+Hence the series at $-R$ converges absolutely. If $R=0$, the two
+endpoints are the same point and the assertion is immediate.
+The sign hypothesis is doing the work: the positive-endpoint sum is
+already a sum of absolute values.
+\step{(b) Construct the opposite endpoint pattern.}
+Take
+\[
+ \sum_{n\ge1}\frac{(-1)^{n+1}}n x^n.
+\]
+Its coefficient-root limsup is $1$, so its radius is $1$. At $x=1$
+the alternating harmonic series converges. At $x=-1$ the series is
+$-\sum1/n$, which diverges. Thus the exact interval is
+$\boxed{(-1,1]}$. These coefficients do not satisfy the nonnegative
+hypothesis of part (a), so there is no contradiction.
+\answer{Endpoint behavior depends on signs as well as magnitudes.}
+
+\exercise{23.7}{Powers of cosine and pointwise limits}
+\goal Analyze $f_n(x)=(\cos x)^n$ for each fixed real $x$.
+\step{(a) Points that are not multiples of $\pi$.}
+At such a point $-1<\cos x<1$. Therefore $|\cos x|^n\to0$, and
+$|f_n(x)|\to0$ implies $f_n(x)\to0$.
+\step{(b) Even multiples of $\pi$.}
+If $x=2k\pi$ for an integer $k$, then $\cos x=1$, so
+$f_n(x)=1$ for every $n$ and the limit is $1$.
+\step{(c) Odd multiples of $\pi$.}
+If $x=(2k+1)\pi$, then $\cos x=-1$, so $f_n(x)=(-1)^n$.
+The even subsequence is constantly $1$ and the odd subsequence is
+constantly $-1$. Since they have different limits, the full limit
+does not exist.
+\answer{The three cases exhaust the real line. Continuity of every
+$f_n$ does not even guarantee pointwise convergence at every point.}
+
+\exercise{23.8}{Convergence of functions does not imply convergence of derivatives}
+\goal Compare $f_n(x)=\sin(nx)/n$ with its derivative.
+\step{(a) Bound the function values independently of $x$.}
+For all real $x$,
+\[
+ |f_n(x)|\le1/n\longrightarrow0.
+\]
+The squeeze theorem gives $f_n(x)\to0$ for every $x$. In fact this
+estimate proves uniform convergence, because the upper bound is the
+same for all $x$.
+\step{(b) Differentiate and test a specific point.}
+The chain rule gives $f_n'(x)=\cos(nx)$. At $x=\pi$,
+$f_n'(\pi)=(-1)^n$, so the derivatives have no pointwise limit there.
+Even at $x=0$ they are always $1$, whereas the derivative of the
+limit function $f\equiv0$ is $0$.
+\answer{The operation of taking a derivative cannot be passed through
+a function limit without additional hypotheses. The oscillations get
+small in height while their slopes do not.}
+
+\exercise{23.9}{A vanishing pointwise limit with nonvanishing integrals}
+\goal Analyze $f_n(x)=nx^n$ on $[0,1]$.
+\step{(a) Fix a point strictly below one.}
+At $x=0$ all values are zero. If $0<x<1$, set $u_n=nx^n>0$.
+Its successive ratio satisfies
+$u_{n+1}/u_n=(1+1/n)x\to x<1$. Choose $q$ with $x<q<1$.
+For some $N$, $u_{n+1}\le q u_n$ for all $n\ge N$. Repeatedly
+applying this inequality gives $u_{N+j}\le u_Nq^j\to0$.
+Thus $f_n(x)\to0$ for every $x\in[0,1)$. At $x=1$, however,
+$f_n(1)=n\to+\infty$, so no finite limit exists there.
+\step{(b) Evaluate each integral before taking the limit.}
+For fixed $n$, the ordinary power rule for integration yields
+\[
+ \int_0^1f_n(x)\,dx=n\left[\frac{x^{n+1}}{n+1}\right]_0^1
+ =\frac n{n+1}=1-\frac1{n+1}\longrightarrow1.
+\]
+\answer{The functions approach zero at every point short of the
+right endpoint, but their integrals approach $1$. Mass concentrates
+closer and closer to $1$; pointwise information alone does not justify
+interchanging limit and integral.}

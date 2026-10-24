@@ -1,0 +1,236 @@
+\section{The Mean Value Theorem}
+The Mean Value Theorem (MVT) connects an average slope to an actual derivative. If $f$ is continuous on $[a,b]$ and differentiable on $(a,b)$, with $a<b$, there exists $c\in(a,b)$ such that
+\[
+ f(b)-f(a)=f'(c)(b-a).
+\]
+The theorem asserts existence, not a prescribed choice of $c$. Both hypotheses matter. Ross uses ``increasing'' to mean nondecreasing; ``strictly increasing'' requires strict inequalities. A derivative sign on an entire interval controls monotonicity there; a sign at one point does not have the same force.
+
+\exercise{29.1}{Checking the MVT conclusion in six examples}
+\goal Compute the secant slope and determine whether an interior derivative equals it.
+\step{(a) The square on $[-1,2]$.}
+The slope is $(4-1)/3=1$. Since $f'(x)=2x$, take $c=1/2\in(-1,2)$. Polynomial continuity and differentiability verify all MVT hypotheses.
+\step{(b) Sine on $[0,\pi]$.}
+The secant slope is $0$, and $f'(\pi/2)=\cos(\pi/2)=0$. Sine satisfies all hypotheses.
+\step{(c) Absolute value on $[-1,2]$.}
+The secant slope is $(2-1)/3=1/3$. At nonzero interior points the derivative is either $-1$ or $1$; at $0$ it is undefined. Thus no derivative equals $1/3$. The failed hypothesis is differentiability throughout the open interval, although continuity holds.
+\step{(d) The reciprocal on $[-1,1]$.}
+The endpoint expression gives $(1-(-1))/2=1$. Wherever it exists, the derivative is $-1/x^2<0$, so it cannot equal $1$. The function is not even defined at $0$; in particular it is neither continuous on the whole closed interval nor differentiable on the whole open interval.
+\step{(e) The reciprocal on $[1,3]$.}
+Now both hypotheses hold. The slope is $(1/3-1)/2=-1/3$, and $-1/c^2=-1/3$ is satisfied by $c=\sqrt3\in(1,3)$.
+\step{(f) The sign function on $[-2,2]$.}
+The secant slope is $(1-(-1))/4=1/2$. At every nonzero point its derivative is $0$; at $0$ it has a jump and no derivative. Thus the conclusion fails. Continuity on the closed interval and differentiability throughout the open interval both fail.
+\answer{The conclusion holds in (a), (b), and (e), at the exhibited points; it fails in (c), (d), and (f).}
+
+\exercise{29.2}{Cosine is Lipschitz with constant one}
+\goal Prove $|\cos x-\cos y|\le |x-y|$ for all real $x,y$.
+\step{Handle equal points and order unequal ones.}
+If $x=y$, both sides vanish. Otherwise interchange their names if needed so $x<y$. Cosine is continuous on $[x,y]$ and differentiable on $(x,y)$. The MVT gives $c\in(x,y)$ with
+\[
+ \cos y-\cos x=-\sin c\,(y-x).
+\]
+Taking absolute values and using $|\sin c|\le1$ proves the inequality. The absolute-value form is unchanged when the original points are interchanged.
+
+\exercise{29.3}{Two guaranteed derivative values}
+\goal Use $f(0)=0$, $f(1)=f(2)=1$ to locate derivative values $1/2$ and $1/7$.
+\step{(a) Use the endpoints $0$ and $2$.}
+Differentiability on $\R$ implies continuity there, so the MVT applies on $[0,2]$. It supplies $c\in(0,2)$ with
+\[
+ f'(c)=\frac{f(2)-f(0)}{2-0}=\frac12.
+\]
+\step{(b) First find slopes above and below $1/7$.}
+The MVT on $[0,1]$ gives $u\in(0,1)$ with $f'(u)=1$. On $[1,2]$ it gives $v\in(1,2)$ with $f'(v)=0$. Derivatives have the intermediate value property (Darboux's theorem, Theorem 29.8), even when they are not continuous. Therefore some $w\in(u,v)\subset(0,2)$ satisfies $f'(w)=1/7$.
+\step{An elementary way to implement the same argument.}
+Let $H(x)=f(x)-x/7$ on $[u,v]$. Then $H'(u)=6/7>0$ and $H'(v)=-1/7<0$. By the derivative definition, $H$ takes values larger than $H(u)$ just to the right of $u$, and values larger than $H(v)$ just to the left of $v$. Its maximum on the compact interval therefore cannot occur at either endpoint. At an interior maximum $w$, Fermat's theorem gives $H'(w)=0$, or $f'(w)=1/7$. This explains why continuity of $f'$ is not needed.
+
+\exercise{29.4}{Introducing an exponential integrating factor}
+\goal Find $c\in(a,b)$ with $f'(c)+f(c)g'(c)=0$ when $f(a)=f(b)=0$.
+\idea The derivative of $fe^g$ contains exactly the desired expression, multiplied by a positive factor.
+\step{Verify Rolle's theorem for the auxiliary function.}
+Define $H(x)=f(x)e^{g(x)}$. The differentiability assumptions on the open interval $I$ ensure that $H$ is continuous on $[a,b]\subset I$ and differentiable on $(a,b)$. Also $H(a)=H(b)=0$. Rolle's theorem gives $c\in(a,b)$ with $H'(c)=0$.
+\step{Differentiate and divide by a nonzero factor.}
+By the product and chain rules,
+\[
+ 0=H'(c)=e^{g(c)}[f'(c)+f(c)g'(c)].
+\]
+Because $e^{g(c)}>0$, division yields the required equation.
+
+\exercise{29.5}{A quadratic bound forces constancy}
+\goal Show a function satisfying $|f(x)-f(y)|\le(x-y)^2$ for all real $x,y$ is constant.
+\step{Prove differentiability rather than assume it.}
+Fix $a\in\R$. For $h\ne0$, the assumed estimate gives
+\[
+ \left|\frac{f(a+h)-f(a)}h\right|\le\frac{h^2}{|h|}=|h|\longrightarrow0.
+\]
+Thus $f'(a)$ exists and equals $0$. Since $a$ was arbitrary, $f'=0$ everywhere.
+\step{Use the MVT between any two points.}
+For $x<y$, the now-established differentiability gives the MVT hypotheses on $[x,y]$. Hence $f(y)-f(x)=f'(c)(y-x)=0$ for some $c$ between them. Every pair has equal values, so $f$ is constant.
+
+\exercise{29.6}{The straight line in the MVT proof}
+\goal Write the line through $(a,f(a))$ and $(b,f(b))$ explicitly.
+\step{Use point--slope form.}
+The required function is
+\[
+ L(x)=f(a)+\frac{f(b)-f(a)}{b-a}(x-a).
+\]
+Indeed $L(a)=f(a)$ and $L(b)=f(a)+f(b)-f(a)=f(b)$. Its derivative is the constant secant slope $(f(b)-f(a))/(b-a)$. Subtracting this line from $f$ gives a function with equal endpoint values, which is precisely why Rolle's theorem can be used in the MVT proof.
+
+\exercise{29.7}{Vanishing higher derivatives imply polynomial form}
+\goal Determine $f$ when its second or third derivative vanishes on an interval.
+\step{(a) If $f''=0$, first make $f'$ constant.}
+The zero-derivative corollary to the MVT, applied to $f'$, gives a constant $A$ with $f'(x)=A$ on $I$. Now $[f(x)-Ax]'=0$ on $I$, so the same corollary gives another constant $B$ with $f(x)-Ax=B$. Thus $f(x)=Ax+B$.
+\step{(b) If $f'''=0$, repeat one level higher.}
+Apply the corollary to $f''$ to obtain $f''(x)=C$. Then
+\[
+ [f'(x)-Cx]'=0,
+\]
+so $f'(x)=Cx+D$. Finally,
+\[
+ \left[f(x)-\frac C2x^2-Dx\right]'=0,
+\]
+which gives $f(x)=\tfrac C2x^2+Dx+E$. Conversely, every polynomial of this form has third derivative zero, so these are exactly the possibilities.
+\answer{The interval assumption allows the MVT to connect every pair of points. On disconnected domains the constants could differ between components.}
+
+\exercise{29.8}{Derivative signs and the three remaining monotonicity rules}
+\goal Prove Corollary 29.7(ii)--(iv).
+\step{Use one MVT equation for all three cases.}
+Choose arbitrary $x_1<x_2$ in the interval. The MVT gives $c\in(x_1,x_2)$ with
+\[
+ f(x_2)-f(x_1)=f'(c)(x_2-x_1).
+\]
+The factor $x_2-x_1$ is strictly positive, so it preserves the sign of $f'(c)$.
+\step{(ii) Strictly negative derivative.}
+If $f'<0$ everywhere, the right side is negative. Thus $f(x_2)<f(x_1)$ for every ordered pair, which is strict decrease.
+\step{(iii) Nonnegative derivative.}
+If $f'\ge0$ everywhere, then $f(x_2)-f(x_1)\ge0$, so $f(x_1)\le f(x_2)$. This is increase in Ross's nonstrict sense.
+\step{(iv) Nonpositive derivative.}
+If $f'\le0$ everywhere, the equation gives $f(x_2)\le f(x_1)$, which is decrease. Equality is permitted in the last two cases.
+
+\exercise{29.9}{The inequality $ex\le e^x$}
+\goal Show the product $e\cdot x$ never exceeds $e^x$.
+\step{Subtract and locate the minimum.}
+Let $F(x)=e^x-ex$. Then $F'(x)=e^x-e$. Because the exponential is strictly increasing, this derivative is negative for $x<1$, zero at $1$, and positive for $x>1$. The monotonicity corollaries imply $F$ decreases toward $1$ and increases afterward. Therefore its global minimum is
+\[
+ F(1)=e-e=0.
+\]
+Hence $e^x-ex\ge0$ for every real $x$.
+\answer{The inequality holds for every real $x$, with equality exactly when $x=1$. Here $ex$ denotes multiplication, not a second copy of $e^x$.}
+
+\exercise{29.10}{A positive derivative at one point does not imply local increase}
+\goal Study $f(x)=x^2\sin(1/x)+x/2$ for $x\ne0$, with $f(0)=0$.
+\step{(a) Differentiate at zero.}
+The difference quotient is $x\sin(1/x)+1/2$, whose first term tends to zero by $|x\sin(1/x)|\le|x|$. Thus $f'(0)=1/2>0$.
+\step{(b) Find negative derivatives arbitrarily close to zero.}
+For $x\ne0$, Exercise 28.4 and the sum rule give
+\[
+ f'(x)=2x\sin(1/x)-\cos(1/x)+\frac12.
+\]
+At $x_n=1/(2\pi n)$ this equals $-1/2$. Every open interval containing zero contains such an $x_n$ as an interior point. An increasing function that is differentiable at an interior point has nonnegative derivative there: its difference quotients are nonnegative for increments of either sign. Thus the negative derivative at $x_n$ rules out increase on that interval.
+\step{(c) Compare the hypotheses carefully.}
+Corollary 29.7(i) requires $f'(x)>0$ at \emph{every} point of the interval. This example gives positivity only at zero and negative values arbitrarily nearby, so there is no contradiction.
+
+\exercise{29.11}{Sine lies below its argument on the positive half-line}
+\goal Prove $\sin x\le x$ for $x\ge0$.
+\step{Apply a derivative sign to the difference.}
+Let $F(x)=x-\sin x$. Then $F'(x)=1-\cos x\ge0$ on $\R$, so $F$ is increasing. For $x\ge0$ this implies $F(x)\ge F(0)=0$, which rearranges to the required inequality. At $x=0$ equality is immediate.
+
+\exercise{29.12}{Three related trigonometric inequalities}
+\goal Establish the tangent inequality, monotonicity of $x/\sin x$, and the sine lower bound on a quarter period.
+\step{(a) Compare tangent with the identity.}
+Let $F(x)=\tan x-x$ on $[0,\pi/2)$. It is continuous at zero, $F(0)=0$, and for $0<x<\pi/2$,
+\[
+ F'(x)=\sec^2x-1=\tan^2x>0.
+\]
+Applying the MVT on $[0,x]$ gives $F(x)>F(0)=0$. Thus $x<\tan x$.
+\step{(b) Differentiate the quotient with a positive denominator.}
+On $(0,\pi/2)$,
+\[
+ \left(\frac{x}{\sin x}\right)'=
+ \frac{\sin x-x\cos x}{\sin^2x}.
+\]
+Both $\cos x$ and $\sin^2x$ are positive. Part (a), multiplied by $\cos x>0$, gives $x\cos x<\sin x$. Therefore the numerator is positive, and the quotient is strictly increasing.
+\step{(c) Compare with the endpoint value.}
+The quotient extends continuously to $x=\pi/2$ with value $\pi/2$. Its increase on the interior yields $x/\sin x\le\pi/2$ for $0<x\le\pi/2$, for instance by taking an increasing sequence of comparison points tending to the endpoint. Multiplying by the positive $\sin x$ gives $x\le(\pi/2)\sin x$. At $x=0$ both sides vanish.
+\answer{The last inequality is equivalently $\sin x\ge2x/\pi$ on $[0,\pi/2]$.}
+
+\exercise{29.13}{Comparing functions by comparing derivatives}
+\goal Use equal initial values and $f'\le g'$ to show $f(x)\le g(x)$ for $x\ge0$.
+\step{Build a single function with a known sign of derivative.}
+Set $H=g-f$. Then $H(0)=0$ and $H'=g'-f'\ge0$. The monotonicity corollary makes $H$ increasing. Hence for $x\ge0$, $H(x)\ge H(0)=0$, or $f(x)\le g(x)$.
+\answer{Equal initial values anchor the comparison. Without them, derivative inequalities alone do not fix which graph starts higher.}
+
+\exercise{29.14}{Bounding a function between two straight lines}
+\goal Given $f(0)=0$ and $1\le f'\le2$, prove $x\le f(x)\le2x$ for $x\ge0$.
+\step{Use the MVT on the interval from zero to the chosen point.}
+At $x=0$ the assertion is immediate. For $x>0$, differentiability ensures the hypotheses on $[0,x]$, so for some $c\in(0,x)$,
+\[
+ f(x)-f(0)=f'(c)x.
+\]
+Since $x>0$, multiplying $1\le f'(c)\le2$ by $x$ preserves order. Substituting $f(0)=0$ gives $x\le f(x)\le2x$.
+
+\exercise{29.15}{The power rule for rational exponents}
+\goal Prove the derivative formula for $h(x)=x^{m/n}$ at every permitted nonzero real input, including negative inputs when $n$ is odd.
+\step{Differentiate the real root by the inverse-function theorem.}
+Let $u(x)=x^{1/n}$ on its real domain. Fix a permitted $a\ne0$ and write $t=u(a)$, so $t^n=a$ and $t\ne0$. The function $v(t)=t^n$, restricted to the positive half-line if $n$ is even and considered on $\R$ if $n$ is odd, is one-to-one and continuous. Near this nonzero $t$ it is differentiable with $v'(t)=nt^{n-1}\ne0$. The inverse derivative theorem gives
+\[
+ u'(a)=\frac1{nt^{n-1}}.
+\]
+\step{Compose with an integer power.}
+The function $h=u^m$ is differentiable near $a$; negative $m$ is allowed because $u$ is nonzero there. The integer power rule and chain rule give
+\[
+ h'(a)=m t^{m-1}\frac1{nt^{n-1}}
+       =\frac mn t^{m-n}=\frac mn a^{m/n-1}.
+\]
+The final equality uses the real-root definition of the rational powers. It remains valid for negative $a$ when $n$ is odd, without invoking an undefined logarithm of a negative number.
+\answer{$h'(a)=r a^{r-1}$ everywhere requested. The exclusion of zero avoids both inverse-derivative failure and negative-power domain issues.}
+
+\exercise{29.16}{The derivative of arctangent}
+\goal Apply the inverse derivative theorem to tangent on $(-\pi/2,\pi/2)$.
+\step{Check invertibility and derivative hypotheses.}
+On this interval, $f(x)=\tan x$ is continuous and strictly increasing, has range $\R$, and has derivative $\sec^2x>0$. It therefore has the inverse $g=\arctan:\R\to(-\pi/2,\pi/2)$, and Theorem 29.9 applies at every inverse pair $y=\tan x$.
+\step{Express the derivative using the new input.}
+The theorem gives $g'(y)=1/\sec^2x$. Since $\sec^2x=1+\tan^2x=1+y^2$, this becomes
+\[
+ \frac{d}{dy}\arctan y=\frac1{1+y^2}\qquad(y\in\R).
+\]
+
+\exercise{29.17}{Matching values and slopes at a join}
+\goal Prove the criterion for differentiability of $h$, formed from $f$ to the left of $a$ and $g$ at and to its right.
+\step{Necessity of matching values.}
+Suppose $h$ is differentiable at $a$. It is then continuous there. By continuity of $f$,
+\[
+ f(a)=\lim_{x\to a^-}f(x)=\lim_{x\to a^-}h(x)=h(a)=g(a).
+\]
+Thus the two branches meet at the same height.
+\step{Necessity of matching slopes.}
+Using $h(a)=f(a)=g(a)$, the left difference quotient for $h$ has limit $f'(a)$, while the right one has limit $g'(a)$. Both must equal $h'(a)$, so $f'(a)=g'(a)$.
+\step{Sufficiency.}
+Conversely, suppose both equalities hold. For $x<a$ the difference quotient of $h$ at $a$ is $(f(x)-f(a))/(x-a)$; for $x>a$ it is $(g(x)-g(a))/(x-a)$. Their limits are the equal numbers $f'(a)$ and $g'(a)$. The two-sided limit therefore exists, and $h'(a)$ is their common value.
+\answer{Matching heights prevents a jump; matching slopes prevents a corner. Both conditions are necessary and together are sufficient.}
+
+\exercise{29.18}{Iterating a contraction on the real line}
+\goal Prove convergence of $s_{n+1}=f(s_n)$ and obtain a fixed point when $a=\sup_{x\in\R}|f'(x)|<1$.
+\step{(a), first stage: convert the derivative bound to a distance bound.}
+Since $|f'|\ge0$, we have $0\le a<1$. The MVT gives, for any $u,v\in\R$,
+\[
+ |f(u)-f(v)|\le a|u-v|.
+\]
+For equal inputs the inequality is automatic. Applying it to successive iterates gives
+\[
+ |s_{n+1}-s_n|\le a|s_n-s_{n-1}|\le\cdots\le a^n|s_1-s_0|.
+\]
+\step{(a), second stage: sum the small successive gaps.}
+Assume first $0<a<1$. For integers $m>n$, the triangle inequality and a geometric series give
+\[
+ |s_m-s_n|\le\sum_{k=n}^{m-1}|s_{k+1}-s_k|
+ \le |s_1-s_0|\sum_{k=n}^{m-1}a^k
+ \le\frac{|s_1-s_0|a^n}{1-a}.
+\]
+This bound tends to zero independently of $m>n$. For any $\varepsilon>0$, choose $N$ to make the last expression less than $\varepsilon$ for $n\ge N$; this is exactly the Cauchy criterion. Completeness of $\R$ gives a limit $s$. If $a=0$, the distance bound says $f$ is constant, so all iterates from $s_1$ onward are equal and convergence is immediate.
+\step{(b) Pass to the limit in the iteration.}
+Differentiability implies continuity, and therefore
+\[
+ f(s)=f\left(\lim_n s_n\right)=\lim_n f(s_n)
+ =\lim_n s_{n+1}=s.
+\]
+Thus $s$ is a fixed point. In fact it is unique: if $t=f(t)$, then $|s-t|=|f(s)-f(t)|\le a|s-t|$; since $1-a>0$, this forces $s=t$.
+\answer{Every starting value produces a convergent sequence with the same fixed-point limit. The geometric bound explicitly explains why the iteration settles down.}

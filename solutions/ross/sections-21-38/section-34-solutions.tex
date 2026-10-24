@@ -1,0 +1,263 @@
+\section{Fundamental Theorem of Calculus}
+There are two complementary facts to keep straight. If $f$ is continuous,
+then $H(x)=\int_a^x f(t)\,dt$ is differentiable and $H'(x)=f(x)$.
+If $G'=f$ and the relevant integrability hypotheses hold, then
+$\int_a^b f=G(b)-G(a)$. An accumulation integral can remain continuous
+even at a jump of its integrand, although it may then have a corner.
+For reversed endpoints we use $\int_b^a f=-\int_a^b f$.
+
+\exercise{34.1}{Recovering the antiderivative evaluation formula}
+\goal Deduce $\int_a^b g'=g(b)-g(a)$ when $g'$ is continuous.
+Define $F(x)=\int_a^x g'(t)\,dt$ for $x\in[a,b]$.
+Continuity of $g'$ guarantees that it is integrable and, by Theorem 34.3,
+$F'(x)=g'(x)$ for interior $x$. Thus $(F-g)'=0$ on $(a,b)$.
+Both $F$ and $g$ are continuous on the closed interval, so Corollary 29.5
+(the zero-derivative consequence of the Mean Value theorem) says $F-g$
+is constant there. At $a$, $F(a)-g(a)=-g(a)$; hence
+$F(b)-g(b)=-g(a)$. Rearranging gives
+\[
+ \int_a^b g'(t)\,dt=F(b)=g(b)-g(a).
+\]
+\answer{The continuous-integrand version of the Fundamental Theorem
+implies the antiderivative evaluation formula in this case.}
+
+\exercise{34.2}{Two local averages of an exponential}
+\goal Calculate the two limits using derivatives of accumulation integrals.
+\step{(a) Center the integral at zero.}
+Let $H(x)=\int_0^x e^{t^2}\,dt$. The integrand is continuous, so
+$H'(0)=e^0=1$ and $H(0)=0$. By the definition of derivative,
+\[
+ \lim_{x\to0}\frac1x\int_0^x e^{t^2}\,dt
+ =\lim_{x\to0}\frac{H(x)-H(0)}{x-0}=H'(0)=1.
+\]
+The signed-integral convention makes this valid from both sides.
+\step{(b) Center the integral at three.}
+Let $K(y)=\int_3^y e^{t^2}\,dt$. Then $K(3)=0$ and
+$K'(3)=e^9$. Therefore
+\[
+ \lim_{h\to0}\frac1h\int_3^{3+h}e^{t^2}\,dt
+ =\lim_{h\to0}\frac{K(3+h)-K(3)}h=e^9.
+\]
+\answer{The limits are $1$ and $e^9$, respectively.}
+
+\exercise{34.3}{A continuous accumulation function with one corner}
+\goal Integrate the piecewise function, sketch its accumulation function,
+and locate all derivatives.
+The integrand is $0$ for $t<0$, $t$ for $0\le t\le1$, and $4$ for $t>1$.
+\step{(a) Integrate over the pieces actually traversed.}
+For $x\le0$, $F(x)=\int_0^x0\,dt=0$.
+For $0\le x\le1$, $F(x)=\int_0^x t\,dt=x^2/2$.
+For $x\ge1$, split at $1$:
+\[
+ F(x)=\int_0^1t\,dt+\int_1^x4\,dt
+ =\tfrac12+4(x-1)=4x-\tfrac72.
+\]
+The isolated value of the integrand at $1$ has no effect on the latter integral.
+\step{(b) Join the graph pieces at their actual heights.}
+The graph is horizontal at height zero to the left of $0$, then follows
+a parabola to $(1,1/2)$, then a straight line of slope $4$.
+At $0$ both neighboring formulas give $0$; at $1$ both give $1/2$.
+The formulas are continuous on their separate pieces, so $F$ is continuous
+at every real number.
+\begin{center}
+\setlength{\unitlength}{1pt}
+\begin{picture}(170,95)
+\put(35,15){\vector(1,0){125}}\put(65,5){\vector(0,1){80}}
+\put(35,15){\line(1,0){30}}
+\put(65,15){\qbezier(0,0)(20,0)(40,10)}
+\put(105,25){\line(1,2){30}}
+\put(60,3){$0$}\put(100,3){$1$}\put(111,23){\small$(1,1/2)$}
+\put(151,4){$x$}\put(43,80){$F(x)$}
+\end{picture}
+\end{center}
+The drawing scales the horizontal coordinate by $40$ and the vertical
+coordinate by $20$, so the right line has its correct slope in data coordinates.
+\step{(c) Check the joining points separately.}
+Away from $0,1$, differentiation gives $0,x,4$ on the three open pieces.
+At zero, the difference quotient is $0$ for negative increments and
+$h/2$ for positive increments, so $F'(0)=0$.
+At $1$ the left-hand difference quotient tends to $1$ and the right-hand
+one tends to $4$. Thus no derivative exists there.
+\answer{$F$ is continuous on $\R$ and differentiable precisely on
+$\R\setminus\{1\}$, with $F'=0$ for $x\le0$, $F'=x$ for $0<x<1$,
+and $F'=4$ for $x>1$.}
+
+\exercise{34.4}{Two corners in another accumulation function}
+\goal Repeat the analysis when $f(t)=t$ for $t<0$,
+$f(t)=t^2+1$ for $0\le t\le2$, and $f(t)=0$ for $t>2$.
+\step{(a) Keep the orientation of the integral for negative $x$.}
+For $x<0$,
+$F(x)=-\int_x^0 t\,dt=x^2/2$.
+For $0\le x\le2$, integration gives $F(x)=x^3/3+x$.
+For $x>2$, the integrand vanishes after $2$, so
+$F(x)=F(2)=8/3+2=14/3$. Thus
+\[
+ F(x)=\begin{cases}
+ x^2/2,&x\le0,\\
+ x^3/3+x,&0\le x\le2,\\
+ 14/3,&x\ge2.
+ \end{cases}
+\]
+\step{(b) Sketch and test continuity.}
+The left parabola decreases to $(0,0)$; the middle cubic expression
+increases to $(2,14/3)$; the remaining graph is horizontal.
+The two formulas at zero both give zero, and those at $2$ both give $14/3$.
+Thus the function is continuous everywhere.
+\begin{center}
+\setlength{\unitlength}{1pt}
+\begin{picture}(210,90)
+\put(10,13){\vector(1,0){185}}\put(75,5){\vector(0,1){75}}
+\put(75,13){\qbezier(-60,20)(-30,0)(0,0)}
+\put(75,13){\polyline(0,0)(7.5,2.552)(15,5.417)(22.5,8.906)
+ (30,13.333)(37.5,19.0104)(45,26.25)(52.5,35.365)(60,46.667)(105,46.667)}
+\put(70,1){$0$}\put(130,1){$2$}\put(142,64){\small$(2,14/3)$}
+\put(193,2){$x$}\put(52,77){$F(x)$}
+\end{picture}
+\end{center}
+This is a schematic plot of the exact formulas; the middle curve is
+represented by closely spaced points.
+\step{(c) Compare slopes at the joins.}
+On the three open pieces the derivative is respectively $x$, $x^2+1$,
+and $0$. At $0$, the one-sided derivatives are $0$ and $1$.
+At $2$, they are $5$ and $0$. The unequal one-sided derivatives exclude
+differentiability at each joining point.
+\answer{$F$ is continuous on all of $\R$, differentiable on
+$\R\setminus\{0,2\}$, and has the piecewise derivative just computed.}
+
+\exercise{34.5}{Moving both endpoints}
+\goal Differentiate $F(x)=\int_{x-1}^{x+1}f(t)\,dt$ for continuous $f$ on $\R$.
+Choose the fixed-base primitive $H(u)=\int_0^u f(t)\,dt$.
+The Fundamental Theorem gives $H'(u)=f(u)$ for every $u$.
+Interval additivity, with signed integrals when necessary, gives
+\[
+ F(x)=H(x+1)-H(x-1).
+\]
+Apply the chain rule to each term. The derivatives of $x+1$ and $x-1$
+are both $1$, so
+\[
+ F'(x)=H'(x+1)-H'(x-1)=f(x+1)-f(x-1).
+\]
+\answer{$F$ is differentiable everywhere, with the displayed derivative.}
+
+\exercise{34.6}{A trigonometric upper endpoint}
+\goal Differentiate $G(x)=\int_0^{\sin x}f(t)\,dt$ for continuous $f$.
+As above, let $H(u)=\int_0^u f(t)\,dt$, so $H'=f$ everywhere.
+Now $G=H\circ\sin$, and the chain rule yields
+\[
+ G'(x)=H'(\sin x)\cos x=f(\sin x)\cos x.
+\]
+This works even when $\sin x<0$ because $H$ uses oriented integrals,
+and at zeros of $\cos x$ because the chain rule includes zero inner
+derivatives.
+\answer{$G$ is differentiable on all of $\R$ and
+$G'(x)=f(\sin x)\cos x$.}
+
+\exercise{34.7}{A substitution with a reversed direction}
+\goal Evaluate $\int_0^1x\sqrt{1-x^2}\,dx$ by change of variables.
+Choose $u=1-x^2$, so $du=-2x\,dx$ and $x\,dx=-du/2$.
+As $x$ goes from $0$ to $1$, $u$ goes from $1$ to $0$.
+Keeping these transformed endpoints gives
+\[
+ \int_0^1x\sqrt{1-x^2}\,dx
+ =-\frac12\int_1^0u^{1/2}\,du
+ =\frac12\int_0^1u^{1/2}\,du
+ =\frac12\left[\frac23u^{3/2}\right]_0^1=\frac13.
+\]
+The substitution is justified by the change-of-variables theorem: its
+inner map is continuously differentiable and $\sqrt u$ is continuous
+on the transformed interval $[0,1]$. No derivative of $\sqrt u$ at zero
+is needed.
+\answer{The value of the integral is $1/3$.}
+
+\exercise{34.8}{Two choices of antiderivative in integration by parts}
+\goal Evaluate $I=\int_0^1x\arctan x\,dx$ using two versions of $v$.
+\step{(a) Choose $u=\arctan x$ and $v=x^2/2$.}
+Then $u'=1/(1+x^2)$ and $v'=x$. Integration by parts gives
+\[
+ I=\left[\frac{x^2}2\arctan x\right]_0^1
+      -\frac12\int_0^1\frac{x^2}{1+x^2}\,dx.
+\]
+The boundary term is $\pi/8$. Since $x^2/(1+x^2)=1-1/(1+x^2)$,
+the remaining integral is $1-\pi/4$. Therefore
+\[
+ I=\frac\pi8-\frac12\left(1-\frac\pi4\right)
+  =\frac\pi4-\frac12.
+\]
+\step{(b) Choose instead $v=(x^2+1)/2$.}
+This still has derivative $x$. Now the denominator cancels immediately:
+\[
+ I=\left[\frac{x^2+1}2\arctan x\right]_0^1
+      -\int_0^1\frac{x^2+1}{2(1+x^2)}\,dx
+  =\frac\pi4-\frac12.
+\]
+Both calculations are valid because all functions and derivatives used
+are continuous on $[0,1]$.
+\answer{The common answer is $\pi/4-1/2$. A useful constant in $v$
+can simplify the remaining integral.}
+
+\exercise{34.9}{Integrating the inverse sine}
+\goal Evaluate $\int_0^{1/2}\arcsin x\,dx$.
+The inverse-function integration identity of Example 3, or integration
+by parts with $u=\arcsin x$ and $v=x$, gives
+\[
+ \int_0^{1/2}\arcsin x\,dx
+ =\left[x\arcsin x\right]_0^{1/2}
+   -\int_0^{1/2}\frac{x}{\sqrt{1-x^2}}\,dx.
+\]
+Here $\arcsin(1/2)=\pi/6$, so the boundary term is $\pi/12$.
+Since $d(\sqrt{1-x^2})/dx=-x/\sqrt{1-x^2}$,
+\[
+ \int_0^{1/2}\frac{x}{\sqrt{1-x^2}}\,dx
+ =\left[-\sqrt{1-x^2}\right]_0^{1/2}=1-\frac{\sqrt3}{2}.
+\]
+All derivatives in this calculation are continuous on $[0,1/2]$,
+which stays away from the singular endpoints $\pm1$.
+\answer{$\displaystyle\int_0^{1/2}\arcsin x\,dx
+=\frac\pi{12}+\frac{\sqrt3}{2}-1$.}
+
+\exercise{34.10}{The areas under a function and its inverse}
+\goal Give a geometric proof that
+$\int_0^1g(x)\,dx+\int_0^1g^{-1}(u)\,du=1$.
+Because $g$ is a continuous strictly increasing bijection of $[0,1]$
+onto itself, $g(0)=0$, $g(1)=1$, and its inverse is continuous.
+Consider the unit square with horizontal coordinate $x$ and vertical
+coordinate $u$. The graph $u=g(x)$ divides it into two regions.
+The region below the graph has area $\int_0^1g(x)\,dx$, by vertical
+slices. The complementary region is described by $g(x)\le u$;
+strict increase makes this equivalent to $x\le g^{-1}(u)$.
+Its horizontal slice at height $u$ therefore has length $g^{-1}(u)$,
+so its area is $\int_0^1g^{-1}(u)\,du$.
+Together the two regions fill the square, sharing only their boundary
+curve, so their areas sum to its area $1$.
+\answer{The two integrals are the complementary areas in the unit square.}
+
+\exercise{34.11}{A continuous square with zero integral}
+\goal Show that $\int_a^b f(x)^2\,dx=0$ forces continuous $f$ to vanish everywhere.
+Suppose instead that $f(c)\ne0$ for some $c\in[a,b]$.
+Continuity at $c$ gives a relative neighborhood on which
+$\abs{f(x)-f(c)}<\abs{f(c)}/2$. The reverse triangle inequality gives
+$\abs{f(x)}\ge\abs{f(c)}-\abs{f(x)-f(c)}>\abs{f(c)}/2$ there.
+Even if $c$ is an endpoint, this relative neighborhood contains a closed
+subinterval $J\subseteq[a,b]$ of positive length. Thus
+\[
+ \int_a^b f(x)^2\,dx
+ \ge\int_J f(x)^2\,dx
+ \ge\frac{\abs{f(c)}^2}{4}\,\abs J>0,
+\]
+a contradiction. The comparison is justified because $f^2$ is continuous
+and nonnegative throughout the interval.
+\answer{No such $c$ exists, so $f(x)=0$ for every $x\in[a,b]$.}
+
+\exercise{34.12}{Testing against every continuous function}
+\goal If $\int_a^b f(x)g(x)\,dx=0$ for every continuous $g$, prove
+that the continuous function $f$ is identically zero.
+The assumption permits \emph{any} continuous test function $g$;
+in particular, choose $g=f$, which is continuous by hypothesis.
+The assumed identity becomes
+\[
+ \int_a^b f(x)^2\,dx=0.
+\]
+Exercise 34.11 applies directly and yields $f=0$ everywhere.
+Conversely, the zero function clearly has zero integral against every
+continuous test function, although only the forward implication was requested.
+\answer{$f$ must vanish identically on $[a,b]$.}

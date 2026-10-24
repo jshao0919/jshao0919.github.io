@@ -1,0 +1,276 @@
+\section{Taylor's theorem}
+A Taylor polynomial matches a function's derivatives at its center. Matching
+those derivatives does not by itself show that the infinite series represents
+the function. The missing step is to show that the remainder tends to zero.
+With Ross's convention the polynomial in $R_n$ stops at degree $n-1$:
+\[
+ R_n(x)=f(x)-\sum_{k=0}^{n-1}\frac{f^{(k)}(c)}{k!}(x-c)^k.
+\]
+Taylor's theorem bounds this error using the $n$th derivative at a point
+between $c$ and $x$. Later exercises use Newton's method, which replaces a
+curve by its tangent line and uses that line's zero as the next approximation.
+
+\exercise{31.1}{The cosine series and its error}
+\goal Find the Taylor series at $0$ and prove that it equals $\cos x$ everywhere.
+\step{Compute the coefficients.}
+Successive derivatives of cosine are $\cos x,-\sin x,-\cos x,\sin x$, then
+repeat. At zero, the odd derivatives vanish and the $2k$th derivative is
+$(-1)^k$. Thus the Taylor series is
+\[
+ \sum_{k=0}^{\infty}\frac{(-1)^k x^{2k}}{(2k)!}
+ =1-\frac{x^2}{2!}+\frac{x^4}{4!}-\cdots.
+\]
+\step{Control the error, rather than assuming the series is correct.}
+Every derivative of cosine has absolute value at most $1$. Taylor's theorem
+therefore gives $\abs{R_n(x)}\le \abs{x}^n/n!$ for each fixed real $x$.
+This bound tends to zero: if $a_n=\abs{x}^n/n!$, then
+$a_{n+1}/a_n=\abs{x}/(n+1)\le1/2$ eventually (and $x=0$ is immediate).
+The tail is consequently bounded by a geometric sequence tending to zero.
+\answer{The displayed series equals $\cos x$ for every $x\in\R$.}
+
+\exercise{31.2}{The hyperbolic sine and cosine series}
+\goal Obtain series at zero for $\sinh x=(e^x-e^{-x})/2$ and
+$\cosh x=(e^x+e^{-x})/2$, valid on all of $\R$.
+\step{Add and subtract the exponential series.}
+For each real $x$, the exponential series is absolutely convergent:
+$e^x=\sum_{k\ge0}x^k/k!$ and $e^{-x}=\sum_{k\ge0}(-1)^kx^k/k!$.
+Subtracting cancels the even terms; adding cancels the odd terms. Hence
+\[
+ \sinh x=\sum_{k=0}^{\infty}\frac{x^{2k+1}}{(2k+1)!},\qquad
+ \cosh x=\sum_{k=0}^{\infty}\frac{x^{2k}}{(2k)!}.
+\]
+Termwise addition here is legitimate because it is addition of convergent
+series at a fixed $x$.
+\step{Check that these really are Taylor coefficients.}
+Differentiation interchanges $\sinh$ and $\cosh$. Their values at zero are
+$0$ and $1$, respectively. This gives exactly the displayed coefficients.
+Alternatively, on $[-M,M]$ all derivatives of either function are bounded by
+$e^M$, so Taylor's bound is $e^M\abs{x}^n/n!\to0$.
+For any given $x$, choose $M>\abs{x}$; this proves validity at that $x$.
+\answer{Both series represent their functions at every real number.}
+
+\exercise{31.3}{Why the common derivative bound is unavailable}
+\goal Explain the theorem choice for $f(x)=\log(1+x)$ in Example 2.
+\step{Inspect the hypothesis of Corollary 31.4.}
+That corollary requires a single constant bounding \emph{all} derivatives
+on the interval in question. But
+\[
+ f^{(n)}(x)=(-1)^{n+1}(n-1)!(1+x)^{-n},\qquad
+ \abs{f^{(n)}(0)}=(n-1)!.
+\]
+Even at the center $0$ these numbers have no common finite bound.
+No interval containing zero can satisfy the corollary's hypothesis.
+\step{Use the more precise remainder instead.}
+For evaluating at $x=1$, Taylor's theorem gives a $y_n\in(0,1)$ with
+\[
+ \abs{R_n(1)}=\frac1{n(1+y_n)^n}\le\frac1n\longrightarrow0.
+\]
+The factorial growth of the derivative is canceled by the $n!$ in the
+remainder. The corollary's stronger hypothesis would miss that cancellation.
+\answer{Theorem 31.3 applies directly; the common-bound hypothesis of the
+corollary fails.}
+
+\exercise{31.4}{Smooth cutoffs and a smooth step}
+\goal Construct the four requested infinitely differentiable functions.
+\idea Start from the smooth function in Example 3,
+\[
+ \phi(t)=\begin{cases}e^{-1/t},&t>0,\\0,&t\le0.\end{cases}
+\]
+It is important that all its derivatives at zero vanish; this is what makes
+the joining point smooth, despite the piecewise formula.
+\step{(a) Move the start of the positive part to $a$.}
+Set $f_a(x)=\phi(x-a)$. A translation preserves smoothness.
+If $x\le a$ its argument is nonpositive, so $f_a(x)=0$; if $x>a$,
+its argument is positive and $f_a(x)>0$.
+\step{(b) Reverse the direction and move the endpoint to $b$.}
+Set $g_b(x)=\phi(b-x)$. The affine change of variable preserves smoothness.
+This is zero for $x\ge b$ and strictly positive for $x<b$.
+\step{(c) Require both positivity conditions.}
+Set $h_{a,b}(x)=f_a(x)g_b(x)$. Products of smooth functions are smooth.
+Both factors are positive exactly when $a<x<b$. Outside this interval
+at least one factor is zero, so the product is zero.
+\step{(d) Turn the two cutoffs into a step.}
+Set
+\[
+ h^*_{a,b}(x)=\frac{f_a(x)}{f_a(x)+g_b(x)}.
+\]
+The denominator never vanishes. Indeed, if $x\le a$ then $x<b$ and
+$g_b(x)>0$; if $x\ge b$ then $x>a$ and $f_a(x)>0$; between $a$ and
+$b$ both are positive. The permitted quotient rule for smooth functions
+therefore applies. For $x\le a$ the quotient is $0$; for $x\ge b$
+its numerator equals its denominator, so it is $1$.
+\answer{These four explicit formulas have all the required properties,
+including smoothness at $a$ and $b$.}
+
+\exercise{31.5}{A nonzero smooth function with zero Taylor series}
+\goal For $g(x)=e^{-1/x^2}$ when $x\ne0$, $g(0)=0$, find all derivatives
+at zero and compare $g$ with its Taylor series.
+\step{(a) Recognize a smooth composition.}
+Using $\phi$ from Example 3, we have $g(x)=\phi(x^2)$ for every $x$.
+Since both $\phi$ and $x\mapsto x^2$ are smooth, so is $g$.
+Repeated chain and product rules show that each positive-order derivative
+of this composition is a finite sum of polynomial factors times
+$\phi^{(j)}(x^2)$, for integers $j\ge1$. At zero every such term vanishes,
+because $\phi^{(j)}(0)=0$. Also $g(0)=0$. Thus
+$g^{(n)}(0)=0$ for all $n=0,1,2,\ldots$.
+\step{(b) Compare the function and the series point by point.}
+Every coefficient $g^{(n)}(0)/n!$ is zero, so the Taylor series is the
+identically zero series. It equals $g$ at $0$. For $x\ne0$,
+$e^{-1/x^2}>0$, so it cannot equal $g(x)$ there.
+\answer{Smoothness alone does not imply agreement with a Taylor series,
+even arbitrarily close to its center.}
+
+\exercise{31.6}{A telescoping proof of Taylor's theorem}
+\goal Verify the older proof using its auxiliary function $F$.
+Fix $x>0$. As in the theorem's proof, define $M$ by
+\[
+ f(x)=\sum_{k=0}^{n-1}\frac{x^k}{k!}f^{(k)}(0)+\frac{Mx^n}{n!}.
+\]
+\step{(a) Differentiate and cancel adjacent terms.}
+Write the auxiliary function as
+\[
+ F(t)=\sum_{k=0}^{n-1}\frac{(x-t)^k}{k!}f^{(k)}(t)
+       +M\frac{(x-t)^n}{n!},\qquad0\le t\le x.
+\]
+For $k\ge1$, the product rule gives
+\[
+ \frac{d}{dt}\left(\frac{(x-t)^k}{k!}f^{(k)}(t)\right)
+ =-\frac{(x-t)^{k-1}}{(k-1)!}f^{(k)}(t)
+   +\frac{(x-t)^k}{k!}f^{(k+1)}(t).
+\]
+The negative term cancels the positive term from index $k-1$.
+Only the last positive term and the derivative of the $M$ term remain:
+\[
+ F'(t)=\frac{(x-t)^{n-1}}{(n-1)!}\bigl(f^{(n)}(t)-M\bigr).
+\]
+All needed derivatives exist on an open interval containing $[0,x]$;
+in particular $F$ is continuous on the closed interval and differentiable
+in its interior. For $n=1$ the formula follows directly from
+$F(t)=f(t)+M(x-t)$.
+\step{(b) Evaluate the endpoints.}
+The definition of $M$ says $F(0)=f(x)$. At $t=x$ all positive powers
+of $x-t$ vanish, leaving $F(x)=f(x)$. Thus $F(0)=F(x)$.
+\step{(c) Apply Rolle's theorem.}
+There is $y\in(0,x)$ with $F'(y)=0$. Since $x-y>0$, the prefactor
+in the derivative formula is nonzero; hence $f^{(n)}(y)=M$.
+Substituting into the defining equation for $M$ yields Taylor's remainder.
+\answer{The auxiliary function proves the required mean-value expression
+for the remainder.}
+
+\exercise{31.7}{Newton's method for the square root of two}
+\goal Recover the recursion from Exercise 9.5.
+For $f(x)=x^2-2$, we have $f'(x)=2x$. Newton's update at a nonzero
+$t_n$ is
+\[
+ t_{n+1}=t_n-\frac{t_n^2-2}{2t_n}
+ =\frac{2t_n^2-t_n^2+2}{2t_n}
+ =\frac{t_n^2+2}{2t_n}.
+\]
+With initial point $t_1=1$ this is exactly the earlier sequence.
+Every iterate is positive, because a positive $t_n$ gives a positive
+numerator and denominator. Thus no zero denominator is encountered.
+\answer{The recursion is Newton's method for $x^2-2=0$, starting at $1$.}
+
+\exercise{31.8}{Two real roots of a quartic}
+\goal Count the real roots of $p(x)=x^4+x^3-1$ and approximate each to six decimals.
+\step{(a) Establish the shape and count crossings.}
+The derivative is $p'(x)=x^2(4x+3)$. It is negative for $x<-3/4$
+and positive for $x>-3/4$, except for the isolated zero at $x=0$.
+Thus $p$ is strictly decreasing on $(-\infty,-3/4]$ and strictly increasing
+on $[-3/4,\infty)$. For strict increase across zero, apply the Mean Value
+theorem separately on either side and combine the inequalities.
+Now $p(-2)=7>0$, $p(-1)=-1<0$, $p(0)=-1<0$, and $p(1)=1>0$.
+The Intermediate Value theorem supplies one root in $(-2,-1)$ and one
+in $(0,1)$. Strict monotonicity on the two branches rules out any others.
+\step{(b) Run the explicit update.}
+Newton's formula is
+\[
+ x_{n+1}=x_n-\frac{x_n^4+x_n^3-1}{4x_n^3+3x_n^2}.
+\]
+Two runs, retaining guard digits, give
+\[
+\begin{array}{c|rr}
+ n&x_0=-1.5&x_0=0.8\\\hline
+ 0&-1.500000000000&0.800000000000\\
+ 1&-1.398148148148&0.819758064516\\
+ 2&-1.380747193802&0.819173040661\\
+ 3&-1.380277903561&0.819172513397\\
+ 4&-1.380277569098&0.819172513396
+\end{array}
+\]
+As a check independent of apparent convergence, direct substitution gives
+opposite signs at the endpoints of each interval
+$(-1.380277570,-1.380277568)$ and $(0.819172512,0.819172515)$.
+Each interval contains the unique root on its branch and lies wholly
+within the rounding range for the answer below.
+\answer{The two roots, rounded to six decimal places, are
+$-1.380278$ and $0.819173$.}
+
+\exercise{31.9}{Solving the cosine fixed-point equation}
+\goal Approximate the solution of $x=\cos x$ to six decimals.
+Set $f(x)=x-\cos x$. Since $f'(x)=1+\sin x>0$ on $(0,\pi/2)$,
+the root there is unique. Newton's iteration is
+\[
+ x_{n+1}=x_n-\frac{x_n-\cos x_n}{1+\sin x_n}.
+\]
+Starting at $x_0=1$ gives successively
+\[
+ 0.750363867840,\quad0.739112890911,\quad
+ 0.739085133385,\quad0.739085133215.
+\]
+The signs of $f$ at $0.739085132$ and $0.739085135$ are negative
+and positive, respectively. Continuity and strict increase bracket the
+root, so the displayed digits are not justified solely by two similar iterates.
+\answer{The root is $x=0.739085$ to six decimal places.}
+
+\exercise{31.10}{Solving an exponential equation}
+\goal Approximate the root of $xe^x=2$ in $(0,1)$ to six decimals.
+Use $f(x)=xe^x-2$, with $f'(x)=(1+x)e^x>0$ on $(0,1)$.
+Thus there is at most one root there; the opposite endpoint signs give
+existence by continuity. Newton's update is
+\[
+ x_{n+1}=x_n-\frac{x_ne^{x_n}-2}{(1+x_n)e^{x_n}}.
+\]
+Starting with $x_0=1$ gives
+\[
+ 0.867879441171,\quad0.852783373416,\quad
+ 0.852605526369,\quad0.852605502014.
+\]
+Direct substitution gives $f(0.852605501)<0<f(0.852605504)$,
+so the unique root is in that small interval.
+\answer{The six-decimal value is $0.852606$.}
+
+\exercise{31.11}{A convergent Newton sequence must approach a zero}
+\goal Under the stated bounded-derivative hypotheses, prove $f(x)=0$
+when the Newton iterates converge to the interior point $x$.
+\step{Rearrange the recursion before taking limits.}
+Since $f'(x_{n-1})\ne0$, the update is defined and implies
+\[
+ f(x_{n-1})=(x_{n-1}-x_n)f'(x_{n-1}).
+\]
+Choose $B<\infty$ with $\abs{f'(t)}\le B$ throughout $(a,b)$.
+Convergence of $(x_n)$ means both $x_n$ and $x_{n-1}$ tend to $x$,
+so their difference tends to zero. Consequently
+\[
+ \abs{f(x_{n-1})}\le B\abs{x_{n-1}-x_n}\longrightarrow0.
+\]
+\step{Identify this limit using continuity.}
+Differentiability at the interior point $x$ implies continuity there,
+so also $f(x_{n-1})\to f(x)$. Uniqueness of a real limit gives $f(x)=0$.
+We did not assume $f'$ was continuous or bounded away from zero;
+the boundedness from above was the estimate actually used.
+\answer{Every convergent sequence of these iterates with an interior limit
+converges to a root.}
+
+\exercise{31.12}{An interior point is no farther than an endpoint}
+\goal If $a<c<b$, prove $\abs{c-x}\le\max\{\abs{a-x},\abs{b-x}\}$
+for every real $x$.
+\step{Case 1: $x\le c$.}
+Then $c-x\ge0$ and $b-x>0$, so
+$\abs{c-x}=c-x\le b-x=\abs{b-x}$.
+\step{Case 2: $x>c$.}
+Then $x-c>0$ and $x-a>0$, so
+$\abs{c-x}=x-c\le x-a=\abs{a-x}$.
+These cases exhaust the real line. In either case the relevant endpoint
+distance is at most the maximum of the two endpoint distances.
+\answer{The claimed inequality follows for all $x\in\R$.}

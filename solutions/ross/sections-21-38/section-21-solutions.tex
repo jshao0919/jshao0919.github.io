@@ -1,0 +1,328 @@
+\section{More on metric spaces: continuity}
+A metric $d$ measures distance. The open ball $B_r(s)$ consists of the
+points whose distance from $s$ is less than $r$. A continuous function
+sends points sufficiently close to a \emph{fixed} point to points close
+to its image. Uniform continuity uses one input tolerance for all pairs
+of points. An open set in a subspace is understood relative to that
+subspace; it need not be open in the surrounding Euclidean space.
+
+\exercise{21.1}{Uniform continuity of a vector-valued function}
+\goal Show that $\gamma(t)=(f_1(t),\ldots,f_k(t))$ is uniformly
+continuous when all its coordinate functions are uniformly continuous.
+\idea Make each coordinate error small enough that the sum of their
+squares is less than the desired squared distance.
+\step{Choose the input tolerance before choosing the points.}
+Fix $\varepsilon>0$. For each $j$, uniform continuity of $f_j$ gives
+$\delta_j>0$ such that, for \emph{all} $s,t\in[a,b]$,
+\[
+ |s-t|<\delta_j\ \Longrightarrow\
+ |f_j(s)-f_j(t)|<\varepsilon/\sqrt{k}.
+\]
+The minimum $\delta=\min(\delta_1,\ldots,\delta_k)$ is positive because
+there are only finitely many coordinates. If $|s-t|<\delta$, every
+coordinate estimate holds. Consequently
+\[
+ d(\gamma(s),\gamma(t))
+ =\left(\sum_{j=1}^k|f_j(s)-f_j(t)|^2\right)^{1/2}
+ <\left(k\frac{\varepsilon^2}{k}\right)^{1/2}=\varepsilon.
+\]
+\answer{The same $\delta$ works for every pair $s,t$, which is precisely
+uniform continuity.}
+
+\exercise{21.2}{Continuity at one point in terms of open sets}
+\goal Prove both directions of the open-neighborhood characterization
+at $s_0\in S$.
+\step{Continuity implies the neighborhood condition.}
+Suppose $f$ is continuous at $s_0$ and $U\subseteq S^*$ is open with
+$f(s_0)\in U$. Openness provides $\varepsilon>0$ for which
+$B^*_{\varepsilon}(f(s_0))\subseteq U$. Continuity supplies $\delta>0$
+with $d(s,s_0)<\delta$ implying
+$d^*(f(s),f(s_0))<\varepsilon$. The open set $V=B_\delta(s_0)$ contains
+$s_0$ and satisfies $f(V)\subseteq U$.
+\step{The neighborhood condition implies continuity.}
+Conversely, fix $\varepsilon>0$ and apply the assumed condition to the
+open ball $U=B^*_{\varepsilon}(f(s_0))$. We obtain an open $V$ containing
+$s_0$ with $f(V)\subseteq U$. Since $V$ is open, it contains a ball
+$B_\delta(s_0)$ for some $\delta>0$. Hence
+\[
+ d(s,s_0)<\delta\ \Longrightarrow\ s\in V
+ \ \Longrightarrow\ f(s)\in U
+ \ \Longrightarrow\ d^*(f(s),f(s_0))<\varepsilon.
+\]
+\answer{This is exactly the metric definition of continuity at $s_0$.}
+
+\exercise{21.3}{Distance from a fixed point is uniformly continuous}
+\goal For fixed $s_0$, prove uniform continuity of $f(s)=d(s,s_0)$.
+\step{Derive the reverse triangle inequality.}
+The triangle inequality gives
+$d(s,s_0)\le d(s,t)+d(t,s_0)$, so
+$d(s,s_0)-d(t,s_0)\le d(s,t)$. Interchanging $s,t$ bounds the negative
+of the same difference. Together these statements give
+\[
+ |f(s)-f(t)|=|d(s,s_0)-d(t,s_0)|\le d(s,t).
+\]
+Given $\varepsilon>0$, choose $\delta=\varepsilon$. Whenever
+$d(s,t)<\delta$, the displayed inequality implies
+$|f(s)-f(t)|<\varepsilon$.
+\answer{Distance from a fixed point is even Lipschitz with constant $1$;
+this means its output distance never exceeds its input distance.}
+
+\exercise{21.4}{Rational intervals suffice to test continuity}
+\goal Establish the equivalence of continuity, openness of preimages
+of all open intervals, and openness for intervals with rational endpoints.
+\step{The first two implications.}
+If $f$ is continuous, Theorem~21.3 makes the inverse image of every
+open subset of $\R$ open in $S$. In particular, this holds for every
+interval $(a,b)$. Restricting $a,b$ to rationals gives the third condition.
+\step{Recover continuity using only rational endpoints.}
+Assume $f^{-1}((a,b))$ is open whenever $a<b$ are rational. Fix
+$s_0\in S$ and $\varepsilon>0$. Density of $\Q$ gives rationals with
+\[
+ f(s_0)-\varepsilon<a<f(s_0)<b<f(s_0)+\varepsilon.
+\]
+The set $V=f^{-1}((a,b))$ is open and contains $s_0$, so some
+$B_\delta(s_0)$ is contained in $V$. If $d(s,s_0)<\delta$, then
+$a<f(s)<b$, and therefore $|f(s)-f(s_0)|<\varepsilon$.
+\answer{Continuity at every $s_0$ follows. A dense set of possible
+interval endpoints gives arbitrarily small neighborhoods of every output.}
+
+\exercise{21.5}{What can fail on a noncompact Euclidean set}
+\goal Construct (a) an unbounded continuous function and (b) a bounded
+continuous function with no maximum on a noncompact $E\subseteq\R^k$.
+\idea By Heine--Borel, a compact Euclidean set is exactly a closed
+bounded set. Failure of compactness gives either points escaping to
+infinity or a missing limit point.
+\step{(a) Construct an unbounded function.}
+If $E$ is unbounded, set $h(x)=\|x\|$, the Euclidean distance from
+zero. Exercise~21.3 proves continuity. For each $M>0$, unboundedness
+of $E$ supplies $x\in E$ with $h(x)>M$.
+
+If $E$ is bounded, it cannot be closed. Choose
+$x_0\in\overline E\setminus E$ and set $h(x)=1/\|x-x_0\|$ on $E$.
+The denominator is positive on $E$, and the distance function and the
+reciprocal function on $(0,\infty)$ are continuous, so $h$ is continuous.
+Since $x_0\in\overline E$, for every $M>0$ some $x\in E$ satisfies
+$0<\|x-x_0\|<1/M$; thus $h(x)>M$.
+\step{(b) Compress the unbounded values into a bounded interval.}
+In either case $h\ge0$ and $h$ is unbounded above. Define
+\[
+ g(x)=\frac{h(x)}{1+h(x)}=1-\frac1{1+h(x)}.
+\]
+This is continuous and $0\le g(x)<1$. For any $x\in E$, choose $y\in E$
+with $h(y)>h(x)$. Since $t/(1+t)$ is strictly increasing for $t\ge0$
+(as follows by cross multiplication), $g(y)>g(x)$. Thus no point
+can maximize $g$.
+\answer{Compactness is essential both for boundedness of continuous
+functions and for attainment of their extreme values.}
+
+\exercise{21.6}{Compositions of continuous metric-space functions}
+\goal Show that $g\circ f:S_1\to S_3$ is continuous when both component
+functions are continuous.
+\step{Pull an open set back in two stages.}
+Let $U\subseteq S_3$ be open. Continuity of $g$ says $g^{-1}(U)$ is
+open in $S_2$. Continuity of $f$ then says
+$f^{-1}(g^{-1}(U))$ is open in $S_1$. The identity
+\[
+ (g\circ f)^{-1}(U)=f^{-1}(g^{-1}(U))
+\]
+holds because each side consists of exactly those $s$ with $g(f(s))\in U$.
+Theorem~21.3 therefore proves continuity of $g\circ f$.
+\answer{The order of inverse images is the reverse of the order in
+which the functions are applied.}
+
+\exercise{21.7}{Restricted metrics and continuity of a path}
+\step{(a) Restricting a metric.}
+For $s,t,u\in E\subseteq S$, the numbers $d(s,t)$ are nonnegative,
+$d(s,t)=0$ exactly when $s=t$, symmetry holds, and
+$d(s,u)\le d(s,t)+d(t,u)$. These statements already hold in $S$,
+so they still hold when the available points are restricted to $E$.
+Thus $(E,d)$ is a metric space. In particular $d(x,y)=|x-y|$ is a
+metric on every subset of $\R$.
+\step{(b) Spell out the definition for a path.}
+A function $\gamma:[a,b]\to\R^k$ is continuous if, for every
+$t_0\in[a,b]$ and every $\varepsilon>0$, there is $\delta>0$ such that
+\[
+ t\in[a,b],\quad |t-t_0|<\delta
+ \quad\Longrightarrow\quad
+ \left(\sum_{j=1}^k|\gamma_j(t)-\gamma_j(t_0)|^2\right)^{1/2}
+ <\varepsilon.
+\]
+\answer{At an endpoint, only points of $[a,b]$ are tested. The definition
+does not ask for values of the path outside its domain.}
+
+\exercise{21.8}{Uniform continuity sends Cauchy sequences to Cauchy sequences}
+\goal Prove that $(f(s_n))$ is Cauchy in $S^*$ when $(s_n)$ is Cauchy
+in $S$ and $f$ is uniformly continuous.
+\step{Match the two definitions.}
+Fix $\varepsilon>0$. Uniform continuity gives $\delta>0$ such that
+$d(s,t)<\delta$ implies $d^*(f(s),f(t))<\varepsilon$, for all $s,t\in S$.
+Since $(s_n)$ is Cauchy, some $N$ has $d(s_m,s_n)<\delta$ whenever
+$m,n>N$. Consequently
+\[
+ m,n>N\ \Longrightarrow\ d^*(f(s_m),f(s_n))<\varepsilon.
+\]
+\answer{This is the Cauchy condition in the target. We did not assume
+either sequence has a limit. Mere continuity would not suffice: $1/x$
+on $(0,1)$ sends the Cauchy sequence $1/(n+1)$ to the non-Cauchy
+sequence $n+1$.}
+
+\exercise{21.9}{Continuous surjections involving a square}
+\step{(a) Project the square onto an interval.}
+On $[0,1]^2$, put $p(x_1,x_2)=x_1$. The inequality
+$|p(x)-p(y)|\le\|x-y\|$ proves continuity. Every $u\in[0,1]$ is the
+image of $(u,0)$, so the range is exactly $[0,1]$.
+\step{(b) Can an interval fill a square?}
+Yes: a continuous surjection $[0,1]\to[0,1]^2$ is called a
+\emph{space-filling curve}. Dimension alone does not prevent one.
+The question asks for a judgment, rather than a formula; here is an
+existence argument explaining why the answer is not merely a guess.
+
+Let $C$ be the middle-thirds Cantor set. Each point of $C$ has a
+unique expansion $t=\sum_{j\ge1}2b_j3^{-j}$ with $b_j\in\{0,1\}$.
+Define
+\[
+ H(t)=\left(\sum_{j\ge1}b_{2j-1}2^{-j},\
+                 \sum_{j\ge1}b_{2j}2^{-j}\right).
+\]
+Any two numbers in $[0,1]$ have binary expansions; interlacing their
+digits produces a point of $C$ with precisely those two images.
+Thus $H(C)=[0,1]^2$. If two Cantor points have their first $2m$
+ternary digits equal, their coordinate differences are at most
+$\sum_{j>m}2^{-j}=2^{-m}$. Conversely, points in distinct cylinders
+specified by the first $2m$ digits are separated by a positive gap.
+These finite-cylinder gaps prove continuity of $H$ on $C$.
+
+Extend $H$ to each removed interval $(u,v)$ by straight-line
+interpolation between $H(u)$ and $H(v)$. The resulting map stays in
+the square because line segments between square points stay in the
+square. It is continuous inside each gap. To check continuity at
+$t\in C$, consider any sequence $t_n\to t$. For points in $C$ use
+continuity of $H$. For points in gaps, either a subsequence lies in a
+fixed gap whose endpoint is $t$ (where linear interpolation is
+continuous), or the gap lengths tend to zero. In the latter case both
+endpoints tend to $t$, and their images tend to $H(t)$, so every
+convex combination does too. Only finitely many gaps have length at
+least any prescribed positive number; hence these cases cover every
+possible subsequence. The sequential criterion proves continuity.
+\answer{The extension is a continuous map on $[0,1]$ and is already
+onto the square on its Cantor subset. A curve can therefore fill a square.}
+
+\exercise{21.10}{Four questions about continuous ranges}
+\step{(a) Map $(0,1)$ onto $[0,1]$.}
+Use $f(t)=(1+\sin(4\pi t))/2$. This continuous function takes values
+only in $[0,1]$, attains $1$ at $t=1/8$, and attains $0$ at $t=3/8$.
+The intermediate value theorem on $[1/8,3/8]$ supplies every value
+between them. Hence the map is onto.
+\step{(b) Map $(0,1)$ onto $\R$.}
+Use $g(t)=\tan(\pi(t-1/2))$. Its argument lies in
+$(-\pi/2,\pi/2)$, where tangent is continuous and strictly increasing,
+with limits $-\infty$ and $+\infty$ at the two ends. For any real
+$y$, choose interior points where $g$ is below and above $y$ and apply
+the intermediate value theorem.
+\step{(c) Map $[0,1]\cup[2,3]$ onto $[0,1]$.}
+Define $h(t)=t$ on $[0,1]$ and $h(t)=t-2$ on $[2,3]$. On each
+component this is continuous. A ball of radius less than $1$ around
+any domain point cannot reach the other component, so continuity on
+each component proves continuity on the whole domain. Each component
+already maps onto $[0,1]$.
+\step{(d) Rule out two proposed ranges.}
+A continuous image of the compact interval $[0,1]$ is compact.
+Neither $(0,1)$ (not closed in $\R$) nor $\R$ (unbounded) is compact.
+If a continuous map were onto either, its image would be both compact
+and noncompact, a contradiction.
+\answer{The formulas supply (a)--(c); preservation of compactness
+excludes both maps in (d).}
+
+\exercise{21.11}{The rationals are not a countable intersection of open sets}
+\goal Use the Baire theorem to rule out $\Q=\bigcap_{n\ge1}U_n$ with
+all $U_n$ open in $\R$.
+\idea Such $U_n$ would all be dense. Intersect them also with the
+complements of individual rationals and reach an empty dense set.
+\step{Construct dense open sets.}
+Suppose the representation exists. Since every $U_n$ contains $\Q$
+and $\Q$ is dense, $U_n$ is dense. List the rationals as
+$\Q=\{q_1,q_2,\ldots\}$. Each $V_n=\R\setminus\{q_n\}$ is open
+and dense: every nonempty open interval contains points other than a
+single fixed point.
+\step{Apply completeness exactly where needed.}
+The real line is a complete metric space. Theorem~21.7(a), applied
+to the interlaced sequence $U_1,V_1,U_2,V_2,\ldots$, says their
+intersection is dense. But it equals
+\[
+ \left(\bigcap_nU_n\right)\cap\left(\bigcap_nV_n\right)
+ =\Q\cap(\R\setminus\Q)=\varnothing,
+\]
+which is not dense in the nonempty space $\R$.
+\step{Take complements for the equivalent formulation.}
+If $\R\setminus\Q=\bigcup_nF_n$ with each $F_n$ closed, De Morgan's
+law would give $\Q=\bigcap_n(\R\setminus F_n)$ with open terms.
+\answer{Neither proposed representation is possible.}
+
+\exercise{21.12}{Infinitely many disjoint sets of second category}
+\goal Give pairwise disjoint subsets of $\R$, each not a countable union
+of nowhere dense subsets of $\R$.
+\step{Choose intervals and invoke the right Baire consequence.}
+For $n\ge1$, let $E_n=(2n,2n+1)$. These intervals are pairwise
+disjoint. Suppose some $E_n$ were a countable union of nowhere dense
+sets. By Theorem~21.7(c), its complement would be dense in $\R$.
+But that complement misses the nonempty open interval $E_n$,
+contradicting density.
+\answer{The sequence $((2n,2n+1))_{n\ge1}$ works. The category here
+is category in the ambient space $\R$, as the exercise requires.}
+
+\exercise{21.13}{Oscillation detects continuity}
+\goal For
+\[
+ \omega_f(x)=\inf_{\delta>0}\sup\{|f(y)-f(z)|:
+                        y,z\in(x-\delta,x+\delta)\},
+\]
+prove $f$ is continuous at $x$ exactly when $\omega_f(x)=0$.
+The suprema may be infinite when $f$ is locally unbounded; all
+quantities are nonnegative.
+\step{Continuity makes the oscillation zero.}
+Fix $\varepsilon>0$. Continuity gives $\delta>0$ such that
+$|f(y)-f(x)|<\varepsilon/4$ for $|y-x|<\delta$. For two such
+points, the triangle inequality gives
+$|f(y)-f(z)|<\varepsilon/2$. Taking the supremum can change a strict
+inequality into a nonstrict one, but still gives a bound at most
+$\varepsilon/2<\varepsilon$. Therefore
+$0\le\omega_f(x)<\varepsilon$. Since this holds for every
+$\varepsilon>0$, $\omega_f(x)=0$.
+\step{Zero oscillation gives continuity.}
+If the nonnegative infimum is zero, then for every $\varepsilon>0$
+some $\delta>0$ has the corresponding supremum less than
+$\varepsilon$. Set $z=x$, which is permitted because $x$ belongs to
+the interval. Then
+\[
+ |y-x|<\delta\ \Longrightarrow\
+ |f(y)-f(x)|\le\sup_{u,v\in(x-\delta,x+\delta)}|f(u)-f(v)|
+ <\varepsilon.
+\]
+\answer{This is continuity at $x$. It is important that the interval
+in the oscillation definition includes its center.}
+
+\exercise{21.14}{Reduce every interval to the bounded closed case}
+\goal Complete Theorem~21.11 after its proof for $[a,b]$.
+\step{Assume a forbidden decomposition of an arbitrary interval.}
+Suppose a nondegenerate interval $I$ is a disjoint union of at least
+two nondegenerate closed intervals $J_\alpha$. Choose two distinct
+members. Select an interior point $x$ of one and an interior point
+$y$ of the other; relabel so $x<y$. Because $I$ is an interval,
+$[x,y]\subseteq I$.
+\step{Intersect every piece with $[x,y]$.}
+Discard empty intersections. The remaining
+$K_\alpha=J_\alpha\cap[x,y]$ are pairwise disjoint closed intervals
+whose union is $[x,y]$. The interval containing $x$ has positive
+length to the right of $x$, and the interval containing $y$ has
+positive length to the left of $y$, because $x,y$ were chosen in
+interiors. Every other surviving interval lies strictly between
+$x$ and $y$ and retains its original positive length. Thus none of
+the surviving intersections is a singleton. There are at least two
+of them, since the intervals containing $x$ and $y$ are distinct.
+\step{Use the case already established.}
+We have written the bounded closed interval $[x,y]$ as a disjoint
+union of at least two nondegenerate closed intervals. This contradicts
+the bounded closed case of Theorem~21.11.
+\answer{The theorem holds for all nondegenerate intervals, including
+open, half-open, and unbounded intervals. The interior-point choice
+prevents unwanted singleton pieces at the truncation endpoints.}

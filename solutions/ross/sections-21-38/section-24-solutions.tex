@@ -1,0 +1,335 @@
+\section{Uniform convergence}
+\label{sec:uniform-convergence-new}
+\textbf{Before starting.} Pointwise convergence means fixing one input $x$
+first and then letting $n$ grow. Uniform convergence means finding one index
+that works for \emph{all} inputs at once. We shall repeatedly estimate the
+largest error
+\[
+ E_n=\sup_{x\in S}|f_n(x)-f(x)|.
+\]
+Uniform convergence is equivalent to $E_n\to0$; Exercise~24.12 proves this.
+To disprove uniform convergence, it is enough to find a positive number
+$\varepsilon_0$ and inputs $x_n\in S$, for arbitrarily large $n$, with
+$|f_n(x_n)-f(x_n)|\ge\varepsilon_0$. The input is allowed to change with $n$.
+That is precisely the obstacle uniform convergence must overcome.
+
+\exercise{24.1}{One bound for every oscillation}
+\goal Prove uniform convergence to zero for
+$f_n(x)=(1+2\cos^2(nx))/\sqrt n$ on $\R$.
+\idea We need not follow the oscillations: the cosine is always between $-1$ and $1$.
+\step{Bound the numerator independently of the input.}
+Since $0\le\cos^2(nx)\le1$, we have
+\[
+ |f_n(x)-0|\le\frac3{\sqrt n}\qquad(x\in\R).
+\]
+Given $\varepsilon>0$, choose an integer $N>(3/\varepsilon)^2$.
+For every $n>N$ and every real $x$, the last bound is smaller than
+$\varepsilon$. The choice of $N$ depends only on $\varepsilon$.
+\answer{$f_n\to0$ uniformly on $\R$.}
+
+\exercise{24.2}{A small slope on bounded and unbounded domains}
+\goal Analyze $f_n(x)=x/n$ on $[0,\infty)$.
+\step{(a) Fix the input before passing to the limit.}
+For fixed $x\ge0$, the numerator is constant and $n\to\infty$, so
+$f_n(x)\to0$. Thus the pointwise limit is $f(x)=0$.
+\step{(b) Control all inputs in $[0,1]$.}
+There $|f_n(x)|\le1/n$. Given $\varepsilon>0$, any integer
+$N>1/\varepsilon$ works for all $x\in[0,1]$ and $n>N$.
+\step{(c) Let the input escape along with the index.}
+On $[0,\infty)$ take $x_n=n$. Then $f_n(x_n)=1$, so the error never
+falls below $1/2$. This contradicts the requirement of uniform convergence.
+\answer{The limit is zero everywhere; convergence is uniform on $[0,1]$
+but not on $[0,\infty)$.}
+
+\exercise{24.3}{A transition concentrated near one}
+\goal Analyze $f_n(x)=1/(1+x^n)$ for $x\ge0$.
+\step{(a) Separate the three possible behaviors of a power.}
+If $0\le x<1$, then $x^n\to0$, giving limit $1$.
+At $x=1$ every term is $1/2$.
+If $x>1$, then $x^n\to\infty$, giving limit $0$. Thus
+\[
+ f(x)=\begin{cases}1&0\le x<1,\\1/2&x=1,\\0&x>1.\end{cases}
+\]
+\step{(b) Test uniform convergence on $[0,1]$.}
+Each $f_n$ is continuous there because its denominator is positive.
+The limit is not continuous at $1$: its values from the left are $1$,
+whereas $f(1)=1/2$. The uniform-limit theorem for continuous functions
+therefore excludes uniform convergence on $[0,1]$.
+\step{(c) Use restriction to a smaller domain.}
+Uniform convergence on $[0,\infty)$ would imply uniform convergence on
+its subset $[0,1]$, with exactly the same error bound. Part (b) rules that out.
+\answer{The piecewise function above is the pointwise limit, and neither
+of the two requested uniform-convergence assertions holds.}
+
+\exercise{24.4}{The complementary transition}
+\goal Analyze $f_n(x)=x^n/(1+x^n)$ on $[0,\infty)$.
+\step{(a) Use an exact identity.}
+We have $f_n(x)=1-1/(1+x^n)$. The three cases of the preceding
+exercise therefore give
+\[
+ f(x)=\begin{cases}0&0\le x<1,\\1/2&x=1,\\1&x>1.\end{cases}
+\]
+\step{(b) Notice the endpoint jump.}
+The $f_n$ are continuous on $[0,1]$, but $f$ is not continuous at $1$.
+Consequently convergence cannot be uniform there, by Theorem~24.3.
+\step{(c) Restrict any proposed larger-domain convergence.}
+Uniform convergence on $[0,\infty)$ would restrict to uniform convergence
+on $[0,1]$, contradicting part (b).
+\answer{The displayed $f$ is the limit; convergence is uniform on neither
+$[0,1]$ nor $[0,\infty)$.}
+
+\exercise{24.5}{A denominator containing both the index and a power}
+\goal Analyze $f_n(x)=x^n/(n+x^n)$ for $x\ge0$.
+\step{(a) Find the pointwise limit.}
+For $0\le x\le1$, we have $0\le f_n(x)\le1/n$, so the limit is zero.
+For fixed $x>1$, divide numerator and denominator by $x^n$:
+\[
+ f_n(x)=\frac1{1+n/x^n}\longrightarrow1.
+\]
+Here $n/x^n\to0$ because exponential growth dominates the linear factor;
+for example, the ratio of successive terms tends to $1/x<1$.
+Thus $f(x)=0$ on $[0,1]$ and $f(x)=1$ on $(1,\infty)$.
+\step{(b) Obtain a common bound on $[0,1]$.}
+The estimate $|f_n(x)-f(x)|\le1/n$ works simultaneously for every input
+in that interval. Hence convergence is uniform there.
+\step{(c) Use the jump at an interior point of the larger domain.}
+Every $f_n$ is continuous on $[0,\infty)$, but the pointwise limit jumps
+at $1$. The uniform-limit theorem excludes uniform convergence on the larger domain.
+\answer{Uniform convergence holds on $[0,1]$, and fails on $[0,\infty)$.}
+
+\exercise{24.6}{Shifted squares}
+\goal Find the limit of $f_n(x)=(x-1/n)^2$ on $[0,1]$ and decide uniform convergence.
+\step{(a) Expand to identify the limit.}
+For fixed $x$, $f_n(x)=x^2-2x/n+1/n^2\to x^2$. Thus $f(x)=x^2$.
+\step{(b) Bound the entire error, rather than just each separate input.}
+For $0\le x\le1$,
+\[
+ |f_n(x)-x^2|=\left|-\frac{2x}{n}+\frac1{n^2}\right|
+ \le\frac2n+\frac1{n^2}\le\frac3n.
+\]
+Given $\varepsilon>0$, choose $N>3/\varepsilon$. This bound is then
+less than $\varepsilon$ for every $x\in[0,1]$ and $n>N$.
+\answer{$f_n\to(x\mapsto x^2)$ uniformly on $[0,1]$.}
+
+\exercise{24.7}{Subtracting a power}
+\goal Analyze $f_n(x)=x-x^n$ on $[0,1]$.
+\step{(a) Check the endpoint separately.}
+For $0\le x<1$, $x^n\to0$, so the limit is $x$.
+At $x=1$, $f_n(1)=0$ for every $n$. Hence
+\[
+ f(x)=\begin{cases}x&0\le x<1,\\0&x=1.\end{cases}
+\]
+\step{(b) Apply the continuity obstruction.}
+Each $f_n$ is a polynomial and therefore continuous on $[0,1]$.
+The limit is discontinuous at $1$, because its left-hand limit is $1$
+and its value there is zero. By Theorem~24.3 the convergence is not uniform.
+\answer{There is pointwise convergence to the displayed function, but no
+uniform convergence on $[0,1]$.}
+
+\exercise{24.8}{Partial geometric sums at their divergent endpoint}
+\goal Analyze $f_n(x)=\sum_{k=0}^n x^k$ on $[0,1]$.
+\step{(a) Evaluate the finite sum where its formula is valid.}
+For $0\le x<1$,
+\[
+ f_n(x)=\frac{1-x^{n+1}}{1-x}\longrightarrow\frac1{1-x}.
+\]
+At $x=1$ there are $n+1$ summands equal to $1$, so $f_n(1)=n+1\to+\infty$.
+Thus there is \emph{no real-valued pointwise limit on all of $[0,1]$}.
+An infinite limit at a point is not a real-valued limit function in Definition~24.1.
+\step{(b) Uniform convergence would imply pointwise convergence.}
+Since real-valued pointwise convergence already fails at $1$, uniform
+convergence on $[0,1]$ is impossible.
+\answer{Convergence occurs pointwise only on $[0,1)$, to $1/(1-x)$;
+it does not occur pointwise, or uniformly, on the full requested interval.}
+
+\exercise{24.9}{A moving peak whose integral vanishes}
+\goal Study $f_n(x)=nx^n(1-x)$ on $[0,1]$.
+\step{(a) Fix an input.}
+At $x=0$ and $x=1$ the function is zero.
+For $0<x<1$, the ratio of successive terms of $nx^n$ is
+$x(1+1/n)\to x<1$, so $nx^n\to0$. Multiplication by the fixed number
+$1-x$ gives $f_n(x)\to0$. Thus $f=0$ everywhere on $[0,1]$.
+\step{(b) Find a peak that does not shrink to zero.}
+Differentiating gives
+\[
+ f_n'(x)=nx^{n-1}\bigl(n-(n+1)x\bigr).
+\]
+The sign changes from positive to negative at $x_n=n/(n+1)$, the maximum point.
+Its value is
+\[
+ f_n(x_n)=\frac{n}{n+1}\left(\frac{n}{n+1}\right)^n
+ =\left(\frac{n}{n+1}\right)^{n+1}\longrightarrow e^{-1}>0.
+\]
+The last limit follows from $(1+1/n)^n\to e$.
+Because the maximum error does not approach zero, convergence is not uniform.
+\step{(c) Compute the integrals directly.}
+Despite the preceding failure,
+\[
+ \int_0^1f_n(x)\,dx
+ =n\left(\frac1{n+1}-\frac1{n+2}\right)
+ =\frac{n}{(n+1)(n+2)}\longrightarrow0
+ =\int_0^1f(x)\,dx.
+\]
+\answer{The limit is zero, convergence is not uniform, and the integrals
+nevertheless converge to the integral of the limit. Uniform convergence is a
+sufficient condition for this interchange, not a necessary one.}
+
+\exercise{24.10}{Adding uniform limits, and the danger with products}
+\goal Prove the sum rule and examine its product analogue.
+\step{(a) Split the desired error into two smaller errors.}
+Let $\varepsilon>0$. Uniform convergence supplies $N_1,N_2$ such that
+$|f_n(x)-f(x)|<\varepsilon/2$ for $n>N_1$ and
+$|g_n(x)-g(x)|<\varepsilon/2$ for $n>N_2$, in each case for all $x\in S$.
+For $n>\max\{N_1,N_2\}$ the triangle inequality gives
+\[
+ |(f_n+g_n)(x)-(f+g)(x)|
+ \le |f_n(x)-f(x)|+|g_n(x)-g(x)|<\varepsilon.
+\]
+This is uniform convergence of the sums.
+\step{(b) Test the product claim before accepting it.}
+Products need not converge uniformly: on $S=\R$, let $f_n(x)=x$ and
+$g_n(x)=1/n$. Their limits are $f(x)=x$ and $g(x)=0$, both uniform.
+But $f_n(x)g_n(x)=x/n$ has value $1$ at $x=n$, so it fails to converge
+uniformly to $fg=0$. A small error multiplied by an unbounded function
+can become large; this is the missing issue in a naive product proof.
+\answer{Sums preserve uniform convergence; unrestricted products do not.}
+
+\exercise{24.11}{The product counterexample in full}
+\goal Verify every part of the example $f_n(x)=x$, $g_n(x)=1/n$ on $\R$.
+\step{(a) Compute the two errors separately.}
+With $f(x)=x$ we have $|f_n(x)-f(x)|=0$ for every $n,x$.
+With $g(x)=0$ we have $|g_n(x)-g(x)|=1/n$, independently of $x$.
+The first error is already zero, and the second tends to zero, so both
+convergences are uniform.
+\step{(b) Compute the product error at a suitable input.}
+For each $n$, use $x_n=n$:
+\[
+ |f_n(x_n)g_n(x_n)-f(x_n)g(x_n)|=|n/n-0|=1.
+\]
+No common index can make all these errors smaller than $1/2$.
+\answer{$f_n\to f$ and $g_n\to g$ uniformly, but $f_ng_n\not\to fg$
+uniformly on $\R$.}
+
+\exercise{24.12}{The supremum-error characterization}
+\goal Prove that $f_n\to f$ uniformly on $S$ if and only if
+$E_n=\sup_{x\in S}|f_n(x)-f(x)|\to0$.
+For an empty domain the assertion is vacuous; take its maximum error to be zero.
+For a nonempty domain, $E_n$ is initially allowed to be $+\infty$.
+\step{Uniform convergence implies vanishing suprema.}
+Given $\varepsilon>0$, use uniform convergence with $\varepsilon/2$.
+For sufficiently large $n$, all the errors are smaller than $\varepsilon/2$,
+so their supremum satisfies $0\le E_n\le\varepsilon/2<\varepsilon$.
+Notice the non-strict inequality at the supremum: a least upper bound need
+not be attained. The extra factor $1/2$ avoids any difficulty.
+\step{Vanishing suprema imply uniform convergence.}
+Given $\varepsilon>0$, choose $N$ with $E_n<\varepsilon$ for all $n>N$.
+Every individual error is at most its supremum, so
+$|f_n(x)-f(x)|\le E_n<\varepsilon$ for all $x\in S$ and $n>N$.
+This is exactly the definition of uniform convergence.
+\answer{The two conditions are equivalent. The supremum is over the input
+variable first; the limit is then taken over the index.}
+
+\exercise{24.13}{Uniform limits of uniformly continuous functions}
+\goal Show that a uniform limit $f$ of uniformly continuous $f_n$ on $(a,b)$
+is uniformly continuous there.
+\idea Approximate $f$ by one fixed $f_n$, and let that function control
+nearby inputs. There will be three errors, each allocated $\varepsilon/3$.
+\step{Choose one approximating function before choosing the inputs.}
+Given $\varepsilon>0$, uniform convergence supplies an index $m$ with
+$|f_m(t)-f(t)|<\varepsilon/3$ for all $t\in(a,b)$.
+Uniform continuity of this particular $f_m$ supplies $\delta>0$ such that
+$|f_m(x)-f_m(y)|<\varepsilon/3$ whenever $x,y\in(a,b)$ and $|x-y|<\delta$.
+\step{Join the three estimates.}
+For such $x,y$,
+\[
+ |f(x)-f(y)|\le |f(x)-f_m(x)|+|f_m(x)-f_m(y)|+|f_m(y)-f(y)|
+ <\varepsilon.
+\]
+Neither $m$ nor $\delta$ was chosen using $x$ or $y$, so this is uniform
+continuity, rather than merely continuity at a single point.
+\answer{The uniform limit is uniformly continuous. The same proof works
+on any subset of $\R$, not just an interval.}
+
+\exercise{24.14}{A narrow peak near zero}
+\goal Analyze $f_n(x)=nx/(1+n^2x^2)$ and the proposed limit $f=0$.
+\step{(a) Fix $x$ and distinguish zero from nonzero.}
+At $x=0$ every term is zero. If $x\ne0$, dividing by $n^2x^2$ gives
+\[
+ f_n(x)=\frac{1/(nx)}{1+1/(n^2x^2)}\longrightarrow0.
+\]
+Thus pointwise convergence holds on $\R$.
+\step{(b) Test the shrinking input $x_n=1/n$ on $[0,1]$.}
+At this input, $f_n(x_n)=1/2$. Therefore uniform convergence to zero fails
+on $[0,1]$. Each fixed positive input eventually lies past the peak, but
+the peak itself remains of height $1/2$.
+\step{(c) Keep a fixed positive distance from zero.}
+For $x\ge1$,
+\[
+ 0\le\frac{nx}{1+n^2x^2}\le\frac{nx}{n^2x^2}
+ =\frac1{nx}\le\frac1n.
+\]
+The upper bound tends to zero independently of $x$, proving uniform
+convergence on $[1,\infty)$.
+\answer{Pointwise convergence holds everywhere; uniform convergence fails
+on $[0,1]$ and holds on $[1,\infty)$.}
+
+\exercise{24.15}{A boundary layer with limiting height one}
+\goal Analyze $f_n(x)=nx/(1+nx)$ on $[0,\infty)$.
+\step{(a) Identify the limit.}
+At zero the value is zero. If $x>0$, then
+$f_n(x)=1-1/(1+nx)\to1$. Thus $f(0)=0$ and $f(x)=1$ for $x>0$.
+\step{(b) Inspect the interval containing the boundary layer.}
+The continuous $f_n$ have a discontinuous pointwise limit at zero, so
+convergence cannot be uniform on $[0,1]$.
+Explicitly, $x_n=1/n$ gives $f_n(x_n)=1/2$ and $f(x_n)=1$, an error of $1/2$.
+\step{(c) Bound the error on $[1,\infty)$.}
+For $x\ge1$ the limit is $1$, and
+\[
+ |f_n(x)-1|=\frac1{1+nx}\le\frac1{1+n}\longrightarrow0.
+\]
+This is an input-independent bound and hence proves uniform convergence.
+\answer{The limit jumps from $0$ to $1$ at zero; convergence is not uniform
+on $[0,1]$ but is uniform on $[1,\infty)$.}
+
+\exercise{24.16}{A boundary layer with an unbounded limiting function}
+\goal Analyze $f_n(x)=nx/(1+nx^2)$ for $x\ge0$.
+\step{(a) Compute the pointwise limit.}
+At zero the value is zero. For $x>0$, division by $n$ gives
+$f_n(x)=x/(1/n+x^2)\to1/x$.
+Thus $f(0)=0$ and $f(x)=1/x$ for $x>0$.
+\step{(b) Show failure of uniform convergence on $[0,1]$.}
+One obstruction is the discontinuity, indeed unboundedness, of the limit near
+zero. More directly, at $x_n=1/\sqrt n$,
+\[
+ f_n(x_n)=\frac{\sqrt n}{2},\qquad f(x_n)=\sqrt n,
+ \qquad |f_n(x_n)-f(x_n)|=\frac{\sqrt n}{2}.
+\]
+These errors grow, so they certainly do not tend uniformly to zero.
+\step{(c) Estimate the error away from the singular endpoint.}
+For $x\ge1$,
+\[
+ \left|\frac{nx}{1+nx^2}-\frac1x\right|
+ =\frac1{x(1+nx^2)}\le\frac1{1+n}\longrightarrow0.
+\]
+\answer{The displayed piecewise $f$ is the limit; convergence fails to be
+uniform on $[0,1]$ and is uniform on $[1,\infty)$.}
+
+\exercise{24.17}{Passing to the limit while the input also moves}
+\goal If $f_n\to f$ uniformly on $[a,b]$, the $f_n$ are continuous,
+and $x_n\to x$ in that interval, prove $f_n(x_n)\to f(x)$.
+\step{First secure continuity of the limiting function.}
+By Theorem~24.3, the uniform limit $f$ is continuous on $[a,b]$.
+Also $x\in[a,b]$, since this interval is closed. Thus continuity gives
+$f(x_n)\to f(x)$.
+\step{Separate the changing function from the changing input.}
+For every $n$,
+\[
+ |f_n(x_n)-f(x)|\le |f_n(x_n)-f(x_n)|+|f(x_n)-f(x)|.
+\]
+Given $\varepsilon>0$, uniform convergence makes the first term smaller
+than $\varepsilon/2$ for all sufficiently large $n$, \emph{even at the
+moving input $x_n$}. Continuity and $x_n\to x$ make the second term smaller
+than $\varepsilon/2$ for all sufficiently large $n$.
+Taking $n$ beyond both thresholds proves the desired limit.
+\answer{$f_n(x_n)\to f(x)$. Uniform convergence is what allows us to
+substitute a different input at every index.}

@@ -1,0 +1,500 @@
+\section{Riemann--Stieltjes integrals}
+\label{sec:rs-integrals}
+
+\textbf{Read this before calculating.}
+An ordinary integral weights an interval by its length. A Stieltjes
+integral weights it by the increase of an increasing function $F$.
+Here ``increasing'' permits equality: $s<t$ implies $F(s)\le F(t)$.
+Ross uses a modified definition that handles jumps explicitly.
+This matters: a formula from another book's traditional Stieltjes
+theory may not apply to this section.
+
+Write $F(t-)$ and $F(t+)$ for the one-sided limits. On the particular
+interval $[a,b]$ being integrated over, the endpoint conventions are
+$F(a-)=F(a)$ and $F(b+)=F(b)$. Thus the mass at $t$ is
+$\Delta F(t)=F(t+)-F(t-)$. For a partition
+$P=\{a=t_0<\cdots<t_n=b\}$ set
+\[
+ w_k=F(t_k-)-F(t_{k-1}+),\qquad
+ J_F(f,P)=\sum_{k=0}^n f(t_k)\Delta F(t_k).
+\]
+The upper sum is $J_F(f,P)+\sum_{k=1}^n (\sup_{(t_{k-1},t_k)}f)w_k$;
+the lower sum uses infima instead. The numbers $w_k$ and
+$\Delta F(t_k)$ are nonnegative, and together they add to
+$W=F(b)-F(a)$. In particular, if $\abs{h}\le B$, then every upper
+and lower sum for $h$ lies between $-BW$ and $BW$.
+
+The essential test is Theorem~35.6: a bounded function is
+$F$-integrable precisely when, for every $\varepsilon>0$, some
+partition satisfies $U_F(f,P)-L_F(f,P)<\varepsilon$. The jump terms
+cancel in this difference. We will often use the equivalent expression
+\[
+ U_F(f,P)-L_F(f,P)
+ =\sum_{k=1}^n\operatorname{osc}(f,(t_{k-1},t_k))w_k,
+\]
+where $\operatorname{osc}(f,I)=\sup_I f-\inf_I f$ is the oscillation
+of $f$ on $I$.
+
+\exercise{35.1}{Why an increasing function has one-sided limits}
+\goal Identify both one-sided limits of $F$ by a supremum or an
+infimum, including the indicated endpoints.
+\idea Increasing values cannot move back and forth. Their supremum
+on the left, or infimum on the right, is therefore the only possible
+limiting value. We verify this using the definition of a limit.
+
+\step{(a) Approach $t\in(a,b]$ from the left.}
+The set $A=\{F(x):a<x<t\}$ is nonempty and bounded above by $F(t)$.
+Consequently $L=\sup A$ is a finite real number. Given
+$\varepsilon>0$, the definition of supremum supplies $y\in(a,t)$
+such that $L-\varepsilon<F(y)\le L$. For every $x$ with $y<x<t$,
+monotonicity gives
+\[
+ L-\varepsilon<F(y)\le F(x)\le L.
+\]
+Take $\delta=t-y>0$. If $x\in[a,b]$ and
+$0<t-x<\delta$, then $y<x<t$, so $\abs{F(x)-L}<\varepsilon$.
+This is exactly $\lim_{x\to t-}F(x)=L$. The proof works when
+$t=b$, since it only uses points to the left of $t$.
+
+\step{(b) Approach $t\in[a,b)$ from the right.}
+The nonempty set $B=\{F(x):t<x<b\}$ is bounded below by $F(t)$.
+Put $R=\inf B$. Given $\varepsilon>0$, choose $y\in(t,b)$
+with $R\le F(y)<R+\varepsilon$. Whenever $t<x<y$,
+\[
+ R\le F(x)\le F(y)<R+\varepsilon.
+\]
+Now $\delta=y-t$ proves $\lim_{x\to t+}F(x)=R$.
+At $t=a$ the same argument is valid using only points to the right.
+\answer{The left limit is $\sup\{F(x):a<x<t\}$ and the right
+limit is $\inf\{F(x):t<x<b\}$. Both are finite.}
+
+\exercise{35.2}{Separate a continuous increase from a jump}
+\goal Evaluate $\int_0^3x^2\,dF(x)$ for the piecewise function in
+Example~4.
+\step{Record all three pieces, especially the jump.}
+The function is $F(t)=0$ for $t<0$, $F(t)=t^2$ for $0\le t<2$,
+and $F(t)=t+5$ for $t\ge2$. At $2$ its left limit is $4$ and its
+right limit is $7$, so the jump has size $3$.
+Write $F=F_1+3J_2$, where on $[0,3]$
+\[
+ F_1(t)=\begin{cases}t^2,&0\le t\le2,\\t+2,&2\le t\le3.\end{cases}
+\]
+This $F_1$ is continuous. Its derivative is $2t$ on the first
+piece and $1$ on the second. We apply Theorem~35.13 separately on
+the two pieces; no derivative at the joining point is needed.
+
+\step{Calculate each contribution.}
+Linearity in the integrator, interval additivity, and the jump rule
+$\int f\,dJ_2=f(2)$ give
+\begin{align*}
+ \int_0^3x^2\,dF(x)
+ &=\int_0^2x^2(2x)\,dx+\int_2^3x^2\,dx+3(2^2)\\
+ &=\left[\frac{x^4}{2}\right]_0^2
+   +\left[\frac{x^3}{3}\right]_2^3+12\\
+ &=8+\frac{27-8}{3}+12=\frac{79}{3}.
+\end{align*}
+The extra $12$ is essential: differentiating the smooth pieces alone
+would lose the mass concentrated at $2$.
+\answer{$\displaystyle\int_0^3x^2\,dF(x)=79/3$.}
+
+\exercise{35.3}{Integrating against the integer step function}
+\goal Evaluate the three requested integrals against $F(t)=\lfloor t\rfloor$.
+\idea This function has jumps of size $1$ at the integers. On a
+specified integration interval we include only the jumps belonging
+to the restricted function, with Ross's endpoint convention.
+
+\step{(a) Integrate $x$ on $[0,6]$.}
+On this interval $F(0-)$ means $F(0)=0$, rather than the limit of
+the original function from negative numbers. Also $F(0+)=0$.
+There is therefore no mass at $0$. There is a mass of $1$ at
+each of $1,2,3,4,5,6$. The last one is included because
+$F(6+)=F(6)=6$ and $F(6-)=5$. Example~1 gives
+\[
+ \int_0^6x\,dF(x)=\sum_{j=1}^6j=\frac{6\cdot7}{2}=21.
+\]
+
+\step{(b) Integrate $x^2$ on $[0,3]$.}
+The contributing jumps are at $1,2,3$, with the same endpoint
+reasoning. Thus
+\[
+ \int_0^3x^2\,dF(x)=1^2+2^2+3^2=1+4+9=14.
+\]
+
+\step{(c) Integrate $x^2$ on $[1/4,\pi/4]$.}
+Both endpoints lie strictly between $0$ and $1$. The integrator is
+identically $0$ on the whole interval; every interval increment and
+every endpoint jump is zero. Its upper and lower sums are both zero.
+\answer{The three values are $21$, $14$, and $0$, respectively.}
+
+\exercise{35.4}{A smooth trigonometric integrator}
+\goal Integrate $x$ against $F(t)=\sin t$ on the two specified intervals.
+\step{Check the conversion to an ordinary integral.}
+On $[-\pi/2,\pi/2]$, $F'(t)=\cos t\ge0$, so $F$ is increasing.
+Both $F'$ and $f(t)=t$ are continuous. Theorem~35.13 therefore
+permits the replacement $dF(x)=\cos x\,dx$ on each interval.
+
+\step{(a) The interval $[0,\pi/2]$.}
+Integration by parts with $u=x$ and $dv=\cos x\,dx$ gives
+\[
+ \int x\cos x\,dx=x\sin x-\int\sin x\,dx
+                  =x\sin x+\cos x.
+\]
+Consequently
+\[
+ \int_0^{\pi/2}x\,dF(x)
+ =\left[x\sin x+\cos x\right]_0^{\pi/2}
+ =\frac\pi2-1.
+\]
+
+\step{(b) The interval $[-\pi/2,\pi/2]$.}
+The function $x\cos x$ is odd: replacing $x$ by $-x$ changes its
+sign. Its integrals over the two halves cancel, so the answer is
+$0$. Alternatively the displayed antiderivative has value $\pi/2$
+at both endpoints, giving difference $0$.
+\answer{The values are $\pi/2-1$ and $0$.}
+
+\exercise{35.5}{The rational indicator sees continuous and atomic mass differently}
+\goal For $f=\mathbf{1}_{\Q}$, contrast continuous integrators
+with the purely discrete integrators in Examples~1 and~3.
+
+\step{(a) A continuous nonconstant integrator.}
+Every nonempty open interval contains both a rational number and
+an irrational number. Hence on every partition interval
+$(t_{k-1},t_k)$, the supremum of $f$ is $1$ and the infimum is $0$.
+Continuity of $F$ makes all jump terms zero and gives
+$w_k=F(t_k)-F(t_{k-1})$. Therefore, for every partition,
+\[
+ L_F(f,P)=0,\qquad
+ U_F(f,P)=\sum_{k=1}^n[F(t_k)-F(t_{k-1})]=F(b)-F(a).
+\]
+Taking the supremum of the lower sums and infimum of the upper
+sums changes neither number. Since $F(b)>F(a)$, the lower and
+upper integrals are different. Thus $f$ is not $F$-integrable.
+
+\step{(b) A finite or summable collection of point masses.}
+For $F=\sum_jc_jJ_{u_j}$ as in those examples, every bounded
+function is $F$-integrable, including this $f$. Its integral is
+\[
+ \int_a^bf\,dF=\sum_jc_jf(u_j)
+              =\sum_{\{j:u_j\in\Q\}}c_j.
+\]
+The formula includes the finite case. In the infinite case it
+converges absolutely, because $0\le c_jf(u_j)\le c_j$ and
+$\sum_jc_j<\infty$. These integrators assign their mass to actual
+points; the value of $f$ at each mass point is well defined.
+\answer{For continuous $F$ of positive total increase, $f$ is not
+integrable. For the discrete $F$ of Examples~1 and~3, it is
+integrable, with integral equal to the total mass at rational points.}
+
+\exercise{35.6}{Uniform limits preserve Stieltjes integrability}
+\goal If each $f_n$ is $F$-integrable and $f_n\to f$ uniformly on
+$[a,b]$, prove that $f$ is $F$-integrable and that the integrals converge.
+\idea Uniform convergence controls every point by the same error.
+Multiplying that error by the total mass $W=F(b)-F(a)$ controls
+every upper sum, lower sum, and ultimately the integral.
+
+\step{First establish boundedness.}
+Take one index $N$ for which $\abs{f(x)-f_N(x)}<1$ for every
+$x\in[a,b]$. Such an index exists by uniform convergence. Since
+$f_N$ is integrable, it is bounded, say $\abs{f_N(x)}\le B$.
+Then $\abs{f(x)}\le B+1$ everywhere. This verifies the boundedness
+required before applying the Darboux criterion.
+
+\step{Make the upper--lower gap small.}
+Assume $W>0$; if $W=0$, every sum and integral is zero and the
+conclusions are immediate. Fix $\varepsilon>0$ and select $N$ so
+that $\abs{f-f_N}\le\eta$ everywhere, where
+$\eta=\varepsilon/(4W)$. On any nonempty interval $I$,
+\[
+ \sup_I f\le\sup_I f_N+\eta,\qquad
+ \inf_I f\ge\inf_I f_N-\eta.
+\]
+Subtracting gives
+$\operatorname{osc}(f,I)\le\operatorname{osc}(f_N,I)+2\eta$.
+Because $f_N$ is integrable, choose $P$ with
+$U_F(f_N,P)-L_F(f_N,P)<\varepsilon/2$. Since $\sum_kw_k\le W$,
+\begin{align*}
+ U_F(f,P)-L_F(f,P)
+ &\le U_F(f_N,P)-L_F(f_N,P)+2\eta\sum_kw_k\\
+ &<\frac\varepsilon2+2\eta W=\varepsilon.
+\end{align*}
+Theorem~35.6 proves that $f$ is integrable.
+
+\step{Now estimate the integrals.}
+Put $\eta_n=\sup_{x\in[a,b]}\abs{f_n(x)-f(x)}$; uniform
+convergence says $\eta_n\to0$. The integrable difference
+$f_n-f$ satisfies $-\eta_n\le f_n-f\le\eta_n$. Order preservation
+and integration of constants give
+\[
+ -\eta_nW\le\int_a^b(f_n-f)\,dF\le\eta_nW.
+\]
+Thus $\abs{\int_a^bf_n\,dF-\int_a^bf\,dF}\le\eta_nW\to0$.
+\answer{Uniform convergence permits passage to the limit under this
+integral, with error at most the uniform function error times the total mass.}
+
+\exercise{35.7}{Products, squares, maxima, and minima}
+\goal Show that all four indicated constructions preserve $F$-integrability.
+
+\step{(a) Squaring an integrable function.}
+Choose $B\ge1$ such that $\abs{f(x)}\le B$ on $[a,b]$.
+For any two points $x,y$ in the same interval $I$,
+\[
+ \abs{f(x)^2-f(y)^2}
+ =\abs{f(x)-f(y)}\abs{f(x)+f(y)}
+ \le2B\abs{f(x)-f(y)}.
+\]
+The supremum of pairwise differences of a bounded real function
+is its oscillation. It follows that
+$\operatorname{osc}(f^2,I)\le2B\operatorname{osc}(f,I)$.
+Given $\varepsilon>0$, take a partition making the gap for $f$
+less than $\varepsilon/(2B)$. The gap formula then makes the gap
+for $f^2$ less than $\varepsilon$. Since $f^2$ is bounded, the
+criterion proves its integrability.
+
+\step{(b) Multiplying two integrable functions.}
+Linearity makes $f+g$ and $f-g$ integrable. Part (a) makes their
+squares integrable. The identity
+\[
+ fg=\frac{(f+g)^2-(f-g)^2}{4}
+\]
+then expresses $fg$ as a linear combination of integrable functions.
+To check the identity, expand both squares: their $f^2$ and $g^2$
+terms cancel, leaving $4fg$ in the numerator.
+
+\step{(c) Taking the pointwise maximum and minimum.}
+Theorem~35.10 makes $\abs{f-g}$ integrable. At each point,
+\[
+ \max(f,g)=\frac{f+g+\abs{f-g}}2,\qquad
+ \min(f,g)=\frac{f+g-\abs{f-g}}2.
+\]
+For example, if $f(x)\ge g(x)$ then $\abs{f(x)-g(x)}=f(x)-g(x)$,
+so the first expression becomes $f(x)$ and the second becomes
+$g(x)$. The other ordering gives the reversed roles. The formulas
+and linearity prove both integrability assertions.
+\answer{$f^2$, $fg$, $\max(f,g)$, and $\min(f,g)$ are all $F$-integrable.}
+
+\exercise{35.8}{A continuous density defines the weight}
+\goal For continuous $g\ge0$ and $F(t)=\int_a^tg(x)\,dx$, show
+that $\int_a^bf\,dF=\int_a^bf(x)g(x)\,dx$ for continuous $f$.
+
+\step{Check that $F$ is an admissible increasing integrator.}
+If $a\le s<t\le b$, interval additivity gives
+\[
+ F(t)-F(s)=\int_s^tg(x)\,dx\ge0,
+\]
+because $g$ is nonnegative. Thus $F$ is increasing. The Fundamental
+Theorem of Calculus, applied to continuous $g$, gives $F'=g$ on
+the interior, with the corresponding one-sided derivatives at the
+endpoints. In particular $F'$ is continuous on the closed interval.
+
+\step{Apply the smooth-integrator formula.}
+All the hypotheses of Theorem~35.13 are now verified, so
+\[
+ \int_a^bf(x)\,dF(x)
+ =\int_a^bf(x)F'(x)\,dx
+ =\int_a^bf(x)g(x)\,dx.
+\]
+If $g$ is identically zero, $F$ is constant. Although the section
+usually excludes a constant integrator to avoid trivial cases, its
+sums are still defined and all equal zero; the formula is then also
+true. If $g$ is nonzero somewhere, continuity and nonnegativity
+give positive integral, so $F(b)>F(a)$ as in the standing convention.
+\answer{The density $g$ converts a Stieltjes integral into the usual
+weighted Riemann integral.}
+
+\exercise{35.9}{A weighted mean value is attained}
+\goal Prove the mean-value assertion for continuous $f$, then
+recover the weighted integral theorem in Exercise~33.14.
+
+\step{(a) Trap the average between a minimum and a maximum.}
+The Extreme Value Theorem gives real numbers
+$m=\min_{[a,b]}f$ and $M=\max_{[a,b]}f$. Put $W=F(b)-F(a)>0$.
+The continuous function $f$ is $F$-integrable by Theorem~35.7.
+Integrating $m\le f\le M$ with order preservation gives
+\[
+ mW\le\int_a^bf\,dF\le MW.
+\]
+Divide by the positive number $W$ and call the quotient $A$.
+We have $m\le A\le M$. By the Intermediate Value Theorem,
+$f$ takes every value between its attained minimum and maximum.
+Hence some $x\in[a,b]$ satisfies $f(x)=A$. Multiplication by $W$
+proves
+\[
+ \int_a^bf\,dF=f(x)[F(b)-F(a)].
+\]
+The conclusion naturally allows endpoints: all the mass could be
+concentrated at $a$, for example.
+
+\step{(b) Recover the continuous-density theorem.}
+For continuous $g\ge0$ set $F(t)=\int_a^tg(s)\,ds$, as in
+Exercise~35.8. If $g\equiv0$, both integrals in Exercise~33.14(a)
+are zero and any $x\in(a,b)$ works. Otherwise $W=\int_a^bg>0$.
+Part (a) and Exercise~35.8 give
+\[
+ \int_a^bf(t)g(t)\,dt=f(x)\int_a^bg(t)\,dt
+\]
+initially for some $x\in[a,b]$.
+
+\step{Explain why the point can be chosen in the interior here.}
+Exercise~33.14(a) asks for $x\in(a,b)$, so this small extra point
+deserves a proof. Let
+$A=(\int_a^bfg)/(\int_a^bg)$. Suppose no interior point satisfies
+$f(x)=A$. By continuity and the Intermediate Value Theorem,
+$f-A$ must then have the same strict sign on all of $(a,b)$.
+Also some $t_0\in(a,b)$ has $g(t_0)>0$: a positive endpoint
+value of $g$ would imply positive nearby interior values as well.
+If $f-A>0$, continuity gives a short interval around $t_0$ on which
+both $f-A$ and $g$ have positive lower bounds. Thus
+$(f-A)g\ge0$ everywhere and has strictly positive integral, contrary to
+\[
+ \int_a^b(f-A)g=\int_a^bfg-A\int_a^bg=0.
+\]
+If $f-A<0$, apply the same argument to $(A-f)g$ and obtain the
+same contradiction. Therefore an interior point does attain $A$.
+Taking $g\equiv1$ recovers the ordinary integral mean-value
+theorem, as requested in Exercise~33.14(b).
+\answer{Part (a) is the Stieltjes mean-value formula. With a
+continuous nonnegative density it gives Exercise~33.14(a), including
+its interior-point conclusion.}
+
+\exercise{35.10}{A polynomial integrated against itself}
+\goal For a positive odd integer $n$ and $F(x)=f(x)=x^n$, evaluate
+$\int_a^bf\,dF$.
+\step{Explain the parity hypothesis.}
+The map $x\mapsto x^n$ is increasing on all of $\R$ when $n$ is
+odd. Its derivative is $nx^{n-1}\ge0$ since $n-1$ is even.
+Both $f$ and $F'$ are continuous, so Theorem~35.13 applies on
+any closed interval $[a,b]$.
+\step{Convert and integrate.}
+We have
+\begin{align*}
+ \int_a^bx^n\,d(x^n)
+ &=\int_a^bx^n\,nx^{n-1}\,dx
+   =n\int_a^bx^{2n-1}\,dx\\
+ &=n\left[\frac{x^{2n}}{2n}\right]_a^b
+   =\frac12(b^{2n}-a^{2n}).
+\end{align*}
+The result can be negative if the interval lies on the negative
+half-line. That is consistent: the weight is nonnegative, but
+$f(x)=x^n$ is negative there.
+\answer{$\displaystyle\int_a^bf\,dF=\tfrac12[b^{2n}-a^{2n}]$.}
+
+\exercise{35.11}{Change variables without differentiating the substitution}
+\goal For a continuous strictly increasing map
+$\phi:[c,d]\to[a,b]$ with the stated endpoint values, prove
+integrability and equality of the two Stieltjes integrals for
+$g=f\circ\phi$ and $G=F\circ\phi$.
+\idea A partition and its image under $\phi$ describe exactly the
+same intervals and mass points. Match their sums term by term.
+There is no assumption that $\phi$ is differentiable.
+
+\step{The substitution maps intervals onto intervals.}
+Continuity, strict increase, and the endpoint values imply that
+$\phi$ is a bijection from $[c,d]$ onto $[a,b]$. Its inverse is
+continuous: for an interior $u$, points just below and above $u$
+have image values strictly below and above $\phi(u)$, which trap
+the inverse of every sufficiently nearby image point. The same
+one-sided trapping works at the endpoints. In particular,
+\[
+ \phi((u,v))=(\phi(u),\phi(v))\qquad(c\le u<v\le d).
+\]
+The composition $G$ is increasing, and $g$ is bounded because
+$f$ is bounded on the image $[a,b]$.
+
+\step{Match one-sided limits and jumps.}
+For $u\in(c,d)$, as $v\to u-$ the numbers $\phi(v)$ approach
+$\phi(u)$ from below. They cover a whole one-sided interval near
+$\phi(u)$. Therefore
+\[
+ G(u-)=F(\phi(u)-),\qquad G(u+)=F(\phi(u)+).
+\]
+At $u=c,d$ the endpoint conventions give these same identities
+for the relevant decreed limits. Subtracting proves
+$\Delta G(u)=\Delta F(\phi(u))$.
+
+\step{Match the upper and lower sums.}
+Take any $Q=\{c=u_0<\cdots<u_n=d\}$ and its image partition
+$P=\{a=\phi(u_0)<\cdots<\phi(u_n)=b\}$. Bijection on the open
+subintervals gives
+\[
+ \sup_{(u_{k-1},u_k)}g
+ =\sup_{(\phi(u_{k-1}),\phi(u_k))}f,
+\]
+and the analogous identity for infima. The one-sided-limit
+identities give matching interval weights, and $g(u_k)=f(\phi(u_k))$
+gives matching jump terms. Thus
+\[
+ U_G(g,Q)=U_F(f,P),\qquad L_G(g,Q)=L_F(f,P).
+\]
+Every partition of $[a,b]$ arises this way, by applying $\phi^{-1}$
+to its points. Consequently the infima of the upper sums agree,
+and the suprema of the lower sums agree. Since $f$ is
+$F$-integrable, those two common numbers coincide.
+\answer{$g$ is $G$-integrable, and
+$\displaystyle\int_c^dg\,dG=\int_a^bf\,dF$.}
+
+\exercise{35.12}{A strictly increasing function with dense jumps}
+\goal Analyze the sum of positive jumps placed at every rational
+point of $[a,b]$.
+
+\step{First address the wording in the supplied edition.}
+The printed exercise says that the $c_j$ are ``positive integers''
+and that $\sum_jc_j<\infty$. These conditions are incompatible:
+each partial sum is at least its number of terms, so the series
+would diverge to $+\infty$. Thus there is no example satisfying
+the literal hypotheses. The intended, nonvacuous version uses
+\emph{positive real numbers} with finite sum, just as in Example~3.
+We solve that version explicitly; for instance $c_j=2^{-j}$ is an
+allowed choice. Let $(u_j)$ enumerate the rationals in $[a,b]$
+without repetition, and retain Ross's special convention for $J_a$.
+
+\step{(a) Show that the sum exists and increases strictly.}
+Since $0\le J_{u_j}(t)\le1$,
+\[
+ 0\le\sum_{j=1}^Nc_jJ_{u_j}(t)\le\sum_{j=1}^{\infty}c_j<\infty.
+\]
+So the nondecreasing partial sums have a finite limit $F(t)$ at
+every point. Also their tails are at most $\sum_{j>N}c_j$,
+independently of $t$, so the convergence is uniform.
+For $a\le s<t\le b$, density of $\Q$ supplies a rational
+$u_m\in(s,t)$. The function $J_{u_m}$ is $0$ at $s$ and $1$ at
+$t$. Every other summand is increasing, hence has nonnegative
+increment. Subtracting the convergent series gives
+\[
+ F(t)-F(s)
+ =\sum_{j=1}^{\infty}c_j[J_{u_j}(t)-J_{u_j}(s)]
+ \ge c_m>0.
+\]
+This proves strict increase, not merely nondecrease.
+
+\step{(b) Prove continuity at every irrational point.}
+Let $t\in[a,b]\setminus\Q$ and $\varepsilon>0$. Choose $N$
+with $\sum_{j>N}c_j<\varepsilon$. Because $t$ differs from each
+of the finitely many $u_1,\ldots,u_N$, there is $\delta>0$ such
+that $\abs{x-t}<\delta$ crosses none of these points. Each of
+the first $N$ step functions has the same value at $x$ and $t$.
+For the remaining terms, $\abs{J_{u_j}(x)-J_{u_j}(t)}\le1$.
+Thus for $x\in[a,b]$ with $\abs{x-t}<\delta$,
+\[
+ \abs{F(x)-F(t)}
+ \le\sum_{j>N}c_j\abs{J_{u_j}(x)-J_{u_j}(t)}
+ \le\sum_{j>N}c_j<\varepsilon.
+\]
+This proves relative continuity at $t$, including an irrational
+endpoint if one occurs.
+
+\step{Show discontinuity at every rational point.}
+If $u_m\in(a,b]$, then $J_{u_m}(u_m)=1$, whereas
+$J_{u_m}(x)=0$ for every $x<u_m$. Since every summand is
+increasing, $F(u_m)-F(x)\ge c_m$ for $x<u_m$ in $[a,b]$.
+Points of the domain can approach $u_m$ from the left while this
+gap stays at least $c_m>0$, so $F$ is discontinuous there.
+If the rational point is $u_m=a$, Ross defines $J_a(a)=0$ and
+$J_a(x)=1$ for $x>a$. Thus $F(x)-F(a)\ge c_m$ for all $x>a$,
+which proves right discontinuity at $a$.
+In fact Example~3 shows that the jump at $u_m$ is exactly $c_m$.
+\answer{Under the intended summable positive-real-weight
+hypothesis, $F$ is strictly increasing, continuous exactly at
+irrational points of $[a,b]$, and discontinuous at every rational
+point. Under the printed positive-integer hypothesis, no such
+weight sequence exists.}

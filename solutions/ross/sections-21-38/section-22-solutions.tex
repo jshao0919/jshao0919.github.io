@@ -1,0 +1,344 @@
+\section{More on metric spaces: connectedness}
+A separation of a set is a partition into two nonempty relatively
+open sets. A set is connected when it has no separation. A path is a
+continuous map from an interval; path-connectedness asks for a path
+between every two points of the set. Path-connected sets are connected,
+but the converse fails. In this section $C(S)$ means the
+\emph{bounded} continuous real-valued functions on $S\subseteq\R$,
+and its distance is
+\[
+ d(f,g)=\|f-g\|_\infty=\sup_{x\in S}|f(x)-g(x)|.
+\]
+Here $\|h\|_\infty$ denotes the supremum of $|h|$. When $S$ is empty,
+there is just one function and its distance from itself is taken to be
+zero; the nontrivial arguments below concern nonempty $S$.
+
+\exercise{22.1}{Two impossible continuous surjections}
+\step{(a) A disconnected union of intervals.}
+The interval $[0,1]$ is connected. By Theorem~22.2 a continuous image
+must be connected. But $[0,1]\cup[2,3]$ has a separation into its two
+nonempty pieces, obtained by intersecting with $(-\infty,3/2)$ and
+$(3/2,\infty)$. Hence no continuous map from $[0,1]$ is onto that union.
+\step{(b) A rational range.}
+The interval $(0,1)$ is connected, whereas $\Q$ is not an interval:
+for example, it contains $1,2$ but not $\sqrt2$ between them. Equivalently,
+$\Q\cap(-\infty,\sqrt2)$ and $\Q\cap(\sqrt2,\infty)$ separate $\Q$.
+\answer{Neither surjection exists, because a continuous image of a
+connected set is connected.}
+
+\exercise{22.2}{The unit circle is connected}
+\goal Show the set $x_1^2+x_2^2=1$ is connected.
+\step{Give a continuous parametrization with exactly that image.}
+Define $\gamma:[0,2\pi]\to\R^2$ by
+$\gamma(t)=(\cos t,\sin t)$. Both coordinates are continuous, so
+Proposition~21.2 proves continuity of $\gamma$. The identity
+$\cos^2t+\sin^2t=1$ puts its image on the circle. Conversely every
+point of the unit circle has a polar angle $t\in[0,2\pi]$, and hence
+is of this form.
+\answer{The circle is the continuous image of the connected interval
+$[0,2\pi]$, so Theorem~22.2 makes it connected.}
+
+\exercise{22.3}{The closure of a connected set is connected}
+\goal Prove connectedness of $\overline E$ from connectedness of $E$.
+\step{Suppose there were a separation of the closure.}
+Let open ambient sets $U,V$ give disjoint nonempty sets
+$\overline E\cap U$, $\overline E\cap V$ whose union is $\overline E$.
+Choose $u\in\overline E\cap U$. Since $U$ is an open neighborhood
+of a closure point, $U\cap E\ne\varnothing$. The same argument gives
+$V\cap E\ne\varnothing$.
+\step{Restrict the separation.}
+The sets $E\cap U$ and $E\cap V$ are disjoint, nonempty and relatively
+open in $E$, and their union is $E$. They would separate $E$, contrary
+to its connectedness.
+\answer{No separation of $\overline E$ exists. For $E=\varnothing$,
+the closure is empty and connected by definition.}
+
+\exercise{22.4}{The closed topologist's sine curve}
+\goal Study $E=\{(x,\sin(1/x)):0<x\le1\}$.
+\step{(a) Find all new limit points.}
+We claim
+\[
+ \overline E=E\cup(\{0\}\times[-1,1]).
+\]
+If $(x_n,\sin(1/x_n))\to(a,b)$, then $a\in[0,1]$ and $b\in[-1,1]$.
+If $a>0$, continuity of $\sin(1/x)$ at $a$ forces $b=\sin(1/a)$,
+so the limit is already in $E$. If $a=0$, it lies on the stated
+vertical segment. Conversely, given $b\in[-1,1]$, choose an angle
+$\theta$ with $\sin\theta=b$. For all sufficiently large integers $n$,
+$x_n=1/(\theta+2\pi n)$ belongs to $(0,1]$ and tends to zero, while
+$\sin(1/x_n)=b$. Thus $(0,b)\in\overline E$.
+\step{(b) Establish connectedness before dealing with paths.}
+The map $x\mapsto(x,\sin(1/x))$ is continuous on the connected
+interval $(0,1]$. Its image $E$ is connected by Theorem~22.2, and
+Exercise~22.3 makes its closure connected.
+\step{(c) Explain why no path can leave the vertical segment.}
+Suppose a path $\gamma(t)=(u(t),v(t))$, $0\le t\le1$, starts on the
+vertical segment and ends in $E$. The coordinate functions are
+continuous, $u(0)=0$, and $u(1)>0$. The zero set of $u$ is a nonempty
+closed subset of $[0,1]$, so it has a largest element $t_0<1$.
+We have $u(t_0)=0$ and $u(t)>0$ for $t>t_0$.
+
+Choose a fixed $t_1>t_0$. Because $u(t_1)>0$, the intermediate value
+theorem applied to $u$ on $[t_0,t_1]$ shows that it attains every
+sufficiently small positive number. In particular, it attains the
+numbers
+\[
+ a_n=\frac1{\pi/2+2\pi n},\qquad
+ b_n=\frac1{3\pi/2+2\pi n}.
+\]
+Choose corresponding parameters $r_n,s_n\in(t_0,t_1]$. They tend
+to $t_0$: for each $\eta>0$ with $t_0+\eta\le t_1$, the positive
+continuous $u$ has a positive minimum on $[t_0+\eta,t_1]$; eventually
+$a_n,b_n$ are smaller than that minimum. Thus their preimages cannot
+lie in this latter interval.
+
+For positive first coordinate, membership in $\overline E$ forces
+$v(t)=\sin(1/u(t))$. Hence $v(r_n)=1$ and $v(s_n)=-1$. Both parameter
+sequences approach $t_0$, contradicting continuity of $v$ there.
+\answer{The closure is connected but is not path-connected. An
+accumulating curve can touch a segment in its closure without supplying
+any continuous path from that segment to the curve.}
+
+\exercise{22.5}{Unions and intersections of connected sets}
+\step{(a) A shared point joins two connected sets.}
+Suppose $E\cap F\ne\varnothing$ but $E\cup F$ has a separation $A,B$.
+Restricting the separation to $E$ shows $E$ lies entirely in one side,
+since otherwise it would be disconnected. Similarly, $F$ lies entirely
+in one side. A point of $E\cap F$ forces them to lie on the same side.
+The other side would then be empty, a contradiction.
+\step{(b) An intersection can be disconnected.}
+Let
+\[
+ E=\{(x,y):x^2+y^2=1,\ y\ge0\},\qquad
+ F=\{(x,y):x^2+y^2=1,\ y\le0\}.
+\]
+Each semicircle is a continuous image of a closed interval, hence
+connected. But $E\cap F=\{(-1,0),(1,0)\}$ has two isolated points
+and is disconnected: balls of radius $1/2$ about these points separate
+it.
+\answer{A nonempty intersection guarantees a connected union; it
+does not guarantee a connected intersection.}
+
+\exercise{22.6}{Why the supremum distance is a metric on bounded functions}
+\step{(a) Verify finiteness and the metric axioms.}
+If $|f|\le M$ and $|g|\le N$ on $S$, then
+$0\le|f(x)-g(x)|\le M+N$. Thus $d(f,g)$ is finite and nonnegative.
+It is symmetric because $|f(x)-g(x)|=|g(x)-f(x)|$.
+If $d(f,g)=0$, then $|f(x)-g(x)|=0$ at every $x$, so $f=g$;
+conversely identical functions have distance zero. Finally for every $x$,
+\[
+ |f(x)-h(x)|\le |f(x)-g(x)|+|g(x)-h(x)|
+ \le d(f,g)+d(g,h).
+\]
+Taking the supremum over $x$ proves the triangle inequality.
+\step{(b) Distinguish a finite metric from a convergence definition.}
+Without boundedness, a pair such as $f(x)=x$, $g(x)=0$ on $\R$
+would have $d(f,g)=\infty$, forbidden for an ordinary metric.
+Uniform convergence itself only asks whether the errors $|f_n(x)-f(x)|$
+are eventually small for all $x$ simultaneously. The functions can
+be unbounded while their differences are uniformly small: $f_n(x)=x+1/n$
+converges uniformly to $f(x)=x$ on $\R$.
+\answer{Boundedness makes the supremum distance finite for every
+pair in $C(S)$; it is not needed to state uniform convergence.}
+
+\exercise{22.7}{A bounded sequence is a bounded continuous function on $\N$}
+\goal Identify the metric space $B$ from Exercise~13.3 with $C(\N)$.
+\step{Use discreteness to understand continuity.}
+Under the usual distance inherited from $\R$, the ball of radius
+$1/2$ about $n\in\N$ contains only $n$. Hence \emph{every} function
+$f:\N\to\R$ is continuous: choose $\delta=1/2$ at each point, and
+all tested values are identical to the center value.
+\step{Match both the elements and their distances.}
+The sequence $(x_1,x_2,\ldots)$ corresponds to the function $f(n)=x_n$.
+A sequence is bounded exactly when its function is bounded. Moreover,
+\[
+ \sup_{n\in\N}|x_n-y_n|
+ =\sup_{n\in\N}|f(n)-g(n)|.
+\]
+\answer{This correspondence is a bijection preserving distance, so
+$B$ and $C(\N)$ are the same metric space after relabeling their elements.}
+
+\exercise{22.8}{Evaluation at one point is uniformly continuous}
+\goal For fixed $s_0\in S$, study $F(f)=f(s_0)$.
+\step{Bound one error by the largest error.}
+For $f,g\in C(S)$,
+\[
+ |F(f)-F(g)|=|f(s_0)-g(s_0)|\le\sup_{x\in S}|f(x)-g(x)|=d(f,g).
+\]
+Given $\varepsilon>0$, take $\delta=\varepsilon$. If $d(f,g)<\delta$,
+the displayed inequality gives $|F(f)-F(g)|<\varepsilon$.
+\answer{Evaluation is $1$-Lipschitz and therefore uniformly continuous.}
+
+\exercise{22.9}{A straight line in a function space}
+\goal Prove uniform continuity of $F(t)=tf+(1-t)g$ as a map
+$\R\to C(S)$.
+\step{First check that the values belong to the claimed space.}
+For fixed $t$, the function $tf+(1-t)g$ is continuous and is bounded
+by $|t|\|f\|_\infty+|1-t|\|g\|_\infty$. Thus $F(t)\in C(S)$.
+\step{Compute the distance between two values.}
+The difference is $F(t)-F(s)=(t-s)(f-g)$, so
+\[
+ d(F(t),F(s))=|t-s|\,\|f-g\|_\infty.
+\]
+Let $M=\|f-g\|_\infty$. If $M=0$, $F$ is constant. Otherwise
+$\delta=\varepsilon/M$ makes $|t-s|<\delta$ imply
+$d(F(t),F(s))<\varepsilon$.
+\answer{The map is Lipschitz with constant $\|f-g\|_\infty$.
+The estimate works on the whole real line.}
+
+\exercise{22.10}{Translation is continuous in the supremum metric}
+\goal For bounded uniformly continuous $f:\R\to\R$, prove uniform
+continuity of $F(x)=f_x$, where $f_x(y)=f(x+y)$.
+\step{Check each translated function.}
+Translation preserves continuity, and $|f_x(y)|\le\|f\|_\infty$.
+Thus $f_x\in C(\R)$ for every real $x$.
+\step{Keep the error bound uniform in the variable being translated.}
+Fix $\varepsilon>0$. Uniform continuity of $f$ supplies $\delta>0$
+such that $|u-v|<\delta$ implies
+$|f(u)-f(v)|<\varepsilon/2$ for all real $u,v$. If $|x-z|<\delta$,
+then for \emph{every} $y$,
+\[
+ |f_x(y)-f_z(y)|=|f(x+y)-f(z+y)|<\varepsilon/2,
+\]
+because $|(x+y)-(z+y)|=|x-z|$. Taking a supremum yields
+$d(F(x),F(z))\le\varepsilon/2<\varepsilon$.
+\answer{The same $\delta$ works for all $x,z$, proving uniform continuity.
+Using $\varepsilon/2$ avoids losing the strict inequality at a supremum.}
+
+\exercise{22.11}{The closed unit ball and connectedness in $C(S)$}
+\goal Let $\mathcal E=\{f\in C(S):\|f\|_\infty\le1\}$.
+\step{(a) Its complement is open.}
+Suppose $f\notin\mathcal E$. Then some $x_0\in S$ has $|f(x_0)|>1$;
+otherwise $1$ would be an upper bound for all $|f(x)|$. Put
+$r=(|f(x_0)|-1)/2>0$. If $d(f,g)<r$, then
+\[
+ |g(x_0)|\ge|f(x_0)|-|g(x_0)-f(x_0)|
+ >|f(x_0)|-r>1.
+\]
+Thus every $g$ in this metric ball is also outside $\mathcal E$.
+The complement is open, so $\mathcal E$ is closed.
+\step{(b) The entire space is path-connected.}
+For any $f,g\in C(S)$, Exercise~22.9 gives a continuous path
+$t\mapsto(1-t)f+tg$, $0\le t\le1$, from $f$ to $g$. Thus $C(S)$
+is path-connected, and Theorem~22.5 makes it connected.
+\step{(c) The same paths stay in the unit ball.}
+If $f,g\in\mathcal E$ and $0\le t\le1$, then at every $x$,
+\[
+ |(1-t)f(x)+tg(x)|\le(1-t)|f(x)|+t|g(x)|\le1.
+\]
+The path therefore lies in $\mathcal E$.
+\answer{$\mathcal E$ is closed and path-connected, hence connected;
+$C(S)$ is connected as well.}
+
+\exercise{22.12}{A topology determined by finitely many evaluations}
+\goal Verify the topology axioms for the specified pointwise neighborhoods.
+Write
+\[
+ N(f;F,\varepsilon)=\{g\in C(S):
+               |g(x)-f(x)|<\varepsilon\text{ for all }x\in F\},
+\]
+where $F\subseteq S$ is finite and $\varepsilon>0$.
+\step{(a) Recall what must be proved.}
+Discussion~13.7 describes the characteristic properties of open sets:
+the empty set and the entire space are open, arbitrary unions of open
+sets are open, and finite intersections of open sets are open. These
+properties define a topology even when no metric has been specified.
+Here a set $U$ is declared open if each $f\in U$ has some
+$N(f;F,\varepsilon)\subseteq U$.
+\step{(b) Check all three properties.}
+The empty set is open because it has no points for which the requirement
+could fail. The whole space is open since every such neighborhood lies
+in it (one can take $F=\varnothing$). If $f\in\bigcup_\alpha U_\alpha$,
+then $f$ belongs to some open $U_{\alpha_0}$, which supplies a
+neighborhood contained in $U_{\alpha_0}$ and hence in the union.
+
+For a finite intersection $U_1\cap\cdots\cap U_m$ and a point $f$ in
+it, choose $N(f;F_j,\varepsilon_j)\subseteq U_j$ for every $j$.
+The set $F=F_1\cup\cdots\cup F_m$ is finite, and
+$\varepsilon=\min_j\varepsilon_j>0$. A function in
+$N(f;F,\varepsilon)$ satisfies every constraint for every $U_j$,
+so this neighborhood lies in the intersection. The empty finite
+intersection is the whole space, already covered.
+\step{Why these are pointwise rather than uniform neighborhoods.}
+Each neighborhood restricts only finitely many values of a function.
+A small supremum-metric ball restricts values at \emph{every} point.
+For example, on $S=\R$ any finite set of prescribed points misses
+some $x_0$; a continuous bounded bump supported near $x_0$ can be zero
+at every prescribed point yet have supremum $2$. Thus no finite-point
+neighborhood of zero is contained in the supremum ball of radius $1$.
+\answer{The declared sets satisfy every topology axiom. The text's
+additional blanket remark about nonmetrizability needs qualification:
+for finite $S$ this is the usual finite-dimensional topology, and for
+countable $S=\{s_1,s_2,\ldots\}$ it is metrized by
+$\sum_{j\ge1}2^{-j}\min(1,|f(s_j)-g(s_j)|)$. The requested topology
+verification is valid for every $S$.}
+
+\exercise{22.13}{A connected graph with an oscillatory endpoint}
+\goal Analyze the graph with the oscillating branch at positive $x$
+and the added origin.
+\step{Clarify the printed notation.}
+The exercise prints $f(x)=(x,\sin(1/x))$ for $x>0$ and $f(0)=0$.
+Read literally, this is a map to $\R^2$ with $f(0)=(0,0)$, and its
+graph lies in $\R^3$. The frequently intended scalar formulation is
+$f(x)=\sin(1/x)$, $f(0)=0$. Both give the same connectedness answer:
+the literal graph is homeomorphic to
+\[
+ H=\{(x,\sin(1/x)):x>0\}\cup\{(0,0)\}
+\]
+by the map $(x,y)\mapsto(x,x,y)$, whose inverse on its image is
+$(a,b,c)\mapsto(a,c)$. Both maps are continuous coordinate maps.
+Thus we prove the assertions for $H$.
+\step{The added origin does not disconnect the branch.}
+The branch $A=\{(x,\sin(1/x)):x>0\}$ is a continuous image of the
+interval $(0,\infty)$, hence connected. Also $(0,0)\in\overline A$,
+since $(1/(n\pi),0)\to(0,0)$. If $H$ had a separation, connectedness
+would put all of $A$ on one side. The other side would consist of the
+origin and be relatively open in $H$, which would provide a
+neighborhood of the origin missing $A$. This contradicts its being
+a closure point. Hence $H$ is connected.
+\step{It has no path from the origin to the branch.}
+The proof of Exercise~22.4(c) applies without change. A proposed path
+has a last parameter $t_0$ at which its first coordinate is zero.
+Immediately after $t_0$ its first coordinate is positive and tends
+to zero. It must attain the values $a_n$ and $b_n$ from that exercise
+at parameters tending to $t_0$, forcing its second coordinate to take
+both $1$ and $-1$ arbitrarily close to $t_0$. That contradicts
+continuity. The restriction $x\le1$ was not used in that argument.
+\step{Continuity of the original function fails at zero.}
+Along $x_n=1/(\pi/2+2\pi n)$, the sine coordinate is $1$, not tending
+to its value $0$ at zero. The sequential criterion therefore rules out
+continuity at zero in either formulation; continuity holds for $x>0$.
+\answer{The graph is connected but not path-connected, and the
+function is not continuous on $[0,\infty)$.}
+
+\exercise{22.14}{Small successive changes force an interval of cluster values}
+\goal For bounded $(s_n)$ with $s_{n+1}-s_n\to0$, show its set $S$
+of subsequential limits is a connected interval.
+\idea If the sequence repeatedly visits both sides of a level $c$,
+it must cross $c$ repeatedly. Small jumps make some crossing terms
+arbitrarily close to $c$.
+\step{Fix any level between two subsequential limits.}
+Take $a,b\in S$ with $a<c<b$. For each integer $j\ge1$, choose $N_j$
+large enough that $|s_{n+1}-s_n|<1/j$ for all $n\ge N_j$. Since $a$
+and $b$ are subsequential limits, there are arbitrarily late terms
+below $c$ and arbitrarily late terms above $c$. Indeed, use errors
+smaller than $(c-a)/2$ and $(b-c)/2$ in their defining subsequences.
+\step{Locate crossings farther and farther out.}
+Choose $p_j>\max(N_j,q_{j-1})$ with $s_{p_j}<c$, and then choose
+$q_j>p_j$ with $s_{q_j}>c$ (start with $q_0=0$). Let $k_j$ be the
+first index after $p_j$ for which $s_{k_j}\ge c$; it exists because
+$q_j$ is one such index. Then
+\[
+ s_{k_j-1}<c\le s_{k_j},\qquad
+ 0\le s_{k_j}-c<s_{k_j}-s_{k_j-1}<1/j.
+\]
+The chosen indices strictly increase, so $(s_{k_j})$ is a subsequence
+and converges to $c$. Thus $c\in S$.
+\step{Conclude connectedness.}
+The preceding argument shows $S$ contains every number strictly
+between any two of its points, which is exactly the interval property.
+Boundedness and Bolzano--Weierstrass ensure $S$ is nonempty; the
+cluster-set theorem also makes it closed and bounded. Thus it is a
+closed bounded interval, possibly a singleton, and intervals are connected.
+\answer{The cluster values cannot have a gap because vanishing step
+sizes prevent repeated crossings from jumping across such a gap.}

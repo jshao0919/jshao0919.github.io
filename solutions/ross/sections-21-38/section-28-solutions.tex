@@ -1,0 +1,294 @@
+\section{Basic properties of the derivative}
+A derivative measures a limiting slope, not merely a formal manipulation of a formula. At an interior point $a$,
+\[
+ f'(a)=\lim_{x\to a}\frac{f(x)-f(a)}{x-a}.
+\]
+The limit must be a finite real number and must agree from both sides. Differentiability implies continuity; the converse is false. The sum, product, quotient, and chain rules apply only after their hypotheses have been checked. At a point where a formula changes, return to this definition.
+
+\exercise{28.1}{Where absolute values create corners}
+\goal Find all points of nondifferentiability for the six functions.
+\idea Away from zeros of the expression inside an absolute value, its sign stays fixed nearby. Replace the absolute value by either that expression or its negative, and use ordinary differentiation. At a zero, compare the two one-sided slopes.
+\step{(a) The function $e^{|x|}$.}
+For $x>0$ the function is $e^x$, and for $x<0$ it is $e^{-x}$. Both formulas are differentiable on their respective open half-lines. At zero, the right derivative is $1$, whereas the left derivative is $-1$. The only exceptional point is $0$.
+\step{(b) The function $\sin|x|$.}
+On $x>0$ this is $\sin x$, and on $x<0$ it is $-\sin x$. The one-sided derivatives at zero are $1$ and $-1$. Again the exceptional set is $\{0\}$.
+\step{(c) The function $|\sin x|$.}
+The possible corners are the zeros $k\pi$, $k\in\Z$. Near $a=k\pi$, write $x=a+h$. Then
+\[
+ \frac{|\sin(a+h)|-|\sin a|}{h}=\frac{|\sin h|}{h}.
+\]
+As $h\to0^+$ this tends to $1$; as $h\to0^-$ it tends to $-1$. All and only the points $k\pi$ are exceptional.
+\step{(d) The function $|x|+|x-1|$.}
+Splitting at $0$ and $1$ gives
+\[
+ |x|+|x-1|=\begin{cases}1-2x,&x<0,\\1,&0\le x\le1,\\2x-1,&x>1.\end{cases}
+\]
+The slopes change from $-2$ to $0$ at $0$, and from $0$ to $2$ at $1$. The exceptional set is $\{0,1\}$.
+\step{(e) The function $|x^2-1|$.}
+It equals $x^2-1$ for $|x|\ge1$ and $1-x^2$ for $|x|<1$. At $-1$ the slopes are $-2$ from the left and $2$ from the right; at $1$ they are $-2$ from the left and $2$ from the right. Thus the exceptional set is $\{-1,1\}$.
+\step{(f) The function $|x^3-8|$.}
+The inner expression changes sign only at $2$. The function is $8-x^3$ to the left and $x^3-8$ to the right, so its slopes at $2$ are $-12$ and $12$. Only $2$ is exceptional.
+\answer{In order: $\{0\}$, $\{0\}$, $\{k\pi:k\in\Z\}$, $\{0,1\}$, $\{-1,1\}$, and $\{2\}$. The piecewise descriptions also specify the corresponding graph shapes.}
+
+\exercise{28.2}{Four derivatives directly from the definition}
+\goal Evaluate the requested limiting difference quotients without using differentiation rules.
+\step{(a) The cube at $2$.}
+For $x\ne2$, factor the difference of cubes:
+\[
+ \frac{x^3-8}{x-2}=x^2+2x+4\longrightarrow4+4+4=12.
+\]
+Thus $f'(2)=12$.
+\step{(b) The affine function at $a$.}
+For $h\ne0$,
+\[
+ \frac{g(a+h)-g(a)}h=\frac{a+h+2-(a+2)}h=1.
+\]
+The quotient is already constant, so $g'(a)=1$ for every real $a$.
+\step{(c) The function $x^2\cos x$ at zero.}
+Here $f(0)=0$, and for $x\ne0$ the quotient is $x\cos x$. Since $|x\cos x|\le |x|\to0$, the squeeze theorem gives $f'(0)=0$.
+\step{(d) The rational function at $1$.}
+For $r(x)=(3x+4)/(2x-1)$, we have $r(1)=7$. In a sufficiently small neighborhood of $1$, the denominator is nonzero, and
+\[
+ \frac{r(x)-r(1)}{x-1}
+ =\frac{3x+4-7(2x-1)}{(2x-1)(x-1)}
+ =\frac{-11}{2x-1}\longrightarrow-11.
+\]
+\answer{The derivatives are $12$, $1$, $0$, and $-11$, respectively.}
+
+\exercise{28.3}{Square roots and cube roots}
+\goal Derive the root differentiation formulas from limiting quotients and examine the cube root at zero.
+\step{(a) Rationalize the square-root quotient.}
+Fix $a>0$. For $x\ge0$ with $x\ne a$,
+\[
+ \frac{\sqrt{x}-\sqrt a}{x-a}
+ =\frac1{\sqrt x+\sqrt a}\longrightarrow\frac1{2\sqrt a}.
+\]
+Continuity of the square root justifies the last limit; its denominator tends to the positive number $2\sqrt a$. Thus $h'(a)=\tfrac12a^{-1/2}$.
+\step{(b) Factor a difference of cubes.}
+Fix $a\ne0$, and put $u=x^{1/3}$, $v=a^{1/3}$. Since $x-a=u^3-v^3=(u-v)(u^2+uv+v^2)$,
+\[
+ \frac{x^{1/3}-a^{1/3}}{x-a}
+ =\frac1{x^{2/3}+x^{1/3}a^{1/3}+a^{2/3}}
+ \longrightarrow\frac1{3a^{2/3}}.
+\]
+The real cube-root function is continuous, and $3a^{2/3}>0$, even when $a<0$. This proves $f'(a)=\tfrac13a^{-2/3}$.
+\step{(c) The origin is different.}
+At zero the quotient is $x^{1/3}/x=1/x^{2/3}$. It tends to $+\infty$ from both sides, not to a finite real number. A vertical tangent is not a derivative in the definition being used.
+\answer{The formulas hold on the stated nonzero domains; the cube-root function is not differentiable at $0$.}
+
+\exercise{28.4}{A differentiable function with a discontinuous derivative}
+\goal Analyze $f(x)=x^2\sin(1/x)$ off zero, with $f(0)=0$.
+\step{(a) Differentiate only where the displayed formula is valid.}
+For $a\ne0$, the product and chain rules give
+\[
+ f'(a)=2a\sin(1/a)+a^2\cos(1/a)(-a^{-2})
+      =2a\sin(1/a)-\cos(1/a).
+\]
+The reciprocal, sine, and polynomial factors are differentiable near such an $a$, so the rules apply.
+\step{(b) Return to the definition at zero.}
+For $x\ne0$,
+\[
+ \frac{f(x)-f(0)}{x}=x\sin(1/x),\qquad
+ |x\sin(1/x)|\le |x|\longrightarrow0.
+\]
+Thus $f'(0)=0$.
+\step{(c) Test continuity using a particular sequence.}
+Take $x_n=1/(2\pi n)\to0$. Then $\sin(1/x_n)=0$ and $\cos(1/x_n)=1$, so $f'(x_n)=-1$ for every $n$. These values do not tend to $f'(0)=0$. Therefore $f'$ is not continuous at zero.
+\answer{The function is differentiable everywhere, but its derivative fails to be continuous at zero.}
+
+\exercise{28.5}{Why an informal chain-rule cancellation can fail}
+\goal Explain the problem with a quotient involving $f(x)-f(0)$ for the function in Exercise 28.4 and $g(x)=x$.
+\step{(a) Verify the separate derivatives exist.}
+Exercise 28.4 proves that $f$ is differentiable everywhere, including zero. The identity function $g$ has derivative $1$ everywhere.
+\step{(b) Locate infinitely many zeros.}
+For any nonzero integer $n$, let $x=1/(\pi n)$. Then
+\[
+ f(x)=\frac1{\pi^2n^2}\sin(\pi n)=0=f(0).
+\]
+Such nonzero $x$ occur arbitrarily close to zero.
+\step{(c) Inspect the proposed quotient before taking a limit.}
+At every one of these points,
+\[
+ \frac{g(f(x))-g(f(0))}{f(x)-f(0)}=\frac00,
+\]
+which is undefined. Thus it is not a function on a full deleted neighborhood of zero, as a naive factorization of the chain-rule difference quotient would require. This is the sense in which the displayed unrestricted limit is meaningless in the exercise.
+If one explicitly restricts its domain to points with $f(x)\ne f(0)$, the quotient equals $1$ and has relative limit $1$; that different statement does not make the missing values defined. A rigorous chain-rule proof fills in the outer difference quotient at the problematic value using $g'(f(0))$, or uses a differentiability remainder.
+\answer{Differentiability of $f$ does not guarantee $f(x)\ne f(0)$ for nearby $x\ne0$. Division by this difference needs separate justification.}
+
+\exercise{28.6}{Continuity without differentiability at an oscillating point}
+\goal Examine $f(x)=x\sin(1/x)$ for $x\ne0$, with $f(0)=0$.
+\step{(a) Continuity.}
+The estimate $|f(x)-f(0)|\le|x|$ shows that $f(x)\to f(0)$ as $x\to0$. For an explicit epsilon--delta proof, choose $\delta=\varepsilon$.
+\step{(b) Differentiability.}
+The difference quotient at zero is $\sin(1/x)$. Along
+\[
+ u_n=\frac1{\pi/2+2\pi n},\qquad
+ v_n=\frac1{3\pi/2+2\pi n},
+\]
+both sequences tend to zero, but their quotient values are $1$ and $-1$, respectively. A function with a limit must have the same limit along every approaching sequence. Hence the derivative does not exist.
+\answer{The factor $x$ controls the function values, but dividing by $x$ in the derivative removes precisely that control.}
+
+\exercise{28.7}{Joining a horizontal half-line to a parabola}
+\goal For $f(x)=0$ on $x<0$ and $f(x)=x^2$ on $x\ge0$, draw and analyze $f$ and $f'$.
+\step{(a) Sketch the function.}
+The left branch is the negative half of the $x$-axis. The right branch is the right half of the parabola $y=x^2$, joined at $(0,0)$.
+\begin{center}
+\setlength{\unitlength}{1mm}
+\begin{picture}(75,43)
+\put(5,5){\vector(1,0){65}}\put(34,1){\vector(0,1){38}}
+\put(70,2){$x$}\put(36,37){$f$}
+\linethickness{0.9pt}\put(7,5){\line(1,0){27}}
+\qbezier(34,5)(49,5)(64,35)
+\put(32,1){$0$}\put(47,24){$y=x^2$}
+\end{picture}
+\end{center}
+\step{(b) Differentiate at the join from the definition.}
+For $h\ne0$,
+\[
+ \frac{f(h)-f(0)}h=\begin{cases}0,&h<0,\\h,&h>0.\end{cases}
+\]
+Both sides tend to zero, so $f'(0)=0$.
+\step{(c) Calculate and sketch the derivative.}
+On the open half-lines, ordinary differentiation gives
+\[
+ f'(x)=\begin{cases}0,&x\le0,\\2x,&x>0.\end{cases}
+\]
+Its graph is a horizontal left half-line joined to a straight right half-line of slope $2$:
+\begin{center}
+\setlength{\unitlength}{1mm}
+\begin{picture}(75,40)
+\put(5,5){\vector(1,0){65}}\put(34,1){\vector(0,1){35}}
+\put(70,2){$x$}\put(36,34){$f'$}
+\linethickness{0.9pt}\put(7,5){\line(1,0){27}}\put(34,5){\line(1,1){28}}
+\put(49,26){$y=2x$}\put(32,1){$0$}
+\end{picture}
+\end{center}
+\step{(d) Separate continuity from another derivative.}
+Both branches of $f'$ approach zero at the origin, its actual value there. Thus $f'$ is continuous on all of $\R$. Its difference quotient at zero, however, is $0$ for $h<0$ and $2$ for $h>0$. These do not agree. Consequently $f'$ is differentiable on $\R\setminus\{0\}$ but not on all of $\R$.
+\answer{$f$ is continuously differentiable, but its second derivative does not exist at zero.}
+
+\exercise{28.8}{A rational--irrational example}
+\goal Study $f(x)=x^2$ at rational $x$ and $f(x)=0$ at irrational $x$.
+\step{(a) Continuity at zero uses a common bound.}
+In both cases $0\le f(x)\le x^2$, and $f(0)=0$. Given $\varepsilon>0$, choosing $\delta=\sqrt\varepsilon$ makes $|x|<\delta$ imply $|f(x)-f(0)|<\varepsilon$.
+\step{(b) At a nonzero point, compare dense kinds of inputs.}
+Fix $a\ne0$. Density supplies rational $r_n\to a$ and irrational $t_n\to a$. Then
+\[
+ f(r_n)=r_n^2\longrightarrow a^2,\qquad f(t_n)=0\longrightarrow0.
+\]
+Since $a^2\ne0$, these two limits disagree. Thus $f$ has no limit at $a$ and cannot be continuous there.
+\step{(c) Differentiate at zero without assuming a neighborhood formula.}
+For $h\ne0$ the quotient is $h$ if $h$ is rational and $0$ otherwise. In either case its absolute value is at most $|h|$, so its limit is zero. Hence $f'(0)=0$. At every other point differentiability fails because continuity already fails.
+\answer{The derivative exists exactly at $0$, where it equals $0$. It would be invalid to claim $f'(x)=2x$ just because one branch has that formula.}
+
+\exercise{28.9}{Separating an inner polynomial and an outer power}
+\goal Differentiate $h(x)=(x^4+13x)^7$ and identify the composition.
+\step{(a) Compute the derivative.}
+The answer is
+\[
+ h'(x)=7(x^4+13x)^6(4x^3+13).
+\]
+The factor $4x^3+13$ is essential: it accounts for the rate of change of the inner quantity.
+\step{(b) Justify each factor.}
+Set $f(x)=x^4+13x$ and $g(u)=u^7$. These are polynomials, so they are differentiable everywhere. Since $h=g\circ f$, the chain rule gives $h'(x)=g'(f(x))f'(x)$, with $g'(u)=7u^6$ and $f'(x)=4x^3+13$. Substitution gives part (a).
+
+\exercise{28.10}{A power of a trigonometric--exponential sum}
+\goal Repeat the preceding decomposition for $h(x)=(\cos x+e^x)^{12}$.
+\step{(a) Differentiate.}
+\[
+ h'(x)=12(\cos x+e^x)^{11}(-\sin x+e^x).
+\]
+\step{(b) Verify the chain rule applies.}
+Let $f(x)=\cos x+e^x$ and $g(u)=u^{12}$. Both are differentiable everywhere, $f'(x)=-\sin x+e^x$, and $g'(u)=12u^{11}$. Thus $h=g\circ f$ and the displayed formula is exactly $g'(f(x))f'(x)$.
+
+\exercise{28.11}{A chain of three functions}
+\goal State and prove the derivative rule for $h\circ g\circ f$ at $a$ under the given differentiability assumptions.
+\step{First combine the two inner functions.}
+Since $f$ is differentiable at $a$ and $g$ at $f(a)$, the chain rule makes $g\circ f$ differentiable at $a$ and gives
+\[
+ (g\circ f)'(a)=g'(f(a))f'(a).
+\]
+Differentiability also gives the continuity needed to ensure the compositions are defined near the relevant points.
+\step{Then apply the rule to the remaining outer function.}
+The assumption about $h$ is differentiability at $(g\circ f)(a)$. A second application yields
+\[
+ (h\circ g\circ f)'(a)
+ =h'(g(f(a)))(g\circ f)'(a)
+ =h'(g(f(a)))g'(f(a))f'(a).
+\]
+\answer{Each derivative is evaluated at the input that its particular function actually receives.}
+
+\exercise{28.12}{Three nested functions with an exponent}
+\goal Differentiate $H(x)=\cos(e^{x^5-3x})$; the entire expression $x^5-3x$ is in the exponent.
+\step{(a) Work from the outside inward.}
+Differentiating cosine introduces a minus sine; differentiating the exponential reproduces it; differentiating the polynomial gives $5x^4-3$. Therefore
+\[
+ H'(x)=-\sin(e^{x^5-3x})\,e^{x^5-3x}(5x^4-3).
+\]
+\step{(b) Make the three-function justification explicit.}
+Take $f(x)=x^5-3x$, $g(u)=e^u$, and $h(v)=\cos v$. They are differentiable on $\R$, so the hypotheses of Exercise 28.11 hold at every $x$. Substituting $f'$, $g'$, and $h'$ into its formula proves the calculation.
+
+\exercise{28.13}{Ensuring a composition is defined nearby}
+\goal Find an open interval around $a$ on which $g\circ f$ is defined.
+\step{Choose a target neighborhood that stays in the domain of $g$.}
+Because that domain contains an open interval around $f(a)$, there is $\eta>0$ such that $(f(a)-\eta,f(a)+\eta)$ lies in the domain of $g$.
+\step{Use continuity of $f$ to stay inside that neighborhood.}
+Continuity at $a$ supplies $\delta_1>0$ such that $|x-a|<\delta_1$ implies $|f(x)-f(a)|<\eta$, for $x$ in the domain of $f$. Its domain also contains $(a-\delta_2,a+\delta_2)$ for some $\delta_2>0$. Let $\delta=\min(\delta_1,\delta_2)$. Every $x\in(a-\delta,a+\delta)$ belongs to the domain of $f$ and has $f(x)$ in the domain of $g$. Thus $g(f(x))$ is defined throughout that open interval.
+\answer{Continuity of $g$ is unnecessary for this domain assertion; only its available domain matters.}
+
+\exercise{28.14}{Increment quotients and symmetric quotients}
+\goal Derive both requested limits from differentiability at $a$.
+\step{(a) Replace the approaching point by an increment.}
+Set $x=a+h$. Then $x\to a$ if and only if $h\to0$, and $x\ne a$ if and only if $h\ne0$. Consequently the definition immediately gives
+\[
+ \lim_{h\to0}\frac{f(a+h)-f(a)}h=f'(a).
+\]
+\step{(b) Split the symmetric difference into two ordinary ones.}
+For nonzero $h$ small enough that both arguments are in the domain,
+\[
+ \frac{f(a+h)-f(a-h)}{2h}
+ =\frac12\left(\frac{f(a+h)-f(a)}h+
+                    \frac{f(a-h)-f(a)}{-h}\right).
+\]
+Each quotient in parentheses tends to $f'(a)$ by part (a), the second with increment $-h$. The limit is therefore $\tfrac12(f'(a)+f'(a))=f'(a)$.
+\answer{Differentiability implies the symmetric limit formula. The converse need not hold: $|x|$ at zero has symmetric quotient $0$ but no derivative.}
+
+\exercise{28.15}{Leibniz's higher product rule}
+\goal Prove the binomial-coefficient formula for the $n$th derivative of a product.
+\idea Induction extends the usual product rule. Each differentiation can land on either factor; Pascal's identity combines the two contributions to an interior term.
+\step{Start the induction.}
+For $n=1$ the formula is $(fg)'=fg'+f'g$, precisely the product rule. We use $f^{(0)}=f$ and $g^{(0)}=g$.
+\step{Differentiate the induction formula.}
+Assume the identity for order $n$, and suppose the derivatives needed for order $n+1$ exist. On the neighborhood where the lower derivatives are defined, differentiate each term:
+\begin{align*}
+ (fg)^{(n+1)}
+ &=\sum_{k=0}^n\binom nk f^{(k+1)}g^{(n-k)}
+   +\sum_{k=0}^n\binom nk f^{(k)}g^{(n+1-k)}.
+\end{align*}
+Reindex the first sum with $j=k+1$. Its end term at $j=n+1$ is $f^{(n+1)}g$, and the second sum's end term at $j=0$ is $fg^{(n+1)}$. For $1\le j\le n$, the coefficient of $f^{(j)}g^{(n+1-j)}$ is
+\[
+ \binom n{j-1}+\binom nj=\binom{n+1}j.
+\]
+The two end coefficients are also the corresponding binomial coefficients, both $1$. Thus
+\[
+ (fg)^{(n+1)}(a)=\sum_{j=0}^{n+1}\binom{n+1}j
+ f^{(j)}(a)g^{(n+1-j)}(a).
+\]
+This closes the induction. If only the final derivative is assumed at $a$, the same argument is applied to the lower-order identity near $a$ and differentiated at $a$; it does not assume the highest derivatives exist throughout a larger interval.
+\answer{For every permitted order, $(fg)^{(n)}(a)=\sum_{k=0}^n\binom nk f^{(k)}(a)g^{(n-k)}(a)$.}
+
+\exercise{28.16}{Differentiability as a linear approximation with vanishing error}
+\goal Prove the equivalence in the exercise, interpreting the proposed coefficient as a fixed real number $A$ until differentiability has been established.
+\step{From a derivative to an error function.}
+If $f'(a)$ exists, let $A=f'(a)$ and define
+\[
+ \epsilon(x)=A-\frac{f(x)-f(a)}{x-a}\quad(x\ne a),\qquad \epsilon(a)=0.
+\]
+By the derivative definition, $\epsilon(x)\to0$ as $x\to a$. Multiplication by $x-a$ gives
+\[
+ f(x)-f(a)=(x-a)[A-\epsilon(x)]
+\]
+for $x\ne a$; at $a$ both sides are zero, so the identity holds on all of $I$.
+\step{From the error representation to a derivative.}
+Conversely, suppose such a real $A$ and such an error function are given. For $x\ne a$, divide the identity by $x-a$. The quotient becomes $A-\epsilon(x)$ and tends to $A$. Thus $f'(a)$ exists and equals $A$, making the notation $f'(a)$ in the exercise legitimate.
+\answer{The change in $f$ equals its linear part plus an error whose ratio to $x-a$ tends to zero. No continuity of the error away from $a$ is required.}

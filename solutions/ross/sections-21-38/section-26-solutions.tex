@@ -1,0 +1,232 @@
+\section{Differentiation and integration of power series}
+\label{sec:power-calculus-new}
+\textbf{The permission comes before the calculation.}
+Inside the radius of convergence of a power series, we may differentiate
+term by term, and we may integrate term by term from zero to any interior
+point. Uniform convergence on each smaller closed interval is the reason
+integration works. Endpoints require a separate argument: convergence inside
+an interval does not by itself settle either endpoint. We use Abel's theorem
+only after checking that the numerical endpoint series converges.
+
+\exercise{26.1}{Term-by-term integration at a positive input}
+\goal If $f(t)=\sum_{k=0}^\infty a_kt^k$ has radius $R>0$, prove
+$\int_0^x f(t)\,dt=\sum_{k=0}^\infty a_kx^{k+1}/(k+1)$ when $0<x<R$.
+\step{Work on an interval lying strictly inside the radius.}
+Fix such an $x$, and put $s_n(t)=\sum_{k=0}^n a_kt^k$.
+The power series converges uniformly on $[-x,x]$ by Theorem~26.1, and
+therefore also on $[0,x]$. Each $s_n$ is a continuous polynomial.
+\step{Pass the limit through the integral using the established theorem.}
+Theorem~25.2 yields
+\[
+ \int_0^x f(t)\,dt=\lim_{n\to\infty}\int_0^x s_n(t)\,dt.
+\]
+For a finite sum, linearity and the power rule give
+\[
+ \int_0^x s_n(t)\,dt
+ =\sum_{k=0}^n a_k\int_0^x t^k\,dt
+ =\sum_{k=0}^n \frac{a_k}{k+1}x^{k+1}.
+\]
+Taking the limit of these finite sums gives precisely the claimed infinite series.
+\answer{The term-by-term integration formula holds for every positive $x<R$.
+The strict inequality $x<R$ is what secured the uniform convergence used in the proof.}
+
+\exercise{26.2}{A differentiated geometric series and three numerical sums}
+\goal Derive $\sum_{n=1}^\infty nx^n$ and use it to evaluate the requested sums.
+\step{(a) Differentiate first, then restore the missing power of $x$.}
+For $|x|<1$, the geometric series is
+$\sum_{n=0}^\infty x^n=1/(1-x)$.
+Its radius is $1$, so Theorem~26.5 allows differentiation at every such $x$:
+\[
+ \sum_{n=1}^\infty nx^{n-1}=\frac1{(1-x)^2}.
+\]
+Multiplying by $x$ gives
+\[
+ \boxed{\sum_{n=1}^\infty nx^n=\frac{x}{(1-x)^2}}
+ \qquad(|x|<1).
+\]
+\step{(b) Substitute $x=1/2$.}
+The value lies strictly inside the radius, so the formula gives
+\[
+ \sum_{n=1}^\infty\frac n{2^n}
+ =\frac{1/2}{(1-1/2)^2}=\frac{1/2}{1/4}=2.
+\]
+\step{(c) Substitute the two signed inputs separately.}
+At $x=1/3$,
+\[
+ \sum_{n=1}^\infty\frac n{3^n}
+ =\frac{1/3}{(2/3)^2}=\frac34.
+\]
+At $x=-1/3$,
+\[
+ \sum_{n=1}^\infty\frac{(-1)^n n}{3^n}
+ =\frac{-1/3}{(1+1/3)^2}
+ =\frac{-1/3}{16/9}=-\frac3{16}.
+\]
+\answer{The three numerical sums are $2$, $3/4$, and $-3/16$.}
+
+\exercise{26.3}{One more derivative gives squared indices}
+\goal Find $\sum_{n=1}^\infty n^2x^n$ and evaluate it at $1/2$ and $1/3$.
+\step{(a) Differentiate the identity from Exercise~26.2.}
+For $|x|<1$, term-by-term differentiation is legitimate, because differentiation
+preserves the radius of a power series. Hence
+\[
+ \sum_{n=1}^\infty n^2x^{n-1}
+ =\frac{d}{dx}\left[\frac{x}{(1-x)^2}\right]
+ =\frac1{(1-x)^2}+\frac{2x}{(1-x)^3}
+ =\frac{1+x}{(1-x)^3}.
+\]
+Multiplication by $x$ gives
+\[
+ \boxed{\sum_{n=1}^\infty n^2x^n=\frac{x(1+x)}{(1-x)^3}}
+ \qquad(|x|<1).
+\]
+\step{(b) Evaluate the two substitutions.}
+Both inputs are strictly inside the radius. At $x=1/2$ the numerator is
+$(1/2)(3/2)=3/4$ and the denominator is $(1/2)^3=1/8$, so
+\[
+ \sum_{n=1}^\infty\frac{n^2}{2^n}=\frac{3/4}{1/8}=6.
+\]
+At $x=1/3$ the numerator is $4/9$ and the denominator is $8/27$, so
+\[
+ \sum_{n=1}^\infty\frac{n^2}{3^n}=\frac{4/9}{8/27}=\frac32.
+\]
+\answer{The general formula is $x(1+x)/(1-x)^3$, and the requested values
+are $6$ and $3/2$.}
+
+\exercise{26.4}{Integrating the Gaussian power series}
+\goal Express $e^{-x^2}$ and $F(x)=\int_0^x e^{-t^2}\,dt$ as power series.
+\step{(a) Substitute into the exponential series.}
+The exponential identity, with its constant term included, is
+\[
+ e^u=\sum_{n=0}^\infty\frac{u^n}{n!}\qquad(u\in\R).
+\]
+Taking $u=-x^2$ gives
+\[
+ e^{-x^2}=\sum_{n=0}^\infty\frac{(-1)^n}{n!}x^{2n}
+ =1-x^2+\frac{x^4}{2!}-\frac{x^6}{3!}+\cdots.
+\]
+This substitution is valid for every real $x$ because the original exponential
+series converges for every real input.
+\step{(b) Verify the radius before integrating.}
+For fixed $x$, the ratio of successive absolute terms is $x^2/(n+1)\to0$,
+so this power series has infinite radius. Theorem~26.4 therefore applies
+between zero and every real $x$, whether positive or negative. It gives
+\[
+ \boxed{F(x)=\sum_{n=0}^\infty
+       \frac{(-1)^n x^{2n+1}}{(2n+1)n!}}
+ =x-\frac{x^3}{3}+\frac{x^5}{10}-\frac{x^7}{42}+\cdots.
+\]
+The lower limit contributes zero for each monomial, so no integration constant
+has been omitted.
+\answer{The two displayed expansions hold for all $x\in\R$.}
+
+\exercise{26.5}{A function equal to its own derivative, without naming it}
+\goal For $f(x)=\sum_{n=0}^\infty x^n/n!$, prove $f'=f$ directly from the series.
+\step{Check that term-by-term differentiation is allowed everywhere.}
+For each fixed $x$, the ratio of successive absolute terms is
+$|x|/(n+1)\to0$. Thus the radius is infinite, and Theorem~26.5 allows
+term-by-term differentiation at every real input.
+\step{Differentiate and carefully change the index.}
+The constant term differentiates to zero, and for $n\ge1$,
+$n/n!=1/(n-1)!$. Therefore
+\[
+ f'(x)=\sum_{n=1}^\infty\frac{nx^{n-1}}{n!}
+ =\sum_{n=1}^\infty\frac{x^{n-1}}{(n-1)!}
+ =\sum_{j=0}^\infty\frac{x^j}{j!}=f(x).
+\]
+In the last step we set $j=n-1$, so the first new index is zero.
+\answer{$f'=f$ on $\R$. No identification of $f$ with the exponential
+function was used.}
+
+\exercise{26.6}{A trigonometric identity derived without trigonometry}
+\goal For
+\[
+ s(x)=\sum_{n=0}^\infty\frac{(-1)^n x^{2n+1}}{(2n+1)!},\qquad
+ c(x)=\sum_{n=0}^\infty\frac{(-1)^n x^{2n}}{(2n)!},
+\]
+prove the requested derivative relations and $s^2+c^2=1$.
+\step{(a) Differentiate each series with its radius justified.}
+For fixed $x$, ratios of successive absolute terms tend to zero in both series,
+since their denominators acquire two factorial factors while their numerators
+acquire only a factor $x^2$. Thus both radii are infinite.
+Theorem~26.5 gives
+\[
+ s'(x)=\sum_{n=0}^\infty\frac{(-1)^n x^{2n}}{(2n)!}=c(x).
+\]
+For $c$, the $n=0$ term differentiates to zero, so
+\begin{align*}
+ c'(x)&=\sum_{n=1}^\infty\frac{(-1)^n x^{2n-1}}{(2n-1)!}\\
+ &=-\sum_{j=0}^\infty\frac{(-1)^j x^{2j+1}}{(2j+1)!}=-s(x).
+\end{align*}
+Here $j=n-1$, and $(-1)^{j+1}=-(-1)^j$ explains the minus sign.
+\step{(b) Differentiate the sum of squares.}
+The product rule gives
+\[
+ (s^2+c^2)'=2ss'+2cc'=2sc+2c(-s)=0.
+\]
+\step{(c) Determine the constant from one input.}
+A differentiable function with derivative zero on an interval is constant
+there, by the Mean Value theorem. Apply this on the interval joining zero to
+any real $x$. Thus $s(x)^2+c(x)^2=s(0)^2+c(0)^2$.
+The defining series give $s(0)=0$ and $c(0)=1$, so that constant is $1$.
+\answer{$s'=c$, $c'=-s$, and $s(x)^2+c(x)^2=1$ for every real $x$,
+proved using the series alone.}
+
+\exercise{26.7}{Why absolute value has no power-series representation at zero}
+\goal Decide whether $|x|=\sum_{n=0}^\infty a_nx^n$ can hold for all real $x$.
+\step{A power series with positive radius is differentiable at its center.}
+If such a representation held for every real input, its radius would be infinite,
+in particular positive. Theorem~26.5 would make its sum differentiable at zero.
+\step{Calculate the two difference quotients of absolute value.}
+Since $|0|=0$,
+\[
+ \frac{|h|-|0|}{h}=\begin{cases}1&h>0,\\-1&h<0.\end{cases}
+\]
+The right-hand and left-hand limits differ, so $|x|$ is not differentiable at zero.
+This contradicts the consequence of a power-series representation.
+\answer{No such power series exists, even on any two-sided neighborhood of
+zero. On the separate half-lines the formulas are $|x|=x$ and $|x|=-x$, but
+these do not combine into one power series about zero. Polynomial
+approximation, discussed next, is a different and weaker requirement.}
+
+\exercise{26.8}{The arctangent series and its endpoints}
+\goal Derive the arctangent series inside $(-1,1)$ and settle both endpoints.
+\step{(a) Substitute into the geometric series.}
+For $|x|<1$, put $y=-x^2$, so $|y|<1$. Then
+\[
+ \sum_{n=0}^\infty(-1)^n x^{2n}
+ =\sum_{n=0}^\infty y^n=\frac1{1-y}=\frac1{1+x^2}.
+\]
+\step{(b) Integrate on a strictly interior interval.}
+The power series has radius $1$, so Theorem~26.4 gives, for $|x|<1$,
+\[
+ \int_0^x\frac{dt}{1+t^2}
+ =\sum_{n=0}^\infty\frac{(-1)^n x^{2n+1}}{2n+1}.
+\]
+The integral on the left is $\arctan x-\arctan0=\arctan x$. Therefore
+\[
+ \arctan x=x-\frac{x^3}{3}+\frac{x^5}{5}-\cdots
+ \qquad(-1<x<1).
+\]
+\step{(c) Establish convergence at $1$ before using Abel's theorem.}
+At $x=1$ the numerical series is
+$\sum_{n=0}^\infty(-1)^n/(2n+1)$. Its positive term sizes decrease to zero,
+so the alternating-series test proves convergence.
+Abel's theorem then identifies its sum with the limit of the interior sum
+as $x\uparrow1$. Since arctangent is continuous,
+\[
+ \sum_{n=0}^\infty\frac{(-1)^n}{2n+1}
+ =\lim_{x\uparrow1}\arctan x=\frac\pi4.
+\]
+Multiplication by $4$ gives the familiar formula
+\[
+ \boxed{\pi=4\left(1-\frac13+\frac15-\frac17+\cdots\right)}.
+\]
+\step{(d) Evaluate at the negative endpoint with its sign intact.}
+Every power in the series is odd. Substitution $x=-1$ therefore makes the
+series the negative of the convergent series in part (c). Its sum is
+$-\pi/4=\arctan(-1)$. It converges conditionally at both endpoints: the
+series of absolute values $\sum1/(2n+1)$ diverges by comparison with the
+harmonic series, since $1/(2n+1)\ge1/(2n+2)$.
+\answer{The arctangent expansion holds on $[-1,1]$, with endpoint values
+$\pi/4$ and $-\pi/4$ justified separately, rather than by interior convergence alone.}
