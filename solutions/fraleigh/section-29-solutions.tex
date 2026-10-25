@@ -1,0 +1,181 @@
+\section{Introduction to Extension Fields}
+
+\exercise{29.1}{A shifted square root is algebraic}
+For $\alpha=1+\sqrt2$, we have $(\alpha-1)^2=2$. Expanding gives $\alpha^2-2\alpha-1=0$. Thus the nonzero rational polynomial $f(x)=x^2-2x-1$ witnesses algebraicity over $\Q$.
+
+\exercise{29.2}{A sum of two square roots}
+For $\alpha=\sqrt2+\sqrt3$, square to obtain $\alpha^2=5+2\sqrt6$. Isolate the radical and square again:
+\[(\alpha^2-5)^2=24.\]
+Hence $\alpha^4-10\alpha^2+1=0$, so $f(x)=x^4-10x^2+1\in\Q[x]$ proves algebraicity. For this exercise an annihilating polynomial suffices; minimality is not required.
+
+\exercise{29.3}{A shifted imaginary unit}
+For $\alpha=1+i$, the equation $(\alpha-1)^2=-1$ gives $\alpha^2-2\alpha+2=0$. Therefore $x^2-2x+2$ is a nonzero rational polynomial vanishing at $\alpha$.
+
+\exercise{29.4}{A nested square and cube root}
+Let $\alpha=\sqrt{1+\sqrt[3]2}$. Then $\alpha^2-1=\sqrt[3]2$, so $(\alpha^2-1)^3=2$. Thus
+\[f(x)=(x^2-1)^3-2=x^6-3x^4+3x^2-3\]
+is a rational annihilating polynomial. Every displayed operation is applied to the actual given number, so no converse claim about extraneous roots is needed.
+
+\exercise{29.5}{A complex nested radical}
+For $\alpha=\sqrt{\sqrt[3]2-i}$, we have $(\alpha^2+i)^3=2$. Set $A(x)=(x^2+i)^3-2$. Multiplying by its coefficient-conjugate gives a polynomial in $\Q[x]$:
+\[
+A(x)\overline{A}(x)=x^{12}+3x^8-4x^6+3x^4+12x^2+5.
+\]
+The first factor vanishes at $\alpha$, so the product does too. For checking the multiplication, write $A(x)=(x^6-3x^2-2)+i(3x^4-1)$; the product is the sum of squares of these two real polynomials.
+
+\exercise{29.6}{Minimal polynomial of a nested quadratic radical}
+Let $\alpha=\sqrt{3-\sqrt6}$. Then $(\alpha^2-3)^2=6$, giving $p(x)=x^4-6x^2+3$.
+To prove minimality, first $\sqrt6=3-\alpha^2\in\Q(\alpha)$. In $K=\Q(\sqrt6)$, the element $3-\sqrt6$ is not a square: the norm of a square $(u+v\sqrt6)^2$ is $(u^2-6v^2)^2$, a rational square, but the norm of $3-\sqrt6$ is $9-6=3$, not a rational square. Thus $\alpha\notin K$ and $[K(\alpha):K]=2$. Since $[K:\Q]=2$, $\alpha$ has degree four. The monic annihilating quartic must therefore be $\operatorname{irr}(\alpha,\Q)=p(x)$.
+
+\exercise{29.7}{A rational shift inside a nested radical}
+For $\alpha=\sqrt{1/3+\sqrt7}$, the equation $(\alpha^2-1/3)^2=7$ gives
+\[p(x)=x^4-\frac23x^2-\frac{62}{9}.\]
+The field $\Q(\alpha)$ contains $K=\Q(\sqrt7)$ because $\sqrt7=\alpha^2-1/3$. The norm of $1/3+\sqrt7$ down to $\Q$ is $1/9-7=-62/9$. It cannot be the norm of a square in $K$, since such a norm is a square of a rational number and hence nonnegative. Therefore adjoining $\alpha$ to $K$ has degree two, and the full degree is four. Thus $\operatorname{irr}(\alpha,\Q)=p(x)$ and $\deg(\alpha,\Q)=4$. Multiplying by nine gives an integer polynomial but the irreducible polynomial is conventionally monic.
+
+\exercise{29.8}{Minimal polynomial of a real-imaginary sum}
+Let $\alpha=\sqrt2+i$. Its equation $(\alpha^2-1)^2=-8$ gives $p(x)=x^4-2x^2+9$.
+For minimality, $3/\alpha=\sqrt2-i$ because $(\sqrt2+i)(\sqrt2-i)=3$. Hence
+\[\sqrt2=\frac{\alpha+3/\alpha}{2},\qquad i=\frac{\alpha-3/\alpha}{2}.\]
+Thus $\Q(\alpha)=\Q(\sqrt2,i)$. The real field $\Q(\sqrt2)$ does not contain $i$, so adjoining $i$ doubles its degree two, giving degree four. Therefore $p$ is the monic minimal polynomial and $\deg(\alpha,\Q)=4$.
+
+\exercise{29.9}{The imaginary unit over the rationals}
+The number $i$ satisfies $x^2+1=0$. This quadratic has no rational root (indeed no real root), so it is irreducible over $\Q$. Thus $i$ is algebraic of degree two over $\Q$.
+
+\exercise{29.10}{A nonreal number over the reals}
+The number $1+i$ satisfies $x^2-2x+2=0$. Its discriminant is $-4<0$, so the polynomial is irreducible over $\R$. Thus $1+i$ is algebraic of degree two over $\R$.
+
+\exercise{29.11}{A square root of a transcendental number}
+The number $\sqrt\pi$ is transcendental over $\Q$. If it were algebraic, its square would be algebraic because algebraic elements form a field (or because powers of an algebraic element lie in its finite simple extension). This would make $\pi$ algebraic over $\Q$, contradicting the known transcendence of $\pi$.
+
+\exercise{29.12}{The same number over the reals}
+Since $\sqrt\pi\in\R$, the polynomial $x-\sqrt\pi\in\R[x]$ vanishes at it. Its minimal polynomial over $\R$ is linear and its degree is one. Algebraicity always depends on the base field.
+
+\exercise{29.13}{A square root over a rational-function field}
+Put $t=\sqrt\pi$. Since $\pi=t^2$, the base field is $\Q(t^2)$. The polynomial $x^2-\pi$ shows degree at most two. It has no zero in $\Q(\pi)$: if a rational function $P(\pi)/Q(\pi)$ squared to $\pi$, transcendence would give the polynomial identity $P(T)^2=TQ(T)^2$. The exponent of $T$ on the left is even, and on the right odd, a contradiction after removing any common powers. Thus the degree is two.
+
+\exercise{29.14}{A square of pi over the rationals}
+The number $\pi^2$ is transcendental over $\Q$. If a nonzero $f\in\Q[x]$ satisfied $f(\pi^2)=0$, the nonzero polynomial $f(x^2)$ would vanish at $\pi$, contradicting transcendence. Therefore no algebraic degree is assigned.
+
+\exercise{29.15}{An element already in the base field}
+Here $\pi^2\in\Q(\pi)$, so its minimal polynomial over that field is $x-\pi^2$ and its degree is one. The coefficient $-\pi^2$ is allowed because it lies in the specified base field.
+
+\exercise{29.16}{Two different powers of a transcendental number}
+Set $T=\pi^3$. The element $\pi^2$ satisfies $x^3-T^2=0$ over $\Q(T)$. A reducible cubic over a field has a root in that field. But a rational root $P(T)/Q(T)$ would imply $P(T)^3=T^2Q(T)^3$. Comparing exponents of the irreducible factor $T$ gives a multiple of three on the left and an integer congruent to two modulo three on the right. This is impossible. Hence the cubic is irreducible, and $\pi^2$ has degree three over $\Q(\pi^3)$.
+
+\exercise{29.17}{Splitting the four-element-field quadratic}
+In characteristic two, $-\alpha=\alpha$ and $\alpha^2=\alpha+1$. Polynomial division gives
+\[x^2+x+1=(x+\alpha)(x+\alpha+1),\]
+since the sum of the roots is $1$ and their product is $\alpha(\alpha+1)=\alpha^2+\alpha=1$. Thus the second root is $\alpha+1$.
+
+\exercise{29.18}{Constructing the nine-element field}
+\textbf{(a)} The values of $x^2+1$ at $0,1,2$ in $\Z_3$ are $1,2,2$, so it has no root and is irreducible.
+\textbf{(b)} With $\alpha^2=-1=2$, each element is uniquely $a+b\alpha$ for $a,b\in\Z_3$. Use
+\[(a+b\alpha)+(c+d\alpha)=(a+c)+(b+d)\alpha,\]
+\[(a+b\alpha)(c+d\alpha)=(ac-bd)+(ad+bc)\alpha,\]
+reducing coefficients modulo three. For example $(1+2\alpha)(2+\alpha)=2+5\alpha+2\alpha^2=2\alpha$. In the requested order, the full tables are
+\[
+{\setlength{\arraycolsep}{3pt}\begin{array}{c|ccccccccc}+&0&1&2&\alpha&2\alpha&1+\alpha&1+2\alpha&2+\alpha&2+2\alpha\\\hline0&0&1&2&\alpha&2\alpha&1+\alpha&1+2\alpha&2+\alpha&2+2\alpha\\
+1&1&2&0&1+\alpha&1+2\alpha&2+\alpha&2+2\alpha&\alpha&2\alpha\\
+2&2&0&1&2+\alpha&2+2\alpha&\alpha&2\alpha&1+\alpha&1+2\alpha\\
+\alpha&\alpha&1+\alpha&2+\alpha&2\alpha&0&1+2\alpha&1&2+2\alpha&2\\
+2\alpha&2\alpha&1+2\alpha&2+2\alpha&0&\alpha&1&1+\alpha&2&2+\alpha\\
+1+\alpha&1+\alpha&2+\alpha&\alpha&1+2\alpha&1&2+2\alpha&2&2\alpha&0\\
+1+2\alpha&1+2\alpha&2+2\alpha&2\alpha&1&1+\alpha&2&2+\alpha&0&\alpha\\
+2+\alpha&2+\alpha&\alpha&1+\alpha&2+2\alpha&2&2\alpha&0&1+2\alpha&1\\
+2+2\alpha&2+2\alpha&2\alpha&1+2\alpha&2&2+\alpha&0&\alpha&1&1+\alpha\\\end{array}}
+\]
+\[
+{\setlength{\arraycolsep}{3pt}\begin{array}{c|ccccccccc}\cdot&0&1&2&\alpha&2\alpha&1+\alpha&1+2\alpha&2+\alpha&2+2\alpha\\\hline0&0&0&0&0&0&0&0&0&0\\
+1&0&1&2&\alpha&2\alpha&1+\alpha&1+2\alpha&2+\alpha&2+2\alpha\\
+2&0&2&1&2\alpha&\alpha&2+2\alpha&2+\alpha&1+2\alpha&1+\alpha\\
+\alpha&0&\alpha&2\alpha&2&1&2+\alpha&1+\alpha&2+2\alpha&1+2\alpha\\
+2\alpha&0&2\alpha&\alpha&1&2&1+2\alpha&2+2\alpha&1+\alpha&2+\alpha\\
+1+\alpha&0&1+\alpha&2+2\alpha&2+\alpha&1+2\alpha&2\alpha&2&1&\alpha\\
+1+2\alpha&0&1+2\alpha&2+\alpha&1+\alpha&2+2\alpha&2&\alpha&2\alpha&1\\
+2+\alpha&0&2+\alpha&1+2\alpha&2+2\alpha&1+\alpha&1&2\alpha&\alpha&2\\
+2+2\alpha&0&2+2\alpha&1+\alpha&1+2\alpha&2+\alpha&\alpha&1&2&2\alpha\\\end{array}}
+\]
+Irreducibility ensures this quotient is a field, so each nonzero row of the multiplication table contains $1$.
+
+\exercise{29.19}{Correcting algebraic element}
+An element $\alpha$ of an extension field $E/F$ is algebraic over $F$ exactly when it is a zero of a \emph{nonzero polynomial in $F[x]$}. Both qualifications matter: the zero polynomial vanishes everywhere, and a polynomial with arbitrary coefficients in $E$ could always be $x-\alpha$.
+
+\exercise{29.20}{Correcting transcendental element}
+An element $\beta\in E$ is transcendental over $F$ exactly when no \emph{nonzero} polynomial in $F[x]$ vanishes at $\beta$. The zero polynomial is excluded, since it vanishes at every element.
+
+\exercise{29.21}{Correcting monic polynomial}
+A nonzero polynomial is monic when its \emph{leading coefficient} is $1$; its other coefficients may be arbitrary. For example $x^2-3x+7$ is monic although not all its coefficients are one.
+
+\exercise{29.22}{Correcting simple extension}
+The extension $E/F$ is simple if $E=F(\alpha)$ for some $\alpha\in E$. Equivalently no proper subfield of $E$ that contains \emph{both $F$ and $\alpha$} exists. Omitting the condition that the subfield contain $F$ changes the meaning.
+
+\exercise{29.23}{True and false statements}
+\begin{enumerate}[label=(\alph*)]
+\item True. The transcendence of $\pi$ over $\Q$ is a known theorem used here.
+\item True. $\C=\R(i)$.
+\item True. For $a\in F$, the nonzero polynomial $x-a\in F[x]$ vanishes at $a$.
+\item True. The rational field is a subfield of $\R$.
+\item False. A subfield has the same identity and characteristic; $\Q$ has characteristic zero and $\Z_2$ characteristic two.
+\item True. The minimal polynomial divides every rational annihilating polynomial, so their degrees are at least $n$.
+\item False. Take $\alpha=\sqrt2$, of degree two over $\Q$, and $f=x-\sqrt2\in\R[x]$, of degree one.
+\item True. Kronecker's construction adjoins a zero using a quotient by an irreducible factor.
+\item False. $x^2+1\in\R[x]$ has no zero in the extension $\R$ itself.
+\item True. Evaluation $\Q[x]\to\Q[\pi]$ is onto and is injective by transcendence of $\pi$.
+\end{enumerate}
+
+\exercise{29.24}{Making transcendental numbers algebraic over larger fields}
+\textbf{(a)} Take $F=\Q(\pi^3)$. The polynomial $x^3-\pi^3$ vanishes at $\pi$, and has no root in $F$: treating $T=\pi^3$ as an indeterminate, $P(T)^3=TQ(T)^3$ contradicts exponents of $T$. A cubic with no root is irreducible. Hence the degree is three.
+\textbf{(b)} Take $E=\Q(e^{10})$. The element $u=e^2$ is transcendental over $\Q$, since otherwise $e$ would be algebraic over $\Q$. For any transcendental $u$, put $L=\Q(u^m)$ and let $A$ be the $L$-span of $1,u,\ldots,u^{m-1}$. These powers are independent: after clearing denominators in a proposed relation, powers occurring in different terms have different exponent residues modulo $m$, so no nonzero polynomial relation can vanish at the transcendental $u$. Thus $\dim_L A=m$. Reducing powers using $u^m\in L$ shows that $A$ is closed under multiplication and contains $1$. For $0\ne a\in A$, multiplication by $a$ is an injective linear map $A\to A$, because $A$ lies in the field $\Q(u)$. Finite dimension makes it surjective, so $ab=1$ for some $b\in A$. Hence $A$ is a field. It contains $L$ and $u$ and is contained in $\Q(u)$, so $A=\Q(u)$ and $[\Q(u):\Q(u^m)]=m$. Taking $m=5$ proves $e^2$ has degree five over $E$.
+
+\exercise{29.25}{Splitting an irreducible binary cubic}
+\textbf{(a)} The cubic $p=x^3+x^2+1$ takes value $1$ at both elements $0,1$ of $\Z_2$, so has no linear factor and is irreducible.
+\textbf{(b)} If $p(\alpha)=0$, then $\alpha^3=\alpha^2+1$. Squaring an equation in characteristic two shows that $\alpha^2$ and $\alpha^4$ are roots too. They are distinct: $\alpha$ has multiplicative order seven in the field of eight elements, so its first, second, and fourth powers differ. Reducing powers gives $\alpha^4=\alpha^2+\alpha+1$. Thus
+\[p(x)=(x+\alpha)(x+\alpha^2)(x+\alpha^2+\alpha+1).\]
+The first long division gives $p(x)=(x+\alpha)(x^2+(1+\alpha)x+\alpha^2+\alpha)$; the other two displayed roots factor that quadratic. This supplies the actual linear factors, not just their existence.
+
+\exercise{29.26}{The additive and multiplicative groups of eight elements}
+Degree three over $\Z_2$ gives the unique representation $a+b\alpha+c\alpha^2$ with binary coefficients. Addition is coordinatewise, so the additive group is $\Z_2\times\Z_2\times\Z_2$.
+There are seven nonzero elements. Their multiplicative group has prime order seven, so any nonidentity element generates it by Lagrange's theorem. Hence it is $\Z_7$. The additive group is not cyclic: every nonzero element has additive order two.
+
+\exercise{29.27}{Why minimal polynomial is an appropriate name}
+Division by the monic irreducible polynomial $p=\operatorname{irr}(\alpha,F)$ shows that any $f\in F[x]$ with $f(\alpha)=0$ is a multiple of $p$. Indeed its remainder would have smaller degree and still vanish at $\alpha$, so must be zero. Thus $p$ has the smallest possible degree among nonzero annihilating polynomials, and monicity makes it unique.
+
+\exercise{29.28}{Synopsis of Kronecker construction}
+Choose an irreducible factor $p$ of the given nonconstant $f\in F[x]$ and form the field $E=F[x]/(p)$. The constant cosets embed $F$ in $E$, and the coset $\alpha=x+(p)$ satisfies $p(\alpha)=0$, hence $f(\alpha)=0$ because $p$ divides $f$.
+
+\exercise{29.29}{Exchanging a transcendental generator}
+Since $\alpha$ is algebraic over $F(\beta)$, clear denominators in an annihilating equation to obtain
+\[H(\alpha,\beta)=0,\qquad H(X,Y)\in F[X,Y]\setminus\{0\}.\]
+Here clearing denominators can be done without making every coefficient zero when evaluated at $\beta$; start with actual nonzero coefficients in $F(\beta)$ and choose polynomial representatives.
+Regard $H(\alpha,Y)$ as a polynomial over $F(\alpha)$. It is not the zero polynomial: some coefficient is a nonzero polynomial in $\alpha$, and transcendence of $\alpha$ prevents its vanishing. Its value at $Y=\beta$ is zero. Its degree in $Y$ cannot be zero either, because that would give a nonzero element equal to zero. Thus $\beta$ is algebraic over $F(\alpha)$.
+
+\exercise{29.30}{Counting a finite simple extension}
+If $\operatorname{irr}(\alpha,F)$ has degree $n$, every element of $F(\alpha)$ has a unique expression
+\[a_0+a_1\alpha+\cdots+a_{n-1}\alpha^{n-1},\qquad a_i\in F.\]
+Spanning follows from division by the minimal polynomial, and uniqueness from its minimal degree. Each of the $n$ coefficients has $q$ choices, independently. Thus there are exactly $q^n$ elements.
+
+\exercise{29.31}{A twenty-seven-element field}
+\textbf{(a)} The polynomial $x^3+2x+1$ takes value $1$ at each of $0,1,2$ in $\Z_3$, so has no root and is irreducible.
+\textbf{(b)} Therefore $\Z_3[x]/(x^3+2x+1)$ is a field. Each coset has a unique representative $a+bx+cx^2$ with $a,b,c\in\Z_3$, giving $3^3=27$ elements.
+
+\exercise{29.32}{Quadratic extensions in every prime characteristic}
+\textbf{(a)} For odd $p$, the nonzero residues pair as $\{a,-a\}$, with two distinct members per pair. Their squares agree, and equality of squares implies this same pairing because $(a-b)(a+b)=0$ in the field. Thus there are only $(p-1)/2$ nonzero squares, fewer than $p-1$, so a nonsquare exists.
+\textbf{(b)} Choose a nonsquare $d\in\Z_p$. Then $x^2-d$ has no root and is irreducible, and its quotient field has $p^2$ elements. For the omitted prime $p=2$, use $x^2+x+1$, which has no root in $\Z_2$ and produces four elements. This covers every prime.
+
+\exercise{29.33}{Nonconstant rational functions stay transcendental}
+Let $\beta=f(\alpha)/g(\alpha)\notin F$, where $f,g\in F[x]$ and $g(\alpha)\ne0$. The polynomial $f(x)-\beta g(x)\in F(\beta)[x]$ vanishes at $\alpha$. It is nonzero, since otherwise any nonzero coefficient of $g$ would show $\beta\in F$. Thus $\alpha$ is algebraic over $F(\beta)$.
+If $\beta$ were algebraic over $F$, adjoining it gives a finite extension, and then adjoining $\alpha$ gives another finite extension. Their composite would make $\alpha$ algebraic over $F$, contradicting its transcendence. Hence $\beta$ is transcendental over $F$.
+
+\exercise{29.34}{A cubic-radical field without checking every axiom}
+The polynomial $x^3-2$ is irreducible over $\Q$ by Eisenstein's criterion at $2$. Therefore $\Q(\sqrt[3]2)$ has basis $1,\sqrt[3]2,(\sqrt[3]2)^2$ and consists exactly of the displayed expressions with rational coefficients. Since it is a simple algebraic extension, it is already a field. This identifies the set as a subfield of $\R$ without separately proving formulas for inverses.
+
+\exercise{29.35}{Fields of orders eight, sixteen, and twenty-five}
+For order eight use $\Z_2[x]/(x^3+x+1)$; the cubic has no binary root, so is irreducible.
+For order sixteen use $\Z_2[x]/(x^4+x+1)$. It has no binary root. A reducible quartic with no linear factor would be a product of irreducible quadratics, but the only monic irreducible binary quadratic is $x^2+x+1$. Modulo that quadratic, $x^3=1$ and $x^4=x$, so $x^4+x+1$ has remainder $1$ and is not divisible by it. Hence it is irreducible.
+For order twenty-five use $\Z_5[x]/(x^2+2)$; a root would have square $3$, which is not among $0,1,4$. Unique remainders of degrees less than $3,4,2$ give respectively $2^3,2^4,5^2$ elements.
+
+\exercise{29.36}{Every element of a finite field is algebraic}
+Let $|F|=q$. Its nonzero elements form a group of order $q-1$, so Lagrange's theorem gives $a^{q-1}=1$ for every $a\ne0$. Thus all elements, including zero, satisfy $a^q-a=0$. The nonzero polynomial $x^q-x$ has coefficients in the prime subfield $\Z_p$, so every element is algebraic over that subfield.
+
+\exercise{29.37}{Prime-power order}
+List the finitely many elements as $a_1,\ldots,a_r$ and form the chain $F_0=\Z_p$, $F_i=F_{i-1}(a_i)$. By Exercise 36, each $a_i$ is algebraic even over $\Z_p$, hence also over $F_{i-1}$. If its degree there is $d_i$, Exercise 30 gives $|F_i|=|F_{i-1}|^{d_i}$. Starting from $|F_0|=p$ and iterating yields $|F|=p^{d_1\cdots d_r}$, a prime power. Elements already adjoined simply contribute $d_i=1$.

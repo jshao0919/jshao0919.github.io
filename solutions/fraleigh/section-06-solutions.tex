@@ -1,0 +1,360 @@
+\section{Cyclic Groups}
+
+\exercise{6.1}{Quotient and nonnegative remainder}
+
+The division algorithm requires $n=mq+r$ with $0\le r<m$. Here
+\[42=9(4)+6,\qquad0\le 6<9.
+\]
+Thus the quotient is $4$ and the remainder is $6$. The nonnegative-remainder condition determines the quotient even when the dividend is negative.
+
+\exercise{6.2}{Quotient and nonnegative remainder}
+
+The division algorithm requires $n=mq+r$ with $0\le r<m$. Here
+\[-42=9(-5)+3,\qquad0\le 3<9.
+\]
+Thus the quotient is $-5$ and the remainder is $3$. The nonnegative-remainder condition determines the quotient even when the dividend is negative.
+
+\exercise{6.3}{Quotient and nonnegative remainder}
+
+The division algorithm requires $n=mq+r$ with $0\le r<m$. Here
+\[-50=8(-7)+6,\qquad0\le 6<8.
+\]
+Thus the quotient is $-7$ and the remainder is $6$. The nonnegative-remainder condition determines the quotient even when the dividend is negative.
+
+\exercise{6.4}{Quotient and nonnegative remainder}
+
+The division algorithm requires $n=mq+r$ with $0\le r<m$. Here
+\[50=8(6)+2,\qquad0\le 2<8.
+\]
+Thus the quotient is $6$ and the remainder is $2$. The nonnegative-remainder condition determines the quotient even when the dividend is negative.
+
+\exercise{6.5}{Greatest common divisor: Thirty-two and twenty-four}
+
+$32=1\cdot24+8$ and $24=3\cdot8+0$, so $\gcd(32,24)=8$. At each Euclidean step, the common divisors of the two current numbers are exactly those of the divisor and remainder; hence the final nonzero remainder is the greatest common divisor.
+
+\exercise{6.6}{Greatest common divisor: Forty-eight and eighty-eight}
+
+$88=1\cdot48+40$, $48=1\cdot40+8$, and $40=5\cdot8+0$. Thus $\gcd(48,88)=8$. At each Euclidean step, the common divisors of the two current numbers are exactly those of the divisor and remainder; hence the final nonzero remainder is the greatest common divisor.
+
+\exercise{6.7}{Greatest common divisor: Three hundred sixty and four hundred twenty}
+
+$420=1\cdot360+60$ and $360=6\cdot60+0$, so $\gcd(360,420)=60$. At each Euclidean step, the common divisors of the two current numbers are exactly those of the divisor and remainder; hence the final nonzero remainder is the greatest common divisor.
+
+\exercise{6.8}{Generators at order 5}
+
+If $a$ generates a cyclic group of order $5$, then $a^k$ is a generator exactly when $\gcd(k,5)=1$. Indeed its order is $5/\gcd(k,5)$. The eligible residues are $\{1,2,3,4\}$, so the number of generators is $\varphi(5)=4$.
+
+\exercise{6.9}{Generators at order 8}
+
+If $a$ generates a cyclic group of order $8$, then $a^k$ is a generator exactly when $\gcd(k,8)=1$. Indeed its order is $8/\gcd(k,8)$. The eligible residues are $\{1,3,5,7\}$, so the number of generators is $\varphi(8)=4$.
+
+\exercise{6.10}{Generators at order 12}
+
+If $a$ generates a cyclic group of order $12$, then $a^k$ is a generator exactly when $\gcd(k,12)=1$. Indeed its order is $12/\gcd(k,12)$. The eligible residues are $\{1,5,7,11\}$, so the number of generators is $\varphi(12)=4$.
+
+\exercise{6.11}{Generators at order 60}
+
+If $a$ generates a cyclic group of order $60$, then $a^k$ is a generator exactly when $\gcd(k,60)=1$. Indeed its order is $60/\gcd(k,60)$. The eligible residues are $\{1,7,11,13,17,19,23,29,31,37,41,43,47,49,53,59\}$, so the number of generators is $\varphi(60)=16$.
+
+\exercise{6.12}{Automorphisms of Z 2}
+
+An additive map from $\Z_2$ is determined by the image $k$ of $1$: it must send $x$ to $kx\pmod{2}$. It is an automorphism exactly when $k$ generates $\Z_2$, equivalently $\gcd(k,2)=1$. The choices are $k\in\{1\}$, so there are $1$ automorphisms.
+
+\exercise{6.13}{Automorphisms of Z 6}
+
+An additive map from $\Z_6$ is determined by the image $k$ of $1$: it must send $x$ to $kx\pmod{6}$. It is an automorphism exactly when $k$ generates $\Z_6$, equivalently $\gcd(k,6)=1$. The choices are $k\in\{1,5\}$, so there are $2$ automorphisms.
+
+\exercise{6.14}{Automorphisms of Z 8}
+
+An additive map from $\Z_8$ is determined by the image $k$ of $1$: it must send $x$ to $kx\pmod{8}$. It is an automorphism exactly when $k$ generates $\Z_8$, equivalently $\gcd(k,8)=1$. The choices are $k\in\{1,3,5,7\}$, so there are $4$ automorphisms.
+
+\exercise{6.15}{Automorphisms of the integers}
+
+An additive map is determined by $\phi(1)$, since $\phi(n)=n\phi(1)$ for every integer, including negative integers. To be onto, this image must generate $\Z$, so it is $1$ or $-1$. Both maps $n\mapsto n$ and $n\mapsto-n$ are automorphisms. Hence there are exactly $2$.
+
+\exercise{6.16}{Automorphisms of Z twelve}
+
+The image of $1$ can be any generator, and determines the whole map by $x\mapsto kx\pmod{12}$. The generators are $1,5,7,11$, the residues relatively prime to $12$. Each gives an invertible map (indeed each squares to $1$ modulo $12$), so there are $4$ automorphisms.
+
+\exercise{6.17}{Twenty-five modulo thirty}
+
+The order of a residue $k$ in the additive group $\Z_n$ is $n/\gcd(n,k)$. Here it is $30/5=6$. Directly, the generated subgroup is $\{0,25,20,15,10,5\}$; the next multiple is zero and no previous positive multiple is zero.
+
+\exercise{6.18}{Thirty modulo forty-two}
+
+The subgroup has order $42/\gcd(42,30)=42/6=7$. Its elements, listed in increasing order, are $\{0,6,12,18,24,30,36\}$. They arise because integer multiples of $30$ modulo $42$ are exactly the multiples of $6$ modulo $42$.
+
+\exercise{6.19}{The powers of i}
+
+The powers are $1,i,-1,-i$, then $1$ again. Thus the subgroup has exactly $4$ elements. In particular $i^4=1$ and no smaller positive power equals $1$.
+
+\exercise{6.20}{A normalized complex number}
+
+The generator $(1+i)/\sqrt2=e^{i\pi/4}$ lies on the unit circle. Its $k$th power is $1$ exactly when $k\pi/4\in2\pi\Z$, or $8\mid k$. Hence its subgroup has $8$ elements.
+
+\exercise{6.21}{The powers of one plus i}
+
+The modulus of $1+i$ is $\sqrt2$. If $(1+i)^m=(1+i)^n$, taking moduli gives $(\sqrt2)^m=(\sqrt2)^n$, which forces $m=n$. Thus all integral powers are distinct and the generated subgroup is infinite (countably infinite). The modulus need not be $1$ in the ambient group $\C^*$.
+
+\begin{minipage}{\linewidth}
+\exercise{6.22}{All subgroups of Z 12}
+
+Every subgroup of a cyclic group is cyclic, and there is exactly one subgroup of each order $d$ dividing $12$. Label it $H_d=\gen{12/d}$. Its complete element description is
+\[H_d=\{0,12/d,2(12/d),\ldots,(d-1)(12/d)\},\qquad|H_d|=d.
+\]
+The complete list is specified by the following table:
+\[\begin{array}{c|rrrrrr}d&1&2&3&4&6&12\\\hline \text{generator }n/d&12&6&4&3&2&1\\\end{array}\]
+For $d=1$, the generator $12$ represents $0$ modulo $12$, so $H_1=\{0\}$; $H_{12}=\Z_{12}$. Inclusion satisfies $H_d\subseteq H_e$ exactly when $d\mid e$. The diagram joins only immediate inclusions (larger groups above):
+\begin{center}\setlength{\unitlength}{1mm}\begin{picture}(95,63)
+\put(48.30,8.74){\line(15,17){8.40}}
+\put(40.60,8.74){\line(-20,17){11.20}}
+\put(63.30,25.74){\line(15,17){8.40}}
+\put(56.70,25.74){\line(-15,17){8.40}}
+\put(29.40,25.74){\line(20,17){11.20}}
+\put(71.70,42.74){\line(-15,17){8.40}}
+\put(48.30,42.74){\line(15,17){8.40}}
+\put(45,5){\makebox(0,0){$H_{1}$}}
+\put(60,22){\makebox(0,0){$H_{2}$}}
+\put(25,22){\makebox(0,0){$H_{3}$}}
+\put(75,39){\makebox(0,0){$H_{4}$}}
+\put(45,39){\makebox(0,0){$H_{6}$}}
+\put(60,56){\makebox(0,0){$H_{12}$}}
+\end{picture}\end{center}
+
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\exercise{6.23}{All subgroups of Z 36}
+
+Every subgroup of a cyclic group is cyclic, and there is exactly one subgroup of each order $d$ dividing $36$. Label it $H_d=\gen{36/d}$. Its complete element description is
+\[H_d=\{0,36/d,2(36/d),\ldots,(d-1)(36/d)\},\qquad|H_d|=d.
+\]
+The complete list is specified by the following table:
+\[\begin{array}{c|rrrrrrrrr}d&1&2&3&4&6&9&12&18&36\\\hline \text{generator }n/d&36&18&12&9&6&4&3&2&1\\\end{array}\]
+For $d=1$, the generator $36$ represents $0$ modulo $36$, so $H_1=\{0\}$; $H_{36}=\Z_{36}$. Inclusion satisfies $H_d\subseteq H_e$ exactly when $d\mid e$. The diagram joins only immediate inclusions (larger groups above):
+\begin{center}\setlength{\unitlength}{1mm}\begin{picture}(95,80)
+\put(48.30,8.74){\line(15,17){8.40}}
+\put(41.70,8.74){\line(-15,17){8.40}}
+\put(63.30,25.74){\line(15,17){8.40}}
+\put(56.70,25.74){\line(-15,17){8.40}}
+\put(71.70,42.74){\line(-15,17){8.40}}
+\put(33.30,25.74){\line(15,17){8.40}}
+\put(26.70,25.74){\line(-15,17){8.40}}
+\put(48.30,42.74){\line(15,17){8.40}}
+\put(41.70,42.74){\line(-15,17){8.40}}
+\put(56.70,59.74){\line(-15,17){8.40}}
+\put(18.30,42.74){\line(15,17){8.40}}
+\put(33.30,59.74){\line(15,17){8.40}}
+\put(45,5){\makebox(0,0){$H_{1}$}}
+\put(60,22){\makebox(0,0){$H_{2}$}}
+\put(75,39){\makebox(0,0){$H_{4}$}}
+\put(30,22){\makebox(0,0){$H_{3}$}}
+\put(45,39){\makebox(0,0){$H_{6}$}}
+\put(60,56){\makebox(0,0){$H_{12}$}}
+\put(15,39){\makebox(0,0){$H_{9}$}}
+\put(30,56){\makebox(0,0){$H_{18}$}}
+\put(45,73){\makebox(0,0){$H_{36}$}}
+\end{picture}\end{center}
+
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\exercise{6.24}{All subgroups of Z 8}
+
+Every subgroup of a cyclic group is cyclic, and there is exactly one subgroup of each order $d$ dividing $8$. Label it $H_d=\gen{8/d}$. Its complete element description is
+\[H_d=\{0,8/d,2(8/d),\ldots,(d-1)(8/d)\},\qquad|H_d|=d.
+\]
+The complete list is specified by the following table:
+\[\begin{array}{c|rrrr}d&1&2&4&8\\\hline \text{generator }n/d&8&4&2&1\\\end{array}\]
+For $d=1$, the generator $8$ represents $0$ modulo $8$, so $H_1=\{0\}$; $H_{8}=\Z_8$. Inclusion satisfies $H_d\subseteq H_e$ exactly when $d\mid e$. The diagram joins only immediate inclusions (larger groups above):
+\begin{center}\setlength{\unitlength}{1mm}\begin{picture}(95,63)
+\put(45.00,8.74){\line(0,17){9.52}}
+\put(45.00,25.74){\line(0,17){9.52}}
+\put(45.00,42.74){\line(0,17){9.52}}
+\put(45,5){\makebox(0,0){$H_{1}$}}
+\put(45,22){\makebox(0,0){$H_{2}$}}
+\put(45,39){\makebox(0,0){$H_{4}$}}
+\put(45,56){\makebox(0,0){$H_{8}$}}
+\end{picture}\end{center}
+
+\end{minipage}
+
+\exercise{6.25}{Subgroup orders in Z 6}
+
+The possible orders are exactly the positive divisors of $6$:
+\[\{1,2,3,6\}.
+\]
+A subgroup of order $d$ actually exists for each listed divisor: it is generated by the residue $6/d$. Conversely the classification of subgroups of a cyclic group excludes all other orders.
+
+\exercise{6.26}{Subgroup orders in Z 8}
+
+The possible orders are exactly the positive divisors of $8$:
+\[\{1,2,4,8\}.
+\]
+A subgroup of order $d$ actually exists for each listed divisor: it is generated by the residue $8/d$. Conversely the classification of subgroups of a cyclic group excludes all other orders.
+
+\exercise{6.27}{Subgroup orders in Z 12}
+
+The possible orders are exactly the positive divisors of $12$:
+\[\{1,2,3,4,6,12\}.
+\]
+A subgroup of order $d$ actually exists for each listed divisor: it is generated by the residue $12/d$. Conversely the classification of subgroups of a cyclic group excludes all other orders.
+
+\exercise{6.28}{Subgroup orders in Z 20}
+
+The possible orders are exactly the positive divisors of $20$:
+\[\{1,2,4,5,10,20\}.
+\]
+A subgroup of order $d$ actually exists for each listed divisor: it is generated by the residue $20/d$. Conversely the classification of subgroups of a cyclic group excludes all other orders.
+
+\exercise{6.29}{Subgroup orders in Z 17}
+
+The possible orders are exactly the positive divisors of $17$:
+\[\{1,17\}.
+\]
+A subgroup of order $d$ actually exists for each listed divisor: it is generated by the residue $17/d$. Conversely the classification of subgroups of a cyclic group excludes all other orders.
+
+\exercise{6.30}{The definition of element order}
+
+An element $a$ has order $n\in\Z^+$ if and only if $n$ is the \emph{least positive} integer such that $a^n=e$. Merely requiring $a^n=e$ is not sufficient: if $a$ has order $2$, it also satisfies $a^4=e$, but its order is not $4$. If no such positive exponent exists, the order is infinite.
+
+\exercise{6.31}{The definition of greatest common divisor}
+
+The definition is correct: the greatest common divisor of two positive integers is their largest positive common divisor. Existence is assured because $1$ is a common divisor and all positive common divisors are bounded above by the smaller integer. A useful stronger property, proved via the Euclidean algorithm, is that every common divisor divides this greatest common divisor.
+
+\exercise{6.32}{Ten statements about cyclic groups}
+
+\begin{enumerate}[label=(\alph*)]
+\item True: powers of a common generator commute.
+\item False: the Klein four-group is abelian but not cyclic.
+\item False: if $q\ne0$ generated $\Q$ additively, $q/2$ would not be an integer multiple of $q$.
+\item False: zero in a nontrivial additive cyclic group generates only its trivial subgroup.
+\item True: $\Z_n$ is abelian of order $n$ for every positive $n$.
+\item False: the Klein four-group has order $4$ and is not cyclic.
+\item False: $1$ and $9$ both generate $\Z_{20}$ but are not prime numbers; relative primality to $20$ is the criterion.
+\item False in general: two groups may even have disjoint underlying sets, so their intersection is empty and cannot be a group. An operation shared in an ambient group is not specified here.
+\item True: the intersection contains the shared identity and is closed under the shared operation and inverses.
+\item True: if $a$ generates a cyclic group of order greater than $2$, then $a^{-1}$ is a distinct generator; equality would imply $a^2=e$ and order at most $2$. The same reasoning covers infinite order.
+\end{enumerate}
+
+\exercise{6.33}{A finite noncyclic group}
+
+Use the Klein four-group $V=\{e,a,b,c\}$. Each nonidentity element has order $2$, so every cyclic subgroup has at most two elements. None can equal the four-element group, proving that it is not cyclic.
+
+\exercise{6.34}{An infinite noncyclic group}
+
+The additive group $\Q$ is infinite and not cyclic. The zero element cannot generate it. If a nonzero rational $q$ were a generator, then $q/2$ would have to be $nq$ for some integer $n$; dividing by $q$ gives $n=1/2$, impossible.
+
+\exercise{6.35}{A cyclic group with one generator}
+
+The group $\Z_2$ works: the element $1$ generates both residues, whereas $0$ generates just itself. Hence it has exactly one generator. The trivial group is another possible example, since its identity generates it.
+
+\exercise{6.36}{An infinite cyclic group with four generators}
+
+No such group exists. Every infinite cyclic group is isomorphic to $\Z$. The only generators of $\Z$ are $1,-1$, since $k\Z=\Z$ forces $|k|=1$. Isomorphisms preserve generators, so every infinite cyclic group has exactly two.
+
+\exercise{6.37}{A finite cyclic group with four generators}
+
+Use $\Z_5$. Its generators are $1,2,3,4$, since each is relatively prime to $5$ and therefore has order $5$. The identity $0$ is not a generator, so there are exactly four.
+
+\exercise{6.38}{Primitive roots for n equals 4}
+
+The roots of unity are $e^{2\pi i k/4}$, and such a root is primitive exactly when $\gcd(k,4)=1$, since its order is $4/\gcd(k,4)$. Therefore the primitive roots are
+\[\{e^{2\pi i k/4}:k\in\{1,3\}\}.
+\]
+These are $i,-i$.
+
+\exercise{6.39}{Primitive roots for n equals 6}
+
+The roots of unity are $e^{2\pi i k/6}$, and such a root is primitive exactly when $\gcd(k,6)=1$, since its order is $6/\gcd(k,6)$. Therefore the primitive roots are
+\[\{e^{2\pi i k/6}:k\in\{1,5\}\}.
+\]
+These are $1/2+i\sqrt3/2$ and $1/2-i\sqrt3/2$.
+
+\exercise{6.40}{Primitive roots for n equals 8}
+
+The roots of unity are $e^{2\pi i k/8}$, and such a root is primitive exactly when $\gcd(k,8)=1$, since its order is $8/\gcd(k,8)$. Therefore the primitive roots are
+\[\{e^{2\pi i k/8}:k\in\{1,3,5,7\}\}.
+\]
+These are $(1+i)/\sqrt2$, $(-1+i)/\sqrt2$, $(-1-i)/\sqrt2$, and $(1-i)/\sqrt2$.
+
+\exercise{6.41}{Primitive roots for n equals 12}
+
+The roots of unity are $e^{2\pi i k/12}$, and such a root is primitive exactly when $\gcd(k,12)=1$, since its order is $12/\gcd(k,12)$. Therefore the primitive roots are
+\[\{e^{2\pi i k/12}:k\in\{1,5,7,11\}\}.
+\]
+Their arguments are $\pi/6,5\pi/6,7\pi/6,11\pi/6$; equivalently the roots are $(\pm\sqrt3\pm i)/2$ with independent signs.
+
+\exercise{6.42}{Synopsis of cyclic implies abelian}
+
+Express any two elements as powers of one generator and use addition of their integer exponents to see that their products in the two orders agree.
+
+\exercise{6.43}{Synopsis of the cyclic-subgroup theorem}
+
+For a nontrivial subgroup of a cyclic group, choose the least positive exponent whose generator power belongs to the subgroup. Divide the exponent of any other subgroup element by this least exponent; closure puts the remainder power in the subgroup, and minimality forces that remainder to be zero. Thus every element of the subgroup is a power of the chosen one.
+
+\exercise{6.44}{A homomorphism from a cyclic group is determined by one value}
+
+Write an arbitrary $x\in G$ as $a^m$ for an integer $m$. Preservation of products and inverses gives $\phi(x)=\phi(a^m)=\phi(a)^m$. If $\psi(a)=\phi(a)$, then $\psi(x)=\psi(a)^m=\phi(a)^m=\phi(x)$. This works for all $x$, including the identity and negative powers. Thus the maps agree everywhere once they agree on a generator.
+
+\exercise{6.45}{Integer linear combinations form a subgroup}
+
+Let $H=\{nr+ms:n,m\in\Z\}$. It contains $0=0r+0s$. The sum of $nr+ms$ and $n'r+m's$ is $(n+n')r+(m+m')s$, again in $H$. The negative is $(-n)r+(-m)s$, also in $H$. Hence $H$ is a subgroup of the additive group $\Z$ (indeed it is $\gcd(r,s)\Z$).
+
+\exercise{6.46}{The orders of ab and ba}
+
+The elements are conjugate: $ba=a^{-1}(ab)a$. Therefore for every positive integer $k$,
+\[(ba)^k=a^{-1}(ab)^k a,
+\]
+proved by cancellation of the adjacent $aa^{-1}$ factors. Consequently $(ba)^k=e$ if and only if $(ab)^k=e$. Their least positive identity exponents are therefore the same, so $ba$ also has order $n$. This proves equality, rather than merely showing its order divides $n$.
+
+\exercise{6.47}{Least common multiples via subgroups}
+
+\begin{enumerate}[label=(\alph*)]
+\item The intersection $r\Z\cap s\Z$ is a subgroup of $\Z$ containing $rs>0$. Its unique positive generator is $\ell=\operatorname{lcm}(r,s)$: its positive members are exactly the positive common multiples, and its least positive member generates it.
+\item $\ell=rs$ exactly when $\gcd(r,s)=1$.
+\item Put $d=\gcd(r,s)$ and write $r=du,s=dv$ with $\gcd(u,v)=1$. If $M$ is a common multiple, write $M=duk$. Since $dv\mid M$, we have $v\mid uk$; relatively prime $u,v$ imply $v\mid k$ (multiply a Bezout identity for $u,v$ by $k$). Thus $duv\mid M$. Conversely $duv$ is a common multiple. Therefore $\ell=duv$, and $d\ell=d^2uv=rs$. Since $r,s$ are positive, this formula also proves the equivalence in part (b).
+\end{enumerate}
+
+\exercise{6.48}{Finitely many subgroups force a finite group}
+
+First, no element can have infinite order. If $a$ did, its infinite cyclic subgroup would contain the infinitely many distinct subgroups $\gen{a^m}$, $m=1,2,\ldots$, all also subgroups of $G$. They are distinct because in an infinite cyclic group the exponent sets $m\Z$ are distinct. Thus every cyclic subgroup of $G$ is finite. There are only finitely many subgroups by hypothesis, hence only finitely many cyclic subgroups. Every element lies in the cyclic subgroup it generates, so $G$ is a finite union of finite cyclic subgroups and is finite.
+
+\exercise{6.49}{All proper subgroups cyclic does not suffice}
+
+The Klein four-group is not cyclic, since every element has order at most $2$. Its proper subgroups are $\{e\}$, $\{e,a\}$, $\{e,b\}$, and $\{e,c\}$, all cyclic. Indeed any subgroup containing two different nonidentity elements must also contain their product, the third nonidentity element, and hence must be all of $V$. Thus this is the required counterexample.
+
+\exercise{6.50}{A unique element of order two is central}
+
+For arbitrary $x\in G$, compute $(xax^{-1})^2=xa^2x^{-1}=e$. Also $xax^{-1}\ne e$, because otherwise multiplying by $x^{-1}$ on the left and $x$ on the right would give $a=e$. Therefore this conjugate also has order $2$, and uniqueness forces $xax^{-1}=a$. Multiplying on the right by $x$ yields $xa=ax$. Since $x$ was arbitrary, $a$ commutes with every element.
+
+\exercise{6.51}{Generators at order pq}
+
+A residue modulo $pq$ generates the cyclic group exactly when it is not divisible by $p$ or by $q$. Among the $pq$ residues $0,\ldots,pq-1$, there are $q$ multiples of $p$, $p$ multiples of $q$, and one residue (zero) counted in both lists. Inclusion-exclusion gives
+\[pq-q-p+1=(p-1)(q-1)
+\]
+generators. Distinctness and primality of $p,q$ ensure that these are exactly the forbidden prime divisors.
+
+\exercise{6.52}{Generators at a prime-power order}
+A residue modulo $p^r$ generates the additive group precisely when it is relatively prime to $p^r$, equivalently not divisible by $p$. Among $0,1,\ldots,p^r-1$, the multiples of $p$ are $0,p,2p,\ldots,(p^{r-1}-1)p$, exactly $p^{r-1}$ residues. Therefore the number of generators is
+\[p^r-p^{r-1}=p^{r-1}(p-1).\]
+This includes $r=1$, giving $p-1$ nonzero generators in $\Z_p$.
+
+\exercise{6.53}{A power equation when the exponent divides the order}
+Let $G=\gen a$ have order $n$, and write $n=mq$. Every element has a unique representation $a^k$ with $0\le k<n$. The equation $(a^k)^m=e$ holds if and only if $n\mid km$, which, since $n=mq$, is equivalent to $q\mid k$. The eligible exponents are therefore
+\[0,q,2q,\ldots,(m-1)q,\]
+exactly $m$ distinct residues. The corresponding $m$ distinct group elements are all the solutions. The argument includes the cases $m=1$ and $m=n$.
+
+\exercise{6.54}{A power equation for a general exponent}
+Put $d=\gcd(n,m)$ and write $n=dn'$, $m=dm'$ with $\gcd(n',m')=1$. For $x=a^k$, the equation $x^m=e$ is equivalent to $n\mid mk$, hence to $n'\mid m'k$. Relative primality makes this equivalent to $n'\mid k$. There are exactly $d$ such residues modulo $n$, namely $k=0,n',\ldots,(d-1)n'$. Thus there are $\gcd(n,m)$ solutions. In the question's case $1<m<n$ and $m\nmid n$, this number is strictly less than $m$ (and equals $1$ if $n,m$ are relatively prime).
+
+\exercise{6.55}{Subgroups at prime order}
+Every subgroup of $\Z_p$ has order dividing $p$, by the classification of subgroups of a cyclic group. Since $p$ is prime, the only divisors are $1$ and $p$, yielding respectively the trivial subgroup and the whole group. Hence there is no proper nontrivial subgroup. Equivalently, any nonzero residue $k$ is relatively prime to $p$ and itself generates all of $\Z_p$.
+
+\exercise{6.56}{Finding a cyclic subgroup of a least-common-multiple order}
+Write $H=\gen a$, $K=\gen b$, with $a,b$ of orders $r,s$.
+\begin{enumerate}[label=(\alph*)]
+\item Assume $\gcd(r,s)=1$. Any element of $H\cap K$ has order dividing both $r$ and $s$, hence is the identity. Since the group is abelian, $(ab)^{rs}=e$. Conversely if $(ab)^t=e$, then $a^t=b^{-t}$ lies in $H\cap K$, so $a^t=b^t=e$. Thus $r\mid t$ and $s\mid t$, giving $rs\mid t$. Therefore $ab$ has order exactly $rs$, and $\gen{ab}$ is the required subgroup.
+\item Factor $r,s$ into prime powers. For each prime $p$ appearing, take the larger of its two prime-power factors, say $p^{\gamma_p}$. If that factor comes from $r$, choose $c_p=a^{r/p^{\gamma_p}}$; its order is exactly $p^{\gamma_p}$, by the order formula for a power. If it comes from $s$, choose $c_p=b^{s/p^{\gamma_p}}$ instead (ties can use either). All these chosen elements commute because $G$ is abelian. Their orders are pairwise relatively prime, so applying part (a) repeatedly shows that the product $c=\prod_p c_p$ has order $\prod_p p^{\gamma_p}=\operatorname{lcm}(r,s)$. Thus $\gen c$ is the required cyclic subgroup. If $r=s=1$, simply take $c=e$.
+\end{enumerate}
+The product $ab$ itself need not have the least-common-multiple order when $r,s$ overlap; the prime-power selection prevents cancellation of common factors.

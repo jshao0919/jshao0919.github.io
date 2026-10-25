@@ -1,0 +1,153 @@
+\section{Applications of the Sylow Theory}
+
+\exercise{37.1}{Conjugacy classes of the square-symmetry group}
+\textbf{(a)} Write $D_4=\{e,r,r^2,r^3,s,rs,r^2s,r^3s\}$ with $srs=r^{-1}$.
+Conjugating a rotation by $s$ reverses it; conjugating a reflection by $r$ advances its exponent by 2. The classes are therefore
+\[
+\{e\},\quad\{r^2\},\quad\{r,r^3\},\quad
+\{s,r^2s\},\quad\{rs,r^3s\}.
+\]
+These are disjoint and account for all eight elements. In the textbook's labels the last two classes are the two axis reflections and the two diagonal reflections, while $r=\rho_1$.
+\textbf{(b)} Their sizes give the class equation $8=1+1+2+2+2$. The two singleton classes are exactly the center $\{e,r^2\}$.
+
+\exercise{37.2}{Composite orders below 60}
+\idea For completeness, organize the finite list instead of making an unsupported assertion for each order. If a Sylow number is 1, its subgroup is normal. A nontrivial $p$-group has nontrivial center and, if its order is composite, is not simple.
+The prime-power composite orders are
+\[
+4,8,9,16,25,27,32,49.
+\]
+For the following remaining orders, the indicated prime has a unique Sylow subgroup, directly from $n_p\mid |G|/p^a$ and $n_p\equiv1\pmod p$:
+\[
+\begin{array}{c|l}
+p& |G|\\\hline
+3&6,18,54\\
+5&10,15,20,35,40,45,50\\
+7&14,21,28,42\\
+11&22,33,44\\
+13&26,39,52\\
+17&34,51\\
+19&38,57\\
+23&46\\
+29&58\\
+11&55
+\end{array}
+\]
+(The rows may use any prime giving uniqueness.) This leaves $12,24,30,36,48,56$.
+\begin{itemize}
+\item For 24 and 48, $n_2$ is 1 or 3. If it is 3 and $G$ were simple, its nontrivial conjugation action on the three Sylow subgroups would embed $G$ into $S_3$, impossible by orders.
+\item For 12 and 36, $n_3$ is 1 or 4. In the latter case simplicity would embed $G$ into $S_4$. The sign map must then be trivial (a simple group of order greater than 2 has no nontrivial map to $\Z_2$), so $G$ embeds into $A_4$. Order 36 is too large; at order 12 this would give $G\cong A_4$, which has its normal order-4 subgroup of double transpositions.
+\item For 30, unless a Sylow 3- or 5-subgroup is normal, there are ten order-3 subgroups and six order-5 subgroups. Their nonidentity elements are disjoint, requiring $10\cdot2+6\cdot4=44>29$ nonidentity elements.
+\item For 56, $n_7$ is 1 or 8. In the latter case the order-7 subgroups already occupy 48 nonidentity elements. Only seven nonidentity elements remain. Every Sylow 2-subgroup has exactly seven nonidentity elements, all among these remaining ones; hence all such subgroups coincide and the Sylow 2-subgroup is normal.
+\end{itemize}
+This exhausts every composite order below 60. The conjugation actions used above are nontrivial and, under the assumption of simplicity, have trivial kernel, justifying the embeddings.
+
+\exercise{37.3}{True or false: applications of Sylow theory}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item True. $159=3\cdot53$, and $53\not\equiv1\pmod3$; the two-prime criterion gives a cyclic group. Explicitly $n_{53}=1$ and $n_3\mid53$, $n_3\equiv1\pmod3$ force $n_3=1$, so the normal factors commute and their product is cyclic.
+\item True. $102=2\cdot3\cdot17$, and $n_{17}\mid6$, $n_{17}\equiv1\pmod{17}$ force a normal order-17 subgroup.
+\item False. $\Z_6$ is solvable but 6 is not a prime power.
+\item True. The normal chain of Exercise 36.21 has prime-order factors, so a finite $p$-group is solvable.
+\item This is a judgment about the method rather than a formal theorem; ``true'' describes the intended observation. Individual Sylow counts and class equations for many distinct orders become lengthy, and some cases require additional arguments.
+\item True. For order 21, $n_7\mid3$ and $n_7\equiv1\pmod7$ give $n_7=1$.
+\item True. Its center has order a positive multiple of 5 by the class equation for $5$-groups, so it contains at least five elements.
+\item True. For order 42, $n_7\mid6$ and $n_7\equiv1\pmod7$ give $n_7=1$.
+\item False. A subgroup order must divide 42, but $8\nmid42$.
+\item False. There are other simple groups, for example $\operatorname{GL}(3,\mathbb F_2)$ of order $(8-1)(8-2)(8-4)=168$, which is not of prime order or the order of an alternating group. One way to check simplicity is to count its conjugacy classes: their sizes are $1,21,56,42,24,24$ (the nonidentity element orders are respectively $2,3,4,7,7$). No union of these classes containing the identity has a proper nontrivial size dividing 168. A normal subgroup is a union of conjugacy classes and its order divides 168, so none exists. The class sizes follow from centralizer orders $8,3,4,7,7$, respectively, by counting invertible matrices commuting with representatives.
+\end{enumerate}
+
+\exercise{37.4}{Groups of order $5\cdot7\cdot47$}
+Apply Sylow to each prime. The possible counts satisfy
+\[
+n_{47}\mid35,\quad n_{47}\equiv1\pmod{47};\qquad
+n_7\mid235,\quad n_7\equiv1\pmod7.
+\]
+The divisors of 35 are all below 47, so $n_{47}=1$. The divisors of $235=5\cdot47$ are $1,5,47,235$, with residues $1,5,5,4$ modulo 7, so $n_7=1$.
+Also $n_5\mid329$; its possible divisors $1,7,47,329$ have residues $1,2,2,4$ modulo 5, forcing $n_5=1$.
+Thus all three Sylow subgroups are normal, cyclic, and of pairwise coprime orders. Two distinct ones commute: a commutator of their elements belongs to both normal subgroups, whose intersection is trivial by Lagrange's theorem. Their product has all $5\cdot7\cdot47$ elements and is the direct product of three cyclic groups of pairwise coprime orders. Hence it is cyclic and therefore abelian.
+
+\exercise{37.5}{No simple group of order 96}
+A Sylow 2-subgroup has order 32, and $n_2\mid3$, so $n_2=1$ or 3.
+If $n_2=1$, it is a proper nontrivial normal subgroup.
+If $n_2=3$, conjugation on the three Sylow subgroups defines a nontrivial homomorphism $G\to S_3$. Were $G$ simple, the kernel, a normal subgroup, would be trivial because the action is nontrivial. This would embed 96 elements into the six-element group $S_3$, impossible. Thus the kernel is itself a nontrivial proper normal subgroup, proving nonsimplicity in this case too.
+
+\exercise{37.6}{No simple group of order 160}
+Since $160=2^5\cdot5$, the Sylow 2-number divides 5 and is odd, so it is 1 or 5. The first case gives a normal subgroup of order 32.
+In the second case the conjugation action gives a nontrivial homomorphism $G\to S_5$. Its kernel cannot be trivial, because an injective map would require $160\le|S_5|=120$; and it is not all of $G$, since the action is nontrivial. Thus it is a nontrivial proper normal subgroup. Both cases exclude simplicity.
+
+\exercise{37.7}{An order-15 subgroup in every order-30 group}
+The counting argument of Example 37.12 shows that an order-30 group has a normal subgroup $N$ of order 3 or of order 5: otherwise ten order-3 subgroups and six order-5 subgroups would require 44 nonidentity elements.
+If $|N|=3$, the quotient $G/N$ has order 10, and Cauchy's theorem gives a subgroup $Q$ of order 5. Its preimage under the quotient map has order $3\cdot5=15$.
+If $|N|=5$, the quotient has order 6 and has an order-3 subgroup; its preimage has order $5\cdot3=15$.
+Preimages of subgroups are subgroups, so either alternative proves the assertion. The order computation counts $|N|$ elements in each coset of the preimage.
+
+\exercise{37.8}{Cycle type and partitions}
+\textbf{(a)} The permutation $\tau\sigma\tau^{-1}$ sends $\tau(a_i)$ to $\tau(a_{i+1})$, with the last sent to the first, and fixes points outside this cycle. Thus it is $(\tau(a_1)\,\ldots\,\tau(a_m))$.
+\textbf{(b)} For two cycles of the same length, define $\tau$ to send their entries in cyclic order to one another and extend this bijection arbitrarily to the other points. Part (a) gives the desired conjugation.
+\textbf{(c)} For products of disjoint cycles with the same lengths, do the same on each disjoint support and combine these bijections. Conjugation respects products, so it sends the first product to the second.
+\textbf{(d)} Conversely conjugation only relabels entries and therefore preserves all cycle lengths, including fixed points as length-1 cycles. Thus conjugacy classes correspond exactly to unordered lists of positive lengths summing to $n$, namely partitions of $n$.
+\textbf{(e)} The numbers for $n=1,2,3,4,5,6,7$ are
+\[
+1,2,3,5,7,11,15.
+\]
+For example a systematic way to compute them is to let $P(n,k)$ count partitions with parts at most $k$ and use $P(n,k)=P(n,k-1)+P(n-k,k)$, with $P(0,k)=1$ and negative arguments zero. The two terms distinguish partitions having no part $k$ from those obtained by removing one part $k$.
+
+\exercise{37.9}{Conjugacy classes and class equation of $S_4$}
+By Exercise 37.8 there is one class for each cycle type. A class with $m_k$ cycles of length $k$ has size
+\[
+\frac{n!}{\prod_k k^{m_k}m_k!}.
+\]
+To see the denominator, rotate the entries within each length-$k$ cycle in $k$ ways and permute equal-length cycles in $m_k!$ ways; these do not change the permutation.
+For $S_4$ the classes are
+\[
+\begin{array}{c|c|r}
+\text{type}&\text{representative}&\text{size}\\\hline
+1^4&e&1\\2\,1^2&(12)&6\\2^2&(12)(34)&3\\
+3\,1&(123)&8\\4&(1234)&6
+\end{array}
+\]
+Here each row means all permutations of that type. Hence the class equation is $24=1+6+3+8+6$.
+
+\exercise{37.10}{Class equations of $S_5$ and $S_6$}
+Use the cycle-type formula $n!/\prod_k k^{m_k}m_k!$ from Exercise 37.9.
+For $S_5$ the complete table is
+\[
+\begin{array}{c|rrrrrrr}
+\text{type}&1^5&2\,1^3&2^2\,1&3\,1^2&3\,2&4\,1&5\\\hline
+\text{size}&1&10&15&20&20&30&24
+\end{array}
+\]
+Thus $120=1+10+15+20+20+30+24$.
+For $S_6$, list the eleven partitions as follows:
+\[
+\begin{array}{c|r@{\qquad}c|r}
+\text{type}&\text{size}&\text{type}&\text{size}\\\hline
+1^6&1&2\,1^4&15\\
+2^2\,1^2&45&2^3&15\\
+3\,1^3&40&3\,2\,1&120\\
+3^2&40&4\,1^2&90\\
+4\,2&90&5\,1&144\\
+6&120&&
+\end{array}
+\]
+Consequently
+\[
+720=1+15+45+15+40+120+40+90+90+144+120.
+\]
+The displayed sums equal the group orders, checking that all types and counts have been included.
+
+\exercise{37.11}{Conjugacy classes and abelian $p$-groups}
+The structure theorem writes an abelian group of order $p^n$ uniquely up to isomorphism as
+\[
+\Z_{p^{r_1}}\times\cdots\times\Z_{p^{r_t}},
+\quad r_i\ge1,\quad r_1\le\cdots\le r_t,\quad\sum r_i=n.
+\]
+The unordered exponent list is a partition of $n$, and different lists give nonisomorphic groups by uniqueness of the prime-power decomposition. Thus there are $p(n)$ isomorphism types of abelian groups of order $p^n$.
+Exercise 37.8 gives exactly $p(n)$ conjugacy classes in $S_n$, since cycle lengths provide the same partitions. The shared count comes from the common partition parameter, not from an asserted group isomorphism.
+
+\exercise{37.12}{The center of $S_n$ for $n>2$}
+Let $\sigma\ne e$, choose $i$ with $\sigma(i)=j\ne i$, and choose $k$ different from both $i,j$; this is possible because $n>2$.
+Conjugation gives
+\[
+\sigma(i\ k)\sigma^{-1}=(j\ \sigma(k)).
+\]
+This transposition cannot equal $(i\ k)$, because its support contains $j$, which is neither $i$ nor $k$. Therefore $\sigma$ does not commute with $(i\ k)$ and is not central. Every nonidentity permutation fails centrality, while the identity commutes with everything. Hence $Z(S_n)=\{e\}$.

@@ -1,0 +1,103 @@
+\section{Separable Extensions}
+
+\exercise{51.1}{Combining square and cube roots}
+Choose $\alpha=\sqrt2/\sqrt[3]2=2^{1/6}$. This quotient is in the given field. Direct exponent calculations give $\alpha^3=\sqrt2$ and $\alpha^2=\sqrt[3]2$, which are polynomials in $\alpha$ with rational coefficients. Thus each original generator lies in $\Q(\alpha)$, while $\alpha$ lies in their field, proving equality.
+
+\exercise{51.2}{Combining fourth and sixth roots}
+Choose $\alpha=\sqrt[4]2/\sqrt[6]2=2^{1/12}$, an element of the given field. Then $\sqrt[4]2=\alpha^3$ and $\sqrt[6]2=\alpha^2$. These explicit polynomial expressions prove $\Q(\sqrt[4]2,\sqrt[6]2)=\Q(\alpha)$.
+
+\exercise{51.3}{A primitive biquadratic generator}
+Let $\alpha=\sqrt2+\sqrt3$, which belongs to the given field. Cubing and simplifying gives $\alpha^3=11\sqrt2+9\sqrt3$. Subtracting suitable multiples of $\alpha$ yields
+\[\sqrt2=\frac{\alpha^3-9\alpha}{2},\qquad\sqrt3=\frac{11\alpha-\alpha^3}{2}.\]
+Thus both generators are rational polynomials in $\alpha$, giving the desired equality.
+
+\exercise{51.4}{A primitive generator for a complex sextic field}
+Put $r=\sqrt[3]2$ and choose $\alpha=r+i$. From $(\alpha-i)^3=2$ and $i^2=-1$,
+\[i=\frac{\alpha^3-3\alpha-2}{3\alpha^2-1}.\]
+The denominator is nonzero: $\alpha$ has imaginary part 1 and positive real part, so its square has nonzero imaginary part. This already proves that $i,r\in\Q(\alpha)$. To meet the requested \emph{polynomial} form, exact reduction gives
+\begin{align*}
+i&=\frac{-12\alpha^5+9\alpha^4-40\alpha^3+78\alpha^2-78\alpha-91}{22},\\
+r&=\frac{12\alpha^5-9\alpha^4+40\alpha^3-78\alpha^2+100\alpha+91}{22}.
+\end{align*}
+Here is a way to check these expressions without assuming the answer. Squaring the first displayed numerator equation for $i$ gives
+\[m(\alpha)=0,\quad m(x)=x^6+3x^4-4x^3+3x^2+12x+5.\]
+Polynomial division verifies that $(3x^2-1)$ times the displayed polynomial for $i$ is congruent to $x^3-3x-2$ modulo $m(x)$. Evaluation at $\alpha$ proves the formula; subtracting it from $\alpha$ gives the formula for $r$. Hence the field is $\Q(\alpha)$.
+
+\exercise{51.5}{Where multiplicity is measured}
+The factorization must be in $\overline F[x]$, not necessarily in $F[x]$, since $\alpha$ may lie outside $F$. For a \emph{nonzero} polynomial $f$, multiplicity $v\ge1$ means $(x-\alpha)^v\mid f$ but $(x-\alpha)^{v+1}\nmid f$ in $\overline F[x]$. The zero polynomial has no finite root multiplicity under this definition.
+
+\exercise{51.6}{The definition of separable element}
+The proposed definition is correct: an algebraic element is separable over $F$ when it has multiplicity 1 as a root of its minimal polynomial over $F$. All roots of an irreducible polynomial have the same multiplicity, so this also says the minimal polynomial has distinct roots in an algebraic closure.
+
+\exercise{51.7}{A repeated polynomial over a perfect field}
+Take $f(x)=(x^2+1)^2$. It has no rational root, and its complex roots $i,-i$ each have multiplicity 2. This does not contradict perfection of $\Q$, which concerns \emph{irreducible} polynomials. The minimal polynomial $x^2+1$ has distinct roots; the repetitions were introduced by squaring it.
+
+\exercise{51.8}{Ten statements about separability}
+\begin{enumerate}[label=(\alph*)]
+\item False. Over $\Z_p(t)$, $x^p-t$ is irreducible and has just one distinct root, so adjoining that root gives an inseparable finite extension.
+\item True. Every finite field is perfect.
+\item True. An irreducible polynomial in characteristic zero cannot share a factor with its smaller-degree nonzero derivative.
+\item False. $(x-1)^2$ has a repeated root over any field.
+\item False for the same example, even over $\Q$.
+\item True. This is the defining polynomial characterization of a perfect field.
+\item True. Every irreducible polynomial over an algebraically closed field is linear.
+\item True. An algebraic closure is algebraic over $F$ and is perfect.
+\item True. Separability makes the embedding index equal the degree, and splitting makes every embedding an automorphism.
+\item True. The index of a finite extension divides its degree (the quotient is its inseparable degree), and in a splitting field the index equals the group order.
+\end{enumerate}
+
+\exercise{51.9}{Separable elements are closed under field operations}
+The minimal polynomial of $\beta$ over $F(\alpha)$ divides its separable minimal polynomial over $F$, so it is separable. Therefore $F(\alpha,\beta)/F(\alpha)$ and $F(\alpha)/F$ are finite separable extensions; the tower theorem makes $F(\alpha,\beta)/F$ separable. Every element of this field is then separable over $F$, including $\alpha+\beta$, $\alpha\beta$, and $\alpha/\beta$ when $\beta\ne0$.
+
+\exercise{51.10}{A basis for a Frobenius extension}
+Let $K=\Z_p(y^p)$. The relation $y^p\in K$ makes $K[y]$ spanned by $1,y,\ldots,y^{p-1}$. Being a finite-dimensional domain over $K$, it is a field: multiplication by any nonzero element is an injective linear map, hence surjective, giving an inverse. Thus $K[y]=\Z_p(y)$.
+For independence, a relation $\sum_{j=0}^{p-1}r_j(y^p)y^j=0$ can be multiplied by a common denominator to give $\sum_jP_j(y^p)y^j=0$. Exponents coming from different $j$ lie in different residue classes modulo $p$, so no cancellation between the groups is possible; all $P_j$ vanish. Thus the displayed spanning set is a basis, and the degree is $p$. Setting $t=y^p$, the polynomial $x^p-t$ has $y$ as a root and the same degree as its minimal polynomial. Hence it is irreducible over $\Z_p(t)$.
+
+\exercise{51.11}{Algebraic extensions of a perfect field}
+Let $\alpha$ be algebraic over $E$. Since $E/F$ is algebraic, $\alpha$ is algebraic over $F$ as well. The minimal polynomial of $\alpha$ over the perfect field $F$ is separable. Its minimal polynomial over $E$ divides it in $E[x]$, so also has no repeated roots. Thus every element algebraic over $E$ is separable over $E$, proving $E$ perfect.
+
+\exercise{51.12}{Transitivity for infinite separable extensions}
+Take $\alpha\in K$. Its separable minimal polynomial over $E$ uses finitely many coefficients $c_1,\ldots,c_m\in E$. Set $E_0=F(c_1,\ldots,c_m)$; this is a finite separable extension of $F$. The same polynomial is irreducible over $E_0$, because a factorization there would be one over $E$, and it remains separable. Thus $E_0(\alpha)/E_0$ is finite separable. The finite tower theorem gives $E_0(\alpha)/F$ separable, so $\alpha$ is separable over $F$. This holds for every $\alpha\in K$, proving transitivity without assuming the entire tower finite.
+
+\exercise{51.13}{The separable closure inside an algebraic extension}
+Let $S$ be the elements of $E$ separable over $F$. It contains $F$, including 0 and 1. Exercise 51.9 shows it is closed under sums, products, and quotients by nonzero elements; additive inverses are included by multiplying by $-1\in F$. Hence $S$ is a subfield. It consists exactly of the separable elements, so is the largest intermediate extension separable over $F$, called the separable closure of $F$ in $E$.
+
+\exercise{51.14}{Frobenius generates a finite-field Galois group}
+\begin{enumerate}[label=(\alph*)]
+\item In a field of $p^n$ elements, $a^{p^n}=a$ for every $a$, so $\sigma_p^n=1$. If $\sigma_p^d=1$ for $0<d<n$, all $p^n$ elements would be roots of $x^{p^d}-x$, whose degree $p^d$ is smaller than $p^n$, impossible. Thus its order is $n$.
+\item The extension has degree $n$, is separable because finite fields are perfect, and is a splitting extension since it splits $x^{p^n}-x$. Its Galois group therefore has order $n$. The $n$ distinct powers of Frobenius already account for that many elements, so the full group is cyclic with this generator.
+\end{enumerate}
+
+\exercise{51.15}{The additive derivative homomorphism}
+\begin{enumerate}[label=(\alph*)]
+\item If $f=\sum a_jx^j$ and $g=\sum b_jx^j$, differentiating coefficient by coefficient gives $(f+g)'=\sum j(a_j+b_j)x^{j-1}=f'+g'$. This proves it is a homomorphism of additive groups; it is generally not a ring homomorphism.
+\item In characteristic zero, $ja_j=0$ for $j>0$ implies $a_j=0$. Thus the kernel is the constant polynomials $F$.
+\item In characteristic $p$, $j$ vanishes as a field scalar precisely when $p\mid j$. Hence the kernel is $F[x^p]$, the polynomials all of whose nonzero exponents are multiples of $p$. Their coefficients need not themselves be $p$th powers.
+\end{enumerate}
+
+\exercise{51.16}{Formal derivative rules}
+\begin{enumerate}[label=(\alph*)]
+\item For $c\in F$, coefficientwise differentiation gives $(cf)'=\sum_jjca_jx^{j-1}=cf'$.
+\item First check $(x^ix^j)'=(i+j)x^{i+j-1}=x^i(jx^{j-1})+(ix^{i-1})x^j$. Expand arbitrary polynomials into monomials and use additivity and (a) to obtain $(fg)'=fg'+f'g$.
+\item Induct on $m$. For $m=1$ the assertion is immediate. If $(f^m)'=mf^{m-1}f'$, the product rule gives $(f^{m+1})'=f^mf'+(f^m)'f=(m+1)f^mf'$. The integers are interpreted as elements of $F$, so this proof also works in positive characteristic.
+\end{enumerate}
+
+\exercise{51.17}{Multiplicity and vanishing derivative}
+In $\overline F[x]$, write $f=(x-\alpha)^vg$ with $g(\alpha)\ne0$. If $v=1$, the product rule gives $f'(\alpha)=g(\alpha)\ne0$. If $v>1$, both terms of
+\[f'=v(x-\alpha)^{v-1}g+(x-\alpha)^vg'\]
+vanish at $\alpha$, including when the scalar $v$ is zero in the field. Thus $f'(\alpha)=0$ exactly when the root has multiplicity greater than 1.
+
+\exercise{51.18}{Characteristic zero forces irreducible separability}
+Let $p\in F[x]$ be nonconstant and irreducible in characteristic zero. Its derivative is nonzero and has smaller degree. If a root $\alpha$ were repeated, it would be a root of $p'$ too, so its minimal polynomial $p$ would divide $p'$. The degree inequality rules this out. Therefore all roots of $p$ are simple, proving separability.
+
+\exercise{51.19}{The derivative test for an inseparable irreducible}
+For an irreducible $q$, a repeated root implies $q\mid q'$ by minimality. Since $\deg q'<\deg q$ unless $q'=0$, this is equivalent to $q'=0$. In characteristic $p$, coefficientwise differentiation gives $q'=0$ exactly when each exponent with nonzero coefficient is divisible by $p$. Conversely a nonconstant polynomial with zero derivative cannot have a simple root by Exercise 51.17. Thus the criterion holds in both directions.
+
+\exercise{51.20}{Common factors over the algebraic closure}
+By Exercise 51.17 a repeated root is exactly a common root of $f$ and $f'$. Over the algebraically closed field $\overline F$, a common root $\alpha$ supplies the common linear factor $x-\alpha$. Conversely a nonconstant common factor has a root in the closure, which is a common root of $f,f'$, hence repeated in $f$. This proves the requested equivalence for nonzero $f$.
+
+\exercise{51.21}{Bringing the gcd test back to the coefficient field}
+If $f,f'$ have no nonconstant common divisor in $F[x]$, their gcd is 1, so Bezout's identity gives $Af+Bf'=1$ with $A,B\in F[x]$. This same identity holds in $\overline F[x]$, excluding any nonconstant common factor there. Conversely a nonconstant common factor in $F[x]$ remains one over the closure. Combining with Exercise 51.20 proves the equivalence over $F$ itself. The argument includes nonzero constant $f$, whose gcd with its zero derivative is a unit.
+
+\exercise{51.22}{A root-free computational test}
+For a nonzero polynomial, form its formal derivative and run the Euclidean algorithm in $F[x]$ on $f,f'$. Normalize the final nonzero remainder to a monic gcd $d$. A repeated root exists exactly when $\deg d>0$. In particular, if $f$ is nonconstant and $f'=0$, the gcd is the monic associate of $f$, so there is repetition. If $f$ is a nonzero constant, the gcd has degree 0 and there are no roots. No numerical root approximation is required.

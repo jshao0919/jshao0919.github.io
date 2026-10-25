@@ -1,0 +1,13 @@
+{
+  "section": 20,
+  "part": 4,
+  "title": "Fermat's and Euler's Theorems",
+  "exercise_count": 30,
+  "source_pages": [
+    195,
+    196
+  ],
+  "notes": [
+    "Exercise9 allows equal primes; both cases are distinguished. Exercise23(d) fails at n=1, as phi(1)=1. Exercise23(e) uses the usual modular-ring convention n>=2."
+  ]
+}

@@ -1,0 +1,97 @@
+\section{Cyclotomic Extensions}
+
+\exercise{55.1}{Multiplying the primitive eighth-root factors}
+Let $\zeta$ have order 8, so $\zeta^4=-1$ and $\zeta^8=1$. The primitive roots are $\zeta,\zeta^3,\zeta^5=-\zeta,\zeta^7=-\zeta^3$. Pairing opposite roots gives
+\begin{align*}
+\Phi_8(x)&=(x^2-\zeta^2)(x^2-\zeta^6)\\
+&=x^4-(\zeta^2+\zeta^6)x^2+\zeta^8=x^4+1,
+\end{align*}
+because $\zeta^6=-\zeta^2$. This computes all coefficients rather than just identifying the zeros.
+
+\exercise{55.2}{The twentieth-root group as an abelian group}
+The group is $(\Z/20\Z)^\times$. Since $20=4\cdot5$ with coprime factors, the Chinese remainder theorem gives
+\[(\Z/20\Z)^\times\cong(\Z/4\Z)^\times\times(\Z/5\Z)^\times\cong\Z_2\times\Z_4.\]
+The factors have orders 2 and 4, so the group has order 8. This is its invariant-factor classification because $2\mid4$.
+
+\exercise{55.3}{Three Euler totients}
+For $n=\prod p_j^{e_j}$, $\varphi(n)=\prod p_j^{e_j-1}(p_j-1)$, since a residue must not be divisible by any prime divisor of $n$.
+\begin{enumerate}[label=(\alph*)]
+\item $60=2^2\cdot3\cdot5$, so $\varphi(60)=2\cdot2\cdot4=16$.
+\item $1000=2^3\cdot5^3$, so $\varphi(1000)=4\cdot100=400$.
+\item $8100=2^2\cdot3^4\cdot5^2$, so $\varphi(8100)=2\cdot54\cdot20=2160$.
+\end{enumerate}
+
+\exercise{55.4}{The first thirty constructible regular polygons}
+The criterion is $n=2^a$ times a product of distinct Fermat primes. Enumerating these numbers increasingly, starting at $n\ge3$, gives
+\[
+\begin{gathered}
+3,4,5,6,8,10,12,15,16,17,\\
+20,24,30,32,34,40,48,51,60,64,\\
+68,80,85,96,102,120,128,136,160,170.
+\end{gathered}
+\]
+For completeness of the enumeration up to 170, its only possible odd prime factors are 3,5,17; the next Fermat prime is 257. No square of an odd prime is allowed. Listing $2^a d\le170$ for $d\in\{1,3,5,15,17,51,85\}$, omitting 1 and 2 and sorting, gives exactly the displayed thirty numbers.
+
+\exercise{55.5}{The smallest constructible integral-degree angle}
+The answer is $3^\circ$. A regular 120-gon is constructible because $120=2^3\cdot3\cdot5$, so its central angle $360^\circ/120=3^\circ$ is constructible. A $1^\circ$ angle would construct a regular 360-gon, but $360=2^3\cdot3^2\cdot5$ contains a square of the odd prime 3. A $2^\circ$ angle would similarly construct a regular 180-gon, and $180=2^2\cdot3^2\cdot5$ fails the same criterion. Thus neither smaller positive integral angle is constructible.
+
+\exercise{55.6}{Twelfth roots and a group of exponent two}
+\begin{enumerate}[label=(\alph*)]
+\item The splitting field is $K=\Q(\zeta_{12})$, of degree $\varphi(12)=4$ over $\Q$.
+\item Its automorphisms are the exponent maps for $1,5,7,11$ modulo 12. Each exponent squares to 1 modulo 12, so every automorphism squares to the identity. A group of order 4 with no element of order 4 is $\Z_2\times\Z_2$, giving the requested classification.
+\end{enumerate}
+
+\exercise{55.7}{Two cyclotomic polynomials in finite characteristic}
+Over $\Z_2$, the primitive third roots are the nonidentity roots of $x^3-1$, so $\Phi_3(x)=x^2+x+1$. Over $\Z_3$, the same opposite-root computation as Exercise 55.1 gives $\Phi_8(x)=x^4+1$. It factors there as $(x^2+x+2)(x^2-x+2)$; each quadratic has no root in $\Z_3$. This illustrates that a cyclotomic polynomial need not be irreducible over a finite field.
+
+\exercise{55.8}{A repeated polynomial already split over the prime field}
+In characteristic 3,
+\[x^6-1=(x^2-1)^3=(x-1)^3(x+1)^3.\]
+Its only distinct roots are $1,-1$, already in $\Z_3$. Therefore the splitting field is $\Z_3$ itself, with 3 elements. Counting the formal degree as the number of distinct roots would give the wrong answer.
+
+\exercise{55.9}{Ten statements about cyclotomic fields}
+\begin{enumerate}[label=(\alph*)]
+\item False. Over $\C$, for instance, every cyclotomic polynomial of degree greater than 1 splits into linear factors. Irreducibility here is over $\Q$.
+\item True. These are exactly its defining zeros.
+\item False. The group has order $\varphi(n)$; for example $n=3$ gives order 2, not 3.
+\item True. It is isomorphic to the multiplicative group of units modulo $n$.
+\item True. $[\Q(\zeta_n):\Q]=\varphi(n)$ and the extension is Galois.
+\item False. $25=5^2$ has a squared odd prime factor; also $\varphi(25)=20$ is not a power of 2.
+\item True. $17=2^{2^2}+1$ is a Fermat prime.
+\item True for an ordinary polygon, so prime $p\ge3$: the criterion says an odd prime $p$ must be Fermat. If one includes the degenerate $p=2$ case, it must be treated separately; 2 is not a Fermat prime.
+\item False. $2^{2^5}+1=4294967297=641\cdot6700417$ is composite.
+\item True by definition: a Fermat prime is a prime among the numbers $2^{2^k}+1$.
+\end{enumerate}
+
+\exercise{55.10}{Partitioning roots by their orders}
+Assume the characteristic does not divide $n$. The derivative of $x^n-1$ is $nx^{n-1}$, so all its roots in a closure are distinct. Each root has a unique multiplicative order $d$ dividing $n$, and is then a primitive $d$th root. The root set is therefore the disjoint union of the primitive-root sets for all $d\mid n$. Multiplying their monic linear-factor products gives
+\[x^n-1=\prod_{d\mid n}\Phi_d(x).\]
+All the cyclotomic factors have coefficients in the prime field, hence in $F$, so this is an identity in $F[x]$.
+
+\exercise{55.11}{The first six cyclotomic polynomials}
+Use $x^n-1=\prod_{d\mid n}\Phi_d(x)$ and divide by factors from proper divisors. This gives
+\[
+\begin{array}{c|l}
+n&\Phi_n(x)\\\hline
+1&x-1\\2&x+1\\3&x^2+x+1\\4&x^2+1\\5&x^4+x^3+x^2+x+1\\6&x^2-x+1
+\end{array}
+\]
+For example, $x^6-1=(x-1)(x+1)(x^2+x+1)(x^2-x+1)$, so removing the factors for divisors 1,2,3 leaves the factor for 6.
+
+\exercise{55.12}{The twelfth cyclotomic polynomial}
+The divisors of 12 are $1,2,3,4,6,12$. An efficient cancellation is
+\[x^{12}-1=(x^6-1)(x^6+1),\qquad x^6+1=(x^2+1)(x^4-x^2+1).\]
+The first factor already contains $\Phi_1,\Phi_2,\Phi_3,\Phi_6$, and $x^2+1=\Phi_4$. Thus the remaining factor is $\Phi_{12}(x)=x^4-x^2+1$.
+
+\exercise{55.13}{Negating roots of odd order}
+If $n>1$ is odd and $\zeta$ has order $n$, then $-\zeta$ has order $2n$: its $n$th power is $-1$, and if $(-\zeta)^k=1$, then squaring gives $n\mid k$ and the odd multiple $k=n$ does not work. Conversely, negating a primitive $2n$th root gives a primitive $n$th root. Thus the zeros of $\Phi_n(-x)$ are exactly those of $\Phi_{2n}(x)$. For odd $n>1$, $\varphi(n)$ is even, since invertible residues pair as $a,-a$, so $\Phi_n(-x)$ is monic. The two monic polynomials with the same distinct roots coincide.
+
+\exercise{55.14}{The compositum for coprime root orders}
+Let $\zeta$ have order $nm$, and set $\xi=\zeta^m$, $\eta=\zeta^n$, which have orders $n,m$. Their fields are contained in $\Q(\zeta)$. Conversely choose integers $u,v$ with $um+vn=1$. Then $\zeta=\xi^u\eta^v\in\Q(\xi,\eta)$. Thus
+\[\Q(\zeta_{nm})=\Q(\zeta_n,\zeta_m),\]
+which is exactly the splitting field of $(x^n-1)(x^m-1)$.
+
+\exercise{55.15}{The product decomposition for coprime orders}
+Identify the three cyclotomic Galois groups with unit groups modulo $nm,n,m$. Restriction to the two smaller splitting fields is the map
+\[(\Z/nm\Z)^\times\longrightarrow(\Z/n\Z)^\times\times(\Z/m\Z)^\times,\quad a\longmapsto(a\bmod n,a\bmod m).\]
+It is injective because equality modulo both coprime moduli implies equality modulo their product. The Chinese remainder theorem gives a unique residue modulo $nm$ for each pair of unit residues, and that residue is also a unit, proving surjectivity. Multiplication is preserved. Therefore the group of $x^{nm}-1$ is the direct product of the two smaller groups, as claimed.

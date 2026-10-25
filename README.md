@@ -66,6 +66,23 @@ The supplied PDF does not contain the separately published online Chapters
 9–10, so their exercises require an additional source and are marked
 accordingly on the website.
 
+## Fraleigh abstract algebra solutions
+
+The Fraleigh collection follows *A First Course in Abstract Algebra*, seventh
+edition (2003), using the scanned textbook in `Fraleigh.pdf`. It covers **all
+1,646 numbered exercises and every subpart** in Sections 0–56 and Appendix A,
+including all ten parts, optional sections, and the matrix appendix exercises.
+
+[Read the complete collection](solutions/fraleigh/fraleigh-complete.pdf) or
+[download the portable LaTeX sources](solutions/fraleigh/fraleigh-latex.zip).
+The website links to 58 section/appendix PDFs and ten part collections, with
+definitions, intermediate calculations, proof strategies, counterexamples,
+and requested diagrams explained for a beginning undergraduate.
+
+See the [source inventory and build instructions](solutions/fraleigh/README.md),
+[coverage table](solutions/fraleigh/COVERAGE.md), and
+[source conventions and qualifications](solutions/fraleigh/SOURCE_NOTES.md).
+
 ## Arithmetic Lab
 
 The homepage links to [Arithmetic Lab](arithmetic/), a Zetamac-inspired mental math

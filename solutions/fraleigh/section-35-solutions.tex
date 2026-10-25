@@ -1,0 +1,263 @@
+\section{Series of Groups}
+Throughout this section $D_4=\gen{r,s}$ denotes the order-8 square-symmetry group, with $r^4=s^2=e$ and $srs=r^{-1}$. We follow the textbook's definitions of principal series and solvability; qualifications are stated where they affect an answer.
+\exercise{35.1}{Refining the $10\Z$ and $25\Z$ series}
+Insert subgroups to obtain
+\[
+\begin{aligned}
+\{0\}&<50\Z<10\Z<5\Z<\Z,\\
+\{0\}&<50\Z<25\Z<5\Z<\Z.
+\end{aligned}
+\]
+The first factor in each is $50\Z\cong\Z$. The remaining factors are, respectively,
+$\Z_5,\Z_2,\Z_5$ and $\Z_2,\Z_5,\Z_5$. Thus the factors match after reordering.
+Here $a\Z/b\Z\cong\Z_{b/a}$ when $a\mid b$; remember that a larger integer labels a smaller subgroup.
+
+\exercise{35.2}{Refining the $60\Z$ and $245\Z$ series}
+A common initial nonzero subgroup is $2940\Z$, since $\operatorname{lcm}(60,245)=2940$. Use
+\[
+\begin{aligned}
+\{0\}&<2940\Z<420\Z<60\Z<20\Z\\
+&\hspace{2em}<10\Z<5\Z<\Z,\\
+\{0\}&<2940\Z<1470\Z<735\Z<245\Z\\
+&\hspace{2em}<49\Z<7\Z<\Z.
+\end{aligned}
+\]
+Every original subgroup remains. In the first series the factors after $2940\Z\cong\Z$ have orders $7,7,3,2,2,5$; in the second they have orders $2,2,3,5,7,7$. Each factor is cyclic, so this is an isomorphism of series.
+
+\exercise{35.3}{Refinements in $\Z_{24}$}
+All subgroups here are cyclic and normal. The refinements
+\[
+\begin{aligned}
+\{0\}&<\gen{12}<\gen6<\gen3<\Z_{24},\\
+\{0\}&<\gen8<\gen4<\gen2<\Z_{24}
+\end{aligned}
+\]
+have factor orders $2,2,2,3$ and $3,2,2,2$. They retain respectively $\gen3$ and $\gen8$. Each factor is cyclic of the indicated prime order, giving the required matching.
+
+\exercise{35.4}{Refinements in $\Z_{72}$}
+Use
+\[
+\begin{aligned}
+\{0\}&<\gen{36}<\gen{18}<\gen9<\gen3<\Z_{72},\\
+\{0\}&<\gen{24}<\gen{12}<\gen6<\gen3<\Z_{72}.
+\end{aligned}
+\]
+The orders of these subgroups are respectively $1,2,4,8,24,72$ and $1,3,6,12,24,72$.
+Consecutive order ratios give cyclic factors of orders $2,2,2,3,3$ and $3,2,2,2,3$. These agree up to order and all original terms remain.
+
+\exercise{35.5}{Refining two series of $\Z^2$}
+Put $L=60\Z\times80\Z$ and $0=\{(0,0)\}$. The refinements are
+\[
+\begin{aligned}
+0&<L<60\Z\times20\Z<60\Z\times\Z\\
+&\hspace{2em}<10\Z\times\Z<\Z^2,\\
+0&<L<10\Z\times80\Z<\Z\times80\Z\\
+&\hspace{2em}<\Z\times20\Z<\Z^2.
+\end{aligned}
+\]
+The initial factor is $L\cong\Z^2$ in both. The other factors are $\Z_4,\Z_{20},\Z_6,\Z_{10}$ in the first and $\Z_6,\Z_{10},\Z_4,\Z_{20}$ in the second. This follows by quotienting the coordinate that changes at each step; the unchanged coordinate cancels.
+
+\exercise{35.6}{All composition series of $\Z_{60}$}
+\idea A cyclic group has exactly one subgroup $U_d$ of each order $d\mid60$, namely $U_d=\gen{60/d}$. A cyclic factor is simple exactly when its order is prime.
+Consequently \emph{all} the series are
+\[
+U_1<U_{p_1}<U_{p_1p_2}<U_{p_1p_2p_3}<U_{60},
+\]
+where $(p_1,p_2,p_3,p_4)$ runs over the distinct permutations of $(2,2,3,5)$.
+This is an explicit parametrization with no duplication: the subgroup orders recover the sequence of primes. There are $4!/2!=12$ such series. All have factors $\Z_2,\Z_2,\Z_3,\Z_5$, in some order, so all are isomorphic.
+
+\exercise{35.7}{All composition series of $\Z_{48}$}
+Let $U_d=\gen{48/d}$ be the unique subgroup of order $d$. The possible successive subgroup orders are
+\[
+\begin{array}{c}
+1,3,6,12,24,48\\
+1,2,6,12,24,48\\
+1,2,4,12,24,48\\
+1,2,4,8,24,48\\
+1,2,4,8,16,48.
+\end{array}
+\]
+Replacing every order $d$ by $U_d$ lists all five series. Indeed each step must multiply the order by a prime, and $48=2^4\cdot3$, so the only choice is the position of the factor 3 among five steps. Each series has four factors $\Z_2$ and one $\Z_3$.
+
+\exercise{35.8}{Composition series of $\Z_5^2$}
+Regard $\Z_5^2$ as a two-dimensional vector space over $\Z_5$. Its order-5 subgroups are exactly the six lines
+\[
+L_t=\gen{(1,t)}\ (t=0,1,2,3,4),\qquad L_\infty=\gen{(0,1)}.
+\]
+They exhaust the possibilities: a nonzero vector with nonzero first coordinate scales uniquely to $(1,t)$; otherwise it scales to $(0,1)$.
+The six composition series are $0<L_t<\Z_5^2$, including $t=\infty$. Both factors have order 5. No other composition series is possible, since simple factors of an abelian group have prime order.
+
+\exercise{35.9}{Composition series of $S_3\times\Z_2$}
+Put $T=A_3\times\{0\}$, $B=S_3\times\{0\}$,
+$A=A_3\times\Z_2$, $U=\{e\}\times\Z_2$, and
+$C=\{(\sigma,\epsilon):\operatorname{sgn}(\sigma)=(-1)^\epsilon\}$.
+Then all four series are
+\[
+\begin{gathered}
+1<T<A<G,\qquad1<U<A<G,\\
+1<T<B<G,\qquad1<T<C<G.
+\end{gathered}
+\]
+Here $A\cong\Z_6$, while $B\cong C\cong S_3$.
+To check exhaustion, the commutator subgroup of $G$ is $T$, and $G/T\cong\Z_2^2$. A maximal normal subgroup must therefore be one of the three inverse images of its lines, namely $A,B,C$ (a simple quotient of this solvable group has prime order). The cyclic group $A$ has the two indicated series, and each $S_3$ factor has only its $A_3$ series. The factor orders are $3,2,2$ or $2,3,2$, so all are isomorphic.
+
+\exercise{35.10}{Composition series of $\Z_2\times\Z_5\times\Z_7$}
+The product is cyclic of order 70 because 2, 5, and 7 are pairwise coprime. For each of the six permutations $(p,q,r)$ of $(2,5,7)$, take
+\[
+0<U_p<U_{pq}<G,
+\]
+where $U_d$ is the unique subgroup of order $d$.
+In product notation $U_p$ is the coordinate subgroup for prime $p$, and $U_{pq}$ is the product of the $p$ and $q$ coordinate subgroups. These are all the series because simple cyclic factors have prime order; the successive factor orders must be a permutation of $2,5,7$.
+
+\exercise{35.11}{The center of $S_3\times\Z_4$}
+An element $(g,z)$ commutes with every $(h,w)$ if and only if $gh=hg$ for every $h$; the second coordinate already commutes because $\Z_4$ is abelian. Since $Z(S_3)=\{e\}$,
+\[
+Z(S_3\times\Z_4)=\{e\}\times\Z_4.
+\]
+For example a transposition fails to commute with a different transposition, and a nonidentity 3-cycle fails to commute with a transposition, verifying the stated center of $S_3$.
+
+\exercise{35.12}{The center of $S_3\times D_4$}
+Write $D_4=\gen{r,s}$ with $r^4=s^2=e$ and $sr=r^{-1}s$.
+Its center is $\{e,r^2\}$: $r$ and $r^3$ fail to commute with $s$, and every reflection fails to commute with $r$.
+Commutation in a product is coordinatewise, so
+\[
+Z(S_3\times D_4)=\{e\}\times\{e,r^2\}.
+\]
+In the textbook's notation $e=\rho_0$ and $r^2=\rho_2$.
+
+\exercise{35.13}{Ascending central series of $S_3\times\Z_4$}
+The first nontrivial term is $Z_1=\{e\}\times\Z_4$. The quotient $G/Z_1\cong S_3$ has trivial center. Taking the inverse image of that trivial center gives $Z_2=Z_1$, and the same reasoning repeats. Thus the series, including its initial identity term, is
+\[
+\{(e,0)\}\le\{e\}\times\Z_4
+\le\{e\}\times\Z_4\le\cdots.
+\]
+It never reaches $G$. Repeated terms must be retained when describing the ascending central sequence.
+
+\exercise{35.14}{Ascending central series of $S_3\times D_4$}
+The first term is $Z_1=\{e\}\times\{e,r^2\}$.
+Now $G/Z_1\cong S_3\times\Z_2^2$, whose center is $\{e\}\times\Z_2^2$. Its inverse image is $Z_2=\{e\}\times D_4$.
+Since $G/Z_2\cong S_3$ has trivial center, every later term equals $Z_2$. Thus
+\[
+1\le\{e\}\times\{e,r^2\}\le\{e\}\times D_4
+\le\{e\}\times D_4\le\cdots.
+\]
+Each term is normal in $G$, as required for the construction.
+
+\exercise{35.15}{Definition of a composition series}
+The proposed definition is correct, provided ``maximal normal'' means maximal among \emph{proper} normal subgroups. The finite strict chain starts at $\{e\}$ and ends at $G$, and each $H_i\trianglelefteq H_{i+1}$ has no normal subgroup strictly between it and $H_{i+1}$. By the correspondence theorem this is equivalent to $H_{i+1}/H_i$ being simple.
+
+\exercise{35.16}{Definition of solvability}
+Replace ``a composition series of abelian groups'' by ``a composition series whose \emph{factor groups} are abelian.'' The intermediate groups need not be abelian: $1<A_3<S_3$ is a solvable composition series even though $S_3$ is nonabelian.
+This uses the textbook's Definition 35.18. It restricts solvability to groups admitting such a finite composition series; the broader modern definition uses a finite subnormal series with abelian factors, allowing infinite groups such as $\Z$.
+
+\exercise{35.17}{True or false: group series}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item True. Normality in $G$ implies normality in every intermediate subgroup.
+\item False. In $D_4$, $1<\gen{s}<\gen{s,r^2}<D_4$ is subnormal, but $\gen{s}$ is not normal in $D_4$.
+\item True under Definition 35.12 in this text: a principal series is normal with simple factors, hence subnormal with simple factors.
+\item False. The composition series in (b) has order-2 factors but is not normal in $D_4$.
+\item False. $\Z_6$ has $0<\gen2<\Z_6$ and $0<\gen3<\Z_6$; moreover $\Z$ has no composition series.
+\item True. Repeatedly choose a maximal proper normal subgroup; orders strictly decrease, so the process terminates.
+\item False. Simple factors occur in every composition series by definition; $S_5$ has one but is not solvable, because $A_5$ is a nonabelian factor.
+\item False. $1<A_7<S_7$ has the nonabelian simple factor $A_7$.
+\item True. The simple factor groups, like primes in an integer factorization, are determined up to order and isomorphism, though the intermediate subgroups need not be unique.
+\item True. A group of prime order is cyclic, so its one factor is abelian and simple.
+\end{enumerate}
+The textbook's definition of a principal/chief series here is stronger than the usual modern chief-series convention; the answers follow its stated convention.
+
+\exercise{35.18}{A composition series of $S_3^2$}
+Take
+\[
+1<A_3\times1<S_3\times1<S_3\times A_3<S_3\times S_3.
+\]
+Each term is normal in the next: this follows from $A_3\trianglelefteq S_3$ and coordinatewise conjugation. The factors, from bottom to top, are $\Z_3,\Z_2,\Z_3,\Z_2$. They are simple and abelian, so the series is a composition series and $S_3\times S_3$ is solvable.
+
+\exercise{35.19}{Solvability of the square-symmetry group}
+The chain $1<\gen{r^2}<\gen r<D_4$ has subgroup orders $1,2,4,8$.
+The first subgroup is central, and the rotation subgroup has index 2, hence is normal. Every factor has order 2, so every factor is simple and abelian. Therefore $D_4$ is solvable. The definition does not require $D_4$ itself to commute.
+
+\exercise{35.20}{Schreier arrays in $\Z_{36}$}
+\idea Retain repeated entries while forming the rectangular Schreier arrays. In $\Z_n$, $\gen a+\gen b=\gen{\gcd(a,b)}$ and $\gen a\cap\gen b=\gen{\operatorname{lcm}(a,b)}$ when $a,b\mid n$; write $\gen n=0$.
+Use $H_{ij}=H_i+(H_{i+1}\cap K_j)$ and $K_{ji}=K_j+(K_{j+1}\cap H_i)$. The arrays for chains (3) and (4) are respectively
+\[
+\begin{array}{ccccc}
+0 &\le& 0 &\le& \gen{12}\\
+\gen{12} &\le& \gen{6} &\le& \gen{3}\\
+\gen{3} &\le& \gen{3} &\le& G\end{array}\qquad\begin{array}{ccccccc}
+0 &\le& 0 &\le& \gen{18} &\le& \gen{18}\\
+\gen{18} &\le& \gen{6} &\le& \gen{3} &\le& G\end{array}.\]
+Read each row left to right, identifying its last term with the first term of the next row. The factor-order array for the first chain is
+\[
+\begin{pmatrix}1&3\\2&2\\1&3\end{pmatrix}.
+\]
+The second chain has the transpose array of factor orders: the factor in row $i$, column $j$ of the first chain corresponds to row $j$, column $i$ of the second. All factors are cyclic; order 1 denotes a repeated group and thus a trivial factor. Deleting repeated entries gives the requested isomorphic refinements. This also exhibits every factor correspondence, rather than only their unordered lists.
+
+\exercise{35.21}{Schreier arrays in $\Z_{24}$}
+\idea Retain repeated entries while forming the rectangular Schreier arrays. In $\Z_n$, $\gen a+\gen b=\gen{\gcd(a,b)}$ and $\gen a\cap\gen b=\gen{\operatorname{lcm}(a,b)}$ when $a,b\mid n$; write $\gen n=0$.
+Use $H_{ij}=H_i+(H_{i+1}\cap K_j)$ and $K_{ji}=K_j+(K_{j+1}\cap H_i)$. The arrays for chains (3) and (4) are respectively
+\[
+\begin{array}{ccccccc}
+0 &\le& \gen{12} &\le& \gen{12} &\le& \gen{12}\\
+\gen{12} &\le& \gen{12} &\le& \gen{12} &\le& \gen{4}\\
+\gen{4} &\le& \gen{2} &\le& G &\le& G\end{array}\qquad\begin{array}{ccccccc}
+0 &\le& \gen{12} &\le& \gen{12} &\le& \gen{6}\\
+\gen{6} &\le& \gen{6} &\le& \gen{6} &\le& \gen{3}\\
+\gen{3} &\le& \gen{3} &\le& G &\le& G\end{array}.\]
+Read each row left to right, identifying its last term with the first term of the next row. The factor-order array for the first chain is
+\[
+\begin{pmatrix}2&1&1\\1&1&3\\2&2&1\end{pmatrix}.
+\]
+The second chain has the transpose array of factor orders: the factor in row $i$, column $j$ of the first chain corresponds to row $j$, column $i$ of the second. All factors are cyclic; order 1 denotes a repeated group and thus a trivial factor. Deleting repeated entries gives the requested isomorphic refinements. This also exhibits every factor correspondence, rather than only their unordered lists.
+
+\exercise{35.22}{Normality in an intersection}
+Let $x\in H\cap K$ and $y\in H^*\cap K$. Since $x\in H$ and $H^*\trianglelefteq H$, the conjugate $xyx^{-1}\in H^*$. Since $x,y\in K$, it also lies in $K$. Thus conjugation by $x$ preserves $H^*\cap K$; using $x^{-1}$ yields equality. Therefore $H^*\cap K\trianglelefteq H\cap K$.
+
+\exercise{35.23}{Multiplying finite factor orders}
+Start with $|H_0|=1$. If $|H_i|$ is finite and $[H_{i+1}:H_i]=s_{i+1}$, then $H_{i+1}$ is the disjoint union of $s_{i+1}$ cosets, each with $|H_i|$ elements. Hence $|H_{i+1}|=s_{i+1}|H_i|$.
+Induction gives $|H_j|=s_1\cdots s_j$ for every $j$. At $j=n$ this proves $|G|=s_1\cdots s_n$. Normality is needed to call the factors groups, although the coset-counting argument itself only uses subgroup indices.
+
+\exercise{35.24}{No infinite abelian composition series}
+A simple abelian group is cyclic of prime order: a nonidentity element generates a nontrivial normal subgroup, hence the whole group; an infinite cyclic group or a finite cyclic group of composite order has a proper nontrivial subgroup.
+If an abelian group had a composition series, all its factors would consequently be finite of prime order. Exercise 35.23 would make the group finite. This contradicts the hypothesis that it is infinite.
+
+\exercise{35.25}{Finite products of solvable groups}
+For two factors choose composition series $1=H_0<\cdots<H_r=H$ and $1=K_0<\cdots<K_s=K$ with abelian factors. Form
+\[
+1<H_1\times1<\cdots<H\times1
+<H\times K_1<\cdots<H\times K.
+\]
+Normality holds coordinatewise. The factors in the first portion are $H_i/H_{i-1}$; those in the second are $K_j/K_{j-1}$. Thus every factor is simple and abelian, so this is a solvable composition series. Apply the two-factor construction repeatedly for any finite number of groups.
+
+\exercise{35.26}{Subgroups of solvable groups}
+Let $1=H_0<\cdots<H_n=G$ have abelian simple factors, hence cyclic factors of prime order. Set $K_i=K\cap H_i$.
+For $x\in K_i$, conjugation preserves $K\cap H_{i-1}$, so $K_{i-1}\trianglelefteq K_i$.
+The map $K_i\to H_i/H_{i-1}$, $x\mapsto xH_{i-1}$, has kernel $K_{i-1}$.
+Therefore $K_i/K_{i-1}$ is isomorphic to a subgroup of a prime-order cyclic group. It is either trivial or that entire prime-order group.
+After deleting repetitions the intersections form a composition series of $K$ with abelian factors. Thus $K$ is solvable. The prime-order property is essential: intersections with an arbitrary composition series need not have simple factors.
+
+\exercise{35.27}{Inserting a simple normal subgroup}
+Because $N\trianglelefteq G$, each $H_iN$ is a subgroup.
+Also $H_{i-1}N\trianglelefteq H_iN$: conjugation by $H_i$ preserves both $H_{i-1}$ and $N$, while conjugation by $n\in N$ fixes every coset modulo $N$ and thus preserves $H_{i-1}N$.
+The composite map
+\[
+H_i\longrightarrow H_iN/H_{i-1}N
+\]
+is onto, with kernel $H_i\cap(H_{i-1}N)$ containing $H_{i-1}$. Hence its target is a quotient of the simple group $H_i/H_{i-1}$, and is either trivial or simple.
+Prepend $1$ to $N=H_0N\le H_1N\le\cdots\le G$.
+Its initial factor is the assumed simple group $N$; all later nontrivial factors are simple by the preceding argument. Delete repeated terms to obtain the required composition series.
+
+\exercise{35.28}{Composition series descend to quotients}
+Let $\gamma:G\to G/N$ be the quotient map. For $x\in H_i$ and $y\in H_{i-1}$,
+$\gamma(x)\gamma(y)\gamma(x)^{-1}=\gamma(xyx^{-1})\in\gamma(H_{i-1})$.
+Thus the image terms form a subnormal chain. The onto map
+\[
+H_i/H_{i-1}\longrightarrow
+\gamma(H_i)/\gamma(H_{i-1}),\qquad
+hH_{i-1}\longmapsto\gamma(h)\gamma(H_{i-1})
+\]
+is well defined, since $H_{i-1}$ maps into $\gamma(H_{i-1})$.
+A quotient of a simple group is either trivial or simple. The image chain starts at 1 and ends at $G/N$; deleting its repetitions therefore produces a composition series of $G/N$.
+
+\exercise{35.29}{Homomorphic images preserve solvability}
+Let $f:G\to Q$ be a homomorphism, and use a composition series of $G$ with cyclic prime-order factors. Repeat the argument of Exercise 35.28 with the onto map $G\to f(G)$: each successive image factor is a quotient of a cyclic prime-order group, hence either trivial or cyclic of that prime order.
+Delete repetitions. The result is a composition series of $f(G)$ with abelian factors, proving that the image is solvable. No surjectivity onto the originally named codomain $Q$ is needed; the assertion concerns $f(G)$.

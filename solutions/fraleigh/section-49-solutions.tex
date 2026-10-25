@@ -1,0 +1,56 @@
+\section{The Isomorphism Extension Theorem}
+
+\exercise{49.1}{Extending an identity on two radicals}
+An embedding of $E$ is a sign choice on $\sqrt2,\sqrt3,\sqrt5$. Fixing $\sqrt2$ forces its sign to be positive; fixing $\sqrt{15}=\sqrt3\sqrt5$ forces the other two signs to agree. Thus the two triples of images are $(\sqrt2,\sqrt3,\sqrt5)$ and $(\sqrt2,-\sqrt3,-\sqrt5)$. Each is realized by a sign-change automorphism, and there are no others.
+
+\exercise{49.2}{Extending a prescribed negative product}
+Here $\sqrt2$ must stay fixed and the product $\sqrt3\sqrt5$ must change sign. Thus the two triples of images are $(\sqrt2,-\sqrt3,\sqrt5)$ and $(\sqrt2,\sqrt3,-\sqrt5)$. They both respect the prescribed map, and exhaust its possible extensions.
+
+\exercise{49.3}{Extending conjugation on a triple product}
+The product of the three radical signs must be negative. The four triples are
+\[(-\sqrt2,\sqrt3,\sqrt5),\ (\sqrt2,-\sqrt3,\sqrt5),\ (\sqrt2,\sqrt3,-\sqrt5),\ (-\sqrt2,-\sqrt3,-\sqrt5).\]
+Every triple defines a sign-change automorphism of $E$, and exactly the odd numbers of sign changes negate $\sqrt{30}$.
+
+\exercise{49.4}{Embeddings of a real cubic field}
+Put $r=\sqrt[3]2$ and $\omega=(-1+i\sqrt3)/2$. The polynomial $x^3-2$ is irreducible by Eisenstein and has distinct roots $r,r\omega,r\omega^2$. For each $j=0,1,2$, there is one rational embedding sending $r$ to $r\omega^j$. Its value on $a+br+cr^2$ is $a+br\omega^j+cr^2\omega^{2j}$. These are all three embeddings into $\overline\Q$.
+
+\exercise{49.5}{Adding an independent square root}
+Let $r,\omega$ be as in Exercise 49.4. The field $\Q(r)$ has degree 3 and cannot contain the quadratic field $\Q(\sqrt3)$, by the tower law. Thus adjoining $\sqrt3$ doubles the degree. For each of the three choices $r\mapsto r\omega^j$, the extension theorem allows both roots $\sqrt3\mapsto\pm\sqrt3$ of its transported quadratic minimal polynomial. These six independent pairs describe all embeddings; a field map is determined by these generators.
+
+\exercise{49.6}{Extending a prescribed quadratic conjugation}
+The source field is $\Q(i,\sqrt3,r)$ and the map must send $\sqrt3$ to $-\sqrt3$. We can independently send $i$ to $\pm i$ and $r$ to $r\omega^j$ for $j=0,1,2$. To justify existence, $\Q(i,\sqrt3)$ is quadratic over $\Q(\sqrt3)$, and $x^3-2$ remains irreducible over it: if a cubic root lay in this degree-four field, its degree-three rational subfield would violate the tower law. Thus there are exactly $2\cdot3=6$ extensions. For each, values on the three generators determine the entire map.
+
+\exercise{49.7}{A transcendental sign change}
+\begin{enumerate}[label=(\alph*)]
+\item The fixed field is $\Q(\pi^2)$. Indeed, $\Q(\pi)$ has basis $1,\pi$ over $\Q(\pi^2)$ because $\pi$ is transcendental and $x^2-\pi^2$ gives degree 2. The sign change fixes $A+B\pi$ precisely when $B=0$.
+\item The element $\sqrt\pi$ satisfies $x^2-\pi$ over $\Q(\pi)$. Transporting coefficients under $\pi\mapsto-\pi$ gives $x^2+\pi$, whose roots in the algebraic closure are $\pm i\sqrt\pi$. The two extensions therefore send $\sqrt\pi$ to these two values. They exist by the extension theorem and are determined by this image.
+\end{enumerate}
+
+\exercise{49.8}{Ten statements about extensions of isomorphisms}
+\begin{enumerate}[label=(\alph*)]
+\item False. Take $F=\Q$ and $\alpha$ transcendental; no embedding of $\Q(\alpha)$ into the algebraic closure $\overline\Q$ can send a transcendental element to an algebraic one.
+\item True, by the isomorphism extension theorem for algebraic extensions.
+\item False. The identity on $\Q$ has one extension to $\Q$ but two to $\Q(\sqrt2)$.
+\item True. An isomorphism extends to an isomorphism of algebraic closures.
+\item False. $\Q$ and $\Q(\sqrt2)$ are not isomorphic, but share an algebraic closure up to isomorphism.
+\item True. Both closures are algebraic closures of $\Q$.
+\item True. The number of embeddings is at most the finite degree.
+\item True. Count extensions of each lower embedding through a tower; each has the same number of extensions as the relative index.
+\item True. Successively extending across finitely many algebraic generators constructs the map; the infinite case needs the maximality argument.
+\item False. $\C$ is uncountable, whereas $\overline\Q$ is countable, so they cannot be isomorphic.
+\end{enumerate}
+
+\exercise{49.9}{An algebraic self-embedding of a closed field}
+The image $\sigma[K]$ is algebraically closed because it is isomorphic to the algebraically closed field $K$. By assumption every element of $K$ is algebraic over this image. An algebraically closed field has no proper algebraic extension: each minimal polynomial is linear. Therefore every element of $K$ already lies in $\sigma[K]$. Thus the embedding is onto and is an automorphism.
+
+\exercise{49.10}{Extending to an automorphism of the closure}
+Let $\sigma:E\to\overline F$ fix $F$. The extension theorem extends it to an embedding $\tau:\overline F\to\overline F$. Its image contains $F$, and $\overline F$ is algebraic over $F$, hence algebraic over the larger image $\tau[\overline F]$. Exercise 49.9 now makes $\tau$ onto. Its restriction to $E$ is the desired original map.
+
+\exercise{49.11}{Closures of algebraically related fields}
+An algebraic closure $\overline E$ of the algebraic extension $E/F$ is algebraic over $F$ by transitivity of algebraicity. It is also algebraically closed. Thus it is an algebraic closure of $F$. Uniqueness of algebraic closures up to an isomorphism fixing $F$ gives $\overline E\cong\overline F$.
+
+\exercise{49.12}{Closures of rational function fields}
+Since $\pi$ is transcendental, $\sqrt\pi$ is transcendental too, and substitution $\sqrt\pi\mapsto x$ gives $\Q(\sqrt\pi)\cong\Q(x)$. Their algebraic closures are consequently isomorphic. The extension $\overline\Q(x)/\Q(x)$ is algebraic, so an algebraic closure of either is an algebraic closure of the other by Exercise 49.11. Finally the algebraic closure of $\Q(\sqrt\pi)$ inside $\C$ is indeed algebraically closed: a root in $\C$ of a polynomial over it is algebraic over that field, hence algebraic over $\Q(\sqrt\pi)$. These observations prove the requested isomorphism.
+
+\exercise{49.13}{Index is bounded by degree}
+For a simple algebraic extension $F(\alpha)/F$, the index is the number of distinct roots of the minimal polynomial, hence is at most its degree. Write a finite extension as a finite tower of simple extensions. Index and degree are both multiplicative along the tower, so multiplying the inequalities at each step gives $\{E:F\}\le[E:F]$. Here braces denote the number of embeddings into a fixed algebraic closure, not a quotient field.

@@ -1,0 +1,239 @@
+\section{Factorization of Polynomials over a Field}
+
+\exercise{23.1}{Polynomial division 1}
+Work in $\Z_{7}[x]$, reducing coefficients after each subtraction. The inverse of the divisor's leading coefficient is $1$. Repeatedly subtract the multiple that cancels the current highest power. The complete long-division steps are
+\[
+\begin{array}{c|l}
+\text{term added to quotient}&\text{new remainder}\\\hline
+x^4&x^5+3x^4+4x^2+4x+2\\
+x^3&x^4+3x^3+4x^2+4x+2\\
+x^2&x^3+4x+2\\
+x&5x^2+2\\
+5&4x+3\\
+\end{array}
+\]
+Thus $\boxed{q(x)=x^4+x^3+x^2+x+5}$ and $\boxed{r(x)=4x+3}$. The final remainder has degree below the divisor's degree; reversing the subtractions verifies $f=gq+r$.
+
+\exercise{23.2}{Polynomial division 2}
+Work in $\Z_{7}[x]$, reducing coefficients after each subtraction. The inverse of the divisor's leading coefficient is $5$. Repeatedly subtract the multiple that cancels the current highest power. The complete long-division steps are
+\[
+\begin{array}{c|l}
+\text{term added to quotient}&\text{new remainder}\\\hline
+5x^4&x^4+4x^2+4x+2\\
+5x^2&4x^3+5x^2+4x+2\\
+6x&x+2\\
+\end{array}
+\]
+Thus $\boxed{q(x)=5x^4+5x^2+6x}$ and $\boxed{r(x)=x+2}$. The final remainder has degree below the divisor's degree; reversing the subtractions verifies $f=gq+r$.
+
+\exercise{23.3}{Polynomial division 3}
+Work in $\Z_{11}[x]$, reducing coefficients after each subtraction. The inverse of the divisor's leading coefficient is $6$. Repeatedly subtract the multiple that cancels the current highest power. The complete long-division steps are
+\[
+\begin{array}{c|l}
+\text{term added to quotient}&\text{new remainder}\\\hline
+6x^4&3x^4+3x+6\\
+7x^3&4x^3+3x+6\\
+2x^2&9x^2+3x+6\\
+10x&4x+6\\
+2&4\\
+\end{array}
+\]
+Thus $\boxed{q(x)=6x^4+7x^3+2x^2+10x+2}$ and $\boxed{r(x)=4}$. The final remainder has degree below the divisor's degree; reversing the subtractions verifies $f=gq+r$.
+
+\exercise{23.4}{Polynomial division 4}
+Work in $\Z_{11}[x]$, reducing coefficients after each subtraction. The inverse of the divisor's leading coefficient is $9$. Repeatedly subtract the multiple that cancels the current highest power. The complete long-division steps are
+\[
+\begin{array}{c|l}
+\text{term added to quotient}&\text{new remainder}\\\hline
+9x^2&3x^3+x^2\\
+5x&6x^2+x\\
+10&2\\
+\end{array}
+\]
+Thus $\boxed{q(x)=9x^2+5x+10}$ and $\boxed{r(x)=2}$. The final remainder has degree below the divisor's degree; reversing the subtractions verifies $f=gq+r$.
+
+\exercise{23.5}{All multiplicative generators modulo 5}
+The group has order $4$. The element $2$ has this full order: it satisfies $2^{4}=1$, and the checks $2^{2}\equiv4\pmod{5}$ exclude every proper divisor of the order (check exponents $(4)/q$ for each prime $q$ dividing $4$). In a cyclic group of order $4$, the generators are exactly $g^k$ with $\gcd(k,4)=1$. Here those exponents are $1,3$, yielding the complete generator set
+\[\boxed{\{2,3\}}.
+\]
+
+\exercise{23.6}{All multiplicative generators modulo 7}
+The group has order $6$. The element $3$ has this full order: it satisfies $3^{6}=1$, and the checks $3^{3}\equiv6, 3^{2}\equiv2\pmod{7}$ exclude every proper divisor of the order (check exponents $(6)/q$ for each prime $q$ dividing $6$). In a cyclic group of order $6$, the generators are exactly $g^k$ with $\gcd(k,6)=1$. Here those exponents are $1,5$, yielding the complete generator set
+\[\boxed{\{3,5\}}.
+\]
+
+\exercise{23.7}{All multiplicative generators modulo 17}
+The group has order $16$. The element $3$ has this full order: it satisfies $3^{16}=1$, and the checks $3^{8}\equiv16\pmod{17}$ exclude every proper divisor of the order (check exponents $(16)/q$ for each prime $q$ dividing $16$). In a cyclic group of order $16$, the generators are exactly $g^k$ with $\gcd(k,16)=1$. Here those exponents are $1,3,5,7,9,11,13,15$, yielding the complete generator set
+\[\boxed{\{3,5,6,7,10,11,12,14\}}.
+\]
+
+\exercise{23.8}{All multiplicative generators modulo 23}
+The group has order $22$. The element $5$ has this full order: it satisfies $5^{22}=1$, and the checks $5^{11}\equiv22, 5^{2}\equiv2\pmod{23}$ exclude every proper divisor of the order (check exponents $(22)/q$ for each prime $q$ dividing $22$). In a cyclic group of order $22$, the generators are exactly $g^k$ with $\gcd(k,22)=1$. Here those exponents are $1,3,5,7,9,13,15,17,19,21$, yielding the complete generator set
+\[\boxed{\{5,7,10,11,14,15,17,19,20,21\}}.
+\]
+
+\exercise{23.9}{Four linear factors modulo five}
+Since $4=-1$ in $\Z_5$,
+\[x^4+4=x^4-1=(x^2-1)(x^2+1).
+\]
+Now $x^2-1=(x-1)(x+1)$ and $x^2+1=x^2-4=(x-2)(x+2)$. Therefore the requested linear factorization is
+\[\boxed{(x-1)(x+1)(x-2)(x+2)}.
+\]
+
+\exercise{23.10}{Three linear factors modulo seven}
+Substitution shows that $x=-1$ is a zero. Division gives
+\[x^3+2x^2+2x+1=(x+1)(x^2+x+1).
+\]
+In $\Z_7$, $(x-2)(x+3)=x^2+x-6=x^2+x+1$. Thus
+\[\boxed{x^3+2x^2+2x+1=(x+1)(x-2)(x+3)}.
+\]
+Expansion checks all coefficients modulo $7$.
+
+\exercise{23.11}{A nonmonic cubic modulo eleven}
+The residues $3,4,-3$ are zeros, suggesting the three factors. Their product expands as
+\[2(x-4)(x-3)(x+3)=2(x-4)(x^2-9)
+=2x^3-8x^2-18x+72.
+\]
+Reducing modulo $11$ gives $2x^3+3x^2-7x-5$, as required. Hence this is the complete linear factorization, including its leading coefficient $2$.
+
+\exercise{23.12}{A reducible cubic modulo five}
+The value at $x=2$ is $8+4+3=15=0$ modulo $5$, so the cubic is not irreducible. Division by $x-2$ gives $x^2+2x+1=(x+1)^2$. Therefore
+\[\boxed{x^3+2x+3=(x-2)(x+1)^2}\quad\text{in }\Z_5[x].
+\]
+All three linear factors are irreducible, with a repeated factor explicitly recorded.
+
+\exercise{23.13}{An irreducible cubic modulo five}
+A cubic over a field is reducible exactly when it has a zero in the field. The values of $2x^3+x^2+2x+2$ at $0,1,2,3,4$ are $2,2,1,1,4$ in $\Z_5$, none zero. It is therefore irreducible. If a monic irreducible factor is desired, write it as
+\[\boxed{2(x^3+3x^2+x+1)}.
+\]
+The scalar $2$ is a unit, and the cubic factor is irreducible; there is no factorization into positive lower degrees.
+
+\exercise{23.14}{A quadratic over three fields}
+The discriminant of $x^2+8x-2$ is $8^2-4(1)(-2)=72$. Its roots are $-4\pm3\sqrt2$, neither rational. A quadratic over a field is reducible if and only if it has a root there, so it is irreducible over $\Q$. Both roots are real, however, giving
+\[x^2+8x-2=(x+4-3\sqrt2)(x+4+3\sqrt2).
+\]
+Thus it is reducible over $\R$ and consequently over $\C$.
+
+\exercise{23.15}{A quadratic with negative discriminant}
+For $x^2+6x+12$, the discriminant is $36-48=-12$. There is no real root, hence no rational root. It is irreducible over both $\Q$ and $\R$. Over $\C$, its roots are $-3\pm i\sqrt3$, so
+\[x^2+6x+12=(x+3-i\sqrt3)(x+3+i\sqrt3)
+\]
+is a factorization and it is reducible there.
+
+\exercise{23.16}{A cubic over the rationals}
+A reducible cubic over $\Q$ would have a rational root. The rational-root theorem for the monic polynomial $x^3+3x^2-8$ limits candidates to $\pm1,\pm2,\pm4,\pm8$. Their values, in that order, are
+\[-4,-6,12,-4,104,-24,696,-328,
+\]
+all nonzero. Thus there is no rational root and the cubic is irreducible over $\Q$.
+
+\exercise{23.17}{A quartic with no quadratic factor}
+The only possible rational roots of the monic integer polynomial are $\pm1$, and both give $-20$, so no linear factor exists. By Gauss's lemma, any remaining rational factorization could be taken as
+\[(x^2+ax+b)(x^2+cx+d),\qquad a,b,c,d\in\Z.
+\]
+Comparing the $x^3$ and constant coefficients gives $c=-a$ and $bd=1$, so $(b,d)=(1,1)$ or $(-1,-1)$. The $x^2$ coefficient is $b+d-a^2=-22$. In the first case this forces $a^2=24$; in the second it forces $a^2=20$. Neither is an integer square. Thus there is no quadratic factorization either, and $x^4-22x^2+1$ is irreducible over $\Q$.
+
+\exercise{23.18}{An Eisenstein quadratic}
+For $x^2-12$, use the prime $p=3$. It does not divide the leading coefficient $1$, divides all other coefficients (including the zero linear coefficient), and $3^2=9$ does not divide $-12$. Eisenstein's criterion therefore applies and proves irreducibility over $\Q$.
+
+\exercise{23.19}{An Eisenstein cubic}
+Use $p=3$: it does not divide the leading coefficient $8$, it divides the other coefficients $6,-9,24$, and $9$ does not divide the constant coefficient $24$. Thus all Eisenstein hypotheses hold and the cubic is irreducible over $\Q$.
+
+\exercise{23.20}{An Eisenstein polynomial of degree ten}
+Use $p=3$ for $4x^{10}-9x^3+24x-18$. Although $3\nmid4$ and $3$ divides all lower coefficients, $3^2=9$ divides the constant coefficient $-18$. This prime fails the square condition. No other prime divides all the lower nonzero coefficients, since their gcd is $3$. Thus the polynomial satisfies no Eisenstein criterion in its displayed form. Failure of the criterion alone does not decide reducibility.
+
+\exercise{23.21}{Another Eisenstein polynomial of degree ten}
+For $2x^{10}-25x^3+10x^2-30$, the prime $5$ divides every lower coefficient but not the leading coefficient $2$. Its square $25$ does not divide $-30$. Thus Eisenstein applies with $p=5$, proving irreducibility over $\Q$.
+
+\exercise{23.22}{All rational zeros of a quartic}
+The rational-root theorem permits only fractions with numerator dividing $10$ and denominator dividing $6$. Testing candidates finds $x=-5/2$ and $x=2/3$. Exact division, or multiplication, gives
+\[6x^4+17x^3+7x^2+x-10=(2x+5)(3x-2)(x^2+x+1).
+\]
+The final quadratic has discriminant $1-4=-3$, so it has no rational zero. Consequently the complete rational zero set is $\boxed{\{-5/2,\ 2/3\}}$. The displayed factorization checks the candidate search and excludes further rational roots.
+
+\exercise{23.23}{Correcting irreducibility}
+A nonconstant polynomial $f\in F[x]$ is irreducible over $F$ if it cannot be written as $f=gh$ with \emph{both} $g,h\in F[x]$ of positive degree. The printed definition forbids even $f=1\cdot f$, which every polynomial has. Trivial factorizations by nonzero constant units must be allowed.
+
+\exercise{23.24}{An equivalent irreducibility definition}
+The stated definition is correct. A nonconstant $f$ is nonzero. In any factorization $f=gh$, both factors are nonzero, so a factor belonging to $F$ is a nonzero constant and hence a unit in $F[x]$. Requiring such a factor in every factorization is equivalent to forbidding a product of two positive-degree polynomials.
+
+\exercise{23.25}{True or false: irreducibility and root bounds}
+\begin{enumerate}[label=(\alph*)]
+\item True: a degree-one polynomial cannot be a product of two positive-degree polynomials.
+\item True for the same reason; the nonzero scalar factor $3$ is a unit in $\Q[x]$.
+\item True: $\sqrt3$ is irrational, so this quadratic has no rational root.
+\item False: in $\Z_7$, $2^2+3=7=0$, so $x^2+3$ is reducible.
+\item True: degree additivity forces any polynomial unit over a field to be a nonzero constant.
+\item True: the source repeats the same assertion as in (e), so the same reasoning applies.
+\item True: a polynomial of degree $n$ is nonzero and has at most $n$ distinct zeros over a field.
+\item True: regard it as the same nonzero degree-$n$ polynomial over the extension field $E$ and apply the root bound there.
+\item True: $ax+b$, $a\ne0$, has zero $-b/a\in F$.
+\item False: over an infinite field such as $\Q$, the zero polynomial vanishes at infinitely many inputs. The assertion becomes true if one requires the polynomial to be nonzero.
+\end{enumerate}
+
+\exercise{23.26}{Primes for which a specified linear factor divides}
+The factor theorem says that $x+2=x-(-2)$ divides the polynomial modulo $p$ exactly when its value at $-2$ is zero modulo $p$. This value is
+\[16-8+4+2+1=15.
+\]
+Thus $p$ must divide $15$. The prime possibilities are exactly $\boxed{3,5}$, and both do satisfy the condition.
+
+\exercise{23.27}{Irreducible quadratics over two elements}
+Every monic quadratic has form $x^2+ax+b$. It has no root at $0$ only if $b=1$; then its value at $1$ is $a$, which is nonzero only if $a=1$. Thus the only irreducible quadratic is $\boxed{x^2+x+1}$. There is no further nonzero scalar multiple to list because $1$ is the only nonzero scalar in $\Z_2$.
+
+\exercise{23.28}{Irreducible cubics over two elements}
+A cubic is irreducible exactly when it has no field root. Write it $x^3+ax^2+bx+c$. Avoiding root $0$ requires $c=1$; avoiding root $1$ requires $a+b\ne0$, so $(a,b)=(1,0)$ or $(0,1)$. The complete list is
+\[\boxed{x^3+x^2+1,\qquad x^3+x+1}.
+\]
+
+\exercise{23.29}{Irreducible quadratics over three elements}
+Test the monic quadratics $x^2+ax+b$ at $0,1,2$. The monic ones with no zero are exactly
+\[x^2+1,\quad x^2+x+2,\quad x^2+2x+2.
+\]
+Their respective value triples are $(1,2,2)$, $(2,1,2)$, and $(2,2,1)$. All quadratic leading coefficients are $1$ or $2$, and multiplying by a nonzero constant preserves irreducibility. Thus the full answer is these three polynomials and twice each of them, six in total.
+
+\exercise{23.30}{Irreducible cubics over three elements}
+A cubic is irreducible exactly when none of $0,1,2$ is a zero. The monic list, together with values at these inputs, is
+\[
+\begin{array}{l|ccc}h(x)&h(0)&h(1)&h(2)\\\hline
+x^3+2x^2+1&1&1&2\\
+x^3+2x^2+x+1&1&2&1\\
+x^3+2x+1&1&1&1\\
+x^3+x^2+2x+1&1&2&2\\
+x^3+x^2+2&2&1&2\\
+x^3+x^2+x+2&2&2&1\\
+x^3+2x+2&2&2&2\\
+x^3+2x^2+2x+2&2&1&1
+\end{array}.
+\]
+To see completeness, write a monic cubic as $x^3+ax^2+bx+c$. Necessarily $c=1$ or $2$; testing the nine pairs $(a,b)$ for each $c$ and discarding zeros at $1$ or $2$ gives precisely these eight rows. The full list of irreducible cubics consists of these eight polynomials and their multiples by $2$, sixteen in all.
+
+\exercise{23.31}{Counting irreducible quadratics over a prime field}
+There are $p^2$ monic quadratics. A reducible monic quadratic is uniquely $(x-a)(x-b)$ for an unordered pair of field elements, allowing $a=b$. There are $\binom p2+p=p(p+1)/2$ such pairs. Therefore the number of monic irreducible quadratics is
+\[p^2-\frac{p(p+1)}2=\frac{p(p-1)}2.
+\]
+Each has $p-1$ distinct nonzero scalar multiples, and every nonmonic quadratic is a unique scalar times a monic one. Thus the requested count of \emph{all} irreducible quadratics is $\boxed{p(p-1)^2/2}$.
+
+\exercise{23.32}{Synopsis of the bound on roots}
+Each distinct zero supplies a distinct linear factor by the factor theorem, and repeatedly removing these factors lowers the degree by one each time; a nonzero degree-$n$ polynomial cannot supply more than $n$ such factors.
+
+\exercise{23.33}{Synopsis of cyclicity of finite field subgroups}
+By the finite abelian group theorem, write the finite multiplicative subgroup with invariant factors $d_1\mid\cdots\mid d_r$. Every element then satisfies $x^{d_r}=1$. The polynomial root bound gives $|G|\le d_r$, while the product of invariant factors is $|G|\ge d_r$. Equality forces all earlier factors to be trivial, so the group is cyclic.
+
+\exercise{23.34}{A reducible prime-power polynomial}
+In $\Z_p$, Fermat gives $a^p=a$, and all intermediate binomial coefficients of exponent $p$ vanish. Hence
+\[(x+a)^p=x^p+a^p=x^p+a.
+\]
+Since $p\ge2$, this is a product of $p$ linear factors, so it is not irreducible. This includes $a=0$, when the polynomial is $x^p$.
+
+\exercise{23.35}{The reciprocal polynomial}
+Let $g(x)=a_n+a_{n-1}x+\cdots+a_0x^n$. Since $a\ne0$, substitute $a^{-1}$ and factor out $a^{-n}$:
+\[g(a^{-1})=a^{-n}(a_0+a_1a+\cdots+a_na^n)=a^{-n}f(a)=0.
+\]
+Thus $1/a$ is a zero of the reciprocal polynomial, with the nonzero assumption justifying all inverse powers.
+
+\exercise{23.36}{The remainder theorem}
+Division by $x-a$ gives $f(x)=(x-a)q(x)+r(x)$, where $r=0$ or $\deg r<1$. Thus $r$ is a constant. Evaluating at $a$ yields $f(a)=0\cdot q(a)+r=r$. Hence the remainder is exactly the constant polynomial $\boxed{f(a)}$.
+
+\exercise{23.37}{Reduction of integer coefficients}
+\textbf{(a)} Reduce each coefficient modulo $m$. Sums are preserved coefficientwise; products are preserved because each coefficient of a product is a finite sum of coefficient products, and integer reduction preserves both operations. Every polynomial over $\Z_m$ can be lifted by choosing integer representatives for its finitely many coefficients, so the map is onto.\par
+\textbf{(b)} Suppose instead that $f$ is reducible over $\Q$. By Gauss's lemma it has a factorization $f=gh$ in $\Z[x]$ with $0<\deg g,\deg h<n$. The leading coefficient of $f$ remains nonzero modulo $m$ by the degree hypothesis. Because it is the product of the leading coefficients of $g,h$, neither of those can become zero modulo $m$. Their reduced degrees are therefore unchanged. Reducing $f=gh$ then gives the forbidden factorization into two degrees below $n$, a contradiction. Thus $f$ is irreducible over $\Q$.\par
+\textbf{(c)} Modulo $5$, the polynomial becomes $x^3+2x+1$. Its values at $0,1,2,3,4$ are $1,4,3,4,3$, none zero. As a cubic over the field $\Z_5$, it is irreducible, and its degree remains $3$. Part (b) proves that $x^3+17x+36$ is irreducible over $\Q$.

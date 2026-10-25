@@ -1,0 +1,13 @@
+{
+  "section": 44,
+  "part": 8,
+  "title": "Homological Algebra",
+  "exercise_count": 16,
+  "source_pages": [
+    391,
+    392
+  ],
+  "notes": [
+    "Exercises44.6 and44.8 quotient-space comparison uses reduced homology; ordinary quotient H_0 differs from relative H_0."
+  ]
+}

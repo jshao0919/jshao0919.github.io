@@ -1,0 +1,91 @@
+\section{Free Groups}
+
+\exercise{39.1}{Reduced words and their inverses}
+\idea Combine only \emph{adjacent} powers of the same letter; for an inverse, reverse the syllables and negate every exponent.
+\textbf{(a)} In $a^2b^{-1}b^3a^3c^{-1}c^4b^{-2}$ the adjacent $b$ powers combine to $b^2$, and the adjacent $c$ powers to $c^3$. Thus the reduced word and its inverse are
+\[
+a^2b^2a^3c^3b^{-2},\qquad b^2c^{-3}a^{-3}b^{-2}a^{-2}.
+\]
+\textbf{(b)} In $a^2a^{-3}b^3a^4c^4c^2a^{-1}$, combine the first two $a$ powers and the two $c$ powers. The answers are
+\[
+a^{-1}b^3a^4c^6a^{-1},\qquad ac^{-6}a^{-4}b^{-3}a.
+\]
+Multiplying either displayed word by its displayed inverse cancels from the middle outward to the empty word, checking the results.
+
+\exercise{39.2}{The same products in a free abelian group}
+Now commuting letters may be regrouped, so add \emph{all} exponents of each letter.
+\textbf{(a)} The exponent totals are $a:2+3=5$, $b:-1+3-2=0$, $c:-1+4=3$. The product is $a^5c^3$ and its inverse is $a^{-5}c^{-3}$.
+\textbf{(b)} The totals are $a:2-3+4-1=2$, $b:3$, $c:4+2=6$. The product is $a^2b^3c^6$ and its inverse is $a^{-2}b^{-3}c^{-6}$.
+Unlike Exercise 39.1, rearrangement is allowed because this group is abelian.
+
+\exercise{39.3}{Homomorphisms from a rank-two free group}
+Let its basis be $x,y$. Any choice of the two images defines one and only one homomorphism, by the universal property of a free group. No commuting condition is imposed. Thus the number of maps to a finite group $H$ is $|H|^2$.
+The answers are \textbf{(a)} $4^2=16$, \textbf{(b)} $6^2=36$, and \textbf{(c)} $|S_3|^2=36$.
+
+\exercise{39.4}{Surjections from a rank-two free group}
+The images of the two basis elements must generate the codomain, and every ordered generating pair gives exactly one surjection.
+\textbf{(a)} In $\Z_4$, a pair generates if at least one entry is odd. Of 16 pairs, exactly four have both entries even, leaving $12$.
+\textbf{(b)} In $\Z_6$, the reductions must generate modulo both 2 and 3. The Chinese remainder theorem makes the choices independent: modulo 2 there are $2^2-1=3$ nonzero pairs, and modulo 3 there are $3^2-1=8$. Thus there are $3\cdot8=24$.
+\textbf{(c)} In $S_3$, an ordered pair generates exactly when it consists of two distinct transpositions ($3\cdot2=6$ choices), or one transposition and one 3-cycle (two positions, three transpositions, two cycles: $12$ choices). The other pairs lie in a proper cyclic subgroup. Thus there are $6+12=18$ surjections.
+
+\exercise{39.5}{Homomorphisms from a rank-two free abelian group}
+A map from $\Z^2$ is determined by an ordered \emph{commuting} pair of images. Every pair commutes in the cyclic codomains, so \textbf{(a)} and \textbf{(b)} again give $16$ and $36$.
+For \textbf{(c)}, count commuting pairs in $S_3$. The identity commutes with all six elements. Each of three transpositions has a centralizer of size 2, and each of two 3-cycles has a centralizer of size 3. Thus the answer is
+\[
+6+3\cdot2+2\cdot3=18.
+\]
+For any commuting pair $(g,h)$ the homomorphism is $(m,n)\mapsto g^mh^n$, verifying existence as well as the count.
+
+\exercise{39.6}{Surjections from a rank-two free abelian group}
+For the abelian codomains the generating-pair counts are unchanged from Exercise 39.4: \textbf{(a)} $12$ maps onto $\Z_4$ and \textbf{(b)} $24$ onto $\Z_6$.
+\textbf{(c)} There are $0$ maps onto $S_3$, since the image of an abelian group is abelian: $f(x)f(y)=f(x+y)=f(y+x)=f(y)f(x)$. A nonabelian group therefore cannot be the entire image.
+
+\exercise{39.7}{Definition of a reduced word}
+The definition is correct. Adjacent syllables involving the same letter can be combined by adding their exponents, and a syllable of exponent zero can be deleted. A word is reduced exactly when neither elementary contraction is possible. The empty word is reduced as well.
+
+\exercise{39.8}{Definition of free-group rank}
+Replace ``a set of generators'' by ``a basis,'' meaning a free generating set. The rank of a free group is the cardinality of a basis. An arbitrary generating set can contain redundant elements and therefore need not have the invariant size of a basis.
+
+\exercise{39.9}{Reflecting on an apparently obvious assertion}
+Consider the assertion that the final reduced word does not depend on the order of contractions. It is plausible from examples, but examples alone do not prove it. One systematic justification expands syllables into individual letters $a^{\pm1}$ and scans left to right with a stack: cancel the next letter when it is inverse to the stack's top; otherwise append it.
+The stack after a prefix is the reduced representative of that prefix. Deleting an adjacent inverse pair anywhere leaves the final stack unchanged, so any sequence of such deletions gives the same result. Combining adjacent equal-letter powers is equivalent to these cancellations together with collecting identical adjacent signs. Thus the apparent obviousness can be replaced by an invariant algorithm. It is reasonable to accept the assertion while learning the main construction, while recognizing what a complete proof needs.
+
+\exercise{39.10}{True or false: free groups}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item True: the subgroup theorem for free groups (Nielsen--Schreier), stated in the section, includes proper subgroups.
+\item False. $2\Z\times\Z$ is a proper subgroup of the free abelian group $\Z^2$, but is abelian of rank 2 and hence is not a free group.
+\item False. $\Z\twoheadrightarrow\Z_2$ is a homomorphism from a free group, but a nontrivial finite group is not free.
+\item True: this is the defining property of free abelian groups.
+\item False. The finitely generated abelian group $\Z_2$ is not free abelian, because it has nonzero torsion.
+\item False. A free group is, by definition, free on a basis; $\Z$ is a basic example.
+\item False. $\Z$ is both free abelian and free as a group on one generator.
+\item True. A free group on at least two basis elements is nonabelian (the reduced words $xy$ and $yx$ differ), whereas a free abelian group is abelian. A rank-greater-than-one free abelian group is neither trivial nor cyclic, so it cannot instead be a free group of rank 0 or 1.
+\item False. $\Z$ and the free group on two letters have different abelian/nonabelian behavior.
+\item True. A bijection between bases extends to an isomorphism by matching finite integer combinations.
+\end{enumerate}
+
+\exercise{39.11}{A basis allowing torsion}
+\textbf{(a)} In $\Z_4$ the relation $1\cdot2+2\cdot3=0$ holds, but the individual summands are both 2, not zero. Thus $\{2,3\}$ fails this exercise's independence condition. The singleton $\{1\}$ is a basis: it generates, and a one-term relation already has its one term zero.
+\textbf{(b)} The same singleton $\{1\}$ is a basis of $\Z_6$. Also $\{2,3\}$ generates because $3-2=1$. If $2m+3n=0\pmod6$, reducing modulo 3 gives $m=0\pmod3$, and reducing modulo 2 gives $n=0\pmod2$. Consequently $2m=0$ and $3n=0$ individually. This proves the required independence.
+\textbf{(c)} Yes. A Section 38 basis forces each integer coefficient to be zero in a zero sum, which in particular forces each summand to be zero. It also generates the group.
+\textbf{(d)} Write a finite abelian group as $\Z_{d_1}\times\cdots\times\Z_{d_n}$ with $d_i\mid d_{i+1}$, using its invariant-factor decomposition. Let $b_i$ be the inverse image of the standard generator in coordinate $i$. They generate, have orders $d_i$, and a zero sum has zero in each coordinate, forcing each summand $m_ib_i$ to be zero. Thus they form a basis in the present torsion-allowing sense.
+
+\exercise{39.12}{The universal abelian quotient}
+\textbf{(a)} If $\phi_i:G\twoheadrightarrow G_i^*$ have the stated property, there are maps $\theta_1:G_2^*\to G_1^*$ and $\theta_2:G_1^*\to G_2^*$ with $\phi_1=\theta_1\phi_2$ and $\phi_2=\theta_2\phi_1$.
+Then $(\theta_1\theta_2)\phi_1=\phi_1$. Since $\phi_1$ is onto, $\theta_1\theta_2$ is the identity on $G_1^*$. Similarly $\theta_2\theta_1$ is the identity on $G_2^*$, so the groups are isomorphic.
+\textbf{(b)} Let $G^*=G/[G,G]$ and let $\phi$ be the quotient map. For a homomorphism $\psi:G\to A$ with $A$ abelian, every commutator maps to the identity, so $[G,G]\subseteq\ker\psi$. Therefore $\theta(g[G,G])=\psi(g)$ is well defined, is a homomorphism, and satisfies $\psi=\theta\phi$.
+\textbf{(c)} This is the abelianization of $G$, its largest universal abelian quotient. The factor map is unique because $\phi$ is onto.
+
+\exercise{39.13}{The universal free group}
+\textbf{(a)} Let $u:G_1\to G_2$ and $v:G_2\to G_1$ be the unique homomorphisms with $ug_1=g_2$ and $vg_2=g_1$. Then $vug_1=g_1$, and both $vu$ and the identity are homomorphisms extending $g_1$. Uniqueness forces $vu=\operatorname{id}_{G_1}$. Similarly $uv=\operatorname{id}_{G_2}$, giving an isomorphism.
+For clarity the universal property also implies that $g_i$ is injective: distinguish two points of $S$ by a function to $\Z_2$ and factor it. It implies that $g_i(S)$ generates: for $H=\gen{g_i(S)}$, factor $S\to H$ through a homomorphism $G_i\to H$; its composite with the inclusion into $G_i$ is the identity by uniqueness, hence $H=G_i$.
+\textbf{(b)} Construct $F[S]$ as the group of reduced words on the alphabet $S$, with $g(s)$ the one-letter word. Any function $f:S\to G'$ extends by replacing letters with their images and using integer powers. Cancellation preserves the result; this is the unique extending homomorphism.
+\textbf{(c)} The ``blop group'' is exactly the free group on $S$.
+
+\exercise{39.14}{A universal property for free abelian groups}
+For a set $S$, require an abelian group $A$ and a map $i:S\to A$ such that for every abelian group $B$ and every function $f:S\to B$, there is a unique homomorphism $\overline f:A\to B$ with $\overline f\,i=f$.
+Existence follows by taking $A=\bigoplus_{s\in S}\Z$, the finitely supported integer functions on $S$, and $i(s)$ the function that is 1 at $s$ and zero elsewhere. Define
+\[
+\overline f\left(\sum_s n_si(s)\right)=\sum_s n_sf(s).
+\]
+The sums are finite, and commutativity in $B$ makes this an additive map. Every element has a unique such expansion, so the extension exists and is unique. Conversely the universal property characterizes this group up to a unique isomorphism carrying the specified generators to one another, by the two-composites argument of Exercise 39.13(a). Thus it characterizes the free abelian group with basis $S$.

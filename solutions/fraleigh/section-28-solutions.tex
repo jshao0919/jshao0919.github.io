@@ -1,0 +1,198 @@
+\section{Gröbner Bases for Ideals}
+
+\exercise{28.1}{Decreasing lexicographic order, 1}
+\idea With $z<y<x$, compare the exponent triples $(\deg_x,\deg_y,\deg_z)$ lexicographically: the first unequal coordinate decides, regardless of total degree.
+The required arrangement is
+\[-3x^3+7x^2y^2z-5x^2yz^3+2xy^3z^5.\]
+No coefficient or monomial changes; only the order of writing the terms changes.
+
+\exercise{28.2}{Decreasing lexicographic order, 2}
+\idea With $z<y<x$, compare the exponent triples $(\deg_x,\deg_y,\deg_z)$ lexicographically: the first unequal coordinate decides, regardless of total degree.
+The required arrangement is
+\[-4x+5y^3z^3+3y^2z^5-8z^7.\]
+No coefficient or monomial changes; only the order of writing the terms changes.
+
+\exercise{28.3}{Decreasing lexicographic order, 3}
+\idea With $z<y<x$, compare the exponent triples $(\deg_x,\deg_y,\deg_z)$ lexicographically: the first unequal coordinate decides, regardless of total degree.
+The required arrangement is
+\[2x^2yz^2-2xy^2z^2-7x+3y+10z^3.\]
+No coefficient or monomial changes; only the order of writing the terms changes.
+
+\exercise{28.4}{Decreasing lexicographic order, 4}
+\idea With $z<y<x$, compare the exponent triples $(\deg_x,\deg_y,\deg_z)$ lexicographically: the first unequal coordinate decides, regardless of total degree.
+The required arrangement is
+\[-8xy-4xz+3yz^3+2yz+38.\]
+No coefficient or monomial changes; only the order of writing the terms changes.
+
+\exercise{28.5}{Reversed variable priority, 1}
+Now $x<y<z$, so compare $(\deg_z,\deg_y,\deg_x)$, starting with the exponent of $z$. For equal $z$ exponents, the $y$ exponent decides before the $x$ exponent. Thus the polynomial from Exercise 1 becomes
+\[2xy^3z^5-5x^2yz^3+7x^2y^2z-3x^3.\]
+
+\exercise{28.6}{Reversed variable priority, 2}
+Now $x<y<z$, so compare $(\deg_z,\deg_y,\deg_x)$, starting with the exponent of $z$. For equal $z$ exponents, the $y$ exponent decides before the $x$ exponent. Thus the polynomial from Exercise 2 becomes
+\[-8z^7+3y^2z^5+5y^3z^3-4x.\]
+
+\exercise{28.7}{Reversed variable priority, 3}
+Now $x<y<z$, so compare $(\deg_z,\deg_y,\deg_x)$, starting with the exponent of $z$. For equal $z$ exponents, the $y$ exponent decides before the $x$ exponent. Thus the polynomial from Exercise 3 becomes
+\[10z^3-2xy^2z^2+2x^2yz^2+3y-7x.\]
+
+\exercise{28.8}{Reversed variable priority, 4}
+Now $x<y<z$, so compare $(\deg_z,\deg_y,\deg_x)$, starting with the exponent of $z$. For equal $z$ exponents, the $y$ exponent decides before the $x$ exponent. Thus the polynomial from Exercise 4 becomes
+\[3yz^3+2yz-4xz-8xy+38.\]
+
+\exercise{28.9}{The first twenty degree-lexicographic monomials}
+First sort by total degree, then by lexicographic order with $z<y<x$. There are $1,3,6,10$ monomials of degrees $0,1,2,3$, respectively, so these are exactly the first twenty:
+\[
+\begin{gathered}
+1;\\ z,\ y,\ x;\\
+z^2,\ yz,\ y^2,\ xz,\ xy,\ x^2;\\
+z^3,\ yz^2,\ y^2z,\ y^3,\ xz^2,\ xyz,\ xy^2,\ x^2z,\ x^2y,\ x^3.
+\end{gathered}
+\]
+For instance $y^3<xz^2$ despite the larger $y$ exponent, because the latter has a positive $x$ exponent.
+
+\exercise{28.10}{Decreasing degree-lexicographic order, 1}
+Compare total degrees first, putting larger degree first. Break ties by the exponent triple $(\deg_x,\deg_y,\deg_z)$ in decreasing lexicographic order. This gives
+\[2xy^3z^5-5x^2yz^3+7x^2y^2z-3x^3.\]
+This differs from pure lexicographic ordering whenever a term of lower total degree has a larger $x$ exponent.
+
+\exercise{28.11}{Decreasing degree-lexicographic order, 2}
+Compare total degrees first, putting larger degree first. Break ties by the exponent triple $(\deg_x,\deg_y,\deg_z)$ in decreasing lexicographic order. This gives
+\[3y^2z^5-8z^7+5y^3z^3-4x.\]
+This differs from pure lexicographic ordering whenever a term of lower total degree has a larger $x$ exponent.
+
+\exercise{28.12}{Decreasing degree-lexicographic order, 3}
+Compare total degrees first, putting larger degree first. Break ties by the exponent triple $(\deg_x,\deg_y,\deg_z)$ in decreasing lexicographic order. This gives
+\[2x^2yz^2-2xy^2z^2+10z^3-7x+3y.\]
+This differs from pure lexicographic ordering whenever a term of lower total degree has a larger $x$ exponent.
+
+\exercise{28.13}{Decreasing degree-lexicographic order, 4}
+Compare total degrees first, putting larger degree first. Break ties by the exponent triple $(\deg_x,\deg_y,\deg_z)$ in decreasing lexicographic order. This gives
+\[3yz^3-8xy-4xz+2yz+38.\]
+This differs from pure lexicographic ordering whenever a term of lower total degree has a larger $x$ exponent.
+
+\exercise{28.14}{A one-step reduction of the largest leading monomial}
+The largest leading monomial is $x^2y$, in $f_2=x^2y+4xy$. It is divisible by the leading monomial $xy$ of $f_3=xy-y^2$. Replace
+\[f_2\longmapsto f_2-xf_3=xy^2+4xy.\]
+The new basis is $\{xy^2-2x,\ xy^2+4xy,\ xy-y^2\}$. Its maximum monomial is $xy^2$, smaller than $x^2y$. The ideal is unchanged because the replacement can be reversed by adding $xf_3$.
+
+\exercise{28.15}{Reducing a mixed cubic basis}
+The first polynomial has leading monomial $xy$; the third, $x-y^4$, has leading monomial $x$. Replace the first by
+\[(xy+y^3)-y(x-y^4)=y^5+y^3.\]
+The resulting basis $\{y^5+y^3,\ y^3+z,\ x-y^4\}$ generates the same ideal. Its largest monomial is now $x$, whereas the previous largest was $xy$. In pure lex order a monomial involving $x$ exceeds every monomial involving only $y,z$, regardless of degree.
+
+\exercise{28.16}{When the maximum cannot be reduced in one step}
+The leading monomials are $xyz$, $x^3$, and $x^2yz^3$. The largest is $x^3$. Neither $xyz$ nor $x^2yz^3$ divides $x^3$, because each contains positive $y,z$ exponents. Thus no division step using another basis element can cancel that largest monomial.
+One can reduce the third polynomial using the first, but the unchanged $x^3$ still remains the maximum. Consequently a single-step reduction that strictly decreases the maximum monomial of the entire basis is impossible.
+
+\exercise{28.17}{A reduction involving only two variables}
+The largest leading monomial is $y^3z^2$, divisible by $y^2z^2$, the leading monomial of the third polynomial. Replace
+\[(y^3z^2-2z)-y(y^2z^2+3)=-3y-2z.\]
+Thus $\{y^2z^3+3,\ -3y-2z,\ y^2z^2+3\}$ generates the same ideal. The maximum has dropped from $y^3z^2$ to $y^2z^3$.
+
+\exercise{28.18}{A linear Groebner basis}
+Name the three displayed generators $f_1,f_2,f_3$ in their source order. Ordinary elimination produces
+\[
+\begin{aligned}
+g_1&=3f_1-f_3=2w+11z-4,\\
+g_2&=-7f_1+2f_2+3f_3=4x-29z+14,\\
+g_3&=-5f_1+2f_2+f_3=4y-23z+18.
+\end{aligned}
+\]
+The coefficient transformation has nonzero determinant $-8$, so it is invertible over $\R$: both triples generate the same ideal. The leading monomials are $w,x,y$, pairwise relatively prime. Their $S$-polynomials therefore reduce to zero, so $\{g_1,g_2,g_3\}$ is a Groebner basis. Equivalently this is row reduction of a linear system, with $z$ free.
+
+\exercise{28.19}{An inconsistent linear ideal}
+Let the source generators be $f_1,f_2,f_3$. Subtract twice the first from the second to obtain $6x-5y+1$. Subtract the first from the third to obtain $-6x+5y-3$. Adding gives
+\[f_2+f_3-3f_1=-2.\]
+Thus the ideal contains the nonzero constant $-2$, hence also $1$. It is the whole polynomial ring, and $\{1\}$ is a Groebner basis. Its algebraic variety is empty.
+
+\exercise{28.20}{A one-variable common divisor}
+Let $f=x^4+x^3-3x^2-4x-4$ and $g=x^3+x^2-4x-4$. The first division gives
+\[f-xg=x^2-4,\qquad g=(x+1)(x^2-4).\]
+Therefore $(f,g)=(x^2-4)$. A single generator of a one-variable ideal is a Groebner basis: the leading term of every multiple is divisible by the generator's leading term. The answer is $\{x^2-4\}$.
+
+\exercise{28.21}{Three one-variable generators}
+For the first two generators $f_1,f_2$, division gives
+\[f_1-(x-3)f_2=6(x^2-3x+2),\qquad f_2=(x+2)(x^2-3x+2).\]
+Their gcd is $h=(x-1)(x-2)$. The third generator is $f_3=(x-1)^2(x+2)$, and
+\[f_3-(x+3)h=4(x-1).\]
+All three original polynomials are divisible by $x-1$, while the displayed steps put $x-1$ in their ideal. Hence the ideal is $(x-1)$ and a Groebner basis is $\{x-1\}$.
+
+\exercise{28.22}{Euclidean algorithm giving the unit ideal}
+Write the two source generators as $f,g$. The successive remainder equations are
+\[
+\begin{aligned}
+f&=(x^2+x)g+r_1,&r_1&=x^2+3x-5,\\
+g&=(x-4)r_1+r_2,&r_2&=18x-21,\\
+r_1&=\left(\frac{x}{18}+\frac{25}{108}\right)r_2-\frac5{36}.
+\end{aligned}
+\]
+Each remainder lies in the ideal of the preceding pair, so the original ideal contains the nonzero constant $-5/36$, and therefore $1$. The required Groebner basis is $\{1\}$.
+
+\exercise{28.23}{A two-point variety}
+Put $f=x^2y-x-2$ and $g=xy+2y-9$. Then
+\[f-(x-2)g=4(2x+y-5).\]
+Thus $h=2x+y-5$ lies in the ideal; furthermore $g-(y/2)h=-(y^2-9y+18)/2$. Set $k=y^2-9y+18$. These steps are reversible, so $(f,g)=(h,k)$.
+The leading monomials $x$ and $y^2$ are relatively prime; the pair is a Groebner basis. Since $k=(y-3)(y-6)$, solve $y=3$ or $6$ and $x=(5-y)/2$. The real variety is $\{(1,3),(-1/2,6)\}$.
+
+\exercise{28.24}{A variety consisting of the origin}
+Let $f=x^2y+x$ and $g=xy^2-y$. Their leading-term cancellation gives $yf-xg=2xy$, so $h=xy$ lies in the ideal. Then $f-xh=x$ and $g-yh=-y$. Hence $(f,g)$ contains both $x,y$. Conversely both $f,g$ belong to $(x,y)$, so the ideals are equal.
+Thus $\{x,y\}$ is a Groebner basis, and its common zero set is exactly $\{(0,0)\}$.
+
+\exercise{28.25}{A cubic curve intersection reduced to one variable}
+For $f=x^2y+x+1$ and $g=xy^2+y-1$, compute $yf-xg=x+y=h$. Dividing by $h$ gives
+\[g=y^2h-k,\qquad f=(xy-y^2+1)h+k,\qquad k=y^3-y+1.\]
+These identities show $(f,g)=(h,k)$. The leading monomials $x$ and $y^3$ are relatively prime, so $\{x+y,y^3-y+1\}$ is a Groebner basis.
+The real variety is $\{(-t,t):t^3-t+1=0\}$. This cubic has exactly one real zero: its local maximum and minimum, at $t=\mp1/\sqrt3$, are both positive, while its value tends to $-\infty$ as $t\to-\infty$. Thus the description gives a single real point without requiring a radical expression.
+
+\exercise{28.26}{A line and an isolated point}
+Let $f=x^2y+xy^2$ and $g=xy-x$. Set $h=f-(x+y+1)g=x^2+x$. Thus $(f,g)=(h,g)$. For lex order, their leading monomials are $x^2$ and $xy$. The only $S$-polynomial is
+\[yh-xg=x^2+xy=h+g,\]
+which reduces to zero. Hence $\{x^2+x,xy-x\}$ is a Groebner basis.
+The equations are $x(x+1)=0$ and $x(y-1)=0$. For $x=0$, any $y$ works; for $x=-1$, we must have $y=1$. The variety is the entire $y$-axis together with the point $(-1,1)$.
+
+\exercise{28.27}{True and false statements}
+\begin{enumerate}[label=(\alph*)]
+\item True. Here the book uses $F[\mathbf{x}]=F[x_1,\ldots,x_n]$. The Hilbert Basis Theorem gives a finite generating set for every ideal. This is not a claim that a multivariable ideal is principal.
+\item False. For example $\R^2\setminus\{(0,0)\}$ is not the zero set of polynomials: zero sets are closed, whereas this set is not.
+\item True. It is the zero set of the constant polynomial $1$.
+\item True. A point $(a,b)$ is the zero set of $(x-a)^2+(y-b)^2$; a finite union of points is the zero set of the product of these polynomials.
+\item True. A line is the zero set of $ax+by+c$ with $(a,b)\ne(0,0)$.
+\item True. A finite union of lines is the zero set of the product of their defining linear polynomials.
+\item True. The Euclidean algorithm preserves common divisors at each remainder step and terminates as degrees decrease.
+\item This depends on the reader's experience. If one has used the Euclidean algorithm in one variable or row reduction for linear polynomials, one has already computed special cases of Groebner bases; it is not a universal mathematical assertion about every reader.
+\item False. For example $\{x\}$ and $\{2x\}$ are distinct Groebner bases of $(x)$. A \emph{reduced monic} Groebner basis for a fixed monomial order is unique.
+\item False. $x\in(x,y)$ but $x\notin(x^2,y^2)$, since the latter ideal has no terms of degree one. Equal zero sets need not give equal ideals.
+\end{enumerate}
+
+\exercise{28.28}{Order is not divisibility}
+With $y<x$ in lex order, $y<x$ because the $x$ exponent of $y$ is zero and that of $x$ is one. Yet $y$ does not divide $x$: a product of $y$ with a monomial must still have positive $y$ exponent. This is the required counterexample.
+
+\exercise{28.29}{The ideal generated by a finite list}
+\textbf{Source correction.} The displayed coefficient condition $c_i\in I$ is circular; the intended condition is $c_i\in R$. With that correction define $I=\{\sum_{i=1}^r c_if_i:c_i\in R\}$.
+Zero is obtained by all coefficients zero. A difference is obtained by subtracting the coefficients, so $I$ is an additive subgroup. For $a\in R$,
+\[a\sum_i c_if_i=\sum_i(ac_i)f_i\in I.\]
+Commutativity gives absorption on the right as well, proving the ideal claim. Unity ensures each $f_i$ belongs to $I$, so this is exactly the smallest ideal containing the list.
+
+\exercise{28.30}{Common divisors survive a remainder step}
+If $d\mid f$ and $d\mid g$, then $d\mid(f-gq)=r$. Conversely if $d\mid g$ and $d\mid r$, then $d\mid(gq+r)=f$. Thus the common divisors of $f,g$ are exactly those of $g,r$. This elementary equivalence is the reason the Euclidean algorithm computes a gcd.
+
+\exercise{28.31}{Checking a simple Groebner basis}
+For $f=xy$ and $g=y^2-y$, the leading monomials under lex order $y<x$ are $xy$ and $y^2$. Their least common multiple is $xy^2$, and
+\[S(f,g)=yf-xg=xy=f.\]
+It reduces to zero by subtracting $f$. Buchberger's criterion therefore proves that $\{xy,y^2-y\}$ is a Groebner basis of the ideal it generates.
+
+\exercise{28.32}{The vanishing ideal of a set}
+The zero polynomial vanishes on $S$. If $f,g$ vanish on $S$, then $(f-g)(s)=0$ for every $s\in S$. If $h$ is any polynomial, $(hf)(s)=h(s)f(s)=0$ for every $s\in S$. These are precisely closure under differences and absorption, so $I(S)$ is an ideal in $F[x_1,\ldots,x_n]$.
+
+\exercise{28.33}{A set lies in its double construction}
+Take $s\in S$. By definition every $f\in I(S)$ vanishes at $s$. Hence $s$ is a common zero of all polynomials in $I(S)$, which says $s\in V(I(S))$. Since $s$ was arbitrary, $S\subset V(I(S))$.
+
+\exercise{28.34}{The double construction can enlarge a set}
+Take $S=\{(t,0):t\in\R,\ t\ne0\}$. If $f$ vanishes on $S$, the one-variable polynomial $f(x,0)$ has infinitely many roots and is therefore zero. Thus $f$ is divisible by $y$, so $I(S)=(y)$. Consequently $V(I(S))$ is the full $x$-axis and contains $(0,0)$, which is absent from $S$.
+
+\exercise{28.35}{An ideal lies in its double construction}
+If $f\in N$ and $s\in V(N)$, the definition of $V(N)$ gives $f(s)=0$. Therefore $f$ vanishes on every point of $V(N)$ and lies in $I(V(N))$. Thus $N\subset I(V(N))$. If $V(N)$ is empty, every polynomial vacuously vanishes on it and the inclusion still holds.
+
+\exercise{28.36}{The double construction can enlarge an ideal}
+Choose $N=(x^2,y^2)\subset\R[x,y]$. Its zero set is $\{(0,0)\}$, so $x$ vanishes on $V(N)$ and belongs to $I(V(N))$. But $x\notin N$: every term of every polynomial $ax^2+by^2$ has total degree at least two. Hence $I(V(N))\ne N$. In fact $I(V(N))=(x,y)$.

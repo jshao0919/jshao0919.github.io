@@ -1,0 +1,14 @@
+{
+  "section": 23,
+  "part": 4,
+  "title": "Factorization of Polynomials over a Field",
+  "exercise_count": 37,
+  "source_pages": [
+    224,
+    225,
+    226
+  ],
+  "notes": [
+    "Exercise25(e) and (f) repeat the same statement in the printed source. The zero polynomial is an exception in25(j)."
+  ]
+}

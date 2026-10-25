@@ -1,0 +1,14 @@
+{
+  "section": 25,
+  "part": 4,
+  "title": "Ordered Rings and Fields",
+  "exercise_count": 29,
+  "source_pages": [
+    239,
+    240,
+    241
+  ],
+  "notes": [
+    "Exercise26 needs a nonzero subring for the nonempty-cone requirement, and a nonzero-unity subring if the section standing unity convention is imposed."
+  ]
+}

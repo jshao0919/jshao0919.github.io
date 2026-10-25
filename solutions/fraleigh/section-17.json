@@ -1,0 +1,14 @@
+{
+  "section": 17,
+  "part": 3,
+  "title": "Applications of G-Sets to Counting",
+  "exercise_count": 9,
+  "source_pages": [
+    171,
+    172
+  ],
+  "notes": [
+    "17.9(b): the odd-answer key prints 6246; Burnside and independent enumeration give 6426.",
+    "Rigid rotations are used for solid tetrahedra and prisms; cardboard squares can also be turned over. Exercise 17.6 treats colors as available, not all required; the alternate onto-color interpretation is given explicitly."
+  ]
+}

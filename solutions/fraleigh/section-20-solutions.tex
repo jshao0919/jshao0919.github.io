@@ -1,0 +1,140 @@
+\section{Fermat's and Euler's Theorems}
+
+\exercise{20.1}{A generator modulo 7}
+The nonzero residues form a multiplicative group of order $6$. Successive powers of $3$, with reduction modulo $7$ after every multiplication, are
+\[3^1,3^2,\ldots,3^{6}\equiv 3,2,6,4,5,1\pmod{7}.
+\]
+Every nonzero residue appears once. Thus $\boxed{3}$ generates the entire multiplicative group.
+
+\exercise{20.2}{A generator modulo 11}
+The nonzero residues form a multiplicative group of order $10$. Successive powers of $2$, with reduction modulo $11$ after every multiplication, are
+\[2^1,2^2,\ldots,2^{10}\equiv 2,4,8,5,10,9,7,3,6,1\pmod{11}.
+\]
+Every nonzero residue appears once. Thus $\boxed{2}$ generates the entire multiplicative group.
+
+\exercise{20.3}{A generator modulo 17}
+The nonzero residues form a multiplicative group of order $16$. Successive powers of $3$, with reduction modulo $17$ after every multiplication, are
+\[3^1,3^2,\ldots,3^{16}\equiv 3,9,10,13,5,15,11,16,14,8,7,4,12,2,6,1\pmod{17}.
+\]
+Every nonzero residue appears once. Thus $\boxed{3}$ generates the entire multiplicative group.
+
+\exercise{20.4}{A large power modulo twenty-three}
+Fermat's theorem applies because $23$ is prime and does not divide $3$. It gives $3^{22}\equiv1\pmod {23}$. Since $47=2\cdot22+3$,
+\[3^{47}\equiv3^3=27\equiv\boxed4\pmod {23}.
+\]
+
+\exercise{20.5}{A large power modulo seven}
+Reduce the base: $37\equiv2\pmod7$. Fermat gives $2^6\equiv1\pmod7$, and $49=8\cdot6+1$. Therefore $37^{49}\equiv2^{49}\equiv\boxed2\pmod7$.
+
+\exercise{20.6}{A power whose exponent is itself a power}
+Since $19$ is prime, $2^{18}\equiv1\pmod {19}$, so the outer exponent may be reduced modulo $18$. The powers $2^k$ modulo $18$ for $k=1,\ldots,6$ are $2,4,8,16,14,10$, and $2^{k+6}\equiv2^k$ for $k\ge1$, because $2(2^6-1)=126$ is divisible by $18$. Thus $2^{17}\equiv2^5\equiv14\pmod {18}$. Now
+\[2^{14}=2^{10}2^4\equiv17\cdot16=272\equiv6\pmod {19},
+\]
+where $2^{10}=1024\equiv17$. Consequently $2^{(2^{17})}+1\equiv\boxed7\pmod {19}$.
+
+\exercise{20.7}{Euler phi values through thirty}
+The value $\varphi(n)$ counts integers from $1$ through $n$ relatively prime to $n$; in particular $\varphi(1)=1$. For computation, if the distinct prime divisors of $n$ are $p$, use $\varphi(n)=n\prod_{p\mid n}(1-1/p)$. The complete table is
+\[
+\begin{array}{c|rrrrrrrrrr}
+n&1&2&3&4&5&6&7&8&9&10\\\hline
+\varphi(n)&1&1&2&2&4&2&6&4&6&4\\[0.4em]
+n&11&12&13&14&15&16&17&18&19&20\\\hline
+\varphi(n)&10&4&12&6&8&8&16&6&18&8\\[0.4em]
+n&21&22&23&24&25&26&27&28&29&30\\\hline
+\varphi(n)&12&10&22&8&20&12&18&12&28&8\\[0.4em]
+\end{array}\]
+
+\exercise{20.8}{Euler phi for a prime square}
+Among $1,\ldots,p^2$, the integers not relatively prime to $p^2$ are exactly the $p$ multiples $p,2p,\ldots,p^2$. Removing them leaves $\boxed{\varphi(p^2)=p^2-p=p(p-1)}$.
+
+\exercise{20.9}{Euler phi for a product of primes}
+If $p\ne q$, count the integers up to $pq$ divisible by neither prime. There are $q$ multiples of $p$, $p$ multiples of $q$, and one multiple of both; inclusion--exclusion gives
+\[\boxed{\varphi(pq)=pq-p-q+1=(p-1)(q-1)}.
+\]
+If the primes are equal, the answer instead is $\varphi(p^2)=p(p-1)$ from Exercise 20.8. Distinctness cannot be silently assumed.
+
+\exercise{20.10}{Euler reduction modulo twenty-four}
+The base $7$ is relatively prime to $24$, and $\varphi(24)=8$. Euler's theorem gives $7^8\equiv1\pmod {24}$. Since $1000=125\cdot8$, the required remainder is $\boxed1$. One can also check directly that $7^2=49\equiv1\pmod {24}$.
+
+\exercise{20.11}{A congruence with two residue solutions}
+The gcd is $\gcd(2,4)=2$, which divides $6$. Divide the congruence by $2$, including the modulus: $x\equiv3\pmod2$. Thus all integer solutions are $x=1+2k$ with $k\in\Z$; the two incongruent solutions modulo $4$ are $\boxed{1,3}$.
+
+\exercise{20.12}{An invertible coefficient modulo fifteen}
+Reduce $22$ modulo $15$ to get $7x\equiv5$. Since $7^{-1}=13$ modulo $15$, multiplication gives $x\equiv65\equiv5\pmod {15}$. Hence $\boxed{x=5+15k, k\in\Z}$, one residue solution modulo $15$.
+
+\exercise{20.13}{A congruence failing the gcd condition}
+Here $d=\gcd(36,24)=12$, but $12$ does not divide $15$. Every multiple $36x$ is divisible by $12$, whereas $15+24k$ never is. Thus there are $\boxed{\text{no solutions}}$.
+
+\exercise{20.14}{Three residue solutions modulo twenty-four}
+Since $\gcd(45,24)=3$ divides $15$, divide by $3$ to obtain $15x\equiv5\pmod8$, or $7x\equiv5$. The inverse of $7$ modulo $8$ is $7$, so $x\equiv35\equiv3\pmod8$. Thus all integer solutions are $x=3+8k$, and modulo $24$ they are $\boxed{3,11,19}$.
+
+\exercise{20.15}{A second failure of the gcd condition}
+The coefficient $39$ and modulus $9$ have gcd $3$. Since $3\nmid125$, the congruence has $\boxed{\text{no solutions}}$. Equivalently, its left side is zero modulo $3$ but its right side is $2$.
+
+\exercise{20.16}{One solution modulo nine}
+Reduce to $5x\equiv8\pmod9$. Since $5\cdot2\equiv1$, multiply by $2$: $x\equiv16\equiv7\pmod9$. Thus $\boxed{x=7+9k, k\in\Z}$.
+
+\exercise{20.17}{Five solutions modulo sixty-five}
+Here $\gcd(155,65)=5$, which divides $75$. Divide by $5$ to obtain $31x\equiv15\pmod {13}$, hence $5x\equiv2$. Since $5^{-1}=8$ modulo $13$, $x\equiv16\equiv3\pmod {13}$. All integer solutions are $x=3+13k$; the five residues modulo $65$ are $\boxed{3,16,29,42,55}$.
+
+\exercise{20.18}{Thirteen solutions modulo one hundred thirty}
+The gcd is $\gcd(39,130)=13$, and $13\mid52$. Divide to obtain $3x\equiv4\pmod {10}$. Multiplying by $3^{-1}=7$ gives $x\equiv28\equiv8\pmod {10}$. Hence all integer solutions are $\boxed{x=8+10k}$, with $k\in\Z$; representatives modulo $130$ are $8,18,\ldots,128$, thirteen in total.
+
+\exercise{20.19}{A factorial just below Wilson's factorial}
+Wilson's theorem gives $(p-1)!\equiv-1\pmod p$. Since $(p-1)!=(p-1)(p-2)!\equiv-(p-2)!$, we obtain $\boxed{(p-2)!\equiv1\pmod p}$. For $p\ge3$ the remainder is therefore $1$.
+
+\exercise{20.20}{A factorial modulo thirty-seven}
+Write $36!=36\cdot35\cdot34!$. Wilson's theorem and reduction of the last factors give $(-1)(-2)34!\equiv-1\pmod {37}$, so $2\cdot34!\equiv-1$. The inverse of $2$ is $19$ modulo $37$, and $-19\equiv\boxed {18}$.
+
+\exercise{20.21}{A factorial modulo fifty-three}
+Wilson gives $52!\equiv-1\pmod {53}$. Since $52!=52\cdot51\cdot50\cdot49!$, we have $(-1)(-2)(-3)49!\equiv-1$. Thus $6\cdot49!\equiv1$. The inverse of $6$ modulo $53$ is $9$, because $6\cdot9=54\equiv1$. The remainder is $\boxed9$.
+
+\exercise{20.22}{A factorial modulo twenty-nine}
+Wilson gives $28!\equiv-1\pmod {29}$. The four final factors are $28,27,26,25\equiv-1,-2,-3,-4$, whose product is $24$. Hence $24\cdot24!\equiv-1$. Since $24\cdot23=552\equiv1$. Therefore $24!\equiv-23\equiv\boxed6\pmod {29}$.
+
+\exercise{20.23}{True or false: Euler and congruences}
+\begin{enumerate}[label=(\alph*)]
+\item False: if $p\mid a$, then $a^{p-1}\equiv0$, not $1$.
+\item True: this is Fermat's theorem with its necessary nonzero-residue hypothesis.
+\item True: $\varphi(n)$ counts a subset of $n$ integers, including $\varphi(1)=1$.
+\item False as stated for all positive $n$: at $n=1$, $\varphi(1)=1>0=n-1$. It is true for $n\ge2$, since $n$ itself is then not coprime to $n$.
+\item True for $n\ge2$, the usual nonzero-unity modular rings: the units are exactly residues with gcd $1$ with $n$. If one admits $\Z_1$, the literal wording ``positive integers less than $n$'' omits its sole residue, so that case requires a separate convention.
+\item True: if $u,v$ are units, $(uv)^{-1}=v^{-1}u^{-1}$.
+\item False: if $ab$ is a unit in a commutative ring, $a[b(ab)^{-1}]=1$ and similarly $b$ is a unit; thus a product of two nonunits cannot be a unit.
+\item True by the same argument: a unit product would force the nonunit factor to be invertible.
+\item False: $0x\equiv1\pmod p$ has no solution.
+\item True: divide by $d$ to obtain one solution modulo $m/d$, which lifts to exactly $d$ distinct residue classes modulo $m$.
+\end{enumerate}
+
+\exercise{20.24}{The four units modulo twelve}
+The units are $1,5,7,11$. Their table is
+\[
+\begin{array}{c|rrrr}\cdot&1&5&7&11\\\hline
+1&1&5&7&11\\5&5&1&11&7\\7&7&11&1&5\\11&11&7&5&1
+\end{array}.
+\]
+Every nonidentity element has order $2$, so this is not the cyclic group of order $4$. It is the Klein four-group $\Z_2\times\Z_2$, for example via $1\mapsto(0,0)$, $5\mapsto(1,0)$, $7\mapsto(0,1)$, $11\mapsto(1,1)$.
+
+\exercise{20.25}{Synopsis of Fermat's theorem}
+For nonzero $a\in\Z_p$, Lagrange's theorem in the multiplicative group of the $p-1$ nonzero residues gives $a^{p-1}=1$, which is precisely the desired congruence.
+
+\exercise{20.26}{Synopsis of Euler's theorem}
+The unit represented by an integer coprime to $n$ lies in the multiplicative unit group of $\Z_n$, whose order is $\varphi(n)$, so Lagrange's theorem gives $a^{\varphi(n)}\equiv1\pmod n$.
+
+\exercise{20.27}{Self-inverse nonzero residues}
+A self-inverse element satisfies $x^2=1$, hence $(x-1)(x+1)=0$. Since $\Z_p$ is a field, one factor must vanish. Therefore $x=1$ or $x=-1=p-1$, and both do square to $1$. For $p=2$, these names describe the same element; for odd $p$, they are distinct.
+
+\exercise{20.28}{Wilson's congruence}
+For odd prime $p$, pair each nonzero residue other than $1$ and $-1$ with its distinct multiplicative inverse. Every pair contributes product $1$ to $(p-1)!$. By Exercise 20.27 the only unpaired factors are $1$ and $-1$, giving $(p-1)!\equiv-1\pmod p$. For $p=2$, $1!=1\equiv-1\pmod2$ directly.\par
+For completeness, if an integer $n>1$ satisfies this congruence, every prime divisor $q$ of $n$ must equal $n$: otherwise $q\le n-1$ divides $(n-1)!$ and $n$, contradicting $(n-1)!\equiv-1\pmod q$. Thus the converse also follows.
+
+\exercise{20.29}{A universal divisor of a polynomial value}
+Each prime $p$ in $\{2,3,7,13,19,37\}$ has $p-1\mid36$. If $p\mid n$, then $n^{37}-n\equiv0\pmod p$. Otherwise Fermat gives $n^{36}\equiv1\pmod p$, again yielding $n^{37}-n=n(n^{36}-1)\equiv0$. These primes are distinct, so their product divides the difference:
+\[2\cdot3\cdot7\cdot13\cdot19\cdot37=\boxed {383838}.
+\]
+
+\exercise{20.30}{A larger universal divisor}
+Also $5-1=4$ divides $36$, so the same Fermat argument shows $5\mid n^{37}-n$ for every integer $n$. Since $5$ is coprime to $383838$, the larger number
+\[\boxed{5\cdot383838=1919190}
+\]
+divides every such difference.

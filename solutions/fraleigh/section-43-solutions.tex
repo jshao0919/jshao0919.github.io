@@ -1,0 +1,132 @@
+\section{More Homology Computations and Applications}
+
+\exercise{43.1}{Two triangulations of a square}
+In the first triangulation there are four corner vertices, four boundary edges and one diagonal, and two triangles. Thus
+\[
+\chi(X)=V-E+F=4-5+2=1.
+\]
+In the second, the crossing of the diagonals is a vertex, and the horizontal line also introduces a vertex at each midpoint of the left and right sides. Thus there are $4+1+2=7$ vertices. There are six boundary edges and six interior edges (four half-diagonals and two horizontal half-segments), making twelve edges, and six triangles. Hence
+\[
+\chi(X)=7-12+6=1.
+\]
+Counting intersections and subdivided sides correctly is essential; the two answers agree despite different simplex counts.
+
+\exercise{43.2}{Euler characteristic and Betti numbers}
+The theorem says $\chi=b_0-b_1+b_2$ for these two-dimensional spaces, where $b_i$ is the free rank of $H_i$; torsion contributes no rank.
+\textbf{(a)} The annulus triangulation has five inner and five outer vertices, ten boundary edges and ten other edges, and ten triangles. Thus $\chi=10-20+10=0$. Its homology has ranks $(1,1,0)$, giving $1-1+0=0$.
+\textbf{(b)} In the torus's $3\times3$ square grid with each small square cut diagonally, opposite sides are identified. This leaves $V=9$, $E=27$ (nine horizontal, nine vertical, nine diagonal), and $F=18$. Thus $\chi=9-27+18=0$. Its ranks $(1,2,1)$ give $1-2+1=0$.
+\textbf{(c)} The same grid with the Klein-bottle edge identifications again gives $V=9,E=27,F=18$, hence $\chi=0$. Its groups are $H_0=\Z$, $H_1=\Z\oplus\Z_2$, $H_2=0$, so its ranks $(1,1,0)$ give $1-1+0=0$. The $\Z_2$ factor does not change the Euler characteristic.
+
+\exercise{43.3}{Fixed points on a square and on two disks}
+For a square the answer is yes: it is homeomorphic to the closed disk $E^2$, and conjugating a continuous self-map by such a homeomorphism reduces the question to Brouwer's fixed-point theorem. A fixed point of the conjugate map pulls back to one of the original map.
+For two disjoint disks the answer is no. Choose matching coordinates on the disks and define a map that sends every point of the first to the corresponding point of the second, and conversely. It is continuous on each component, hence on their disjoint union, but has no fixed point because every point changes components. The connected disk hypothesis cannot simply be dropped.
+
+\exercise{43.4}{A sphere touching a Klein bottle}
+The union is connected and is the wedge of a sphere and a Klein bottle at one point. Its positive-dimensional homology is the direct sum of that of the two pieces: cycles on either piece have no new identification except at a vertex.
+The Klein bottle contributes $\Z\oplus\Z_2$ in dimension one and nothing in dimension two; the sphere contributes $\Z$ in dimension two. Thus
+\[
+H_0\cong\Z,\quad H_1\cong\Z\oplus\Z_2,\quad
+H_2\cong\Z,\quad H_n=0\ (n\ge3).
+\]
+
+\exercise{43.5}{Two disjoint Klein bottles}
+A disjoint union splits its chain complex into the two component chain complexes. Taking direct sums of $H_0=\Z$, $H_1=\Z\oplus\Z_2$, $H_2=0$ for a Klein bottle gives
+\[
+H_0\cong\Z^2,\qquad H_1\cong\Z^2\oplus\Z_2^2,
+\qquad H_n=0\ (n\ge2).
+\]
+There are two torsion generators, one from each component, and two $H_0$ generators because the components are disjoint.
+
+\exercise{43.6}{True or false: general homology properties}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item False for ordinary homology: a nonempty contractible space has $H_0\cong\Z$. Its positive-dimensional groups vanish.
+\item True. A continuous map induces homomorphisms in each dimension; on simplicial chains the construction sends cycles to cycles and boundaries to boundaries.
+\item True. Each is a quotient of abelian groups.
+\item False. A Klein bottle has a $\Z_2$ torsion summand in $H_1$, which cannot occur in a free abelian group.
+\item True. $H_0$ is free abelian on the connected components (for a finite triangulation, one copy of $\Z$ per component).
+\item True. If there are no $(n+1)$-simplexes, $B_n=0$ and $H_n=Z_n\le C_n$. A subgroup of a free abelian group is free abelian.
+\item True by the definition of the boundary map.
+\item True because applying one more boundary gives zero.
+\item True because $\partial^2=0$.
+\item False. A group with torsion, such as $H_1$ of the Klein bottle, cannot be a subgroup of the torsion-free group $C_1$. In general homology classes are cosets, not distinguished chains.
+\end{enumerate}
+
+\exercise{43.7}{Euler characteristic of a surface with handles}
+For the sphere with $n$ handles, Exercise 42.12 gives ranks $b_0=1$, $b_1=2n$, $b_2=1$, and all others zero. The Euler--Poincar\'e formula therefore gives
+\[
+\chi=1-2n+1=2-2n.
+\]
+This equals 2 for the sphere, 0 for the torus, and decreases by two for every added handle. A polygon cell model also gives the same count: one vertex, $2n$ edges, and one face.
+
+\exercise{43.8}{Triangulating and computing the projective plane}
+\step{Build a genuine triangulation from the disk model.}
+Replace the circular boundary by a hexagon, keeping the antipodal identification. The paired boundary vertices have labels $A,B,C,A,B,C$ in order; join all six to an interior vertex $O$.
+\begin{center}
+\setlength{\unitlength}{0.65mm}
+\begin{picture}(145,105)
+\polygon(20,50)(45,90)(95,90)(120,50)(95,10)(45,10)
+\Line(70,50)(20,50)\Line(70,50)(45,90)\Line(70,50)(95,90)
+\Line(70,50)(120,50)\Line(70,50)(95,10)\Line(70,50)(45,10)
+\put(10,48){$A$}\put(40,94){$B$}\put(94,94){$C$}
+\put(124,48){$A$}\put(94,1){$B$}\put(40,1){$C$}
+\put(66,54){$O$}
+\end{picture}
+\end{center}
+Before identifying the boundary, barycentrically subdivide each of the six triangles: place a midpoint on each edge, a center in each triangle, and draw the six small triangles corresponding to vertex--edge--triangle flags. Now identify opposite boundary vertices and edge pieces. The subdivision prevents different triangles from having the same vertex set after gluing, so this gives an actual simplicial complex rather than a polygon with folded edges. It has $19$ vertices, $54$ edges, and $36$ triangular faces, with Euler characteristic 1.
+\step{Compute the cycles and relations.}
+Eliminate interior edges using boundaries of the small triangles, just as in the torus calculation. All 1-cycles reduce to multiples of one loop $a$ along the identified semicircles. Traversing the disk boundary goes around $a$ twice in the same direction, so the remaining face boundary is $2a$.
+Equivalently, the reduced chain calculation has one vertex, one edge $a$, and one face $F$, with
+\[
+\partial_1a=0,\qquad \partial_2F=2a.
+\]
+The elimination consists of choosing and removing interior tree edges and cancelling adjacent face--edge pairs, so it leaves homology unchanged.
+Thus no nonzero multiple of $F$ is a 2-cycle, while the dimension-one relation is exactly $2a=0$. The space is connected. Therefore
+\[
+H_0(\mathbb{RP}^2)\cong\Z,\quad H_1(\mathbb{RP}^2)\cong\Z_2,
+\quad H_n(\mathbb{RP}^2)=0\ (n\ge2).
+\]
+The factor 2 comes from the reversed edge gluing, not from a count of two independent loops.
+
+\exercise{43.9}{A sphere with $q$ cross caps}
+For $q\ge1$ the polygon model has one vertex, loops $a_1,\ldots,a_q$, and one face whose boundary word is $a_1^2\cdots a_q^2$. Triangulate the polygon and eliminate interior edges as in Exercise 43.8. The resulting chain maps are
+\[
+\partial_1=0,\qquad \partial_2(1)=2(a_1+\cdots+a_q).
+\]
+This map $\Z\to\Z^q$ is injective, so $H_2=0$.
+The vector $u=a_1+\cdots+a_q$, together with $a_2,\ldots,a_q$, is an integer basis: solve $a_1=u-a_2-\cdots-a_q$. In this basis the single relation is $2u=0$. Hence
+\[
+H_0\cong\Z,\qquad H_1\cong\Z^{q-1}\oplus\Z_2,
+\qquad H_n=0\ (n\ge2).
+\]
+For $q=1$ this recovers the projective plane; for $q=2$ it recovers the Klein bottle. With no cross caps, $q=0$, the space is the sphere instead, with $H_2=\Z$ and $H_1=0$.
+
+\exercise{43.10}{Induced maps of torus coverings}
+In the figure, varying $\phi$ gives the meridian $a$, while varying $\theta$ gives the longitude $b$. Use $([a],[b])$ as the ordered basis of $H_1\cong\Z^2$ and the oriented whole torus $[T]$ as the generator of $H_2\cong\Z$. In every case $H_0\cong\Z$ is sent by the identity, since a point maps to a point in a connected space.
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item For $(\theta,\phi)\mapsto(2\theta,\phi)$, the meridian wraps once and the longitude twice: $[a]\mapsto[a]$, $[b]\mapsto2[b]$. Thus the $H_1$ matrix is $\operatorname{diag}(1,2)$. The whole oriented surface wraps twice, so $[T]\mapsto2[T]$.
+\item For $(\theta,\phi)\mapsto(\theta,2\phi)$, $[a]\mapsto2[a]$, $[b]\mapsto[b]$. The $H_1$ matrix is $\operatorname{diag}(2,1)$ and $[T]\mapsto2[T]$.
+\item For doubling both angles, $[a]\mapsto2[a]$, $[b]\mapsto2[b]$. The $H_1$ matrix is $2I$, and the surface wraps twice in each direction, giving $[T]\mapsto4[T]$.
+\end{enumerate}
+The dimension-two multipliers are the determinants of the dimension-one matrices; the positive signs agree with preservation of orientation in each angular direction.
+
+\exercise{43.11}{Maps from the torus onto its longitude}
+The target circle $b$ has $H_0(b)=\Z$, $H_1(b)=\Z[b]$, and $H_2(b)=0$. Each map sends the $H_0$ point generator to the point generator, so its $H_0$ map is the identity.
+\textbf{(a)} For $f(\theta,\phi)=(\theta,0)$, a meridian becomes a point and the longitude goes around once. Hence $f_*[a]=0$, $f_*[b]=[b]$, or $(r,s)\mapsto s$ on $H_1$.
+\textbf{(b)} For $f(\theta,\phi)=(2\theta,0)$, the same meridian collapses and the longitude goes around twice. Thus $(r,s)\mapsto2s$ on $H_1$.
+In both cases the $H_2$ map is zero because its target group is zero. Geometrically no two-dimensional surface class can survive a map whose image is a circle.
+
+\exercise{43.12}{The same maps viewed as torus self-maps}
+Now the target has $H_1=\Z[a]\oplus\Z[b]$ and $H_2=\Z[T]$, but the maps still factor through the circle $b$.
+For part \textbf{(a)}, $[a]\mapsto0$ and $[b]\mapsto[b]$, so the $H_1$ matrix is $\begin{pmatrix}0&0\\0&1\end{pmatrix}$.
+For part \textbf{(b)}, $[a]\mapsto0$ and $[b]\mapsto2[b]$, so it is $\begin{pmatrix}0&0\\0&2\end{pmatrix}$.
+Both maps induce the identity on $H_0$. Both induce zero on $H_2$, even though the target $H_2$ is nonzero: factorization through $b$ gives a factor through $H_2(b)=0$. The determinant-zero $H_1$ matrices provide a consistency check.
+
+\exercise{43.13}{Projecting the Klein bottle onto $b$}
+The Klein bottle has $H_0=\Z$, $H_1=\Z_2[a]\oplus\Z[b]$, and $H_2=0$ in the conventions of Fig. 43.2. The projection to the vertical circle $b$ collapses each horizontal $a$ loop to a point and carries $b$ onto itself once.
+Therefore the induced maps are
+\[
+H_0:\ m\mapsto m,\qquad
+H_1:\ (\overline r,s)\mapsto s,\qquad
+H_2:\ 0\longrightarrow0.
+\]
+The dimension-one formula is well defined on the order-2 class of $a$, since that class maps to zero. It also follows algebraically that any homomorphism from its $\Z_2$ summand to the torsion-free group $\Z$ must vanish.

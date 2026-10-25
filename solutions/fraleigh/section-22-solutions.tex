@@ -1,0 +1,169 @@
+\section{Rings of Polynomials}
+
+\exercise{22.1}{Addition and multiplication modulo eight}
+Add like powers, then reduce coefficients modulo $8$:
+\[f+g=2x^2-3=\boxed{2x^2+5}.
+\]
+For the product, distribute before reducing:
+\[fg=8x^3-26x^2+28x-10=\boxed{6x^2+4x+6}\quad\text{in }\Z_8[x].
+\]
+The degree drops because the leading coefficient $8$ vanishes modulo $8$.
+
+\exercise{22.2}{Addition and multiplication in characteristic two}
+Here $f=g=x+1$. Thus $f+g=2x+2=\boxed0$. Expanding the product gives $fg=x^2+2x+1=\boxed{x^2+1}$, since $2=0$ in $\Z_2$.
+
+\exercise{22.3}{Polynomial arithmetic modulo six}
+Addition gives
+\[f+g=5x^2+5x+7=\boxed{5x^2+5x+1}.
+\]
+Distributive multiplication over the integers gives
+\[fg=6x^4+13x^3+24x^2+17x+12.
+\]
+Reducing each coefficient modulo $6$ gives $\boxed{x^3+5x}$. The expected degree $4$ disappears because $2\cdot3=0$ in the coefficient ring.
+
+\exercise{22.4}{Polynomial arithmetic modulo five}
+After collecting terms,
+\[f+g=3x^4+2x^3+4x^2+5x+6
+=\boxed{3x^4+2x^3+4x^2+1}.
+\]
+The unreduced product is
+\[6x^7+12x^6+9x^5+10x^4+16x^3+22x^2+16x+8.
+\]
+Thus in $\Z_5[x]$,
+\[\boxed{fg=x^7+2x^6+4x^5+x^3+2x^2+x+3}.
+\]
+
+\exercise{22.5}{Counting short binary polynomials}
+Every polynomial of degree at most $3$, including zero, is uniquely $a_0+a_1x+a_2x^2+a_3x^3$. Each coefficient has two choices in $\Z_2$, independently. The count is $\boxed{2^4=16}$. Allowing leading coefficients zero includes all smaller degrees.
+
+\exercise{22.6}{Counting short polynomials modulo five}
+Write the polynomial uniquely as $a_0+a_1x+a_2x^2$, allowing leading zeros. Each of the three coefficients has five choices. The answer is $\boxed{5^3=125}$, including the zero polynomial.
+
+\exercise{22.7}{Evaluation at a real point}
+Evaluation means substituting the indicated input. Therefore $\phi_2(x^2+3)=2^2+3=\boxed7$.
+
+\exercise{22.8}{Evaluation at the imaginary unit}
+Substitute $i$ and use $i^2=-1$, $i^3=-i$:
+\[\phi_i(2x^3-x^2+3x+2)=2(-i)-(-1)+3i+2=\boxed{3+i}.
+\]
+
+\exercise{22.9}{Evaluation of a product modulo seven}
+Evaluation preserves products, so evaluate the two factors separately at $3$. They give $3^4+2\cdot3=87\equiv3$ and $3^3-3\cdot3^2+3=3$. Their product is $9\equiv\boxed2\pmod7$.
+
+\exercise{22.10}{Three evaluated factors modulo seven}
+At $x=5$ the factors reduce modulo $7$ to
+\[5^2+2=27\equiv6,\quad4\cdot5^2+3=103\equiv5,\quad
+5^7+3\cdot5^2+1\equiv5+5+1\equiv4.
+\]
+Here $5^7\equiv5$ by Fermat. Multiply the residues: $6\cdot5\cdot4=120\equiv\boxed1\pmod7$.
+
+\exercise{22.11}{Large exponents evaluated modulo seven}
+Since $4\ne0$ in $\Z_7$, Fermat gives $4^6=1$. Reduce the exponents: $106\equiv4$, $99\equiv3$, $53\equiv5\pmod6$. The residues $4^3=1$, $4^4=4$, $4^5=2$ in $\Z_7$ give
+\[\phi_4(3x^{106}+5x^{99}+2x^{53})=3\cdot4+5\cdot1+2\cdot2=21=\boxed0.
+\]
+
+\exercise{22.12}{Zeros over two elements}
+There are only two inputs. At $0$, $x^2+1=1$; at $1$, it is $1+1=0$ in $\Z_2$. Thus the complete zero set is $\boxed{\{1\}}$.
+
+\exercise{22.13}{Zeros of a cubic over seven elements}
+Evaluating at $0,1,2,3,4,5,6$ gives, respectively, residues $2,5,0,0,4,4,6$. Hence the zeros are exactly $\boxed{2,3}$. In particular, a cubic may have a repeated root rather than three distinct roots.
+
+\exercise{22.14}{Zeros of a fifth-degree polynomial over five elements}
+For each $a\in\Z_5$, Fermat gives $a^5=a$, so the value becomes $3a^3+a^2+3a$. At $a=0,1,2,3,4$ the residues are $0,2,4,4,0$. Therefore the complete zero set is $\boxed{\{0,4\}}$.
+
+\exercise{22.15}{Zeros of a product}
+Since $\Z_7$ is a field, $f(a)g(a)=0$ if and only if at least one factor is zero. Evaluating $f=x^3+2x^2+5$ at $0,\ldots,6$ gives $5,1,0,1,3,5,6$, so its only zero is $2$. Factoring $g=3x^2+2x=x(3x+2)$ gives zeros $0$ and $4$, because $3\cdot4+2=14=0$. Taking the union, the product has zeros $\boxed{0,2,4}$.
+
+\exercise{22.16}{Evaluation with prime-field exponent reduction}
+For nonzero $3\in\Z_5$, $3^4=1$. The exponents satisfy $231\equiv3$, $117\equiv1$, $53\equiv1\pmod4$. Hence
+\[\phi_3(x^{231}+3x^{117}-2x^{53}+1)=3^3+3\cdot3-2\cdot3+1=31\equiv\boxed1\pmod5.
+\]
+
+\exercise{22.17}{All zeros of a large-degree polynomial}
+At $x=0$ the polynomial is zero, since every exponent is positive. For $x\ne0$, use $x^4=1$ in $\Z_5$ and reduce exponents modulo $4$:
+\[2x^{219}+3x^{74}+2x^{57}+3x^{44}=2x^3+3x^2+2x+3.
+\]
+This cubic factors as $(x^2+1)(2x+3)$. Its zeros are $x=2,3$ from $x^2=-1=4$, and $x=1$ from $2x=-3=2$. Including the separately checked zero input, all zeros are $\boxed{0,1,2,3}$. The exponent reduction was not applied blindly to $x=0$.
+
+\exercise{22.18}{Correcting the definition of a polynomial}
+Add the condition that only finitely many coefficients are nonzero. A polynomial over $R$ is a formal expression $\sum_{i\ge0}a_ix^i$ with $a_i\in R$ and $a_i=0$ for all sufficiently large $i$. Without that finiteness condition, the expression is a formal power series rather than necessarily a polynomial.
+
+\exercise{22.19}{The definition of a zero}
+The stated definition is correct: $a\in F$ is a zero of $f$ when evaluation at $a$ gives $\phi_a(f)=f(a)=0$. More generally, if $F\subseteq E$, a zero in $E$ is an element $a\in E$ satisfying the same equation under $\phi_a:F[x]\to E$. The domain of the evaluation map is the polynomial ring $F[x]$.
+
+\exercise{22.20}{Regrouping a polynomial in two variables}
+Collect the displayed expression by powers of $x$ rather than powers of $y$. The $x^4$ terms contribute $(y+1)x^4$; the $x^3$ term is $3y^3x^3$; the $x^2$ terms give $(y^2-3)x^2$; and the linear terms give $(2y^3-6y^2-2y)x$. The remaining constant in $x$ is $y^2+2$. Thus in $(\Q[y])[x]$ it is
+\[\boxed{(y+1)x^4+3y^3x^3+(y^2-3)x^2+(2y^3-6y^2-2y)x+(y^2+2)}.
+\]
+
+\exercise{22.21}{Six kernel elements for evaluation at five}
+The kernel consists of polynomials with rational coefficients vanishing at $5$. Six distinct examples are
+\[0,\quad x-5,\quad 2(x-5),\quad (x-5)^2,\quad x(x-5),\quad (x-5)^3.
+\]
+Every displayed expression has value zero after substituting $x=5$, which directly verifies membership. Their different coefficients or degrees show that the six polynomials are distinct.
+
+\exercise{22.22}{A positive-degree polynomial unit}
+In $\Z_4[x]$, take $u=1+2x$. Its square is $u^2=1+4x+4x^2=1$. Therefore $u$ is a unit, with inverse itself, and has degree $1>0$. This phenomenon uses the zero-divisor coefficient $2$.
+
+\exercise{22.23}{True or false: polynomial rings}
+\begin{enumerate}[label=(\alph*)]
+\item True: a formal polynomial is zero exactly when each coefficient is zero.
+\item True: commutative coefficient products allow the convolution formula for multiplication to be reversed.
+\item True: the product of nonzero leading coefficients in a domain remains nonzero, so nonzero polynomials cannot multiply to zero.
+\item True: regard a pair of nonzero zero-divisor coefficients as constant polynomials.
+\item False: multiplication cannot create a term of degree greater than $3+4=7$.
+\item False: in $\Z_4[x]$, $(2x^3)(2x^4)=0$, so the degree need not be $7$.
+\item True: evaluation is multiplicative, giving $(fg)(a)=f(a)g(a)=0$.
+\item True: if $fg=1$ over a field, degree additivity forces both degrees to be zero; the units are nonzero constants.
+\item True whenever $x$ is interpreted as the polynomial indeterminate in a ring with unity: multiplication by $x$ shifts each coefficient one place, so $xf=0$ forces $f=0$. The same coefficient-shift statement holds formally without a unity.
+\item False: $2x$ is a nonconstant zero divisor in $\Z_4[x]$, since $(2x)2=0$.
+\end{enumerate}
+
+\exercise{22.24}{A polynomial ring over a domain is a domain}
+The standard coefficient operations give a commutative ring $D[x]$ with unity the constant polynomial $1_D\ne0$. Let $f,g$ be nonzero, with leading terms $a_mx^m,b_nx^n$. The coefficient of $x^{m+n}$ in $fg$ is $a_mb_n$, which is nonzero because $D$ has no zero divisors. Hence $fg\ne0$. Thus $D[x]$ has no nonzero zero divisors and is an integral domain.
+
+\exercise{22.25}{Units in three polynomial rings}
+\textbf{(a)} If $fg=1$ in $D[x]$, then $\deg f+\deg g=\deg1=0$ by the leading-coefficient argument. Both degrees must be zero, so $f$ is a constant whose value is a unit in $D$. Conversely every such constant has its constant inverse in $D[x]$.\par
+\textbf{(b)} The units of $\Z$ are $\pm1$, so the units of $\Z[x]$ are precisely the two constant polynomials $1,-1$.\par
+\textbf{(c)} Every nonzero element of the field $\Z_7$ is a unit. Thus the units of $\Z_7[x]$ are precisely the constant polynomials $1,2,3,4,5,6$.
+
+\exercise{22.26}{Left distributivity from coefficient formulas}
+Write $f=\sum a_ix^i$, $g=\sum b_jx^j$, and $h=\sum c_jx^j$, extending coefficient lists by zeros. The coefficient of $x^n$ in $f(g+h)$ is
+\[\sum_{i+j=n}a_i(b_j+c_j)=\sum_{i+j=n}a_ib_j+\sum_{i+j=n}a_ic_j.
+\]
+Distributivity in $R$ gives the equality and its abelian addition allows regrouping the finite sum. The right side is exactly the coefficient of $x^n$ in $fg+fh$. Equality for every coefficient proves $f(g+h)=fg+fh$.
+
+\exercise{22.27}{Formal differentiation as an additive map}
+\textbf{(a)} Coefficientwise differentiation gives $D(f+g)=Df+Dg$, so $D$ is an additive-group homomorphism. It is not a ring homomorphism: $D(x^2)=2x$ but $D(x)D(x)=1$. These formal polynomials are distinct.\par
+\textbf{(b)} If $Df=0$, every coefficient $ka_k$ with $k\ge1$ vanishes. In characteristic zero the scalar $k$ is nonzero and invertible in the field, so $a_k=0$ for $k\ge1$. Hence the kernel is exactly the constant polynomials $F$.\par
+\textbf{(c)} For $g=\sum_{k=0}^n b_kx^k$, set $f=\sum_{k=0}^n (b_k/(k+1))x^{k+1}$. All denominators are nonzero in the characteristic-zero field. Then $Df=g$, so the image is all of $F[x]$.
+
+\exercise{22.28}{Evaluation in several variables}
+\textbf{(a)} For $\boldsymbol a=(a_1,\ldots,a_n)\in E^n$, define
+\[\phi_{\boldsymbol a}\!\left(\sum_{\boldsymbol k}c_{\boldsymbol k}x_1^{k_1}\cdots x_n^{k_n}\right)
+=\sum_{\boldsymbol k}c_{\boldsymbol k}a_1^{k_1}\cdots a_n^{k_n}.
+\]
+All sums are finite. Distributing products in the commutative field $E$ proves that this map preserves addition and multiplication. It fixes the coefficients in $F$ and sends $x_i$ to $a_i$.\par
+\textbf{(b)} Substitution yields $(-3)^2 2^3+3(-3)^4 2=9\cdot8+3\cdot81\cdot2=\boxed {558}$.\par
+\textbf{(c)} A zero in $E^n$ is a tuple $\boldsymbol a$ with $\phi_{\boldsymbol a}(f)=f(a_1,\ldots,a_n)=0$. A tuple, rather than a single scalar, is required.
+
+\exercise{22.29}{Pointwise operations on all functions}
+The zero function is the additive identity, and $(-\phi)(r)=-\phi(r)$ provides additive inverses. Addition is commutative and associative because these identities hold at every value $r$ in $R$. For multiplication,
+\[((\phi\psi)\theta)(r)=(\phi(r)\psi(r))\theta(r)=\phi(r)(\psi(r)\theta(r))=(\phi(\psi\theta))(r).
+\]
+Likewise evaluating either distributive law at $r$ gives the corresponding law in $R$, for example
+\[(\phi(\psi+\theta))(r)=\phi(r)(\psi(r)+\theta(r))=(\phi\psi+\phi\theta)(r).
+\]
+Closure is automatic because the operations in $R$ have values in $R$. Thus the function set is a ring. Its multiplication is pointwise multiplication, as stipulated, not composition.
+
+\exercise{22.30}{Polynomial functions form a smaller kind of ring}
+\textbf{(a)} The zero function is polynomial. If functions $u,v$ are represented by polynomials $f,g$, then $u-v$ is represented by $f-g$, and $uv$ by $fg$. The subring test proves that $P_F$ is a subring of the full function ring.\par
+\textbf{(b)} If $F$ has $q$ elements, there are only $q^q$ functions $F\to F$, hence only finitely many polynomial functions. But the formal polynomials $1,x,x^2,\ldots$ are infinitely many distinct members of $F[x]$. A bijection, and thus a ring isomorphism, is impossible. Distinct formal polynomials can induce the same function; over $\Z_p$, for instance, $x^p$ and $x$ do so.
+
+\exercise{22.31}{All functions on a finite field are polynomial}
+\textbf{(a)} Each input can be assigned any output independently. There are $\boxed{2^2=4}$ functions $\Z_2\to\Z_2$, and $\boxed{3^3=27}$ functions $\Z_3\to\Z_3$.\par
+\textbf{(b)} Recording the two, or three, function values is an additive-group isomorphism to a Cartesian power. Thus the two groups are $\boxed{\Z_2\times\Z_2}$ and $\boxed{\Z_3\times\Z_3\times\Z_3}$ respectively. Addition in each coordinate is the field addition.\par
+\textbf{(c)} List $F=\{a_1,\ldots,a_q\}$. Given any function $u:F\to F$, define
+\[f(x)=\sum_{i=1}^q u(a_i)\prod_{j\ne i}\frac{x-a_j}{a_i-a_j}.
+\]
+Every denominator is nonzero because the $a_i$ are distinct. At $x=a_k$, all summands but the $k$th contain a zero factor; the $k$th product equals $1$. Therefore $f(a_k)=u(a_k)$ for every $k$. This polynomial represents $u$, proving $F^F=P_F$.

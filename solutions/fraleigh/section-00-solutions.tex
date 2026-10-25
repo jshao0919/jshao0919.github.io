@@ -1,0 +1,208 @@
+\section{Sets and Relations}
+
+\textbf{Starting point.} Read the defining condition before calculating. An equality of sets requires both inclusions; an equivalence relation requires all three properties.
+
+\exercise{0.1}{Real square roots}
+
+The equation $x^2=3$ has two real solutions, $x=\sqrt3$ and $x=-\sqrt3$. Both square to $3$, and factoring $x^2-3=(x-\sqrt3)(x+\sqrt3)$ shows there are no others. The set is $\{-\sqrt3,\sqrt3\}$.
+
+\exercise{0.2}{Integer square roots}
+
+An integer whose square is $3$ would have absolute value strictly between $1$ and $2$, which is impossible. Thus the set is $\varnothing$. Notice that changing the domain from $\R$ to $\Z$ changes the answer.
+
+\exercise{0.3}{Divisors of sixty}
+
+The condition means that $m$ divides $60$. Since $60=2^2\cdot3\cdot5$, its positive divisors are $1,2,3,4,5,6,10,12,15,20,30,60$. Every negative of such a number is also a divisor, using a negative quotient. Thus the set is
+\[\{\pm1,\pm2,\pm3,\pm4,\pm5,\pm6,\pm10,\pm12,\pm15,\pm20,\pm30,\pm60\}.\]
+Zero is excluded because $0n$ cannot equal $60$.
+
+\exercise{0.4}{An integer inequality}
+
+Solve $m^2-m<115$ by checking where the upward-opening quadratic crosses zero. Its roots are $(1\pm\sqrt{461})/2$, approximately $-10.235$ and $11.235$. Hence the integers strictly between them are
+\[\{-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10,11\}.\]
+At the endpoints $m=-10,11$ the value is $110$; at the next integers $-11,12$ it is $132$.
+
+\exercise{0.5}{The word large}
+
+This is not well defined: no cutoff for ``large'' is specified, so membership cannot be decided unambiguously. For example, $\{n\in\Z^+:n>1000\}$ would be a well-defined replacement, but its cutoff is additional information, not part of the question.
+
+\exercise{0.6}{Negative integer squares}
+
+Every integer square is nonnegative. Thus no integer satisfies $n^2<0$, and the specified object is the well-defined empty set $\varnothing$.
+
+\exercise{0.7}{An interval for a cube}
+
+Since $3^3=27$, $4^3=64$, and cubing is strictly increasing, there is no integer with $39<n^3<57$. The set is well defined and equals $\varnothing$.
+
+\exercise{0.8}{Almost an integer}
+
+``Almost'' gives no numerical tolerance. Therefore this description does not define a set. A precise replacement could be $\{q\in\Q:|q-m|<1/100\text{ for some }m\in\Z\}$; other tolerances give other sets.
+
+\exercise{0.9}{A large denominator}
+
+This is a well-defined description of all of $\Q$. If $q=a/b$ with $b>0$, then $q=(ka)/(kb)$ for every positive integer $k$. Choose $k$ so that $kb>100$. The question does not require the fraction to be in lowest terms.
+
+\exercise{0.10}{A small positive denominator}
+
+The allowed denominators are $1,2,3$. Consequently the set is
+\[\{a/b:a\in\Z,\ b\in\{1,2,3\}\}=\Z\cup\tfrac12\Z\cup\tfrac13\Z.
+\]
+This is well defined. For example $1/2$ is included and $1/4$ is not: $1/4=a/b$ would force $b=4a$, impossible for $b=1,2,3$.
+
+\exercise{0.11}{A Cartesian product}
+
+Choose a first coordinate from $\{a,b,c\}$ and independently a second from $\{1,2,c\}$. The result is
+\[\{(a,1),(a,2),(a,c),(b,1),(b,2),(b,c),(c,1),(c,2),(c,c)\}.\]
+There are $3\cdot3=9$ ordered pairs; an ordered pair is not an unordered set.
+
+\exercise{0.12}{Functions, injections, and surjections}
+
+A function must assign exactly one value to each of $1,2,3$; it is injective when those values are distinct, and onto when all of $2,4,6$ occur.
+\begin{enumerate}[label=(\alph*)]
+\item A function, but not injective since $1,2$ both map to $4$, and not onto since $2$ is absent.
+\item A function, but not injective since $1,3$ both map to $4$, and not onto since $2$ is absent.
+\item Not a function: $1$ has three different outputs, while $2,3$ have none.
+\item A function and a bijection: $1\mapsto6$, $2\mapsto2$, $3\mapsto4$ uses each target exactly once.
+\item A function, but not injective since all inputs map to $6$, and not onto since $2,4$ are absent.
+\item Not a function: $2$ has outputs $6$ and $4$, and $3$ has no output.
+\end{enumerate}
+
+\exercise{0.13}{Pairing two segments}
+
+Draw the line through $P$ and $x$, and take $y=Px\cap CD$. Projection from $P$ sends $A$ to $C$, $B$ to $D$, and each intermediate point to exactly one intermediate point. Conversely the line from $P$ through any point on $CD$ meets $AB$ once. Thus this pairing is a bijection.
+\begin{center}\setlength{\unitlength}{1mm}\begin{picture}(90,52)
+\put(45,48){\circle*{1}}\put(46,48){$P$}
+\put(30,30){\line(1,0){30}}\put(15,12){\line(1,0){60}}
+\put(45,48){\line(-5,-6){30}}\put(45,48){\line(5,-6){30}}
+\put(45,48){\line(-1,-6){6}}
+\put(28,32){$A$}\put(60,32){$B$}\put(11,10){$C$}\put(77,10){$D$}
+\put(42,30){\circle*{1}}\put(40,33){$x$}\put(39,12){\circle*{1}}\put(38,7){$y$}
+\end{picture}\end{center}
+
+\exercise{0.14}{Bijections of closed intervals}
+
+\begin{enumerate}[label=(\alph*)]
+\item $f(x)=2x$ maps $[0,1]$ onto $[0,2]$; its inverse is $y/2$.
+\item $f(x)=10x-5$ maps $1$ to $5$ and $3$ to $25$; its inverse is $(y+5)/10$.
+\item For $a<b$ and $c<d$, put $f(x)=c+(d-c)(x-a)/(b-a)$. The positive slope makes it injective; for any $y\in[c,d]$, the inverse $x=a+(b-a)(y-c)/(d-c)$ lies in $[a,b]$. Thus it is onto as well.
+\end{enumerate}
+
+\exercise{0.15}{An open interval and the real line}
+
+Use $f(x)=\tan(\pi(x-1/2))$ for $0<x<1$. Its argument ranges through $(-\pi/2,\pi/2)$, where tangent is strictly increasing and has limits $-\infty,+\infty$. Explicitly $f^{-1}(y)=1/2+(\arctan y)/\pi$ lies in $(0,1)$ for every real $y$. This proves both injectivity and surjectivity.
+
+\exercise{0.16}{Four power sets}
+
+The empty subset must be included, even when the original set is empty.
+\begin{enumerate}[label=(\alph*)]
+\item $\mathcal P(\varnothing)=\{\varnothing\}$ has $1$ element.
+\item $\mathcal P(\{a\})=\{\varnothing,\{a\}\}$ has $2$ elements.
+\item $\mathcal P(\{a,b\})=\{\varnothing,\{a\},\{b\},\{a,b\}\}$ has $4$ elements.
+\item $\mathcal P(\{a,b,c\})=\{\varnothing,\{a\},\{b\},\{c\},\{a,b\},\{a,c\},\{b,c\},\{a,b,c\}\}$ has $8$ elements.
+\end{enumerate}
+
+\exercise{0.17}{Counting subsets}
+
+If $|A|=s$, then $|\mathcal P(A)|=2^s$. Label the elements $a_1,\ldots,a_s$. To specify a subset, decide independently for each $a_i$ whether to include it. There are two choices at each of $s$ positions, hence $2^s$ subsets. This also covers $s=0$, when there is just the empty subset.
+
+\exercise{0.18}{Subsets and binary-valued functions}
+
+For $f:A\to\{0,1\}$ define $T(f)=\{a\in A:f(a)=1\}$. If $T(f)=T(g)$, then for every $a$ either both functions equal $1$ or both equal $0$, so $f=g$. Given a subset $U\subseteq A$, its characteristic function $\chi_U$, equal to $1$ on $U$ and $0$ elsewhere, satisfies $T(\chi_U)=U$. Thus $T$ is a bijection, for finite or infinite $A$.
+
+\exercise{0.19}{Cantor diagonalization}
+
+Suppose $f:A\to\mathcal P(A)$ were onto. Define $D=\{a\in A:a\notin f(a)\}$. If $D=f(d)$, then $d\in D$ holds exactly when $d\notin f(d)=D$, a contradiction. Hence no such surjection exists, while $a\mapsto\{a\}$ is injective. Repeated power sets therefore give strictly increasing infinite cardinalities starting with $\Z$. A set $U$ containing everything would contain every subset of itself, so $\mathcal P(U)\subseteq U$; this contradicts the same diagonal argument (or forms the contradictory set $\{x\in U:x\notin x\}$). Thus a universal set is not acceptable in ordinary set theory.
+
+\exercise{0.20}{Cardinal sums and products}
+
+\begin{enumerate}[label=(\alph*)]
+\item Since $A,B$ are disjoint, their union has the five elements $1,2,3,4,5$. Similarly adjoining three new objects to $\Z^+$ still permits one infinite list, so $3+\aleph_0=\aleph_0$. Two disjoint copies of $\Z^+$ interleave, for example $(n,0)\mapsto2n-1$, $(n,1)\mapsto2n$; hence $\aleph_0+\aleph_0=\aleph_0$.
+\item $A\times B$ has the six plotted positions $(1,3),(1,4),(1,5),(2,3),(2,4),(2,5)$. An infinite positive-integer grid can be listed diagonal by diagonal, so $\aleph_0\aleph_0=\aleph_0$.
+\end{enumerate}
+\begin{center}\setlength{\unitlength}{5mm}\begin{picture}(6,6)
+\put(0,0){\vector(1,0){4}}\put(0,0){\vector(0,1){6}}
+\multiput(1,3)(0,1){3}{\circle*{0.12}}\multiput(2,3)(0,1){3}{\circle*{0.12}}
+\put(0.9,-0.5){$1$}\put(1.9,-0.5){$2$}\put(-0.5,2.9){$3$}\put(-0.5,3.9){$4$}\put(-0.5,4.9){$5$}
+\end{picture}\end{center}
+
+\exercise{0.21}{Infinite strings of digits}
+
+There are $10^2=100$ two-place strings and $10^5=100000$ five-place strings. Each fixed-length string gives a distinct number in $[0,1)$, allowing leading and trailing zeros. Infinite decimal strings give $10^{\aleph_0}=|\R|$: every point of $[0,1)$ has a decimal expansion, and the ambiguity of terminating decimals does not change this cardinality. More explicitly $2^{\aleph_0}\le10^{\aleph_0}\le(2^4)^{\aleph_0}=2^{\aleph_0}$, and binary strings inject into $[0,1]$ as ternary expansions using only digits $0,2$. Since $2\le12\le2^4$, the same argument gives $12^{\aleph_0}=2^{\aleph_0}=|\R|$.
+
+\exercise{0.22}{An increasing cardinal sequence}
+
+Cantor's theorem says $|X|<2^{|X|}$. Since $|\R|=2^{\aleph_0}$, the requested continuation is
+\[\aleph_0,\quad |\R|,\quad 2^{|\R|},\quad 2^{2^{|\R|}},\quad 2^{2^{2^{|\R|}}}.\]
+Each next term is the cardinality of the power set of a set having the preceding cardinality.
+
+\exercise{0.23}{Counting partitions of 1 element}
+
+The number is $B_1=1$, where $B_n$ denotes the number of partitions of an $n$-element set. The sole partition is $\{\{a\}\}$.
+
+\exercise{0.24}{Counting partitions of 2 elements}
+
+The number is $B_2=2$, where $B_n$ denotes the number of partitions of an $n$-element set. They are $\{\{a,b\}\}$ and $\{\{a\},\{b\}\}$.
+
+\exercise{0.25}{Counting partitions of 3 elements}
+
+The number is $B_3=5$, where $B_n$ denotes the number of partitions of an $n$-element set. The cell-size patterns are $3$ (one partition), $2+1$ (three choices for the singleton), and $1+1+1$ (one partition), giving $1+3+1=5$.
+
+\exercise{0.26}{Counting partitions of 4 elements}
+
+The number is $B_4=15$, where $B_n$ denotes the number of partitions of an $n$-element set. The patterns $4,3+1,2+2,2+1+1,1+1+1+1$ contribute respectively $1,4,3,6,1$: for two pairs divide the six choices of a first pair by two. Their sum is $15$.
+
+\exercise{0.27}{Counting partitions of 5 elements}
+
+The number is $B_5=52$, where $B_n$ denotes the number of partitions of an $n$-element set. Choose the cell containing a distinguished element. If exactly $k$ of the other four elements lie outside that cell, choose them in $\binom4k$ ways and partition them in $B_k$ ways. With $B_0=1$, this gives $B_5=\sum_{k=0}^4\binom4k B_k=1+4+12+20+15=52$.
+
+\exercise{0.28}{A partition gives an equivalence relation}
+
+Every element $x$ belongs to the same cell as itself, proving reflexivity. For transitivity, suppose $x,y$ share a cell $C$ and $y,z$ share a cell $D$. A partition puts $y$ into exactly one cell, so $C=D$. Therefore $x,z$ share a cell. Together with the symmetry already discussed in the text, all three properties hold.
+
+\exercise{0.29}{A strictly positive product}
+
+This relation is not reflexive on $\Z$: $0\cdot0=0$ is not strictly positive. Thus it is not an equivalence relation on the stated domain. On $\Z\setminus\{0\}$ it would have the two classes of positive and negative integers, but removing zero changes the question.
+
+\exercise{0.30}{The order relation}
+
+The relation $x\ge y$ is reflexive and transitive, but is not symmetric: $1\ge0$ while $0\not\ge1$. Hence it is not an equivalence relation, and no equivalence-class partition is associated to it.
+
+\exercise{0.31}{Equal absolute values}
+
+Equality of absolute values is reflexive, symmetric, and transitive because equality itself has those properties. The class of $x$ is $\{x,-x\}$, with the special singleton class $\{0\}$. These classes partition $\R$.
+
+\exercise{0.32}{Distance at most three}
+
+Reflexivity holds since $|x-x|=0$, and symmetry holds since $|x-y|=|y-x|$. Transitivity fails: $|0-3|=3$ and $|3-6|=3$, but $|0-6|=6>3$. Thus this is not an equivalence relation.
+
+\exercise{0.33}{Equal numbers of decimal digits}
+
+The number of decimal digits is a function from $\Z^+$ to $\Z^+$. Equality of its values is an equivalence relation. The classes are
+\[\{1,\ldots,9\},\quad\{10,\ldots,99\},\quad\{100,\ldots,999\},\quad\ldots,
+\]
+or $\{10^{k-1},\ldots,10^k-1\}$ for $k\ge1$.
+
+\exercise{0.34}{Equal final digits}
+
+Two positive integers have the same final digit exactly when they have the same remainder modulo $10$. Equality of remainders is reflexive, symmetric, and transitive. The ten classes are $\{10,20,30,\ldots\}$ and $\{r,r+10,r+20,\ldots\}$ for $r=1,\ldots,9$.
+
+\exercise{0.35}{Positive residue classes}
+
+\begin{enumerate}[label=(\alph*)]
+\item For $n=2$: $\{2,4,6,\ldots\}$ and $\{1,3,5,\ldots\}$.
+\item For $n=3$: $\{3,6,9,\ldots\}$, $\{1,4,7,\ldots\}$, $\{2,5,8,\ldots\}$.
+\item For $n=5$: $\{5,10,15,\ldots\}$, $\{1,6,11,\ldots\}$, $\{2,7,12,\ldots\}$, $\{3,8,13,\ldots\}$, $\{4,9,14,\ldots\}$.
+\end{enumerate}
+The class beginning with $n$ is the zero-remainder class, even though zero is absent from $\Z^+$.
+
+\exercise{0.36}{Congruence on all integers}
+
+\begin{enumerate}[label=(\alph*)]
+\item $r-r=n\cdot0$ proves reflexivity. If $r-s=nq$, then $s-r=n(-q)$ proves symmetry. If $r-s=nq$ and $s-t=np$, then $r-t=n(q+p)$ proves transitivity.
+\item Write $r=nq+a$, $s=np+b$ with $0\le a,b<n$. Their difference is divisible by $n$ exactly when $a-b$ is; since $|a-b|<n$, this happens exactly when $a=b$. Thus the restriction is equality of remainders.
+\item For $n=2$ the classes are $\{\ldots,-4,-2,0,2,4,\ldots\}$ and $\{\ldots,-3,-1,1,3,\ldots\}$. For $n=3$ they are $\{\ldots,-6,-3,0,3,6,\ldots\}$, $\{\ldots,-5,-2,1,4,7,\ldots\}$, $\{\ldots,-4,-1,2,5,8,\ldots\}$. For $n=5$ they are $\{\ldots,-10,-5,0,5,10,\ldots\}$, $\{\ldots,-9,-4,1,6,11,\ldots\}$, $\{\ldots,-8,-3,2,7,12,\ldots\}$, $\{\ldots,-7,-2,3,8,13,\ldots\}$, and $\{\ldots,-6,-1,4,9,14,\ldots\}$.
+\end{enumerate}
+
+\exercise{0.37}{What injectivity actually says}
+
+Every function already sends one input to one output. Injectivity adds that \emph{two different inputs must produce two different outputs}: $a\ne b\Rightarrow f(a)\ne f(b)$. Calling this ``two-to-two'' would emphasize comparing two distinct inputs rather than describing the image of just one input. The logically equivalent test is $f(a)=f(b)\Rightarrow a=b$; no assumption of being onto is involved.

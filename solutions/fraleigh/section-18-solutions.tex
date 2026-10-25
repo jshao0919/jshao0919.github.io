@@ -1,0 +1,257 @@
+\section{Rings and Fields}
+
+\exercise{18.1}{A product modulo 24}
+Multiply the integer representatives first: $12\cdot16=192$. Since $192=8\cdot24$, its remainder modulo $24$ is $0$. Thus the product in $\Z_{24}$ is $\boxed{0}$.
+
+\exercise{18.2}{A product modulo 32}
+The integer product is $16\cdot3=48=32+16$. Reduction modulo $32$ therefore gives $\boxed{16}$.
+
+\exercise{18.3}{A negative product modulo 15}
+Compute $11(-4)=-44$. Adding the multiple $45$ of $15$ gives $-44\equiv1\pmod {15}$. The product is $\boxed{1}$.
+
+\exercise{18.4}{A negative product modulo 26}
+We have $20(-8)=-160=-7\cdot26+22$. Therefore the representative in $\{0,\ldots,25\}$ is $\boxed{22}$.
+
+\exercise{18.5}{Multiplication in a product ring}
+Operations in $\Z_5\times\Z_9$ are performed separately in each coordinate. Hence
+\[(2,3)(3,5)=(6\bmod5,15\bmod9)=\boxed{(1,6)}.\]
+
+\exercise{18.6}{Two modular coordinates}
+In $\Z_4\times\Z_{11}$ the product is
+\[(-3,5)(2,-4)=(-6,-20)=(2,2),\]
+because $-6\equiv2\pmod4$ and $-20\equiv2\pmod {11}$.
+
+\exercise{18.7}{The multiples of an integer}
+For $n\ge1$, sums, negatives, and products of multiples of $n$ remain multiples of $n$: $na-nb=n(a-b)$ and $(na)(nb)=n(nab)$. The associative and distributive laws are inherited from $\Z$. Thus $n\Z$ is a commutative ring. If it has unity $u$, applying $u\cdot n=n$ in the integers gives $u=1$. Consequently it has unity exactly when $n=1$, and it is never a field: when $n=1$, the nonzero integer $2$ has no inverse in $\Z$. If $n=0$ is allowed, $0\Z=\{0\}$ is the zero ring, whose identity equals zero and which is not a field.
+
+\exercise{18.8}{Positive integers}
+Both addition and multiplication are closed on $\Z^+$. Nevertheless addition is not a group operation: $0$ is absent and no positive integer has its additive inverse in the set. Thus these operations do not form a ring.
+
+\exercise{18.9}{The product of two integer rings}
+Addition and multiplication are componentwise, so each ring axiom follows in each coordinate from its counterpart in $\Z$. The result is a commutative ring with unity $(1,1)$. It is not a field: $(1,0)$ is nonzero but cannot have an inverse, because its product with any $(a,b)$ has second coordinate zero.
+
+\exercise{18.10}{An even-integer coordinate}
+The subset $2\Z\times\Z$ is closed under subtraction and multiplication, so it is a commutative subring of $\Z\times\Z$. If $(u,v)$ were its unity, multiplying $(2,0)$ would require $2u=2$, hence $u=1$, contrary to $u\in2\Z$. It has no unity and is not a field.
+
+\exercise{18.11}{Integral coefficients with a square root}
+For integers $a,b,c,d$,
+\[(a+b\sqrt2)-(c+d\sqrt2)=(a-c)+(b-d)\sqrt2,
+\quad (a+b\sqrt2)(c+d\sqrt2)=(ac+2bd)+(ad+bc)\sqrt2.\]
+Thus $\Z[\sqrt2]$ is a commutative subring of $\R$, with unity $1$. It is not a field: an inverse of $2$ would be $1/2$, which is not $a+b\sqrt2$ with integers $a,b$. Indeed $b\ne0$ would make $\sqrt2$ rational, and $b=0$ would require $a=1/2$.
+
+\exercise{18.12}{Rational coefficients with a square root}
+The subtraction and multiplication formulas in Exercise 18.11 also hold for rational coefficients, proving that this set is a commutative ring with unity. For $a+b\sqrt2\ne0$,
+\[(a+b\sqrt2)^{-1}=\frac{a-b\sqrt2}{a^2-2b^2}.\]
+The denominator is nonzero: otherwise either $a=b=0$ or $\sqrt2=a/b$ would be rational. The displayed inverse again has rational coefficients. Therefore $\Q(\sqrt2)$ is a field.
+
+\exercise{18.13}{Pure imaginary numbers}
+Addition is closed, but multiplication is not: $i\cdot i=-1$ is not purely imaginary. Since a ring requires a binary multiplication on its underlying set, this is not a ring under the indicated operations.
+
+\exercise{18.14}{Units in the integers}
+A unit $u\in\Z$ must satisfy $uv=1$ for an integer $v$. The only integer factors of $1$ are $1$ and $-1$. Thus the units are $\boxed{\{1,-1\}}$, each its own inverse.
+
+\exercise{18.15}{Units in a product of integer rings}
+The equation $(a,b)(c,d)=(1,1)$ is equivalent to $ac=1$ and $bd=1$. Therefore each of $a,b$ must be $1$ or $-1$, independently. The four units are $\boxed{(1,1),(1,-1),(-1,1),(-1,-1)}$.
+
+\exercise{18.16}{Units modulo five}
+Since $5$ is prime, every nonzero residue is a unit. Explicitly, $1^{-1}=1$, $2^{-1}=3$, $3^{-1}=2$, and $4^{-1}=4$, as multiplication verifies modulo $5$. The units are $\boxed{1,2,3,4}$.
+
+\exercise{18.17}{Units in the rational field}
+Every nonzero rational $a/b$ has rational inverse $b/a$. Zero cannot multiply any rational to give $1$. Thus the unit group is $\boxed{\Q\setminus\{0\}}$.
+
+\exercise{18.18}{Units in a three-factor ring}
+An inverse must work in all three coordinates. The first and last integer coordinates must therefore be $\pm1$, and the rational coordinate must be nonzero. All units are
+\[\boxed{\{(\varepsilon,q,\delta):\varepsilon,\delta\in\{1,-1\},\ q\in\Q\setminus\{0\}\}}.\]
+The inverse is $(\varepsilon,q^{-1},\delta)$.
+
+\exercise{18.19}{Units modulo four}
+The invertible residues are precisely those relatively prime to $4$, namely $1,3$. Directly, $1\cdot1=1$ and $3\cdot3=9\equiv1\pmod4$, whereas products with $0$ or $2$ cannot be odd. Thus the units are $\boxed{1,3}$.
+
+\exercise{18.20}{The matrix ring over two elements}
+\textbf{(a)} Each of the four entries has two choices, giving $2^4=\boxed{16}$ matrices.
+\textbf{(b)} A matrix over the field $\Z_2$ is invertible exactly when its determinant is nonzero. Its first column can be any of the three nonzero vectors; its second must be outside the span of the first, leaving two choices. The six units are
+\[
+\begin{pmatrix}1&0\\0&1\end{pmatrix},\quad
+\begin{pmatrix}1&1\\0&1\end{pmatrix},\quad
+\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+\begin{pmatrix}0&1\\1&1\end{pmatrix},\quad
+\begin{pmatrix}1&1\\1&0\end{pmatrix},\quad
+\begin{pmatrix}1&0\\1&1\end{pmatrix}.
+\]
+Every listed determinant is $1$ in $\Z_2$, and the counting argument shows that none are missing.
+
+\exercise{18.21}{A homomorphism that does not preserve unity}
+Use $\phi:\Z\longrightarrow\Z\times\Z$, $\phi(n)=(n,0)$. Both addition and multiplication are preserved componentwise. However, $\phi(1)=(1,0)$ is neither the zero $(0,0)$ nor the target unity $(1,1)$. The book's ring-homomorphism convention does not require unity preservation.
+
+\exercise{18.22}{The determinant map}
+For $n\ge2$, determinants preserve multiplication but not addition. Take $A=\operatorname{diag}(1,0,0,\ldots)$ and $B=\operatorname{diag}(0,1,1,\ldots)$. Both determinants are zero, whereas $A+B=I_n$ has determinant $1$. Hence $\det(A+B)\ne\det A+\det B$, and the map is not a ring homomorphism. For the exceptional case $n=1$, the determinant is simply the entry, so it is an isomorphism $M_1(\R)\to\R$.
+
+\exercise{18.23}{Homomorphisms from the integers to themselves}
+Additivity forces $\phi(n)=n\phi(1)$ for every integer $n$, including negative integers. Set $k=\phi(1)$. Multiplicativity applied to $1^2=1$ gives $k^2=k$, so $k=0$ or $1$. Both choices work. Thus the only maps are the zero map and the identity map.
+
+\exercise{18.24}{Homomorphisms into a product}
+Write $\phi(1)=(u,v)$. Additivity gives $\phi(n)=(nu,nv)$, and multiplicativity requires $(u^2,v^2)=(u,v)$. In $\Z$, an idempotent is $0$ or $1$. Consequently there are four homomorphisms:
+\[n\mapsto(0,0),\quad n\mapsto(n,0),\quad n\mapsto(0,n),\quad n\mapsto(n,n).
+\]
+Each preserves the two ring operations by direct substitution.
+
+\exercise{18.25}{Homomorphisms out of a product}
+Let $e_1=(1,0)$ and $e_2=(0,1)$. Since they are idempotent, their images $u,v$ in $\Z$ lie in $\{0,1\}$. Since $e_1e_2=0$, we must have $uv=0$. Additivity then gives $\phi(a,b)=au+bv$. The possible pairs $(u,v)$ are $(0,0),(1,0),(0,1)$, yielding exactly the zero map and the two coordinate projections.
+
+\exercise{18.26}{Three source coordinates}
+The three coordinate idempotents must map to $0$ or $1$ in $\Z$, and the product of any two different images must be zero. Therefore at most one image is $1$. There are four choices: all zero, or one of the three coordinate positions equal to $1$. These give the zero map and the three projections, so the answer is $\boxed{4}$.
+
+\exercise{18.27}{A false zero-product argument for matrices}
+The factorization is valid because $I_3$ commutes with $X$. The invalid step is inferring that a factor must be zero: matrix rings have zero divisors. For example,
+\[X=\operatorname{diag}(1,1,-1)
+\]
+satisfies $X^2=I_3$ while $X\ne I_3$ and $X\ne-I_3$. Here both $X-I_3$ and $X+I_3$ are nonzero, although their product is zero.
+
+\exercise{18.28}{A quadratic congruence modulo fourteen}
+Factor the polynomial as $(x+3)(x-2)$. A product is zero modulo $14$ exactly when it is zero modulo both $2$ and $7$. Modulo $2$ the original polynomial is $x(x+1)$, zero for both residues. Modulo $7$, the two roots are $2$ and $-3=4$. Lifting these residues to $\Z_{14}$ gives
+\[\boxed{x=2,4,9,11}.
+\]
+For example, at $x=4$, neither $x+3=7$ nor $x-2=2$ is zero modulo $14$, but their product is. This is precisely the zero-divisor issue in Exercise 18.27.
+
+\exercise{18.29}{Correcting the definition of a field}
+The missing requirement is commutativity of multiplication. A field is a \emph{commutative} ring with unity $1\ne0$ such that every nonzero element has a multiplicative inverse; equivalently its nonzero elements form an abelian group under multiplication. The printed definition, without commutativity, describes a division ring.
+
+\exercise{18.30}{Correcting the definition of a unit}
+Magnitude is irrelevant in a general ring. In a ring with unity $1$, an element $u$ is a unit if there exists $v$ in the ring with $uv=vu=1$. Both equations are required in a possibly noncommutative ring.
+
+\exercise{18.31}{A product of nonzero elements that vanishes}
+In $\Z_6$, the residues $2$ and $3$ are nonzero, but $2\cdot3=6=0$. This supplies the requested example of nonzero zero divisors.
+
+\exercise{18.32}{A subring with its own unity}
+In $R=\Z\times\Z$, let $S=\Z\times\{0\}$. It is closed under subtraction and multiplication, so it is a subring. Its unity is $(1,0)$, which is nonzero and differs from the unity $(1,1)$ of $R$. Indeed $(1,0)(a,0)=(a,0)=(a,0)(1,0)$.
+
+\exercise{18.33}{True or false: ring and field axioms}
+\begin{enumerate}[label=(\alph*)]
+\item True: a field is a ring with additional properties.
+\item False: $2\Z$ has no multiplicative identity.
+\item False: $\Z_2$ has just one unit, $1$, since $-1=1$ there.
+\item False: $\Z_5$ has four units.
+\item True: $\Z\subset\Q$ is a subring but not a subfield, because $2^{-1}=1/2\notin\Z$.
+\item False: distributivity is an essential ring axiom, linking the two operations.
+\item True: commutative multiplication is part of the definition of a field.
+\item True: this is the nonzero multiplicative group in the field definition.
+\item True: the additive group of a ring is required to be abelian.
+\item True: the additive-group axiom provides an additive inverse for every element.
+\end{enumerate}
+
+\exercise{18.34}{Pointwise multiplication of functions}
+The operations are pointwise: $(fg)(x)=f(x)g(x)$ and $(f+g)(x)=f(x)+g(x)$. For every point $x$,
+\[((fg)h)(x)=(f(x)g(x))h(x)=f(x)(g(x)h(x))=(f(gh))(x).
+\]
+Thus multiplication is associative. Likewise
+\[(f(g+h))(x)=f(x)(g(x)+h(x))=f(x)g(x)+f(x)h(x)=(fg+fh)(x),
+\]
+and $((f+g)h)(x)=(fh+gh)(x)$. Equality at every input means equality of functions, proving the required associative and both distributive axioms.
+
+\exercise{18.35}{Evaluation preserves multiplication}
+For the evaluation map $\phi_a(f)=f(a)$, the definition of pointwise product gives
+\[\phi_a(fg)=(fg)(a)=f(a)g(a)=\phi_a(f)\phi_a(g).
+\]
+This verifies the multiplicative requirement, without assuming that a general function map preserves products.
+
+\exercise{18.36}{Ring isomorphism is an equivalence relation}
+\textbf{Reflexivity:} the identity map preserves both operations and is bijective. \textbf{Symmetry:} if $\phi:R\to S$ is an isomorphism, write $u=\phi(a)$, $v=\phi(b)$. Then $\phi^{-1}(u+v)=a+b$ and $\phi^{-1}(uv)=ab$, so its inverse is also an isomorphism. \textbf{Transitivity:} if $\psi:S\to T$ is an isomorphism as well, then
+\[(\psi\phi)(a+b)=\psi(\phi(a)+\phi(b))=(\psi\phi)(a)+(\psi\phi)(b),
+\]
+and the same calculation with products proves multiplicativity. The composition is bijective. These are exactly the three equivalence-relation properties.
+
+\exercise{18.37}{The group of units}
+Let $u,v$ be units. Their product is a unit because
+\[(uv)(v^{-1}u^{-1})=1=(v^{-1}u^{-1})(uv).
+\]
+Thus multiplication is closed on the units; its associativity is inherited from the ring. The unity is a unit, and the inverse of a unit is itself a unit, with inverse $u$. Consequently all group axioms hold. The order reversal in $(uv)^{-1}$ matters when multiplication is not commutative.
+
+\exercise{18.38}{A difference-of-squares criterion}
+If $R$ is commutative, expansion gives $(a+b)(a-b)=a^2-ab+ba-b^2=a^2-b^2$. Conversely, suppose the stated identity holds for every $a,b$. Expanding its right side and canceling $a^2$ and $-b^2$ in the additive group gives $-ab+ba=0$, hence $ab=ba$. Therefore multiplication is commutative.
+
+\exercise{18.39}{Zero multiplication}
+Define $ab=0$ for every pair. This is a closed multiplication, and both $(ab)c$ and $a(bc)$ are zero. Furthermore $a(b+c)=0=0+0=ab+ac$ and $(a+b)c=0=ac+bc$. Together with the assumed abelian additive group, these facts prove all ring axioms.
+
+\exercise{18.40}{Two pairs of nonisomorphic rings}
+\textbf{The rings $2\Z$ and $3\Z$.} An additive isomorphism must carry the additive generator $2$ to either $3$ or $-3$. If $\phi(2)=3\varepsilon$ with $\varepsilon=\pm1$, additivity gives $\phi(4)=6\varepsilon$, whereas multiplicativity gives $\phi(4)=\phi(2)^2=9$. These cannot agree.\par
+\textbf{The fields $\R$ and $\C$.} Any field isomorphism carries unity to unity: its image of $1$ acts as an identity on the whole target. Therefore a supposed map $\phi:\C\to\R$ would give $\phi(i)^2=\phi(-1)=-1$. No real number has square $-1$. Hence these fields cannot be isomorphic.
+
+\exercise{18.41}{The prime-characteristic binomial identity}
+In a commutative ring the binomial expansion is valid. For $1\le k\le p-1$, the binomial coefficient $\binom pk$ is divisible by the prime $p$: its denominator $k!(p-k)!$ has no factor $p$, whereas its numerator $p!$ has one. In $\Z_p$ all these intermediate coefficients vanish. Thus
+\[(a+b)^p=a^p+\sum_{k=1}^{p-1}\binom pk a^{p-k}b^k+b^p=a^p+b^p.
+\]
+
+\exercise{18.42}{The unity of a subfield}
+Let $e$ be the unity of a subfield $K\subset F$. It is nonzero, and $e^2=e$ in $F$. Multiply this equation by the inverse of $e$ in the field $F$ to obtain $e=1_F$. Cancellation in a field is why a subfield cannot exhibit the different-unity phenomenon of Exercise 18.32.
+
+\exercise{18.43}{Uniqueness of a multiplicative inverse}
+If $b$ and $c$ are both two-sided inverses of $a$, then
+\[b=b1=b(ac)=(ba)c=1c=c.
+\]
+Associativity and the two inverse equations justify every step. Thus a unit has exactly one two-sided inverse.
+
+\exercise{18.44}{Idempotents and a product ring}
+\textbf{(a)} If $a^2=a$, $b^2=b$, and multiplication is commutative, then $(ab)^2=a^2b^2=ab$. Hence the product is idempotent.\par
+\textbf{(b)} An idempotent residue $x$ satisfies $x(x-1)\equiv0$. In $\Z_6$, testing the six residues gives $\{0,1,3,4\}$. In $\Z_{12}$, the requirement is that $x\equiv0$ or $1$ modulo each of $4$ and $3$, giving $\{0,1,4,9\}$. Idempotence is coordinatewise, so all sixteen idempotents are
+\[\boxed{\{0,1,3,4\}\times\{0,1,4,9\}}.
+\]
+
+\exercise{18.45}{An idempotent projection matrix}
+Put $B=(A^TA)^{-1}$, so $P=ABA^T$. Associativity of matrix multiplication, with no illicit reordering, gives
+\[P^2=ABA^TABA^T=AB(A^TA)BA^T=AB I_n A^T=ABA^T=P.
+\]
+The dimensions are consistent: $A$ is $m\times n$, $B$ is $n\times n$, and $P$ is $m\times m$. Thus it is an idempotent in $M_m(\R)$. The printed reference to $n\times n$ matrices is a dimension slip: the formula for $P$ gives $m\times m$.
+
+\exercise{18.46}{Adding nilpotent elements}
+Choose positive integers $r,s$ with $a^r=0$ and $b^s=0$. Because the ring is commutative, expand $(a+b)^{r+s-1}$. In each term $a^k b^{r+s-1-k}$, either $k\ge r$, or else $k\le r-1$ and $r+s-1-k\ge s$. The term is zero in either case. The entire expansion vanishes, so $a+b$ is nilpotent.
+
+\exercise{18.47}{Testing nilpotence using squares}
+If no nonzero nilpotent exists, an element satisfying $x^2=0$ must be zero. Conversely, suppose every square-zero element is zero. If $a$ were nonzero nilpotent, choose the least $n\ge2$ with $a^n=0$. Then $b=a^{n-1}\ne0$ by minimality, but $b^2=a^{2n-2}=0$ because $2n-2\ge n$. This contradicts the square-zero condition.
+
+\exercise{18.48}{The subring test}
+A subring necessarily contains zero and is closed under subtraction and multiplication. Conversely suppose the three listed conditions hold. Setting $a=0$ shows $-b\in S$; then $a+b=a-(-b)\in S$. Thus $S$ is an additive subgroup of the abelian group $(R,+)$. Closure supplies a multiplication on $S$, and its associativity and both distributive laws are inherited from $R$. Hence $S$ is a ring with the induced operations. A shared multiplicative unity is not required by the book's subring convention.
+
+\exercise{18.49}{Intersections of subrings and subfields}
+\textbf{(a)} Every subring in the family contains $0$. If $a,b$ are in their intersection, then $a-b$ and $ab$ lie in every member, hence in the intersection. Apply Exercise 18.48.\par
+\textbf{(b)} For a nonempty family of subfields of $F$, their common unity is $1_F$ by Exercise 18.42. The intersection is a subring and contains this nonzero unity. If $a\ne0$ belongs to it, its unique inverse in $F$ lies in every subfield, hence in the intersection. It is therefore a field. With the convention that an empty intersection is the ambient object, the empty-family conclusions hold as well.
+
+\exercise{18.50}{A one-sided annihilator is a subring}
+For $I_a=\{x:ax=0\}$, first $a0=0$, so $0\in I_a$. If $x,y\in I_a$, distributivity gives $a(x-y)=ax-ay=0$. Associativity gives $a(xy)=(ax)y=0y=0$. Thus the subring test applies. No commutativity of the ambient ring is needed.
+
+\exercise{18.51}{The subring generated by one element}
+Let $H$ consist of all finite sums $\sum_{k=1}^N m_k a^k$ with integer coefficients. This is exactly the additive subgroup generated by the positive powers of $a$. It contains $a$ and is closed under subtraction. Products remain in $H$, because distributivity expresses a product as a finite integer combination of powers $a^{i+j}$. Therefore $H$ is a subring containing $a$, so $R_a\subseteq H$ by the definition of $R_a$ as an intersection. Conversely every subring containing $a$ contains all positive powers and their integer linear combinations, so $H\subseteq R_a$. The two sets are equal. A constant term is not included: subrings here need not contain the ambient unity.
+
+\exercise{18.52}{Two simultaneous congruences}
+For coprime $r,s$, the map $\Z_{rs}\to\Z_r\times\Z_s$, $[x]_{rs}\mapsto([x]_r,[x]_s)$, is a ring isomorphism as in the text. In particular it is onto, so the pair $([m]_r,[n]_s)$ has a preimage. Any integer representative $x$ of that preimage satisfies both required congruences. Concretely, choose integers $u,v$ with $ur+vs=1$; then $x=nur+mvs$ has residues $m$ modulo $r$ and $n$ modulo $s$.
+
+\exercise{18.53}{The general Chinese remainder theorem}
+\textbf{(a)} For pairwise coprime positive moduli $b_1,\ldots,b_n$, put $B=\prod b_i$. The map
+\[\Phi:\Z_B\longrightarrow\prod_{i=1}^n\Z_{b_i},\qquad [x]_B\mapsto([x]_{b_1},\ldots,[x]_{b_n})
+\]
+is a well-defined ring homomorphism. Its kernel is zero: if every $b_i$ divides $x$, their pairwise coprimality implies $B\mid x$. Both finite sets have $B$ elements, so injectivity implies bijectivity. This proves the direct-product isomorphism.\par
+\textbf{(b)} Surjectivity applied to the tuple of residues $a_i$ produces the desired integer solution. Adding a sufficiently large multiple of $B$ makes it positive without changing any congruence. For an explicit formula, let $B_i=B/b_i$ and choose $u_i$ with $u_iB_i\equiv1\pmod {b_i}$. Then $x=\sum_i a_i u_i B_i$ has residue $a_j$ modulo $b_j$, because every other summand is divisible by $b_j$.
+
+\exercise{18.54}{Recovering commutative addition in a division ring}
+We must prove the missing additive commutativity. Distributivity and additive cancellation first show $a0=0=0a$, since, for example, $a0=a(0+0)=a0+a0$. The multiplicative identity $1$ on the nonzero elements also satisfies $10=01=0$, so it acts as unity on all of $S$. Expand the same product in two ways:
+\[(1+1)(a+b)=a+b+a+b=(1+1)a+(1+1)b=a+a+b+b.
+\]
+Cancel the initial $a$ and final $b$ in the additive group to obtain $b+a=a+b$. Thus $(S,+)$ is abelian. Multiplication is associative when all factors are nonzero by the assumed group axiom; if any factor is zero both associated products are zero. The assumed distributive laws now give all ring axioms, with nonzero unity and inverses for every nonzero element. Hence $S$ is a division ring.
+
+\exercise{18.55}{Boolean rings are commutative}
+For any $a$, idempotence of $-a$ gives $(-a)^2=-a$. But $(-a)^2=a^2=a$, so $a=-a$, equivalently $2a=0$. Next expand the identity $(a+b)^2=a+b$:
+\[a^2+ab+ba+b^2=a+b.
+\]
+Since $a^2=a$ and $b^2=b$, cancellation yields $ab+ba=0$. Therefore $ab=-ba=ba$, using the already proved fact that every element equals its negative. The ring is commutative.
+
+\exercise{18.56}{A Boolean ring of subsets}
+\textbf{(a)} Abbreviate $\varnothing,\{a\},\{b\},\{a,b\}$ by $0,A,B,S$. The addition is symmetric difference and multiplication is intersection:
+\[
+\begin{array}{c|cccc}+&0&A&B&S\\\hline
+0&0&A&B&S\\ A&A&0&S&B\\ B&B&S&0&A\\ S&S&B&A&0
+\end{array}
+\qquad
+\begin{array}{c|cccc}\cdot&0&A&B&S\\\hline
+0&0&0&0&0\\ A&0&A&0&A\\ B&0&0&B&B\\ S&0&A&B&S
+\end{array}.
+\]
+\textbf{(b)} Associate to each subset $T\subseteq S$ its indicator function $\chi_T:S\to\Z_2$. At each point, $\chi_{T\mathbin{\triangle}U}=\chi_T+\chi_U$ and $\chi_{T\cap U}=\chi_T\chi_U$, with operations in $\Z_2$. The bijection between subsets and their indicator functions therefore transfers the pointwise ring axioms to these set operations. The additive identity is $\varnothing$, each subset is its own additive inverse, and the unity is $S$. Finally $T\cap T=T$, so every element is idempotent and this is a Boolean ring.

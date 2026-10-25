@@ -1,0 +1,747 @@
+{
+  "book": "John B. Fraleigh, A First Course in Abstract Algebra",
+  "edition": 7,
+  "year": 2003,
+  "source": "../../Fraleigh.pdf",
+  "source_pdf_pages": 520,
+  "numbering": "section.exercise; A.exercise is the matrix appendix",
+  "page_mapping": "The scan omits blank pages; use actual PDF page numbers recorded per exercise group, not a constant offset.",
+  "parts": [
+    {
+      "part": 0,
+      "title": "Preliminaries"
+    },
+    {
+      "part": 1,
+      "title": "Groups and Subgroups"
+    },
+    {
+      "part": 2,
+      "title": "Permutations, Cosets, and Direct Products"
+    },
+    {
+      "part": 3,
+      "title": "Homomorphisms and Factor Groups"
+    },
+    {
+      "part": 4,
+      "title": "Rings and Fields"
+    },
+    {
+      "part": 5,
+      "title": "Ideals and Factor Rings"
+    },
+    {
+      "part": 6,
+      "title": "Extension Fields"
+    },
+    {
+      "part": 7,
+      "title": "Advanced Group Theory"
+    },
+    {
+      "part": 8,
+      "title": "Groups in Topology"
+    },
+    {
+      "part": 9,
+      "title": "Factorization"
+    },
+    {
+      "part": 10,
+      "title": "Automorphisms and Galois Theory"
+    },
+    {
+      "part": 11,
+      "title": "Appendix"
+    }
+  ],
+  "groups": [
+    {
+      "section": 0,
+      "part": 0,
+      "title": "Sets and Relations",
+      "printed_start": 1,
+      "exercise_count": 37,
+      "source_pages": [
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "section": 1,
+      "part": 1,
+      "title": "Introduction and Examples",
+      "printed_start": 11,
+      "exercise_count": 41,
+      "source_pages": [
+        28,
+        29
+      ]
+    },
+    {
+      "section": 2,
+      "part": 1,
+      "title": "Binary Operations",
+      "printed_start": 20,
+      "exercise_count": 37,
+      "source_pages": [
+        34,
+        35,
+        36,
+        37
+      ]
+    },
+    {
+      "section": 3,
+      "part": 1,
+      "title": "Isomorphic Binary Structures",
+      "printed_start": 28,
+      "exercise_count": 34,
+      "source_pages": [
+        43,
+        44,
+        45
+      ]
+    },
+    {
+      "section": 4,
+      "part": 1,
+      "title": "Groups",
+      "printed_start": 36,
+      "exercise_count": 41,
+      "source_pages": [
+        54,
+        55,
+        56,
+        57,
+        58
+      ]
+    },
+    {
+      "section": 5,
+      "part": 1,
+      "title": "Subgroups",
+      "printed_start": 49,
+      "exercise_count": 57,
+      "source_pages": [
+        64,
+        65,
+        66,
+        67,
+        68
+      ]
+    },
+    {
+      "section": 6,
+      "part": 1,
+      "title": "Cyclic Groups",
+      "printed_start": 59,
+      "exercise_count": 56,
+      "source_pages": [
+        75,
+        76,
+        77
+      ]
+    },
+    {
+      "section": 7,
+      "part": 1,
+      "title": "Generating Sets and Cayley Digraphs",
+      "printed_start": 68,
+      "exercise_count": 19,
+      "source_pages": [
+        81,
+        82
+      ]
+    },
+    {
+      "section": 8,
+      "part": 2,
+      "title": "Groups of Permutations",
+      "printed_start": 75,
+      "exercise_count": 53,
+      "source_pages": [
+        91,
+        92,
+        93,
+        94,
+        95
+      ]
+    },
+    {
+      "section": 9,
+      "part": 2,
+      "title": "Orbits, Cycles, and the Alternating Groups",
+      "printed_start": 87,
+      "exercise_count": 39,
+      "source_pages": [
+        102,
+        103,
+        104
+      ]
+    },
+    {
+      "section": 10,
+      "part": 2,
+      "title": "Cosets and the Theorem of Lagrange",
+      "printed_start": 96,
+      "exercise_count": 47,
+      "source_pages": [
+        109,
+        110,
+        111,
+        112
+      ]
+    },
+    {
+      "section": 11,
+      "part": 2,
+      "title": "Direct Products and Finitely Generated Abelian Groups",
+      "printed_start": 104,
+      "exercise_count": 54,
+      "source_pages": [
+        118,
+        119,
+        120,
+        121
+      ]
+    },
+    {
+      "section": 12,
+      "part": 2,
+      "title": "Plane Isometries",
+      "printed_start": 114,
+      "exercise_count": 42,
+      "source_pages": [
+        126,
+        127,
+        128,
+        129,
+        130,
+        131
+      ]
+    },
+    {
+      "section": 13,
+      "part": 3,
+      "title": "Homomorphisms",
+      "printed_start": 125,
+      "exercise_count": 55,
+      "source_pages": [
+        140,
+        141,
+        142
+      ]
+    },
+    {
+      "section": 14,
+      "part": 3,
+      "title": "Factor Groups",
+      "printed_start": 135,
+      "exercise_count": 41,
+      "source_pages": [
+        149,
+        150,
+        151
+      ]
+    },
+    {
+      "section": 15,
+      "part": 3,
+      "title": "Factor-Group Computations and Simple Groups",
+      "printed_start": 144,
+      "exercise_count": 42,
+      "source_pages": [
+        158,
+        159,
+        160,
+        161
+      ]
+    },
+    {
+      "section": 16,
+      "part": 3,
+      "title": "Group Action on a Set",
+      "printed_start": 154,
+      "exercise_count": 20,
+      "source_pages": [
+        166,
+        167,
+        168
+      ]
+    },
+    {
+      "section": 17,
+      "part": 3,
+      "title": "Applications of G-Sets to Counting",
+      "printed_start": 161,
+      "exercise_count": 9,
+      "source_pages": [
+        171,
+        172
+      ]
+    },
+    {
+      "section": 18,
+      "part": 4,
+      "title": "Rings and Fields",
+      "printed_start": 167,
+      "exercise_count": 56,
+      "source_pages": [
+        180,
+        181,
+        182,
+        183
+      ]
+    },
+    {
+      "section": 19,
+      "part": 4,
+      "title": "Integral Domains",
+      "printed_start": 177,
+      "exercise_count": 30,
+      "source_pages": [
+        188,
+        189,
+        190
+      ]
+    },
+    {
+      "section": 20,
+      "part": 4,
+      "title": "Fermat's and Euler's Theorems",
+      "printed_start": 184,
+      "exercise_count": 30,
+      "source_pages": [
+        195,
+        196
+      ]
+    },
+    {
+      "section": 21,
+      "part": 4,
+      "title": "The Field of Quotients of an Integral Domain",
+      "printed_start": 190,
+      "exercise_count": 17,
+      "source_pages": [
+        202,
+        203
+      ]
+    },
+    {
+      "section": 22,
+      "part": 4,
+      "title": "Rings of Polynomials",
+      "printed_start": 198,
+      "exercise_count": 31,
+      "source_pages": [
+        213,
+        214,
+        215
+      ]
+    },
+    {
+      "section": 23,
+      "part": 4,
+      "title": "Factorization of Polynomials over a Field",
+      "printed_start": 209,
+      "exercise_count": 37,
+      "source_pages": [
+        224,
+        225,
+        226
+      ]
+    },
+    {
+      "section": 24,
+      "part": 4,
+      "title": "Noncommutative Examples",
+      "printed_start": 220,
+      "exercise_count": 19,
+      "source_pages": [
+        232,
+        233
+      ]
+    },
+    {
+      "section": 25,
+      "part": 4,
+      "title": "Ordered Rings and Fields",
+      "printed_start": 227,
+      "exercise_count": 29,
+      "source_pages": [
+        239,
+        240,
+        241
+      ]
+    },
+    {
+      "section": 26,
+      "part": 5,
+      "title": "Homomorphisms and Factor Rings",
+      "printed_start": 237,
+      "exercise_count": 38,
+      "source_pages": [
+        248,
+        249,
+        250
+      ]
+    },
+    {
+      "section": 27,
+      "part": 5,
+      "title": "Prime and Maximal Ideals",
+      "printed_start": 245,
+      "exercise_count": 38,
+      "source_pages": [
+        257,
+        258,
+        259
+      ]
+    },
+    {
+      "section": 28,
+      "part": 5,
+      "title": "Gröbner Bases for Ideals",
+      "printed_start": 254,
+      "exercise_count": 36,
+      "source_pages": [
+        267,
+        268,
+        269
+      ]
+    },
+    {
+      "section": 29,
+      "part": 6,
+      "title": "Introduction to Extension Fields",
+      "printed_start": 265,
+      "exercise_count": 37,
+      "source_pages": [
+        277,
+        278,
+        279
+      ]
+    },
+    {
+      "section": 30,
+      "part": 6,
+      "title": "Vector Spaces",
+      "printed_start": 274,
+      "exercise_count": 27,
+      "source_pages": [
+        285,
+        286,
+        287
+      ]
+    },
+    {
+      "section": 31,
+      "part": 6,
+      "title": "Algebraic Extensions",
+      "printed_start": 283,
+      "exercise_count": 38,
+      "source_pages": [
+        296,
+        297,
+        298
+      ]
+    },
+    {
+      "section": 32,
+      "part": 6,
+      "title": "Geometric Constructions",
+      "printed_start": 293,
+      "exercise_count": 10,
+      "source_pages": [
+        304,
+        305
+      ]
+    },
+    {
+      "section": 33,
+      "part": 6,
+      "title": "Finite Fields",
+      "printed_start": 300,
+      "exercise_count": 14,
+      "source_pages": [
+        309,
+        310
+      ]
+    },
+    {
+      "section": 34,
+      "part": 7,
+      "title": "Isomorphism Theorems",
+      "printed_start": 307,
+      "exercise_count": 9,
+      "source_pages": [
+        314,
+        315
+      ]
+    },
+    {
+      "section": 35,
+      "part": 7,
+      "title": "Series of Groups",
+      "printed_start": 311,
+      "exercise_count": 29,
+      "source_pages": [
+        323,
+        324,
+        325
+      ]
+    },
+    {
+      "section": 36,
+      "part": 7,
+      "title": "Sylow Theorems",
+      "printed_start": 321,
+      "exercise_count": 22,
+      "source_pages": [
+        330,
+        331
+      ]
+    },
+    {
+      "section": 37,
+      "part": 7,
+      "title": "Applications of the Sylow Theory",
+      "printed_start": 327,
+      "exercise_count": 12,
+      "source_pages": [
+        336,
+        337
+      ]
+    },
+    {
+      "section": 38,
+      "part": 7,
+      "title": "Free Abelian Groups",
+      "printed_start": 333,
+      "exercise_count": 22,
+      "source_pages": [
+        343,
+        344
+      ]
+    },
+    {
+      "section": 39,
+      "part": 7,
+      "title": "Free Groups",
+      "printed_start": 341,
+      "exercise_count": 14,
+      "source_pages": [
+        348,
+        349,
+        350
+      ]
+    },
+    {
+      "section": 40,
+      "part": 7,
+      "title": "Group Presentations",
+      "printed_start": 346,
+      "exercise_count": 14,
+      "source_pages": [
+        356,
+        357,
+        358
+      ]
+    },
+    {
+      "section": 41,
+      "part": 8,
+      "title": "Simplicial Complexes and Homology Groups",
+      "printed_start": 355,
+      "exercise_count": 13,
+      "source_pages": [
+        366,
+        367
+      ]
+    },
+    {
+      "section": 42,
+      "part": 8,
+      "title": "Computations of Homology Groups",
+      "printed_start": 363,
+      "exercise_count": 12,
+      "source_pages": [
+        374,
+        375
+      ]
+    },
+    {
+      "section": 43,
+      "part": 8,
+      "title": "More Homology Computations and Applications",
+      "printed_start": 371,
+      "exercise_count": 13,
+      "source_pages": [
+        381,
+        382,
+        383
+      ]
+    },
+    {
+      "section": 44,
+      "part": 8,
+      "title": "Homological Algebra",
+      "printed_start": 379,
+      "exercise_count": 16,
+      "source_pages": [
+        391,
+        392
+      ]
+    },
+    {
+      "section": 45,
+      "part": 9,
+      "title": "Unique Factorization Domains",
+      "printed_start": 389,
+      "exercise_count": 34,
+      "source_pages": [
+        403,
+        404,
+        405
+      ]
+    },
+    {
+      "section": 46,
+      "part": 9,
+      "title": "Euclidean Domains",
+      "printed_start": 401,
+      "exercise_count": 24,
+      "source_pages": [
+        410,
+        411
+      ]
+    },
+    {
+      "section": 47,
+      "part": 9,
+      "title": "Gaussian Integers and Multiplicative Norms",
+      "printed_start": 407,
+      "exercise_count": 18,
+      "source_pages": [
+        416,
+        417
+      ]
+    },
+    {
+      "section": 48,
+      "part": 10,
+      "title": "Automorphisms of Fields",
+      "printed_start": 415,
+      "exercise_count": 39,
+      "source_pages": [
+        425,
+        426,
+        427
+      ]
+    },
+    {
+      "section": 49,
+      "part": 10,
+      "title": "The Isomorphism Extension Theorem",
+      "printed_start": 424,
+      "exercise_count": 13,
+      "source_pages": [
+        433,
+        434
+      ]
+    },
+    {
+      "section": 50,
+      "part": 10,
+      "title": "Splitting Fields",
+      "printed_start": 431,
+      "exercise_count": 25,
+      "source_pages": [
+        437,
+        438,
+        439
+      ]
+    },
+    {
+      "section": 51,
+      "part": 10,
+      "title": "Separable Extensions",
+      "printed_start": 436,
+      "exercise_count": 22,
+      "source_pages": [
+        445,
+        446,
+        447
+      ]
+    },
+    {
+      "section": 52,
+      "part": 10,
+      "title": "Totally Inseparable Extensions",
+      "printed_start": 444,
+      "exercise_count": 8,
+      "source_pages": [
+        450
+      ]
+    },
+    {
+      "section": 53,
+      "part": 10,
+      "title": "Galois Theory",
+      "printed_start": 448,
+      "exercise_count": 26,
+      "source_pages": [
+        457,
+        458,
+        459
+      ]
+    },
+    {
+      "section": 54,
+      "part": 10,
+      "title": "Illustrations of Galois Theory",
+      "printed_start": 457,
+      "exercise_count": 13,
+      "source_pages": [
+        465,
+        466
+      ]
+    },
+    {
+      "section": 55,
+      "part": 10,
+      "title": "Cyclotomic Extensions",
+      "printed_start": 464,
+      "exercise_count": 15,
+      "source_pages": [
+        472,
+        473
+      ]
+    },
+    {
+      "section": 56,
+      "part": 10,
+      "title": "Insolvability of the Quintic",
+      "printed_start": 470,
+      "exercise_count": 8,
+      "source_pages": [
+        477,
+        478
+      ]
+    },
+    {
+      "section": "A",
+      "part": 11,
+      "title": "Appendix: Matrix Algebra",
+      "printed_start": 477,
+      "exercise_count": 14,
+      "source_pages": [
+        482,
+        483
+      ]
+    }
+  ]
+}

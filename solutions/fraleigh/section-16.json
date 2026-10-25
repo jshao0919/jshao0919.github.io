@@ -1,0 +1,8 @@
+{
+  "section": 16,
+  "part": 3,
+  "title": "Group Action on a Set",
+  "exercise_count": 20,
+  "source_pages": [166, 167, 168],
+  "notes": ["Transitive-action classification follows the textbook's nonempty-set convention; the empty-set caveat is stated explicitly.", "16.9(c) concerns arbitrary sub-G-sets, including unions of orbits, so the answer is no."]
+}

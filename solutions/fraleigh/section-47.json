@@ -1,0 +1,13 @@
+{
+  "section": 47,
+  "part": 9,
+  "title": "Gaussian Integers and Multiplicative Norms",
+  "exercise_count": 18,
+  "source_pages": [
+    416,
+    417
+  ],
+  "notes": [
+    "47.17 needs absolute norm in the unit criterion and n>1 to obtain a genuine quadratic field."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "section": 40,
+  "part": 7,
+  "title": "Group Presentations",
+  "exercise_count": 14,
+  "source_pages": [
+    356,
+    357,
+    358
+  ],
+  "notes": [
+    "Exercise40.13(a) has degenerate exception n=1: its multiplication is always cyclic of order m regardless of r. Part(b) presentation criterion remains valid."
+  ]
+}

@@ -1,0 +1,167 @@
+\section{Integral Domains}
+
+\exercise{19.1}{A cubic congruence}
+Factor $x^3-2x^2-3x=x(x-3)(x+1)$. Because $12=3\cdot4$, it vanishes modulo $12$ exactly when it vanishes modulo both $3$ and $4$. Modulo $3$ the admissible residues are $0,2$; modulo $4$ they are $0,1,3$. Pairing these conditions, or testing the twelve residues, gives
+\[\boxed{x=0,3,5,8,9,11\text{ in }\Z_{12}}.
+\]
+For example $x=8$ gives $8\cdot5\cdot9=360$, divisible by $12$. Factoring alone does not permit setting one factor equal to zero in a ring with zero divisors.
+
+\exercise{19.2}{Solving linear equations in two prime fields}
+In $\Z_7$, $3^{-1}=5$, since $3\cdot5=15\equiv1$; hence $x=5\cdot2=\boxed3$. In $\Z_{23}$, $3^{-1}=8$, since $3\cdot8=24\equiv1$; hence $x=\boxed {16}$. Multiplication by a nonzero field element is bijective, so these solutions are unique.
+
+\exercise{19.3}{A quadratic modulo six}
+For $x=0,1,2,3,4,5$, the residues of $x^2+2x+2$ modulo $6$ are respectively $2,5,4,5,2,1$. None is zero, so there are $\boxed{\text{no solutions}}$. This exhaustive check is valid because these are all six elements of the ring.
+
+\exercise{19.4}{A second quadratic modulo six}
+Evaluating $x^2+2x+4$ at $x=0,1,2,3,4,5$ gives residues $4,1,0,1,4,3$ modulo $6$. Therefore the complete solution set is $\boxed{\{2\}}$.
+
+\exercise{19.5}{Characteristic of the even integers}
+The characteristic is $0$. For every positive integer $n$, the sum of $n$ copies of the element $2$ is the nonzero integer $2n$. Thus no positive $n$ annihilates every element.
+
+\exercise{19.6}{Characteristic of two integer coordinates}
+For every positive $n$, $n(1,0)=(n,0)\ne(0,0)$. Hence there is no common positive additive annihilator, and $\boxed{\operatorname{char}(\Z\times\Z)=0}$.
+
+\exercise{19.7}{A finite and an infinite coordinate}
+Although the first factor $\Z_3$ has characteristic $3$, the element $(0,3)$ in $\Z_3\times3\Z$ has infinite additive order. Its $n$-fold sum is $(0,3n)\ne0$ for every positive $n$. The product therefore has characteristic $\boxed0$.
+
+\exercise{19.8}{Two characteristic-three factors}
+Three copies of any element of $\Z_3\times\Z_3$ sum to zero. One or two copies of $(1,0)$ do not. The least common positive annihilator is consequently $\boxed3$.
+
+\exercise{19.9}{Relatively prime finite characteristics}
+A positive integer annihilates $\Z_3\times\Z_4$ exactly when it is divisible by both $3$ and $4$. The least such integer is $\lcm(3,4)=\boxed {12}$.
+
+\exercise{19.10}{A least common multiple of characteristics}
+The characteristic of $\Z_6\times\Z_{15}$ is $\lcm(6,15)=\boxed {30}$. Indeed $n(1,0)=0$ requires $6\mid n$, while $n(0,1)=0$ requires $15\mid n$; these two conditions are also sufficient to annihilate every element.
+
+\exercise{19.11}{A fourth power in characteristic four}
+Commutativity allows the binomial theorem:
+\[(a+b)^4=a^4+4a^3b+6a^2b^2+4ab^3+b^4.
+\]
+In characteristic $4$, coefficients are reduced modulo $4$: $4=0$ and $6=2$. Thus the simplified expression is $\boxed{a^4+2a^2b^2+b^4}$. The middle term need not vanish.
+
+\exercise{19.12}{A fifth power in characteristic three}
+The binomial coefficients for exponent $5$ are $1,5,10,10,5,1$, reducing modulo $3$ to $1,2,1,1,2,1$. Therefore
+\[\boxed{(a+b)^5=a^5+2a^4b+a^3b^2+a^2b^3+2ab^4+b^5}.
+\]
+Each reduction is justified because $3r=0$ for every element $r$ of the ring.
+
+\exercise{19.13}{A sixth power in characteristic three}
+First $(a+b)^3=a^3+b^3$, since the intermediate binomial coefficients are $3$. Squaring and using commutativity gives
+\[\boxed{(a+b)^6=(a^3+b^3)^2=a^6+2a^3b^3+b^6}.
+\]
+This agrees with reducing the sixth-row binomial coefficients modulo $3$.
+
+\exercise{19.14}{Exhibiting a matrix zero divisor}
+Let
+\[A=\begin{pmatrix}1&2\\2&4\end{pmatrix},\qquad
+B=\begin{pmatrix}-2&0\\1&0\end{pmatrix}.
+\]
+Both matrices are nonzero, but $AB=\begin{pmatrix}0&0\\0&0\end{pmatrix}$, as row-by-column multiplication verifies. Thus $A$ is a divisor of zero in $M_2(\Z)$.
+
+\exercise{19.15}{Correcting zero-divisor terminology}
+One must exclude zero factors. A nonzero element $a$ is a divisor of zero if there is a nonzero element $b$ with $ab=0$ or $ba=0$ (in a commutative ring these are the same condition). The mere equation $ab=0$ does not suffice if, for instance, $b=0$.
+
+\exercise{19.16}{Correcting characteristic}
+The characteristic is the \emph{least positive integer} $n$ such that $na=0$ for every $a\in R$, if such a positive integer exists. If none exists, the characteristic is $0$. The printed condition omits both minimality and the characteristic-zero case.
+
+\exercise{19.17}{True or false: integral domains}
+\begin{enumerate}[label=(\alph*)]
+\item False: $n\Z$, as a subring of $\Z$, never has nonzero zero divisors, regardless of primality.
+\item True: a field is commutative with nonzero unity, and $ab=0$, $a\ne0$ implies $b=a^{-1}0=0$.
+\item False: for positive $n$, $n\Z$ has characteristic $0$, since $k n\ne0$ for positive $k$.
+\item False: for $n>1$, $n\Z$ has no unity, whereas $\Z$ has one; an onto isomorphism would transport unity. Equivalently compare the images of $1$ and $1^2$.
+\item True: an isomorphism transports a zero-product or a cancellation equation to the integral domain, where cancellation holds.
+\item True: the elements $1,2\cdot1,3\cdot1,\ldots$ are distinct in characteristic zero.
+\item False: in a product of two domains, $(1,0)(0,1)=0$ with both factors nonzero.
+\item True: multiplying $ab=0$ by the inverse of $a$ would force $b=0$.
+\item False in general: for $n>1$, $n\Z$ lacks unity and is not an integral domain under the book's definition. For $n=1$ it is a subdomain.
+\item False: $\Z$ is a subring of $\Q$, but it lacks the inverse of $2$ and is not a field.
+\end{enumerate}
+
+\exercise{19.18}{Examples in the six ring regions}
+The regions of Figure 19.10 have the following examples.
+\begin{enumerate}[label=\arabic*.]
+\item $\Q$: a field.
+\item $\Z$: an integral domain that is not a field, because $2$ is not a unit.
+\item $\Z_6$: a commutative ring with unity but with $2\cdot3=0$.
+\item $2\Z$: a commutative ring without unity.
+\item $M_2(\R)$: a ring with unity but not commutative, since $E_{12}E_{21}=E_{11}\ne E_{22}=E_{21}E_{12}$.
+\item $M_2(2\Z)$: noncommutative by the same calculation using $2E_{12},2E_{21}$, and without unity. A unity would have to act as identity on $2E_{11}$ and $2E_{22}$, forcing it to be $I_2$, whose entries are not all even.
+\end{enumerate}
+
+\exercise{19.19}{Five matrix criteria for being a zero divisor}
+For a \emph{nonzero} $A\in M_n(F)$, the following five equivalent tests characterize zero divisors:
+\[\det A=0;\quad \rank A<n;\quad \Ker A\ne\{0\};\quad
+\text{columns of }A\text{ are dependent};\quad A\text{ is not invertible}.
+\]
+These are equivalent by the invertible-matrix theorem over a field. To connect them to the ring definition, if $Av=0$ with $v\ne0$, form $B$ with first column $v$ and all other columns zero. Then $B\ne0$ and $AB=0$. Conversely if $AB=0$ with $B\ne0$, some nonzero column $v$ of $B$ satisfies $Av=0$. If instead $BA=0$, invertibility would still be impossible. The exclusion $A\ne0$ is essential because the book does not call zero itself a zero divisor.
+
+\exercise{19.20}{Locating strictly skew fields in the ring diagram}
+A strictly skew field is a division ring whose multiplication is not commutative. It therefore lies inside the rings-with-unity region and outside the commutative-rings region. Its set is disjoint from the integral domains and fields of the book's definitions. The quaternion division ring $\mathbb H$ supplies an example. The following inclusion diagram redraws the relevant regions using rectangles instead of circles.
+\begin{center}
+\setlength{\unitlength}{0.8mm}
+\begin{picture}(160,92)
+\put(0,0){\framebox(160,92){}}
+\put(3,86){\makebox(0,0)[l]{All rings}}
+\put(5,8){\framebox(98,68){}}
+\put(24,67){\makebox(0,0){\scriptsize Commutative}}
+\put(24,61){\makebox(0,0){\scriptsize rings}}
+\put(45,3){\framebox(110,78){}}
+\put(111,76){\makebox(0,0)[l]{\scriptsize With unity}}
+\put(50,16){\framebox(47,45){}}
+\put(53,55){\makebox(0,0)[l]{\scriptsize Integral domains}}
+\put(56,23){\framebox(35,20){Fields}}
+\put(108,17){\framebox(40,40){}}
+\put(128,43){\makebox(0,0){\scriptsize Strictly skew}}
+\put(128,36){\makebox(0,0){\scriptsize fields}}
+\put(128,27){\makebox(0,0){$\mathbb H$}}
+\end{picture}
+\end{center}
+
+\exercise{19.21}{Synopsis of cancellation without zero divisors}
+If $ab=ac$ with $a\ne0$, then $a(b-c)=0$, so the absence of zero divisors forces $b-c=0$ and hence $b=c$; the right-cancellation argument is identical with the factors reversed.
+
+\exercise{19.22}{Synopsis of the finite-domain theorem}
+For nonzero $a$ in a finite integral domain, the map $x\mapsto ax$ is injective by cancellation and therefore surjective, so $ax=1$ for some $x$, giving the required multiplicative inverse.
+
+\exercise{19.23}{Idempotents in a division ring}
+Both $0$ and $1$ are idempotent and are distinct. If $a^2=a$ and $a\ne0$, left multiplication by $a^{-1}$ gives $a=1$. Thus the only possibilities are exactly $\boxed{0,1}$.
+
+\exercise{19.24}{Intersection of subdomains}
+A subdomain $D'\subseteq D$ must have the same unity as $D$: its nonzero unity $e$ satisfies $e(e-1_D)=0$, hence $e=1_D$ because $D$ has no zero divisors. Thus an intersection of subdomains contains $1_D\ne0$. It is a subring by the subring test, commutative by inheritance, and has no zero divisors because $D$ has none. It is consequently a subdomain. For the empty family use the ambient domain as its intersection.
+
+\exercise{19.25}{A finite ring without zero divisors}
+Fix $a\ne0$. The maps $x\mapsto ax$ and $x\mapsto xa$ are injective: equality of outputs gives a zero product after subtraction, so cancellation applies. Finiteness makes them onto. Hence there exist $b,c$ with $ab=1$ and $ca=1$. They agree because $c=c(ab)=(ca)b=b$. Thus $a$ has a two-sided inverse. This holds for every nonzero $a$, proving that $R$ is a division ring; no commutativity was assumed.
+
+\exercise{19.26}{A unique generalized inverse forces a division ring}
+\textbf{(a)} Fix nonzero $a$ and its unique $b$ with $aba=a$. If either $ax=0$ or $xa=0$, then $axa=0$, so $a(b+x)a=a$. Uniqueness implies $b+x=b$, hence $x=0$. Thus there are no nonzero zero divisors.\par
+\textbf{(b)} Associativity gives $a(bab)a=(aba)ba=aba=a$. Uniqueness of $b$ gives $bab=b$.\par
+\textbf{(c)} The element $e=ab$ is nonzero, since $aba=a\ne0$, and $e^2=(aba)b=ab=e$. For every $x$, $e(ex-x)=0$ and $(xe-x)e=0$. By (a), both differences are zero. Thus $ex=xe=x$, so $e$ is a unity for the whole ring.\par
+\textbf{(d)} Also $ba$ is a nonzero idempotent and hence, by the same argument, is a unity. The uniqueness of unity gives $ba=ab=1$. Every nonzero $a$ therefore has a two-sided inverse, so $R$ is a division ring.
+
+\exercise{19.27}{Characteristic of a subdomain}
+A subdomain $E\subseteq D$ has unity $1_D$, as proved in Exercise 19.24. In any ring with unity the characteristic is the additive order of its unity, with infinite order recorded as characteristic zero. The sums $n1$ are identical whether computed in $E$ or $D$, so their first positive zero, if any, occurs at the same $n$. Hence the two characteristics agree.
+
+\exercise{19.28}{The smallest subdomain}
+Let $P=\{n1_D:n\in\Z\}$. It contains $0$ and $1_D$, and
+\[(m1_D)-(n1_D)=(m-n)1_D,\qquad (m1_D)(n1_D)=mn1_D.
+\]
+It is therefore a commutative subring with nonzero unity, and has no zero divisors because it is contained in $D$. Thus it is a subdomain. Every subdomain contains the same unity $1_D$ and its integer sums and negatives, so every subdomain contains $P$.
+
+\exercise{19.29}{The characteristic of an integral domain}
+Suppose the positive characteristic is composite, say $n=rs$ with $1<r,s<n$. Minimality gives $r1\ne0$ and $s1\ne0$, but
+\[(r1)(s1)=rs1=n1=0,
+\]
+contradicting the absence of zero divisors. Also the characteristic cannot be $1$, since $1\ne0$. Therefore the characteristic is either $0$ or a prime.
+
+\exercise{19.30}{Adjoining a unity without changing characteristic}
+Write $K=\Z$ in characteristic zero, and $K=\Z_n$ in characteristic $n>0$. On $S=R\times K$ use the stated operations. Integer scalar multiplication on $R$ is well defined for residues modulo $n$ because $nr=0$.\par
+\textbf{(a)} Addition is the direct-product abelian group. To check multiplication associativity, write three elements as $(r,k),(s,l),(t,m)$. The first coordinate of either associated product expands to
+\[rst+k(st)+l(rt)+m(rs)+(kl)t+(km)s+(lm)r,
+\]
+and the second coordinate is $klm$. The two distributive laws follow by expanding in the same way using distributivity in $R$ and integer scalar multiplication. Thus this is a ring.\par
+\textbf{(b)} Its unity is $(0,1)$, since
+\[(0,1)(r,k)=(r,k)=(r,k)(0,1).
+\]
+\textbf{(c)} If $R$ has characteristic $n>0$, both coordinates are killed by $n$, and the element $(0,1)$ has additive order exactly $n$. If $R$ has characteristic zero, the integer coordinate of $(0,1)$ has infinite order. Therefore the characteristics agree. This includes the zero ring, with characteristic $1$, if admitted.\par
+\textbf{(d)} The map $r\mapsto(r,0)$ is injective and satisfies $(r,0)+(s,0)=(r+s,0)$ and $(r,0)(s,0)=(rs,0)$. It is consequently a ring isomorphism onto the subring $R\times\{0\}$.

@@ -1,0 +1,173 @@
+\section{Automorphisms of Fields}
+
+\exercise{48.1}{Conjugates of a square root}
+The minimal polynomial over $\Q$ is $x^2-2$, irreducible by Eisenstein at 2. Its two zeros are $\sqrt2,-\sqrt2$, so these are exactly the conjugates.
+
+\exercise{48.2}{Changing the base field}
+Since $\sqrt2\in\R$, its minimal polynomial over $\R$ is $x-\sqrt2$. Its only conjugate over $\R$ is itself. Conjugacy always depends on the base field.
+
+\exercise{48.3}{A translated square root}
+Subtracting 3 gives $(x-3)^2-2=x^2-6x+7$. This is irreducible over $\Q$ because a rational zero would make $\sqrt2$ rational. Its roots, hence all conjugates, are $3+\sqrt2$ and $3-\sqrt2$.
+
+\exercise{48.4}{A difference of square roots}
+Independent changes of signs of $\sqrt2$ and $\sqrt3$ give $\pm\sqrt2\pm\sqrt3$. They are four distinct conjugates of $\sqrt2-\sqrt3$. Squaring twice gives $x^4-10x^2+1=0$. To see the degree is 4, put $\alpha=\sqrt2-\sqrt3$. Since $\alpha^{-1}=-(\sqrt2+\sqrt3)$, both square roots lie in $\Q(\alpha)$. Thus this field is the degree-four field $\Q(\sqrt2,\sqrt3)$, and the list is complete.
+
+\exercise{48.5}{A mixed real and imaginary generator}
+The four sign choices $\pm\sqrt2\pm i$ are the images under the four automorphisms of $\Q(\sqrt2,i)$. They are distinct. The field has degree 4 because $i$ is not in the real field $\Q(\sqrt2)$. Thus the minimal polynomial is $x^4-2x^2+9$, obtained by multiplying the four linear factors, and the four listed numbers are all conjugates.
+
+\exercise{48.6}{Conjugacy over the real field}
+Over $\R$, the minimal polynomial is $(x-\sqrt2)^2+1$, which has no real zero. The conjugates are therefore $\sqrt2+i$ and $\sqrt2-i$. The base field fixes $\sqrt2$, so its sign cannot change.
+
+\exercise{48.7}{A nested square root over the rationals}
+Let $\alpha=\sqrt{1+\sqrt2}$. Its square gives $\sqrt2=\alpha^2-1$, so $\Q(\sqrt2)\subseteq\Q(\alpha)$. The element $1+\sqrt2$ is not a square in $\Q(\sqrt2)$: its norm to $\Q$ is $-1$, whereas the norm of a square is a rational square. Hence $[\Q(\alpha):\Q]=4$. Eliminating the inner root gives $x^4-2x^2-1$. Its four zeros are $\pm\sqrt{1+\sqrt2}$ and $\pm\sqrt{1-\sqrt2}$, with the latter square root taken in $\C$. These are all conjugates.
+
+\exercise{48.8}{A nested square root over a quadratic base}
+Over $\Q(\sqrt2)$, the polynomial is $x^2-(1+\sqrt2)$. The norm argument in Exercise 48.7 shows it is irreducible. Thus only the two outer signs can change: the conjugates are $\sqrt{1+\sqrt2}$ and $-\sqrt{1+\sqrt2}$.
+
+\exercise{48.9}{A radical fixed by a sign change}
+The automorphism $\tau_2$ changes only the sign of $\sqrt2$. Therefore $\tau_2(\sqrt3)=\sqrt3$.
+
+\exercise{48.10}{Applying a sign change to a sum}
+An automorphism preserves addition and fixes the other generating radicals. Thus $\tau_2(\sqrt2+\sqrt5)=-\sqrt2+\sqrt5$.
+
+\exercise{48.11}{Composing two sign changes}
+Apply the rightmost map first. The map $\tau_2$ sends $\sqrt2+3\sqrt5$ to $-\sqrt2+3\sqrt5$; $\tau_3$ fixes both radicals appearing there. Hence $(\tau_3\tau_2)(\sqrt2+3\sqrt5)=-\sqrt2+3\sqrt5$.
+
+\exercise{48.12}{An automorphism of a quotient}
+The map $\tau_5\tau_3$ flips $\sqrt5$ and $\sqrt3$ and fixes $\sqrt2$. Because field automorphisms preserve division,
+\[(\tau_5\tau_3)\left(\frac{\sqrt2-3\sqrt5}{2\sqrt3-\sqrt2}\right)=\frac{\sqrt2+3\sqrt5}{-2\sqrt3-\sqrt2}.\]
+The denominator remains nonzero because an injective map cannot send a nonzero element to zero.
+
+\exercise{48.13}{Simplifying a power of an automorphism}
+Since $\tau_5^2$ is the identity and $\sqrt{45}=3\sqrt5$, the remaining $\tau_3\tau_2$ flips only the $\sqrt2$ term. The result is $-\sqrt2+\sqrt{45}$.
+
+\exercise{48.14}{A nested composition}
+First $(\tau_2\tau_5)(\sqrt{30})=\sqrt{30}$ because two radical signs change. Applying $\tau_5$ to the bracket gives $\sqrt2-\sqrt3-\sqrt{30}$. Finally $\tau_3$ changes the signs of the last two radical terms. The answer is $\sqrt2+\sqrt3+\sqrt{30}$.
+
+\exercise{48.15}{Fixed fields in a biquadratic extension}
+Write an element uniquely as $a+b\sqrt2+c\sqrt3+d\sqrt6$ with rational coefficients. In the source notation $\sigma_1$ flips $\sqrt2$, $\sigma_2$ flips $\sqrt3$, and $\sigma_3$ flips both.
+\begin{enumerate}[label=(\alph*)]
+\item Fixing both $\sigma_1$ and $\sigma_3$ forces $b=c=d=0$, so the fixed field is $\Q$.
+\item Fixing $\sigma_3$ forces $b=c=0$, leaving $\Q(\sqrt6)$.
+\item Fixing both $\sigma_2$ and $\sigma_3$ again forces $b=c=d=0$, giving $\Q$.
+\end{enumerate}
+
+\exercise{48.16}{The fixed field of one radical flip}
+Use the basis $1,\sqrt2,\sqrt3,\sqrt5,\sqrt6,\sqrt{10},\sqrt{15},\sqrt{30}$ of $E$. The map $\tau_3$ negates exactly those basis terms containing $\sqrt3$. Their coefficients must vanish in a fixed element. The surviving terms span $\Q(\sqrt2,\sqrt5)$, which is the fixed field.
+
+\exercise{48.17}{The square of a radical flip}
+The map $\tau_3^2$ is the identity, so every element is fixed. Its fixed field is $E=\Q(\sqrt2,\sqrt3,\sqrt5)$.
+
+\exercise{48.18}{Fixing two separate sign changes}
+An element fixed by both $\tau_2$ and $\tau_3$ has no basis term involving $\sqrt2$ or $\sqrt3$. Only $1,\sqrt5$ survive, so the fixed field is $\Q(\sqrt5)$.
+
+\exercise{48.19}{Fixing two simultaneous sign changes}
+The map $\tau_5\tau_2$ negates $\sqrt2,\sqrt5$ and fixes $\sqrt3$. A basis monomial survives exactly when it contains both or neither of $\sqrt2,\sqrt5$. The surviving basis is $1,\sqrt3,\sqrt{10},\sqrt{30}$, so the fixed field is $\Q(\sqrt3,\sqrt{10})$.
+
+\exercise{48.20}{Fixing all three simultaneous signs}
+A basis monomial is fixed by $\tau_5\tau_3\tau_2$ exactly when it contains an even number of the three radicals. Thus the fixed field has basis $1,\sqrt6,\sqrt{10},\sqrt{15}$ and equals $\Q(\sqrt6,\sqrt{10})$, since $\sqrt6\sqrt{10}=2\sqrt{15}$.
+
+\exercise{48.21}{Fixing each of the three generators}
+Every nonconstant basis monomial contains at least one generating radical and is negated by its sign flip. Requiring invariance under all three flips leaves just rational multiples of 1. The fixed field is $\Q$.
+
+\exercise{48.22}{The eight-element sign-change group}
+\begin{enumerate}[label=(\alph*)]
+\item Each $\tau_j$ is nonidentity, since it negates a nonzero radical, and its square fixes all generators. It therefore has order 2.
+\item Put $a=\tau_2,b=\tau_3,c=\tau_5$. They commute because independent sign changes commute on each generator. The elements are $1,a,b,c,ab,ac,bc,abc$, with table
+\[
+\begin{array}{c|rrrrrrrr}
+ &1&a&b&c&ab&ac&bc&abc\\\hline
+1&1&a&b&c&ab&ac&bc&abc\\
+a&a&1&ab&ac&b&c&abc&bc\\
+b&b&ab&1&bc&a&abc&c&ac\\
+c&c&ac&bc&1&abc&a&b&ab\\
+ab&ab&b&a&abc&1&bc&ac&c\\
+ac&ac&c&abc&a&bc&1&ab&b\\
+bc&bc&abc&c&b&ac&ab&1&a\\
+abc&abc&bc&ac&ab&c&b&a&1
+\end{array}
+\]
+The rule is to cancel repeated letters, since $a^2=b^2=c^2=1$.
+\item Any rational automorphism sends each $\sqrt j$ to $\pm\sqrt j$ because it preserves its minimal polynomial. There are at most $2^3=8$ choices. The eight maps above realize every choice, so they form the full group, isomorphic to $\Z_2^3$.
+\end{enumerate}
+
+\exercise{48.23}{Correcting the conjugate criterion}
+Replace ``the same polynomial'' by ``the same irreducible polynomial over $F$.'' Equivalently, $\alpha,\beta$ have the same monic minimal polynomial over $F$. Merely being roots of one polynomial is insufficient: 0 and 1 are both roots of $x(x-1)$, but have different minimal polynomials.
+
+\exercise{48.24}{The kernel criterion for conjugacy}
+The statement is correct. The evaluation kernel at an algebraic element is the principal ideal generated by its monic minimal polynomial. Equality of the kernels is equivalent to equality of their monic generators, hence to conjugacy over $F$.
+
+\exercise{48.25}{A shifted generator gives the same automorphism}
+\begin{enumerate}[label=(\alph*)]
+\item The other conjugate of $\alpha=3+\sqrt2$ is $\beta=3-\sqrt2$, since both satisfy $x^2-6x+7$.
+\item Both conjugation automorphisms fix $\Q$ and send $\sqrt2=\alpha-3$ to $-\sqrt2=\beta-3$. Since $\sqrt2$ generates the field, they are exactly the same map; only the chosen generator used to describe it differs.
+\end{enumerate}
+
+\exercise{48.26}{Frobenius on four elements}
+Write the field as $\Z_2(\alpha)$ with $\alpha^2+\alpha+1=0$, so $\alpha^2=\alpha+1$. Squaring gives
+\[0\mapsto0,\quad1\mapsto1,\quad\alpha\mapsto\alpha+1,\quad\alpha+1\mapsto\alpha.\]
+Thus precisely 0 and 1 are fixed; the fixed field is $\Z_2$.
+
+\exercise{48.27}{Frobenius on nine elements}
+Here $\alpha^2=-1=2$ in characteristic 3. For $a,b\in\Z_3$, cubing gives $(a+b\alpha)^3=a-b\alpha$. Thus 0,1,2 are fixed; the other six elements are exchanged in the pairs
+\[\alpha\leftrightarrow2\alpha,\quad1+\alpha\leftrightarrow1+2\alpha,\quad2+\alpha\leftrightarrow2+2\alpha.\]
+The fixed field is $\Z_3$.
+
+\exercise{48.28}{Frobenius on an infinite field}
+Let $F=\Z_p(t)$ with $t$ transcendental. The image of $r(t)\mapsto r(t)^p$ is $\Z_p(t^p)$. It does not contain $t$: if $(P(t)/Q(t))^p=t$ with $P,Q$ nonzero polynomials, comparing degrees in $P(t)^p=tQ(t)^p$ gives $p\deg P=1+p\deg Q$, impossible modulo $p$. Frobenius remains injective, but need not be onto.
+
+\exercise{48.29}{Ten statements about field automorphisms}
+\begin{enumerate}[label=(\alph*)]
+\item False. An automorphism fixes 0 and 1 and cannot map one to the other.
+\item False. $\Q(0)=\Q$ and $\Q(\sqrt2)$ are not isomorphic: any isomorphism fixes $\Q$, and their rational degrees differ.
+\item True, by the conjugation isomorphism theorem.
+\item True. It fixes 1, hence integers and their quotients, giving the prime field.
+\item False. The identity automorphism of a finite field fixes only finitely many elements.
+\item True: it fixes the distinct elements 0 and 1.
+\item True: it fixes the infinite prime subfield $\Q$.
+\item True: composition, identity, and inverse preserve field operations.
+\item True: fixed elements are closed under differences, products and inverses of nonzero elements, and include 0,1.
+\item True. Fixing the larger field $E$ implies fixing $F$, and these maps form a subgroup.
+\end{enumerate}
+
+\exercise{48.30}{Synopsis of the existence direction}
+When $\alpha$ and $\beta$ have the same minimal polynomial $p$, identifying both $F(\alpha)$ and $F(\beta)$ with $F[x]/(p)$ gives the unique isomorphism fixing $F$ and sending $\alpha$ to $\beta$. This works because evaluation at either root has exactly the kernel $(p)$.
+
+\exercise{48.31}{Synopsis of the necessity direction}
+An isomorphism fixing the coefficients in $F$ carries the equation $p(\alpha)=0$ to $p(\beta)=0$, so the minimal polynomials of $\alpha$ and $\beta$ coincide. Applying the inverse gives the reverse divisibility if one spells this out via minimal polynomials.
+
+\exercise{48.32}{Bounding the number of embeddings}
+An embedding fixing $F$ must send $\alpha$ to a root of its degree-$n$ minimal polynomial. There are at most $n$ such distinct roots in an algebraic closure. Its image on $\alpha$ determines the embedding on every polynomial in $\alpha$, hence on all $F(\alpha)$. Therefore there are at most $n$ embeddings.
+
+\exercise{48.33}{Images of generators determine a map}
+Every element of $F(\alpha_1,\ldots,\alpha_n)$ is a rational expression in those generators with coefficients in $F$. A homomorphism fixing $F$ evaluates that expression at $\sigma(\alpha_1),\ldots,\sigma(\alpha_n)$. Its denominator stays nonzero by injectivity. Thus two such automorphisms agreeing on the generators agree on every field element.
+
+\exercise{48.34}{Permuting the conjugates present in a field}
+Let $p$ be the minimal polynomial of $\alpha$. If $\beta\in E$ satisfies $p(\beta)=0$, then $p(\sigma(\beta))=\sigma(p(\beta))=0$, because $\sigma$ fixes every coefficient of $p$. So $\sigma$ carries the set of such roots into itself. Its inverse has the same property, proving the restriction is a bijection, hence a permutation.
+
+\exercise{48.35}{A generating set has the same fixed field as its group}
+Since $S\subseteq H$, any element fixed by $H$ is fixed by $S$. Conversely, if $x$ is fixed by every $s\in S$, it is fixed by $s^{-1}$ too: apply $s^{-1}$ to $s(x)=x$. It is then fixed by any finite composition of generators and their inverses. Those compositions comprise $H$, so $x\in E_H$. Thus $E_S=E_H$.
+
+\exercise{48.36}{Prime cyclotomic fields}
+\begin{enumerate}[label=(\alph*)]
+\item A zero $\zeta$ of $\Phi_p$ is a nonidentity $p$th root of unity. Since $p$ is prime, it has order $p$, and $\zeta,\ldots,\zeta^{p-1}$ are distinct, nonidentity roots. They exhaust the $p-1$ zeros of $\Phi_p$.
+\item Each choice $\sigma_a(\zeta)=\zeta^a$, $1\le a<p$, gives a rational embedding onto the same field because $a$ is invertible modulo $p$. Composition satisfies $\sigma_a\sigma_b=\sigma_{ab}$, proving the group is abelian and has order $p-1$.
+\item Multiplication by $\zeta$ carries the usual basis $1,\ldots,\zeta^{p-2}$ to the basis $\zeta,\ldots,\zeta^{p-1}$. The automorphisms permute its basis vectors transitively. If $\sum_{j=1}^{p-1}c_j\zeta^j$ is fixed by every map, uniqueness of basis coefficients forces all $c_j$ equal, say to $c$. The sum is then $c(\zeta+\cdots+\zeta^{p-1})=-c\in\Q$. Conversely rationals are fixed, so the fixed field is $\Q$.
+\end{enumerate}
+
+\exercise{48.37}{Transcendental generators}
+Yes. Define $P(\alpha)/Q(\alpha)\mapsto P(\beta)/Q(\beta)$ for $P,Q\in F[x]$, $Q\ne0$. Transcendence ensures neither evaluation denominator vanishes, and equality of rational expressions is exactly a polynomial identity, so the map is well defined. It preserves both operations and has inverse obtained by exchanging $\alpha,\beta$. Thus it is an isomorphism fixing $F$.
+
+\exercise{48.38}{All automorphisms of a rational function field}
+They are precisely
+\[x\longmapsto\frac{ax+b}{cx+d},\qquad a,b,c,d\in F,\quad ad-bc\ne0.\]
+Such a substitution has inverse $x\mapsto (dx-b)/(-cx+a)$, so it is an automorphism. Multiplying all four coefficients by the same nonzero scalar gives the same map.
+For completeness, if an automorphism sends $x$ to $r=P(x)/Q(x)$ in lowest terms, put $m=\max(\deg P,\deg Q)$. The standard degree computation gives $[F(x):F(r)]=m$: $P(T)-rQ(T)$ is the minimal polynomial of $x$ over $F(r)$. Indeed, with $r$ replaced by an independent indeterminate $u$, the polynomial $P(T)-uQ(T)$ is irreducible in $F[T,u]$, since a factorization of this degree-one polynomial in $u$ would require a nonconstant common divisor of $P,Q$; Gauss's lemma transfers this to $F(u)[T]$. An automorphism has $F(r)=F(x)$, so $m=1$. The numerator and denominator are therefore linear or constant, and coprimality/nonconstancy is exactly $ad-bc\ne0$.
+
+\exercise{48.39}{Rigidity of real-field automorphisms}
+\begin{enumerate}[label=(\alph*)]
+\item If $u=v^2$, then $\sigma(u)=\sigma(v)^2$. Applying the inverse shows squares map onto squares.
+\item Positive real numbers are exactly the nonzero squares. An automorphism preserves nonzero elements, so it maps positive reals to positive reals.
+\item If $a<b$, then $b-a>0$, hence $\sigma(b)-\sigma(a)=\sigma(b-a)>0$. Thus it preserves strict order.
+\item Every automorphism fixes $\Q$. If $\sigma(x)>x$, choose a rational $q$ with $x<q<\sigma(x)$. Order preservation gives $\sigma(x)<\sigma(q)=q$, contradiction. If $\sigma(x)<x$, a rational between them gives the reverse contradiction. Hence $\sigma(x)=x$ for every real $x$.
+\end{enumerate}

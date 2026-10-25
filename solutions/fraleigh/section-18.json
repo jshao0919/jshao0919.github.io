@@ -1,0 +1,16 @@
+{
+  "section": 18,
+  "part": 4,
+  "title": "Rings and Fields",
+  "exercise_count": 56,
+  "source_pages": [
+    180,
+    181,
+    182,
+    183
+  ],
+  "notes": [
+    "Ring homomorphisms need not preserve unity; subrings need not contain ambient unity. Exercise22 has the exceptional case n=1.",
+    "Exercise45: P=A(A^T A)^(-1)A^T is m-by-m, despite the printed n-by-n description."
+  ]
+}

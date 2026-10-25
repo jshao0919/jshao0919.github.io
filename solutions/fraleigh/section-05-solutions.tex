@@ -1,0 +1,283 @@
+\section{Subgroups}
+
+\exercise{5.1}{Real numbers in the additive complex group}
+
+Yes. The real numbers contain $0$, and for any reals $a,b$ both $a+b$ and $-a$ are real. Associativity is inherited from complex addition. These facts verify the subgroup conditions.
+
+\exercise{5.2}{Positive rationals additively}
+
+No. The additive identity $0$ is not positive, so it is not in $\Q^+$. Also a positive rational has a negative additive inverse, outside the set. Closure under addition alone is insufficient.
+
+\exercise{5.3}{Multiples of seven}
+
+Yes. The set $7\Z$ contains zero. If $7m,7n\in7\Z$, then $7m+7n=7(m+n)$ and $-(7m)=7(-m)$ remain in the set. Thus it is an additive subgroup of $\C$.
+
+\exercise{5.4}{Pure imaginary numbers}
+
+Yes. The identity is $0=i\cdot0$. For real $a,b$, $ia+ib=i(a+b)$ and $-(ia)=i(-a)$ are pure imaginary. Therefore closure and inverse closure hold.
+
+\exercise{5.5}{Rational multiples of pi}
+
+Yes. The set is $\pi\Q=\{\pi q:q\in\Q\}$. It contains zero, sums have the form $\pi(q+r)$, and negatives have the form $\pi(-q)$. Since $q+r,-q$ are rational, all subgroup conditions hold under addition.
+
+\exercise{5.6}{Integral powers of pi additively}
+
+No. Every $\pi^n$ is positive, so zero is absent and no negative additive inverse is included. Thus $\{\pi^n:n\in\Z\}$ is not an additive subgroup, regardless of whether particular sums happen to lie in it.
+
+\exercise{5.7}{The same six sets multiplicatively}
+
+The only multiplicative subgroups of $\C^*$ among the six are $\Q^+$ and $\{\pi^n:n\in\Z\}$. The positive rationals contain $1$, are closed under products, and have positive rational reciprocals. Integral powers of $\pi$ contain $\pi^0=1$, multiply by adding exponents, and invert by negating exponents. The other four sets ($\R,7\Z,i\R,\pi\Q$) contain $0$, so are not even subsets of the stated group $\C^*$.
+
+\exercise{5.8}{Matrices of determinant two}
+
+No. The identity matrix has determinant $1$, so it is absent. In addition, the product of two matrices of determinant $2$ has determinant $4$, violating closure. Such matrices exist, for example $\operatorname{diag}(2,1,\ldots,1)$.
+
+\exercise{5.9}{Invertible diagonal matrices}
+
+Yes. The identity is diagonal, products multiply corresponding nonzero diagonal entries, and reciprocating those entries produces a diagonal inverse. Thus this nonempty subset is closed under products and inverses, hence is a subgroup of $GL(n,\R)$.
+
+\exercise{5.10}{Invertible upper-triangular matrices}
+
+Yes. Products remain upper triangular and their diagonal entries are the corresponding products of nonzero diagonal entries. The identity belongs. Back substitution in $Ax=e_j$ shows $A^{-1}$ is upper triangular, and its diagonal entries are $1/a_{jj}$, hence nonzero. Thus this is a subgroup.
+
+\exercise{5.11}{Matrices of determinant minus one}
+
+No. The identity has determinant $1$, and the product of two determinant-$-1$ matrices has determinant $1$, outside the set. Hence both identity membership and product closure fail.
+
+\exercise{5.12}{Matrices of determinant one or minus one}
+
+Yes. The identity belongs, products have determinant in $\{1,-1\}$, and the inverse has determinant $1/\det A$, again in $\{1,-1\}$. All matrices in the set are invertible, so the subgroup criterion applies.
+
+\exercise{5.13}{Orthogonal matrices}
+
+The identity satisfies $I_n^TI_n=I_n$. If $A^TA=B^TB=I_n$, then $(AB)^T(AB)=B^TA^TAB=B^TB=I_n$, so products remain orthogonal. The equation $A^TA=I_n$ gives $A^{-1}=A^T$, and then $(A^{-1})^TA^{-1}=AA^T=I_n$. Thus inverses also belong, and this is a subgroup.
+
+\exercise{5.14}{Nowhere-zero functions}
+
+\textbf{(a)} Not an additive subgroup: the zero function is absent; also $1+(-1)=0$ shows failure of closure. \textbf{(b)} Yes, this is the entire multiplicative group $\widetilde F$. Products are nowhere zero, the constant $1$ is the identity, and the inverse of $f$ is the function $x\mapsto1/f(x)$, defined everywhere because $f$ never vanishes.
+
+\exercise{5.15}{Functions vanishing at one}
+
+\textbf{(a)} Yes. The zero function belongs, and if $f(1)=g(1)=0$, then $(f+g)(1)=0$ and $(-f)(1)=0$. \textbf{(b)} No. Every function in the specified set vanishes at $1$, so none belongs to $\widetilde F$. It is not a subset of the proposed ambient multiplicative group.
+
+\exercise{5.16}{Nowhere-zero functions equal to one at one}
+
+\textbf{(a)} No: the zero function is absent (and adding two members gives value $2$ at $1$). \textbf{(b)} Yes. The constant function $1$ belongs, products have value $1\cdot1=1$ at $1$, and reciprocals have value $1/1=1$ there. Nowhere-zero values are preserved by products and reciprocals.
+
+\exercise{5.17}{Nowhere-zero functions equal to one at zero}
+
+\textbf{(a)} No, since the additive identity is absent and adding two such functions gives value $2$ at zero. \textbf{(b)} Yes: the constant $1$ belongs, and both $(fg)(0)=f(0)g(0)=1$ and $(1/f)(0)=1$ hold. All resulting functions remain nowhere zero.
+
+\exercise{5.18}{Nowhere-zero functions equal to minus one at zero}
+
+\textbf{(a)} No: the zero function does not satisfy the defining condition. \textbf{(b)} No: the multiplicative identity has value $1$, not $-1$, at zero. Furthermore multiplying two members gives value $(-1)(-1)=1$ at zero, so product closure fails.
+
+\exercise{5.19}{Nonzero constant functions}
+
+\textbf{(a)} No: the zero constant is not in this subset of $\widetilde F$, and the constants $1,-1$ add to it. \textbf{(b)} Yes: nonzero constants contain $1$, multiply to nonzero constants, and have nonzero constant reciprocals. Thus they form a multiplicative subgroup.
+
+\exercise{5.20}{All subgroup relations among nine groups}
+
+Include the nine reflexive relations $G_i\le G_i$. All strict relations are the transitive consequences of
+\[G_2<G_8<G_7<G_1<G_4,\qquad G_9<G_3<G_5,\qquad G_6<G_5.
+\]
+Explicitly the additional pairs $(i,j)$ with $G_i<G_j$ are
+\[\begin{gathered}(2,8),(2,7),(2,1),(2,4),(8,7),(8,1),(8,4),\\(7,1),(7,4),(1,4),(9,3),(9,5),(3,5),(6,5).
+\end{gathered}\]
+The additive chain is $12\Z\subset6\Z\subset3\Z\subset\Z\subset\R$. Multiplicatively, powers of $6$ are positive rationals, and powers of $\pi$ are positive reals. The latter are not all rational, since $\pi$ is irrational; the two cyclic power groups do not contain each other, since $\pi$ is not a power of $6$ and $6$ is not an integral power of $\pi$ (use $\pi<6<\pi^2$). A subgroup must use the ambient operation, so no cross-relations between the additive and multiplicative lists are allowed.
+
+\exercise{5.21}{Five elements of three cyclic groups}
+
+\begin{enumerate}[label=(\alph*)]
+\item In $25\Z$: $-50,-25,0,25,50$, obtained using integer multiples $-2,-1,0,1,2$ of $25$.
+\item In $\{(1/2)^n:n\in\Z\}$: $4,2,1,1/2,1/4$, from those same exponents.
+\item In $\{\pi^n:n\in\Z\}$: $\pi^{-2},\pi^{-1},1,\pi,\pi^2$.
+\end{enumerate}
+Zero exponents in a multiplicative cyclic group give its identity $1$; they never give the number $0$.
+
+\exercise{5.22}{A signed interchange matrix}
+
+Let $A=\begin{pmatrix}0&-1\\-1&0\end{pmatrix}$. Direct multiplication gives $A^2=I_2$, while $A\ne I_2$. Thus every even integral power is $I_2$ and every odd integral power is $A$ (also for negative exponents, since $A^{-1}=A$). The subgroup is precisely $\{I_2,A\}$.
+
+\exercise{5.23}{A shear matrix}
+
+For $A=\begin{pmatrix}1&1\\0&1\end{pmatrix}$, multiplication shows
+\[\begin{pmatrix}1&m\\0&1\end{pmatrix}\begin{pmatrix}1&n\\0&1\end{pmatrix}=\begin{pmatrix}1&m+n\\0&1\end{pmatrix}.
+\]
+Thus induction gives $A^n=\begin{pmatrix}1&n\\0&1\end{pmatrix}$ for positive $n$, and the inverse $A^{-1}=\begin{pmatrix}1&-1\\0&1\end{pmatrix}$ extends it to every integer $n$. These, and only these, are the elements of $\gen A$.
+
+\exercise{5.24}{A diagonal generator}
+
+If $A=\operatorname{diag}(3,2)$, then $A^n=\operatorname{diag}(3^n,2^n)$ for every $n\in\Z$; negative powers use reciprocals of the diagonal entries. Therefore
+\[\gen A=\{\operatorname{diag}(3^n,2^n):n\in\Z\}.
+\]
+The same exponent must occur in both positions; the subgroup does not allow them to be chosen independently.
+
+\exercise{5.25}{A scaled signed interchange}
+
+Write $B=\begin{pmatrix}0&-2\\-2&0\end{pmatrix}=2A$ with $A^2=I_2$ from Exercise 5.22. Since scalar matrices commute with $A$, $B^n=2^n A^n$. Thus its elements are
+\[\{2^{2k}I_2:k\in\Z\}\ \cup\ \left\{2^{2k+1}\begin{pmatrix}0&-1\\-1&0\end{pmatrix}:k\in\Z\right\}.
+\]
+This includes negative powers; $B^2=4I_2$ shows that the group is infinite.
+
+\exercise{5.26}{Which six groups are cyclic?}
+
+\begin{enumerate}[label=$G_{\arabic*}:$]
+\item Cyclic, generated exactly by $1,-1$: the multiples of an integer $a$ fill $\Z$ only if $|a|=1$.
+\item Not cyclic. If $q\ne0$ were an additive generator, $q/2$ could not be an integral multiple of $q$; $q=0$ plainly cannot generate $\Q$.
+\item Not cyclic. If a positive rational generator differs from $1$, replace it by its reciprocal if necessary so it is $q>1$. Then the rational $(1+q)/2$ lies strictly between $1$ and $q$, while no integral power of $q$ does. The generator $1$ also fails.
+\item Cyclic, with precisely the generators $6,-6$, since division by $6$ identifies this group with $\Z$.
+\item Cyclic, with precisely $6,1/6$ as generators. If $6^k$ generates, there must be an integer $m$ with $6^{km}=6$, so $km=1$ and $k=\pm1$.
+\item Not cyclic. If $a+b\sqrt2$ generated it, expressing $1=k(a+b\sqrt2)$ with integers forces $kb=0$ and $ka=1$, by irrationality of $\sqrt2$. Thus $b=0$, $a=\pm1$, and its multiples cannot include $\sqrt2$.
+\end{enumerate}
+
+\exercise{5.27}{The subgroup generated by three modulo four}
+
+Successive multiples of $3$ modulo $4$ are $0,3,2,1$, then $0$ again. These four residues are distinct, so the generated subgroup has order $4$.
+
+\exercise{5.28}{A nonidentity element of the Klein group}
+
+Table 5.11 gives $c^2=e$ and $c\ne e$. Therefore the subgroup generated by $c$ is $\{e,c\}$ and has order $2$.
+
+\exercise{5.29}{An angle of two pi over three}
+
+The generator is $e^{2\pi i/3}$. Its $k$th power is $1$ exactly when $2\pi k/3$ is an integral multiple of $2\pi$, or $3\mid k$. The least positive such $k$ is $3$, so the subgroup has order $3$, even though the ambient group has six elements.
+
+\exercise{5.30}{An angle of four pi over five}
+
+The generator is $e^{4\pi i/5}$. Its $k$th power is $1$ if and only if $5\mid2k$. Since $2$ and $5$ are relatively prime, this is equivalent to $5\mid k$. Thus the order is $5$.
+
+\exercise{5.31}{An angle of three pi over two}
+
+The generator is $e^{3\pi i/2}=-i$. Its powers are $1,-i,-1,i$, then $1$ again. Consequently its cyclic subgroup has order $4$.
+
+\exercise{5.32}{An angle of five pi over four}
+
+The generator is $e^{5\pi i/4}=e^{2\pi i(5/8)}$. Its $k$th power is $1$ exactly when $8\mid5k$. Because $\gcd(5,8)=1$, the least positive such $k$ is $8$. Thus this element generates all of $U_8$.
+
+\exercise{5.33}{A permutation matrix of order two}
+
+On the standard column vectors the matrix interchanges $e_1,e_3$ and interchanges $e_2,e_4$. Applying it twice fixes all four basis vectors, so $A^2=I_4$. Since one application does not fix $e_1$, $A\ne I_4$. Therefore its cyclic subgroup has order $2$.
+
+\exercise{5.34}{A permutation matrix of order four}
+
+Track the first standard basis vector: $e_1\mapsto e_3\mapsto e_2\mapsto e_4\mapsto e_1$. This is a cycle containing all four basis vectors. Four applications fix each vector, and fewer than four do not fix $e_1$. Thus $A^4=I_4$ with no smaller positive identity power, giving order $4$.
+
+\exercise{5.35}{A permutation matrix of order three}
+
+This matrix sends $e_1\mapsto e_4\mapsto e_2\mapsto e_1$ and fixes $e_3$. Thus three applications fix every standard basis vector. Neither one nor two applications fix $e_1$, so the least positive identity power is $3$, and the generated subgroup has order $3$.
+
+\exercise{5.36}{All subgroups generated in Z six}
+
+\begin{enumerate}[label=(\alph*)]
+\item Add row and column labels modulo $6$:
+\[\begin{array}{c|rrrrrr}+&0&1&2&3&4&5\\\hline0&0&1&2&3&4&5\\1&1&2&3&4&5&0\\2&2&3&4&5&0&1\\3&3&4&5&0&1&2\\4&4&5&0&1&2&3\\5&5&0&1&2&3&4\end{array}\]
+\item $\gen0=\{0\}$, $\gen1=\gen5=\Z_6$, $\gen2=\gen4=\{0,2,4\}$, $\gen3=\{0,3\}$. These follow by repeatedly adding the generator until zero reappears.
+\item Exactly $1$ and $5$ generate all six residues.
+\item The inclusion diagram is the diamond below. Neither middle subgroup contains the other, since $2\notin\{0,3\}$ and $3\notin\{0,2,4\}$.
+\end{enumerate}
+\begin{center}\setlength{\unitlength}{1mm}\begin{picture}(95,49)
+\put(46,45){$\Z_6$}\put(10,23){$\{0,2,4\}$}\put(65,23){$\{0,3\}$}\put(44,1){$\{0\}$}
+\put(46,42){\line(-1,-1){15}}\put(51,42){\line(1,-1){15}}\put(31,20){\line(1,-1){15}}\put(66,20){\line(-1,-1){15}}
+\end{picture}\end{center}
+
+\exercise{5.37}{A complete subgroup definition}
+
+A subgroup $H$ of a group $G$ is a subset that is itself a group under the operation inherited from $G$. Equivalently, it contains $e$, is closed under products, and contains the inverse of each of its elements. The proposed definition omits product closure. For instance $\{0,1,-1\}$ in the additive group $\Z$ contains the identity and all negatives but is not closed under addition.
+
+\exercise{5.38}{The definition of cyclic}
+
+The stated definition is correct: there exists $a\in G$ such that every element of $G$ is $a^n$ for some integer $n$. Both negative powers and $n=0$ are allowed. In additive notation the same condition is $G=\{na:n\in\Z\}$.
+
+\exercise{5.39}{Ten subgroup statements}
+
+\begin{enumerate}[label=(\alph*)]
+\item True: associativity is one of the group axioms.
+\item False: multiplication by inverses proves both cancellation laws in every group.
+\item True: the inherited operation makes $G$ a subgroup of itself.
+\item False: the text calls only $G$ itself the improper subgroup; $\{e\}$ is the trivial subgroup, usually proper when $G\ne\{e\}$.
+\item False: in $\Z_4$, the element $2$ generates only $\{0,2\}$.
+\item False: $1,-1$ are distinct generators of the infinite cyclic group $\Z$.
+\item False: $\Z$ is a group under addition but zero has no multiplicative inverse.
+\item False as a proposed complete definition: a subgroup is a subset satisfying additional operation and group conditions.
+\item True: $1$ generates $\Z_4$ by addition modulo $4$.
+\item False: $\{1\}$ is a subset of the additive group $\Z$ but is not a subgroup, since it lacks zero.
+\end{enumerate}
+
+\exercise{5.40}{More than two square roots of the identity}
+
+In the Klein four-group $V=\{e,a,b,c\}$ every element satisfies $x^2=e$. Thus there are four solutions, exceeding two. The familiar degree bound for polynomial roots over a field cannot be applied to an arbitrary group equation.
+
+\exercise{5.41}{An isomorphism carries subgroups to subgroups}
+
+Since $H$ contains $e$, its image contains $\phi(e)=e'$. If $u=\phi(h)$ and $v=\phi(k)$ lie in $\phi[H]$, then $u*'v=\phi(h*k)$ belongs to $\phi[H]$ because $h*k\in H$. Also $u^{-1}=\phi(h^{-1})$ belongs because $h^{-1}\in H$. Thus the image contains the identity and is closed under products and inverses, so is a subgroup of $G'$.
+
+\exercise{5.42}{An isomorphism carries a cyclic group to a cyclic group}
+
+Let $G=\gen a$. Every $g'\in G'$ is $\phi(g)$ for some $g\in G$, by surjectivity. Write $g=a^n$. A homomorphism preserves positive powers by repeated multiplication, zero powers because it preserves the identity, and negative powers because it preserves inverses. Hence $g'=\phi(a)^n$. Thus $G'=\gen{\phi(a)}$ is cyclic.
+
+\exercise{5.43}{Products of two subgroups in an abelian group}
+
+Let $HK=\{hk:h\in H,k\in K\}$. It contains $ee=e$. If $h_1k_1,h_2k_2\in HK$, then by commutativity
+\[(h_1k_1)(h_2k_2)=(h_1h_2)(k_1k_2)\in HK.
+\]
+Also $(hk)^{-1}=k^{-1}h^{-1}=h^{-1}k^{-1}\in HK$. The factors remain in their respective subgroups. Therefore $HK$ is a subgroup; commutativity was essential in regrouping the factors.
+
+\exercise{5.44}{The hidden nonemptiness assumption}
+
+The argument starts ``let $a\in H$,'' which is not possible when $H=\varnothing$. The empty subset is vacuously closed under products and inverses, so Conditions 1 and 3 alone do not force identity membership. If one separately assumes $H$ nonempty, the argument becomes valid. The flaw is therefore not the algebraic calculation, but the unjustified choice of an element.
+
+\exercise{5.45}{The one-step subgroup criterion}
+
+If $H$ is a subgroup, then $b^{-1}\in H$ and hence $ab^{-1}\in H$ for $a,b\in H$. Conversely assume $H\ne\varnothing$ and that all such products belong. Choose $h\in H$; then $hh^{-1}=e\in H$. For $b\in H$ use $a=e$ to get $b^{-1}\in H$. Finally for $a,b\in H$ the element $b^{-1}$ also belongs, so $a(b^{-1})^{-1}=ab\in H$. Thus identity, inverse closure, and product closure all follow.
+
+\exercise{5.46}{Only one generator}
+
+If $G=\gen a$, then $a^{-1}$ is also a generator because $(a^{-1})^{-n}=a^n$. With only one generator we must have $a=a^{-1}$, so $a^2=e$. Every power of $a$ is then either $e$ or $a$, giving $|G|\le2$. This includes the trivial group, whose sole generator is its identity.
+
+\exercise{5.47}{The solutions of x squared equals identity}
+
+Let $H=\{x:x^2=e\}$ in an abelian group. The identity belongs. If $x,y\in H$, commutativity gives $(xy)^2=x^2y^2=e$. Also $(x^{-1})^2=(x^2)^{-1}=e$. Thus $H$ is closed under products and inverses and is a subgroup. Without commutativity, the regrouping of $(xy)^2$ would not be justified.
+
+\exercise{5.48}{The solutions of a fixed power equation}
+
+For fixed $n\ge1$, put $H=\{x:x^n=e\}$. The identity is in $H$. If $x,y\in H$, the commuting-product power law gives $(xy)^n=x^ny^n=e$, and $(x^{-1})^n=(x^n)^{-1}=e$. Hence the subgroup criterion holds. For $n=1$ this is simply the trivial subgroup.
+
+\exercise{5.49}{A positive identity power in a finite group}
+
+The powers $e,a,a^2,\ldots,a^{|G|}$ form $|G|+1$ elements counted with repetitions in a set of size $|G|$. Thus $a^i=a^j$ for some $i<j$. Multiplying by $a^{-i}$ gives $a^{j-i}=e$ with positive exponent, as required.
+
+\exercise{5.50}{A finite nonempty product-closed subset}
+
+Choose $h\in H$. By closure all positive powers of $h$ are in $H$, and finiteness forces $h^i=h^j$ for some positive $i<j$. In the ambient group cancel to get $h^{j-i}=e\in H$. For any $a\in H$, the same finite-power argument produces $a^m=e$ with $m\ge1$. If $m=1$, then $a=e$ and its inverse is in $H$; otherwise $a^{-1}=a^{m-1}\in H$. Thus $H$ contains the identity and all inverses, and the given product closure completes the subgroup conditions.
+
+\exercise{5.51}{The centralizer of one element}
+
+The identity commutes with $a$. If $xa=ax$ and $ya=ay$, then $(xy)a=x(ya)=x(ay)=(xa)y=a(xy)$. To obtain inverse closure, multiply $xa=ax$ on the left and right by $x^{-1}$ to get $ax^{-1}=x^{-1}a$. Thus $H_a$ contains $e$ and is closed under products and inverses, making it a subgroup.
+
+\exercise{5.52}{The centralizer of a set and the center}
+
+\begin{enumerate}[label=(\alph*)]
+\item The identity commutes with every $s\in S$. If $x,y$ do so, then for every such $s$, $(xy)s=x(ys)=x(sy)=(xs)y=s(xy)$. Similarly $xs=sx$ implies $x^{-1}s=sx^{-1}$. Hence $H_S$ is a subgroup. If $S$ is empty the condition is vacuous and $H_S=G$, still a subgroup.
+\item For $S=G$, take $x,y\in H_G$. Since $x$ commutes with \emph{every} element of $G$, it commutes in particular with $y$. Thus the subgroup $H_G$ is abelian.
+\end{enumerate}
+
+\exercise{5.53}{An equivalence relation from a subgroup}
+
+Reflexivity follows from $aa^{-1}=e\in H$. If $ab^{-1}\in H$, its inverse $ba^{-1}$ belongs to $H$, proving symmetry. If $ab^{-1},bc^{-1}\in H$, their product is $ab^{-1}bc^{-1}=ac^{-1}\in H$, proving transitivity. These are all three required conditions; no commutativity or normality is assumed.
+
+\exercise{5.54}{Intersecting two subgroups}
+
+Both $H$ and $K$ contain $e$, so their intersection is nonempty. If $x,y\in H\cap K$, their product lies in $H$ and lies in $K$, so lies in the intersection. The same applies to $x^{-1}$ because both subgroups are inverse-closed. Associativity is inherited from $G$, and the subgroup criterion therefore proves $H\cap K\le G$.
+
+\exercise{5.55}{A cyclic group is abelian}
+
+Write $G=\gen a$. Given $x,y\in G$, there are integers $r,s$ with $x=a^r,y=a^s$. Then $xy=a^{r+s}=a^{s+r}=yx$, using commutativity of integer addition, not a preexisting commutativity assumption about $G$. Thus all elements of $G$ commute.
+
+\exercise{5.56}{The set of all nth powers}
+
+A sufficient hypothesis is that $G$ is abelian (for any fixed positive integer $n$). Then $e=e^n$ lies in $G_n$, the product $a^nb^n=(ab)^n$ is again an $n$th power, and $(a^n)^{-1}=(a^{-1})^n$ is again an $n$th power. Thus $G_n\le G$. The hypothesis is sufficient rather than necessary; when $n=1$, for example, $G_n=G$ for every group.
+
+\exercise{5.57}{No proper nontrivial subgroup forces cyclicity}
+
+If $G=\{e\}$ it is cyclic. Otherwise choose $a\ne e$. Its cyclic subgroup $\gen a$ is nontrivial because it contains $a$. By hypothesis it cannot be a proper subgroup, so $\gen a=G$. Thus $G$ is cyclic. Choosing a nonidentity element is the step that excludes the trivial subgroup from this argument.

@@ -1,0 +1,79 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{booktabs,array}
+\usepackage{pict2e}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\definecolor{mathjockgreen}{HTML}{355439}
+\hypersetup{colorlinks=true,linkcolor=mathjockgreen,urlcolor=mathjockgreen,
+  pdftitle={Fraleigh A First Course in Abstract Algebra: worked solutions},
+  pdfauthor={Mathjock},pdfsubject={Detailed worked solutions, seventh edition}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\setlength{\headheight}{14pt}
+\setlist[enumerate]{leftmargin=*,itemsep=0.4em,topsep=0.4em}
+\setlist[itemize]{leftmargin=*,itemsep=0.25em}
+\allowdisplaybreaks
+\emergencystretch=2em
+% Leave a visible gap after two-digit exercise numbers in the contents.
+\makeatletter
+% Chapter.section and supplementary labels need more room than article's
+% default 1.5em section-number box, especially for labels such as 3.S.
+\renewcommand*{\l@section}[2]{\begingroup\bfseries
+  \@dottedtocline{1}{0em}{3em}{#1}{#2}\endgroup}
+\renewcommand*{\l@subsection}{\@dottedtocline{2}{1.5em}{3.5em}}
+\makeatother
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Mathjock \textbar\ Fraleigh, seventh edition}
+\fancyhead[R]{\small Step-by-step solutions}
+\fancyfoot[C]{\thepage}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\makeatletter
+\newcommand{\exercise}[2]{\subsection*{Exercise #1: #2}\addcontentsline{toc}{subsection}{Exercise #1: #2}\def\@currentlabel{#1}\label{ex:#1}}
+\makeatother
+\newcommand{\goal}{\par\textbf{What we must show.} }
+\newcommand{\idea}{\par\textbf{Plan.} }
+\newcommand{\step}[1]{\par\medskip\textbf{#1}\par}
+\newcommand{\answer}[1]{\par\textbf{Conclusion.} #1\par}
+\newcommand{\C}{\mathbb{C}}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\Col}{Col}
+\DeclareMathOperator{\Nul}{Nul}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\dist}{dist}
+\newcommand{\practice}[2]{\subsection*{Practice problem #1: #2}\addcontentsline{toc}{subsection}{Practice problem #1: #2}}
+
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Hom}{Hom}
+\newcommand{\gen}[1]{\langle #1\rangle}
+\newcommand{\bookinfo}{%
+\textbf{Text and numbering.} John B. Fraleigh, \emph{A First Course in Abstract
+Algebra}, seventh edition (2003), following the scanned textbook linked on
+Mathjock. A label such as 12.3 means Exercise 3 in Section 12; A.3 means
+Exercise 3 in the matrix appendix. Section 0 is included.
+These are independently written solutions; brief descriptions
+identify the exercises, and the textbook supplies their original statements.\par
+\textbf{How to read the solutions.} Identify the assumptions and the conclusion
+before beginning a proof. Keep track of the underlying set, its operations,
+and the hypotheses of each theorem. For a calculation, follow the intermediate
+steps and check the result in the original definition. A counterexample must
+satisfy all assumptions and fail the proposed conclusion.\par
+}

@@ -1,0 +1,105 @@
+\section{Computations of Homology Groups}
+All homology groups have integer coefficients. Each answer includes $H_0$: connected spaces contribute one copy of $\Z$ there, whereas disjoint unions contribute one copy per component. All spaces in the exercises are at most two-dimensional, so groups above dimension two vanish.
+\exercise{42.1}{A figure eight}
+The two circles meet at exactly one point, so the space is connected and $H_0\cong\Z$. Triangulate each circle with the shared point as a vertex. A 1-cycle can go independently around either circle, giving two independent cycle generators. There are no 2-simplexes and hence no nonzero boundaries in dimension one.
+Thus $H_1\cong\Z^2$, while $H_n=0$ for $n\ge2$. This is the wedge of two circles, not the disjoint union of two circles.
+
+\exercise{42.2}{Two tangent 2-spheres}
+The touching point connects the two spheres, so $H_0\cong\Z$. Each sphere has an independent fundamental 2-cycle, and no 3-chains impose a relation between them. Thus $H_2\cong\Z^2$.
+A 1-cycle on either sphere bounds, and passing through the common point does not introduce a new circular passage, so $H_1=0$. All $H_n$ for $n\ge3$ vanish. Algebraically this is the wedge of two 2-spheres, whose positive-dimensional homology is the direct sum of that of the two pieces.
+
+\exercise{42.3}{A sphere and a disjoint annulus}
+There are two components, giving $H_0\cong\Z^2$. Chains split uniquely between the disjoint components, so each positive-dimensional homology group is the direct sum of those for the pieces.
+The annulus retracts onto a circle and contributes $\Z$ in dimension one; the sphere contributes $\Z$ in dimension two. Therefore
+\[
+H_1\cong\Z,\qquad H_2\cong\Z,\qquad H_n=0\ (n\ge3).
+\]
+Disjointness affects $H_0$ even though the higher-dimensional contributions can simply be added.
+
+\exercise{42.4}{An annulus attached along an equator}
+Move each point of the annulus radially toward its inner boundary, keeping that boundary and the entire sphere fixed. This deformation stays within the space and retracts the attached annulus onto its inner circle, which already lies on the sphere.
+Hence the whole space has the homology of the sphere:
+\[
+H_0\cong\Z,\quad H_1=0,\quad H_2\cong\Z,
+\quad H_n=0\ (n\ge3).
+\]
+There is no additional dimension-one generator: the annulus's circular generator is the sphere's equator and bounds a hemisphere in the sphere.
+
+\exercise{42.5}{A circle touching a sphere}
+At the one touching point the two components become connected, giving $H_0\cong\Z$. The circle supplies one 1-cycle that cannot bound in the union, while the sphere supplies one fundamental 2-cycle. Thus
+\[
+H_1\cong\Z,\qquad H_2\cong\Z,
+\qquad H_n=0\ (n\ge3).
+\]
+This is a wedge $S^1\vee S^2$; the independent positive-dimensional cycles lie in different pieces.
+
+\exercise{42.6}{A sphere with one handle}
+A sphere with one handle is a torus. Cut along a meridian and a longitude to obtain the square model with opposite edges identified. These two loops generate $H_1$, and the boundary of the square is $a+b-a-b=0$, so it imposes no nonzero relation in homology.
+The coherently oriented whole surface is one independent 2-cycle. Consequently
+\[
+H_0\cong\Z,\quad H_1\cong\Z^2,\quad H_2\cong\Z,
+\quad H_n=0\ (n\ge3).
+\]
+
+\exercise{42.7}{True or false: homology invariance}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item True: homeomorphism invariance is one of the stated basic properties.
+\item False. A point and a closed interval both have $H_0=\Z$ and all higher groups zero, but are not homeomorphic (they even have different cardinalities).
+\item False. $S^n$ and $E^n$ have different top-dimensional homology for $n>0$; for $n=0$, $S^0$ has two points and $E^0$ one.
+\item False. The connected circle has $H_1\cong\Z$.
+\item True. A contractible space has the homology of a point, so its positive-dimensional groups vanish.
+\item False. For $n>0$, $H_n(S^n)\cong\Z$.
+\item True. $E^n$ is contractible.
+\item False. A torus has $H_1\cong\Z^2$, but $H_1(S^2)=0$.
+\item False. A torus has nonzero $H_1,H_2$, while the disk $E^2$ is contractible.
+\item True. A sphere with one handle is a standard geometric model of the torus.
+\end{enumerate}
+
+\exercise{42.8}{Two disjoint torus surfaces}
+A torus has $H_0=\Z$, $H_1=\Z^2$, and $H_2=\Z$. For a disjoint union the chain complex, and thus its homology, is the direct sum of the two chain complexes. Therefore
+\[
+H_0\cong\Z^2,\qquad H_1\cong\Z^4,\qquad H_2\cong\Z^2,
+\quad H_n=0\ (n\ge3).
+\]
+There are two independent 2-cycles, because the two oriented torus surfaces are separate.
+
+\exercise{42.9}{Two tori stacked along a common circle}
+The stacked inner-tube surfaces meet along one circle, essential in each torus. The union is connected. Label their common circle $b$, and their separate meridian cycles $a_1,a_2$.
+Cutting and reducing cycles as for a torus leaves three independent 1-generators $a_1,a_2,b$: the two copies of $b$ are identified. Each whole torus still supplies a separate 2-cycle. No extra 2-cycle arises, because a nonzero multiple of their common circle does not bound a chain on either torus.
+Hence
+\[
+H_0\cong\Z,\qquad H_1\cong\Z^3,\qquad H_2\cong\Z^2,
+\quad H_n=0\ (n\ge3).
+\]
+For an algebraic check, the circle-to-pieces map on $H_1$ sends $1$ to $(b,-b)$ in $\Z^2\oplus\Z^2$. It is primitive and injective, so identifying it removes exactly one rank from dimension one and adds none in dimension two. This uses the intended stacked configuration, whose surfaces touch along a circle.
+
+\exercise{42.10}{A balloon wearing an inner tube}
+The intersection circle is essential in the torus but bounds a hemisphere in the sphere. Thus gluing the sphere to the torus kills the torus's corresponding 1-generator $b$, leaving its other generator $a$.
+There are two independent 2-cycles: the whole sphere and the whole torus. There is no additional one, because the common circle maps nontrivially into the torus's $H_1$ (its map into the sphere's $H_1$ is zero). Therefore
+\[
+H_0\cong\Z,\qquad H_1\cong\Z,\qquad H_2\cong\Z^2,
+\quad H_n=0\ (n\ge3).
+\]
+The gluing calculation can be checked by the map $\Z\to\Z^2\oplus0$ sending $1$ to the primitive common-circle class: it is injective, and its cokernel is $\Z$.
+
+\exercise{42.11}{A sphere with two handles}
+Cutting along two meridian--longitude pairs gives four 1-generators $a_1,b_1,a_2,b_2$. The boundary of the remaining polygon traverses each generator once in each direction, so its homological boundary is zero and imposes no relation on these four generators.
+The sum of the coherently oriented triangles of the closed surface gives one 2-generator, and any 2-cycle must use equal coefficients across adjacent triangles. Hence
+\[
+H_0\cong\Z,\quad H_1\cong\Z^4,\quad H_2\cong\Z,
+\quad H_n=0\ (n\ge3).
+\]
+This surface is connected; it is different from a disjoint pair of tori.
+
+\exercise{42.12}{A sphere with $n$ handles}
+Each handle supplies a meridian and longitude. Cutting along all $2n$ loops gives one polygon whose attaching boundary is
+\[
+a_1b_1a_1^{-1}b_1^{-1}\cdots a_nb_na_n^{-1}b_n^{-1}.
+\]
+In the abelian chain calculation this boundary is zero, since each edge occurs once with each sign. After the standard elimination of interior triangulation edges there is one vertex, $2n$ cycle generators, and one coherently oriented surface generator, with zero boundary maps.
+Thus for $n\ge0$,
+\[
+H_0\cong\Z,\quad H_1\cong\Z^{2n},\quad H_2\cong\Z,
+\quad H_k=0\ (k\ge3).
+\]
+For $n=0$ this recovers the sphere; for $n=1$ it recovers the torus. The surface is orientable, so its top-dimensional generator survives over $\Z$.

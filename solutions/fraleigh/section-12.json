@@ -1,0 +1,18 @@
+{
+  "section": 12,
+  "part": 2,
+  "title": "Plane Isometries",
+  "exercise_count": 42,
+  "source_pages": [
+    126,
+    127,
+    128,
+    129,
+    130,
+    131
+  ],
+  "notes": [
+    "Nontrivial glide reflections follow the section's product-of-existing-symmetries definition (printed p116), not merely nonzero displacement.",
+    "12.39(c): printed odd-answer entry No conflicts with diagonal essential glides in the displayed p4g pattern; multiple independent visual reviews and quarter-turn/reflection composition give Yes."
+  ]
+}

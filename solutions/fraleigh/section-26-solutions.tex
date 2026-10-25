@@ -1,0 +1,181 @@
+\section{Homomorphisms and Factor Rings}
+
+\exercise{26.1}{Homomorphisms of the product of integer rings}
+\idea A homomorphism is determined by $u=\phi(1,0)$ and $v=\phi(0,1)$, since $\phi(m,n)=mu+nv$.
+The identities $(1,0)^2=(1,0)$, $(0,1)^2=(0,1)$ and $(1,0)(0,1)=0$ force $u^2=u$, $v^2=v$, and $uv=0$.
+An integer idempotent satisfies $t(t-1)=0$, so each coordinate of $u,v$ is $0$ or $1$. In each output coordinate, the pair of coefficients is therefore $(0,0)$, $(1,0)$, or $(0,1)$.
+Consequently each of the two coordinates of $\phi(m,n)$ can independently be $0$, $m$, or $n$: there are $3^2=9$ maps. Conversely these nine maps preserve coordinatewise sums and products, so the list is exhaustive. Homomorphisms here are not required to preserve the unity of the codomain.
+
+\exercise{26.2}{A two-element subring}
+A subring isomorphic to $\Z_2$ must be $\{0,e\}$ with $e\ne0$, $2e=0$, and $e^2=e$ modulo $n$. The additive cyclic group $\Z_n$ has an element of order two exactly when $n=2m$, and then its only such element is $e=m$.
+Now $m^2\equiv m\pmod{2m}$ is equivalent to $2\mid(m-1)$. Thus $m$ must be odd.
+\answer{Exactly $n\equiv2\pmod4$ work, with subring $\{0,n/2\}$. Its nonzero element acts as the identity within that subring.}
+
+\exercise{26.3}{Ideals and quotients of the twelve-element ring}
+Every additive subgroup of $\Z_{12}$ is $\gen d$ for a divisor $d$ of $12$, and it is an ideal since multiplying a multiple of $d$ by any residue still gives a multiple of $d$. Reduction modulo $d$ has kernel $\gen d$, so
+\[
+\begin{array}{c|c}
+N&\Z_{12}/N\\\hline
+\gen1=\Z_{12}&\{0\}\\
+\gen2=\{0,2,4,6,8,10\}&\Z_2\\
+\gen3=\{0,3,6,9\}&\Z_3\\
+\gen4=\{0,4,8\}&\Z_4\\
+\gen6=\{0,6\}&\Z_6\\
+\gen{12}=\{0\}&\Z_{12}
+\end{array}
+\]
+These are all the ideals because an ideal must first be an additive subgroup.
+
+\exercise{26.4}{Tables for an even-integer quotient}
+Write $A=8\Z$, $B=2+8\Z$, $C=4+8\Z$, and $D=6+8\Z$. Add or multiply representatives and then reduce modulo $8$:
+\[
+\begin{array}{c|cccc}+&A&B&C&D\\\hline A&A&B&C&D\\B&B&C&D&A\\C&C&D&A&B\\D&D&A&B&C\end{array}
+\qquad
+\begin{array}{c|cccc}\cdot&A&B&C&D\\\hline A&A&A&A&A\\B&A&C&A&C\\C&A&A&A&A\\D&A&C&A&C\end{array}
+\]
+For example $BD=12+8\Z=C$. Every element squares to $A$ or $C$, and no element is a multiplicative identity: $uC=A\ne C$ for all $u$. Since $\Z_4$ has an identity, these rings are not isomorphic, although their additive groups are isomorphic.
+
+\exercise{26.5}{Correcting isomorphism}
+The condition $\Ker\phi=\{0\}$ gives injectivity, but not surjectivity onto the declared codomain. An isomorphism $R\to R'$ is a \emph{bijective} ring homomorphism. For instance inclusion $\Z\hookrightarrow\Q$ has zero kernel and is not an isomorphism onto $\Q$.
+
+\exercise{26.6}{The ideal definition}
+The definition is correct: an ideal is an additive subgroup $N$ with $rn,nr\in N$ for every $r\in R,n\in N$. Both absorption conditions are needed in a noncommutative ring; they coincide when multiplication is commutative.
+
+\exercise{26.7}{Correcting the kernel}
+The kernel consists of \emph{inputs}, not equations or outputs:
+\[\Ker\phi=\{r\in R:\phi(r)=0_{R'}\}.\]
+For example the kernel of reduction $\Z\to\Z_5$ is $5\Z$, a subset of $\Z$.
+
+\exercise{26.8}{Differentiation}
+Differentiation preserves addition, but the product rule is $\delta(fg)=f'g+fg'$, rather than $f'g'$. Take $f=g=x$: $\delta(x^2)=2x$ and $\delta(x)\delta(x)=1$. Thus $\delta$ is not a ring homomorphism.
+Its kernel is the subring of constant functions (a differentiable function with derivative zero is constant). Example 26.12 shows this subring is not an ideal; this is another obstruction, since kernels of ring homomorphisms must be ideals.
+
+\exercise{26.9}{An image identity need not be the codomain identity}
+Let $\phi:\Z\to\Z\times\Z$ be $\phi(n)=(n,0)$. Coordinatewise calculation gives $\phi(m+n)=\phi(m)+\phi(n)$ and $\phi(mn)=\phi(m)\phi(n)$. Yet $\phi(1)=(1,0)$ is nonzero and differs from the codomain identity $(1,1)$. It is the identity only on the image.
+
+\exercise{26.10}{True and false statements}
+\begin{enumerate}[label=(\alph*)]
+\item True. A homomorphism induces $R/\Ker\phi\cong\phi[R]$.
+\item False. Inclusion $\Z\hookrightarrow\Q$ sends the ideal $\Z$ to $\Z$, which is not an ideal of $\Q$, since $(1/2)1\notin\Z$.
+\item True. $\phi(r)=\phi(s)$ exactly when $r-s\in\Ker\phi$.
+\item False. $1\in\Q$ but $\sqrt2\,1\notin\Q$, so absorption in $\R$ fails.
+\item True. Additive closure is required, and ideal absorption includes closure under multiplication of its own elements.
+\item False. $\Z\subset\Q$ is the counterexample from (b).
+\item True. $(r+N)(s+N)=rs+N=sr+N$ if $R$ is commutative.
+\item True. Reduction modulo four induces $\Z/4\Z\cong\Z_4$.
+\item True. If $1\in N$, every $r=r1\in N$; conversely $N=R$ contains $1$.
+\item True. These are precisely the respective substructures allowing well-defined quotient operations.
+\end{enumerate}
+
+\exercise{26.11}{The extreme quotients}
+The ring $R/R$ has just the one coset $R$ and is the zero ring. The map $r+\{0\}\mapsto r$ identifies $R/\{0\}$ with $R$. Thus the two extreme quotients contain no new structure, although both are useful boundary cases in general theorems.
+
+\exercise{26.12}{A domain with a field quotient}
+Take the integral domain $\Z$ and its ideal $2\Z$. Reduction modulo two gives $\Z/2\Z\cong\Z_2$, which is a field because its only nonzero element is its own inverse.
+
+\exercise{26.13}{A domain with zero divisors in a quotient}
+Again start with $\Z$, but quotient by $6\Z$. In $\Z/6\Z$, the cosets $2+6\Z$ and $3+6\Z$ are nonzero and their product is $6+6\Z=0+6\Z$. Thus an integral domain can have a quotient with zero divisors.
+
+\exercise{26.14}{Removing zero divisors by a quotient}
+The ring $R=\Z\times\Z$ has $(1,0)(0,1)=0$ with both factors nonzero. Projection $(a,b)\mapsto a$ has ideal kernel $N=\{0\}\times\Z$ and gives $R/N\cong\Z$, an integral domain.
+
+\exercise{26.15}{A subring that is not an ideal}
+The diagonal $D=\{(n,n):n\in\Z\}$ is closed under differences and products and contains zero. But $(1,0)(1,1)=(1,0)\notin D$, so it is not an ideal of $\Z\times\Z$.
+
+\exercise{26.16}{Representatives and quotient elements}
+\textbf{(a)} The student has used $r,s$ for elements of $R/N$ and then written $rs-sr\in N$, which should concern elements of $R$. Quotient elements are cosets, so the types of objects have been confused.
+\textbf{(b)} A correct start is: for all $r,s\in R$, commutativity gives $(r+N)(s+N)=(s+N)(r+N)$.
+\textbf{(c)} That equality is equivalent to $rs+N=sr+N$, which is equivalent to $rs-sr\in N$. Reading these equivalences in either direction proves both implications. Notice that $rs=sr$ in $R$ itself is not required.
+
+\exercise{26.17}{A quadratic integer ring and matrices}
+\idea Match the coefficients of $1$ and $\sqrt2$ with matrix entries.
+If $u=a+b\sqrt2$ and $v=c+d\sqrt2$, then
+\[u-v=(a-c)+(b-d)\sqrt2,\qquad uv=(ac+2bd)+(ad+bc)\sqrt2.\]
+These formulas show $R$ is a nonempty subring of $\R$. Set $M(a,b)=\begin{pmatrix}a&2b\\b&a\end{pmatrix}$. Matrix subtraction and multiplication give
+\[M(a,b)-M(c,d)=M(a-c,b-d),\quad M(a,b)M(c,d)=M(ac+2bd,ad+bc),\]
+so $R'$ is a subring of $M_2(\Z)$ and $\phi(a+b\sqrt2)=M(a,b)$ preserves the operations. Coefficients in $a+b\sqrt2$ are unique: otherwise irrationality of $\sqrt2$ would fail. Hence the map is well defined; its kernel is zero by its entries, and every displayed matrix is an image. Thus it is a ring isomorphism.
+
+\exercise{26.18}{Homomorphisms from a field}
+Let $\phi:F\to R$ have a nonzero kernel element $a$. For any $x\in F$, write $x=(xa^{-1})a$. Then $\phi(x)=\phi(xa^{-1})\phi(a)=0$, so $\phi$ is the zero map. If no such $a$ exists, the kernel is zero, and $\phi$ is injective. These are the only possibilities.
+
+\exercise{26.19}{Composing ring homomorphisms}
+For $a,b\in R$, apply the defining identities twice:
+\[\psi\phi(a+b)=\psi(\phi(a)+\phi(b))=\psi\phi(a)+\psi\phi(b),\]
+\[\psi\phi(ab)=\psi(\phi(a)\phi(b))=\psi\phi(a)\,\psi\phi(b).\]
+Thus $\psi\circ\phi:R\to R''$ preserves both operations and is a ring homomorphism.
+
+\exercise{26.20}{Frobenius}
+In a commutative ring the binomial theorem applies. For prime $p$, each $\binom pk$ with $0<k<p$ is divisible by $p$, so characteristic $p$ gives
+\[(a+b)^p=a^p+b^p.\]
+Commutativity also gives $(ab)^p=a^pb^p$. Therefore $a\mapsto a^p$ preserves addition and multiplication and is a ring homomorphism. Commutativity is essential to these expansions.
+
+\exercise{26.21}{The image of the identity in a ring without zero divisors}
+Put $e=\phi(1)$. It satisfies $e^2=e$. It is nonzero, because otherwise $\phi(r)=\phi(1r)=e\phi(r)=0$ for every $r$, contrary to the nonzero-image assumption.
+For any $y\in R'$, we have $e(ey-y)=0$. Since $e\ne0$ and $R'$ has no zero divisors, $ey=y$. Likewise $(ye-y)e=0$ gives $ye=y$. Thus $e$ is a two-sided identity for all of $R'$, even when $\phi$ is not onto.
+
+\exercise{26.22}{Images and inverse images of ideals}
+\textbf{(a)} The image $\phi[N]$ is an additive subgroup. For $\phi(r)\in\phi[R]$ and $\phi(n)\in\phi[N]$, both products equal images of $rn$ or $nr$ in $N$, so absorption holds inside $\phi[R]$.
+\textbf{(b)} Inclusion $\Z\hookrightarrow\Q$ with $N=\Z$ fails absorption by $1/2$, giving the required counterexample.
+\textbf{(c)} Let $I=\phi^{-1}[N']$. Then $0\in I$, and for $a,b\in I$, $\phi(a-b)=\phi(a)-\phi(b)\in N'$. For $r\in R$, both $\phi(ra)=\phi(r)\phi(a)$ and $\phi(ar)=\phi(a)\phi(r)$ lie in $N'$. Thus $I$ is an ideal. This uses only absorption by elements in $\phi[R]$, so either stated choice of ambient ring for $N'$ is sufficient.
+
+\exercise{26.23}{Polynomials vanishing on a set}
+Let $N_S$ be the polynomials vanishing at each point of $S\subset F^n$. The zero polynomial belongs to $N_S$. If $f,g\in N_S$, then $(f-g)(a)=f(a)-g(a)=0$ for every $a\in S$. If $h$ is any polynomial, $(hf)(a)=h(a)f(a)=0$ and similarly for $fh$. Thus the subring test and absorption show that $N_S$ is an ideal. If $S$ is empty, the condition is vacuous and $N_S=F[x_1,\ldots,x_n]$, still an ideal.
+
+\exercise{26.24}{Quotients of a field}
+An ideal $N$ of a field $F$ is either zero or all of $F$: if $0\ne a\in N$, then $1=a^{-1}a\in N$, and hence every $x=x1\in N$. In the two cases, $F/N$ is respectively isomorphic to $F$ or to the one-element zero ring.
+
+\exercise{26.25}{Unity in a proper quotient}
+The coset $1+N$ multiplies any $r+N$ to $r+N$ on either side. It is nonzero because $1\in N$ would force $N=R$, contrary to the assumption. Thus a proper quotient of a ring with unity again has a nonzero unity.
+
+\exercise{26.26}{An annihilator ideal}
+Let $I_a=\{x:ax=0\}$. It contains zero. If $x,y\in I_a$, then $a(x-y)=0-0=0$, so it is an additive subgroup. For $r\in R$, commutativity gives $a(rx)=r(ax)=0$, hence $rx=xr\in I_a$. Thus $I_a$ is an ideal. Without commutativity, a one-sided statement is automatic but both sides need not follow.
+
+\exercise{26.27}{Intersections of ideals}
+For a family $(I_j)$ of ideals, zero belongs to every $I_j$. If $a,b$ belong to their intersection, $a-b\in I_j$ for every $j$, hence lies in the intersection. Likewise $ra$ and $ar$ belong to every $I_j$ for every $r\in R$. This proves the ideal axioms. The intersection of an empty family is understood as $R$, also an ideal.
+
+\exercise{26.28}{Induced quotient homomorphism}
+Define $\overline\phi(r+N)=\phi(r)+N'$. If $r+N=s+N$, then $r-s\in N$ and $\phi(r)-\phi(s)\in\phi[N]\subset N'$, so the output cosets agree. Thus the formula is well defined. Moreover
+\[\overline\phi((r+N)+(s+N))=\phi(r+s)+N'=\overline\phi(r+N)+\overline\phi(s+N),\]
+and the identical calculation using products proves multiplicativity. No surjectivity assumption is needed.
+
+\exercise{26.29}{Images of units under a surjection}
+Because $\phi$ is onto, $\phi(1)$ acts as a two-sided identity on every element of $R'$: write it as $\phi(r)$ and use $1r=r1=r$. Also $\phi(1)\ne0$ since $R'\ne\{0\}$. If $uv=vu=1$ in $R$, applying $\phi$ gives $\phi(u)\phi(v)=\phi(v)\phi(u)=1_{R'}$. Thus $\phi(u)$ is a unit with inverse $\phi(v)$.
+
+\exercise{26.30}{The nilradical}
+Let $N$ consist of nilpotent elements in a commutative ring. It contains zero. If $a^m=0$ and $b^n=0$, expand $(a-b)^{m+n-1}$. Each term contains either at least $m$ factors $a$ or at least $n$ factors $b$, so every term is zero. Thus $a-b\in N$.
+For $r\in R$, $(ra)^m=r^ma^m=0$, so $ra=ar\in N$. These facts prove that $N$ is an ideal. Commutativity is used in both power calculations.
+
+\exercise{26.31}{Three nilradicals}
+In $\Z_{12}$ a nilpotent residue must be divisible by both primes $2,3$, since reducing a vanishing power modulo either prime gives a vanishing element in a field. Conversely $6^2\equiv0\pmod{12}$. Thus the nilradical is $\{0,6\}=\gen6$.
+In $\Z$, a vanishing integer power forces the integer to be zero, so the nilradical is $\{0\}$. In $\Z_{32}$, precisely the even residues are nilpotent: $(2k)^5\equiv0$, while an odd residue is a unit and cannot have a zero power. Thus the nilradical is $\gen2$.
+
+\exercise{26.32}{Quotienting by all nilpotents}
+Suppose $(a+N)^m=N$ in $R/N$. Then $a^m\in N$, and because $N$ is the nilradical, $(a^m)^n=0$ for some $n$. Hence $a^{mn}=0$, so $a\in N$ and $a+N=N$. Thus the quotient has no nonzero nilpotent elements.
+
+\exercise{26.33}{Lifting nilpotence}
+For any $a\in R$, the hypothesis that every coset is nilpotent gives $(a+N)^m=N$, hence $a^m\in N$. Every element of $N$ is nilpotent, so $(a^m)^n=0$ for some $n$. Thus every $a\in R$ is nilpotent, which says the nilradical is all of $R$. The exponents may depend on $a$.
+
+\exercise{26.34}{The radical of an ideal}
+Let $\sqrt N=\{a:a^m\in N\text{ for some }m\ge1\}$. It contains zero. If $a^m,b^n\in N$, expand $(a-b)^{m+n-1}$; each term has a factor $a^m$ or $b^n$, so each term belongs to $N$. This puts $a-b$ in $\sqrt N$.
+For any $r\in R$, $(ra)^m=r^ma^m\in N$, so $ra=ar\in\sqrt N$. Therefore $\sqrt N$ is an ideal. This proof does not require all elements of $N$ themselves to be nilpotent.
+
+\exercise{26.35}{A radical can grow or remain the same}
+\textbf{(a)} In $\Z$, take $N=4\Z$. Then $2^2\in4\Z$ but $2\notin4\Z$, so $\sqrt N\ne N$ (in fact $\sqrt N=2\Z$).
+\textbf{(b)} Take $N=2\Z$. If $a^m$ is even then $a$ is even, so $\sqrt{2\Z}=2\Z$. Both examples use proper ideals.
+
+\exercise{26.36}{Radical versus quotient nilradical}
+An element of the nilradical of $R/N$ is a \emph{coset} $a+N$ such that $(a+N)^m=N$, equivalently $a^m\in N$. Hence
+\[\operatorname{Nil}(R/N)=\{a+N:a\in\sqrt N\}=\sqrt N/N.\]
+It is not literally $\sqrt N$, whose elements lie in $R$ rather than $R/N$.
+
+\exercise{26.37}{Complex numbers as real matrices}
+Set $M(a,b)=\begin{pmatrix}a&b\\-b&a\end{pmatrix}$. Direct multiplication gives
+\[M(a,b)M(c,d)=M(ac-bd,ad+bc),\]
+which matches $(a+bi)(c+di)=(ac-bd)+(ad+bc)i$. Addition also matches entry by entry. The map is injective because $M(a,b)=0$ forces $a=b=0$, and it is onto its image by definition. Therefore $\C\cong\phi[\C]\subset M_2(\R)$. The sign convention corresponds to multiplication on coordinates $(x,-y)$ instead of $(x,y)$ and is consistent.
+
+\exercise{26.38}{A ring version of the regular representation}
+\textbf{(a)} Left multiplication $\lambda_a$ is additive because $a(x+y)=ax+ay$, so it is an endomorphism of $(R,+)$.
+\textbf{(b)} Endomorphisms are added pointwise and multiplied by composition. Thus
+\[\lambda_a-\lambda_b=\lambda_{a-b},\qquad \lambda_a\circ\lambda_b=\lambda_{ab}.\]
+Together with $\lambda_0=0$, these identities show that $R'=\{\lambda_a:a\in R\}$ is a subring.
+\textbf{(c)} The map $a\mapsto\lambda_a$ is a surjective ring homomorphism onto $R'$. If $\lambda_a=\lambda_b$, evaluate at $1$ to obtain $a=b$. Thus it is injective and $R\cong R'$. Unity is what makes this final injectivity argument work.

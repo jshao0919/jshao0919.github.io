@@ -1,0 +1,120 @@
+\section{Euclidean Domains}
+
+\exercise{46.1}{The square of absolute value}
+Yes. This map has nonnegative integer values. Ordinary integer division gives $a=bq+r$ with $0\le r<|b|$, hence $r=0$ or $r^2<b^2$. For nonzero integers $a,b$, $a^2\le a^2b^2$ because $b^2\ge1$. Both norm axioms hold.
+
+\exercise{46.2}{Degree over the integers}
+No. Divide $a=1$ by $b=2$ in $\Z[x]$. A nonzero remainder would have to satisfy $\deg r<\deg2=0$, impossible. A zero remainder would say $1=2q$ in $\Z[x]$, also impossible. Degree division works over a field, not over arbitrary integer coefficients.
+
+\exercise{46.3}{Leading-coefficient size}
+No. Take dividend $x$ and divisor 1. Every nonzero polynomial has norm at least 1, so a remainder with norm smaller than that of 1 must be zero; here zero remainder is possible, so this example alone is no obstruction. Instead divide $x$ by $x^2$; zero remainder is impossible by degrees, while any nonzero remainder has leading-coefficient absolute value at least $1=v(x^2)$. Thus the required division is impossible.
+
+\exercise{46.4}{A rational-valued proposal}
+No under the stated definition, since a Euclidean norm must take values in the nonnegative \emph{integers}; $v(1/2)=1/4$ does not. The monotonicity axiom also fails: $v(1)=1>v(1\cdot1/2)=1/4$.
+
+\exercise{46.5}{A constant norm on a field}
+Yes. For $b\ne0$ in $\Q$, set $q=a/b$ and $r=0$. This gives the division axiom without needing a smaller norm. For nonzero $a,b$, $v(a)=50=v(ab)$ gives monotonicity.
+
+\exercise{46.6}{An explicit integer Bezout identity}
+Back substitution along the Euclidean algorithm gives
+\begin{align*}
+22471&=6(3266)+2875,&3266&=2875+391,\\
+2875&=7(391)+138,&391&=2(138)+115,\\
+138&=115+23,&115&=5(23).
+\end{align*}
+Hence $23=138-115=3(138)-391=3(2875)-22(391)
+=25(2875)-22(3266)=25(22471)-172(3266)$. Direct multiplication verifies $561775-561752=23$, so $\lambda=25,\mu=-172$.
+
+\exercise{46.7}{A larger integer gcd}
+Successive divisions give
+\begin{align*}
+49349&=3(15555)+2684,&15555&=5(2684)+2135,\\
+2684&=2135+549,&2135&=3(549)+488,\\
+549&=488+61,&488&=8(61).
+\end{align*}
+The last nonzero remainder is 61, so a gcd is 61 (and $-61$ is an associate choice).
+
+\exercise{46.8}{Back substitution for the larger gcd}
+Using the remainders just found,
+\begin{align*}
+61&=549-488=4(549)-2135\\
+&=4(2684)-5(2135)=29(2684)-5(15555)\\
+&=29(49349)-92(15555).
+\end{align*}
+Thus $\lambda=29,\mu=-92$. Checking the final equality gives $1431121-1431060=61$.
+
+\exercise{46.9}{A polynomial gcd}
+Let $f,g$ denote the displayed degree-ten and degree-six polynomials. Exact polynomial division gives
+\begin{align*}
+f&=(x^4-2x)g+r,\\
+r&=-x^4-3x^3-2x^2-5x+3\\
+ & =(-x-3)(x^3+2x-1),\\
+g&=(x^3-3x^2+x-2)(x^3+2x-1).
+\end{align*}
+The cofactors $-x-3$ and $x^3-3x^2+x-2$ are relatively prime: substituting $x=-3$ into the latter gives $-59\ne0$, so its linear possible common factor does not divide it. Consequently a monic gcd is $x^3+2x-1$. The first division and the displayed factorizations can be checked by multiplying out; they also show directly why no further factor is common.
+
+\exercise{46.10}{A gcd of many elements}
+Compute $d_2=\gcd(a_1,a_2)$, then $d_3=\gcd(d_2,a_3)$, and continue until $d_n$. At each step, an element divides $d_k$ exactly when it divides all $a_1,\ldots,a_k$. This follows by induction from the defining common-divisor property of a gcd. Therefore $d_n$ is a gcd of the entire list. Ignore zero entries, or use $\gcd(a,0)=a$ up to associates.
+
+\exercise{46.11}{Four integers by successive gcds}
+First $2178=5(396)+198$ and $396=2(198)$, so the first gcd is 198. Since $792=4(198)$, it remains 198 after the third entry. Finally $726=3(198)+132$, $198=132+66$, and $132=2(66)$. Thus the positive gcd is 66.
+
+\exercise{46.12}{The ideal of even constant terms}
+\begin{enumerate}[label=(\alph*)]
+\item $\Z[x]$ is a UFD because $\Z$ is a UFD and Gauss's theorem preserves this property on adjoining $x$.
+\item Let $I$ consist of polynomials with even constant term. Differences preserve this property; multiplying such a polynomial by any integer polynomial multiplies its constant term by an integer, so it remains even. Thus $I$ is an ideal, equal to $(2,x)$.
+\item If $I=(h)$, then $h$ divides both 2 and $x$. Dividing 2 forces $h$ to be a constant integer divisor of 2; dividing $x$ then forces $h=\pm1$. This would put 1 in $I$, contrary to its odd constant term. Hence $I$ is not principal.
+\item A Euclidean domain is a PID. Since this ring is not a PID, it is not Euclidean.
+\end{enumerate}
+
+\exercise{46.13}{Ten statements about Euclidean domains}
+\begin{enumerate}[label=(\alph*)]
+\item True: use a nonzero element of smallest norm in an ideal and divide by it.
+\item False: for example $\Z[(1+\sqrt{-19})/2]$ is a PID but is not Euclidean. The implication has no converse in general.
+\item True, since every PID is a UFD.
+\item False: $\Z[x]$ is a UFD but not a PID, hence not Euclidean.
+\item True: in the field $\Q$, $1/2$ divides every rational, and every common divisor divides it.
+\item True: successive nonnegative integer norms strictly decrease until the remainder is zero.
+\item True: apply $v(a)\le v(ab)$ with $a=1$.
+\item False: in $\Z$, $v(-1)=v(1)$ for $v(n)=|n|$, although $-1\ne1$.
+\item True: equality $v(a)=v(1)$ would make $a$ a unit by the norm characterization, proved in Exercise 46.16.
+\item True, with the degree norm and polynomial division over $F$.
+\end{enumerate}
+
+\exercise{46.14}{A norm measures, rather than changes, arithmetic}
+No. Addition, multiplication, units, divisibility, ideals, and gcds are defined by the domain operations. A chosen norm helps find quotients and remainders, but does not alter these operations. Different permissible norms can change which division choices the algorithm makes; the final gcds still differ only by units.
+
+\exercise{46.15}{Equal norms for associates}
+If $a=bu$ with $u$ a unit, monotonicity gives $v(b)\le v(bu)=v(a)$. Also $b=au^{-1}$, so $v(a)\le v(b)$. Thus $v(a)=v(b)$. The norms are defined here for nonzero associates.
+
+\exercise{46.16}{Strict growth detects a nonunit factor}
+If $b$ is a unit, $a$ and $ab$ are associates, so their norms are equal. Conversely, suppose $v(a)=v(ab)$. Divide $a$ by $ab$: write $a=abq+r$, with $r=0$ or $v(r)<v(ab)=v(a)$. But $r=a(1-bq)$, so if $r\ne0$, monotonicity gives $v(a)\le v(r)$, a contradiction. Thus $r=0$, and cancellation of $a\ne0$ yields $1=bq$. Therefore $b$ is a unit. As $v(a)\le v(ab)$ always, nonunit $b$ is exactly the strict-inequality case.
+
+\exercise{46.17}{The nonunits need not form an ideal}
+The proposed set is the nonunits together with zero, by the unit characterization. In $\Z$ with absolute-value norm, both 2 and 3 lie in it, but $3-2=1$ does not. It is therefore not an additive subgroup and is not an ideal in general.
+
+\exercise{46.18}{Every field is Euclidean}
+Define $v(a)=0$ for every nonzero field element. Divide $a$ by nonzero $b$ by taking $q=ab^{-1}$ and $r=0$. This satisfies the division axiom, and $v(a)=v(ab)=0$ satisfies monotonicity. Thus every field is Euclidean.
+
+\exercise{46.19}{Changing the scale of a norm}
+\begin{enumerate}[label=(\alph*)]
+\item Since $v(a)\ge v(1)$, the assumption $s+v(1)\ge0$ ensures $\eta(a)\ge0$. Adding the same integer to two norms preserves both their strict and weak inequalities, so it preserves the two axioms.
+\item Multiplication by a positive integer $t$ preserves nonnegative integer values and all inequalities, so $\lambda(a)=t v(a)$ is a Euclidean norm.
+\item Set $\mu(a)=1+100(v(a)-v(1))$. This is a positive integer norm by (a),(b); it equals 1 on units. A nonunit has integer norm strictly larger than $v(1)$, so $\mu(a)\ge101>100$.
+\end{enumerate}
+
+\exercise{46.20}{Least common multiples}
+Let $I=(a)\cap(b)$, the ideal of common multiples. It is nonzero because $ab\in I$ and $ab\ne0$. A Euclidean domain is a PID, so $I=(c)$ for some nonzero $c$. Membership of $c$ in both ideals says $a\mid c,b\mid c$. Every common multiple belongs to $(c)$, hence is divisible by $c$. These are exactly the required lcm properties. Multiplying $c$ by a unit gives another lcm.
+
+\exercise{46.21}{Generating the additive integers}
+The subgroup generated by $r,s$ is $\{ur+vs:u,v\in\Z\}$. Bezout's theorem identifies this with $d\Z$, where $d=\gcd(r,s)>0$: every combination is divisible by $d$, and a Bezout combination equals $d$. It is all $\Z$ precisely when $d=1$.
+
+\exercise{46.22}{A solvable congruence when the coefficient is coprime}
+If $\gcd(a,n)=1$, choose integers $u,v$ with $ua+vn=1$. Multiplying by $b$ gives $a(ub)+n(vb)=b$. Thus $x=ub$ satisfies $ax\equiv b\pmod n$. In $\Z_n$ this says the nonzero residue of $a$ is invertible when it is coprime to $n$.
+
+\exercise{46.23}{The general congruence criterion}
+Put $d=\gcd(a,n)>0$. If $ax\equiv b\pmod n$, then $b=ax-kn$ for some integer $k$, and $d\mid b$. Conversely, if $b=dc$, multiply a Bezout identity $ua+vn=d$ by $c$. It gives $a(uc)\equiv b\pmod n$. In the residue ring $\Z_n$, the principal ideal generated by $\bar a$ consists exactly of residues represented by multiples of $d$; solvability asks whether $\bar b$ lies in this ideal.
+
+\exercise{46.24}{Constructing a solution}
+Run the extended Euclidean algorithm to obtain $d=ua+vn$. If $d\nmid b$, no solution exists. Otherwise $x_0=u(b/d)$ is a solution; all solutions are $x=x_0+k(n/d)$.
+For $22x\equiv18\pmod{42}$, $d=2$ and $2=2(22)-42$. Thus $x_0=2(18/2)=18$. Check: $22(18)-18=378=9(42)$. All integer solutions are $x=18+21k$; modulo 42 these are 18 and 39.

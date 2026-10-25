@@ -1,0 +1,14 @@
+{
+  "section": 19,
+  "part": 4,
+  "title": "Integral Domains",
+  "exercise_count": 30,
+  "source_pages": [
+    188,
+    189,
+    190
+  ],
+  "notes": [
+    "Integral domains and subdomains have nonzero unity in the textbook convention."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "section": 28,
+  "part": 5,
+  "title": "Gröbner Bases for Ideals",
+  "exercise_count": 36,
+  "source_pages": [
+    267,
+    268,
+    269
+  ],
+  "notes": [
+    "Exercise 29 prints c_i in I in the generated-ideal definition; the intended coefficient set is R."
+  ]
+}

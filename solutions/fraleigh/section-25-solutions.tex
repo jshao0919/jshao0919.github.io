@@ -1,0 +1,220 @@
+\section{Ordered Rings and Fields}
+
+\exercise{25.1}{The high-degree ordering of monomials}
+For $P_{\mathrm{high}}$, the sign of a nonzero polynomial is the sign of its highest-degree coefficient. Thus $x-a$ is positive for every $a>0$ in $R$, and $x^{n+1}-x^n$ is positive for every $n\ge1$. The requested ordering is
+\[\boxed{0<a<x<x^2<x^3<\cdots<x^n<x^{n+1}<\cdots}.
+\]
+The comparison $a<x$ concerns every positive constant, regardless of its size in the original ring.
+
+\exercise{25.2}{Laurent monomials in the low-degree ordering}
+The sign of a nonzero Laurent series is determined by the coefficient at its least exponent. For integers $i<j$, the difference $x^i-x^j$ has least term $x^i$ with positive coefficient. Consequently $x^j<x^i$. All monomials are positive, and the full order is
+\[\boxed{0<\cdots<x^3<x^2<x<1<x^{-1}<x^{-2}<x^{-3}<\cdots}.
+\]
+In particular $x$ is positive and smaller than every positive constant of the coefficient field.
+
+\exercise{25.3}{Positive elements in the conjugate ordering}
+The ordering is transported by $\phi(m+n\sqrt2)=m-n\sqrt2$. Therefore an element is positive in this new ordering exactly when $m-n\sqrt2>0$ in the usual real order. In integer-coefficient cases this means:
+\begin{itemize}
+\item if $n=0$, then $m>0$;
+\item if $n>0$, then $m>0$ and $m^2>2n^2$;
+\item if $n<0$, then either $m\ge0$, or $m<0$ and $2n^2>m^2$.
+\end{itemize}
+Squaring in these comparisons is valid only after the relevant sides have been made nonnegative. For example $-\sqrt2$ has $m=0,n=-1$, so it is positive in this ordering.
+
+\exercise{25.4}{Ordering five polynomials, set 4}
+Compare two labeled polynomials by subtracting the earlier one from the later one. For $P_{\mathrm{low}}$ inspect the \emph{lowest} nonzero term; for $P_{\mathrm{high}}$ inspect the \emph{highest} nonzero term. A positive deciding coefficient means the difference is positive.\par
+\textbf{(i)} The increasing order is $\boxed{a<c<d<e<b}$. The deciding terms of its four successive differences are
+\[5, 2x, 2, 3.
+\]
+All four coefficients are positive, verifying each adjacent comparison.\par
+\textbf{(ii)} The increasing order is $\boxed{d<b<a<e<c}$. The deciding terms of its four successive differences are
+\[7x^{2}, 6x, 4x^{2}, 3x^{2}.
+\]
+All four coefficients are positive, verifying each adjacent comparison.\par
+
+
+\exercise{25.5}{Ordering five polynomials, set 5}
+Compare two labeled polynomials by subtracting the earlier one from the later one. For $P_{\mathrm{low}}$ inspect the \emph{lowest} nonzero term; for $P_{\mathrm{high}}$ inspect the \emph{highest} nonzero term. A positive deciding coefficient means the difference is positive.\par
+\textbf{(i)} The increasing order is $\boxed{a<c<e<d<b}$. The deciding terms of its four successive differences are
+\[1, 5x, 8x^{2}, 3x.
+\]
+All four coefficients are positive, verifying each adjacent comparison.\par
+\textbf{(ii)} The increasing order is $\boxed{e<c<b<a<d}$. The deciding terms of its four successive differences are
+\[4x^{5}, 11x^{4}, 8x^{3}, x^{5}.
+\]
+All four coefficients are positive, verifying each adjacent comparison.\par
+
+
+\exercise{25.6}{Ordering five polynomials, set 6}
+Compare two labeled polynomials by subtracting the earlier one from the later one. For $P_{\mathrm{low}}$ inspect the \emph{lowest} nonzero term; for $P_{\mathrm{high}}$ inspect the \emph{highest} nonzero term. A positive deciding coefficient means the difference is positive.\par
+\textbf{(i)} The increasing order is $\boxed{c<a<b<e<d}$. The deciding terms of its four successive differences are
+\[2, 3, 2x, 6x^{3}.
+\]
+All four coefficients are positive, verifying each adjacent comparison.\par
+\textbf{(ii)} The increasing order is $\boxed{e<c<a<b<d}$. The deciding terms of its four successive differences are
+\[5x^{5}, 5x^{2}, x^{3}, 8x^{4}.
+\]
+All four coefficients are positive, verifying each adjacent comparison.\par
+
+
+\exercise{25.7}{Ordering five polynomials, set 7}
+Compare two labeled polynomials by subtracting the earlier one from the later one. For $P_{\mathrm{low}}$ inspect the \emph{lowest} nonzero term; for $P_{\mathrm{high}}$ inspect the \emph{highest} nonzero term. A positive deciding coefficient means the difference is positive.\par
+\textbf{(i)} The increasing order is $\boxed{d<a<b<c<e}$. The deciding terms of its four successive differences are
+\[3x, 2x^{2}, 2x, x^{2}.
+\]
+All four coefficients are positive, verifying each adjacent comparison.\par
+\textbf{(ii)} The increasing order is $\boxed{d<c<e<a<b}$. The deciding terms of its four successive differences are
+\[x^{2}, x^{2}, 5x^{3}, 4x^{4}.
+\]
+All four coefficients are positive, verifying each adjacent comparison.\par
+
+
+\exercise{25.8}{Ordering five polynomials, set 8}
+Compare two labeled polynomials by subtracting the earlier one from the later one. For $P_{\mathrm{low}}$ inspect the \emph{lowest} nonzero term; for $P_{\mathrm{high}}$ inspect the \emph{highest} nonzero term. A positive deciding coefficient means the difference is positive.\par
+\textbf{(i)} The increasing order is $\boxed{e<a<c<b<d}$. The deciding terms of its four successive differences are
+\[x, 3x^{2}, 2x^{2}, x.
+\]
+All four coefficients are positive, verifying each adjacent comparison.\par
+\textbf{(ii)} The increasing order is $\boxed{c<d<a<e<b}$. The deciding terms of its four successive differences are
+\[x, 6x^{3}, x^{2}, 4x^{2}.
+\]
+All four coefficients are positive, verifying each adjacent comparison.\par
+
+
+\exercise{25.9}{Ordering five polynomials, set 9}
+Compare two labeled polynomials by subtracting the earlier one from the later one. For $P_{\mathrm{low}}$ inspect the \emph{lowest} nonzero term; for $P_{\mathrm{high}}$ inspect the \emph{highest} nonzero term. A positive deciding coefficient means the difference is positive.\par
+\textbf{(i)} The increasing order is $\boxed{c<a<e<d<b}$. The deciding terms of its four successive differences are
+\[x^{3}, 6x^{2}, 4x^{3}, 2.
+\]
+All four coefficients are positive, verifying each adjacent comparison.\par
+\textbf{(ii)} The increasing order is $\boxed{e<c<b<a<d}$. The deciding terms of its four successive differences are
+\[8x^{3}, x^{3}, x, 4x^{4}.
+\]
+All four coefficients are positive, verifying each adjacent comparison.\par
+
+
+\exercise{25.10}{Ordering Laurent monomials with coefficients}
+The least exponent controls the sign. The two negative terms come first: $-5x^{-2}<-3x^{-2}$. Among the positive terms, $4x<x^{-1}<2x^{-1}$, because a positive $x^{-1}$ term exceeds any positive multiple of $x$, and the coefficient $1$ is less than $2$ at exponent $-1$. Thus the increasing label order is $\boxed{b<d<e<a<c}$.
+
+\exercise{25.11}{Ordering five rational Laurent series}
+Use formal geometric-series division to expose each least term:
+\[a=1+x+\cdots,\quad b=x^2+\cdots,\quad c=x^{-1}+1+\cdots,
+\]
+\[d=-x+\cdots,\qquad e=\tfrac34x^{-1}-\tfrac12+\cdots.
+\]
+The negative series $d$ comes first. The positive infinitesimal $b$ is below $a$, whose constant term is $1$. Both $e$ and $c$ have positive exponent-$-1$ terms, so exceed $a$; their coefficients compare as $3/4<1$. Therefore $\boxed{d<b<a<e<c}$. The dots hide higher exponents, which cannot alter these deciding terms.
+
+\exercise{25.12}{Comparing equal constant terms in Laurent series}
+Expansion gives
+\[a=\tfrac53x^{-1}-\tfrac{26}{9}+\cdots,\qquad
+b=-\tfrac12+\tfrac58x+\cdots,\qquad
+c=\tfrac74+\cdots,
+\]
+\[d=\tfrac92+\cdots,\qquad e=-\tfrac12+\tfrac23x+\cdots.
+\]
+For $b$ and $e$, the constant terms cancel; the coefficient of $x$ in $e-b$ is $2/3-5/8=1/24>0$, proving $b<e$. Their negative constant terms put both below $c$ and $d$. Since $7/4<9/2$, $c<d$, and the positive $x^{-1}$ term puts $a$ above them all. Thus $\boxed{b<e<c<d<a}$.
+
+\exercise{25.13}{A second comparison of equal constant terms}
+Formal expansions yield
+\[a=1-2x+\cdots,\quad b=1-\tfrac{10}{3}x+\cdots,\quad
+c=\tfrac14x^{-1}-\tfrac1{16}+\cdots,
+\]
+\[d=-\tfrac13x^{-1}-\tfrac19+\cdots,\qquad e=4x+\cdots.
+\]
+The negative $x^{-1}$ term places $d$ first, and the positive such term places $c$ last. The positive infinitesimal $e$ lies below the two series with constant term $1$. Finally $a-b$ has least term $(4/3)x>0$, so $b<a$. The increasing order is $\boxed{d<e<b<a<c}$.
+
+\exercise{25.14}{An ordered field containing nonreal numbers}
+Let $K=\Q(\sqrt[3]2)\subset\R$, with its induced real ordering, and let $L\subset\C$ be the isomorphic field in the question, containing $\sqrt[3]2(-1+i\sqrt3)/2$. If $\phi:K\to L$ is the stated isomorphism, declare $\phi(a)>_L0$ exactly when $a>0$ in $K$. The cone axioms transfer through the isomorphism, so this orders $L$, although $L$ contains nonreal complex numbers. There is no contradiction: the order uses the algebraic field structure of $L$ and is not a restriction of an order on all of $\C$. The obstruction $i^2=-1$ rules out ordering $\C$ itself, not every nonreal subfield.
+
+\exercise{25.15}{True or false: orderings}
+\begin{enumerate}[label=(\alph*)]
+\item True: $1=1^2$ is positive; positive integer sums are then positive, and trichotomy forces the negatives to be negative.
+\item True: every usual positive real is a nonzero square, so must be positive in any field ordering. Trichotomy fixes all signs.
+\item False: $\Q(\sqrt2)$ has its usual ordering and the ordering transported by conjugation $\sqrt2\mapsto-\sqrt2$, which disagree on $\sqrt2$.
+\item True: positive integers are positive, their inverses are positive, and hence all usual positive rationals are positive. Trichotomy leaves no alternative.
+\item True: either the low- or high-degree coefficient ordering extends the given constant ordering.
+\item False: without $a>0$, take $a=0,b=1$; no positive $n$ has $1<n0$.
+\item True: this is equivalent to the Archimedean definition. For $b>0$ it is that definition; for $b\le0$, choose $n=1$ since $a>0\ge b$.
+\item False: take $a=-1$, so $-a=1$ is positive.
+\item False: at $a=0$, neither $a$ nor $-a$ is positive. One is positive when $a\ne0$.
+\item True: $1,2\cdot1,3\cdot1,\ldots$ are distinct because a positive sum of $1$'s cannot be zero.
+\end{enumerate}
+
+\exercise{25.16}{Making pi larger than every rational}
+Since $\pi$ is transcendental, evaluation $\phi_\pi:\Q[x]\to\Q[\pi]$ is an isomorphism. Give $\Q[x]$ the high-degree ordering and transfer it through this map. Equivalently a nonzero $a_0+a_1\pi+\cdots+a_n\pi^n$ is positive exactly when its highest nonzero rational coefficient is positive. Then for every $q\in\Q$, $\pi-q$ has highest coefficient $1$, so $\boxed{q<\pi}$ in this ordering. Transcendence ensures a unique polynomial representation, so the sign rule is well defined.
+
+\exercise{25.17}{Conjugation of a quadratic ring}
+Representations $m+n\sqrt2$ are unique by irrationality of $\sqrt2$. For $u=m+n\sqrt2$, $v=r+s\sqrt2$, direct calculation gives
+\[\phi(u+v)=(m+r)-(n+s)\sqrt2=\phi(u)+\phi(v).
+\]
+Since $uv=(mr+2ns)+(ms+nr)\sqrt2$,
+\[\phi(uv)=(mr+2ns)-(ms+nr)\sqrt2=(m-n\sqrt2)(r-s\sqrt2).
+\]
+Thus multiplication is preserved as well. In fact $\phi^2$ is the identity, so the homomorphism is an automorphism.
+
+\exercise{25.18}{Cone membership means greater than zero}
+By the definition in Theorem 25.5, $0<a$ means exactly $a-0\in P$. This equals $a\in P$, which is the hypothesis. Thus the conclusion follows directly from the definition of $<$.
+
+\exercise{25.19}{Equal positive multiples}
+First, an ordered ring has no nonzero zero divisors: for nonzero $u,v$, choose signs so that $\pm u,\pm v\in P$; closure makes one of $uv,-uv$ positive, so $uv\ne0$. Hence if $c=0$, then $bd=0$ with $b\ne0$ forces $d=0$, and similarly with $d=0$.\par
+Suppose now that neither is zero. If $c\in P$, then $ac\in P$. If $-d\in P$, closure would also give $b(-d)=-bd=-ac\in P$, contradicting trichotomy. Thus $d\in P$, and $cd\in P$. If instead $-c\in P$, the same argument applied to $a(-c)=b(-d)$ gives $-d\in P$, whence $cd=(-c)(-d)\in P$. This proves exactly the stated alternatives using only cone closure and trichotomy.
+
+\exercise{25.20}{Reversing signs reverses an inequality}
+The hypothesis $a<b$ means $b-a\in P$. But
+\[(-a)-(-b)=b-a\in P.
+\]
+By the definition of $<$, this is precisely $-b<-a$.
+
+\exercise{25.21}{A negative times a positive}
+From $a<0$ we obtain $-a\in P$, and from $0<b$ we obtain $b\in P$. Closure under multiplication gives $(-a)b=-ab\in P$. Since $0-ab=-ab$ is positive, the defining condition for $<$ gives $ab<0$. No separate sign rule has been assumed.
+
+\exercise{25.22}{A positive quotient}
+Since $b>0$, it is nonzero and $b^{-1}$ exists. The square of any nonzero element is in $P$: trichotomy makes either $u$ or $-u$ positive, and squaring that element gives $u^2\in P$. Thus $(b^{-1})^2\in P$. Multiplying by $b\in P$ gives $b^{-1}=(b^{-1})^2b\in P$. Finally closure gives $a/b=ab^{-1}\in P$, proving positivity of the quotient.
+
+\exercise{25.23}{Inverting a positive element below one}
+The assumptions give $a\in P$ and $1-a\in P$. By Exercise 25.22, $(1-a)/a\in P$. But this quotient is $a^{-1}-1$. Therefore $1<a^{-1}$ by the defining relation $<$.
+
+\exercise{25.24}{Inverting a negative element above minus one}
+Let $b=-a$. The inequalities $-1<a<0$ imply $0<b<1$, using the difference definition of $<$ or Exercise 25.20. Exercise 25.23 gives $1<b^{-1}$. Reversing signs yields $-b^{-1}<-1$. Since $a^{-1}=(-b)^{-1}=-b^{-1}$, the conclusion is $a^{-1}<-1$.
+
+\exercise{25.25}{Transporting an ordering across an isomorphism}
+Let $P'=\phi[P]$. It is nonempty because $P$ is nonempty. If $u=\phi(a)$ and $v=\phi(b)$ with $a,b\in P$, then $u+v=\phi(a+b)\in P'$ and $uv=\phi(ab)\in P'$ by closure of $P$. For any $u\in R'$, take its unique preimage $a$. Exactly one of $a\in P$, $a=0$, $-a\in P$ holds, and injectivity and surjectivity translate this into exactly one of $u\in P'$, $u=0$, $-u\in P'$. Hence $P'$ is an ordering cone. Finally
+\[\phi(a)<'\phi(b)\iff\phi(b)-\phi(a)=\phi(b-a)\in\phi[P]
+\iff b-a\in P\iff a<b.
+\]
+The middle reverse implication uses injectivity of $\phi$. This proves Theorem 25.10 in full.
+
+\exercise{25.26}{The induced ordering on a subring}
+For a nonzero subring $S$, put $P_S=P\cap S$. It is nonempty: choose $s\in S\setminus\{0\}$, and trichotomy gives either $s$ or $-s$ in $P_S$. Sums and products of elements of $P_S$ lie in $P$ by cone closure and in $S$ by the subring axioms. For any $s\in S$, exactly one of $s\in P$, $s=0$, $-s\in P$ holds; since both $s,-s$ lie in $S$, this is exactly the cone trichotomy for $P_S$. Thus the induced order is the restriction of the original order.\par
+The nonzero qualification matters: for $S=\{0\}$ the intersection is empty, contrary to the definition's nonempty-cone requirement. If one also imposes the section's standing requirement that every ordered ring have nonzero unity, restrict the assertion to subrings with nonzero unity. For nonunital nonzero subrings the same proof still supplies the asserted order and cone axioms.
+
+\exercise{25.27}{Recovering the cone from the order relation}
+Set $P=\{x:0<x\}$. Since the ring is nonzero, compare $0$ with some $a\ne0$. Trichotomy gives either $0<a$ or $a<0$; in the latter case additive isotonicity gives $0<-a$. Thus $P$ is nonempty. If $a,b\in P$, adding $a$ to $0<b$ gives $a<a+b$, and transitivity with $0<a$ gives $0<a+b$. Multiplicative isotonicity applied to $0<b$ and $0<a$ gives $0= a0<ab$. So $P$ is closed under both operations.\par
+Trichotomy of $0$ and $x$, and additive isotonicity translating $x<0$ to $0<-x$, give exactly one of $x\in P$, $x=0$, $-x\in P$. Thus this is a positive cone. Finally additive isotonicity, in both directions, gives
+\[a<b\iff0<b-a\iff b-a\in P.
+\]
+Therefore the relation induced by $P$ is the original relation, proving the converse in Theorem 25.5.
+
+\exercise{25.28}{Injectivity of an odd power in an ordered domain}
+An odd power has the same sign as its nonzero base: a positive base gives a positive product; for a negative base, its negative is positive and $( -c)^{2n+1}=-c^{2n+1}$. Thus equal odd powers cannot come from bases of opposite signs, or from one zero and one nonzero base.\par
+For positive $a<b$, factor
+\[b^{2n+1}-a^{2n+1}=(b-a)\bigl(b^{2n}+b^{2n-1}a+\cdots+a^{2n}\bigr).
+\]
+Every summand in the parenthesis is positive, so the difference is positive and equality of the powers is impossible. The case $0<a=b$ already has the conclusion. If $a,b<0$, their negatives are positive, and equality of odd powers gives equality of the odd powers of $-a,-b$, reducing to the positive case. Trichotomy therefore leaves only $\boxed{a=b}$.
+
+\exercise{25.29}{Eight different orderings in two variables}
+For each stage choose low ($L$) or high ($H$) degree to determine the sign. Applying the univariate construction twice gives eight orderings. To distinguish them, record whether four fixed polynomials are positive ($+$) or negative ($-$):
+\[
+\begin{array}{c|cc|cccc}
+\text{first ring, then outer variable}&\text{inner}&\text{outer}&x-1&y-1&x-y&xy-1\\\hline
+(R[x])[y]&L&L&-&-&+&-\\
+(R[x])[y]&L&H&-&+&-&+\\
+(R[x])[y]&H&L&+&-&+&-\\
+(R[x])[y]&H&H&+&+&-&+\\
+(R[y])[x]&L&L&-&-&-&-\\
+(R[y])[x]&L&H&+&-&+&+\\
+(R[y])[x]&H&L&-&+&-&-\\
+(R[y])[x]&H&H&+&+&+&+
+\end{array}.
+\]
+For example, with $(R[x])[y]$ and outer $L$, the deciding $y^0$ coefficient of $x-y$ is $x>0$, while that of $xy-1$ is $-1<0$. With outer $H$, their deciding coefficients are $-1$ and $x$, reversing those two signs. The other rows follow by interchanging $x,y$ and choosing the specified inner signs for $x-1$ or $y-1$. No two sign rows agree. Thus no two of the eight orderings can be the same.

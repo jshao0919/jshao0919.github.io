@@ -1,0 +1,158 @@
+\section{Algebraic Extensions}
+
+\exercise{31.1}{A basic quadratic extension}
+The polynomial $x^2-2$ is irreducible over $\Q$, so the degree is two and a basis is $\{1,\sqrt2\}$. Spanning follows by reducing powers with $(\sqrt2)^2=2$; independence is equivalent to irrationality of $\sqrt2$.
+
+\exercise{31.2}{A biquadratic extension}
+First $[\Q(\sqrt2):\Q]=2$. The element $\sqrt3$ is not in $\Q(\sqrt2)$: squaring $a+b\sqrt2=\sqrt3$ gives $a^2+2b^2=3$, $2ab=0$. If $b=0$ this would make $3$ a rational square; if $a=0$ it would make $3/2$ a rational square. Both are impossible by prime factorization of a reduced rational square.
+Thus adjoining $\sqrt3$ has degree two. The tower law gives degree four and the product basis $\{1,\sqrt2,\sqrt3,\sqrt6\}$.
+
+\exercise{31.3}{A redundant radical}
+Since $\sqrt{18}=3\sqrt2$, the extra displayed generator already belongs to $\Q(\sqrt2,\sqrt3)$. Therefore the field is unchanged from Exercise 2: its degree is four and a basis is $\{1,\sqrt2,\sqrt3,\sqrt6\}$.
+
+\exercise{31.4}{A cubic radical and a square root}
+Put $t=\sqrt[3]2$. Eisenstein at $2$ gives $[\Q(t):\Q]=3$. If $\sqrt3$ belonged to that field, the tower law would require its degree two to divide three, impossible. Thus $x^2-3$ remains irreducible over $\Q(t)$, and the total degree is six. Multiplying the bases gives
+\[\{1,t,t^2,\sqrt3,t\sqrt3,t^2\sqrt3\}.\]
+
+\exercise{31.5}{Square and cube roots of the same integer}
+Set $u=\sqrt[6]2$. Then $u^3=\sqrt2$ and $u^2=\sqrt[3]2$, while $u=\sqrt2/\sqrt[3]2$. Hence the given field equals $\Q(u)$. The polynomial $x^6-2$ is Eisenstein at $2$, so its degree is six and a basis is $\{1,u,u^2,u^3,u^4,u^5\}$.
+
+\exercise{31.6}{A sum generating a biquadratic field}
+Let $s=\sqrt2+\sqrt3$. Since $(\sqrt3-\sqrt2)s=1$, the field $\Q(s)$ contains $1/s=\sqrt3-\sqrt2$. Adding and subtracting gives
+\[\sqrt3=\frac{s+1/s}{2},\qquad\sqrt2=\frac{s-1/s}{2}.\]
+Therefore $\Q(s)=\Q(\sqrt2,\sqrt3)$, of degree four. A basis can be $\{1,\sqrt2,\sqrt3,\sqrt6\}$, or equivalently $\{1,s,s^2,s^3\}$ since $s$ has degree four.
+
+\exercise{31.7}{A product of square roots}
+The single generator is $\sqrt2\sqrt3=\sqrt6$, so the field is $\Q(\sqrt6)$. The polynomial $x^2-6$ has no rational root and is irreducible. Thus the degree is two and a basis is $\{1,\sqrt6\}$. A product of radicals should not be mistaken for adjoining each radical separately.
+
+\exercise{31.8}{Two relatively prime simple degrees}
+The degrees of $\sqrt2$ and $t=\sqrt[3]5$ over $\Q$ are two and three. Let $K=\Q(\sqrt2,t)$. The tower law says both $2$ and $3$ divide $[K:\Q]$. On the other hand adjoining $t$ to $\Q(\sqrt2)$ has degree at most three, so $[K:\Q]\le6$. Hence its degree must be six. A basis is $\{1,t,t^2,\sqrt2,t\sqrt2,t^2\sqrt2\}$.
+
+\exercise{31.9}{Three displayed cube roots}
+Put $t=\sqrt[3]2$, $u=\sqrt[3]3$. Then $\sqrt[3]6=tu$ and $\sqrt[3]{24}=2u$, so the field in the question is exactly $\Q(t,u)$.
+The proof in Exercise 24 shows $x^3-3$ is irreducible over $\Q(t)$. Thus adjoining $u$ has degree three and the tower law gives $[\Q(t,u):\Q]=9$. A basis is
+\[\{t^iu^j:0\le i\le2,\ 0\le j\le2\}.\]
+This is a product of the bases at the two stages. Merely observing that each radical separately has degree three would not by itself establish degree nine.
+
+\exercise{31.10}{A quadratic extension over a quadratic base}
+The top field is $\Q(\sqrt2,\sqrt6)=\Q(\sqrt2,\sqrt3)$ because $\sqrt6/\sqrt2=\sqrt3$. It has degree four over $\Q$, while the base $\Q(\sqrt3)$ has degree two. The tower law therefore gives relative degree two. A basis over $\Q(\sqrt3)$ is $\{1,\sqrt2\}$.
+
+\exercise{31.11}{A sum over a base containing one summand}
+Over $F=\Q(\sqrt3)$, adjoining $\sqrt2+\sqrt3$ is the same as adjoining $\sqrt2$, because we can subtract $\sqrt3\in F$. The top field has rational degree four and $F$ degree two. Thus the relative degree is two and a basis is $\{1,\sqrt2\}$.
+
+\exercise{31.12}{A generator already defining the whole field}
+Exercise 6 established $\Q(\sqrt2+\sqrt3)=\Q(\sqrt2,\sqrt3)$. The top and bottom fields here are therefore equal. The relative degree is one, and a basis is $\{1\}$.
+
+\exercise{31.13}{A less immediate containment of fields}
+Write $s=\sqrt3+\sqrt5$ and $F=\Q(s)$. Since $(\sqrt5-\sqrt3)s=2$, we recover $\sqrt5=(s+2/s)/2$ and $\sqrt3=(s-2/s)/2$. Thus $F=\Q(\sqrt3,\sqrt5)$, a biquadratic field of rational degree four.
+The top field is $E=\Q(\sqrt2,\sqrt2s)$. It contains $s=(\sqrt2s)/\sqrt2$, so $E=F(\sqrt2)$.
+To see that $\sqrt2\notin F$, use the independent sign changes of $\sqrt3,\sqrt5$. If an element of $F$ has square $2$, each sign change sends it to itself or its negative. A simultaneous eigenvector for these two sign changes is a rational multiple of exactly one of $1,\sqrt3,\sqrt5,\sqrt{15}$, as follows by comparing coefficients in their basis. None can square to $2$, since $2,2/3,2/5,2/15$ are not rational squares. Thus the relative degree is two and $\{1,\sqrt2\}$ is a basis over $F$.
+
+\exercise{31.14}{Correcting algebraic extension}
+An extension $E/F$ is algebraic when \emph{every element} of $E$ is a zero of a nonzero polynomial in $F[x]$. It need not be generated by finitely many algebraic elements; the field of all algebraic numbers over $\Q$ is a standard infinite-degree example. A finite list of algebraic generators would define a finite extension, which is a stronger condition.
+
+\exercise{31.15}{Correcting finite extension}
+A finite extension $E/F$ means that $E$ is finite dimensional as an $F$-vector space: $[E:F]<\infty$. Having finitely many field generators is not enough; for example $F(t)$ has one transcendental generator but contains the linearly independent set $1,t,t^2,\ldots$ and has infinite dimension over $F$.
+
+\exercise{31.16}{Algebraic closure inside an extension}
+The definition is correct: the algebraic closure of $F$ in $E$ is $\overline F_E=\{a\in E:a\text{ is algebraic over }F\}$. It is a field because finite sums, products, and inverses of algebraic elements are algebraic. This relative closure need not itself be algebraically closed in the absolute sense.
+
+\exercise{31.17}{Correcting algebraically closed}
+A field $F$ is algebraically closed if every \emph{nonconstant polynomial in $F[x]$} has a zero in $F$. Constant nonzero polynomials have no zero in any field, so they must be excluded. By repeatedly factoring off roots, this is equivalent to every nonconstant polynomial splitting into linear factors over $F$.
+
+\exercise{31.18}{A relative closure need not be algebraically closed}
+Take $F=\Q$ and $E=\Q(\sqrt2)$, a proper algebraic extension. Every element of $E$ is algebraic over $F$, so $\overline F_E=E$. But $E$ is not algebraically closed: it is a real field and $x^2+1$ has no zero in it. This separates the relative and absolute uses of closure.
+
+\exercise{31.19}{True and false statements}
+\begin{enumerate}[label=(\alph*)]
+\item False. $\Q(\sqrt2)/\Q$ has degree two but infinitely many elements.
+\item True. In an $n$-dimensional extension, $1,a,\ldots,a^n$ are dependent for every $a$.
+\item False. The field of all algebraic numbers over $\Q$ has unbounded element degrees; Exercise 36 gives a proof.
+\item True. Repeated application of the tower law multiplies finitely many finite degrees.
+\item False. $\sqrt2\in\R$ is algebraic over $\Q$ and is not rational.
+\item True. Any element algebraic over the already algebraically closed $\C$ must be a root of a linear factor, hence belongs to $\C$.
+\item False. $x$ has no square root in $\C(x)$: a putative rational-function square would give an even exponent of the factor $x$ equal to an odd exponent.
+\item False. Every field has an algebraic closure, including the rational-function field $\C(x)$; containing $\C$ does not supply roots involving the new indeterminate.
+\item False. An algebraic closure of $\Z_p$ is algebraically closed and still has characteristic $p$.
+\item False. $\C$ is algebraically closed and extends $\Q$, but contains the transcendental number $\pi$.
+\end{enumerate}
+
+\exercise{31.20}{Synopsis of finite implies algebraic}
+If $[E:F]=n$, the $n+1$ vectors $1,a,\ldots,a^n$ are linearly dependent over $F$, providing a nonzero polynomial in $F[x]$ that vanishes at the arbitrary element $a\in E$.
+
+\exercise{31.21}{Synopsis of the tower law}
+Multiply each vector in an $F$-basis of $E$ by each vector in an $E$-basis of $K$. Expanding first over $E$ and then over $F$ proves that these products span $K$, and grouping a proposed relation by the $E$-basis and using independence at both stages proves they are independent. Thus their number is $[K:E][E:F]$.
+
+\exercise{31.22}{Every nonreal complex number generates over the reals}
+For $z=a+bi$ with real $a,b$ and $b\ne0$, the field $\R(z)$ contains $(z-a)/b=i$. It therefore contains $\R(i)=\C$. The reverse inclusion holds because $z\in\C$, so $\R(z)=\C$. Division by $b$ is legitimate because it is a nonzero element of the base field.
+
+\exercise{31.23}{Prime-degree extensions are simple}
+Take $a\in E\setminus F$. The intermediate field $F(a)$ satisfies
+\[[E:F]=[E:F(a)][F(a):F].\]
+The left side is prime and the second factor is greater than one because $a\notin F$. Hence $[F(a):F]=[E:F]$ and $[E:F(a)]=1$. Thus $E=F(a)$ for every such $a$, proving simplicity.
+
+\exercise{31.24}{A cubic stays irreducible over a pure cubic field}
+Put $t=\sqrt[3]2$ and $K=\Q(t)$. A reducible cubic $x^3-3$ over $K$ would have a zero in $K$. Since $K\subset\R$, that zero must be $u=\sqrt[3]3$.
+Suppose $u=a+bt+ct^2$ with $a,b,c\in\Q$. The rational polynomial $H(X)=(a+bX+cX^2)^3-3$ vanishes at $t$, so its minimal polynomial $X^3-2$ divides $H(X)$. Let $\omega$ be a nonreal cube root of unity. All three roots $t,\omega t,\omega^2t$ of $X^3-2$ therefore make $H$ vanish. The three values $a+bt+ct^2$, $a+b\omega t+c\omega^2t^2$, and $a+b\omega^2t+c\omega t^2$ are consequently cube roots of three.
+They are distinct. Indeed $u$ has degree three over $\Q$ by Eisenstein at three. Under the assumption $u\in K$, the tower law gives $\Q(u)=K$. Substituting any of the three roots for $t$ defines a field embedding of $K$ into $\C$, because $K\cong\Q[X]/(X^3-2)$. If two such embeddings had the same value at $u$, they would agree on all of $\Q(u)=K$, including $t$, contradicting their distinct assigned values of $t$. Hence the three values are exactly $u,\omega u,\omega^2u$.
+Their sum is zero, but summing the three substituted expressions gives $3a$, so $a=0$. The sum of their squares is also zero; with $a=0$, summing $(bt+ct^2)^2$ over the three substitutions leaves $6bc\,t^3=12bc$. Thus $bc=0$.
+If $c=0$, cubing gives $b^3=3/2$; if $b=0$, cubing gives $c^3=3/4$. Neither rational number is a rational cube, by its prime exponents. Both cases are impossible. Thus $u\notin K$, and the cubic is irreducible.
+
+\exercise{31.25}{Degrees arising from repeated square roots}
+Adjoining a square root of a nonsquare has degree exactly two. A tower of $r$ such steps therefore has total degree $2^r$ by the tower law. Any element in that tower has degree over the original field dividing $2^r$, hence itself a power of two.
+The polynomial $x^{14}-3x^2+12$ is Eisenstein at $3$: every nonleading coefficient is divisible by $3$ and the constant $12$ is not divisible by $9$. It is irreducible over $\Q$, so each of its zeros has degree fourteen. Since fourteen is not a power of two, no zero can belong to a finite tower of quadratic extensions. In particular no expression made from finitely many rational functions and nested square roots of rationals can give such a zero.
+
+\exercise{31.26}{An intermediate domain in a finite extension}
+Let $0\ne d\in D$. It is algebraic over $F$ because $D\subset E$ and $E/F$ is finite. Its minimal polynomial has nonzero constant term: otherwise it would have a factor $x$, contradicting irreducibility for a nonzero root. Write
+\[d^n+a_{n-1}d^{n-1}+\cdots+a_1d+a_0=0,\qquad a_0\ne0.\]
+Rearrange to obtain
+\[d^{-1}=-a_0^{-1}(d^{n-1}+a_{n-1}d^{n-2}+\cdots+a_1)\in D.\]
+The coefficients lie in $F\subset D$ and $D$ is closed under its ring operations. Thus every nonzero element of $D$ has its inverse in $D$, proving it is a field.
+
+\exercise{31.27}{Recovering two quadratic radicals from their sum}
+Let $s=\sqrt3+\sqrt7$. The inclusion $\Q(s)\subset\Q(\sqrt3,\sqrt7)$ is immediate. Since $s\ne0$ and $(\sqrt7-\sqrt3)s=4$, the first field contains $4/s=\sqrt7-\sqrt3$. Consequently
+\[\sqrt7=\frac{s+4/s}{2},\qquad\sqrt3=\frac{s-4/s}{2}.\]
+It contains both generators of the second field, yielding the reverse inclusion and equality.
+
+\exercise{31.28}{The general sum-of-two-square-roots identity}
+Put $s=\sqrt a+\sqrt b\ne0$. Then
+\[\frac{a-b}{s}=\sqrt a-\sqrt b.\]
+Thus
+\[\sqrt a=\frac12\left(s+\frac{a-b}{s}\right),\qquad\sqrt b=\frac12\left(s-\frac{a-b}{s}\right).\]
+Since $a,b\in\Q$ and $s$ is nonzero, both expressions belong to $\Q(s)$. This proves $\Q(\sqrt a,\sqrt b)\subset\Q(s)$; the reverse inclusion is immediate. The formula remains valid when $a=b$ provided the stated nonzero-sum condition holds.
+
+\exercise{31.29}{A divisibility obstruction to roots}
+Suppose $a\in E$ were a root of the irreducible polynomial $p\in F[x]$. Its minimal polynomial is the monic associate of $p$, so $[F(a):F]=\deg p$. The tower law would then give $[E:F]=[E:F(a)]\deg p$, making $\deg p$ a divisor of $[E:F]$. This contradicts the hypothesis. Therefore no zero lies in $E$.
+
+\exercise{31.30}{Squaring an odd-degree element}
+The element $\alpha^2$ lies in the finite extension $F(\alpha)$, so is algebraic over $F$. Moreover $\alpha$ satisfies $x^2-\alpha^2$ over $F(\alpha^2)$, so $[F(\alpha):F(\alpha^2)]$ is one or two. The tower law makes this degree divide the odd integer $[F(\alpha):F]$, forcing it to be one. Hence $F(\alpha)=F(\alpha^2)$, and $\alpha^2$ has the same odd degree as $\alpha$.
+
+\exercise{31.31}{Transitivity of arbitrary algebraic extensions}
+If $K/F$ is algebraic, every element of $E\subset K$ is algebraic over $F$, and every annihilating polynomial over $F$ is also one over $E$. Thus $E/F$ and $K/E$ are algebraic.
+Conversely suppose both intermediate extensions are algebraic, and take $a\in K$. A polynomial annihilating $a$ over $E$ has only finitely many coefficients $c_0,\ldots,c_n$. They are algebraic over $F$, so $L=F(c_0,\ldots,c_n)$ is a finite extension of $F$ by repeatedly adjoining one algebraic element. The element $a$ is algebraic over $L$, hence $L(a)/L$ is finite. The finite tower law shows $L(a)/F$ is finite, so $a$ is algebraic over $F$. This proves transitivity without assuming the original extensions finite.
+
+\exercise{31.32}{Elements outside the relative algebraic closure}
+Let $A=\overline F_E$. This field is algebraic over $F$ by its definition. If $a\in E$ were algebraic over $A$, transitivity from Exercise 31 would make $a$ algebraic over $F$, and hence place it in $A$. Therefore every $a\in E\setminus A$ must be transcendental over $A$.
+
+\exercise{31.33}{Relative closure inside an algebraically closed field}
+Let $A=\overline F_E$, where $E$ is algebraically closed. Take any nonconstant $p\in A[x]$. Since $p\in E[x]$, it has a zero $a\in E$. This $a$ is algebraic over $A$, and $A/F$ is algebraic, so transitivity makes $a$ algebraic over $F$. Hence $a\in A$ by the definition of $A$. Thus every nonconstant polynomial over $A$ has a zero there, so $A$ is algebraically closed.
+
+\exercise{31.34}{Containing all roots of base-field polynomials}
+Work in a common algebraic closure containing the given algebraic extensions. Every element of an algebraic closure $\overline F$ is a zero of a nonzero polynomial in $F[x]$, so the hypothesis implies $\overline F\subset E$.
+Any $a\in E$ is algebraic over $F$, hence also over $\overline F$. Its polynomial over the algebraically closed field $\overline F$ factors into linear factors, so $a$ must belong to $\overline F$. Therefore $E=\overline F$ and is algebraically closed. Equivalently, the hypothesis that all algebraic roots have already been included leaves no possible further algebraic element.
+
+\exercise{31.35}{A finite field is not algebraically closed}
+Suppose $|F|=q$ and its characteristic is odd. Squaring pairs the nonzero elements as $\{a,-a\}$, with distinct members, and equal squares arise precisely from those pairs. There are $(q-1)/2$ nonzero squares, so choose a nonsquare $d\in F$. Then $x^2-d$ has no zero in $F$, proving $F$ is not algebraically closed.
+For completeness, in any finite field every $a$ satisfies $a^q=a$, so $x^q-x-1$ evaluates to $-1\ne0$ at every element. This proves the parenthetical characteristic-two claim as well.
+
+\exercise{31.36}{The algebraic numbers have infinite degree}
+For every positive integer $n$, the polynomial $x^n-2$ is Eisenstein at $2$, so a chosen root has degree $n$ over $\Q$. All these roots lie in the algebraic closure of $\Q$ in $\C$. If that closure had finite degree $d$, every element degree would divide $d$ and in particular be at most $d$. Taking $n>d$ contradicts this. Thus the algebraic closure is not a finite extension of $\Q$.
+
+\exercise{31.37}{Finite extensions of the reals}
+A real polynomial factors over $\R$ into linear and irreducible quadratic factors, by pairing conjugate roots in its complex factorization. Thus every irreducible polynomial over $\R$ has degree one or two.
+If a finite extension $E/\R$ has no element outside $\R$, it is $\R$. Otherwise choose $a\in E\setminus\R$. Its minimal polynomial is an irreducible quadratic $x^2+bx+c$ with $c-b^2/4>0$. The element $j=(a+b/2)/\sqrt{c-b^2/4}$ satisfies $j^2=-1$, so $\R(a)=\R(j)\cong\C$.
+This intermediate field is algebraically closed, while $E$ is algebraic over it. An algebraically closed field has no proper algebraic extension: the minimal polynomial of any algebraic element must be linear. Hence $E=\R(a)\cong\C$.
+
+\exercise{31.38}{Maximal ideals from Zorn lemma}
+Let $I$ be the given proper ideal, and partially order the proper ideals containing $I$ by inclusion. The family is nonempty because it contains $I$. For any nonempty chain, let $J$ be its union. Two elements of $J$ lie together in one chain member, so their difference lies in $J$; absorption follows within the member containing the chosen element. Thus $J$ is an ideal containing $I$.
+It is proper: if $1\in J$, then $1$ lies in one chain member, which would be the whole ring, contradicting its propriety. The empty chain has upper bound $I$. Zorn's lemma now yields a maximal member $M$. Any proper ideal properly containing $M$ would still contain $I$, contrary to maximality in this ordered family. Hence $M$ is a maximal ideal of $R$ containing $I$.

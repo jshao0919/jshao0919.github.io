@@ -1,0 +1,15 @@
+{
+  "section": 15,
+  "part": 3,
+  "title": "Factor-Group Computations and Simple Groups",
+  "exercise_count": 42,
+  "source_pages": [
+    158,
+    159,
+    160,
+    161
+  ],
+  "notes": [
+    "15.39(c) special cycles number n-2, since repeated entries do not define three-cycles."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "section": 52,
+  "part": 10,
+  "title": "Totally Inseparable Extensions",
+  "exercise_count": 8,
+  "source_pages": [
+    450
+  ],
+  "notes": [
+    "Fraleigh uses a strict proper-extension convention; 52.5(h) must allow equality or is false."
+  ]
+}

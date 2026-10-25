@@ -1,0 +1,179 @@
+\section{Isomorphic Binary Structures}
+
+\exercise{3.1}{The three isomorphism checks}
+
+Check that the map is (1) one-to-one, (2) onto the specified target set, and (3) operation-preserving: $\phi(a*b)=\phi(a)*'\phi(b)$ for every $a,b\in S$. The first two make a bijection; the third ensures that it respects the algebraic structure. Also confirm initially that the formula actually takes values in the stated codomain.
+
+\exercise{3.2}{Negation on the integers}
+
+This is an isomorphism. If $-m=-n$ then $m=n$, proving injectivity. Each integer $y$ is the image of $-y$, proving surjectivity. Finally $\phi(m+n)=-(m+n)=-m-n=\phi(m)+\phi(n)$, proving preservation of addition.
+
+\exercise{3.3}{Doubling integers}
+
+This map preserves addition since $2(m+n)=2m+2n$ and is injective because $2m=2n$ implies $m=n$. However its image consists only of even integers; $1$ has no preimage in $\Z$. Thus it is not onto and is not an isomorphism onto the specified target.
+
+\exercise{3.4}{Translating integers}
+
+The map $n\mapsto n+1$ is bijective, with inverse $y\mapsto y-1$, but does not preserve addition. Indeed $\phi(0+0)=1$, while $\phi(0)+\phi(0)=2$. A bijection alone is not an isomorphism.
+
+\exercise{3.5}{Halving rational numbers}
+
+If $x/2=y/2$, then $x=y$, so the map is injective. A rational target $q$ has rational preimage $2q$, so it is onto. Also $(x+y)/2=x/2+y/2$. All three requirements hold, making this an additive isomorphism.
+
+\exercise{3.6}{Squaring rational numbers}
+
+Squaring preserves multiplication: $(xy)^2=x^2y^2$. It is not injective, since $1$ and $-1$ have the same image, and is not onto $\Q$, since no rational square equals $-1$. Hence it is not an isomorphism.
+
+\exercise{3.7}{Cubing real numbers}
+
+The cubic function is strictly increasing, so it is injective, and every real $y$ has real preimage $\sqrt[3]{y}$, so it is onto. Since $(xy)^3=x^3y^3$, it preserves multiplication. Thus it is an isomorphism of the indicated multiplicative binary structures, even though the structures include zero and are not groups.
+
+\exercise{3.8}{Determinants of two by two matrices}
+
+Determinants preserve multiplication: $\det(AB)=\det(A)\det(B)$. The map is onto since $\det\operatorname{diag}(r,1)=r$. It is not injective: the distinct matrices $I_2$ and $\begin{pmatrix}1&1\\0&1\end{pmatrix}$ both have determinant $1$. Thus it is not an isomorphism.
+
+\exercise{3.9}{Determinants of one by one matrices}
+
+A one by one matrix $[r]$ has determinant $r$. The map $[r]\mapsto r$ is bijective, with inverse $r\mapsto[r]$. Also $[r][s]=[rs]$, whose determinant is $rs$. Consequently this determinant map is an isomorphism.
+
+\exercise{3.10}{A decreasing exponential}
+
+The codomain here is $\R^+$, the positive reals. The function $\phi(r)=(1/2)^r$ is strictly decreasing and has inverse $y\mapsto\log_{1/2}y$ for $y>0$, so it is bijective. The exponent law gives $\phi(r+s)=(1/2)^{r+s}=\phi(r)\phi(s)$. Hence it is an isomorphism from addition to multiplication.
+
+\exercise{3.11}{Differentiating smooth functions}
+
+Differentiation preserves addition: $(f+g)'=f'+g'$. It is onto the smooth functions: if $h$ is smooth, $f(x)=\int_0^x h(t)\,dt$ is smooth and has derivative $h$. But it is not injective, since the constant functions $0$ and $1$ both map to zero. Thus it is not an isomorphism.
+
+\exercise{3.12}{Evaluating a derivative at zero}
+
+The map is additive because $(f+g)'(0)=f'(0)+g'(0)$. It is onto $\R$, since $f(x)=cx$ has $f'(0)=c$ for any real $c$. It is not injective: distinct constant functions have the same image $0$. Therefore it is not an isomorphism.
+
+\exercise{3.13}{Integration from zero}
+
+Integration is additive, and if $\int_0^x f(t)\,dt=\int_0^x g(t)\,dt$ for all $x$, differentiation gives $f=g$, proving injectivity. However each image function is zero at $x=0$, so the constant function $1$ is not in the image. Thus it is not onto $F$ and is not an isomorphism.
+
+\exercise{3.14}{Differentiating the integral}
+
+The fundamental theorem of calculus gives $\phi(f)(x)=\frac{d}{dx}\int_0^x f(t)\,dt=f(x)$, since every smooth function is continuous. Thus the map is the identity on $F$, so is bijective and preserves addition. It is an isomorphism.
+
+\exercise{3.15}{Multiplication by the independent variable}
+
+The map is not onto: every image $x f(x)$ vanishes at zero, whereas the constant function $1$ does not. It also fails to preserve multiplication: taking $f=g=1$ gives $\phi(fg)(x)=x$ but $(\phi(f)\phi(g))(x)=x^2$, different at $x=2$. Thus it is not an isomorphism for either reason.
+
+\exercise{3.16}{Transporting addition by a translation}
+
+The inverse of $\phi(n)=n+1$ is $\phi^{-1}(u)=u-1$.
+\begin{enumerate}[label=(\alph*)]
+\item To send ordinary addition to $*$, define $u*v=\phi((u-1)+(v-1))=u+v-1$. Then $\phi(m)*\phi(n)=(m+1)+(n+1)-1=m+n+1=\phi(m+n)$. Its identity is $\phi(0)=1$.
+\item To send $*$ to ordinary addition, require $\phi(m*n)=\phi(m)+\phi(n)$. This gives $m*n+1=m+n+2$, or $m*n=m+n+1$. Its identity is $-1=\phi^{-1}(0)$.
+\end{enumerate}
+
+\exercise{3.17}{Transporting multiplication by a translation}
+
+Use $\phi(n)=n+1$ and its inverse $u-1$.
+\begin{enumerate}[label=(\alph*)]
+\item Define $u*v=\phi((u-1)(v-1))=(u-1)(v-1)+1=uv-u-v+2$. Then $\phi(m)*\phi(n)=mn+1=\phi(mn)$. The identity is $\phi(1)=2$.
+\item Require $\phi(m*n)=\phi(m)\phi(n)$, giving $m*n=(m+1)(n+1)-1=mn+m+n$. Its identity is $0=\phi^{-1}(1)$.
+\end{enumerate}
+These are binary operations on integers; the construction does not assert that every integer has a multiplicative inverse.
+
+\exercise{3.18}{Transporting rational addition}
+
+Here $\phi(x)=3x-1$ and $\phi^{-1}(u)=(u+1)/3$.
+\begin{enumerate}[label=(\alph*)]
+\item Define $u*v=\phi((u+1)/3+(v+1)/3)=u+v+1$. This satisfies $\phi(x)*\phi(y)=3x+3y-1=\phi(x+y)$. Its identity is $-1=\phi(0)$.
+\item Define $x*y=\phi^{-1}(\phi(x)+\phi(y))=(3x+3y-2+1)/3=x+y-1/3$. Its identity is $1/3=\phi^{-1}(0)$.
+\end{enumerate}
+All displayed formulas preserve rationality, so their domains and codomains are correct.
+
+\exercise{3.19}{Transporting rational multiplication}
+
+Again $\phi^{-1}(u)=(u+1)/3$.
+\begin{enumerate}[label=(\alph*)]
+\item Define $u*v=\phi(\phi^{-1}(u)\phi^{-1}(v))=(u+1)(v+1)/3-1$. Then $\phi(x)*\phi(y)=3xy-1=\phi(xy)$. Its identity is $\phi(1)=2$.
+\item Define $x*y=\phi^{-1}(\phi(x)\phi(y))=((3x-1)(3y-1)+1)/3=3xy-x-y+2/3$. Its identity is $\phi^{-1}(1)=2/3$.
+\end{enumerate}
+In each direction the equation used to define the operation is exactly the required preservation condition, and the original map is already bijective.
+
+\exercise{3.20}{Commuting with the operations}
+
+There are two routes from an input pair $(a,b)$ to an element of $S'$. One first computes $a*b$ in $S$ and then applies $\phi$. The other first applies $\phi$ to both inputs and then computes $\phi(a)*'\phi(b)$ in $S'$. Saying that $\phi$ commutes with these operations means precisely that the two routes give the same result. It does not mean $\phi$ itself is a binary operation.
+
+\exercise{3.21}{Completing the isomorphism definition}
+
+Let $*$ and $*'$ be binary operations on $S$ and $S'$. An isomorphism $\phi:(S,*)\to(S',*')$ is a bijection such that $\phi(a*b)=\phi(a)*'\phi(b)$ for every $a,b\in S$. The original version omitted bijectivity and the universal quantifier.
+
+\exercise{3.22}{The identity definition}
+The stated definition is correct: an element $e\in S$ is an identity for $*$ when $s*e=s=e*s$ for every $s\in S$. The middle equality to $s$ says multiplication by $e$ leaves every element unchanged, and the two sides specify both a left and a right identity. Merely requiring $s*e=e*s$, without equality to $s$, would only require $e$ to commute with every element and would not suffice.
+
+\exercise{3.23}{Synopsis of identity uniqueness}
+
+Compute the product of two proposed identities: using the first as a left identity and the second as a right identity makes that same product equal to each of them, forcing them to coincide.
+
+\exercise{3.24}{Left and right identities}
+
+\begin{enumerate}[label=(\alph*)]
+\item A left identity $e_L\in S$ satisfies $e_L*s=s$ for every $s\in S$. It need not be unique: on $S=\{a,b\}$ define $x*y=y$. Then both elements are left identities. In the two-sided uniqueness proof, the step $e_L*e'_L=e_L$ is unavailable: it would require $e'_L$ to be a right identity.
+\item A right identity $e_R\in S$ satisfies $s*e_R=s$ for every $s\in S$. On $S=\{a,b\}$ define $x*y=x$. Then both elements are right identities. The step $e_R*e'_R=e'_R$ fails because it requires $e_R$ to be a left identity.
+\end{enumerate}
+
+\exercise{3.25}{A left identity and a right identity together}
+
+They cannot differ. If $l$ is a left identity and $r$ a right identity, then $l*r=r$ by the left identity property and $l*r=l$ by the right identity property. Thus $l=r$, and this element is consequently a two-sided identity. No associativity assumption is needed.
+
+\exercise{3.26}{The inverse of an isomorphism}
+
+The inverse $\phi^{-1}$ is a bijection because $\phi$ is. Given $u,v\in S'$, write $a=\phi^{-1}(u)$ and $b=\phi^{-1}(v)$. Preservation by $\phi$ gives $\phi(a*b)=\phi(a)*'\phi(b)=u*'v$. Applying $\phi^{-1}$ yields
+\[\phi^{-1}(u*'v)=a*b=\phi^{-1}(u)*\phi^{-1}(v).
+\]
+Thus the inverse also preserves the operations, completing all requirements.
+
+\exercise{3.27}{Composing isomorphisms}
+
+A composite of two bijections is a bijection (its inverse is $\phi^{-1}\circ\psi^{-1}$). Also
+\[(\psi\circ\phi)(a*b)=\psi(\phi(a)*'\phi(b))=\psi(\phi(a))*''\psi(\phi(b)).
+\]
+The first preservation step uses $\phi$ and the second uses $\psi$. This is precisely preservation by $\psi\circ\phi$, so the composite is an isomorphism.
+
+\exercise{3.28}{Isomorphism is an equivalence relation}
+
+Reflexivity: the identity map on any binary structure is bijective and operation-preserving. Symmetry: if one structure is isomorphic to another, the inverse isomorphism from Exercise 3.26 gives the reverse direction. Transitivity: compose the two isomorphisms using Exercise 3.27. Thus all three equivalence-relation conditions hold on any specified set of binary structures.
+
+\exercise{3.29}{Commutativity is structural}
+
+Suppose $\phi:S\to S'$ is an isomorphism and $*$ is commutative. For arbitrary $u,v\in S'$, surjectivity gives $u=\phi(a)$ and $v=\phi(b)$. Then
+\[u*'v=\phi(a*b)=\phi(b*a)=v*'u.
+\]
+Hence $*'$ is commutative. Applying the same argument to $\phi^{-1}$ proves the converse. Therefore commutativity depends on structure, not on the names of elements.
+
+\exercise{3.30}{Associativity is structural}
+
+For arbitrary $u=\phi(a),v=\phi(b),w=\phi(c)$ in $S'$, preservation gives
+\[(u*'v)*'w=\phi((a*b)*c)=\phi(a*(b*c))=u*'(v*'w).
+\]
+Surjectivity ensures every target triple has these preimages; associativity in $S$ gives the middle equality. Repeat with the inverse to obtain the reverse implication. Thus associativity is invariant under isomorphism.
+
+\exercise{3.31}{Existence of square roots is structural}
+
+Assume each $c\in S$ has some $x$ with $x*x=c$. Given $d\in S'$, choose $c=\phi^{-1}(d)$ and a square root $x$ of $c$. Then $y=\phi(x)$ satisfies $y*'y=\phi(x*x)=\phi(c)=d$. The same argument using $\phi^{-1}$ proves the converse. We require existence, not uniqueness, of these roots.
+
+\exercise{3.32}{Existence of an idempotent is structural}
+
+If $b*b=b$ in $S$, then $\phi(b)*'\phi(b)=\phi(b*b)=\phi(b)$, so $\phi(b)$ is idempotent in $S'$. Conversely any target idempotent pulls back under $\phi^{-1}$ to an idempotent in $S$. Thus the existence of such an element is a structural property.
+
+\exercise{3.33}{Complex numbers as real matrices}
+
+Define $\phi(a+bi)=M(a,b)=\begin{pmatrix}a&-b\\b&a\end{pmatrix}$. Equality of matrices recovers both $a$ and $b$, proving injectivity, and every matrix in $H$ has this form, proving surjectivity.
+\begin{enumerate}[label=(\alph*)]
+\item $M(a,b)+M(c,d)=M(a+c,b+d)=\phi((a+bi)+(c+di))$, so the map preserves addition.
+\item $M(a,b)M(c,d)=M(ac-bd,ad+bc)=\phi((a+bi)(c+di))$, so it preserves multiplication.
+\end{enumerate}
+The same bijection therefore gives both requested isomorphisms.
+
+\exercise{3.34}{Classifying two-element binary structures}
+
+Encode a table on $\{a,b\}$ by the four entries $(a*a,a*b,b*a,b*b)$. The only relabelings are the identity and the swap of $a,b$. Here are ten representative tables, specified by their four entries in that order:
+\[\begin{array}{c|cccc} &a*a&a*b&b*a&b*b\\\hline
+1&a&a&a&a\\2&a&a&a&b\\3&a&a&b&a\\4&a&a&b&b\\5&a&b&a&a\\6&a&b&a&b\\7&a&b&b&a\\8&b&a&a&a\\9&b&a&b&a\\10&b&b&a&a
+\end{array}\]
+To see completeness without guessing, encode $a,b$ as $0,1$. A swap sends $(t_1,t_2,t_3,t_4)$ to $(1-t_4,1-t_3,1-t_2,1-t_1)$. Exactly four tables are fixed: choose $t_1,t_2$ freely and then $t_4=1-t_1,t_3=1-t_2$. The other twelve tables form six pairs. Hence there are $4+12/2=10$ classes; the ten displayed representatives lie in distinct swap classes and exhaust them.

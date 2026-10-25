@@ -1,0 +1,116 @@
+\section{Sylow Theorems}
+For a finite group of order $p^a m$, where $p\nmid m$, a Sylow $p$-subgroup has order $p^a$; its number $n_p$ divides $m$ and satisfies $n_p\equiv1\pmod p$. A unique Sylow subgroup is normal because conjugation preserves its order.
+\exercise{36.1}{The Sylow 3-order when $|G|=12$}
+Factor $12=2^2\cdot3$. A Sylow 3-subgroup has the largest power of 3 dividing $|G|$, namely $3^1=3$, as its order. This is the subgroup's order, not the number of such subgroups.
+
+\exercise{36.2}{The Sylow 3-order when $|G|=54$}
+Since $54=2\cdot3^3$, the largest power of 3 dividing 54 is $27$. Hence every Sylow 3-subgroup has order $27$.
+
+\exercise{36.3}{Counting Sylow 2-subgroups for order 24}
+Sylow's counting theorem gives $n_2\mid24/8=3$ and $n_2\equiv1\pmod2$. Both divisors 1 and 3 satisfy these conditions, so the blanks are $1$ and $3$. The theorem gives possible values, without asserting that both occur in a particular group.
+
+\exercise{36.4}{Counting Sylow subgroups for order 255}
+For $p=3$, $n_3\mid85$ and $n_3\equiv1\pmod3$. Of $1,5,17,85$, only $1,85$ qualify. For $p=5$, $n_5\mid51$ and $n_5\equiv1\pmod5$; of $1,3,17,51$, only $1,51$ qualify.
+Thus the requested alternatives are $n_3=1$ or $85$, and $n_5=1$ or $51$. Only the counting theorem is being used here, as requested.
+
+\exercise{36.5}{Sylow 3-subgroups of $S_4$}
+A Sylow 3-subgroup has order 3, since $24=3\cdot8$. Every nonidentity element in one is a 3-cycle; each 3-cycle and its inverse generate the same subgroup. The full list is
+\[
+\gen{(123)},\quad\gen{(124)},\quad\gen{(134)},\quad\gen{(234)}.
+\]
+There are eight 3-cycles, two per subgroup, so nothing is missing.
+Conjugation relabels a cycle: $\sigma(ijk)\sigma^{-1}=(\sigma(i)\,\sigma(j)\,\sigma(k))$.
+Starting from $\gen{(123)}$, conjugate by $(34)$, $(234)$, and $(1234)$ to get the other three subgroups respectively. Thus all four are conjugate explicitly.
+
+\exercise{36.6}{Two conjugate Sylow 2-subgroups of $S_4$}
+Take $P=\gen{(1234),(13)}$. With $r=(1234)$, $s=(13)$, we have $r^4=s^2=e$ and $srs=r^{-1}$. Its eight distinct elements are
+\[
+e,(1234),(13)(24),(1432),(13),(24),(14)(23),(12)(34).
+\]
+Since $8$ is the largest power of 2 dividing 24, $P$ is Sylow.
+Let $\tau=(34)$ and set $Q=\tau P\tau^{-1}=\gen{(1243),(14)}$.
+It again has eight elements and is Sylow. It differs from $P$ because $(1243)\notin P$.
+The displayed equation itself demonstrates that $P$ and $Q$ are conjugate, rather than merely appealing to the general theorem.
+
+\exercise{36.7}{Definition of a $p$-group}
+An element need not have order exactly $p$. The correct definition is: $G$ is a $p$-group if every element has order a power $p^k$ with $k\ge0$ (the identity has order $p^0=1$). For finite $G$ this is equivalent to $|G|$ being a power of $p$. For example $\Z_{p^2}$ is a $p$-group and has an element of order $p^2$.
+
+\exercise{36.8}{Definition of the normalizer}
+The normalizer is a set of \emph{elements of $G$}, not a set of automorphisms:
+\[
+N_G(H)=\{g\in G:gHg^{-1}=H\}.
+\]
+Equivalently it consists of those elements whose induced inner automorphism preserves $H$. Distinct group elements can induce the same inner automorphism, so replacing elements by automorphisms changes the set and potentially its order.
+
+\exercise{36.9}{Definition of a Sylow subgroup}
+For a finite group with $|G|=p^a m$ and $p\nmid m$, a Sylow $p$-subgroup is a subgroup of order $p^a$. Equivalently it is a maximal $p$-subgroup under inclusion. Say \emph{a} Sylow subgroup, since there may be several. ``The largest'' suggests a unique subgroup containing all others, which usually does not exist.
+
+\exercise{36.10}{True or false: Sylow theory}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item True: this is Sylow conjugacy.
+\item True: $n_5\mid3$ and $n_5\equiv1\pmod5$ force $n_5=1$.
+\item True by the definition of a Sylow $p$-subgroup.
+\item False: $\{0,2\}<\Z_4$ is a 2-subgroup but is not Sylow; the entire group has order 4.
+\item True: conjugation is trivial in an abelian group, and Sylow subgroups are conjugate.
+\item False: in $S_3$, the normalizer of $\gen{(12)}$ equals $\gen{(12)}$, which is not normal in $S_3$.
+\item True: every element of the normalizer conjugates $H$ onto itself.
+\item True: uniqueness implies conjugation invariance, and normality combined with Sylow conjugacy implies uniqueness.
+\item False: in an abelian group $N_G(H)=G$, which can strictly contain $H$.
+\item False: the whole group is its Sylow $p$-subgroup.
+\end{enumerate}
+
+\exercise{36.11}{The normalizer is a subgroup}
+Certainly $eHe^{-1}=H$. If $aHa^{-1}=H$ and $bHb^{-1}=H$, then
+$(ab)H(ab)^{-1}=a(bHb^{-1})a^{-1}=H$.
+Also $aHa^{-1}=H$ implies $a^{-1}Ha=H$, by conjugating the equality with $a^{-1}$. Hence the normalizer contains the identity and is closed under products and inverses, so it is a subgroup.
+
+\exercise{36.12}{A unique proper Sylow subgroup is normal}
+Let $P$ be the only Sylow $p$-subgroup. For each $g\in G$, conjugation is an isomorphism, so $gPg^{-1}$ has the same order as $P$ and is again Sylow. Uniqueness gives $gPg^{-1}=P$.
+Thus $P\trianglelefteq G$. It is nontrivial because $p\mid|G|$, and proper because a distinct prime $q$ divides $|G|$. This is a nontrivial proper normal subgroup, so $G$ is not simple.
+
+\exercise{36.13}{A normal order-9 subgroup for order 45}
+Since $45=3^2\cdot5$, Sylow 3-subgroups have order 9. Their number divides 5 and is 1 modulo 3. Of the divisors 1 and 5, only 1 is 1 modulo 3. Thus there is a unique Sylow 3-subgroup; conjugation preserves its order and hence preserves it. This is the required normal subgroup of order 9.
+
+\exercise{36.14}{Finite $p$-groups and prime-power orders}
+If $|G|=p^a$, Lagrange's theorem makes every element order divide $p^a$, so each order is a power of $p$.
+Conversely suppose every element order is a power of $p$. If a different prime $q$ divided $|G|$, Cauchy's theorem would produce an element of order $q$, contradicting the assumption. Thus no prime other than $p$ divides $|G|$, so $|G|=p^a$. The trivial group corresponds to $a=0$.
+
+\exercise{36.15}{A Sylow normalizer is self-normalizing}
+Put $M=N_G(P)$. Then $P\trianglelefteq M$, and $P$ remains a Sylow subgroup of $M$ because $P\subseteq M\subseteq G$ leaves no room for a larger power of $p$. Hence $P$ is the unique Sylow $p$-subgroup of $M$.
+If $g\in N_G(M)$, conjugation by $g$ is an automorphism of $M$ and carries $P$ to another Sylow $p$-subgroup of $M$. Uniqueness forces $gPg^{-1}=P$, so $g\in M$.
+This proves $N_G(M)\subseteq M$. Every subgroup normalizes itself, giving the reverse inclusion. Therefore $N_G(N_G(P))=N_G(P)$.
+
+\exercise{36.16}{Conjugating a $p$-subgroup into a fixed Sylow subgroup}
+Let the $p$-group $H$ act by left multiplication on the left-coset set $G/P$. Its size $[G:P]$ is not divisible by $p$. The orbit congruence therefore implies that the number of cosets fixed by all of $H$ is nonzero modulo $p$, hence positive.
+Choose a fixed coset $xP$. For every $h\in H$, $hxP=xP$, so $x^{-1}hx\in P$. Thus $x^{-1}Hx\subseteq P$.
+Taking $g=x^{-1}$ yields the requested $gHg^{-1}\subseteq P$.
+
+\exercise{36.17}{A normal order-125 subgroup}
+The group order is $(35)^3=5^3\cdot7^3$. A Sylow 5-subgroup has order 125. Its number divides $343$, whose divisors are $1,7,49,343$; their residues modulo 5 are $1,2,4,3$. Only 1 is allowed by Sylow's congruence. Therefore the order-125 subgroup is unique and hence normal.
+
+\exercise{36.18}{Nonsimplicity at order 255}
+A Sylow 17-subgroup has order 17. Its number divides $15$ and is 1 modulo 17. The divisors $1,3,5,15$ include only one such number, namely 1. Thus the subgroup is unique, normal, nontrivial, and proper. Consequently no group of order 255 is simple.
+
+\exercise{36.19}{The small-cofactor criterion and its prime exception}
+\textbf{Qualification of the printed statement.} As written it includes $m=1,r=1$, so it is false: $\Z_p$ is simple and has order $p^1\cdot1$ with $1<p$.
+For the intended composite-order assertion, let $|G|=p^r m$ with $1<m<p$. Since $p\nmid m$, a Sylow $p$-subgroup has order $p^r$. Its number divides $m$ and is congruent to 1 modulo $p$. But every positive divisor of $m$ lies between 1 and $m<p$, so only 1 is possible. The unique Sylow subgroup is nontrivial, normal, and proper.
+If $m=1$ and $r>1$, the group is a $p$-group. Its center is nontrivial by Exercise 36.20. If the center is proper it is the required normal subgroup; if the group is abelian, any order-$p$ subgroup is normal and proper. Thus only the prime-order case must be excluded.
+
+\exercise{36.20}{Conjugation fixed points and the center}
+\textbf{(a)} A point $x\in G$ is fixed by every conjugation precisely when $gxg^{-1}=x$ for every $g$, equivalently $gx=xg$ for every $g$. Thus the fixed-point set is $Z(G)$.
+\textbf{(b)} When $|G|=p^n$ with $n\ge1$, the orbit congruence for this action gives
+$|Z(G)|\equiv|G|\equiv0\pmod p$.
+The center contains $e$, so its order is a positive multiple of $p$ and in particular at least $p$. Hence it is nontrivial.
+
+\exercise{36.21}{Normal subgroups of every prime-power order}
+We prove the stronger assertion of a nested normal chain by induction on $n$. For $n=0$, take $H_0=G=1$.
+For $n\ge1$, the center is nontrivial, so Cauchy's theorem gives a central subgroup $C$ of order $p$. Centrality makes $C\trianglelefteq G$.
+The quotient $G/C$ has order $p^{n-1}$. By induction it has a nested chain of subgroups $\overline H_j\trianglelefteq G/C$ of orders $p^j$ for $0\le j\le n-1$.
+If $\pi:G\to G/C$, set $H_0=1$ and $H_{j+1}=\pi^{-1}(\overline H_j)$. Preimages of normal subgroups are normal, and each preimage has order $|C|\,|\overline H_j|=p^{j+1}$. They are nested because the quotient terms are nested. This gives all required $H_i$, with $H_n=G$.
+
+\exercise{36.22}{Normal $p$-subgroups lie in every Sylow subgroup}
+Let $S$ be any Sylow $p$-subgroup. Since $P\trianglelefteq G$, $PS$ is a subgroup. Its order is
+\[
+|PS|=\frac{|P||S|}{|P\cap S|},
+\]
+a power of $p$, since all three orders are powers of $p$. It contains $S$, which already has the largest possible $p$-power order in $G$. Thus $PS=S$, and hence $P\subseteq S$. Since $S$ was arbitrary, this holds for every Sylow $p$-subgroup.

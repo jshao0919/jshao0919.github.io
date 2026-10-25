@@ -1,0 +1,298 @@
+\section{Group Action on a Set}
+
+For a group action, $gx$ denotes the result of applying $g$ to $x$; it need
+not be multiplication in a group containing $x$. The axioms are $ex=x$ and
+$(gh)x=g(hx)$. The orbit $Gx$ consists of all possible images of $x$, the
+stabilizer $G_x$ consists of the group elements fixing $x$, and $X_g$ is
+the set of points fixed by one specified $g$. Keep these three sets distinct.
+In the classification exercises, a transitive set is understood to be
+nonempty, as in the book's examples. If the empty set is admitted, the
+quantified transitivity condition holds vacuously there and adds one empty case.
+
+\exercise{16.1}{All fixed sets in the square action}
+\idea In each row of Table 16.10, retain exactly the column labels that the
+row leaves unchanged. Write $X$ for the full seventeen-element set.
+\begin{align*}
+X_{\rho_0}&=X,&X_{\rho_1}&=\{C\},&X_{\rho_3}&=\{C\},\\
+X_{\rho_2}&=\{m_1,m_2,d_1,d_2,C\},\\
+X_{\mu_1}&=\{s_1,s_3,m_1,m_2,C,P_1,P_3\},\\
+X_{\mu_2}&=\{s_2,s_4,m_1,m_2,C,P_2,P_4\},\\
+X_{\delta_1}&=\{2,4,d_1,d_2,C\},\\
+X_{\delta_2}&=\{1,3,d_1,d_2,C\}.
+\end{align*}
+For example, a half-turn exchanges opposite vertices, sides, and midpoints,
+but leaves each axis and each diagonal as a set. An object in $X$ can be a
+whole line or side, so ``fixed'' does not require each point of that object
+to be fixed individually.
+
+\exercise{16.2}{Every stabilizer in the square action}
+\idea Read down a column and collect the row labels that reproduce its heading.
+Let $e=\rho_0$. The answers can be grouped by identical stabilizers:
+\[
+\begin{array}{c|l}
+ x&G_x\\\hline
+1,3&\{e,\delta_2\}\\
+2,4&\{e,\delta_1\}\\
+s_1,s_3,P_1,P_3&\{e,\mu_1\}\\
+s_2,s_4,P_2,P_4&\{e,\mu_2\}\\
+m_1,m_2&\{e,\rho_2,\mu_1,\mu_2\}\\
+d_1,d_2&\{e,\rho_2,\delta_1,\delta_2\}\\
+C&D_4
+\end{array}
+\]
+For example, vertex $1$ is fixed by the identity and by reflection in its
+own diagonal $d_2$, and by no other square symmetry. The orbit--stabilizer
+check gives orbit size $8/2=4$, as expected for the vertices.
+
+\exercise{16.3}{The six orbits of the square action}
+Starting from a vertex reaches every vertex and no other kind of object.
+The same observation for each kind of object gives
+\[
+\{1,2,3,4\},\quad\{s_1,s_2,s_3,s_4\},\quad
+\{m_1,m_2\},\quad\{d_1,d_2\},\quad\{C\},\quad
+\{P_1,P_2,P_3,P_4\}.
+\]
+They are disjoint, their sizes sum to $17$, and each is closed under all
+square symmetries. This verifies that the list exhausts $X$.
+
+\exercise{16.4}{Correcting faithful action}
+The quantifier ``for every $x$'' is essential. An action is faithful if
+\[
+\bigl(gx=x\text{ for every }x\in X\bigr)\ \Longrightarrow\ g=e.
+\]
+Equivalently, the homomorphism $G\to S_X$ determined by the action is injective.
+Requiring this implication for a single fixed point would mean that all
+point stabilizers are trivial, which is the stronger condition called a
+free action. A reflection of a square fixes some vertices without acting
+as the identity on all vertices.
+
+\exercise{16.5}{Correcting transitive action}
+For every $x,y\in X$ there must exist $g\in G$ such that $gx=y$. The group
+element may depend on both points. One fixed $g$ cannot send a single $x$
+to several different outputs. For a nonempty $X$, an equivalent formulation
+is: the orbit of any one chosen point is all of $X$.
+
+\exercise{16.6}{Subsets preserved by an action}
+\answer{The sub-$G$-sets are precisely the unions of whole $G$-orbits.}
+If $S$ is a sub-$G$-set and $s\in S$, closure gives $Gs\subseteq S$.
+Since $s=es$, every $s$ is in its own orbit, so $S=\bigcup_{s\in S}Gs$.
+Conversely, if $S$ is a union of orbits and $s\in Gx\subseteq S$, then
+$s=hx$ for some $h$. For any $g$, $gs=(gh)x\in Gx\subseteq S$.
+The empty union also yields the empty sub-$G$-set.
+
+\exercise{16.7}{Transitivity in terms of orbits}
+For nonempty $X$, transitivity is equivalent to having exactly one orbit.
+If every $y$ equals $gx$ for some $g$, then $Gx=X$. Conversely, when
+$Gx=X$, any $y=hx$ and $z=kx$ satisfy $(kh^{-1})y=z$.
+If empty sets are allowed under the literal quantified definition, the
+corresponding characterization is ``at most one orbit.''
+
+\exercise{16.8}{True or false: action properties}
+\begin{enumerate}[label=(\alph*)]
+\item False. A group can act on any set; a three-element set with the trivial
+$\Z_2$ action need not come equipped with a group operation.
+\item True. This is the axiom $ex=x$.
+\item False. In the trivial action every $g$ fixes every point; faithfulness
+is an additional condition.
+\item True. Apply $g^{-1}$ to $gx_1=gx_2$ and use the action axioms to get
+$x_1=x_2$.
+\item False. In the trivial action of a nontrivial group all group elements
+send a chosen $x$ to the same point.
+\item True. It is preserved by $G$, and if $hx,kx$ are two points in the
+orbit then $kh^{-1}$ sends the first to the second.
+\item True. Restrict the action map to $H\times X$; the same two axioms hold.
+\item False. Take $H=\{e\}$ inside a group that acts transitively on more than
+one point. Its orbits are singletons, while the original orbit is larger.
+\item True. The inverse of the map $x\mapsto gx$ is $x\mapsto g^{-1}x$.
+\item True. Orbit--stabilizer gives $|Gx|=[G:G_x]=|G|/|G_x|$ when $G$ is finite.
+\end{enumerate}
+
+\exercise{16.9}{Isomorphic orbits and other subactions}
+\begin{enumerate}[label=(\alph*)]
+\item The side orbit and midpoint orbit are isomorphic by $s_i\mapsto P_i$.
+Every square symmetry sends the midpoint of a side to the midpoint of its
+image side, so this bijection commutes with the action.
+\item The reflection $\mu_1$ fixes two sides, $s_1,s_3$, but no vertices.
+An equivariant bijection must carry the fixed points of any $g$ bijectively
+onto the fixed points of the same $g$. Thus no such bijection can identify
+the vertex and side orbits.
+\item No. The question permits sub-$D_4$-sets that are unions of orbits.
+For instance $\{s_1,s_2,s_3,s_4,C\}$ and
+$\{P_1,P_2,P_3,P_4,C\}$ are different isomorphic sub-$D_4$-sets: extend the
+bijection in part (a) by $C\mapsto C$. Among individual orbits, the only
+isomorphic pair is indeed the side and midpoint pair: the other four-point
+orbit is excluded by part (b), while $\mu_1$ fixes both axes and exchanges
+the diagonals, distinguishing the two two-point orbits.
+\end{enumerate}
+
+\exercise{16.10}{Faithfulness of the square action}
+\begin{enumerate}[label=(\alph*)]
+\item Yes. A symmetry fixing all seventeen objects fixes all four vertices.
+Only the identity symmetry does that.
+\item The vertex, side, and midpoint orbits each give faithful actions:
+inspection of their columns in Table 16.10 shows that no nonidentity row
+fixes the entire orbit. The axis orbit and diagonal orbit are not faithful,
+since the nonidentity half-turn $\rho_2$ fixes both members in either case.
+The center orbit is not faithful, since every symmetry fixes $C$.
+\end{enumerate}
+
+\exercise{16.11}{Faithfulness and distinct permutations}
+\goal Prove that faithfulness says precisely that different group elements
+induce different maps on $X$.
+Suppose first that the action is faithful and $gx=hx$ for every $x$.
+Applying $h^{-1}$ gives $(h^{-1}g)x=x$ for all $x$, so $h^{-1}g=e$ and $g=h$.
+Conversely, if distinct group elements have distinct actions and $gx=x$ for
+every $x$, then $g$ and $e$ induce the same map. Hence $g=e$, proving
+faithfulness. Equality of actions here means equality on \emph{every} point,
+not merely agreement at one point.
+
+\exercise{16.12}{Pointwise stabilizers of subsets}
+Let $G_Y=\{g:gy=y\text{ for every }y\in Y\}$. The identity belongs to $G_Y$.
+If $g,h\in G_Y$, then for every $y\in Y$,
+$(gh)y=g(hy)=gy=y$, so $gh\in G_Y$. If $g\in G_Y$, applying $g^{-1}$ to
+$gy=y$ gives $g^{-1}y=y$, so $g^{-1}\in G_Y$.
+Thus $G_Y$ is a subgroup. Equivalently $G_Y=\bigcap_{y\in Y}G_y$.
+When $Y=\varnothing$, all conditions are vacuous and $G_Y=G$.
+
+\exercise{16.13}{The real rotation action}
+\begin{enumerate}[label=(\alph*)]
+\item For $\theta\in(\R,+)$ use
+$R_\theta=\begin{bmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bmatrix}$.
+We have $R_0=I$ and the angle-addition identities give
+$R_{\theta+\phi}=R_\theta R_\phi$. These are the two action axioms.
+\item Rotation preserves distance to the origin. Conversely every point
+at distance $|P|>0$ has an angle differing from that of $P$ by some real
+$\theta$. Hence the orbit is the entire circle centered at the origin
+through $P$.
+\item A nonzero point returns to itself exactly after an integer multiple
+of a full turn, so $G_P=2\pi\Z$ as a subgroup of $(\R,+)$.
+In particular, this real-number action is not faithful: $2\pi$ acts trivially.
+\end{enumerate}
+
+\exercise{16.14}{Unions of disjoint actions}
+\begin{enumerate}[label=(\alph*)]
+\item If the $X_i$ are disjoint, every $x$ in their union belongs to exactly
+one $X_i$. Define $gx$ using that component's given action. This is
+well defined, stays in $X_i$, and satisfies $ex=x$ and $(gh)x=g(hx)$ because
+the component action does.
+\item Every $x\in X$ belongs to $Gx$. Two orbits meeting at a point are
+equal: if $gx=hy$, then $x=g^{-1}hy$, so every image of $x$ is an image of
+$y$, and conversely. Thus the distinct orbits partition $X$, and their
+union, with the component actions, is exactly the original action.
+\end{enumerate}
+
+\exercise{16.15}{A transitive action is a coset action}
+Put $H=G_{x_0}$ and define $\phi(gx_0)=gH$; transitivity provides such a $g$
+for each point.
+\step{Prove the definition does not depend on the choice of $g$.}
+If $gx_0=hx_0$, then $(h^{-1}g)x_0=x_0$, so $h^{-1}g\in H$ and $gH=hH$.
+The same equivalences in reverse show that $gH=hH$ implies $gx_0=hx_0$.
+Thus $\phi$ is both well defined and injective.
+\step{Check surjectivity and the action.}
+Every coset $gH$ is the image of $gx_0$, so $\phi$ is onto. For $k\in G$,
+\[
+\phi(k(gx_0))=\phi((kg)x_0)=(kg)H=k\phi(gx_0).
+\]
+This proves the required $G$-set isomorphism.
+
+\exercise{16.16}{Decomposing an arbitrary action}
+First partition $X$ into its distinct orbits $O_i$. Choose a point $x_i$ in
+each nonempty orbit and let $H_i=G_{x_i}$. Exercise 16.15 supplies an
+isomorphism $O_i\to G/H_i$, where $G/H_i$ here denotes the \emph{set of left
+cosets}; $H_i$ need not be normal. Tag the coset set by $i$ and let
+\[
+g\cdot(kH_i,i)=(gkH_i,i).
+\]
+The map taking $x\in O_i$ to $(\phi_i(x),i)$ is bijective, because the orbits
+partition $X$ and each $\phi_i$ is bijective. It is equivariant in each
+component and hence globally. The tags prevent cosets from different
+components from being confused. For an arbitrary infinite family, choosing
+all the representatives uses the usual choice convention; finite actions
+need no such qualification.
+
+\exercise{16.17}{When two coset actions are isomorphic}
+\begin{enumerate}[label=(\alph*)]
+\item Let $H=G_{x_0}$. An element $k$ fixes $g_0x_0$ exactly when
+$(g_0^{-1}kg_0)x_0=x_0$, equivalently $g_0^{-1}kg_0\in H$.
+Consequently $G_{g_0x_0}=g_0Hg_0^{-1}$.
+\item The conjecture is that $G/H$ and $G/K$ are isomorphic as $G$-sets
+exactly when $H$ and $K$ are conjugate subgroups.
+\item If $K=tHt^{-1}$, define $\phi(gH)=gt^{-1}K$.
+Replacing $g$ by $gh$ for $h\in H$ does not change the answer, because
+$ght^{-1}K=gt^{-1}(tht^{-1})K=gt^{-1}K$.
+Its inverse sends $uK$ to $utH$, and left multiplication commutes with
+$\phi$, proving sufficiency. Conversely, an equivariant bijection sends
+$H$ to some $aK$ and preserves stabilizers. The stabilizer of $H$ is $H$,
+while that of $aK$ is $aKa^{-1}$. Thus $H=aKa^{-1}$, proving necessity.
+\end{enumerate}
+
+\exercise{16.18}{All transitive actions of the group of order four}
+\idea A transitive action is a coset action, and isomorphism types correspond
+to conjugacy classes of subgroups. Since $\Z_4$ is abelian, conjugation does
+not identify different subgroups. Its subgroups are $\Z_4$, $\{0,2\}$, and
+$\{0\}$, giving exactly three types, with $1,2,4$ points respectively.
+Their action tables are
+\[
+\begin{array}{c|c} &a\\\hline0&a\\1&a\\2&a\\3&a\end{array}
+\qquad
+\begin{array}{c|cc}&a&b\\\hline0&a&b\\1&b&a\\2&a&b\\3&b&a\end{array}
+\qquad
+\begin{array}{c|cccc}&a&b&c&d\\\hline
+0&a&b&c&d\\1&b&c&d&a\\2&c&d&a&b\\3&d&a&b&c
+\end{array}.
+\]
+In the four-point table, $a,b,c,d$ represent $0,1,2,3$; in the two-point
+table they represent the two cosets of $\{0,2\}$.
+
+\exercise{16.19}{All transitive actions of the group of order six}
+There is one subgroup of each order $1,2,3,6$ in $\Z_6$ and no others,
+since every subgroup of a cyclic group is cyclic. Conjugation is trivial.
+The four isomorphism types have sizes $6,3,2,1$.
+For the first three smaller sizes the tables are
+\[
+\begin{array}{c|c}&a\\\hline0&a\\1&a\\2&a\\3&a\\4&a\\5&a\end{array}
+\qquad
+\begin{array}{c|cc}&a&b\\\hline0&a&b\\1&b&a\\2&a&b\\3&b&a\\4&a&b\\5&b&a\end{array}
+\qquad
+\begin{array}{c|ccc}&a&b&c\\\hline
+0&a&b&c\\1&b&c&a\\2&c&a&b\\3&a&b&c\\4&b&c&a\\5&c&a&b
+\end{array}.
+\]
+The six-point regular action is
+\[
+\begin{array}{c|cccccc}&a&b&c&d&e&f\\\hline
+0&a&b&c&d&e&f\\1&b&c&d&e&f&a\\2&c&d&e&f&a&b\\
+3&d&e&f&a&b&c\\4&e&f&a&b&c&d\\5&f&a&b&c&d&e
+\end{array}.
+\]
+Each row adds its group element to the residue represented by the column,
+modulo the number of points. Since that number divides $6$, this defines
+an action of $\Z_6$ in every case.
+
+\exercise{16.20}{All transitive actions of the symmetric group on three letters}
+Write $r=(1,2,3)$, $r^2=(1,3,2)$, $s=(2,3)$, $t=(1,3)$, and $u=(1,2)$.
+The subgroups are $S_3$, $A_3$, the three conjugate order-two subgroups,
+and the identity subgroup. Hence there are four transitive isomorphism
+types, with $1,2,3,6$ points. The one-point action is trivial; the two-point
+action records even or odd parity; the three-point action is the natural
+permutation action; and the six-point action is left multiplication on $S_3$.
+Here are all their action tables, with the requested row order:
+\[
+\begin{array}{c|c}&a\\\hline e&a\\r&a\\r^2&a\\s&a\\t&a\\u&a\end{array}
+\quad
+\begin{array}{c|cc}&a&b\\\hline e&a&b\\r&a&b\\r^2&a&b\\s&b&a\\t&b&a\\u&b&a\end{array}
+\quad
+\begin{array}{c|ccc}&a&b&c\\\hline
+e&a&b&c\\r&b&c&a\\r^2&c&a&b\\s&a&c&b\\t&c&b&a\\u&b&a&c
+\end{array},
+\]
+\[
+\begin{array}{c|cccccc}&a&b&c&d&e&f\\\hline
+e&a&b&c&d&e&f\\r&b&c&a&f&d&e\\r^2&c&a&b&e&f&d\\
+s&d&e&f&a&b&c\\t&e&f&d&c&a&b\\u&f&d&e&b&c&a
+\end{array}.
+\]
+In the last table the point labels $a,b,c,d,e,f$ represent the group
+elements $e,r,r^2,s,t,u$ respectively. For example, $rs=u$, so row $r$,
+column $d$ has entry $f$. The point label $e$ in that table is distinct
+from the row label for the group identity.

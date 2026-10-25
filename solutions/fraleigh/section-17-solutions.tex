@@ -1,0 +1,167 @@
+\section{Applications of G-Sets to Counting}
+
+\textbf{Counting method.} All these exercises request Burnside's formula:
+\[
+\#\text{orbits}=\frac1{|G|}\sum_{g\in G}|X_g|.
+\]
+Choose the labeled objects $X$ and the allowed symmetry group $G$ first.
+A coloring fixed by a permutation must be constant on each cycle of that
+permutation. With $q$ available colors and $c$ cycles, there are $q^c$
+fixed colorings when repetition is allowed. For three-dimensional solids
+we use rigid rotations; a square piece of cardboard can also be turned
+over, which induces the plane reflections of its edges.
+
+\exercise{17.1}{A cyclic action on eight points}
+The generator $(1,3,5,6)$ has order four, so the group contains its zeroth,
+first, second, and third powers. The identity fixes all $8$ points.
+Each of the other three powers moves all four points $1,3,5,6$ and fixes
+$2,4,7,8$, so each has $4$ fixed points. Burnside gives
+\[
+\#\text{orbits}=\frac{8+4+4+4}{4}=\boxed5.
+\]
+As a check, the orbits are $\{1,3,5,6\}$ and the four singleton fixed points.
+
+\exercise{17.2}{Two generators with disjoint supports}
+Let $a=(1,3)$ and $b=(2,4,7)$. They commute, have orders $2$ and $3$,
+and generate the six distinct elements $a^ib^j$ with $i=0,1$ and $j=0,1,2$.
+For a point in $\{1,3\}$ to be fixed we need $i=0$; this contributes two
+fixed points for each such element. A point in $\{2,4,7\}$ is fixed
+exactly when $j=0$, contributing three. The points $5,6,8$ are always fixed.
+Thus, in the order $e,a,b,b^2,ab,ab^2$, the fixed counts are
+$8,6,5,5,3,3$. Consequently
+\[
+\#\text{orbits}=\frac{8+6+5+5+3+3}{6}=\boxed5.
+\]
+
+\exercise{17.3}{Tetrahedral dice with four different labels}
+The rotation group of a regular tetrahedron has $12$ elements: one can
+choose the face on the bottom in four ways and rotate it into three
+orientations. There are $4!=24$ labeled placements of the four different
+face labels. The identity fixes all $24$. Every nonidentity rotation
+permutes at least two faces, so it cannot fix a placement with distinct
+labels. Burnside therefore gives
+\[
+\frac{24+11\cdot0}{12}=\boxed2
+\]
+distinguishable dice. Reflections are not rigid rotations of a solid die.
+
+\exercise{17.4}{Cube faces with six different colors}
+There are $8\cdot7\cdot6\cdot5\cdot4\cdot3=20160$ assignments of six
+distinct colors to six specified faces. The rotation group has order $24$.
+Only the identity can fix a coloring with all faces different, because any
+other rotation moves some face to another face of a different color.
+Burnside gives $20160/24=\boxed{840}$ distinguishable blocks.
+
+\exercise{17.5}{Cube faces with arbitrary color repetition}
+\idea Divide the $24$ rotations into geometric types and count their cycles
+on the six faces. A fixed coloring is constant on each face cycle.
+\[
+\begin{array}{l|r|c|r}
+\text{Rotation type}&\text{Number}&\text{Face cycle lengths}&\text{Cycles}\\\hline
+\text{Identity}&1&1,1,1,1,1,1&6\\
+\text{Quarter-turn about face centers}&6&1,1,4&3\\
+\text{Half-turn about face centers}&3&1,1,2,2&4\\
+\text{Third-turn about opposite vertices}&8&3,3&2\\
+\text{Half-turn about opposite edges}&6&2,2,2&3
+\end{array}
+\]
+For instance a face-axis quarter-turn fixes the two axial faces and cycles
+the other four, giving three freely chosen colors. The entries in the
+second column sum to $24$. With $q=8$, Burnside gives
+\[
+\frac{8^6+6\cdot8^3+3\cdot8^4+8\cdot8^2+6\cdot8^3}{24}
+=\frac{281088}{24}=\boxed{11712}.
+\]
+Repeated colors are allowed independently on different cycles.
+
+\exercise{17.6}{Coloring the eight vertices of a cube}
+The same rotations now act on vertices, with different cycle counts:
+\[
+\begin{array}{l|r|c|r}
+\text{Rotation type}&\text{Number}&\text{Vertex cycle lengths}&\text{Cycles}\\\hline
+\text{Identity}&1&1,1,1,1,1,1,1,1&8\\
+\text{Face-axis quarter-turn}&6&4,4&2\\
+\text{Face-axis half-turn}&3&2,2,2,2&4\\
+\text{Vertex-axis third-turn}&8&1,1,3,3&4\\
+\text{Edge-axis half-turn}&6&2,2,2,2&4
+\end{array}
+\]
+For example, a third-turn fixes its two axial vertices and cycles the
+other six in two triples. With four available colors, Burnside gives
+\[
+\frac{4^8+6\cdot4^2+(3+8+6)4^4}{24}
+=\frac{69984}{24}=\boxed{2916}.
+\]
+Here a color need not appear; if it does, it may appear on any number of
+vertices. If one additionally requires all four colors to appear, which
+is a different restriction, replace each $4^c$ by the number of onto maps
+from its $c$ cycles to four colors; the result would be $1718$.
+
+\exercise{17.7}{Painting the edges of a square}
+The allowed group is $D_4$, of order $8$. Turning over the cardboard makes
+reflections physically available as well as in-plane rotations.
+\begin{enumerate}[label=(\alph*)]
+\item With no repeated color there are $6\cdot5\cdot4\cdot3=360$ labeled
+paintings. Only the identity fixes any of them. Hence Burnside gives
+$360/8=\boxed{45}$.
+\item On the four edges, the identity has four cycles; two quarter-turns
+have one cycle each; the half-turn has two cycles; two reflections have
+two cycles; and two reflections have three cycles. Therefore
+\[
+\frac{6^4+2\cdot6+(1+2)6^2+2\cdot6^3}{8}
+=\frac{1848}{8}=\boxed{231}.
+\]
+A reflection through opposite side midpoints fixes those two edges and
+swaps the other two, accounting for the three-cycle type.
+\end{enumerate}
+
+\exercise{17.8}{Resistors on the edges of a tetrahedron}
+Let $X$ be the $2^6$ assignments of two resistor types to the six edges.
+Use the $12$ rigid rotations of the tetrahedral framework. The identity
+has six edge cycles. Each of the eight third-turns around a vertex and
+the opposite face center divides the edges into two triples, hence has
+two cycles. Each of the three half-turns around opposite edge midpoints
+fixes those two edges as sets and swaps the other four in two pairs,
+hence has four cycles. Burnside gives
+\[
+\frac{2^6+8\cdot2^2+3\cdot2^4}{12}
+=\frac{144}{12}=\boxed{12}.
+\]
+The objects are actual frameworks in space, so mirror reflection is not
+an additional rigid rotation. If mirror images were expressly identified,
+the larger symmetry group would instead give $11$ classes.
+
+\exercise{17.9}{Coloring a prism with two square ends}
+\step{Identify the rotation group.}
+The unique long axis must map to itself, so arbitrary cube rotations
+cannot be used. There are four rotations about the long axis, through
+$0,90,180,270$ degrees, and four half-turns about transverse axes. Thus
+$|G|=8$. On the six faces the cycle counts are as follows:
+\[
+\begin{array}{l|r|c|r}
+\text{Rotation type}&\text{Number}&\text{Face cycle lengths}&\text{Cycles}\\\hline
+\text{Identity}&1&1,1,1,1,1,1&6\\
+\text{Long-axis quarter-turn}&2&1,1,4&3\\
+\text{Long-axis half-turn}&1&1,1,2,2&4\\
+\text{Transverse half-turn through side centers}&2&1,1,2,2&4\\
+\text{Transverse half-turn through side-edge midpoints}&2&2,2,2&3
+\end{array}
+\]
+The transverse rotations interchange the two square ends. In the first
+transverse type, two lateral faces remain individually fixed; in the
+second type the four lateral faces are interchanged in pairs.
+\begin{enumerate}[label=(\alph*)]
+\item With all six colors distinct there are $6!=720$ labeled colorings,
+and only the identity fixes any. Burnside gives $720/8=\boxed{90}$.
+\item With repetition, each cycle can have any of six colors. Hence
+\[
+\frac{6^6+3\cdot6^4+4\cdot6^3}{8}
+=\frac{46656+3888+864}{8}
+=\frac{51408}{8}=\boxed{6426}.
+\]
+\end{enumerate}
+\textbf{Answer-key discrepancy.} The scanned book's odd-answer key prints
+$6246$ for part (b). The rotation table above gives $6426$. Independently,
+enumerating all $46656$ labeled face colorings and identifying them under
+the eight signed-coordinate rotation matrices preserving the long axis
+also gives $6426$ orbits. Thus the printed answer has transposed digits.

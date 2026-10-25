@@ -1,0 +1,62 @@
+\section{Geometric Constructions}
+
+\exercise{32.1}{Deriving the cosine triple-angle identity}
+Euler's formula gives $e^{3i\theta}=(\cos\theta+i\sin\theta)^3$. Its real part is
+\[\cos3\theta=\cos^3\theta-3\cos\theta\sin^2\theta.\]
+Substitute $\sin^2\theta=1-\cos^2\theta$ and collect terms:
+\[\cos3\theta=\cos^3\theta-3\cos\theta+3\cos^3\theta=4\cos^3\theta-3\cos\theta.\]
+The imaginary terms in the cube do not contribute to the real part.
+
+\exercise{32.2}{True and false statements}
+\begin{enumerate}[label=(\alph*)]
+\item True for a nondegenerate cube. If its constructible edge is $a>0$ and the doubled cube had constructible edge $b$, then $b/a=\sqrt[3]2$ would be constructible, contrary to its degree three.
+\item True. Since even a unit cube cannot be doubled, no procedure can double every constructible cube; in fact (a) gives the stronger individual impossibility.
+\item True for a nonzero radius. Squaring a circle of constructible radius $r$ would construct a square edge $r\sqrt\pi$; division by $r$ and squaring would make $\pi$ constructible and therefore algebraic, a contradiction.
+\item False. A right angle can be trisected into $30^\circ$ angles, which are constructible.
+\item True. A constructible number lies in a tower of quadratic extensions, so its degree divides a power of two and is itself a power of two.
+\item False. Only a necessary degree condition was proved; being of power-of-two degree alone does not establish membership in a tower of quadratic extensions.
+\item True. The final obstruction uses that a degree divisible by three cannot divide a power of two, a consequence of prime factorization.
+\item True as the intended methodological observation: counting dimensions rules out constructions without trying all diagrams.
+\item True. Each individual constructible number has a finite construction by definition.
+\item False. A finite sequence gives only finitely many constructed points or segments, while the constructible numbers already include infinitely many integers. There is no common finite construction listing all of them.
+\end{enumerate}
+
+\exercise{32.3}{Why a regular nonagon is not constructible}
+If a regular $9$-gon were constructible, its central angle $40^\circ$ would be constructible. Let $u=2\cos40^\circ$. Since $3\cdot40^\circ=120^\circ$, the triple-angle identity yields
+\[u^3-3u=2\cos120^\circ=-1,\qquad u^3-3u+1=0.\]
+The monic cubic has only possible rational roots $\pm1$, and neither is a root. Thus it is irreducible over $\Q$ and $u$ has degree three. Every constructible number has degree a power of two, so $u$ and the regular $9$-gon are not constructible.
+
+\exercise{32.4}{Constructing thirty degrees algebraically}
+The numbers $\cos30^\circ=\sqrt3/2$ and $\sin30^\circ=1/2$ are constructible: constructible numbers include rationals and are closed under positive square roots. Hence the unit-circle point $(\sqrt3/2,1/2)$ is constructible, and the ray from the origin through it makes a $30^\circ$ angle with the positive horizontal axis. This gives the requested algebraic justification.
+
+\exercise{32.5}{The golden-ratio chord of a decagon}
+In the source triangle, $OA=OP=1$, $\angle O=36^\circ$, and $AP=r$. Thus the base angles at $A,P$ are $72^\circ$. The bisector $AQ$ gives $\angle QAP=36^\circ$, so $\triangle OAP\sim\triangle APQ$ with correspondence $O\leftrightarrow A$, $A\leftrightarrow P$, $P\leftrightarrow Q$. Also $AQ=AP=r$, and $OQ=AQ=r$, so $PQ=1-r$.
+The similar triangles give $1/r=r/(1-r)$, hence $r^2+r-1=0$. Positivity yields
+\[r=\frac{\sqrt5-1}{2},\]
+a constructible length. A chord of this length in a unit circle subtends $36^\circ$; the law of cosines equivalently gives $\cos36^\circ=1-r^2/2=(1+\sqrt5)/4$. Thus one can construct the decagon by stepping this chord around the circle. Joining alternate vertices gives a regular pentagon.
+\begin{center}
+\setlength{\unitlength}{1pt}
+\begin{picture}(175,112)(-15,-15)
+\put(0,0){\line(1,0){140}}
+\Line(0,0)(113.26,82.29)\Line(113.26,82.29)(140,0)
+\Line(113.26,82.29)(86.52,0)
+\put(0,0){\circle*{3}}\put(140,0){\circle*{3}}\put(86.52,0){\circle*{3}}\put(113.26,82.29){\circle*{3}}
+\put(-10,-11){$O$}\put(142,-11){$P$}\put(82,-12){$Q$}\put(112,89){$A$}
+\put(36,48){$1$}\put(132,43){$r$}\put(35,-12){$r$}\put(106,-12){$1-r$}
+\end{picture}
+\end{center}
+
+\exercise{32.6}{Constructing a regular twenty-gon}
+Exercise 5 constructs the central angle $36^\circ$ of a decagon. Bisect it to obtain $18^\circ=360^\circ/20$, using the standard compass-and-straightedge angle-bisector construction. Repeatedly mark this angle around a circle to obtain the twenty equally spaced vertices. Thus the regular $20$-gon is constructible.
+
+\exercise{32.7}{Constructing a regular thirty-gon}
+A regular hexagon gives $60^\circ$ and a decagon gives $36^\circ$. Subtracting constructible angles gives $24^\circ$, then bisecting gives $12^\circ=360^\circ/30$. Both subtraction and bisection are standard straightedge-and-compass constructions. Marking this central angle around a circle constructs the regular $30$-gon.
+
+\exercise{32.8}{Trisecting seventy-two degrees}
+The angles $60^\circ$ and $36^\circ$ are constructible, so their difference $24^\circ$ is constructible. Since $72^\circ=3\cdot24^\circ$, this gives a trisector. For the given $72^\circ$ angle, copy $24^\circ$ from one side twice inside it. Thus some angles that are readily constructible can also be trisected, despite the impossibility of a universal trisection procedure.
+
+\exercise{32.9}{Constructing a regular fifteen-gon}
+Subtract the decagon angle $36^\circ$ from the hexagon angle $60^\circ$ to construct $24^\circ$. This is $360^\circ/15$, so fifteen equal successive central angles locate the vertices of a regular $15$-gon. Equivalently alternate vertices of the constructible regular $30$-gon give it.
+
+\exercise{32.10}{A brief explanation for a geometry teacher}
+Every coordinate obtainable by compass and straightedge is built from rational numbers using arithmetic and repeated square roots. Consequently its algebraic degree must be a power of two. If $60^\circ$ could be trisected, the constructible number $u=2\cos20^\circ$ would satisfy $u^3-3u-1=0$, an irreducible cubic since neither possible rational root $1$ nor $-1$ works. Its degree would be three, contradicting the power-of-two condition.

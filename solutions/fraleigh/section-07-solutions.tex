@@ -1,0 +1,168 @@
+\section{Generating Sets and Cayley Digraphs}
+
+\exercise{7.1}{Two and three modulo twelve}
+
+The generated subgroup contains $3-2=1$, because subgroups are closed under addition and negatives. Once it contains $1$, it contains every residue. Therefore it is $\Z_{12}=\{0,1,2,3,4,5,6,7,8,9,10,11\}$.
+
+\exercise{7.2}{Four and six modulo twelve}
+
+Every integer combination of $4$ and $6$ is even, so the subgroup lies inside the even residues. It contains $6-4=2$, and hence every even residue. Thus it is exactly $\{0,2,4,6,8,10\}$.
+
+\exercise{7.3}{Eight and ten modulo eighteen}
+
+Every combination of $8,10$ and the modulus $18$ is even, so no odd residue can occur. The difference $10-8=2$ belongs, and its multiples give all even residues. Thus the subgroup is $\{0,2,4,6,8,10,12,14,16\}$.
+
+\exercise{7.4}{Twelve and thirty modulo thirty-six}
+
+The difference $30-2\cdot12=6$ belongs. Every input and the modulus are divisible by $6$, so only multiples of $6$ occur, and all of them occur by adding $6$. The subgroup is therefore $\{0,6,12,18,24,30\}$.
+
+\exercise{7.5}{Twelve and forty-two in the integers}
+
+All generated elements are combinations $12m+42n$, hence multiples of $6$. Conversely $42-3\cdot12=6$ belongs, so every integer multiple of $6$ belongs. The subgroup is $6\Z=\{\ldots,-12,-6,0,6,12,\ldots\}$.
+
+\exercise{7.6}{Three integer generators}
+
+All three inputs $18,24,39$ are divisible by $3$. The generated subgroup contains $24-18=6$ and then $39-6\cdot6=3$. It therefore contains every multiple of $3$, and contains no other integer. The answer is $3\Z=\{\ldots,-6,-3,0,3,6,\ldots\}$.
+
+\exercise{7.7}{Products in the eight-element digraph}
+
+The outer solid cycle gives $a^4=e$. Dashed edges give $b^2=e$, and the reversed inner solid cycle gives $ba=a^{-1}b$. Thus $ba^k=a^{-k}b$ for every integer $k$.
+\begin{enumerate}[label=(\alph*)]
+\item $(a^2b)a^3=a^2a^{-3}b=a^{-1}b=a^3b$.
+\item $(ab)(a^3b)=aa^{-3}b^2=a^{-2}=a^2$.
+\item $b(a^2b)=a^{-2}b^2=a^{-2}=a^2$.
+\end{enumerate}
+Each result can also be checked by starting at the first factor's vertex and following the right factor's directed edge sequence.
+
+\exercise{7.8}{The square digraph table}
+
+Both indicated generator types are involutions, and traversing one of each takes $e$ to $c$ in either order. Thus $a^2=b^2=e$, $ab=ba=c$, giving
+\[\begin{array}{c|cccc}&e&a&b&c\\\hline e&e&a&b&c\\a&a&e&c&b\\b&b&c&e&a\\c&c&b&a&e\end{array}\]
+For an order-two generator an undirected edge stands for the two opposite directed edges. The resulting group is the Klein four-group.
+
+\exercise{7.9}{The alternating-edge hexagon table}
+
+Read the two edge types as involutions $a,b$. The paths give $c=ab$, $d=ba$, and $f=aba=bab$. One concrete model is $a=(12)$ and $b=(23)$, so $c=(123)$, $d=(132)$, and $f=(13)$. Multiplying these permutations, with the rightmost one applied first, yields the table in the requested alphabetical order:
+\[\begin{array}{c|cccccc}&e&a&b&c&d&f\\\hline
+e&e&a&b&c&d&f\\
+a&a&e&c&b&f&d\\
+b&b&d&e&f&a&c\\
+c&c&f&a&d&e&b\\
+d&d&b&f&e&c&a\\
+f&f&c&d&a&b&e\\
+\end{array}\]For example $ab=c$ but $ba=d$, so this six-element group is nonabelian. The model also verifies the whole table's associativity.
+
+\exercise{7.10}{The two-triangle digraph table}
+
+The outside arrows give $a^3=e$ and $c=a^2$. The dashed edges give $b^2=e$, $ab=f$, $a^2b=d$. Reading the inside arrows yields $ba=a^{-1}b$, so this is the triangular dihedral group. Using $a=(123)$, $b=(12)$ realizes these labels concretely and gives
+\[\begin{array}{c|cccccc}&e&a&b&c&d&f\\\hline
+e&e&a&b&c&d&f\\
+a&a&c&f&e&b&d\\
+b&b&d&e&f&a&c\\
+c&c&e&d&a&f&b\\
+d&d&f&c&b&e&a\\
+f&f&b&a&d&c&e\\
+\end{array}\]For example $ab=f$ and $ba=d$, consistent with the distinct paths in the figure. This diagram and the preceding one describe isomorphic groups, but their element names represent different permutations.
+
+\exercise{7.11}{Recognizing commutativity from paths}
+
+Compare the endpoints of paths using two generator types in opposite orders. If some $s$-then-$t$ path ends differently from the corresponding $t$-then-$s$ path at the same starting point, the group is noncommutative. Conversely, if every pair of generators commutes, their inverses also commute; any two words in generators and inverses can then be reordered past each other. Since such words are all group elements, the group is abelian. Thus this two-step-path comparison is a complete criterion.
+
+\exercise{7.12}{The eight-element example is nonabelian}
+
+Starting at $e$, traversing an $a$ edge and then a $b$ edge ends at $ab$, whereas traversing $b$ then $a$ ends at $a^3b$. These are different labeled vertices in Fig. 7.11(b). Therefore $ab\ne ba$ and the group is noncommutative.
+
+\exercise{7.13}{Recognizing cyclicity}
+
+A single generator type forming a directed cycle through every vertex proves cyclicity, but its absence does not disprove cyclicity. A diagram might use a redundant generating set without displaying any individual generator of the whole group. For example $\Z_6$ generated by $\{2,3\}$ is cyclic, while the $2$-edges form triangles and the $3$-edges form pairs. Thus cyclicity need not be visually apparent from one edge type; one may need a repeated word in several edge types.
+
+\exercise{7.14}{The inner triangle is not a subgroup}
+
+The smaller triangle in Fig. 7.9(b) has the vertices $\{1,3,5\}$. It does not contain the additive identity $0$, so it cannot be a subgroup of $\Z_6$. It is also not closed: $1+1=2$ is outside it. It is a translated copy of the subgroup $\{0,2,4\}$, which explains the identical triangle shape without making it a subgroup.
+
+\begin{minipage}{\linewidth}
+\exercise{7.15}{A Cayley digraph with generators one and two}
+
+Place the six residues around a hexagon in the order $0,1,2,3,4,5$ clockwise. Draw a thin black arrow $x\to x+1$ and a thick green arrow $x\to x+2$, reducing modulo $6$:
+\begin{center}\setlength{\unitlength}{1mm}\begin{picture}(90,75)
+{\color{black}\linethickness{0.5pt}
+\put(47.598,63.500){\vector(191,-110){19.053}}
+\put(69.249,48.000){\vector(0,-220){22.000}}
+\put(66.651,21.500){\vector(-191,-110){19.053}}
+\put(42.402,10.500){\vector(-191,110){19.053}}
+\put(20.751,26.000){\vector(0,220){22.000}}
+\put(23.349,52.500){\vector(191,110){19.053}}
+}
+{\color{mathjockgreen}\linethickness{1.1pt}
+\put(46.500,62.402){\vector(212,-368){21.249}}
+\put(67.749,48.402){\vector(-212,-368){21.249}}
+\put(66.249,23.000){\vector(-425,0){42.497}}
+\put(43.500,11.598){\vector(-212,368){21.249}}
+\put(22.251,25.598){\vector(212,368){21.249}}
+\put(23.751,51.000){\vector(425,0){42.497}}
+}
+\put(45.000,65.000){\circle*{1}}\put(45.000,70.000){\makebox(0,0){$0$}}
+\put(69.249,51.000){\circle*{1}}\put(73.579,53.500){\makebox(0,0){$1$}}
+\put(69.249,23.000){\circle*{1}}\put(73.579,20.500){\makebox(0,0){$2$}}
+\put(45.000,9.000){\circle*{1}}\put(45.000,4.000){\makebox(0,0){$3$}}
+\put(20.751,23.000){\circle*{1}}\put(16.421,20.500){\makebox(0,0){$4$}}
+\put(20.751,51.000){\circle*{1}}\put(16.421,53.500){\makebox(0,0){$5$}}
+\end{picture}\end{center}The black arrows form $0\to1\to2\to3\to4\to5\to0$. The green arrows form $0\to2\to4\to0$ and $1\to3\to5\to1$. Thus each vertex has exactly one incoming and one outgoing arrow of each generator type, as required.
+
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\exercise{7.16}{A Cayley digraph with generators two and five}
+
+Use the same labeled hexagon. Draw thick green arrows $x\to x+2$ and thin black arrows $x\to x+5=x-1$ modulo $6$:
+\begin{center}\setlength{\unitlength}{1mm}\begin{picture}(90,75)
+{\color{black}\linethickness{0.5pt}
+\put(42.402,63.500){\vector(-191,-110){19.053}}
+\put(66.651,52.500){\vector(-191,110){19.053}}
+\put(69.249,26.000){\vector(0,220){22.000}}
+\put(47.598,10.500){\vector(191,110){19.053}}
+\put(23.349,21.500){\vector(191,-110){19.053}}
+\put(20.751,48.000){\vector(0,-220){22.000}}
+}
+{\color{mathjockgreen}\linethickness{1.1pt}
+\put(46.500,62.402){\vector(212,-368){21.249}}
+\put(67.749,48.402){\vector(-212,-368){21.249}}
+\put(66.249,23.000){\vector(-425,0){42.497}}
+\put(43.500,11.598){\vector(-212,368){21.249}}
+\put(22.251,25.598){\vector(212,368){21.249}}
+\put(23.751,51.000){\vector(425,0){42.497}}
+}
+\put(45.000,65.000){\circle*{1}}\put(45.000,70.000){\makebox(0,0){$0$}}
+\put(69.249,51.000){\circle*{1}}\put(73.579,53.500){\makebox(0,0){$1$}}
+\put(69.249,23.000){\circle*{1}}\put(73.579,20.500){\makebox(0,0){$2$}}
+\put(45.000,9.000){\circle*{1}}\put(45.000,4.000){\makebox(0,0){$3$}}
+\put(20.751,23.000){\circle*{1}}\put(16.421,20.500){\makebox(0,0){$4$}}
+\put(20.751,51.000){\circle*{1}}\put(16.421,53.500){\makebox(0,0){$5$}}
+\end{picture}\end{center}The green triangles are $0\to2\to4\to0$ and $1\to3\to5\to1$. The black outside cycle is $0\to5\to4\to3\to2\to1\to0$. Since $5$ alone is a generator, the combined diagram is connected and represents all of $\Z_6$.
+
+\end{minipage}
+
+\exercise{7.17}{Relations read from closed paths}
+
+\begin{enumerate}[label=(\alph*)]
+\item Begin at the identity and follow a closed path. Write down the generator for each forward edge and its inverse for each backward edge. The resulting word is a product equal to $e$, hence a relation. Conversely any such relation returns the identity to itself when its word is followed.
+\item In Fig. 7.11(b), the outside four-cycle gives $a^4=e$, a dashed round trip gives $b^2=e$, and the path expressing $ba=a^{-1}b$ gives $baba=e$. Thus three relations are $a^4=e$, $b^2=e$, and $(ba)^2=e$. The last can also be written $bab=a^{-1}$.
+\end{enumerate}
+
+\exercise{7.18}{Minimal digraphs at order four}
+
+For the cyclic group use one generator: a directed four-cycle. For the Klein group one generator never suffices, since every element has order at most $2$; use two involutions and a square with different edge types in the two directions. Here a double-headed edge is represented by an undirected line, as usual for an involution.
+\begin{center}\setlength{\unitlength}{1mm}\begin{picture}(125,47)
+\put(8,10){\vector(0,1){25}}\put(8,35){\vector(1,0){25}}\put(33,35){\vector(0,-1){25}}\put(33,10){\vector(-1,0){25}}
+\put(21,2){\makebox(0,0){$\Z_4$: one generator}}
+\put(80,10){\line(1,0){25}}\put(80,35){\line(1,0){25}}
+{\color{mathjockgreen}\linethickness{1pt}\put(80,10){\line(0,1){25}}\put(105,10){\line(0,1){25}}}
+\put(92,2){\makebox(0,0){$V$: two generators}}
+\end{picture}\end{center}
+Each square has four vertices at its corners. In the right-hand diagram horizontal edges have one generator type and vertical edges the other; both types are their own reverses.
+
+\exercise{7.19}{Two involutions generating a nonabelian group of order twice n}
+
+Take symmetries of a regular $n$-gon, $n\ge3$. Let $r$ rotate through $2\pi/n$ and $s$ reflect in an axis through its center. The symmetries are exactly $r^k$ and $r^ks$ for $0\le k<n$: these $2n$ transformations are distinct because the first preserve orientation and the second reverse it, and the rotations themselves are distinct. They are closed under composition because $sr=r^{-1}s$.
+\step{Choose two order-two generators.} The elements $s$ and $rs$ are reflections. They satisfy $s^2=e$ and $(rs)^2=r(sr)s=rr^{-1}s^2=e$, and neither is the identity. Their product $(rs)s=r$ gives the basic rotation, so they generate every $r^k,r^ks$.
+\step{Check noncommutativity.} The products $rs$ and $sr=r^{-1}s$ differ: equality would give $r=r^{-1}$, contradicting that $r$ has order $n\ge3$. Thus the group is nonabelian, has exactly $2n$ elements, and is generated by two elements of order $2$.

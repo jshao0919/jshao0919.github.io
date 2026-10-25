@@ -1,0 +1,224 @@
+\section{Groups}
+
+\exercise{4.1}{Integer multiplication}
+
+Integer multiplication is associative ($\mathcal G_1$) and has identity $1$ ($\mathcal G_2$). But not every integer has a multiplicative inverse in $\Z$: $0x=1$ is impossible, and $2x=1$ has no integer solution. Thus the first failing axiom is $\mathcal G_3$, so this is not a group.
+
+\exercise{4.2}{Even integers under addition}
+
+The sum $2m+2n=2(m+n)$ is even, so closure holds. Addition is associative, $0=2\cdot0$ is the identity, and the inverse of $2m$ is $-2m$, again even. All three group axioms hold, so this is an abelian group.
+
+\exercise{4.3}{The geometric-mean operation}
+
+Associativity already fails, so $\mathcal G_1$ is the first failing axiom. For example, on $\R^+$ let $a=1,b=1,c=16$. Then $(a*b)*c=1*16=4$, whereas $a*(b*c)=1*4=2$. The positive square roots make this a binary operation, but not a group.
+
+\exercise{4.4}{Rational multiplication including zero}
+
+Multiplication is associative and has identity $1$. Zero has no inverse, since $0q=0$ for every rational $q$. Thus $\mathcal G_3$ is the first failure and the set $\Q$, as opposed to $\Q\setminus\{0\}$, is not a multiplicative group.
+
+\exercise{4.5}{Division as an operation}
+
+The operation is closed on nonzero reals, but is not associative. With $a=1,b=1,c=2$, $(a*b)*c=(1/1)/2=1/2$, whereas $a*(b*c)=1/(1/2)=2$. Therefore the first failing axiom is $\mathcal G_1$.
+
+\exercise{4.6}{The absolute value of a product}
+
+Associativity holds: $(a*b)*c=\big||ab|c\big|=|a||b||c|=\big|a|bc|\big|=a*(b*c)$. However no identity exists in $\C$. Any product $a*e=|ae|$ is a nonnegative real number and so cannot equal, for example, $a=i$. Thus $\mathcal G_2$ is the first failure.
+
+\exercise{4.7}{An abelian group of order one thousand}
+
+Take $\Z_{1000}$ under addition modulo $1000$. It has exactly $1000$ elements, addition of residues is associative and commutative, zero is the identity, and $k$ has inverse the representative of $-k$ modulo $1000$. Hence this example meets every requirement.
+
+\exercise{4.8}{Units modulo eight}
+
+Multiply each row label by each column label and reduce modulo $8$:
+\[\begin{array}{c|rrrr}\cdot_8&1&3&5&7\\\hline1&1&3&5&7\\3&3&1&7&5\\5&5&7&1&3\\7&7&5&3&1\end{array}\]
+The table shows closure, identity $1$, and that each element is its own inverse. Associativity is inherited from integer multiplication modulo $8$. Thus this is an abelian group (the four-element noncyclic group).
+
+\exercise{4.9}{Distinguishing the circle group}
+
+In $U$ the equation $z^3=1$ has three solutions, the three cube roots of unity. In the additive group $\R$, the corresponding equation $3x=0$ has only $x=0$. In the multiplicative group $\R^*$, $x^3=1$ has only $x=1$. An isomorphism sends the identity to the identity and preserves products and powers, so would biject these solution sets. Their different sizes rule out both proposed isomorphisms.
+
+\exercise{4.10}{Multiples of a positive integer}
+
+\begin{enumerate}[label=(\alph*)]
+\item Sums of multiples of $n$ are multiples of $n$, addition is associative, $0=n\cdot0$ belongs, and the negative of $nm$ is $n(-m)$. Thus $(n\Z,+)$ is a group.
+\item Define $\phi:n\Z\to\Z$ by $\phi(nm)=m$. This is well defined since $n\ne0$ makes the representation unique; it is bijective with inverse $m\mapsto nm$. Finally $\phi(nm+nk)=m+k=\phi(nm)+\phi(nk)$, so it is an isomorphism.
+\end{enumerate}
+
+\exercise{4.11}{Diagonal matrices under addition}
+
+This is a group. Adding diagonal matrices adds their diagonal entries and leaves off-diagonal entries zero. Associativity follows from matrix addition; the zero matrix is the identity; and negating every diagonal entry gives an additive inverse still in the set. The group is abelian.
+
+\exercise{4.12}{All diagonal matrices under multiplication}
+
+The set is closed, multiplication is associative, and $I_n$ is its identity, but the zero matrix has no multiplicative inverse. Therefore it is not a group. Requiring nonzero diagonal entries would remove this obstruction.
+
+\exercise{4.13}{Invertible diagonal matrices}
+
+The product of $\operatorname{diag}(a_1,\ldots,a_n)$ and $\operatorname{diag}(b_1,\ldots,b_n)$ is $\operatorname{diag}(a_1b_1,\ldots,a_nb_n)$ with nonzero diagonal. The identity is $I_n$, the inverse is $\operatorname{diag}(1/a_1,\ldots,1/a_n)$, and multiplication is associative. Thus these matrices form an abelian group.
+
+\exercise{4.14}{Diagonal sign matrices}
+
+A product of two signs is a sign, so these diagonal matrices are closed. The identity has all diagonal entries $1$, and each matrix is its own inverse since $(\pm1)^2=1$. Associativity is inherited from matrix multiplication. Hence this is a group of $2^n$ elements.
+
+\exercise{4.15}{All upper-triangular matrices multiplicatively}
+
+Products remain upper triangular and $I_n$ belongs, but singular upper-triangular matrices are also included. In particular the zero matrix cannot have a multiplicative inverse. Thus the given set is not a group under multiplication.
+
+\exercise{4.16}{Upper-triangular matrices additively}
+
+Sums and negatives remain upper triangular. Matrix addition is associative, the zero matrix is an additive identity in this set, and $-A$ is the additive inverse of $A$. Therefore these matrices form an abelian group under addition.
+
+\exercise{4.17}{Upper-triangular matrices of determinant one}
+
+If $A,B$ are upper triangular with determinant $1$, so is $AB$, since $\det(AB)=1$. The identity belongs. Each $A$ is invertible, and $A^{-1}$ is upper triangular: solving $Ax=e_j$ by back substitution gives zeros below the $j$th position in column $j$ of the inverse. Also $\det(A^{-1})=1$. Associativity is inherited, so this is a group.
+
+\exercise{4.18}{Matrices of determinant plus or minus one}
+
+The determinant of a product is the product of determinants, so closure holds in $\{1,-1\}$. Every such matrix is invertible, $I_n$ belongs, and $\det(A^{-1})=1/\det A\in\{1,-1\}$. Associativity is matrix associativity, so the indicated set is a group.
+
+\exercise{4.19}{A shifted multiplicative group}
+
+Use the identity $a*b+1=(a+1)(b+1)$.
+\begin{enumerate}[label=(\alph*)]
+\item If $a,b\ne-1$, their shifted values are nonzero, so $(a*b)+1\ne0$ and $a*b\ne-1$. The formula specifies one real output, proving it is a binary operation on $S$.
+\item The bijection $\phi:S\to\R^*$, $\phi(a)=a+1$, satisfies $\phi(a*b)=\phi(a)\phi(b)$, so it transports the group laws from $\R^*$. Explicitly, both bracketings have shifted value $(a+1)(b+1)(c+1)$, proving associativity; the identity is $0$, and the inverse of $a$ is $-a/(a+1)$, whose shifted value is $1/(a+1)$.
+\item Apply $\phi$ to $2*x*3=7$: $3(x+1)4=8$. Thus $x+1=2/3$ and $x=-1/3\in S$. Checking directly, $2*(-1/3)=1$ and $1*3=7$.
+\end{enumerate}
+
+\exercise{4.20}{The groups of order four}
+
+No repeated entry can occur in a row or column of a group table, by cancellation. Filling accordingly gives the following three tables in the order $e,a,b,c$:
+\[\begin{array}{c|cccc}T_1&e&a&b&c\\\hline e&e&a&b&c\\a&a&e&c&b\\b&b&c&e&a\\c&c&b&a&e\end{array}\quad
+\begin{array}{c|cccc}T_2&e&a&b&c\\\hline e&e&a&b&c\\a&a&e&c&b\\b&b&c&a&e\\c&c&b&e&a\end{array}\quad
+\begin{array}{c|cccc}T_3&e&a&b&c\\\hline e&e&a&b&c\\a&a&b&c&e\\b&b&c&e&a\\c&c&e&a&b\end{array}\]
+The first two have $a^2=e$; the third has $a^2=b$. In $T_2$, $b$ has successive powers $e,b,a,c$, whereas in $T_3$, $a$ has successive powers $e,a,b,c$. Therefore $T_2\cong T_3$ via $e\mapsto e,a\mapsto b,b\mapsto a,c\mapsto c$. In $T_1$ every nonidentity element squares to $e$, so it cannot be isomorphic to either cyclic table.
+\begin{enumerate}[label=(\alph*)]
+\item Yes: all three tables are symmetric, so every group of order four is abelian.
+\item $T_3$ is $U_4$ via $e\mapsto1,a\mapsto i,b\mapsto-1,c\mapsto-i$; $T_2$ is also $U_4$ via its preceding relabeling.
+\item $T_1$ is the diagonal-sign group for $n=2$: send $a\mapsto\operatorname{diag}(-1,1)$, $b\mapsto\operatorname{diag}(1,-1)$, $c\mapsto- I_2$. Multiplying these matrices verifies the table and therefore its associativity.
+\end{enumerate}
+
+\exercise{4.21}{Counting labeled small group operations}
+
+On a fixed two-element set there are two group operations: either element can be the identity, and that choice forces the other element to square to it. On a fixed three-element set there are three operations, one for each choice of identity; after that choice the two other elements must be inverses and their squares are forced. Swapping those two nonidentity labels leaves the same cyclic group table, so does not create an additional operation. Thus the answers are $2$ and $3$.
+
+\exercise{4.22}{Ordering the group axioms}
+
+The inverse axiom $\mathcal G_3$ refers to the identity $e$ introduced in $\mathcal G_2$. Thus $\mathcal G_2$ must precede $\mathcal G_3$. The unacceptable orders are $\mathcal G_1\mathcal G_3\mathcal G_2$, $\mathcal G_3\mathcal G_1\mathcal G_2$, and $\mathcal G_3\mathcal G_2\mathcal G_1$. The three orders with $\mathcal G_2$ first relative to $\mathcal G_3$ are acceptable; associativity has no such dependence on the other two.
+
+\exercise{4.23}{Critiquing four proposed definitions}
+
+A correct definition specifies a binary operation on $G$, associativity, an element $e\in G$ satisfying $ex=xe=x$ for every $x$, and for each $a\in G$ an $a^{-1}\in G$ satisfying $aa^{-1}=a^{-1}a=e$.
+\begin{enumerate}[label=(\alph*)]
+\item The equality ending ``$x=\text{identity}$'' is incorrect: $x$ is arbitrary, not necessarily the identity. The identity equation needs ``for every $x\in G$,'' the inverse must belong to $G$, and the same operation symbol must be used consistently.
+\item It refers to ``the operation'' without specifying a binary operation on $G$. It should define what the identity and inverse equations mean and explicitly put each inverse in $G$.
+\item Associativity is missing. ``An inverse exists'' must mean an inverse for every element, relative to the specified identity; merely defining a binary operation is already part of the setup.
+\item ``Associative under addition'' confuses the operation with another operation. The notation $\{e\}$ denotes a set, not the element $e$; the identity equation must end in $a$, not $e$. The inverse must be in $G$, and the universal quantifiers must govern the appropriate equations.
+\end{enumerate}
+
+\exercise{4.24}{Identity and inverses without associativity}
+
+Consider
+\[\begin{array}{c|ccc}*&e&a&b\\\hline e&e&a&b\\a&a&e&e\\b&b&e&e\end{array}\]
+The first row and column show $e$ is a two-sided identity. Both $a$ and $b$ are their own two-sided inverses, so $\mathcal G_2,\mathcal G_3$ hold. But $(a*a)*b=e*b=b$, whereas $a*(a*b)=a*e=a$. Thus associativity fails, as requested.
+
+\exercise{4.25}{Ten statements about groups}
+
+\begin{enumerate}[label=(\alph*)]
+\item False: two identities $e,f$ satisfy $e=ef=f$.
+\item True: the cancellation rule forces the unique three-element cyclic table, up to relabeling.
+\item True for the linear equations in this section: $ax=b$ and $ya=b$ have the solutions $a^{-1}b$ and $ba^{-1}$.
+\item False: understanding and stating the exact content matters; identical wording is unnecessary.
+\item False: one implication could allow a definition that excludes some actual groups. Equivalence requires both directions.
+\item True: equivalence of the two definitions is precisely what is needed.
+\item True: the one-, two-, and three-element group tables are all commutative.
+\item True: $axb=c$ has the unique solution $x=a^{-1}cb^{-1}$, obtained by multiplying on the indicated sides.
+\item False: a group must contain its identity, so it is nonempty.
+\item True: a group is a set with a binary operation satisfying additional axioms.
+\end{enumerate}
+
+\exercise{4.26}{Synopsis of left cancellation}
+
+Multiply an equality with the same left factor on the left by that factor's inverse, then reassociate and use the identity to remove that factor.
+
+\exercise{4.27}{Synopsis of solving a group equation}
+
+Multiplying the desired right-hand side on the left by the inverse of the coefficient produces a solution. Left cancellation shows that any two solutions must agree.
+
+\exercise{4.28}{Isomorphisms preserve inverses}
+
+Let $a^{-1}$ be the inverse of $a$ and let $e'$ be the target identity. Since $\phi(e)=e'$,
+\[\phi(a)\phi(a^{-1})=\phi(aa^{-1})=e',\qquad \phi(a^{-1})\phi(a)=\phi(a^{-1}a)=e'.
+\]
+Thus $\phi(a^{-1})$ is a two-sided inverse of $\phi(a)$. The inverse of a group element is unique, so $\phi(a^{-1})=\phi(a)^{-1}$.
+
+\exercise{4.29}{An involution in a group of even order}
+
+Pair each element $x$ with its inverse. Elements with $x\ne x^{-1}$ occur in disjoint pairs and hence contribute an even number of elements. If $e$ were the only self-inverse element, the total size would therefore be even plus one, which is odd. Since the group has even size, there must be some $a\ne e$ with $a=a^{-1}$, equivalently $a^2=e$.
+
+\exercise{4.30}{Mixed one-sided axioms}
+
+On $\R^*$ put $a*b=|a|b$.
+\begin{enumerate}[label=(\alph*)]
+\item Outputs are nonzero, and $(a*b)*c=\big||a|b\big|c=|a||b|c=a*(b*c)$, proving associativity.
+\item The element $1$ is a left identity, since $1*b=b$. Each $a$ has a right inverse relative to $1$, namely $b=1/|a|$, since $a*b=1$.
+\item This is not a group. A right identity $r$ would need $1*r=1$, hence $r=1$, but then $(-1)*r=1\ne-1$.
+\item A left identity combined with right inverses does not suffice for the group axioms. The valid one-sided alternatives require the identity and inverse axioms to have matching sides (both left, or both right). This example even has two left identities, $1$ and $-1$.
+\end{enumerate}
+
+\exercise{4.31}{Idempotents in a group}
+
+The identity is idempotent since $e^2=e$. If $x^2=x$, multiply on the left by $x^{-1}$ to obtain $x=e$. Thus every idempotent equals the identity, and there is exactly one.
+
+\exercise{4.32}{A group of exponent two is abelian}
+
+Assume $x^2=e$ for every $x\in G$. In particular $(ab)^2=e$, so $abab=e$. Multiplying this equality on the left by $a$ and on the right by $b$ gives $ba=ab$, because $a^2=b^2=e$. Since $a,b$ were arbitrary, the group is abelian. No commutation was used before establishing the conclusion.
+
+\exercise{4.33}{Powers of commuting products}
+
+Fix $a,b$ in an abelian group. For $n=1$, $(ab)^1=a^1b^1$. If $(ab)^n=a^n b^n$, then
+\[(ab)^{n+1}=(ab)^n ab=a^n b^n ab=a^n a b^n b=a^{n+1}b^{n+1}.
+\]
+Commutativity permits moving $a$ past $b^n$, and associativity permits regrouping. Thus mathematical induction proves the identity for every positive integer $n$.
+
+\exercise{4.34}{A finite-order power}
+
+Let $|G|=m$. The $m+1$ powers $e,a,a^2,\ldots,a^m$ cannot all be distinct, so $a^i=a^j$ for some $0\le i<j\le m$. Multiply by $a^{-i}$ to get $a^{j-i}=e$. Since $j-i>0$, this supplies the required positive exponent.
+
+\exercise{4.35}{A squared-product identity forces commutation}
+
+The hypothesis is $abab=aabb$. Multiply on the left by $a^{-1}$ to get $bab=abb$, then on the right by $b^{-1}$ to get $ba=ab$. The sides of multiplication matter; cancellation is valid without assuming the group is abelian.
+
+\exercise{4.36}{When inverses keep their order}
+
+In any group $(ab)^{-1}=b^{-1}a^{-1}$, since this element gives $e$ on multiplication on either side. If $ab=ba$, then their inverses also commute, so this equals $a^{-1}b^{-1}$. Conversely, if $(ab)^{-1}=a^{-1}b^{-1}$, comparison with the general formula gives $b^{-1}a^{-1}=a^{-1}b^{-1}$. Taking inverses reverses both products and yields $ab=ba$. This proves both implications.
+
+\exercise{4.37}{Cyclically rotating a product equal to the identity}
+
+From $abc=e$, multiply on the left by $a^{-1}$ to get $bc=a^{-1}$. Multiplying on the right by $a$ then gives $bca=a^{-1}a=e$. This is a cyclic rotation, not an arbitrary interchange of factors.
+
+\exercise{4.38}{Matching left axioms imply the group axioms}
+
+Assume associativity, a left identity $e$, and a left inverse $a'$ for every $a$.
+\step{First obtain left cancellation.} If $ax=ay$, multiply on the left by $a'$. Then $(a'a)x=(a'a)y$ gives $ex=ey$, hence $x=y$.
+\step{Prove the identity is also right-sided.} Since $a'(ae)=(a'a)e=ee=e=a'a$, left cancellation of $a'$ gives $ae=a$.
+\step{Prove each left inverse is also right-sided.} Now $a'(aa')=(a'a)a'=ea'=a'=a'e$. Cancel $a'$ on the left to get $aa'=e$. Thus $e$ is a two-sided identity and each $a'$ is a two-sided inverse. All ordinary group axioms hold.
+
+\exercise{4.39}{Solvability of all linear equations}
+
+Choose $a\in G$, possible since $G$ is nonempty. By the solvability hypothesis choose $e$ with $ea=a$. For any $g\in G$, choose $z$ with $az=g$. Associativity gives $eg=e(az)=(ea)z=az=g$, so $e$ is a left identity for every element. For any $c\in G$, solvability of $yc=e$ gives a left inverse $c'$ with $c'c=e$. Thus the matching left axioms of Exercise 4.38 hold, and its proof shows that $G$ is a group.
+
+\exercise{4.40}{The reversed operation}
+
+Write the original multiplication as juxtaposition and set $a*b=ba$. Then $(a*b)*c=cba=a*(b*c)$, the original identity remains an identity, and the original $a^{-1}$ is also the $*$-inverse. Thus $(G,*)$ is a group. Define $\phi(a)=a^{-1}$. It is bijective because applying it twice gives $a$, and
+\[\phi(a*b)=\phi(ba)=(ba)^{-1}=a^{-1}b^{-1}=\phi(a)\phi(b).
+\]
+Hence it is an isomorphism from the reversed group to the original group.
+
+\exercise{4.41}{Conjugation is an automorphism}
+
+For fixed $g\in G$ define $i_g(x)=gxg^{-1}$. Its inverse map is $i_{g^{-1}}$, since $g^{-1}(gxg^{-1})g=x$ and the reverse composition also equals the identity. Thus $i_g$ is bijective. Moreover
+\[i_g(x)i_g(y)=(gxg^{-1})(gyg^{-1})=gx(g^{-1}g)yg^{-1}=gxyg^{-1}=i_g(xy).
+\]
+Therefore conjugation preserves multiplication and is an isomorphism of $G$ with itself.

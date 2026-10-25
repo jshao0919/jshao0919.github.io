@@ -1,0 +1,141 @@
+\section{Noncommutative Examples}
+
+\exercise{24.1}{Addition in a three-element group algebra}
+Add the coefficients of each basis element, reducing in $\Z_5$:
+\[(2e+3a+0b)+(4e+2a+3b)=6e+5a+3b=\boxed{e+0a+3b}.
+\]
+The group elements are formal basis labels; coefficients are combined only when their labels agree.
+
+\exercise{24.2}{Multiplication in a three-element group algebra}
+Since $G$ is cyclic of order $3$, its multiplication satisfies $a^2=b$, $ab=ba=e$, and $b^2=a$. Distribute in the given order:
+\[(2e+3a)(4e+2a+3b)=8e+4a+6b+12a+6b+9e.
+\]
+Collecting coefficients gives $17e+16a+12b$. Reduction modulo $5$ yields $\boxed{2e+a+2b}$.
+
+\exercise{24.3}{A fourth power in the group algebra}
+Put $S=e+a+b$. For each fixed product label, exactly three of the nine terms in $S^2$ contribute to it, so $S^2=3S$. It follows that $S^4=9S^2=27S$. Therefore
+\[(3S)^4=3^4\cdot27S=2187S=2S\quad\text{over }\Z_5.
+\]
+The answer is $\boxed{2e+2a+2b}$.
+
+\exercise{24.4}{An ordered quaternion product}
+Use $i^2=j^2=k^2=-1$, $ij=k$, $jk=i$, $ki=j$, and reverse these last three products with a minus sign. Then
+\[(i+3j)(4+2j-k)=4i+2k+j+12j-6-3i.
+\]
+Collecting the four real coordinates gives $\boxed{-6+i+13j+2k}$. Keeping the order of factors avoids the wrong signs in $ik=-j$ and $jk=i$.
+
+\exercise{24.5}{Quaternion powers and multiplication}
+Reduce the powers first: $i^2=-1$, $j^3=-j$, and $i^5=i$. Thus
+\[i^2j^3kji^5=(-1)(-j)kji=(jk)ji=iji=ki=\boxed j.
+\]
+Each reassociation uses associativity, and no two noncommuting factors have been interchanged.
+
+\exercise{24.6}{The inverse of a pure quaternion}
+For $q=i+j$, its conjugate is $\overline q=-i-j$ and its squared norm is $1^2+1^2=2$. Hence
+\[\boxed{(i+j)^{-1}=\frac{-i-j}{2}}.
+\]
+For a direct check, $(i+j)^2=i^2+ij+ji+j^2=-2$, so multiplication by the displayed inverse gives $1$ on either side.
+
+\exercise{24.7}{The inverse of a quaternion product}
+Multiply the factors before inverting:
+\[(1+3i)(4j+3k)=4j+3k+12k+9ik=-5j+15k.
+\]
+The squared norm is $25+225=250$, and the conjugate is $5j-15k$. Therefore
+\[\boxed{[(1+3i)(4j+3k)]^{-1}=\frac{j-3k}{50}}.
+\]
+Indeed a pure quaternion $v=-5j+15k$ has $v^2=-250$, so $v(-v/250)=1=(-v/250)v$.
+
+\exercise{24.8}{A product in the group algebra of the symmetric group}
+Discard the zero coefficients. The factors are $A=\rho_1+\mu_2+\mu_3$ and $B=\rho_0+\rho_1+\mu_1+\mu_3$. Using the source's right-to-left permutation composition, the required twelve products are
+\[
+\begin{array}{c|cccc}&\rho_0&\rho_1&\mu_1&\mu_3\\\hline
+\rho_1&\rho_1&\rho_2&\mu_3&\mu_2\\
+\mu_2&\mu_2&\mu_3&\rho_2&\rho_1\\
+\mu_3&\mu_3&\mu_1&\rho_1&\rho_0
+\end{array}.
+\]
+The multiplicities of $\rho_0,\rho_1,\rho_2,\mu_1,\mu_2,\mu_3$ are $1,3,2,1,2,3$. Coefficients are in $\Z_2$, so even multiplicities disappear and odd ones become $1$. Thus
+\[\boxed{AB=\rho_0+\rho_1+0\rho_2+\mu_1+0\mu_2+\mu_3}.
+\]
+
+\exercise{24.9}{The center of the nonzero quaternion group}
+Every nonzero real scalar commutes with every quaternion, so $\R\setminus\{0\}$ is contained in the center. Conversely let $q=a+bi+cj+dk$ be central. Comparing
+\[qi=-b+ai+dj-ck,\qquad iq=-b+ai-dj+ck
+\]
+gives $c=d=0$. Then comparing $(a+bi)j=aj+bk$ and $j(a+bi)=aj-bk$ gives $b=0$. Therefore $q=a$ is real and nonzero. The center is exactly $\boxed{\R\setminus\{0\}}$ under multiplication.
+
+\exercise{24.10}{Two other complex planes inside the quaternions}
+Take $F_j=\{a+bj:a,b\in\R\}$ and $F_k=\{a+bk:a,b\in\R\}$. Because $j^2=k^2=-1$, their induced addition and multiplication obey exactly the complex-number formulas. The maps $a+bi\mapsto a+bj$ and $a+bi\mapsto a+bk$ are bijective ring homomorphisms from $\C$, hence field isomorphisms. These two subsets differ from each other and from the usual $\{a+bi\}$: for example $j$ belongs only to $F_j$ among these three planes.
+
+\exercise{24.11}{True or false: noncommutative examples}
+\begin{enumerate}[label=(\alph*)]
+\item False: $E_{11}E_{22}=0$ in $M_2(F)$, with both factors nonzero.
+\item False: $\begin{pmatrix}1&0\\0&0\end{pmatrix}$ is nonzero but has no inverse.
+\item False as stated for every abelian group: for the trivial group, the identity endomorphism equals the zero endomorphism. For every nontrivial $A$, the identity map is a nonzero unity.
+\item False: $A=\Z$ has a nonzero identity endomorphism as unity.
+\item False: for nontrivial $A$, the zero endomorphism is not an automorphism, so these automorphisms do not even contain the additive identity of a subring.
+\item False: take $R=\Z_2$. The group ring of the infinite cyclic group then has characteristic $2$, whereas $\Z$ has characteristic zero, so the rings are not isomorphic.
+\item True: both the scalar coefficients and group labels commute, so every pair of formal sums commutes on expansion.
+\item False: $ij=k$ but $ji=-k$, so multiplication is not commutative. They form a division ring.
+\item True: quaternion multiplication is associative, $1$ is the identity, and $q^{-1}=\overline q/\lVert q\rVert^2$ exists for every nonzero $q$.
+\item False: the real scalars, and also the usual complex plane, are subrings that are fields.
+\end{enumerate}
+
+\exercise{24.12}{Two failures of commutative-field conclusions}
+\textbf{(a)} In $\mathbb H$, the degree-two polynomial $x^2+1$ vanishes at $i,-i,j,-j,k,-k$, already six distinct zeros. More generally every $bi+cj+dk$ with $b^2+c^2+d^2=1$ has square $-1$. Thus the commutative-field root bound fails in a strictly skew field.\par
+\textbf{(b)} The eight quaternions $\{\pm1,\pm i,\pm j,\pm k\}$ form a finite multiplicative subgroup. Every element has order at most $4$, so none generates all eight elements. This quaternion group is not cyclic.
+
+\exercise{24.13}{The other zero-divisor equation for an endomorphism}
+The source map is $\phi(m,n)=(m+n,0)$. Define $\theta(m,n)=(m,-m)$; this is a nonzero additive endomorphism of $\Z\times\Z$. Then
+\[(\phi\theta)(m,n)=\phi(m,-m)=(0,0)
+\]
+for every $(m,n)$. Thus $\phi\theta=0$ with $\theta\ne0$, giving the required zero product on the side opposite to the source example's $\psi\phi=0$.
+
+\exercise{24.14}{Six units over any field}
+The six matrices
+\[
+\begin{pmatrix}1&0\\0&1\end{pmatrix},\quad
+\begin{pmatrix}1&1\\0&1\end{pmatrix},\quad
+\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+\begin{pmatrix}0&1\\1&1\end{pmatrix},\quad
+\begin{pmatrix}1&1\\1&0\end{pmatrix},\quad
+\begin{pmatrix}1&0\\1&1\end{pmatrix}
+\]
+are distinct because $0\ne1$ in a field. Their determinants are $1,1,-1,-1,-1,1$, respectively, all nonzero even in characteristic $2$ (where $-1=1$). The invertible-matrix criterion proves that all six are units of $M_2(F)$.
+
+\exercise{24.15}{Endomorphisms of cyclic additive groups}
+An additive endomorphism of $\Z$ is uniquely determined by the integer $k=\phi(1)$, and then $\phi(n)=kn$ for every integer $n$. The map $k\mapsto\phi_k$ is a bijection $\Z\to\operatorname{End}(\Z)$, with
+\[\phi_k+\phi_l=\phi_{k+l},\qquad\phi_k\circ\phi_l=\phi_{kl}.
+\]
+Thus it is a ring isomorphism.\par
+For $\Z_n$, the same argument uses $k=\phi([1])\in\Z_n$ and $\phi([r])=[r]k$. Every $k$ defines a well-defined endomorphism, since $nk=0$ automatically. Addition and composition again correspond to $k+l$ and $kl$ modulo $n$, proving $\operatorname{End}(\Z_n)\cong\Z_n$.
+
+\exercise{24.16}{Endomorphisms of a two-dimensional binary group}
+View $\Z_2\times\Z_2$ as a two-dimensional vector space over $\Z_2$. Every additive endomorphism is linear and is determined by arbitrary images of its two basis vectors. Each image has four choices, so there are $4^2=16$ endomorphisms. The componentwise product ring $\Z_2\times\Z_2$ has only four elements. Different cardinalities rule out a ring isomorphism. Equivalently the endomorphism ring is $M_2(\Z_2)$, which is also noncommutative.
+
+\exercise{24.17}{The differentiation--multiplication commutator}
+Here $Xf=xf$ and $Yf=f'$ are endomorphisms of the additive polynomial group. For every polynomial $f$,
+\[(YX-XY)f=(xf)'-xf'=f+xf'-xf'=f.
+\]
+The product rule can be checked on each monomial $x^n$: its two terms are $(n+1)x^n$ and $nx^n$. Thus $YX-XY$ acts as the identity on every polynomial and equals the unity endomorphism $\boxed1$.
+
+\exercise{24.18}{The group ring of a one-element group}
+If $G=\{e\}$, every formal sum has the form $re$. The map $re\mapsto r$ is bijective. Furthermore $(re)+(se)=(r+s)e$ and $(re)(se)=(rs)e$, since $e^2=e$. The map preserves both operations, proving $RG\cong R$.
+
+\exercise{24.19}{A matrix realization of the quaternions}
+Put
+\[E=I_2,\qquad I=\begin{pmatrix}0&1\\-1&0\end{pmatrix},\qquad
+J=\begin{pmatrix}0&i\\i&0\end{pmatrix}.
+\]
+The $i$ in these matrix entries is the complex imaginary unit.\par
+\textbf{(a)} Since quaternion $ij=k$, multiplicativity forces
+\[\boxed{K=IJ=\begin{pmatrix}i&0\\0&-i\end{pmatrix}}.
+\]
+\textbf{(b)} With $IJ=K$ used as this definition, the other eight multiplication-table equations to check are
+\[I^2=J^2=K^2=-E,\qquad JI=-K,\qquad JK=I,\qquad KJ=-I,\qquad KI=J,\qquad IK=-J.
+\]
+Direct matrix multiplication verifies them: the three squares are $\operatorname{diag}(-1,-1)$, $JI=\operatorname{diag}(-i,i)$, $JK=\begin{pmatrix}0&1\\-1&0\end{pmatrix}$, and the remaining reversed products have the stated signs. Identities involving $E$ hold automatically. Real-linearity of the definition makes additivity automatic, and distributivity reduces multiplicativity for arbitrary quaternions to these basis products.\par
+\textbf{(c)} We must also check injectivity, since surjectivity onto the image is automatic. The explicit matrix is
+\[\phi(a+bi+cj+dk)=\begin{pmatrix}a+di&b+ci\\-b+ci&a-di\end{pmatrix}.
+\]
+If it is zero, real and imaginary parts of its entries give $a=d=b=c=0$. Thus the kernel is zero, proving the required isomorphism onto $\phi[\mathbb H]$.

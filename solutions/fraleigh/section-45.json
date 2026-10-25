@@ -1,0 +1,15 @@
+{
+  "section": 45,
+  "part": 9,
+  "title": "Unique Factorization Domains",
+  "exercise_count": 34,
+  "source_pages": [
+    403,
+    404,
+    405
+  ],
+  "notes": [
+    "45.30 requires proper ideal.",
+    "45.33 minimum condition requires nonempty collection."
+  ]
+}

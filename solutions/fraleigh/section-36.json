@@ -1,0 +1,13 @@
+{
+  "section": 36,
+  "part": 7,
+  "title": "Sylow Theorems",
+  "exercise_count": 22,
+  "source_pages": [
+    330,
+    331
+  ],
+  "notes": [
+    "Exercise36.19 omits the prime-order exception m=1,r=1; its printed assertion is false there."
+  ]
+}

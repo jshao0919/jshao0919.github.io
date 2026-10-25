@@ -1,0 +1,192 @@
+\section{Binary Operations}
+
+\exercise{2.1}{Reading the operation table}
+
+Use the first factor's row and the second factor's column. Table 2.26 gives $b*d=e$ and $c*c=b$. For the nested expression, work from the innermost parentheses: $a*c=c$, then $c*e=a$, then $a*a=a$. Thus $[(a*c)*e]*a=a$.
+
+\exercise{2.2}{A test that happens to agree}
+
+The table gives $(a*b)*c=b*c=a$ and $a*(b*c)=a*a=a$. These values agree, but one successful triple does not establish associativity: that law must hold for every ordered triple. This computation alone therefore cannot decide whether the operation is associative.
+
+\exercise{2.3}{A failed associativity test}
+
+Since $b*d=e$, $(b*d)*c=e*c=a$. On the other hand $d*c=b$, so $b*(d*c)=b*b=c$. The elements $a,c$ differ, so this one triple disproves associativity.
+
+\exercise{2.4}{Testing commutativity}
+
+The operation is not commutative: $a*e=d$ whereas $e*a=b$. A commutative table must be symmetric across its main diagonal; these two off-diagonal entries already violate that requirement.
+
+\exercise{2.5}{A symmetric completion}
+
+Reflect each known entry across the diagonal, leaving the given diagonal entries unchanged. This forces
+\[\begin{array}{c|cccc}*&a&b&c&d\\\hline a&a&b&c&d\\b&b&d&a&c\\c&c&a&d&b\\d&d&c&b&a\end{array}\]
+For instance $c*b=a$ forces $b*c=a$, and $b*d=c$ forces $d*b=c$. Every resulting entry is in the specified set and the table is symmetric, as required.
+
+\exercise{2.6}{An associative completion}
+
+The known entry $c*b=d$ lets us compute every missing product: associativity requires $d*x=(c*b)*x=c*(b*x)$. For $x=a,b,c,d$, the given row of $b$ is $b,a,c,d$; applying the given row of $c$ gives $d,c,c,d$. Thus
+\[\begin{array}{c|cccc}*&a&b&c&d\\\hline a&a&b&c&d\\b&b&a&c&d\\c&c&d&c&d\\d&d&c&c&d\end{array}\]
+The question permits assuming an associative completion exists. The preceding equations show it must be this one; direct checking of its $4^3$ triples confirms it is associative.
+
+\exercise{2.7}{Subtraction on the integers}
+
+This is neither commutative nor associative. For commutativity, $1*2=-1$ while $2*1=1$. For associativity, $(1*2)*3=-1-3=-4$, whereas $1*(2*3)=1-(-1)=2$. Every output is still an integer, so it is a binary operation despite these failed laws.
+
+\exercise{2.8}{Multiplication followed by adding one}
+
+Commutativity holds because $ab+1=ba+1$. However
+\[(a*b)*c=(ab+1)c+1=abc+c+1,\qquad a*(b*c)=a(bc+1)+1=abc+a+1.
+\]
+Taking $a=0,b=0,c=1$ gives $2$ versus $1$, so associativity fails.
+
+\exercise{2.9}{A scaled product}
+
+Commutativity follows from $ab/2=ba/2$. For every rational $a,b,c$,
+\[(a*b)*c=((ab)/2)c/2=abc/4=a((bc)/2)/2=a*(b*c).
+\]
+Thus the operation is both commutative and associative. Products and division by $2$ keep all outputs rational.
+
+\exercise{2.10}{Two raised to a product}
+
+The operation is commutative since $ab=ba$. It is not associative: with $(a,b,c)=(1,1,3)$,
+\[(1*1)*3=2*3=2^6=64,\qquad1*(1*3)=1*8=2^8=256.
+\]
+All outputs are positive integers, so closure is not an issue.
+
+\exercise{2.11}{Exponentiation}
+
+This operation is not commutative: $2^3=8\ne9=3^2$. It is not associative either:
+\[(2*2)*3=4^3=64,\qquad2*(2*3)=2^8=256.
+\]
+The distinction is between $(a^b)^c=a^{bc}$ and $a^{b^c}$, not a failure of closure.
+
+\exercise{2.12}{Counting all binary operations}
+
+For a set of size $n$, there are $n^2$ ordered input pairs and independently $n$ choices for each output. Thus there are $n^{n^2}$ operations. For one, two, and three elements this gives respectively $1$, $2^4=16$, and $3^9=19683$. The table is an arbitrary function from $S\times S$ into $S$.
+
+\exercise{2.13}{Counting commutative operations}
+
+Only the diagonal and one half of the off-diagonal entries can be chosen freely. There are $n+n(n-1)/2=n(n+1)/2$ such positions, each with $n$ possible outputs, so the answer is $n^{n(n+1)/2}$. It is $2^3=8$ for two elements and $3^6=729$ for three elements. The remaining entries are forced by symmetry.
+
+\exercise{2.14}{A precise commutativity definition}
+
+A binary operation $*$ on a set $S$ is commutative if and only if $a*b=b*a$ \emph{for all} $a,b\in S$. The universal quantifier and the underlying set must be specified: agreement for just one pair does not suffice.
+
+\exercise{2.15}{An acceptable associativity definition}
+
+The given definition is correct: $(b*c)*a=b*(c*a)$ for all $a,b,c\in S$ is the associative law with the dummy variables renamed. For the more usual arrangement, one may write $(x*y)*z=x*(y*z)$ for all $x,y,z\in S$. No correction of its mathematical content is needed.
+
+\exercise{2.16}{Closure of a subset}
+
+A subset $H\subseteq S$ is closed under $*$ if and only if $a*b\in H$ for all $a,b\in H$. The proposed version incorrectly quantifies over all of $S$. Closure only asks about two inputs already in $H$.
+
+\exercise{2.17}{A subtraction rule on positive integers}
+
+The numerical output $a-b$ is uniquely determined for every input, so Condition 1 holds. Condition 2, closure, fails: $1*1=0\notin\Z^+$ (and $1*2=-1$ is another failure). Thus this does not define a binary operation on $\Z^+$.
+
+\exercise{2.18}{An exponentiation rule on positive integers}
+
+For each positive integer pair $a,b$, the integer $a^b$ exists uniquely and is positive. Both uniqueness/everywhere-definition (Condition 1) and closure (Condition 2) hold. Hence this is a binary operation on the given set.
+
+\exercise{2.19}{A subtraction rule on all real numbers}
+
+For any two real numbers $a,b$, the difference $a-b$ is one uniquely determined real number. Therefore Conditions 1 and 2 both hold; subtraction is a binary operation on $\R$. Associativity is not required in the definition of binary operation.
+
+\exercise{2.20}{The least integer above two inputs}
+
+For positive integers $a,b$, the specified integer is exactly $\max(a,b)+1$. It exists, is unique, and is positive. Thus both conditions hold and the rule defines a binary operation.
+
+\exercise{2.21}{An ambiguous lower bound}
+
+The condition permits every integer $c\ge a+b+5$. For example, when $a=b=1$, both $7$ and $8$ are allowed. Thus Condition 1 fails because no unique output is specified. All allowed outputs are positive, so there is no violation of Condition 2. The rule is not a binary operation.
+
+\exercise{2.22}{The largest integer below a product}
+
+Since $ab$ is an integer, the largest integer strictly below it is uniquely $ab-1$. Thus Condition 1 holds. But $1*1=0$ is not positive, so Condition 2 fails and the rule is not a binary operation on $\Z^+$.
+
+\exercise{2.23}{A matrix-shaped subset}
+
+Write $M(a,b)=\begin{pmatrix}a&-b\\b&a\end{pmatrix}$. For arbitrary real $a,b,c,d$,
+\[M(a,b)+M(c,d)=M(a+c,b+d),\]
+so \textbf{(a)} it is closed under addition. Also
+\[M(a,b)M(c,d)=\begin{pmatrix}ac-bd&-(ad+bc)\\ad+bc&ac-bd\end{pmatrix}=M(ac-bd,ad+bc),\]
+so \textbf{(b)} it is closed under multiplication. Exhibiting the same form proves closure for all inputs.
+
+\exercise{2.24}{Ten statements about operations}
+
+\begin{enumerate}[label=(\alph*)]
+\item False: addition on $\Z$ has $1+1\ne1$.
+\item True: treat $b*c\in S$ as one element and apply commutativity to it and $a$.
+\item False: matrix multiplication is associative but generally noncommutative; specifically take $a=E_{12}$, $b=E_{21}$, $c=I_2$. Then $a(bc)=E_{11}$ but $(bc)a=E_{22}$.
+\item False: function composition, set union, and matrix multiplication are important operations on nonnumeric objects.
+\item False: the equation must hold for every pair. Subtraction has $0-0=0-0$ but is not commutative.
+\item True: on $\{s\}$ every product must be $s$, so both laws hold.
+\item True: exactly one output in particular means at least one.
+\item True: exactly one output in particular means at most one.
+\item True: this is the defining requirement, together with the specified codomain.
+\item False: multiple allowed outputs contradict being a function.
+\end{enumerate}
+
+\exercise{2.25}{Two operations on a nonnumeric set}
+
+Take $S$ to be the set of all finite words in the alphabet $\{A,B\}$, including the empty word. Define $u*v$ to be concatenation and $u*'v=u$. Each ordered pair has exactly one output in $S$. They are different: for $u=A,v=B$, concatenation gives $AB$, while the second operation gives $A$. The alphabet and finiteness requirement make the set unambiguous.
+
+\exercise{2.26}{Rearranging four factors}
+
+Use only the stated laws, one step at a time:
+\[\begin{aligned}
+(a*b)*(c*d)&=(c*d)*(a*b)&&\text{(commutativity)}\\
+&=((c*d)*a)*b&&\text{(associativity on }c*d,a,b)\\
+&=((d*c)*a)*b&&\text{(commutativity on }c,d).
+\end{aligned}\]
+Each parenthesized product is an element of $S$ by closure, so applying the laws to such intermediate elements is legitimate.
+
+\exercise{2.27}{The singleton case}
+
+Let $S=\{s\}$. The only possible output of $s*s$ is $s$. Hence $s*s=s*s$ proves commutativity, and $(s*s)*s=s*s=s=s*(s*s)$ proves associativity. These exhaust all pairs and triples because the set has one element.
+
+\exercise{2.28}{Commutativity need not imply associativity}
+
+On $\{0,1\}$ define $a*b=1-ab$ (the values are again $0$ or $1$). It is commutative because $ab=ba$. But $(0*0)*1=1*1=0$, while $0*(0*1)=0*1=1$. Thus this commutative two-element operation is not associative.
+
+\exercise{2.29}{Associativity of function addition}
+
+For every real $x$, $((f+g)+h)(x)=(f(x)+g(x))+h(x)=f(x)+(g(x)+h(x))=(f+(g+h))(x)$. The middle equality is associativity of real addition. Since the two functions agree at every input, they are equal, so function addition is associative.
+
+\exercise{2.30}{Commutativity of function subtraction}
+
+False. Let $f(x)=1$ and $g(x)=0$ for every real $x$. Then $(f-g)(x)=1$ while $(g-f)(x)=-1$, so the resulting functions differ. Constant functions are allowed elements of $F$.
+
+\exercise{2.31}{Associativity of function subtraction}
+
+False. Let $f,g,h$ all be the constant function $1$. Then $(f-g)-h$ is the constant $-1$, whereas $f-(g-h)$ is the constant $1$. This counterexample uses functions with exactly the required domain and codomain.
+
+\exercise{2.32}{Commutativity of function multiplication}
+
+For every real $x$, $(fg)(x)=f(x)g(x)=g(x)f(x)=(gf)(x)$ by commutativity of real multiplication. Pointwise agreement proves $fg=gf$ as functions. Thus the statement is true.
+
+\exercise{2.33}{Associativity of function multiplication}
+
+For every $x$, $((fg)h)(x)=(f(x)g(x))h(x)=f(x)(g(x)h(x))=(f(gh))(x)$. Associativity of real multiplication gives the central equality. Thus the two functions agree on all of $\R$, proving the assertion.
+
+\exercise{2.34}{Commutativity of composition}
+
+False. Set $f(x)=x+1$ and $g(x)=2x$. Then $(f\circ g)(x)=2x+1$ but $(g\circ f)(x)=2x+2$. The order of applying functions matters, even though composition is associative.
+
+\exercise{2.35}{An arbitrary distributive law}
+
+False: choose both operations to be ordinary addition on $\Z$. With $a=1,b=c=0$, the left side $a+(b+c)$ is $1$, whereas $(a+b)+(a+c)$ is $2$. Distributivity is an extra relation between operations; it does not follow from their merely being binary operations.
+
+\exercise{2.36}{Closure of elements commuting with everything}
+
+Let $a,b\in H$ and $x\in S$. Reassociate and use that $a,b$ commute with $x$:
+\[(a*b)*x=a*(b*x)=a*(x*b)=(a*x)*b=(x*a)*b=x*(a*b).
+\]
+Since this holds for every $x\in S$, the element $a*b$ belongs to $H$. No commutativity of the whole set is assumed; we only used the defining property of these two elements.
+
+\exercise{2.37}{Closure of idempotents}
+
+Take $a,b\in H$, so $a*a=a$ and $b*b=b$. Associativity and commutativity allow regrouping as
+\[(a*b)*(a*b)=(a*a)*(b*b)=a*b.
+\]
+For justification, first write $a*(b*(a*b))$, commute $b$ past $a$ inside, then reassociate into $(a*a)*(b*b)$. Thus $a*b$ is idempotent and lies in $H$.

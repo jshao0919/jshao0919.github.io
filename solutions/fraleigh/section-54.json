@@ -1,0 +1,13 @@
+{
+  "section": 54,
+  "part": 10,
+  "title": "Illustrations of Galois Theory",
+  "exercise_count": 13,
+  "source_pages": [
+    465,
+    466
+  ],
+  "notes": [
+    "54.12(c) needs distinct roots and characteristic not 2; counterexample and corrected proof supplied."
+  ]
+}

@@ -1,0 +1,177 @@
+\section{Appendix: Matrix Algebra}
+
+An $m\times n$ matrix has $m$ rows and $n$ columns. Addition and subtraction
+require the same dimensions and operate entry by entry. The product of an
+$m\times n$ matrix and an $n\times r$ matrix is an $m\times r$ matrix:
+its $(i,j)$ entry is the dot product of row $i$ with column $j$.
+Throughout the complex calculations, use $i^2=-1$.
+
+\exercise{A.1}{Adding two real matrices}
+\idea Add entries occupying the same position; both matrices are $2\times2$.
+\[
+\begin{bmatrix}-2&4\\1&5\end{bmatrix}+
+\begin{bmatrix}4&-3\\1&2\end{bmatrix}
+=\begin{bmatrix}-2+4&4-3\\1+1&5+2\end{bmatrix}
+=\boxed{\begin{bmatrix}2&1\\2&7\end{bmatrix}}.
+\]
+No row is multiplied by a column when adding matrices.
+
+\exercise{A.2}{Adding two complex matrices}
+Both matrices are $2\times3$, so addition is defined. Add real parts to real
+parts and imaginary parts to imaginary parts:
+\begin{align*}
+(1+i)+3&=4+i,& -2+(i-1)&=-3+i,&(3-i)+(-2+i)&=1,\\
+4+(3-i)&=7-i,&i+(1+i)&=1+2i,&(2-i)+0&=2-i.
+\end{align*}
+\answer{The sum is $\displaystyle
+\begin{bmatrix}4+i&-3+i&1\\7-i&1+2i&2-i\end{bmatrix}$.}
+
+\exercise{A.3}{Subtracting complex matrices}
+Subtraction is defined because both matrices are $3\times2$. Distribute each
+minus sign to the entire corresponding entry:
+\[
+\begin{bmatrix}i&-1\\4&1\\3&-2i\end{bmatrix}-
+\begin{bmatrix}3-i&4i\\2&1+i\\3&-i\end{bmatrix}
+=\begin{bmatrix}i-(3-i)&-1-4i\\4-2&1-(1+i)\\3-3&-2i-(-i)\end{bmatrix}
+=\boxed{\begin{bmatrix}-3+2i&-1-4i\\2&-i\\0&-i\end{bmatrix}}.
+\]
+In particular, subtracting $-i$ adds $i$.
+
+\exercise{A.4}{A product of two square matrices}
+\idea The inner dimensions match. Compute four row--column dot products.
+\[
+\begin{bmatrix}1&-1\\3&1\end{bmatrix}
+\begin{bmatrix}2&4\\-1&3\end{bmatrix}
+=\begin{bmatrix}1(2)+(-1)(-1)&1(4)+(-1)(3)\\
+3(2)+1(-1)&3(4)+1(3)\end{bmatrix}
+=\boxed{\begin{bmatrix}3&1\\5&15\end{bmatrix}}.
+\]
+The factors and the result are all $2\times2$.
+
+\exercise{A.5}{A rectangular matrix product}
+A $2\times2$ matrix times a $2\times3$ matrix gives a $2\times3$ result:
+\[
+\begin{bmatrix}3&1\\-4&2\end{bmatrix}
+\begin{bmatrix}1&5&-3\\2&1&6\end{bmatrix}
+=\begin{bmatrix}
+3(1)+1(2)&3(5)+1(1)&3(-3)+1(6)\\
+-4(1)+2(2)&-4(5)+2(1)&-4(-3)+2(6)
+\end{bmatrix}
+=\boxed{\begin{bmatrix}5&16&-3\\0&-18&24\end{bmatrix}}.
+\]
+
+\exercise{A.6}{Checking dimensions before multiplying}
+The first matrix is $2\times2$ and the second is $3\times2$. The number of
+columns of the first, namely $2$, differs from the number of rows of the
+second, namely $3$. For example, the proposed first entry would require a
+dot product between a two-entry row and a three-entry column.
+\answer{The indicated matrix product is undefined.}
+
+\exercise{A.7}{A complex matrix product}
+Multiply rows by columns, remembering $i(3i)=3i^2=-3$:
+\begin{align*}
+\begin{bmatrix}i&1\\-2&1\end{bmatrix}
+\begin{bmatrix}3i&1\\4&-2i\end{bmatrix}
+&=\begin{bmatrix}i(3i)+1(4)&i(1)+1(-2i)\\
+(-2)(3i)+1(4)&(-2)(1)+1(-2i)\end{bmatrix}\\
+&=\boxed{\begin{bmatrix}1&-i\\4-6i&-2-2i\end{bmatrix}}.
+\end{align*}
+
+\exercise{A.8}{The fourth power of a real matrix}
+Let $M=\begin{bmatrix}1&-1\\1&0\end{bmatrix}$. Matrix powers mean repeated
+matrix multiplication, not taking powers of the individual entries.
+First compute
+\[
+M^2=\begin{bmatrix}1-1&-1+0\\1+0&-1+0\end{bmatrix}
+=\begin{bmatrix}0&-1\\1&-1\end{bmatrix}.
+\]
+Now square that result:
+\[
+M^4=(M^2)^2
+=\begin{bmatrix}0&-1\\1&-1\end{bmatrix}
+ \begin{bmatrix}0&-1\\1&-1\end{bmatrix}
+=\boxed{\begin{bmatrix}-1&1\\-1&0\end{bmatrix}}.
+\]
+As a check, multiplying $M^2$ by $M$ gives $M^3=-I_2$, so $M^4=-M$.
+
+\exercise{A.9}{The fourth power of a complex matrix}
+Put $N=\begin{bmatrix}1&-i\\i&1\end{bmatrix}$. Then
+\[
+N^2=\begin{bmatrix}1+(-i)i&-i-i\\i+i&i(-i)+1\end{bmatrix}
+=\begin{bmatrix}2&-2i\\2i&2\end{bmatrix}=2N.
+\]
+Consequently $N^4=(N^2)^2=(2N)^2=4N^2=8N$, and therefore
+\[
+\boxed{N^4=\begin{bmatrix}8&-8i\\8i&8\end{bmatrix}}.
+\]
+Only the scalar factors commute here; no interchange of matrix factors is needed.
+
+\exercise{A.10}{An explicit failure of commutativity}
+Take integer matrices
+\[
+P=\begin{bmatrix}1&0\\0&0\end{bmatrix},\qquad
+Q=\begin{bmatrix}0&1\\0&0\end{bmatrix}.
+\]
+Their products are
+\[
+PQ=\begin{bmatrix}0&1\\0&0\end{bmatrix},\qquad
+QP=\begin{bmatrix}0&0\\0&0\end{bmatrix}.
+\]
+The upper-right entries differ, so $PQ\ne QP$. Both factors belong to
+$M_2(\Z)$ and both products are defined, as required.
+
+\exercise{A.11}{Inverting a signed permutation matrix}
+Let $J=\begin{bmatrix}0&1\\-1&0\end{bmatrix}$. Multiplying gives
+$J^2=\begin{bmatrix}-1&0\\0&-1\end{bmatrix}=-I_2$.
+Thus $J(-J)=(-J)J=I_2$. An inverse must produce the identity on both sides,
+which proves
+\[
+\boxed{J^{-1}=-J=\begin{bmatrix}0&-1\\1&0\end{bmatrix}}.
+\]
+
+\exercise{A.12}{Inverting a diagonal matrix}
+For $D=\operatorname{diag}(2,4,-1)$, choose
+$E=\operatorname{diag}(1/2,1/4,-1)$. Products of diagonal matrices multiply
+their corresponding diagonal entries and have zero off-diagonal entries.
+Hence
+\[
+DE=ED=\operatorname{diag}(2\cdot\tfrac12,4\cdot\tfrac14,(-1)(-1))=I_3.
+\]
+This verifies directly that
+\[
+\boxed{D^{-1}=\begin{bmatrix}1/2&0&0\\0&1/4&0\\0&0&-1\end{bmatrix}}.
+\]
+The inverse is taken over $\R$ or $\C$; it need not have integer entries.
+
+\exercise{A.13}{The determinant of a triangular matrix}
+The given matrix is lower triangular: all entries above its main diagonal
+are zero. Its determinant is therefore the product of its diagonal entries:
+\[
+\det\begin{bmatrix}3&0&0\\10&-2&0\\4&17&8\end{bmatrix}
+=3(-2)(8)=\boxed{-48}.
+\]
+Alternatively, expanding along the first row gives
+$3\det\begin{bmatrix}-2&0\\17&8\end{bmatrix}=3(-16)$, the same answer.
+
+\exercise{A.14}{Products of invertible matrices}
+\goal Given invertible $A,B\in M_n(\C)$, exhibit two-sided inverses for
+$AB$ and $BA$.
+\idea Reverse the order of the inverses. Matrix multiplication is associative,
+which allows regrouping without changing the order of any factors.
+\step{Check the inverse of $AB$.}
+\[
+(AB)(B^{-1}A^{-1})=A(BB^{-1})A^{-1}=AI_nA^{-1}=I_n,
+\]
+\[
+(B^{-1}A^{-1})(AB)=B^{-1}(A^{-1}A)B=B^{-1}I_nB=I_n.
+\]
+Thus $(AB)^{-1}=B^{-1}A^{-1}$.
+\step{Check the inverse of $BA$.}
+Similarly,
+\[
+(BA)(A^{-1}B^{-1})=B(AA^{-1})B^{-1}=I_n,
+\qquad
+(A^{-1}B^{-1})(BA)=A^{-1}(B^{-1}B)A=I_n.
+\]
+\answer{Both products are invertible, with
+$(AB)^{-1}=B^{-1}A^{-1}$ and $(BA)^{-1}=A^{-1}B^{-1}$.}

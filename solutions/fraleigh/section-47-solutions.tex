@@ -1,0 +1,100 @@
+\section{Gaussian Integers and Multiplicative Norms}
+
+\exercise{47.1}{Splitting five}
+In $\Z[i]$, $5=(2+i)(2-i)$. Both factors have norm 5, a rational prime, so a factorization of either would force one factor to have norm 1 and hence be a unit. Both are irreducible.
+
+\exercise{47.2}{Seven stays irreducible}
+The norm of 7 is 49. If $7=\alpha\beta$ with both factors nonunits, their norms must both be 7. But $a^2+b^2=7$ has no integer solutions: the possible squares at most 7 are 0,1,4 and none sum to 7. Thus such a factorization is impossible, and 7 is irreducible in $\Z[i]$.
+
+\exercise{47.3}{Factoring a norm twenty-five element}
+A direct multiplication gives $4+3i=i(2-i)^2$. Indeed $(2-i)^2=3-4i$ and multiplying by $i$ gives $4+3i$. The factor $i$ is a unit; $N(2-i)=5$ is prime, so $2-i$ is irreducible.
+
+\exercise{47.4}{Factoring a norm eighty-five element}
+We have $6-7i=(2+i)(1-4i)$. Expanding gives $2-8i+i-4i^2=6-7i$. The norms are 5 and 17, respectively, both rational primes, so both factors are irreducible.
+
+\exercise{47.5}{Failure of unique factorization}
+Put $s=\sqrt{-5}$. Then $6=2\cdot3=(1+s)(1-s)$. The norm $N(a+bs)=a^2+5b^2$ is multiplicative, and its units have norm 1. There are no elements of norm 2 or 3. Thus 2 (norm 4), 3 (norm 9), and $1\pm s$ (norm 6) cannot split into two nonunits: their proper possible norm factors would require norm 2 or 3. All four displayed factors are irreducible. Their norms $4,9,6,6$ show neither 2 nor 3 is associate to either $1+s$ or $1-s$. Hence the two factorizations are different up to associates.
+
+\exercise{47.6}{One Gaussian division}
+Compute
+\[\frac{7+2i}{3-4i}=\frac{(7+2i)(3+4i)}{25}=\frac{13+34i}{25}.\]
+Round both coordinates to nearest integers to choose $\sigma=1+i$. Then $(3-4i)(1+i)=7-i$, so $\rho=3i$. We have $7+2i=(3-4i)(1+i)+3i$, and $N(3i)=9<25=N(3-4i)$.
+
+\exercise{47.7}{A Gaussian gcd}
+The divisions
+\[8+6i=i(5-15i)+(-7+i),\qquad 5-15i=(-1+2i)(-7+i)\]
+have first remainder norm 50, smaller than 250. The next remainder is zero. Thus the last nonzero remainder $-7+i$ is a gcd. Its associates, for example $7-i$, are equally valid.
+
+\exercise{47.8}{Ten statements about norms}
+\begin{enumerate}[label=(\alph*)]
+\item True. The Gaussian integer norm makes the ring Euclidean, hence a PID.
+\item True. Round real and imaginary coordinates in Gaussian division.
+\item True: $n=n+0i$.
+\item False: $1/2$ has no integer real coordinate.
+\item True, since the nonnegative remainder norms decrease.
+\item True. Norm divisibility restricts possible factor norms, as in Exercises 47.1--47.4.
+\item True. From $N(u)N(u^{-1})=N(1)=1$, integer norms give $|N(u)|=1$.
+\item False. Degrees add rather than multiply; also the norm of 1 would be 0 rather than 1.
+\item True. For nonzero polynomials, degree addition gives $2^{\deg(fg)}=2^{\deg f}2^{\deg g}$; declaring $N(0)=0$ handles zero products and $N(1)=1$.
+\item True. It is a subring of $\C$, hence a domain; Exercise 47.5 gives nonunique factorization.
+\end{enumerate}
+
+\exercise{47.9}{Smallest nonunit norm}
+Suppose $\pi=ab$ with both factors nonunits. Since $\pi\ne0$ and the ring is a domain, $a,b\ne0$. By the hypothesis relating norm and units, both $|N(a)|,|N(b)|$ are integers greater than 1. Minimality gives $|N(a)|\ge|N(\pi)|$. Multiplicativity then gives $|N(\pi)|=|N(a)||N(b)|>|N(a)|\ge|N(\pi)|$, a contradiction. Thus every factorization has a unit factor, proving irreducibility.
+
+\exercise{47.10}{Which integer primes split}
+\begin{enumerate}[label=(\alph*)]
+\item $2=-i(1+i)^2$, and $1+i$ is irreducible because its norm is the prime 2.
+\item If $p\equiv1\pmod4$, the sum-of-two-squares theorem gives $p=a^2+b^2=(a+bi)(a-bi)$ with both factors nonunits. If an odd prime $p\equiv3\pmod4$ were reducible, both nonunit factor norms would equal $p$. But an integer square is 0 or 1 modulo 4, so $a^2+b^2$ cannot be 3 modulo 4. This excludes norm $p$ and proves irreducibility. Every odd prime is 1 or 3 modulo 4, completing both directions.
+\end{enumerate}
+
+\exercise{47.11}{The Gaussian norm identity}
+For $\alpha=a+bi$, $\beta=c+di$, multiplication gives $\alpha\beta=(ac-bd)+(ad+bc)i$. Therefore
+\begin{align*}
+N(\alpha\beta)&=(ac-bd)^2+(ad+bc)^2\\
+&=a^2c^2+b^2d^2+a^2d^2+b^2c^2\\
+&=(a^2+b^2)(c^2+d^2)=N(\alpha)N(\beta).
+\end{align*}
+The cross terms cancel. Since $N(\alpha)=a^2+b^2$ is a sum of squares, it is nonnegative. Also $N(\alpha)=0$ exactly for $a=b=0$, and $N(1)=1$, giving the stated norm properties.
+
+\exercise{47.12}{A multiplicative norm with square root minus five}
+Write $\alpha=a+b\sqrt{-5}$ and $\beta=c+d\sqrt{-5}$. Their product is $(ac-5bd)+(ad+bc)\sqrt{-5}$. Expanding gives
+\[(ac-5bd)^2+5(ad+bc)^2=(a^2+5b^2)(c^2+5d^2).\]
+Thus $N(\alpha\beta)=N(\alpha)N(\beta)$. The values are nonnegative integers, $N(0)=0$, and $N(1)=1$.
+
+\exercise{47.13}{Existence of irreducible factorizations from a norm}
+Use strong induction on the positive integer $m=|N(a)|>1$. If $a$ is irreducible we are done. Otherwise $a=bc$ with $b,c$ nonunits, necessarily nonzero. Their absolute norms are integers greater than 1 and multiply to $m$, so both are strictly smaller than $m$. By induction both factors are products of irreducibles; concatenate these factorizations. The smallest possible nonunit norm supplies the base case, since it cannot split as a product of two smaller norms greater than 1.
+
+\exercise{47.14}{Another Gaussian gcd}
+Gaussian division yields
+\[16+7i=(1+i)(10-5i)+(1+2i),\qquad 10-5i=(-5i)(1+2i).\]
+The first remainder has norm 5, below $N(10-5i)=125$, and the second remainder is zero. Thus $1+2i$ is a gcd, up to multiplication by $1,-1,i,-i$.
+
+\exercise{47.15}{Finite Gaussian residue rings}
+\begin{enumerate}[label=(\alph*)]
+\item Division by nonzero $\alpha$ gives each residue class a representative $r$ with $N(r)<N(\alpha)$. There are finitely many integer lattice points in this bounded disk, so there are finitely many residue classes. More exactly the quotient has $N(\alpha)$ elements: multiplication by $a+bi$ has integer lattice matrix $\left[\begin{smallmatrix}a&-b\\b&a\end{smallmatrix}\right]$ of determinant $a^2+b^2$.
+\item An irreducible in this PID is prime, so its principal ideal is maximal. Its quotient is therefore a field.
+\item For $(3)$, there are $N(3)=9$ residues and characteristic 3. For $(1+i)$, there are 2 residues and characteristic 2 because $2=-i(1+i)^2$. For $(1+2i)$, there are 5 residues and characteristic 5, since $5=(1+2i)(1-2i)$. These are fields because the indicated divisors are Gaussian irreducibles (7-like reasoning for 3; prime norm for the other two).
+\end{enumerate}
+
+\exercise{47.16}{Imaginary quadratic norms}
+Let $s=\sqrt{-n}$, with $n$ positive and square free.
+\begin{enumerate}[label=(\alph*)]
+\item Multiplication and expansion give $N((a+bs)(c+ds))=(ac-nbd)^2+n(ad+bc)^2=(a^2+nb^2)(c^2+nd^2)$. Values are integers, with $N(1)=1$ and $N(\alpha)=0$ only for $\alpha=0$.
+\item If $\alpha$ is a unit, multiplicativity forces $N(\alpha)=1$. Conversely, if $N(\alpha)=1$, then $\alpha\bar\alpha=1$, and $\bar\alpha=a-bs$ is in the same ring, giving an inverse.
+\item Every nonzero nonunit has integer norm greater than 1. Apply the strong-induction proof of Exercise 47.13 to obtain a factorization into irreducibles. This proves existence, not uniqueness.
+\end{enumerate}
+
+\exercise{47.17}{Real quadratic norms}
+For the intended real quadratic case assume the square-free integer $n>1$. The representation $a+b\sqrt n$ is then unique because $\sqrt n$ is irrational. Define $N(a+b\sqrt n)=a^2-nb^2$, allowing negative values.
+\begin{enumerate}[label=(\alph*)]
+\item Direct expansion gives $(ac+nbd)^2-n(ad+bc)^2=(a^2-nb^2)(c^2-nd^2)$, so the norm is multiplicative. A nonzero element has nonzero norm by irrationality of $\sqrt n$.
+\item The appropriate statement is $|N(\alpha)|=1$ if and only if $\alpha$ is a unit. A unit has integer norm dividing 1. Conversely, for norm $\pm1$, $\alpha^{-1}=\bar\alpha/N(\alpha)$ lies in the ring. Requiring $N=1$ literally would be false, e.g. $1+\sqrt2$ has norm $-1$ and inverse $\sqrt2-1$.
+\item The absolute norm is a positive integer, greater than 1 on nonzero nonunits. The induction in Exercise 47.13 therefore proves existence of an irreducible factorization.
+\end{enumerate}
+The original reference includes square-free $n=1$; here the expression $a^2-b^2$ is not well defined on $a+b\sqrt1$ (1 has representations $(1,0)$ and $(0,1)$). Thus that degenerate case must be excluded for this norm construction.
+
+\exercise{47.18}{Euclidean division with square root minus two}
+For nonzero $\beta$, write $\alpha/\beta=u+v\sqrt{-2}$ with $u,v\in\Q$. Choose integers $m,k$ with $|u-m|\le1/2$ and $|v-k|\le1/2$. Put $q=m+k\sqrt{-2}$ and $r=\alpha-\beta q$. Then
+\[N(r)=N(\beta)\big((u-m)^2+2(v-k)^2\big)\le\tfrac34N(\beta)<N(\beta).\]
+If $r=0$ the required alternative holds as well. All nonzero norms are positive integers and multiplication multiplies them by an integer at least 1, so the second Euclidean axiom holds too. Hence $\Z[\sqrt{-2}]$ is Euclidean.

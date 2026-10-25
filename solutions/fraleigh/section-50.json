@@ -1,0 +1,15 @@
+{
+  "section": 50,
+  "part": 10,
+  "title": "Splitting Fields",
+  "exercise_count": 25,
+  "source_pages": [
+    437,
+    438,
+    439
+  ],
+  "notes": [
+    "50.16 formula needs G(K/F) on its left.",
+    "50.22 automorphisms must fix F."
+  ]
+}

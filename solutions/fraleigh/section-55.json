@@ -1,0 +1,13 @@
+{
+  "section": 55,
+  "part": 10,
+  "title": "Cyclotomic Extensions",
+  "exercise_count": 15,
+  "source_pages": [
+    472,
+    473
+  ],
+  "notes": [
+    "55.9(h) concerns ordinary p-gons, hence odd primes; p=2 is degenerate."
+  ]
+}

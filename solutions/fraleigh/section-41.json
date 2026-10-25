@@ -1,0 +1,13 @@
+{
+  "section": 41,
+  "part": 8,
+  "title": "Simplicial Complexes and Homology Groups",
+  "exercise_count": 13,
+  "source_pages": [
+    366,
+    367
+  ],
+  "notes": [
+    "Exercise41.11 identification of chains with cochains assumes finite complexes; arbitrary-complex cochains use Hom(C_n,Z)."
+  ]
+}

@@ -1,0 +1,161 @@
+\section{Isomorphism Theorems}
+
+\exercise{34.1}{A homomorphism from $\Z_{12}$ to $\Z_3$}
+\idea An additive homomorphism is determined by the image of 1, so $\phi(x)=2x\pmod3$.
+\textbf{(a)} $2x\equiv0\pmod3$ holds exactly when $3\mid x$. Thus
+$K=\{0,3,6,9\}$.
+\textbf{(b)} The distinct cosets are
+\[
+K=\{0,3,6,9\},\quad1+K=\{1,4,7,10\},\quad2+K=\{2,5,8,11\}.
+\]
+\textbf{(c)} The first-isomorphism map is $x+K\mapsto\phi(x)$, hence
+$K\mapsto0$, $1+K\mapsto2$, $2+K\mapsto1$.
+Changing $x$ by an element of $K$ does not change $\phi(x)$, so the map is well defined; it is a bijective homomorphism, not merely a matching of three sets.
+
+\exercise{34.2}{A homomorphism from $\Z_{18}$ to $\Z_{12}$}
+\textbf{(a)} Here $\phi(x)=10x\pmod{12}$. Its kernel solves
+$12\mid10x$, equivalently $6\mid x$, so $K=\{0,6,12\}$.
+\textbf{(b)} The six cosets are $r+K=\{r,r+6,r+12\}$ for $0\le r\le5$:
+\[
+\{0,6,12\},\ \{1,7,13\},\ \{2,8,14\},\
+\{3,9,15\},\ \{4,10,16\},\ \{5,11,17\}.
+\]
+\textbf{(c)} Multiples of 10 modulo 12 give $\phi[\Z_{18}]=\{0,2,4,6,8,10\}$.
+\textbf{(d)} Under $r+K\mapsto10r\pmod{12}$, the cosets listed above map respectively to
+$0,10,8,6,4,2$. Addition is preserved because $10(r+s)=10r+10s$; the kernel calculation makes the quotient map injective.
+
+\exercise{34.3}{The second isomorphism theorem in $\Z_{24}$}
+\idea In an additive cyclic group, $H+N=\gen{\gcd(4,6)}$ and $H\cap N=\gen{\operatorname{lcm}(4,6)}$.
+\textbf{(a)} Thus $H+N=\{0,2,4,6,8,10,12,14,16,18,20,22\}$ and
+$H\cap N=\{0,12\}$.
+\textbf{(b)} The cosets in $(H+N)/N$ are
+\[\begin{array}{c|l}
+0+N & \{0,6,12,18\}\\
+2+N & \{2,8,14,20\}\\
+4+N & \{4,10,16,22\}\\\end{array}\]\textbf{(c)} Put $I=H\cap N$. The cosets in $H/I$ are\[\begin{array}{c|l}
+0+I & \{0,12\}\\
+4+I & \{4,16\}\\
+8+I & \{8,20\}\\\end{array}\]\textbf{(d)} Use the representatives from $H$: $h+N\mapsto h+I$.
+Explicitly the correspondences are
+\[
+0+N\longmapsto 0+I,\quad 4+N\longmapsto 4+I,\quad 2+N\longmapsto 8+I.
+\]
+The representative from $H$ matters: an arbitrary displayed integer representing a coset modulo $N$ need not belong to $H$.
+If $h_1+N=h_2+N$ with $h_i\in H$, then $h_1-h_2\in H\cap N=I$, proving well-definedness. The same observation proves injectivity, and every $h+I$ is reached.
+
+\exercise{34.4}{The second isomorphism theorem in $\Z_{36}$}
+\idea In an additive cyclic group, $H+N=\gen{\gcd(6,9)}$ and $H\cap N=\gen{\operatorname{lcm}(6,9)}$.
+\textbf{(a)} Thus $H+N=\{0,3,6,9,12,15,18,21,24,27,30,33\}$ and
+$H\cap N=\{0,18\}$.
+\textbf{(b)} The cosets in $(H+N)/N$ are
+\[\begin{array}{c|l}
+0+N & \{0,9,18,27\}\\
+3+N & \{3,12,21,30\}\\
+6+N & \{6,15,24,33\}\\\end{array}\]\textbf{(c)} Put $I=H\cap N$. The cosets in $H/I$ are\[\begin{array}{c|l}
+0+I & \{0,18\}\\
+6+I & \{6,24\}\\
+12+I & \{12,30\}\\\end{array}\]\textbf{(d)} Use the representatives from $H$: $h+N\mapsto h+I$.
+Explicitly the correspondences are
+\[
+0+N\longmapsto 0+I,\quad 6+N\longmapsto 6+I,\quad 3+N\longmapsto 12+I.
+\]
+The representative from $H$ matters: an arbitrary displayed integer representing a coset modulo $N$ need not belong to $H$.
+If $h_1+N=h_2+N$ with $h_i\in H$, then $h_1-h_2\in H\cap N=I$, proving well-definedness. The same observation proves injectivity, and every $h+I$ is reached.
+
+\exercise{34.5}{The third isomorphism theorem in $\Z_{24}$}
+\textbf{(a)} $H=\gen{4}$, so the following table lists every coset of $H$ in $G$:
+\[\begin{array}{c|l}\text{coset}&\text{elements}\\\hline
+0+\gen{4} & \{0,4,8,12,16,20\} \\
+1+\gen{4} & \{1,5,9,13,17,21\} \\
+2+\gen{4} & \{2,6,10,14,18,22\} \\
+3+\gen{4} & \{3,7,11,15,19,23\} \\\end{array}\]\textbf{(b)} $K=\gen{8}$. Its cosets in $G$ are
+\[\begin{array}{c|l}\text{coset}&\text{elements}\\\hline
+0+\gen{8} & \{0,8,16\} \\
+1+\gen{8} & \{1,9,17\} \\
+2+\gen{8} & \{2,10,18\} \\
+3+\gen{8} & \{3,11,19\} \\
+4+\gen{8} & \{4,12,20\} \\
+5+\gen{8} & \{5,13,21\} \\
+6+\gen{8} & \{6,14,22\} \\
+7+\gen{8} & \{7,15,23\} \\\end{array}\]\textbf{(c)} In $H/K$ there are two elements, namely $K$ and $4+K$; their underlying sets are
+\[
+K=\{0,8,16\},\qquad
+4+K=\{4,12,20\}.
+\]
+\textbf{(d)} Write $C_r=r+K$ for the cosets in part (b). The cosets of $H/K$ in $G/K$ are precisely
+\[
+\{C_r,C_{r+4}\}\qquad(0\le r<4).
+\]
+This displays the elements of each outer coset: each is itself one of the two explicitly listed $K$-cosets.
+\textbf{(e)} The required isomorphism is
+\[
+r+H\longmapsto\{C_r,C_{r+4}\}=(r+K)+(H/K).
+\]
+Adding representatives preserves addition of outer cosets. Its kernel before quotienting is $H$, which explains both well-definedness and injectivity.
+
+\exercise{34.6}{The third isomorphism theorem in $\Z_{36}$}
+\textbf{(a)} $H=\gen{9}$, so the following table lists every coset of $H$ in $G$:
+\[\begin{array}{c|l}\text{coset}&\text{elements}\\\hline
+0+\gen{9} & \{0,9,18,27\} \\
+1+\gen{9} & \{1,10,19,28\} \\
+2+\gen{9} & \{2,11,20,29\} \\
+3+\gen{9} & \{3,12,21,30\} \\
+4+\gen{9} & \{4,13,22,31\} \\
+5+\gen{9} & \{5,14,23,32\} \\
+6+\gen{9} & \{6,15,24,33\} \\
+7+\gen{9} & \{7,16,25,34\} \\
+8+\gen{9} & \{8,17,26,35\} \\\end{array}\]\textbf{(b)} $K=\gen{18}$. Its cosets in $G$ are
+\[\begin{array}{c|l}\text{coset}&\text{elements}\\\hline
+0+\gen{18} & \{0,18\} \\
+1+\gen{18} & \{1,19\} \\
+2+\gen{18} & \{2,20\} \\
+3+\gen{18} & \{3,21\} \\
+4+\gen{18} & \{4,22\} \\
+5+\gen{18} & \{5,23\} \\
+6+\gen{18} & \{6,24\} \\
+7+\gen{18} & \{7,25\} \\
+8+\gen{18} & \{8,26\} \\
+9+\gen{18} & \{9,27\} \\
+10+\gen{18} & \{10,28\} \\
+11+\gen{18} & \{11,29\} \\
+12+\gen{18} & \{12,30\} \\
+13+\gen{18} & \{13,31\} \\
+14+\gen{18} & \{14,32\} \\
+15+\gen{18} & \{15,33\} \\
+16+\gen{18} & \{16,34\} \\
+17+\gen{18} & \{17,35\} \\\end{array}\]\textbf{(c)} In $H/K$ there are two elements, namely $K$ and $9+K$; their underlying sets are
+\[
+K=\{0,18\},\qquad
+9+K=\{9,27\}.
+\]
+\textbf{(d)} Write $C_r=r+K$ for the cosets in part (b). The cosets of $H/K$ in $G/K$ are precisely
+\[
+\{C_r,C_{r+9}\}\qquad(0\le r<9).
+\]
+This displays the elements of each outer coset: each is itself one of the two explicitly listed $K$-cosets.
+\textbf{(e)} The required isomorphism is
+\[
+r+H\longmapsto\{C_r,C_{r+9}\}=(r+K)+(H/K).
+\]
+Adding representatives preserves addition of outer cosets. Its kernel before quotienting is $H$, which explains both well-definedness and injectivity.
+
+\exercise{34.7}{Normality of an intersection}
+Let $h\in H$ and $x\in H\cap N$. Since $H$ is a subgroup, $hxh^{-1}\in H$.
+Since $N\trianglelefteq G$ and $h\in G$, also $hxh^{-1}\in N$.
+Thus $h(H\cap N)h^{-1}\subseteq H\cap N$. Apply the same argument to $h^{-1}$ to obtain the reverse inclusion. Hence $H\cap N\trianglelefteq H$, directly by the conjugation definition of normality.
+
+\exercise{34.8}{Successive quotient groups}
+\textbf{(a)} For $gH\in A$ and $kH\in B$,
+$(gH)(kH)(gH)^{-1}=(gkg^{-1})H\in B$ because $K\trianglelefteq G$.
+This proves $B\trianglelefteq A$; replacing $K$ by $L$ proves $C\trianglelefteq A$.
+Also $K\subseteq L$ implies $B\subseteq C$. If the original inclusion is strict, so is this one: $l\in L\setminus K$ gives $lH\in C\setminus B$.
+\textbf{(b)} The third isomorphism theorem gives $A/B\cong G/K$ and identifies $C/B$ with $L/K$. Therefore
+\[
+(A/B)/(C/B)\cong(G/K)/(L/K)\cong G/L.
+\]
+Explicitly the final map sends the class represented successively by $gH$, then by $(gH)B$, to $gL$. Its kernel consists precisely of representatives in $L$.
+
+\exercise{34.9}{Two complementary normal subgroups}
+Because $K,L\trianglelefteq G$, the product $KL$ is a subgroup containing both; hence $KL=K\vee L=G$.
+Restrict the quotient map $G\to G/K$ to $L$. Every $g=kl$ has $gK=lK$ (normality permits changing $kl$ to $lk'$), so $l\mapsto lK$ is onto. Its kernel is $L\cap K=\{e\}$, so it is an isomorphism $L\cong G/K$.
+Interchanging $K$ and $L$ gives $K\cong G/L$. These conclusions require normality, not merely trivial intersection.

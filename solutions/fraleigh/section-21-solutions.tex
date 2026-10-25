@@ -1,0 +1,103 @@
+\section{The Field of Quotients of an Integral Domain}
+
+\exercise{21.1}{Quotients of Gaussian integers}
+The field is $\boxed{\Q(i)=\{a+bi:a,b\in\Q\}}$. To see that every quotient lies here, rationalize its denominator:
+\[\frac{m+ni}{r+si}=\frac{(mr+ns)+(nr-ms)i}{r^2+s^2},\qquad r+si\ne0.
+\]
+Both resulting coefficients are rational. Conversely, if $a,b\in\Q$, choose a common nonzero integer denominator $d$ with $da,db\in\Z$. Then $a+bi=((da)+(db)i)/d$ is a quotient of Gaussian integers. These two inclusions establish the description.
+
+\exercise{21.2}{Quotients with an irrational square root}
+The answer is $\boxed{\Q(\sqrt2)=\{a+b\sqrt2:a,b\in\Q\}}$. A quotient rationalizes as
+\[\frac{m+n\sqrt2}{r+s\sqrt2}=\frac{(mr-2ns)+(nr-ms)\sqrt2}{r^2-2s^2}.
+\]
+The denominator is nonzero whenever $r+s\sqrt2\ne0$: otherwise irrationality of $\sqrt2$ forces $r=s=0$. Thus the quotient has rational coefficients. Conversely, clearing the two rational denominators expresses any $a+b\sqrt2$ as a quotient of two members of $\Z[\sqrt2]$.
+
+\exercise{21.3}{Correcting the field-of-quotients definition}
+The missing condition is that \emph{every element of $F$} be a quotient of elements of the embedded copy of $D$. Precisely, a field of quotients of $D$ is a field $F$ with an injective ring map $i:D\to F$ such that every $x\in F$ is $i(a)i(b)^{-1}$ for some $a,b\in D$, $b\ne0$. Merely making all nonzero elements of $D$ invertible allows larger fields such as $\R$ for $D=\Z$, and does not characterize the field of quotients.
+
+\exercise{21.4}{True or false: fraction fields}
+\begin{enumerate}[label=(\alph*)]
+\item True: every rational number is a quotient of integers.
+\item False: an irrational real number cannot be a quotient of integers.
+\item True: every real $r$ is the quotient $r/1$ of real numbers.
+\item False: a quotient of real numbers is real, so it cannot equal $i$.
+\item True: if $D$ is already a field, all its fractions $a/b=ab^{-1}$ remain in $D$.
+\item True: nonzero denominators must have nonzero products, and cancellation is used to establish transitivity of the equivalence relation.
+\item False: zero is an element of $D$ and has no multiplicative inverse in a field.
+\item True: the image of a nonzero $b$ has inverse represented by the fraction $1/b$.
+\item True: in a fraction field of $D$, the fractions $a/b$ with $a,b\in D'$ form a subfield isomorphic to the fraction field of $D'$. Equality is the same cross-product equality in both domains.
+\item True: uniqueness of the fraction field up to isomorphism applies to $\Z$, and $\Q$ is one such field.
+\end{enumerate}
+
+\exercise{21.5}{Proper subdomains with the same fraction field}
+Take $D'=\Z$ and $D=\Z[1/2]=\{m/2^k:m\in\Z,\ k\ge0\}$. These are integral domains and $D'$ is proper because $1/2\in D\setminus D'$. The fraction field of either is $\Q$: fractions of elements of $D$ are rational, and every rational is already a quotient of integers. Thus $F'=\Q$ works for both.
+
+\exercise{21.6}{Associativity of fraction addition}
+Write $[a,b]$ for the class $[(a,b)]$, and let $b,d,f\ne0$. The addition formula gives
+\[([a,b]+[c,d])+[e,f]=[(ad+bc)f+(bd)e,bdf],
+\]
+whereas
+\[[a,b]+([c,d]+[e,f])=[a(df)+b(cf+de),bdf].
+\]
+The numerators are both $adf+bcf+bde$ by the distributive and associative laws in $D$. The resulting ordered pairs are identical, hence so are their classes. This proves Part 2 of Step 3.
+
+\exercise{21.7}{The additive identity in the fraction construction}
+Using the prescribed operations,
+\[[a,b]+[0,1]=[a\cdot1+b\cdot0,b\cdot1]=[a,b].
+\]
+Commutativity of addition, established in Part 1, also gives $[0,1]+[a,b]=[a,b]$. Thus $[0,1]$ is an additive identity, proving Part 3.
+
+\exercise{21.8}{The additive inverse of a fraction}
+Since $b\ne0$, its square is nonzero, and $[-a,b]$ is an admissible fraction. Then
+\[[a,b]+[-a,b]=[ab+b(-a),b^2]=[0,b^2]=[0,1].
+\]
+The last equality uses the defining equivalence: $0\cdot1=b^2\cdot0$. Commutative addition supplies the equation in the other order. Hence $[-a,b]$ is the additive inverse, proving Part 4.
+
+\exercise{21.9}{Associativity of fraction multiplication}
+For three fractions, the multiplication rule gives
+\[([a,b][c,d])[e,f]=[(ac)e,(bd)f],\qquad
+[a,b]([c,d][e,f])=[a(ce),b(df)].
+\]
+Associativity in $D$ makes both numerators and both denominators identical. Nonzero denominator products follow from the integral-domain hypothesis. Therefore the classes are equal, proving Part 5.
+
+\exercise{21.10}{Commutativity of fraction multiplication}
+The products are $[a,b][c,d]=[ac,bd]$ and $[c,d][a,b]=[ca,db]$. Both coordinates agree because $D$ is commutative. Thus the products are equal, which proves Part 6.
+
+\exercise{21.11}{Distributivity in the fraction construction}
+Let $x=[a,b]$, $y=[c,d]$, $z=[e,f]$. The prescribed formulas give
+\[x(y+z)=[a(cf+de),bdf],\qquad xy+xz=[acbf+abde,b^2df].
+\]
+The latter numerator is $b\,a(cf+de)$, so the two fractions are equivalent: their cross products are both $a(cf+de)b^2df$. Thus $x(y+z)=xy+xz$. Multiplication has already been proved commutative in Part 6, so
+\[(y+z)x=x(y+z)=xy+xz=yx+zx.
+\]
+This proves both distributive laws, Part 7.
+
+\exercise{21.12}{Partial quotients and a unity}
+Use classes $[r,t]$ of pairs in $R\times T$, with $[r,t]=[s,u]$ when $ru=st$. Transitivity follows by canceling a denominator from $T$; cancellation is valid because its elements are nonzero and not zero divisors. Products of denominators remain in $T$. The ordinary fraction addition and multiplication formulas are well defined by cross multiplication, just as in the text. They give a commutative ring by the same coordinate expansions as Exercises 21.6--21.11.\par
+To view $R$ inside it, fix any $t\in T$ and set $i(r)=[rt,t]$. The class is independent of $t$, because $(rt)u=(ru)t$. The formulas show that $i$ preserves sums and products. If $i(r)=i(s)$, then $(r-s)t^2=0$; two cancellations of the regular element $t$ give $r=s$. Thus $i$ is an embedding.\par
+\textbf{(a)} The element $e=[t,t]$ is independent of $t\in T$. It is a unity, since $[t,t][r,u]=[tr,tu]=[r,u]$ by cross multiplication. No unity in $R$ was needed.\par
+\textbf{(b)} For $u\in T$ and $t\in T$, the element $i(u)=[ut,t]$ has inverse $[t,ut]$, whose denominator lies in $T$. Their product is $[ut^2,ut^2]=e$. Hence every embedded element of $T$ is a unit.
+
+\exercise{21.13}{Adjoining unity using regular powers}
+For a \emph{nonzero} element $a$ that is not a zero divisor, let $T=\{a^n:n\ge1\}$. It is nonempty and multiplicatively closed. None of its elements is zero or a zero divisor: an equation $a^n x=0$ permits $n$ successive cancellations of $a$ and forces $x=0$. Exercise 21.12 therefore embeds $R$ in the commutative ring $Q(R,T)$ with unity.\par
+The qualification $a\ne0$ is necessary for this particular argument: under the book's convention zero itself is not called a zero divisor, but its powers cannot serve as denominators. If the printed hypothesis is read as allowing only $a=0$, use the general unity-adjoining construction of Exercise 19.30 instead. That construction applies to every ring, whereas localization additionally makes the chosen regular denominators invertible.
+
+\exercise{21.14}{Partial quotients of the ring modulo four}
+The allowed denominators $1,3$ are already units in $\Z_4$, with $3^{-1}=3$. Send $[r,t]$ to $rt^{-1}\in\Z_4$. Cross multiplication shows this is well defined and injective, and every residue occurs as $[r,1]$. It is a ring isomorphism. Thus the partial-quotient ring has $\boxed4$ elements.
+
+\exercise{21.15}{Inverting powers of two}
+Send a formal fraction $[m,2^n]$ to the real rational $m/2^n$. Cross multiplication makes this a well-defined injective ring map. Its image is
+\[\boxed{\Z[1/2]=\{m/2^n:m\in\Z,\ n\ge0\}}.
+\]
+Allowing $n=0$ does not enlarge the image: $m=(2m)/2$. These are the dyadic rationals; denominators may contain only the prime $2$ after reduction.
+
+\exercise{21.16}{Quotients of multiples of three}
+The map $[3m,6^n]\mapsto3m/6^n$ identifies the required ring with a subring of $\Q$. Every such fraction has denominator involving only $2$ and $3$, so its image is contained in $\Z[1/6]$. Conversely any $k/6^j$, $j\ge0$, equals $6k/6^{j+1}$; the numerator $6k$ lies in $3\Z$ and the denominator is an allowed positive power. Therefore the image is exactly
+\[\boxed{\Z[1/6]=\{k/6^j:k\in\Z,\ j\ge0\}}.
+\]
+
+\exercise{21.17}{The failure when denominators are zero divisors}
+The cross-product relation need not be transitive. In $R=\Z_6$, with $T=\{1,2,4\}$, consider
+\[(0,1),\qquad(0,2),\qquad(3,1).
+\]
+The first two are related because $0\cdot2=1\cdot0$. The last two are related because $0\cdot1=2\cdot3=0$ modulo $6$. But the first and third are not related, because $0\cdot1=0\ne3=1\cdot3$. Thus Step 1 already fails to define an equivalence relation. The transitivity proof would have canceled $2$, which is a zero divisor. More general localization can be defined by a different relation, but then elements annihilated by denominators collapse to zero and the original ring need not embed.

@@ -1,0 +1,113 @@
+\section{Vector Spaces}
+
+\exercise{30.1}{Three disjoint bases}
+Use the three sets $B_1=\{(1,0),(0,1)\}$, $B_2=\{(2,0),(0,2)\}$, and $B_3=\{(3,0),(0,3)\}$. No vector appears in two sets. Each spans $\R^2$ because $(x,y)=(x/k)(k,0)+(y/k)(0,k)$ for $k=1,2,3$. The same equation has unique coefficients, so each pair is independent and is a basis.
+
+\exercise{30.2}{Testing a symmetric triple}
+Put the vectors into the columns of
+\[A=\begin{pmatrix}1&1&0\\1&0&1\\0&1&1\end{pmatrix}.\]
+Its determinant is $1(0-1)-1(1-0)=-2\ne0$, so its columns are independent and form a basis of $\R^3$. More explicitly, solving $a+b=x$, $a+c=y$, $b+c=z$ gives uniquely $a=(x+y-z)/2$, $b=(x+z-y)/2$, $c=(y+z-x)/2$. This also directly verifies spanning and uniqueness.
+
+\exercise{30.3}{A dependent triple}
+Name the first two vectors $u=(-1,1,2)$ and $v=(2,-3,1)$. Then
+\[-2u+4v=(2,-2,-4)+(8,-12,4)=(10,-14,0),\]
+the third vector. Therefore the triple is linearly dependent and is not a basis of $\R^3$. This conclusion does not require checking spanning separately.
+
+\exercise{30.4}{A quadratic rational extension as a vector space}
+A basis for $\Q(\sqrt2)$ over $\Q$ is $\{1,\sqrt2\}$. The polynomial $x^2-2$ is irreducible by irrationality of $\sqrt2$, so reduction by it gives spanning by these two powers. If $a+b\sqrt2=0$ with rational $a,b$ and $b\ne0$, it would make $\sqrt2$ rational; hence $a=b=0$.
+
+\exercise{30.5}{A radical already in the base field}
+Since $\sqrt2\in\R$, adjoining it changes nothing: $\R(\sqrt2)=\R$. A basis over $\R$ is $\{1\}$, because every real number is a unique real multiple of $1$.
+
+\exercise{30.6}{A cubic rational extension as a vector space}
+A basis is $\{1,\sqrt[3]2,(\sqrt[3]2)^2\}$. Indeed $x^3-2$ is irreducible over $\Q$ by Eisenstein at $2$, so the simple extension has degree three and the first three powers form a basis. Every higher power reduces using $(\sqrt[3]2)^3=2$.
+
+\exercise{30.7}{Complex numbers over the reals}
+The set $\{1,i\}$ is a basis for $\C$ over $\R$. Every complex number is $a+bi$ with $a,b\in\R$, giving spanning, and equality $a+bi=0$ forces both its real and imaginary parts to vanish, giving independence.
+
+\exercise{30.8}{Gaussian rationals as a vector space}
+The set $\{1,i\}$ is also a basis for $\Q(i)$ over $\Q$. The polynomial $x^2+1$ is irreducible over $\Q$, so all elements are uniquely $a+bi$ for rational $a,b$. The ambient field here is smaller than $\C$, but the basis argument is the same.
+
+\exercise{30.9}{A fourth-root extension}
+Let $t=\sqrt[4]2$. By Eisenstein at $2$, $x^4-2$ is irreducible over $\Q$. Hence $\{1,t,t^2,t^3\}$ is a basis for $\Q(t)$ over $\Q$. The relation $t^4=2$ reduces higher powers, and a dependence of these four powers would give an annihilating polynomial of degree less than four, contradicting irreducibility.
+
+\exercise{30.10}{The other nontrivial element of the four-element field}
+Let $\beta=1+\alpha$, where $\alpha^2+\alpha+1=0$ in characteristic two. Then $\beta^2=1+\alpha^2=\alpha$, and
+\[\beta^2+\beta+1=\alpha+(1+\alpha)+1=0.\]
+Neither $0$ nor $1$ is a root of $x^2+x+1$ in $\Z_2$, so the polynomial is irreducible. Thus $\operatorname{irr}(1+\alpha,\Z_2)=x^2+x+1$.
+
+\exercise{30.11}{Correcting spanning}
+A subset $S$ spans $V$ if every vector of $V$ can be expressed as a \emph{finite} linear combination of elements of $S$. Uniqueness is not required. For example $\{(1,0),(0,1),(1,1)\}$ spans $\R^2$ but permits multiple expressions for $(1,1)$.
+
+\exercise{30.12}{Correcting linear independence}
+The vectors in $S$ are linearly independent if the \emph{only} finite linear combination of distinct vectors of $S$ equal to zero has every coefficient zero. Zero always has the trivial expression with all coefficients zero; what independence excludes is a nontrivial one.
+
+\exercise{30.13}{Dimension as a minimum spanning size}
+The proposed definition is correct for a finite-dimensional vector space. A basis spans, so its size is an attainable spanning size. Conversely deleting redundant elements from any finite spanning set yields a basis, so no spanning set can have fewer elements than a basis. This minimum equals the usual dimension.
+
+\exercise{30.14}{Correcting basis}
+A basis is a subset that spans the vector space and is linearly \emph{independent}. Replace ``dependent'' by ``independent.'' The two requirements ensure respectively existence and uniqueness of coordinates.
+
+\exercise{30.15}{True and false statements}
+\begin{enumerate}[label=(\alph*)]
+\item True. Addition is a binary operation on $V$.
+\item False as a general assertion. Scalars add in $F$, and $F$ need not be the vector set $V$; for example in $\R^2$ a real scalar is not an ordered pair. Particular realizations may identify some scalars with vectors.
+\item True. A field is closed under multiplication.
+\item True. Scalar multiplication is a map $F\times V\to V$.
+\item False. $F[x]$ has no finite spanning set: the degrees in finitely many polynomials are bounded.
+\item False. A basis is independent by definition.
+\item False. A set containing zero has the nontrivial relation $1\cdot0=0$.
+\item True. $\alpha^2$ lies in the finite extension $F(\alpha)$, whose elements are algebraic over $F$.
+\item True. The same theorem applies to $\alpha+\alpha^2\in F(\alpha)$.
+\item True under the usual axiom of choice. Zorn's lemma gives a maximal independent subset, which must span or another vector could be adjoined.
+\end{enumerate}
+
+\exercise{30.16}{Subspaces and their intersection}
+\textbf{(a)} A subspace is a subset $W\subset V$ that is itself a vector space over the same field under the inherited operations. Equivalently $0\in W$, and $u+v$ and $cu$ belong to $W$ whenever $u,v\in W,c\in F$.
+\textbf{(b)} Every subspace contains zero, so their intersection does. A sum of two vectors in every subspace lies in every subspace, as does any scalar multiple. Hence the intersection is a subspace. An empty intersection is $V$, which also works.
+
+\exercise{30.17}{The span generated by a subset}
+\textbf{(a)} Define $\Span(S)$ as the intersection of all subspaces containing $S$. This family is nonempty because $V$ itself belongs to it. The intersection is a subspace by Exercise 16 and is the smallest such subspace.
+\textbf{(b)} Let $L$ be the finite linear combinations of elements of $S$, including the zero combination. It is closed under addition and scalar multiplication by combining or scaling coefficients, so it is a subspace containing $S$. Thus $\Span(S)\subset L$. Every subspace containing $S$ contains all its finite linear combinations, so $L\subset\Span(S)$. Therefore equality holds.
+
+\exercise{30.18}{Finite direct sums of vector spaces}
+Define $V_1\oplus\cdots\oplus V_n$ as the set of tuples $(v_1,\ldots,v_n)$ with $v_i\in V_i$. Add componentwise and set $c(v_1,\ldots,v_n)=(cv_1,\ldots,cv_n)$. The zero is $(0,\ldots,0)$ and the inverse is $(-v_1,\ldots,-v_n)$.
+All vector-space identities hold coordinate by coordinate. For example $c(u+v)$ has coordinate $c(u_i+v_i)=cu_i+cv_i$, the corresponding coordinate of $cu+cv$. The two scalar associativity and distributive laws and the identity law are inherited in the same way. Hence this direct sum is a vector space over $F$.
+
+\exercise{30.19}{The coordinate vector space over an arbitrary field}
+For $F^n$ use componentwise addition and scalar multiplication. Each vector-space axiom follows from the field laws in each coordinate. The standard vectors $e_i$ with a $1$ in coordinate $i$ and zeros elsewhere are a basis:
+\[(a_1,\ldots,a_n)=a_1e_1+\cdots+a_ne_n.\]
+This proves spanning, and the coordinates of a zero combination show each $a_i=0$, proving independence. Thus the dimension is $n$.
+
+\exercise{30.20}{Isomorphism of vector spaces}
+An isomorphism $T:V\to V'$ over the same field $F$ is a bijection satisfying $T(u+v)=T(u)+T(v)$ and $T(cu)=cT(u)$ for all $u,v\in V,c\in F$. Preserving only the additive group is not enough: the scalar multiplication must also be preserved.
+
+\exercise{30.21}{Bases and unique coordinates}
+Suppose first that $B=\{\beta_1,\ldots,\beta_n\}$ is a basis. Spanning gives an expression for every vector. If $\sum a_i\beta_i=\sum b_i\beta_i$, subtraction yields $\sum(a_i-b_i)\beta_i=0$. Independence forces $a_i=b_i$ for all $i$, giving uniqueness.
+Conversely, if every vector has a unique expression, existence gives spanning. A relation $\sum a_i\beta_i=0$ is another expression for zero besides the all-zero one, so uniqueness forces every $a_i=0$. Thus the vectors are independent and form a basis.
+
+\exercise{30.22}{Linear systems as a vector-space problem}
+\textbf{(a)} Let $\alpha_j=(a_{1j},\ldots,a_{mj})$ be column $j$. Coordinate $i$ of $\sum_j x_j\alpha_j$ is $\sum_j a_{ij}x_j$. Thus all $m$ scalar equations hold exactly when $\sum_j x_j\alpha_j=\beta=(b_1,\ldots,b_m)$. A solution exists precisely when $\beta$ belongs to the span of the columns.
+\textbf{(b)} If $m=n$ and the columns form a basis of $F^n$, every $\beta$ has a unique basis expansion by Exercise 21. Its coefficients $x_j$ are therefore the unique solution of the system. This argument uses field operations only and is valid in finite characteristic as well.
+
+\exercise{30.23}{Coordinates give an isomorphism}
+Choose a basis $\beta_1,\ldots,\beta_n$ for $V$. Define $T(\sum a_i\beta_i)=(a_1,\ldots,a_n)$. Uniqueness of basis coordinates makes this well defined and injective; every tuple has the preimage $\sum a_i\beta_i$, so it is onto. Adding vectors or multiplying by a scalar adds or scales their coordinates, respectively. Hence $T$ is an isomorphism of $F$-vector spaces $V\cong F^n$.
+
+\exercise{30.24}{Prescribing a linear transformation on a basis}
+\textbf{(a)} Every vector has a unique finite expansion $v=\sum_i a_i\beta_i$. Linearity forces $T(v)=\sum_i a_iT(\beta_i)$, so knowing the images of all basis vectors determines every output.
+\textbf{(b)} Conversely prescribe arbitrary $\beta_i'\in V'$ and define $T(\sum_i a_i\beta_i)=\sum_i a_i\beta_i'$. Unique finite expansions make the formula well defined, including for an infinite basis. Combining coefficients proves additivity and homogeneity. The identity from (a) proves no other linear map can have the prescribed basis values. The target vectors may be dependent or repeat.
+
+\exercise{30.25}{Kernel and isomorphism for a linear map}
+\textbf{(a)} A linear transformation is the vector-space analogue of a group or ring homomorphism: it preserves all designated operations.
+\textbf{(b)} Define $\Ker T=\{v:T(v)=0\}$. It contains zero. For $u,v\in\Ker T$ and $c\in F$, $T(u+v)=0$ and $T(cu)=0$. Hence it is a subspace.
+\textbf{(c)} A linear map is an isomorphism onto $V'$ exactly when it is onto and has zero kernel. Indeed $T(u)=T(v)$ is equivalent to $u-v\in\Ker T$, so zero kernel is exactly injectivity. Its inverse then preserves both operations by applying $T$ to their desired identities.
+
+\exercise{30.26}{Quotient vector spaces}
+Use the additive cosets $V/S=\{v+S:v\in V\}$. Define
+\[(u+S)+(v+S)=(u+v)+S,\qquad c(v+S)=cv+S.\]
+If $u-u',v-v'\in S$, then $(u+v)-(u'+v')\in S$; also $cv-cv'=c(v-v')\in S$. Thus neither operation depends on representatives. The additive group axioms and scalar laws now descend from those of $V$; for instance $c((u+v)+S)=(cu+cv)+S$. The zero is $S$ and the negative of $v+S$ is $-v+S$. Thus this is a vector space over $F$.
+
+\exercise{30.27}{Image and rank-nullity}
+\textbf{(a)} The image contains $T(0)=0$. Its vectors satisfy $T(u)+T(v)=T(u+v)$ and $cT(u)=T(cu)$, so it is a subspace of $V'$.
+\textbf{(b)} Choose a basis $u_1,\ldots,u_k$ of $\Ker T$, and extend it to a basis $u_1,\ldots,u_k,v_1,\ldots,v_r$ of $V$. Applying $T$ to basis expansions shows that $T(v_1),\ldots,T(v_r)$ span the image, since each $T(u_i)=0$.
+If $\sum_j c_jT(v_j)=0$, then $\sum_j c_jv_j$ lies in the kernel and can be expressed using the $u_i$. Independence of the full basis forces every $c_j=0$. Thus the displayed image vectors form a basis and $\dim\im T=r$. Since $\dim V=k+r$, we obtain $\dim\im T=\dim V-\dim\Ker T$.

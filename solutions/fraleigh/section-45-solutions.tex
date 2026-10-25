@@ -1,0 +1,124 @@
+\section{Unique Factorization Domains}
+
+\exercise{45.1}{An integer prime}
+A nonzero nonunit is irreducible when every factorization has a unit factor. If $5=ab$ in $\Z$, then $|a||b|=5$. Since 5 is prime, one of $|a|,|b|$ is 1. Thus one factor is a unit, and $5$ is irreducible.
+
+\exercise{45.2}{A negative prime}
+The units of $\Z$ are $1,-1$. If $-17=ab$, then $17=|a||b|$, so one factor has absolute value 1. Thus $-17$ is irreducible. Equivalently, it is an associate of the irreducible 17.
+
+\exercise{45.3}{A composite integer}
+The factorization $14=2\cdot7$ uses two nonunits of $\Z$. Therefore 14 is reducible.
+
+\exercise{45.4}{A primitive linear polynomial}
+Suppose $2x-3=gh$ in $\Z[x]$. Degrees add, so one factor, say $g$, is a nonzero integer $c$. It divides both 2 and $-3$, hence $c=\pm1$. It is a unit. The polynomial is nonconstant, so is itself a nonunit; consequently it is irreducible.
+
+\exercise{45.5}{A nonprimitive linear polynomial}
+In $\Z[x]$, $2x-10=2(x-5)$. The constant 2 is not a unit of $\Z[x]$, and the nonconstant polynomial $x-5$ is not a unit either. Therefore the polynomial is reducible.
+
+\exercise{45.6}{A linear polynomial over the rationals}
+Every nonzero constant in $\Q[x]$ is a unit. A factorization of a degree-one polynomial has a degree-zero factor, so that factor is a unit. Thus $2x-3$ is irreducible in $\Q[x]$.
+
+\exercise{45.7}{The same expression in a different domain}
+Although $2x-10=2(x-5)$, the factor 2 is a unit in $\Q[x]$. Every factorization has a constant factor because the degree is 1. Therefore $2x-10$ is irreducible in $\Q[x]$. Irreducibility depends on the coefficient domain.
+
+\exercise{45.8}{A linear polynomial modulo eleven}
+The coefficient 2 is nonzero in the field $\Z_{11}$. Thus $2x-10$ has degree 1 in $\Z_{11}[x]$ and is irreducible by degree addition. Its constant term is congruent to 1, but this does not change its degree.
+
+\exercise{45.9}{Associates in three polynomial rings}
+Associates are unit multiples. In $\Z[x]$ the only units are $\pm1$, so the only associates are $2x-7$ and $-2x+7$; four different ones do not exist. In $\Q[x]$, four examples are $2x-7,4x-14,6x-21,8x-28$. In $\Z_{11}[x]$ the same four unit multiples are distinct after reducing coefficients: $2x+4,4x+8,6x+1,8x+5$. Distinctness follows also by comparing their leading coefficients.
+
+\exercise{45.10}{Factorization over three domains}
+First extract the integer content:
+\[4x^2-4x+8=2\cdot2\,(x^2-x+2).\]
+The discriminant of $x^2-x+2$ is $1-8=-7$, so it has no rational root. A quadratic over a field is irreducible exactly when it has no root. Gauss's lemma therefore makes this primitive polynomial irreducible in $\Z[x]$ as well. This is the factorization into irreducibles over $\Z$.
+Over $\Q$, 4 is a unit, and $4(x^2-x+2)$ is an irreducible polynomial times a unit. Modulo 11, the roots of $x^2-x+2$ are 5 and 7, because $5+7=1$ and $5\cdot7=2$ modulo 11. Thus
+\[4x^2-4x+8=4(x-5)(x-7)\quad\text{in }\Z_{11}[x].\]
+The two linear factors are irreducible and 4 is a unit.
+
+\exercise{45.11}{All gcds of three integers}
+Euclidean division gives $3250=13(234)+208$, $234=208+26$, and $208=8(26)$. Also $1690=65(26)$. Thus the positive gcd is 26. Since the only units of $\Z$ are $\pm1$, all gcds are $26$ and $-26$.
+
+\exercise{45.12}{All gcds with a negative entry}
+We may replace $-1960$ by 1960 without changing divisibility. The calculations $1960=2(784)+392$, $784=2(392)$, $448=392+56$, and $392=7(56)$ give positive gcd 56. All gcds are $56,-56$.
+
+\exercise{45.13}{All gcds of four integers}
+The divisions $2178=5(396)+198$ and $396=2(198)$ give $\gcd(2178,396)=198$. Since $792=4(198)$ and $594=3(198)$, the remaining entries do not change it. The gcds are $198,-198$.
+
+\exercise{45.14}{Integer content}
+The positive gcd of $18,-12,48$ is 6. Consequently $18x^2-12x+48=6(3x^2-2x+8)$. The coefficients $3,-2,8$ have gcd 1, so the second factor is primitive. Changing the sign of both factors gives the equivalent associate choice.
+
+\exercise{45.15}{Content over a field}
+In $\Q$ every nonzero element is a unit and is a gcd of these coefficients. One valid choice is content 1 and primitive factor $18x^2-12x+48$ itself. For comparison, the choice $6(3x^2-2x+8)$ is also valid. Over a field every nonzero polynomial is primitive: every common nonzero divisor of its coefficients is already a unit.
+
+\exercise{45.16}{A polynomial already primitive}
+The coefficients $2,-3,6$ have gcd 1, since any common divisor of 2 and 3 is a unit. Thus $2x^2-3x+6=1(2x^2-3x+6)$ is the required decomposition in $\Z[x]$.
+
+\exercise{45.17}{Content modulo seven}
+The coefficient ring is the field $\Z_7$. Take content 1 and primitive factor $2x^2+4x+6$. Alternatively choose content 2 and write $2(x^2+2x+3)$, since $2^{-1}=4$ modulo 7. All nonzero constants are units, so these choices are equivalent.
+
+\exercise{45.18}{Definition of associates}
+The version using $a/b$ is not suitable when $b=0$. The correct definition for all $a,b\in D$ is: $a$ and $b$ are associates if $a=ub$ for some unit $u\in D$. This includes $0$ being an associate of itself. If $b\ne0$, the quotient criterion in the fraction field is equivalent, provided that quotient is a unit of $D$.
+
+\exercise{45.19}{Definition of irreducible}
+An irreducible is a nonzero nonunit $p\in D$ such that whenever $p=ab$ with $a,b\in D$, at least one of $a,b$ is a unit. One cannot prohibit every factorization, because $p=1\cdot p$ is always available.
+
+\exercise{45.20}{Definition of prime}
+A prime is a nonzero nonunit $p$ such that $p\mid ab$ implies $p\mid a$ or $p\mid b$, for every $a,b\in D$. The expression ``smaller'' has no intrinsic meaning in an arbitrary integral domain.
+
+\exercise{45.21}{Ten statements about factorization}
+\begin{enumerate}[label=(\alph*)]
+\item True. In a field there are no nonzero nonunits, so the factorization requirement is vacuous.
+\item True. The only ideals of a field are $(0)$ and $(1)$.
+\item True. The PID factorization theorem proves existence and uniqueness.
+\item False. $\Q[x,y]$ is a UFD, but $(x,y)$ is not principal: a common divisor of $x,y$ is a unit, which would make that ideal the whole ring.
+\item True, by Gauss's theorem applied to the UFD $\Z$.
+\item False. The irreducibles 2 and 3 of $\Z$ are not associates.
+\item False. $\Z$ is a PID but $(2,x)$ is not principal in $\Z[x]$.
+\item True, by the polynomial UFD theorem.
+\item False literally. Associates may replace $p$: $2\mid6$, but $6=(-2)(-3)$ has no factor literally equal to 2. The correct claim is that an associate of $p$ appears.
+\item True. Being an integral domain is part of the definition of UFD.
+\end{enumerate}
+
+\exercise{45.22}{Irreducibles in a polynomial UFD}
+There are two types. Constant irreducibles are precisely the irreducibles of $D$. A nonconstant $f\in D[x]$ is irreducible precisely when it is primitive and irreducible in $F[x]$. Indeed, a nonunit content would itself give a factorization; after removing content, Gauss's lemma transfers reducibility between $D[x]$ and $F[x]$. Constant nonzero elements become units in $F[x]$, so they must be treated separately.
+
+\exercise{45.23}{Irreducible after extending coefficients}
+Take $D=\Z$, $F=\Q$, and $g(x)=2x+2$. It is degree 1, hence irreducible in $\Q[x]$. In $\Z[x]$ the factorization $g=2(x+1)$ has two nonunit factors, so it is reducible. Its nonunit content is precisely what disappears on passing to $F$.
+
+\exercise{45.24}{Why zero divisors obstruct factorization}
+The element $(1,0)$ is a nonzero nonunit of $\Z\times\Z$, but $(1,0)=(1,0)(1,0)$, a product of two nonunits. More strongly, it cannot be a product of irreducibles. Suppose $(1,0)=\prod_j(a_j,b_j)$. All $a_j$ are $\pm1$ and at least one $b_j=0$. That factor $(\pm1,0)$ is reducible because $(\pm1,0)=(1,0)(\pm1,0)$. Hence there is no irreducible factorization of $(1,0)$. The domain hypothesis prevents precisely this kind of idempotent behavior.
+
+\exercise{45.25}{A prime is irreducible}
+Let $p$ be prime and write $p=ab$. Since $p\mid ab$, assume, after exchanging factors if necessary, that $p\mid a$. Write $a=pc$. Then $p=pcb$; cancel the nonzero $p$ in the domain to obtain $1=cb$. Thus $b$ is a unit. Since a prime is by definition a nonzero nonunit, this proves irreducibility.
+
+\exercise{45.26}{An irreducible in a UFD is prime}
+Suppose $p\mid ab$, so $ab=pc$. If $a$ or $b$ is zero, $p$ divides that factor. Otherwise factor $a,b,c$ into irreducibles, allowing a unit factor when necessary. The concatenated factorizations of $a,b$ and the factorization $p$ followed by that of $c$ represent the same nonzero element. Uniqueness forces an associate of $p$ to occur in the factorization of $a$ or $b$. It therefore divides that factor, as does $p$.
+
+\exercise{45.27}{Associates form an equivalence relation}
+Reflexivity follows from $a=1a$. If $a=ub$ with $u$ a unit, then $b=u^{-1}a$, proving symmetry. If additionally $b=vc$ with $v$ a unit, then $a=(uv)c$, and $uv$ is a unit, proving transitivity. These arguments need no cancellation and work even in a commutative ring with zero divisors.
+
+\exercise{45.28}{Products of nonzero nonunits}
+If $a,b$ are nonzero nonunits, the domain condition gives $ab\ne0$. If $ab$ were a unit with inverse $c$, then $a(bc)=1$ and $b(ac)=1$, making both factors units, a contradiction. Thus the set is closed. It is not a group: an identity on this nonempty set would satisfy $ea=a$ for nonzero $a$, hence $e=1$ by cancellation, but 1 is excluded. If the domain is a field, the set is empty and is still not a group.
+
+\exercise{45.29}{A divisor of a primitive polynomial}
+Write the primitive polynomial as $f=gh$ in $D[x]$. If a nonunit irreducible $p$ divided every coefficient of $g$, then it would divide every coefficient of $gh=f$. That contradicts the content of $f$ being a unit. Since every nonunit of the UFD has an irreducible divisor, the coefficients of $g$ have no common nonunit divisor; hence $g$ is primitive. The same argument applies to any divisor, constant or nonconstant.
+
+\exercise{45.30}{Containment in a maximal ideal}
+The statement needs the word \emph{proper}: the ideal $D$ itself is not contained in a maximal ideal. For a proper ideal $I$ in a PID, suppose no maximal ideal contains it. Then $I$ is not maximal, so there is a proper ideal $I_1$ strictly containing $I$. Repeating produces $I\subsetneq I_1\subsetneq I_2\subsetneq\cdots$. The ascending chain condition for a PID forbids this. Thus the process terminates at a maximal ideal containing $I$.
+
+\exercise{45.31}{Factoring a difference of cubes}
+We have $x^3-y^3=(x-y)(x^2+xy+y^2)$. Regard these as polynomials in $x$ over $\Q[y]$. The first is primitive and degree 1, so is irreducible over $\Q(y)$ and therefore over $\Q[y]$. The second is primitive and has discriminant $-3y^2$. This is not a square in $\Q(y)$: otherwise dividing a putative square root by $y$ would give a rational function whose square is $-3$, impossible in the ordered field $\Q(y)$ (or by comparing coprime numerator and denominator). Thus this quadratic is irreducible over $\Q(y)$; Gauss's lemma gives irreducibility in $\Q[x,y]$.
+
+\exercise{45.32}{Three equivalent finiteness conditions}
+\idea Prove a cycle of implications for ideals ordered by inclusion.
+\step{ACC implies the maximum condition.} If a nonempty collection has no maximal member, choose an ideal in it and then a strictly larger member repeatedly. This contradicts ACC.
+\step{The maximum condition implies finite generation.} For an ideal $I$, consider all ideals generated by finite subsets of $I$ (including the empty generating set). A maximal such ideal $J$ exists. If $a\in I\setminus J$, adjoining $a$ gives a strictly larger finitely generated ideal inside $I$, a contradiction. Thus $J=I$.
+\step{Finite generation implies ACC.} Given $I_1\subseteq I_2\subseteq\cdots$, its union $I$ is an ideal: any two elements lie together in a sufficiently late term, and multiplication by ring elements remains in that term. A finite generating set of $I$ lies in some $I_N$, so $I=I_N$ and all later terms coincide with it. This is ACC.
+
+\exercise{45.33}{Descending chains and minimal ideals}
+As usual the minimum condition must concern \emph{nonempty} collections; an empty collection cannot contain a minimal member. If DCC holds and a nonempty collection had no minimal member, successively choosing a smaller member would produce an infinite strictly descending chain. Conversely, apply the minimum condition to the set of terms of a descending chain. If $I_N$ is minimal among those terms, then for $n\ge N$, $I_n\subseteq I_N$ forces $I_n=I_N$. Thus the chain stabilizes and DCC holds.
+
+\exercise{45.34}{ACC without DCC}
+Use $\Z$. Every ideal is $n\Z$, hence finitely generated, so ACC holds by Exercise 45.32. But
+\[2\Z\supsetneq4\Z\supsetneq8\Z\supsetneq\cdots\]
+is an infinite strictly descending chain: $2^k$ belongs to the $k$th ideal but not the next. Therefore DCC fails.

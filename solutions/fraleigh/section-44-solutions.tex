@@ -1,0 +1,164 @@
+\section{Homological Algebra}
+An exact sequence has image equal to the next kernel at every term. We write $0$ for the trivial additive group and use ordinary homology with integer coefficients. A relative group $H_k(X,Y)$ is computed from chains modulo the chains in $Y$; when $Y$ is nonempty, comparison with $X/Y$ uses reduced homology in dimension zero.
+\exercise{44.1}{An exact sequence with two nonzero terms}
+Exactness at $A$ says $\ker f=\operatorname{im}(0\to A)=0$, so $f$ is injective. Exactness at $B$ says $\operatorname{im}f=\ker(B\to0)=B$, so $f$ is surjective. An injective and surjective homomorphism is an isomorphism. Thus the given map itself supplies $A\cong B$.
+
+\exercise{44.2}{A short exact sequence}
+\textbf{(a)} Exactness at $C$ gives $\operatorname{im}j=\ker(C\to0)=C$, so $j$ is onto.
+\textbf{(b)} Exactness at $A$ gives $\ker i=\operatorname{im}(0\to A)=0$, so $i$ is injective and is an isomorphism from $A$ to its image in $B$.
+\textbf{(c)} Exactness at $B$ gives $\ker j=i[A]$. The first isomorphism theorem, together with surjectivity of $j$, gives $B/i[A]\cong C$, via $b+i[A]\mapsto j(b)$. Equality of the kernel with $i[A]$ proves that this coset formula is well defined and injective.
+
+\exercise{44.3}{Three equivalent conditions in an exact sequence}
+For the exact sequence $A\xrightarrow{i}B\xrightarrow{j}C\xrightarrow{k}D$, exactness says $\operatorname{im}i=\ker j$ and $\operatorname{im}j=\ker k$. Hence
+\[
+\begin{aligned}
+i\text{ onto}
+&\iff\operatorname{im}i=B
+\iff\ker j=B\\
+&\iff j=0
+\iff\operatorname{im}j=0
+\iff\ker k=0
+\iff k\text{ injective}.
+\end{aligned}
+\]
+The middle condition $j=0$ means it maps every element of $B$ to the zero element of $C$. This proves all three requested conditions equivalent.
+
+\exercise{44.4}{When the middle map is an isomorphism}
+For $A\xrightarrow g B\xrightarrow h C\xrightarrow i D\xrightarrow j E\xrightarrow k F$, exactness yields
+\[
+\operatorname{im}h=\ker i,\quad \operatorname{im}i=\ker j,
+\quad \operatorname{im}g=\ker h,\quad\operatorname{im}j=\ker k.
+\]
+Thus $h=0$ is equivalent to injectivity of $i$, and $j=0$ is equivalent to surjectivity of $i$. Together these say exactly that $i$ is an isomorphism $C\to D$, proving (a)$\iff$(b).
+Also $g$ is onto exactly when $\ker h=B$, namely when $h=0$; and $k$ is injective exactly when $\operatorname{im}j=0$, namely when $j=0$. This proves (a)$\iff$(c), completing the equivalence.
+
+\exercise{44.5}{The induced-quotient-map principle}
+Exercise 14.39 gives the criterion: a homomorphism $f:G\to G'$ induces $G/H\to G'/H'$ by $gH\mapsto f(g)H'$ if $f(H)\subseteq H'$.
+For Theorem 44.4, the chain-map equation first shows $f_k(Z_k(A))\subseteq Z_k(A')$, since $\partial'f_kz=f_{k-1}\partial z=0$. It also shows $f_k(B_k(A))\subseteq B_k(A')$, since $f_k(\partial c)=\partial'(f_{k+1}c)$. Apply the quotient-map criterion to $Z_k/B_k$ to obtain the induced homology map.
+For Theorem 44.7, $\partial_k(A'_k)\subseteq A'_{k-1}$ by the subcomplex assumption. Apply the same criterion with $G=A_k$, $H=A'_k$, $G'=A_{k-1}$, $H'=A'_{k-1}$, and $f=\partial_k$. This gives the well-defined quotient boundary $c+A'_k\mapsto\partial c+A'_{k-1}$. Its square is zero because $\partial^2=0$.
+Thus both theorems use precisely the same representative-independence mechanism as Exercise 14.39.
+
+\exercise{44.6}{Relative homology of a torus modulo $a$}
+After eliminating interior triangulation edges, use the torus chain model with one vertex, edges $a,b$, and one face $F$. Its boundaries are $\partial_1=0$ and $\partial_2F=a+b-a-b=0$.
+The circle subcomplex $a$ contains the vertex and edge $a$. In the relative chain complex these are set to zero, leaving
+\[
+C_2(X,a)=\Z F,\qquad C_1(X,a)=\Z b,\qquad C_0(X,a)=0,
+\]
+with zero boundary maps. Hence
+\[
+H_2(X,a)\cong\Z,\quad H_1(X,a)\cong\Z,
+\quad H_0(X,a)=0,
+\]
+and higher groups vanish.
+Collapsing $a$ gives a pinched torus with the positive-dimensional homology of $S^2\vee S^1$. There is a necessary qualification to the printed parenthesis: relative homology corresponds to \emph{reduced} homology of the quotient. The quotient's ordinary $H_0$ is $\Z$, whereas the relative $H_0$ computed here is zero.
+
+\exercise{44.7}{The exact sequence of the torus pair}
+Use $H_1(X)=\Z[a]\oplus\Z[b]$ and choose matching orientations for the whole-surface generators. The nonzero part of the exact sequence is
+\[
+\begin{aligned}
+0&\longrightarrow\Z\xrightarrow{\,1\,}\Z
+\xrightarrow{\,0\,}\Z
+\xrightarrow{\,u\,}\Z^2\\
+&\xrightarrow{\,v\,}\Z
+\xrightarrow{\,0\,}\Z
+\xrightarrow{\,1\,}\Z\longrightarrow0,
+\end{aligned}
+\]
+where the groups in order are $H_2(X)$, $H_2(X,a)$, $H_1(a)$, $H_1(X)$, $H_1(X,a)$, $H_0(a)$, $H_0(X)$.
+Here $u(t)=(t,0)$ and $v(r,s)=s$. The first map carries the whole torus to the same relative 2-cycle. The first connecting map is zero because that 2-cycle has zero boundary. The second connecting map is zero because $b$ already has zero boundary.
+To check exactness directly: the identity map has full image, equal to the next zero map's kernel; the zero image equals $\ker u=0$; $\operatorname{im}u=\Z\times0=\ker v$; $v$ is onto, matching the next zero map's full kernel; and the final identity has zero kernel. This checks every position.
+
+\exercise{44.8}{Relative homology of a Klein bottle modulo $a$}
+For the Klein-bottle polygon use one vertex, edges $a,b$, and a face $F$ with $\partial_2F=2a$ and $\partial_1=0$. Set the vertex and the edge $a$ to zero in the relative complex. Then $\partial_2F$ also becomes zero, leaving one free generator in dimensions two and one and no dimension-zero generator.
+Thus
+\[
+H_2(X,a)\cong\Z,\qquad H_1(X,a)\cong\Z,
+\qquad H_0(X,a)=0,
+\]
+with higher groups zero.
+This explains why collapsing the torsion loop creates a top-dimensional cycle: its original boundary was twice the collapsed edge. As in Exercise 44.6, the connected pinched quotient has ordinary $H_0=\Z$; its \emph{reduced} homology agrees with these relative groups.
+
+\exercise{44.9}{The exact sequence of the Klein-bottle pair}
+Here $H_2(X)=0$, $H_1(X)=\Z_2[a]\oplus\Z[b]$, and $H_0(X)=\Z$.
+The relevant sequence is
+\[
+\begin{aligned}
+0&\longrightarrow\Z\xrightarrow{\,2\,}\Z
+\xrightarrow{\,u\,}\Z_2\oplus\Z\\
+&\xrightarrow{\,v\,}\Z\xrightarrow{\,0\,}\Z
+\xrightarrow{\,1\,}\Z\longrightarrow0.
+\end{aligned}
+\]
+The first $\Z$ is $H_2(X,a)$; the next is $H_1(a)$; the later three $\Z$ groups are $H_1(X,a)$, $H_0(a)$, $H_0(X)$.
+The connecting map sends $F$ to its boundary $2a$, so it is multiplication by 2. Also $u(t)=(\overline t,0)$ and $v(\overline r,s)=s$.
+Check exactness: multiplication by 2 is injective, $\ker u=2\Z$, $\operatorname{im}u=\Z_2\oplus0=\ker v$, $v$ is onto, the following map is zero, and the final identity has zero kernel. These identities verify every term, including the torsion contribution.
+
+\exercise{44.10}{An annulus relative to both boundary circles}
+Let the boundary circles have the same angular orientation, and let $Y$ be their union. A coherently oriented sum of the annulus's triangles has boundary equal to the difference of those two circles, which becomes zero modulo $Y$. It gives one relative 2-cycle $F$.
+A radial path $e$ from one boundary component to the other has boundary in $Y$, so it gives one relative 1-cycle. Cutting the annulus along this path produces a disk; eliminating interior triangle edges shows that $F$ and $e$ exhaust the independent relative cycles. In a reduced relative chain model, there is one generator in degrees two and one, no generator in degree zero, and zero boundary maps.
+Hence
+\[
+H_2(X,Y)\cong\Z,\qquad H_1(X,Y)\cong\Z,
+\qquad H_0(X,Y)=0,
+\]
+and higher groups vanish. The relative 1-generator is a radial path, not the circular loop, since that loop is homologous to a boundary circle and is zero in the relative group.
+
+\exercise{44.11}{The exact sequence for the annulus pair}
+Use the same angular orientation on the two boundary circles. Then inclusion maps $H_1(Y)=\Z^2\to H_1(X)=\Z$ by $s(r,t)=r+t$. The analogous $H_0$ map is also $s$.
+Choose the orientation of the relative fundamental 2-chain and radial 1-chain so that their connecting maps are $d(k)=(k,-k)$.
+The nonzero part of the sequence is
+\[
+0\longrightarrow\Z\xrightarrow{\,d\,}\Z^2
+\xrightarrow{\,s\,}\Z\xrightarrow{\,0\,}\Z
+\xrightarrow{\,d\,}\Z^2\xrightarrow{\,s\,}\Z\longrightarrow0.
+\]
+The groups are respectively $H_2(X,Y)$, $H_1(Y)$, $H_1(X)$, $H_1(X,Y)$, $H_0(Y)$, $H_0(X)$; $H_2(X)$ and $H_0(X,Y)$ are zero.
+Directly, $d$ is injective, $\operatorname{im}d=\{(k,-k)\}=\ker s$, and $s$ is onto. These facts check exactness at both pairs of $\Z^2$ and $\Z$ terms. At the middle relative $\Z$, the incoming zero map has image zero, equal to the next $d$'s kernel; at the preceding $\Z$, the onto map $s$ fills the kernel of the zero map.
+
+\exercise{44.12}{The quotient projection is a chain map}
+Let $j_k(c)=c+A'_k$. By the definition of the quotient boundary,
+\[
+\overline\partial_k(j_k(c))
+=\overline\partial_k(c+A'_k)
+=\partial_kc+A'_{k-1}
+=j_{k-1}(\partial_kc).
+\]
+Thus $\overline\partial_kj_k=j_{k-1}\partial_k$ for every $k$. This proves the squares commute, so the quotient projections constitute a chain map.
+
+\exercise{44.13}{Well-definedness of the connecting map}
+A relative homology class is represented by $c\in A_k$ with $\partial c\in A'_{k-1}$. Since $\partial^2c=0$, this boundary is a cycle of $A'$, so $[\partial c]\in H_{k-1}(A')$ is meaningful.
+Two choices representing the same relative homology class differ by
+\[
+c'-c=\partial d+a',\qquad d\in A_{k+1},\quad a'\in A'_k.
+\]
+Indeed equality modulo relative boundaries is precisely this condition, including the possible change of coset representative in $A_k/A'_k$.
+Taking boundaries gives $\partial c'-\partial c=\partial a'$, a boundary \emph{inside $A'$}. Thus $[\partial c']=[\partial c]$ there, proving independence of both choices.
+Finally $\partial(c_1+c_2)=\partial c_1+\partial c_2$, so the rule $[c]\mapsto[\partial c]$ preserves addition. It is therefore a well-defined homomorphism.
+
+\exercise{44.14}{Consecutive homology-sequence maps compose to zero}
+There are three kinds of consecutive composites to check.
+First $j_*i_*[z']=[z'+A'_k]=0$, since a chain in the subcomplex is zero in the quotient.
+Second $\partial_*j_*[z]=[\partial z]=0$, because a homology representative $z$ in $A$ is a cycle.
+Third $i_*\partial_*[c]=[\partial c]=0$ in $H_{k-1}(A)$, because $\partial c$ is a boundary in $A$ (even though it need not be a boundary in $A'$).
+Thus every consecutive composite is zero. All groups are abelian and all maps are homomorphisms, so the long sequence is indeed a chain complex.
+
+\exercise{44.15}{Exactness of the long homology sequence}
+Use $[z]$ for an absolute homology class, and use $[c]_{\mathrm{rel}}$ for a relative class, with $\partial c\in A'$.
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item If a class comes from $H_k(A')$, its chain is zero in $A_k/A'_k$. Thus $\operatorname{im}i_*\subseteq\ker j_*$.
+\item If $j_*[z]=0$, the cycle $z\in A_k$ satisfies $z=\partial d+a'$ with $d\in A_{k+1}$ and $a'\in A'_k$. Taking boundaries gives $\partial a'=0$. Hence $[z]=[a']=i_*[a']$ in $H_k(A)$, so $\ker j_*\subseteq\operatorname{im}i_*$.
+\item For an absolute cycle $z$, $\partial_*j_*[z]=[\partial z]=0$. Thus $\operatorname{im}j_*\subseteq\ker\partial_*$.
+\item If $\partial_*[c]_{\mathrm{rel}}=0$, there is $a'\in A'_k$ with $\partial c=\partial a'$. Then $z=c-a'$ is a cycle in $A$, and $j_*[z]=[c]_{\mathrm{rel}}$ since $a'$ vanishes in the quotient. Therefore $\ker\partial_*\subseteq\operatorname{im}j_*$.
+\item The class $\partial_*[c]_{\mathrm{rel}}=[\partial c]$ maps to zero in $H_{k-1}(A)$ because it bounds $c$ there. Thus $\operatorname{im}\partial_*\subseteq\ker i_*$.
+\item If $[a']\in H_{k-1}(A')$ maps to zero in $H_{k-1}(A)$, then $a'=\partial c$ for some $c\in A_k$. Its boundary is in $A'$, so it represents a relative cycle, and $\partial_*[c]_{\mathrm{rel}}=[a']$. Thus $\ker i_*\subseteq\operatorname{im}\partial_*$.
+\end{enumerate}
+The six inclusions pair into equality at all three types of term, in every dimension. This proves exactness of the entire sequence.
+
+\exercise{44.16}{Chain homotopies induce equal homology maps}
+Let $z\in Z_k(A)$ represent a homology class. Because $\partial z=0$, the given homotopy identity reduces to
+\[
+f_k(z)-g_k(z)=\partial'_{k+1}(D_kz)+D_{k-1}(0)
+=\partial'_{k+1}(D_kz).
+\]
+Thus the two image cycles differ by a boundary in $A'$, so they represent the same class in $H_k(A')$.
+Since every homology class has a cycle representative, $f_{*k}=g_{*k}$ for every $k$. The chain-map hypotheses ensure both induced maps are defined; the homotopy supplies the boundary witnessing equality on each class.

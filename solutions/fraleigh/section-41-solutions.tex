@@ -1,0 +1,139 @@
+\section{Simplicial Complexes and Homology Groups}
+We use integer coefficients and ordinary, unreduced homology. Brackets list the vertices of an oriented simplex; exchanging two vertices reverses its sign. The zero group is denoted by $0$.
+\exercise{41.1}{Boundary of the specified 2-chain}
+Use $[ijk]=P_iP_jP_k$ with the order indicating orientation. Reversing two vertices changes the sign, so the chain in the question becomes
+\[
+c=2[134]-4[346]-3[234]-[146].
+\]
+\textbf{(a)} Apply $\partial[ijk]=[jk]-[ik]+[ij]$ term by term:
+\[
+\begin{aligned}
+\partial c={}&2([34]-[14]+[13])
+-4([46]-[36]+[34])\\
+&-3([34]-[24]+[23])
+-([46]-[16]+[14])\\
+={}&2[13]-3[14]+[16]-3[23]+3[24]\\
+&-5[34]+4[36]-5[46].
+\end{aligned}
+\]
+\textbf{(b)} No: distinct oriented edges form a basis of the chain group, and for instance the coefficient of $[46]$ is $-5\ne0$. Thus $\partial c\ne0$.
+\textbf{(c)} Yes: $\partial(\partial c)=0$ because the boundary of a boundary is zero. This can also be checked by replacing each $[ij]$ by $P_j-P_i$; every vertex coefficient cancels.
+
+\exercise{41.2}{The boundary of a tetrahedron boundary}
+First
+\[
+\partial_3[1234]=[234]-[134]+[124]-[123].
+\]
+Applying $\partial_2$ gives
+\[
+\begin{aligned}
+&([34]-[24]+[23])-([34]-[14]+[13])\\
+&\quad+([24]-[14]+[12])-([23]-[13]+[12])=0.
+\end{aligned}
+\]
+Every edge occurs twice with opposite sign. Thus $\partial_2\partial_3[1234]=0$, as required. The signs, rather than an absence of geometric edges, are what cause the cancellation.
+
+\exercise{41.3}{The chain groups of one point}
+There is exactly one vertex and no positive-dimensional simplex. Hence $C_0(P)=\Z P$ and $C_i(P)=0$ for $i>0$.
+Since $\partial_0$ maps to zero, $Z_0(P)=C_0(P)$. Since $C_1(P)=0$, $B_0(P)=0$.
+Therefore $H_0(P)\cong\Z$. For $i>0$, all of $C_i,Z_i,B_i,H_i$ are zero. These are ordinary homology groups; reduced $H_0$ would instead vanish.
+
+\exercise{41.4}{Two isolated points}
+Here $C_0(X)=\Z P\oplus\Z P'$ and $C_i(X)=0$ for $i>0$, because no connecting edge is present. Thus $Z_0=C_0$, $B_0=0$, and $H_0\cong\Z^2$.
+All positive-dimensional chain, cycle, boundary, and homology groups are zero. The two independent generators of $H_0$ record the two connected components; the geometric line segment in the surrounding Euclidean space contributes nothing because it is not part of $X$.
+
+\exercise{41.5}{A closed line segment}
+Let $e=[12]$. Then $C_1=\Z e$, $C_0=\Z P_1\oplus\Z P_2$, and all $C_i$ for $i\ge2$ vanish. The boundary satisfies $\partial_1(ne)=n(P_2-P_1)$.
+Since the vertices are independent, the boundary is zero only if $n=0$. Thus $Z_1=0$; also $B_1=0$, so $H_1=0$.
+In dimension zero, $Z_0=C_0$ and $B_0=\Z(P_2-P_1)$. The sum-of-coefficients map $aP_1+bP_2\mapsto a+b$ is onto $\Z$ and has kernel $B_0$, so $H_0\cong\Z$.
+In higher dimensions all groups are zero. This describes each of $C_i,Z_i,B_i,H_i$ explicitly.
+
+\exercise{41.6}{True or false: chains, cycles, and boundaries}
+\begin{enumerate}[label=\textbf{(\alph*)}]
+\item True, because $\partial^2=0$.
+\item False. A once-around cycle of a circle cannot bound a 2-chain in that circle, since the circle has no 2-simplexes.
+\item True. One orientation of each $n$-simplex is a free abelian basis for $C_n(X)$.
+\item True. $B_n(X)$ is a subgroup of the free abelian group $C_n(X)$, so the subgroup theorem for free abelian groups applies.
+\item True for the same reason, with $Z_n(X)\le C_n(X)$.
+\item True. $H_n=Z_n/B_n$ is a quotient of an abelian group.
+\item False. The boundary of a 3-simplex is a signed sum of four 2-simplexes, not a single 2-simplex.
+\item True. The boundary of a 2-simplex is a signed sum of edges, hence a 1-chain.
+\item True. A 3-cycle has boundary zero, and zero is a valid 2-chain.
+\item True. Quotienting a group by itself gives the one-element group.
+\end{enumerate}
+
+\exercise{41.7}{Oriented simplexes in arbitrary dimension}
+\textbf{(a)} An $n$-simplex is the convex hull of $n+1$ affinely independent vertices $P_0,\ldots,P_n$. An orientation is a choice of ordering modulo even permutations; an odd permutation reverses the orientation (for $n=0$ there is just its single vertex).
+\textbf{(b)} Its oriented boundary is
+\[
+\partial_n[P_0\cdots P_n]
+=\sum_{i=0}^n(-1)^i[P_0\cdots\widehat{P_i}\cdots P_n],
+\]
+where a hat means omission. For example the formula gives $\partial[P_0P_1]=P_1-P_0$.
+\textbf{(c)} A codimension-one face is obtained by omitting one vertex, with the induced sign $(-1)^i$ in this boundary formula. More generally a $k$-face is spanned by any $k+1$ of the vertices. In the textbook's oriented-face terminology, choose its orientation so that it appears with positive sign when it is the specified boundary summand.
+
+\exercise{41.8}{Chain, cycle, and boundary groups in general}
+Use the same definitions with an arbitrary integer subscript $n$:
+$C_n(X)$ is the free abelian group on a choice of orientation for every $n$-simplex; opposite orientations have opposite signs. Define $\partial_n:C_n\to C_{n-1}$ on each basis simplex by the alternating face formula in Exercise 41.7, and extend by integer linearity. Put $C_n=0$ for $n<0$ and $\partial_0=0$.
+Then
+\[
+Z_n(X)=\ker\partial_n,\qquad
+B_n(X)=\operatorname{im}\partial_{n+1}.
+\]
+Thus a cycle is a chain whose boundary is zero, and a boundary is the boundary of a chain one dimension higher. This gives a uniform answer regardless of how large the dimension is.
+
+\exercise{41.9}{Why the boundary squared is zero}
+By linearity it suffices to start with one oriented $n$-simplex $[P_0\cdots P_n]$. Every codimension-two face omits two vertices $P_i,P_j$ with $i<j$.
+There are exactly two ways for this face to occur in the double boundary. Omitting $P_i$ first moves $P_j$ into position $j-1$, giving sign $(-1)^i(-1)^{j-1}$.
+Omitting $P_j$ first leaves $P_i$ in position $i$, giving sign $(-1)^j(-1)^i$.
+These signs are opposites, so the two copies cancel. Every summand is paired this way, proving $\partial_{n-1}\partial_n=0$ for $n\ge2$. For $n=1$ the conclusion follows from $\partial_0=0$.
+
+\exercise{41.10}{Coboundaries in the solid tetrahedron}
+Fix increasing vertex order as the positive orientation. The coefficient of a simplex $\tau$ in $\delta\sigma$ is the coefficient of $\sigma$ in $\partial\tau$; this retains the orientation signs in the question.
+\textbf{(a)} Since $\partial[ij]=P_j-P_i$, we have
+\[
+\delta^{(0)}P_1=-[12]-[13]-[14],\qquad
+\delta^{(0)}P_4=[14]+[24]+[34].
+\]
+\textbf{(b)} The oriented edge $P_3P_2=-[23]$ occurs with coefficient $-1$ in the boundaries of $[123]$ and $[234]$, and not in the other two faces. Thus
+\[
+\delta^{(1)}(P_3P_2)=-[123]-[234].
+\]
+\textbf{(c)} Since $P_3P_2P_4=-[234]$ and $[234]$ has coefficient $+1$ in $\partial[1234]$,
+\[
+\delta^{(2)}(P_3P_2P_4)=-[1234].
+\]
+Each negative sign describes the opposite orientation, not an omitted geometric face.
+
+\exercise{41.11}{Defining the coboundary and checking its square}
+\textbf{(a)} For the finite complexes used here identify $C^{(n)}(X)$ with integer coefficient vectors on the oriented $n$-simplexes. If $D_{n+1}$ is the boundary matrix, define $\delta^{(n)}$ to have matrix $D_{n+1}^{\mathsf T}$. Equivalently, sum the oriented cofaces with their incidence signs and extend linearly.
+\textbf{(b)} Since $D_{n+1}D_{n+2}=0$, transposing gives
+\[
+D_{n+2}^{\mathsf T}D_{n+1}^{\mathsf T}=0.
+\]
+This is precisely $\delta^{(n+1)}\delta^{(n)}=0$.
+\emph{Scope qualification.} For an arbitrary infinite complex, cochains should be defined as $\Hom(C_n(X),\Z)$, allowing arbitrary coefficient functions; they need not equal the finite-support chain group. Define $(\delta\alpha)(c)=\alpha(\partial c)$ there. The same square-zero proof then works without a finiteness assumption. The textbook's identification of chains and cochains is valid for its finite examples.
+
+\exercise{41.12}{Cocycles and coboundaries}
+Define
+\[
+Z^{(n)}(X)=\ker\delta^{(n)},\qquad
+B^{(n)}(X)=\operatorname{im}\delta^{(n-1)}.
+\]
+For $n=0$ set $B^{(0)}=0$. Kernels and images of homomorphisms are subgroups. If $b=\delta^{(n-1)}c$, then $\delta^{(n)}b=0$ because $\delta^2=0$. Therefore every coboundary is a cocycle and $B^{(n)}(X)\le Z^{(n)}(X)$, making the next quotient definition possible.
+
+\exercise{41.13}{Cohomology of the tetrahedron surface}
+Define $H^{(n)}(X)=Z^{(n)}(X)/B^{(n)}(X)$.
+For the surface $S$ there are four vertices, six edges, four faces, and no 3-simplex.
+In dimension zero $\delta f=0$ says that $f$ takes the same value at both ends of every edge, so $f$ is constant. Hence $H^{(0)}(S)\cong\Z$.
+For dimension one, a cocycle has edge values $u_{ij}$ satisfying $u_{jk}-u_{ik}+u_{ij}=0$ on every triangular face. Put $t_1=0$, $t_j=u_{1j}$; the face $[1ij]$ gives $u_{ij}=t_j-t_i$. Thus every 1-cocycle is the coboundary of a vertex function and $H^{(1)}(S)=0$.
+In dimension two every cochain is a cocycle, since there are no 3-simplexes. Write $e_{ijk}$ for the cochain dual to a face. Coboundaries of edges give, among others, the relations
+\[
+e_{123}+e_{124}=0,\quad -e_{123}+e_{134}=0,
+\quad e_{123}+e_{234}=0.
+\]
+The other edge relations follow from these. Thus all four face classes are signed multiples of one unrestricted generator; there is no torsion relation. Consequently
+\[
+H^{(2)}(S)\cong\Z,\qquad H^{(n)}(S)=0\ (n>2).
+\]
+These are cohomology computations from the coboundary maps, rather than an assumption that cohomology always equals homology.

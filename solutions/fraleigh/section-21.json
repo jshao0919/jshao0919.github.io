@@ -1,0 +1,13 @@
+{
+  "section": 21,
+  "part": 4,
+  "title": "The Field of Quotients of an Integral Domain",
+  "exercise_count": 17,
+  "source_pages": [
+    202,
+    203
+  ],
+  "notes": [
+    "Exercise13 localization proof requires a nonzero regular element; zero is not called a zero divisor in the textbook."
+  ]
+}
