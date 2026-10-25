@@ -1,0 +1,384 @@
+\section{Applications to linear models}
+A model is linear in its \emph{unknown parameters}, even if it contains
+$x^2$, $\sin x$, or $e^{-0.02x}$. For observations $(x_i,y_i)$,
+write the predicted value as a row of a design matrix $X$ times a
+parameter vector $\beta$. The observation equation is
+$y=X\beta+\varepsilon$. Least squares minimizes $\|\varepsilon\|$,
+and the fitted parameters solve $X^TX\widehat\beta=X^Ty$.
+As a check, the fitted residual always satisfies
+$X^T(y-X\widehat\beta)=0$. We retain unrounded coefficients in
+computations and round only displayed predictions.
+
+\practice{6.6.P1}{A seasonal term is still linear in its coefficient}
+For the proposed seasonal model, use
+\[
+ X=\begin{bmatrix}1&x_1&\sin(2\pi x_1/12)\\
+ \vdots&\vdots&\vdots\\1&x_n&\sin(2\pi x_n/12)\end{bmatrix},\quad
+ \beta=(\beta_0,\beta_1,\beta_2)^T,\quad y=(y_1,\ldots,y_n)^T.
+\]
+The $i$th product row equals the predicted sales at month $x_i$.
+The sine values are known once the observation times are supplied;
+only their coefficients are unknown, so this is a linear least-squares model.
+
+\exercise{6.6.1}{Fit a line through the normal equations}
+Rows of $X$ are $(1,x_i)$, in the order of the stated data. Thus
+\[ X=\begin{bmatrix}1 & 0\\1 & 1\\1 & 2\\1 & 3\end{bmatrix},\qquad y=\begin{bmatrix}1\\1\\2\\2\end{bmatrix}.\]
+
+The normal equations are
+\[ \begin{bmatrix}4 & 6\\6 & 14\end{bmatrix}\begin{bmatrix}\widehat\beta_0\\\widehat\beta_1\end{bmatrix}=\begin{bmatrix}6\\11\end{bmatrix}.\]
+
+Reducing this two-variable system gives $\widehat\beta=\begin{bmatrix}\frac{9}{10}\\\frac{2}{5}\end{bmatrix}$, so the fitted line is
+\[ \boxed{y=\frac{9}{10}+(\frac{2}{5})x}.\]
+
+The residual $\begin{bmatrix}\frac{1}{10}\\- \frac{3}{10}\\\frac{3}{10}\\- \frac{1}{10}\end{bmatrix}$ has zero sum and zero dot product with the observed $x$-coordinate list. These are exactly the two normal equations, verifying the minimizer. Its squared error is $\frac{1}{5}$.
+
+\exercise{6.6.2}{Fit a line through the normal equations}
+Rows of $X$ are $(1,x_i)$, in the order of the stated data. Thus
+\[ X=\begin{bmatrix}1 & 1\\1 & 2\\1 & 4\\1 & 5\end{bmatrix},\qquad y=\begin{bmatrix}0\\1\\2\\3\end{bmatrix}.\]
+
+The normal equations are
+\[ \begin{bmatrix}4 & 12\\12 & 46\end{bmatrix}\begin{bmatrix}\widehat\beta_0\\\widehat\beta_1\end{bmatrix}=\begin{bmatrix}6\\25\end{bmatrix}.\]
+
+Reducing this two-variable system gives $\widehat\beta=\begin{bmatrix}- \frac{3}{5}\\\frac{7}{10}\end{bmatrix}$, so the fitted line is
+\[ \boxed{y=- \frac{3}{5}+(\frac{7}{10})x}.\]
+
+The residual $\begin{bmatrix}- \frac{1}{10}\\\frac{1}{5}\\- \frac{1}{5}\\\frac{1}{10}\end{bmatrix}$ has zero sum and zero dot product with the observed $x$-coordinate list. These are exactly the two normal equations, verifying the minimizer. Its squared error is $\frac{1}{10}$.
+
+\exercise{6.6.3}{Fit a line through the normal equations}
+Rows of $X$ are $(1,x_i)$, in the order of the stated data. Thus
+\[ X=\begin{bmatrix}1 & -1\\1 & 0\\1 & 1\\1 & 2\end{bmatrix},\qquad y=\begin{bmatrix}0\\1\\2\\4\end{bmatrix}.\]
+
+The normal equations are
+\[ \begin{bmatrix}4 & 2\\2 & 6\end{bmatrix}\begin{bmatrix}\widehat\beta_0\\\widehat\beta_1\end{bmatrix}=\begin{bmatrix}7\\10\end{bmatrix}.\]
+
+Reducing this two-variable system gives $\widehat\beta=\begin{bmatrix}\frac{11}{10}\\\frac{13}{10}\end{bmatrix}$, so the fitted line is
+\[ \boxed{y=\frac{11}{10}+(\frac{13}{10})x}.\]
+
+The residual $\begin{bmatrix}\frac{1}{5}\\- \frac{1}{10}\\- \frac{2}{5}\\\frac{3}{10}\end{bmatrix}$ has zero sum and zero dot product with the observed $x$-coordinate list. These are exactly the two normal equations, verifying the minimizer. Its squared error is $\frac{3}{10}$.
+
+\exercise{6.6.4}{Fit a line through the normal equations}
+Rows of $X$ are $(1,x_i)$, in the order of the stated data. Thus
+\[ X=\begin{bmatrix}1 & 2\\1 & 3\\1 & 5\\1 & 6\end{bmatrix},\qquad y=\begin{bmatrix}3\\2\\1\\0\end{bmatrix}.\]
+
+The normal equations are
+\[ \begin{bmatrix}4 & 16\\16 & 74\end{bmatrix}\begin{bmatrix}\widehat\beta_0\\\widehat\beta_1\end{bmatrix}=\begin{bmatrix}6\\17\end{bmatrix}.\]
+
+Reducing this two-variable system gives $\widehat\beta=\begin{bmatrix}\frac{43}{10}\\- \frac{7}{10}\end{bmatrix}$, so the fitted line is
+\[ \boxed{y=\frac{43}{10}+(- \frac{7}{10})x}.\]
+
+The residual $\begin{bmatrix}\frac{1}{10}\\- \frac{1}{5}\\\frac{1}{5}\\- \frac{1}{10}\end{bmatrix}$ has zero sum and zero dot product with the observed $x$-coordinate list. These are exactly the two normal equations, verifying the minimizer. Its squared error is $\frac{1}{10}$.
+
+
+\exercise{6.6.5}{Exactly when does a line fit have unique parameters?}
+By Section 6.5, the normal equations have a unique solution exactly
+when the two columns of $X$ are independent. They are the all-ones
+column and $(x_1,\ldots,x_n)^T$.
+If all $x_i$ equal the same $c$, the second column is $c$ times
+the first, so independence and uniqueness fail. Conversely, suppose
+$ax_i+b=0$ at all data points and two abscissas differ. Subtracting
+the equations at those two points forces $a=0$, then $b=0$.
+Thus the columns are independent precisely when at least two distinct
+$x$-coordinates occur. Repeated observations at one $x$ cannot
+identify both an intercept and a slope uniquely.
+
+\exercise{6.6.6}{Three distinct abscissas identify a quadratic fit}
+The three design columns are $1,x,x^2$. A dependence among them
+would give a polynomial $c_0+c_1t+c_2t^2$ that vanishes at every
+observed abscissa, in particular at three distinct ones. A nonzero
+polynomial of degree at most two cannot have three distinct roots.
+Hence all coefficients must be zero, proving independence of the
+columns. The full-column-rank least-squares theorem then gives a
+unique best-fitting parameter vector. The fitted polynomial may happen
+to have zero quadratic coefficient; uniqueness concerns the polynomial,
+not a requirement that its degree be exactly two.
+
+\exercise{6.6.7}{Fit a quadratic with no constant term}
+\step{(a) Put the known powers into the design columns.}
+For the five observations, the model is
+\[
+ X=\begin{bmatrix}1&1\\2&4\\3&9\\4&16\\5&25\end{bmatrix},\quad
+ y=(1.8,2.7,3.4,3.8,3.9)^T,\quad\beta=(\beta_1,\beta_2)^T.
+\]
+There is no column of ones, because the proposed model has no intercept.
+\step{(b) Solve and state the curve.}
+The exact normal equations are
+\[
+ \begin{bmatrix}55&225\\225&979\end{bmatrix}\widehat\beta
+ =\begin{bmatrix}521/10\\403/2\end{bmatrix}.
+\]
+Their solution is $\widehat\beta=(14171/8050,-32/161)^T$.
+Thus the least-squares curve is
+\[
+ y=\frac{14171}{8050}x-\frac{32}{161}x^2
+ \approx1.760373x-0.198758x^2.
+\]
+Substitution in the normal equations verifies both residual moments
+are zero. This certifies the fit with the supplied decimal data treated exactly.
+
+\exercise{6.6.8}{Fit a cubic cost model without fixed costs}
+\step{(a) Record the general model.}
+Use $X_{i,:}=(x_i,x_i^2,x_i^3)$, $y=(y_1,\ldots,y_n)^T$,
+and $\beta=(\beta_1,\beta_2,\beta_3)^T$. Again no column of
+ones appears. The residual equation is $y=X\beta+\varepsilon$.
+\step{(b) Use the eight supplied observations.}
+Here $x_i=4,6,8,10,12,14,16,18$, and the observed costs are
+$1.58,2.08,2.50,2.80,3.10,3.40,3.80,4.32$, in the stated
+thousand-unit scales. The normal equations are
+\[
+ \begin{bmatrix}1136&16192&245312\\16192&245312&3866368\\245312&3866368&62617856\end{bmatrix}
+ \widehat\beta
+ =\begin{bmatrix}7254/25\\100636/25\\1501896/25\end{bmatrix}.
+\]
+Solving with exact rational data gives
+\[
+ \widehat\beta=
+ (8970503/17479000,\ -319181/9534000,\ 15221/14982000)^T.
+\]
+The fitted curve is therefore
+\[
+ y\approx0.513216031x-0.0334781833x^2+0.00101595248x^3.
+\]
+The exact residual satisfies $X^T(y-X\widehat\beta)=0$.
+The graph below shows the fitted curve in blue and all eight observations
+as black points; both axes use the problem's thousand-unit scale.
+
+\begin{center}\setlength{\unitlength}{1mm}\begin{picture}(140,90)\put(15,12){\vector(1,0){116}}\put(15,10){\vector(0,1){73}}\put(132,9){$x$}\put(9,84){$y$}
+
+\put(15,11){\line(0,1){2}}\put(15,7){\makebox(0,0){\scriptsize$0$}}
+
+\put(39,11){\line(0,1){2}}\put(39,7){\makebox(0,0){\scriptsize$4$}}
+
+\put(63,11){\line(0,1){2}}\put(63,7){\makebox(0,0){\scriptsize$8$}}
+
+\put(87,11){\line(0,1){2}}\put(87,7){\makebox(0,0){\scriptsize$12$}}
+
+\put(111,11){\line(0,1){2}}\put(111,7){\makebox(0,0){\scriptsize$16$}}
+
+\put(123,11){\line(0,1){2}}\put(123,7){\makebox(0,0){\scriptsize$18$}}
+
+\put(14,24){\line(1,0){2}}\put(10,24){\makebox(0,0){\scriptsize$1$}}
+
+\put(14,36){\line(1,0){2}}\put(10,36){\makebox(0,0){\scriptsize$2$}}
+
+\put(14,48){\line(1,0){2}}\put(10,48){\makebox(0,0){\scriptsize$3$}}
+
+\put(14,60){\line(1,0){2}}\put(10,60){\makebox(0,0){\scriptsize$4$}}
+
+\put(14,72){\line(1,0){2}}\put(10,72){\makebox(0,0){\scriptsize$5$}}
+
+{\color{blue}\linethickness{0.8pt}\polyline(15.000,12.000)(16.200,13.216)(17.400,14.400)(18.600,15.553)(19.800,16.676)(21.000,17.769)(22.200,18.833)(23.400,19.868)(24.600,20.875)(25.800,21.855)(27.000,22.808)(28.200,23.734)
+(29.400,24.635)(30.600,25.511)(31.800,26.362)(33.000,27.189)(34.200,27.993)(35.400,28.774)(36.600,29.533)(37.800,30.271)(39.000,30.987)(40.200,31.683)(41.400,32.359)(42.600,33.015)
+(43.800,33.653)(45.000,34.273)(46.200,34.876)(47.400,35.461)(48.600,36.031)(49.800,36.584)(51.000,37.122)(52.200,37.646)(53.400,38.156)(54.600,38.652)(55.800,39.135)(57.000,39.607)
+(58.200,40.066)(59.400,40.515)(60.600,40.953)(61.800,41.381)(63.000,41.800)(64.200,42.210)(65.400,42.611)(66.600,43.006)(67.800,43.393)(69.000,43.774)(70.200,44.149)(71.400,44.519)
+(72.600,44.884)(73.800,45.246)(75.000,45.604)(76.200,45.958)(77.400,46.311)(78.600,46.662)(79.800,47.012)(81.000,47.361)(82.200,47.710)(83.400,48.060)(84.600,48.411)(85.800,48.764)
+(87.000,49.120)(88.200,49.478)(89.400,49.840)(90.600,50.206)(91.800,50.576)(93.000,50.953)(94.200,51.334)(95.400,51.723)(96.600,52.118)(97.800,52.522)(99.000,52.933)(100.200,53.353)
+(101.400,53.783)(102.600,54.222)(103.800,54.673)(105.000,55.134)(106.200,55.607)(107.400,56.092)(108.600,56.591)(109.800,57.103)(111.000,57.629)(112.200,58.169)(113.400,58.725)(114.600,59.297)
+(115.800,59.885)(117.000,60.490)(118.200,61.113)(119.400,61.754)(120.600,62.414)(121.800,63.093)(123.000,63.792)}
+
+\put(39.000,30.960){\circle*{1.5}}
+
+\put(51.000,36.960){\circle*{1.5}}
+
+\put(63.000,42.000){\circle*{1.5}}
+
+\put(75.000,45.600){\circle*{1.5}}
+
+\put(87.000,49.200){\circle*{1.5}}
+
+\put(99.000,52.800){\circle*{1.5}}
+
+\put(111.000,57.600){\circle*{1.5}}
+
+\put(123.000,63.840){\circle*{1.5}}
+
+\end{picture}\end{center}
+
+
+\exercise{6.6.9}{A trigonometric model linear in two coefficients}
+Use
+\[
+ X=\begin{bmatrix}\cos1&\sin1\\\cos2&\sin2\\\cos3&\sin3\end{bmatrix},\quad
+ y=(7.9,5.4,-0.9)^T,\quad\beta=(A,B)^T.
+\]
+Angles are in radians. Although the basis functions are trigonometric,
+the unknowns $A,B$ enter linearly. Minimize $\|y-X\beta\|$ by
+solving $X^TX\widehat\beta=X^Ty$, or use QR on $X$ directly.
+A numerical solution gives $A\approx2.34212062$, $B\approx7.44750155$,
+so $y\approx2.34212062\cos x+7.44750155\sin x$.
+Using unrounded coefficients, the normal residual is below
+$3\times10^{-14}$ in absolute value, a check on the computed fit.
+
+\exercise{6.6.10}{Estimate two initial radioactive masses}
+\step{(a) Treat the decay functions as known columns.}
+At times $t_i=10,11,12,14,15$, use
+\[
+ X_{i,:}=(e^{-0.02t_i},e^{-0.07t_i}),\quad
+ \beta=(M_A,M_B)^T,
+\]
+with observation vector $(21.34,20.68,20.05,18.87,18.30)^T$.
+The decay constants are supplied, so the two masses, not the exponent
+rates, are the unknown linear parameters.
+\step{(b) Fit the two masses.}
+Numerical least squares gives
+$M_A\approx19.94109495$ and $M_B\approx10.10151413$ grams.
+Thus the fitted curve is
+\[
+ y(t)\approx19.94109495e^{-0.02t}+10.10151413e^{-0.07t}.
+\]
+Both fitted masses are positive. The residual norm is approximately
+$0.0114745$ grams, and the normal residual computed from unrounded
+coefficients is below $3\times10^{-14}$.
+The residual is not assumed to vanish, because the measured data are rounded.
+
+\exercise{6.6.11}{Linearize the comet equation in the correct parameters}
+The relation $r=\beta+e(r\cos\theta)$ is linear in $\beta,e$.
+For the given observations, use design rows $(1,r_i\cos\theta_i)$,
+not $(1,\cos\theta_i)$, and observation vector $(r_i)$.
+Least squares gives $\beta\approx1.45092922$ and
+$e\approx0.81105251$; the fitted normal residual is below
+$2\times10^{-14}$. Since $0<e<1$, the predicted orbit is an ellipse.
+For a new angle, solve the original model for its new radius:
+\[
+ r=\frac{\beta}{1-e\cos\theta},\qquad
+ r(4.6)\approx1.32995445.
+\]
+The denominator is positive here (indeed $e<1$ makes it positive at every angle).
+\answer{An elliptic orbit, with predicted radius about $1.330$ in
+the same units as the observed radii.}
+
+\exercise{6.6.12}{Regress pressure on logarithmic weight}
+Use design rows $(1,\ln w_i)$ and observation vector
+$(91,98,103,110,112)^T$. If the printed rounded logarithms
+$3.78,4.11,4.39,4.73,4.88$ are used, the fitted line is
+\[
+ p\approx18.56421016+19.24070120\ln w.
+\]
+At $w=100$, using $\ln100\approx4.605170186$, this predicts
+$p\approx107.17091367$ mmHg.
+For clarity about precision: recomputing the logarithms directly from
+$w=44,61,81,113,131$ instead of using their rounded table entries
+gives $p\approx17.92434012+19.38499925\ln w$, and a prediction
+$107.19556074$ mmHg. Both computations satisfy their respective
+normal equations to roundoff.
+\answer{About $107$ mmHg. The small difference between the two
+more detailed predictions comes from rounding the predictor data.}
+
+\exercise{6.6.13}{Fit takeoff position and differentiate the fitted polynomial}
+\step{(a) Build the cubic design matrix from the thirteen times.}
+For $t=0,1,\ldots,12$, take row $(1,t,t^2,t^3)$ and the given
+position vector in feet. The normal equations have coefficient matrix
+\[
+ X^TX=\begin{bmatrix}
+13&78&650&6084\\78&650&6084&60710\\
+650&6084&60710&630708\\6084&60710&630708&6735950
+\end{bmatrix},
+\]
+with right side
+$X^Ty=(19001/5,351277/10,3480639/10,35998009/10)^T$.
+Solving gives the exact coefficient vector
+\[
+ \widehat\beta=(-89/104,\ 75315/16016,\ 222437/40040,\ -313/11440)^T.
+\]
+Thus, approximately,
+\[
+ y(t)=-0.855769231+4.702485015t+5.555369630t^2-0.02736013986t^3.
+\]
+The exact coefficients make $X^T(y-X\widehat\beta)=0$; distinct
+times ensure the four design columns are independent, so the fit is unique.
+\step{(b) Differentiate before evaluating.}
+The fitted velocity is
+$y'(t)=\widehat\beta_1+2\widehat\beta_2t+3\widehat\beta_3t^2$.
+At $t=4.5$ this gives $\boxed{53.03868319\text{ feet/second}}$.
+This estimates instantaneous velocity from the fitted curve, rather
+than dividing the fitted position by the elapsed time.
+
+\exercise{6.6.14}{The fitted line passes through the mean point}
+The residual $r=y-X\widehat\beta$ is orthogonal to each column
+of $X$, including the all-ones column. Thus its entries sum to zero:
+$\sum_i(y_i-\widehat\beta_0-\widehat\beta_1x_i)=0$.
+Divide by $n>0$ and use the definitions of the means to obtain
+\[
+ \overline y=\widehat\beta_0+\widehat\beta_1\overline x.
+\]
+This says exactly that $(\overline x,\overline y)$ lies on the fitted line.
+
+\exercise{6.6.15}{Derive the scalar normal equations}
+For design columns $\mathbf1$ and $x$, the four Gram entries are
+$\mathbf1^T\mathbf1=n$, $\mathbf1^Tx=x^T\mathbf1=\sum x_i$,
+and $x^Tx=\sum x_i^2$. Similarly,
+$X^Ty=(\sum y_i,\sum x_iy_i)^T$.
+Multiplication of the resulting two-by-two system gives
+\[
+ n\widehat\beta_0+\widehat\beta_1\sum x_i=\sum y_i,
+ \qquad
+ \widehat\beta_0\sum x_i+\widehat\beta_1\sum x_i^2=\sum x_iy_i,
+\]
+which are precisely equations (7).
+
+\exercise{6.6.16}{Invert the two-by-two normal matrix}
+Write $S_x=\sum x_i$, $S_{xx}=\sum x_i^2$,
+$S_y=\sum y_i$, and $S_{xy}=\sum x_iy_i$.
+When at least two abscissas differ,
+$D=nS_{xx}-S_x^2=n\sum_i(x_i-\overline x)^2>0$.
+Thus the normal matrix inverse is
+\[
+ \frac1D\begin{bmatrix}S_{xx}&-S_x\\-S_x&n\end{bmatrix}.
+\]
+Multiplying it by $(S_y,S_{xy})^T$ gives
+\[
+ \boxed{\widehat\beta_0=\frac{S_{xx}S_y-S_xS_{xy}}D,\qquad
+ \widehat\beta_1=\frac{nS_{xy}-S_xS_y}D}.
+\]
+Equivalently $\widehat\beta_0=\overline y-\widehat\beta_1\overline x$.
+If all abscissas coincide, $D=0$ and this inverse formula is inapplicable,
+consistent with the failure of unique parameter identification.
+
+\exercise{6.6.17}{Centering the predictor makes the columns orthogonal}
+\step{(a) Rewrite the actual data from Example 1.}
+Their mean abscissa is $(2+5+7+8)/4=5.5$. The transformed data are
+\[(-3.5,1),\quad(-0.5,2),\quad(1.5,3),\quad(2.5,3).\]
+The design matrix has columns $\mathbf1$ and
+$x^*=(-3.5,-0.5,1.5,2.5)^T$. Their dot product is the sum of
+$x^*$, which is zero, proving orthogonality.
+\step{(b) Solve the diagonal normal equations.}
+Here $X^TX=\operatorname{diag}(4,21)$ and
+$X^Ty=(9,7.5)^T$. Hence
+$\widehat\beta_0=9/4$ and $\widehat\beta_1=5/14$.
+\answer{The centered fitted line is $y=9/4+(5/14)x^*$, with
+$x^*=x-5.5$. Its uncentered form is $y=2/7+(5/14)x$.}
+
+\exercise{6.6.18}{A general centered design has a diagonal Gram matrix}
+The two off-diagonal Gram entries are both $\sum_i x_i$, which
+is zero by the centered-coordinate assumption. Therefore
+\[
+ X^TX=\begin{bmatrix}n&0\\0&\sum_i x_i^2\end{bmatrix}.
+\]
+If every centered abscissa is zero, the second diagonal entry vanishes;
+diagonal does not by itself mean invertible.
+
+\exercise{6.6.19}{Use an orthogonal decomposition of the observed vector}
+Write $y=X\widehat\beta+r$. The normal equations give $X^Tr=0$,
+so $r$ is orthogonal to $\Col X$, which contains $X\widehat\beta$.
+The Pythagorean theorem therefore applies:
+\[
+ \|y\|^2=\|X\widehat\beta\|^2+\|r\|^2.
+\]
+With the problem's notation, this is
+$\operatorname{SS}(T)=\operatorname{SS}(R)+\operatorname{SS}(E)$.
+The zero-mean convention lets the total be interpreted as centered
+variation; the displayed norm identity itself follows from orthogonality.
+
+\exercise{6.6.20}{A computational formula for the fitted and residual sums}
+Using the normal equations in the middle step,
+\[
+ \|X\widehat\beta\|^2
+ =\widehat\beta^TX^TX\widehat\beta
+ =\widehat\beta^TX^Ty.
+\]
+Subtract this from the Pythagorean identity in Exercise 19 to obtain
+\[
+ \boxed{\operatorname{SS}(E)=y^Ty-\widehat\beta^TX^Ty}.
+\]
+This avoids explicitly summing every residual square once the fit has
+been computed. In finite-precision arithmetic direct residual norms
+can be more stable when this subtraction nearly cancels two large numbers.

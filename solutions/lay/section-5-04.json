@@ -1,0 +1,12 @@
+{
+  "chapter": 5,
+  "section": 4,
+  "title": "Eigenvectors and linear transformations",
+  "exercise_count": 32,
+  "practice_count": 2,
+  "source_pages": [
+    310,
+    311
+  ],
+  "verification": "Exact SymPy characteristic polynomials, eigenspace nullspaces, AP=PD/AP=PC and basis coordinate products verified; standalone PDF compiles without layout/reference warnings."
+}

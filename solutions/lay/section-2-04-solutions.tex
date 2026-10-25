@@ -1,0 +1,328 @@
+\section{Partitioned matrices}
+A block is itself a matrix. Block addition and multiplication follow the
+ordinary row--column rules, but every block product must have matching
+inner dimensions. Preserve the order of factors: $AB$ cannot in general
+be changed to $BA$. An identity block has the size needed in its own row
+and column, so two symbols $I$ in one display may have different sizes.
+
+\practice{2.4.P1}{Invert a block row-replacement matrix}
+Let $T=\begin{bmatrix}I&0\\A&I\end{bmatrix}$. Try reversing the addition
+of $A$ times the first block row to the second:
+\[S=\begin{bmatrix}I&0\\-A&I\end{bmatrix}.\]
+Block multiplication gives $TS=\begin{bmatrix}I&0\\A-A&I\end{bmatrix}=I$.
+In the reverse order $ST$ has lower-left block $-A+A=0$ and all
+other identity blocks. Thus $S=T^{-1}$.
+
+\practice{2.4.P2}{Transpose a horizontal partition before multiplying}
+For $X=[X_1\ X_2]$, its transpose is vertical:
+\[X^TX=\begin{bmatrix}X_1^T\\X_2^T\end{bmatrix}[X_1\ X_2]
+=\begin{bmatrix}X_1^TX_1&X_1^TX_2\\X_2^TX_1&X_2^TX_2\end{bmatrix}.\]
+The off-diagonal blocks do not disappear; they measure cross-products
+between the two groups of columns.
+
+\exercise{2.4.1}{Add a multiple of one block row}
+The conformability assumption makes each displayed product valid.
+\[\begin{bmatrix}I&0\\E&I\end{bmatrix}\begin{bmatrix}A&B\\C&D\end{bmatrix}=\begin{bmatrix}A&B\\EA+C&EB+D\end{bmatrix}\]
+The lower-left block is $EA+IC=EA+C$; the upper row is unchanged.
+
+\exercise{2.4.2}{Multiply by a block diagonal matrix}
+The conformability assumption makes each displayed product valid.
+\[\begin{bmatrix}E&0\\0&F\end{bmatrix}\begin{bmatrix}P&Q\\R&S\end{bmatrix}=\begin{bmatrix}EP&EQ\\FR&FS\end{bmatrix}\]
+The first block row is multiplied by $E$ and the second by $F$; the zero blocks remove the other terms.
+
+\exercise{2.4.3}{Interchange two block rows}
+The conformability assumption makes each displayed product valid.
+\[\begin{bmatrix}0&I\\I&0\end{bmatrix}\begin{bmatrix}A&B\\C&D\end{bmatrix}=\begin{bmatrix}C&D\\A&B\end{bmatrix}\]
+For example the upper-left product is $0A+IC=C$. This is a block row interchange.
+
+\exercise{2.4.4}{Subtract a block multiple}
+The conformability assumption makes each displayed product valid.
+\[\begin{bmatrix}I&0\\-E&I\end{bmatrix}\begin{bmatrix}W&X\\Y&Z\end{bmatrix}=\begin{bmatrix}W&X\\Y-EW&Z-EX\end{bmatrix}\]
+The minus sign acts on both products in the lower block row. The order $EW$, rather than $WE$, comes from the row--column rule.
+
+\exercise{2.4.5}{Equate the four blocks before choosing inverses}
+Multiplication of the two given matrices gives
+\[\begin{bmatrix}A+BX&BY\\C&0\end{bmatrix}
+=\begin{bmatrix}0&I\\Z&0\end{bmatrix}.\]
+Thus the exact requirements are $BX=-A$, $BY=I$, and $Z=C$.
+If $B$ is square, these requirements force $B$ invertible, and
+\[X=-B^{-1}A,\qquad Y=B^{-1},\qquad Z=C.\]
+Indeed $B(-B^{-1}A)=-A$ and $BB^{-1}=I$, checking both upper
+blocks. More generally, if $B$ is rectangular and has a right inverse
+$Y$, the choice $X=-YA$ still works. Without such a right inverse,
+$BY=I$ is impossible, so no solution exists.
+
+\exercise{2.4.6}{Invert a block lower triangular matrix}
+The product is
+\[\begin{bmatrix}XA&0\\YA+ZB&ZC\end{bmatrix}=I.\]
+Assume $A$ and $C$ are square and invertible. Then the diagonal
+blocks give $X=A^{-1}$ and $Z=C^{-1}$. The lower-left equation is
+$YA=-C^{-1}B$, so right multiplication by $A^{-1}$ gives
+\[Y=-C^{-1}BA^{-1}.\]
+Inserting these formulas makes $YA+ZB=-C^{-1}B+C^{-1}B=0$.
+For square diagonal blocks, their invertibility is also necessary
+because $XA=I$ and $ZC=I$ imply it.
+
+\exercise{2.4.7}{A zero middle block does not contribute}
+The block product is
+\[\begin{bmatrix}XA&XZ\\YA+B&YZ+I\end{bmatrix}=I.\]
+With $A$ square and invertible, $XA=I$ gives $X=A^{-1}$.
+Then $XZ=0$ forces $Z=0$, and $YA+B=0$ gives $Y=-BA^{-1}$.
+The remaining equation is $YZ+I=I$, which is now satisfied.
+\answer{$X=A^{-1}$, $Y=-BA^{-1}$, and $Z=0$ under the stated
+square-invertible assumption.}
+
+\exercise{2.4.8}{Match three block columns}
+Multiplication gives
+\[\begin{bmatrix}AX&AY&AZ+B\\0&0&I\end{bmatrix}
+=\begin{bmatrix}I&0&0\\0&0&I\end{bmatrix}.\]
+If $A$ is square and invertible, the first row requires
+\[X=A^{-1},\qquad Y=0,\qquad Z=-A^{-1}B.\]
+Each formula follows by multiplying its block equation on the left
+by $A^{-1}$. If $A$ is rectangular with a right inverse $X$, one
+possible solution is instead $Y=0,Z=-XB$; $AX=I$ checks it.
+An $A$ without a right inverse cannot satisfy the first equation.
+
+\exercise{2.4.9}{Eliminate two blocks below a leading block}
+The second block row starts with $A_{21}B_{11}+B_{21}$.
+Setting it to zero and multiplying on the right by $B_{11}^{-1}$
+gives $A_{21}=-B_{21}B_{11}^{-1}$. Likewise
+$A_{31}=-B_{31}B_{11}^{-1}$.
+The second block in the new second row is consequently
+\[C_{22}=A_{21}B_{12}+B_{22}
+=B_{22}-B_{21}B_{11}^{-1}B_{12}.\]
+For completeness $C_{11}=B_{11}$, $C_{12}=B_{12}$, and
+$C_{32}=B_{32}-B_{31}B_{11}^{-1}B_{12}$.
+The middle inverse cannot be moved past its neighboring factors.
+
+\exercise{2.4.10}{Invert three block levels in order}
+Multiply the original matrix by the proposed inverse. Its lower
+blocks must satisfy
+\[A+P=0,\qquad D+R=0,\qquad B+DP+Q=0.\]
+Thus $P=-A$, $R=-D$, and $Q=DA-B$.
+In the reverse product the lower-left block is
+$Q+RA+B=(DA-B)-DA+B=0$, while the other off-diagonal blocks
+also vanish. Hence both products are the identity.
+\answer{$P=-A$, $Q=DA-B$, and $R=-D$.}
+
+\exercise{2.4.11}{Check conformability rather than only the number of blocks}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} Corresponding blocks have equal sizes, so adding
+entries gives $[A_1+B_1\ A_2+B_2]$.
+\item \textbf{False.} The drawn partitions do not specify the actual
+sizes. The number of columns of each $A_{ij}$ must equal the number
+of rows of the corresponding $B_j$. For example, take all $A_{ij}$
+scalar but each $B_j$ a $2\times1$ column. The displayed block
+pattern exists but multiplication is not conformable.
+\end{enumerate}
+
+\exercise{2.4.12}{Dimensions and transposes of partitions}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} $A$ has size $2n\times n$ and $B$ has size
+$n\times2n$. Both $BA$ ($n\times n$) and $AB$ ($2n\times2n$)
+are defined. The blocks of $AB$ are $A_iB_j$.
+\item \textbf{False.} Transposition interchanges block positions as
+well as transposing each block:
+$A^T=\begin{bmatrix}P^T&R^T\\Q^T&S^T\end{bmatrix}$.
+The stated version puts the off-diagonal blocks in the wrong places.
+\end{enumerate}
+
+\exercise{2.4.13}{Invertibility of a block diagonal matrix}
+If $B$ and $C$ are invertible, block multiplication shows that
+$\operatorname{diag}(B^{-1},C^{-1})$ is a two-sided inverse.
+Conversely suppose $\operatorname{diag}(B,C)$ is invertible.
+If $Bu=0$, then the block vector $(u,0)^T$ is in the kernel of the
+whole matrix; injectivity forces $u=0$. Since $B$ is square, the
+Invertible Matrix Theorem makes $B$ invertible. The same argument
+with $(0,v)^T$ proves $C$ invertible.
+\answer{The equivalence holds in both directions.}
+
+\exercise{2.4.14}{Invertibility of a block upper triangular matrix}
+Write $A=\begin{bmatrix}A_{11}&A_{12}\\0&A_{22}\end{bmatrix}$ with
+square diagonal blocks. If they are invertible, the two-sided inverse is
+\[\begin{bmatrix}A_{11}^{-1}&-A_{11}^{-1}A_{12}A_{22}^{-1}\\
+0&A_{22}^{-1}\end{bmatrix}.\]
+The upper-right block of the product in the original order is
+$-A_{12}A_{22}^{-1}+A_{12}A_{22}^{-1}=0$; in the other order
+it is $A_{11}^{-1}A_{12}-A_{11}^{-1}A_{12}=0$.
+For necessity, invertibility of $A$ first forces $A_{11}$ invertible:
+a nonzero $u$ with $A_{11}u=0$ would give kernel vector $(u,0)^T$.
+If $A_{22}v=0$ with $v\ne0$, put
+$u=-A_{11}^{-1}A_{12}v$. Then $A(u,v)^T=0$, another contradiction.
+Thus $A_{22}$ also has trivial kernel and is invertible.
+
+\exercise{2.4.15}{Update an accumulated outer-product sum}
+The column--row rule gives
+\[G_k=X_kX_k^T=\sum_{j=1}^k x_jx_j^T.\]
+Appending the new column yields
+\[G_{k+1}=[X_k\ x_{k+1}]\begin{bmatrix}X_k^T\\x_{k+1}^T\end{bmatrix}
+=G_k+x_{k+1}x_{k+1}^T.\]
+Only one new outer product is needed, followed by entrywise addition
+into the stored $G_k$. If each $x_j$ has $m$ entries, the new product
+uses $m^2$ scalar products of entries, rather than recomputing $k+1$
+outer products. The already processed vectors need not be revisited.
+
+\exercise{2.4.16}{Derive the Schur-complement factorization}
+Multiply the last two factors first:
+\[\begin{bmatrix}A_{11}&0\\0&S\end{bmatrix}
+\begin{bmatrix}I&Y\\0&I\end{bmatrix}
+=\begin{bmatrix}A_{11}&A_{11}Y\\0&S\end{bmatrix}.\]
+Multiplying the left factor then gives
+$\begin{bmatrix}A_{11}&A_{11}Y\\XA_{11}&XA_{11}Y+S\end{bmatrix}$.
+Choose $Y=A_{11}^{-1}A_{12}$ and $X=A_{21}A_{11}^{-1}$.
+The lower-right block becomes
+$A_{21}A_{11}^{-1}A_{12}+S=A_{22}$ by the definition of $S$.
+All four blocks now agree with the required matrix.
+
+\exercise{2.4.17}{Invertibility passes to the Schur complement}
+The outside factors from Exercise 2.4.16 are invertible: reverse
+$X$ or $Y$ in their off-diagonal block, just as in Practice Problem 1.
+If $A=L\operatorname{diag}(A_{11},S)U$ is invertible, then
+$\operatorname{diag}(A_{11},S)=L^{-1}AU^{-1}$ is invertible.
+Exercise 2.4.13 implies $S$ is invertible. Inverting the factors in
+reverse order also gives the explicit formula
+\[A^{-1}=\begin{bmatrix}
+A_{11}^{-1}+A_{11}^{-1}A_{12}S^{-1}A_{21}A_{11}^{-1}&-A_{11}^{-1}A_{12}S^{-1}\\
+-S^{-1}A_{21}A_{11}^{-1}&S^{-1}
+\end{bmatrix}.\]
+This expression follows by multiplying $U^{-1}$, the block diagonal
+inverse, and $L^{-1}$, in that order.
+
+\exercise{2.4.18}{Append one data column to a cross-product matrix}
+For $W=[X\ x_0]$, transposition and block multiplication give
+\[W^TW=\begin{bmatrix}X^TX&X^Tx_0\\x_0^TX&x_0^Tx_0\end{bmatrix}.\]
+Its Schur complement of the invertible upper-left block is the scalar
+\[x_0^Tx_0-x_0^TX(X^TX)^{-1}X^Tx_0
+=x_0^T\bigl[I-X(X^TX)^{-1}X^T\bigr]x_0=x_0^TMx_0.\]
+The asserted reciprocal entry requires this scalar to be nonzero;
+otherwise $W^TW$ is singular, and an inverse entry is not defined.
+The question's requested identity itself holds regardless of whether
+the scalar vanishes.
+
+\exercise{2.4.19}{Eliminate the state vector to obtain the transfer function}
+Put $H=A-sI_n$, assumed invertible. The top block equation is
+$Hx+Bu=0$, so $x=-H^{-1}Bu$. Insert this into the bottom equation
+$Cx+u=y$ to obtain
+\[\bigl[I_m-CH^{-1}B\bigr]u=y.\]
+Thus $W(s)=I_m-C(A-sI_n)^{-1}B$.
+It is exactly the Schur complement of $A-sI_n$ in the original
+block system matrix. Its size is $m\times m$, so it acts on the
+input vector $u\in\R^m$.
+
+\exercise{2.4.20}{The inverse transfer function is another Schur complement}
+The Schur complement of $K=A-BC-sI_n$ in the displayed matrix is
+\[I_m-(-C)K^{-1}B=I_m+C(A-BC-sI_n)^{-1}B.\]
+This is the requested $W(s)^{-1}$ when the stipulated inverses exist.
+To check the inverse claim, write $K=H-BC$, $H=A-sI_n$.
+From $K=H-BC$, multiply $K K^{-1}B=B$ on the left by
+$H^{-1}$ and rearrange to get the identity
+\[K^{-1}B=H^{-1}B+H^{-1}BC K^{-1}B.\]
+Multiplying it by $C$ shows
+$CK^{-1}B=CH^{-1}B+CH^{-1}BC K^{-1}B$.
+Expanding $(I-CH^{-1}B)(I+CK^{-1}B)$ now cancels these three
+terms and gives $I$, confirming the formula.
+The invertibility of $H$ and $W$ also forces $K$ invertible:
+if $Kv=0$, then $v=H^{-1}BCv$ and $W(Cv)=0$; hence $Cv=0$
+and then $v=0$. The square-matrix theorem completes this check.
+
+\exercise{2.4.21}{Verify an involution using blocks}
+\step{(a) Multiply the $2\times2$ matrix.}
+\[\begin{bmatrix}1&0\\2&-1\end{bmatrix}^2
+=\begin{bmatrix}1&0\\2-2&1\end{bmatrix}=I_2.\]
+\step{(b) Recognize the four-dimensional block structure.}
+For this same $A$, the given $M$ is
+$\begin{bmatrix}A&0\\I_2&-A\end{bmatrix}$. Consequently
+\[M^2=\begin{bmatrix}A^2&0\\A-A&A^2\end{bmatrix}=I_4.\]
+The lower-left cancellation is essential; squaring only the diagonal
+blocks would not verify the entire product.
+
+\exercise{2.4.22}{Construct a six-dimensional involution}
+Choose $A=B=I_2$, $D=-I_2$, and
+$C=\begin{bmatrix}1&2\\3&4\end{bmatrix}\ne0$. Then
+\[M=\begin{bmatrix}I_2&0&0\\0&I_2&0\\C&0&-I_2\end{bmatrix}.
+\]
+It has size $6\times6$ as required. Its square has identity diagonal
+blocks and the only possibly nonzero off-diagonal block is
+$CA+DC=C-C=0$. Thus $M^2=I_6$. This construction works with
+any nonzero $2\times2$ choice for $C$.
+
+\exercise{2.4.23}{Induct on the dimension of lower triangular matrices}
+For dimension one the product of two scalars is lower triangular.
+Assume products of $k\times k$ lower triangular matrices are lower
+triangular. Partition two matrices of dimension $k+1$ as
+\[A_1=\begin{bmatrix}a&0^T\\v&A\end{bmatrix},\qquad
+B_1=\begin{bmatrix}b&0^T\\w&B\end{bmatrix}.\]
+Their product is
+\[A_1B_1=\begin{bmatrix}ab&0^T\\vb+Aw&AB\end{bmatrix}.\]
+The top-right block is zero and $AB$ is lower triangular by the
+induction hypothesis. These facts account for every entry above the
+main diagonal. Thus the product in dimension $k+1$ is lower
+triangular, completing the induction.
+
+\exercise{2.4.24}{Invert cumulative sums by successive differences}
+Let $A_n$ be the lower triangular matrix of ones and $B_n$ the
+matrix with ones on the diagonal and $-1$ immediately below it.
+For $n=2$, direct multiplication of
+$\begin{bmatrix}1&0\\1&1\end{bmatrix}$ and
+$\begin{bmatrix}1&0\\-1&1\end{bmatrix}$ in either order gives $I_2$.
+Suppose $A_kB_k=B_kA_k=I_k$. With $\mathbf1$ the $k$-entry
+ones vector and $e_1=(1,0,\ldots,0)^T$, partition
+\[A_{k+1}=\begin{bmatrix}1&0^T\\\mathbf1&A_k\end{bmatrix},\quad
+B_{k+1}=\begin{bmatrix}1&0^T\\-e_1&B_k\end{bmatrix}.\]
+The lower-left block of $A_{k+1}B_{k+1}$ is
+$\mathbf1-A_ke_1=0$, since $A_ke_1$ is the first column, all ones.
+The lower-left block of the reverse product is
+$-e_1+B_k\mathbf1=0$: successive differences of ones are
+$(1,0,\ldots,0)^T$. The diagonal blocks are identities by induction
+and the upper-right blocks are zero. Both products are $I_{k+1}$,
+which proves the assertion for every $n\ge2$.
+
+\exercise{2.4.25}{Invert the three diagonal blocks separately}
+The given matrix is block diagonal with blocks
+$B=\begin{bmatrix}1&2\\3&5\end{bmatrix}$, $[2]$, and
+$C=\begin{bmatrix}7&8\\5&6\end{bmatrix}$.
+The $2\times2$ formula gives
+\[B^{-1}=\begin{bmatrix}-5&2\\3&-1\end{bmatrix},\qquad
+C^{-1}=\begin{bmatrix}3&-4\\-5/2&7/2\end{bmatrix}.\]
+Thus, without row reduction,
+\[A^{-1}=\begin{bmatrix}-5&2&0&0&0\\3&-1&0&0&0\\
+0&0&1/2&0&0\\0&0&0&3&-4\\0&0&0&-5/2&7/2\end{bmatrix}.\]
+Each product block is an identity, so the whole product is $I_5$.
+
+\exercise{2.4.26}{Concrete commands for extracting and inserting blocks}
+Using Python/NumPy's zero-based, end-exclusive slices:
+\begin{enumerate}[label=(\alph*)]
+\item \verb|A[4:10, 14:20]| displays rows 5--10 and columns 15--20.
+The result has size $6\times6$.
+\item \verb|A[4:9, 9:19] = B| inserts the $5\times10$ block in rows
+5--9 and columns 10--19. The first inserted entry is at row 5,
+column 10, as required.
+\item \verb|scipy.linalg.block_diag(A, A.T)| constructs the desired
+$50\times50$ block diagonal matrix. Alternatively initialize a
+$50\times50$ zero array, assign $A$ to \verb|C[:20, :30]| and
+$A^T$ to \verb|C[20:, 30:]|. The off-diagonal blocks then already
+have the necessary zero entries.
+\end{enumerate}
+These are the requested operations, not a request for unspecified data.
+Their output sizes follow from the slice endpoints and the given sizes.
+
+\exercise{2.4.27}{Work entirely with blocks below the size limit}
+Keep the large matrices on disk or as separately stored blocks;
+assembling a full $50\times50$ array would itself violate the limit.
+\begin{enumerate}[label=(\alph*)]
+\item Partition both matrices into four $25\times25$ blocks.
+Compute each sum block $C_{ij}=A_{ij}+B_{ij}$ separately and
+store the four results as the sum's block representation.
+\item With that same partition compute
+$C_{ij}=A_{i1}B_{1j}+A_{i2}B_{2j}$ for $i,j\in\{1,2\}$.
+Every individual multiplication and addition is $25\times25$,
+well within the $32\times32$ bound.
+\item Use the stipulated $20+30$ partition, with
+$b=(b_1,b_2)^T$ and $x=(x_1,x_2)^T$. Since $A_{12}=0$,
+first solve the $20\times20$ system $A_{11}x_1=b_1$.
+Compute $r=b_2-A_{21}x_1$ ($A_{21}$ is $30\times20$), then
+solve $A_{22}x_2=r$, a $30\times30$ system. Both diagonal
+matrices are invertible, so both solves have unique answers.
+Store $x_1,x_2$ separately as the solution; no explicit inverse
+or overlarge matrix is needed.
+\end{enumerate}

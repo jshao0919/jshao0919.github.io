@@ -1,0 +1,326 @@
+\section{Inner product, length, and orthogonality}
+For real columns $u,v$ of equal length, $u\cdot v=u^Tv$ is the sum of
+corresponding coordinate products. The norm is
+$\|v\|=\sqrt{v\cdot v}$, and distance is $\|u-v\|$.
+Two vectors are orthogonal precisely when their inner product is zero.
+Normalize a nonzero vector by dividing by its length, not by its squared
+length. The zero vector has no unit vector in its direction.
+
+For a subspace $W$, its orthogonal complement $W^\perp$ contains the
+vectors orthogonal to \emph{every} vector of $W$. Testing a spanning family
+suffices because the inner product distributes over linear combinations.
+
+\practice{6.1.P1}{A projection coefficient and its scaled vector}
+Compute $a\cdot b=(-2)(-3)+1(1)=7$ and
+$a\cdot a=(-2)^2+1^2=5$. Thus
+\[
+\frac{a\cdot b}{a\cdot a}=\frac75,\qquad
+\left(\frac{a\cdot b}{a\cdot a}\right)a
+=\begin{bmatrix}-14/5\\7/5\end{bmatrix}.
+\]
+The first answer is a scalar, while the second is a vector.
+
+\practice{6.1.P2}{Normalize the three-coordinate vector}
+\step{Compute the length, keeping the square root nonnegative.}
+\[\|v\|=\sqrt{(\frac{4}{3})^2+(-1)^2+(\frac{2}{3})^2}=\frac{\sqrt{29}}{3}.\]
+Since $v\ne0$, divide by this positive length rather than by its square:
+\[u=\frac{v}{\|v\|}=\left[\begin{array}{r}\frac{4 \sqrt{29}}{29}\\- \frac{3 \sqrt{29}}{29}\\\frac{2 \sqrt{29}}{29}\end{array}\right].\]
+The multiplier $1/\|v\|$ is positive, so the direction is unchanged; also $u\cdot u=(v\cdot v)/\|v\|^2=1$.
+\answer{The displayed $u$ is the unit vector in the given direction.}
+
+\practice{6.1.P3}{Check orthogonality directly}
+The inner product is
+$5(4/3)+6(-1)+(-1)(2/3)=20/3-6-2/3=0$.
+Therefore $d$ is orthogonal to $c$; checking the zero inner product is
+exactly the definition needed.
+
+\practice{6.1.P4}{Orthogonality survives normalization}
+The unit vector $u$ from Practice 2 is $c/\|c\|$.
+By linearity in the second argument,
+$d\cdot u=(1/\|c\|)(d\cdot c)=0$ using Practice 3.
+\answer{Multiplying one of two orthogonal vectors by a scalar does
+not destroy orthogonality.}
+
+\exercise{6.1.1}{Inner-product and norm calculations}
+\step{Compute the two dot products from corresponding coordinates.}
+\[u\cdot u=(-1)(-1)+(2)(2)=5,\]
+\[v\cdot u=(4)(-1)+(6)(2)=8.\]
+\answer{The requested ratio is $(v\cdot u)/(u\cdot u)=\frac{8}{5}$.}
+
+\exercise{6.1.2}{Inner-product and norm calculations}
+\step{Compute the two dot products from corresponding coordinates.}
+\[w\cdot w=(3)(3)+(-1)(-1)+(-5)(-5)=35,\]
+\[x\cdot w=(6)(3)+(-2)(-1)+(3)(-5)=5.\]
+\answer{The requested ratio is $(x\cdot w)/(w\cdot w)=\frac{1}{7}$.}
+
+\exercise{6.1.3}{Inner-product and norm calculations}
+The squared length is $w\cdot w=35$. Multiply every coordinate by its reciprocal:
+\[\frac1{w\cdot w}w=\frac{1}{35}\left[\begin{array}{r}3\\-1\\-5\end{array}\right]=\left[\begin{array}{r}\frac{3}{35}\\- \frac{1}{35}\\- \frac{1}{7}\end{array}\right].\]
+This is not generally a unit vector: normalization would divide by the square root of this denominator.
+
+\exercise{6.1.4}{Inner-product and norm calculations}
+The squared length is $u\cdot u=5$. Multiply every coordinate by its reciprocal:
+\[\frac1{u\cdot u}u=\frac{1}{5}\left[\begin{array}{r}-1\\2\end{array}\right]=\left[\begin{array}{r}- \frac{1}{5}\\\frac{2}{5}\end{array}\right].\]
+This is not generally a unit vector: normalization would divide by the square root of this denominator.
+
+\exercise{6.1.5}{Inner-product and norm calculations}
+The numerator is $u\cdot v=8$ and the denominator is $v\cdot v=52$. Therefore
+\[\left(\frac{u\cdot v}{v\cdot v}\right)v=\frac{2}{13}\left[\begin{array}{r}4\\6\end{array}\right]=\left[\begin{array}{r}\frac{8}{13}\\\frac{12}{13}\end{array}\right].\]
+The denominator is nonzero because the vector being projected onto is nonzero.
+
+\exercise{6.1.6}{Inner-product and norm calculations}
+The numerator is $w\cdot x=5$ and the denominator is $x\cdot x=49$. Therefore
+\[\left(\frac{w\cdot x}{x\cdot x}\right)x=\frac{5}{49}\left[\begin{array}{r}6\\-2\\3\end{array}\right]=\left[\begin{array}{r}\frac{30}{49}\\- \frac{10}{49}\\\frac{15}{49}\end{array}\right].\]
+The denominator is nonzero because the vector being projected onto is nonzero.
+
+\exercise{6.1.7}{Inner-product and norm calculations}
+By the norm definition,
+\[\|w\|=\sqrt{(3)^2+(-1)^2+(-5)^2}=\sqrt{35}=\sqrt{35}.\]
+The norm is the nonnegative square root, so there is no $\pm$ choice.
+
+\exercise{6.1.8}{Inner-product and norm calculations}
+By the norm definition,
+\[\|x\|=\sqrt{(6)^2+(-2)^2+(3)^2}=\sqrt{49}=7.\]
+The norm is the nonnegative square root, so there is no $\pm$ choice.
+
+\exercise{6.1.9}{Normalize without changing the direction}
+\step{Compute the length, keeping the square root nonnegative.}
+\[\|v\|=\sqrt{(-30)^2+(40)^2}=50.\]
+Since $v\ne0$, divide by this positive length rather than by its square:
+\[u=\frac{v}{\|v\|}=\left[\begin{array}{r}- \frac{3}{5}\\\frac{4}{5}\end{array}\right].\]
+The multiplier $1/\|v\|$ is positive, so the direction is unchanged; also $u\cdot u=(v\cdot v)/\|v\|^2=1$.
+\answer{The displayed $u$ is the unit vector in the given direction.}
+
+\exercise{6.1.10}{Normalize without changing the direction}
+\step{Compute the length, keeping the square root nonnegative.}
+\[\|v\|=\sqrt{(-6)^2+(4)^2+(-3)^2}=\sqrt{61}.\]
+Since $v\ne0$, divide by this positive length rather than by its square:
+\[u=\frac{v}{\|v\|}=\left[\begin{array}{r}- \frac{6 \sqrt{61}}{61}\\\frac{4 \sqrt{61}}{61}\\- \frac{3 \sqrt{61}}{61}\end{array}\right].\]
+The multiplier $1/\|v\|$ is positive, so the direction is unchanged; also $u\cdot u=(v\cdot v)/\|v\|^2=1$.
+\answer{The displayed $u$ is the unit vector in the given direction.}
+
+\exercise{6.1.11}{Normalize without changing the direction}
+\step{Compute the length, keeping the square root nonnegative.}
+\[\|v\|=\sqrt{(\frac{7}{4})^2+(\frac{1}{2})^2+(1)^2}=\frac{\sqrt{69}}{4}.\]
+Since $v\ne0$, divide by this positive length rather than by its square:
+\[u=\frac{v}{\|v\|}=\left[\begin{array}{r}\frac{7 \sqrt{69}}{69}\\\frac{2 \sqrt{69}}{69}\\\frac{4 \sqrt{69}}{69}\end{array}\right].\]
+The multiplier $1/\|v\|$ is positive, so the direction is unchanged; also $u\cdot u=(v\cdot v)/\|v\|^2=1$.
+\answer{The displayed $u$ is the unit vector in the given direction.}
+
+\exercise{6.1.12}{Normalize without changing the direction}
+\step{Compute the length, keeping the square root nonnegative.}
+\[\|v\|=\sqrt{(\frac{8}{3})^2+(2)^2}=\frac{10}{3}.\]
+Since $v\ne0$, divide by this positive length rather than by its square:
+\[u=\frac{v}{\|v\|}=\left[\begin{array}{r}\frac{4}{5}\\\frac{3}{5}\end{array}\right].\]
+The multiplier $1/\|v\|$ is positive, so the direction is unchanged; also $u\cdot u=(v\cdot v)/\|v\|^2=1$.
+\answer{The displayed $u$ is the unit vector in the given direction.}
+
+\exercise{6.1.13}{Inner-product and norm calculations}
+Subtract the point coordinates first:
+\[a-b=\left[\begin{array}{r}10\\-3\end{array}\right]-\left[\begin{array}{r}-1\\-5\end{array}\right]=\left[\begin{array}{r}11\\2\end{array}\right].\]
+\answer{The distance is $\|a-b\|=\sqrt{125}=5 \sqrt{5}$. Reversing the subtraction gives the same length.}
+
+\exercise{6.1.14}{Inner-product and norm calculations}
+Subtract the point coordinates first:
+\[a-b=\left[\begin{array}{r}0\\-5\\2\end{array}\right]-\left[\begin{array}{r}-4\\-1\\8\end{array}\right]=\left[\begin{array}{r}4\\-4\\-6\end{array}\right].\]
+\answer{The distance is $\|a-b\|=\sqrt{68}=2 \sqrt{17}$. Reversing the subtraction gives the same length.}
+
+\exercise{6.1.15}{Inner-product and norm calculations}
+Compute the defining dot product:
+\[a\cdot b=(8)(-2)+(-5)(-3)=-1.\]
+\answer{The pair is not orthogonal because the product is nonzero.}
+
+\exercise{6.1.16}{Inner-product and norm calculations}
+Compute the defining dot product:
+\[a\cdot b=(12)(2)+(3)(-3)+(-5)(3)=0.\]
+\answer{The pair is orthogonal because the product is zero.}
+
+\exercise{6.1.17}{Inner-product and norm calculations}
+Compute the defining dot product:
+\[a\cdot b=(3)(-4)+(2)(1)+(-5)(-2)+(0)(6)=0.\]
+\answer{The pair is orthogonal because the product is zero.}
+
+\exercise{6.1.18}{Inner-product and norm calculations}
+Compute the defining dot product:
+\[a\cdot b=(-3)(1)+(7)(-8)+(4)(15)+(0)(-7)=1.\]
+\answer{The pair is not orthogonal because the product is nonzero.}
+
+\exercise{6.1.19}{Inner-product and norm calculations}
+\begin{enumerate}[label=(\alph*)]
+\item True. It is the squared-norm identity $\|v\|^2=v\cdot v$.
+\item True. Scalar distributivity gives $u\cdot(cv)=c(u\cdot v)$.
+\item True. Squaring the equal distances and expanding gives
+$\|u\|^2-2u\cdot v+\|v\|^2=\|u\|^2+2u\cdot v+\|v\|^2$.
+Hence $4u\cdot v=0$, so the vectors are orthogonal.
+\item False. Take $A=\begin{bmatrix}1&1\\0&0\end{bmatrix}$.
+Its column space contains $(1,0)^T$ and its null space contains
+$(-1,1)^T$; their dot product is $-1$, not zero. The correct general
+pairing is \emph{row space} with null space.
+\item True. For $w=\sum_jc_jv_j$ we have
+$x\cdot w=\sum_jc_j(x\cdot v_j)=0$; thus $x\in W^\perp$.
+\end{enumerate}
+
+\exercise{6.1.20}{Inner-product and norm calculations}
+\begin{enumerate}[label=(\alph*)]
+\item True. Symmetry gives $u\cdot v=v\cdot u$, so their difference
+is zero.
+\item False for negative scalars. For $c=-1$ and $v\ne0$,
+$\|cv\|=\|v\|$ but $c\|v\|=-\|v\|$. The correct rule uses $|c|$.
+\item True. Being orthogonal to every member of $W$ is the definition
+of membership in $W^\perp$.
+\item True. Expand $\|u+v\|^2=\|u\|^2+2u\cdot v+\|v\|^2$.
+The given equality makes $2u\cdot v=0$.
+\item True. $Ax=0$ means every row has dot product zero with $x$.
+The same holds for every linear combination of rows, hence all of Row $A$.
+\end{enumerate}
+
+\exercise{6.1.21}{Inner-product and norm calculations}
+\step{(b) Distribute using the transpose and matrix multiplication rules.}
+\[
+(u+v)\cdot w=(u+v)^Tw=(u^T+v^T)w=u^Tw+v^Tw
+=u\cdot w+v\cdot w.
+\]
+Here we used $(u+v)^T=u^T+v^T$ and distribution of matrix products
+across addition, both from Chapter 2.
+\step{(c) Move a scalar through the products.}
+The transpose rule $(cu)^T=cu^T$ and scalar associativity of products give
+\[
+(cu)\cdot v=(cu)^Tv=c(u^Tv)=c(u\cdot v)
+=u^T(cv)=u\cdot(cv).
+\]
+Each expression is a $1\times1$ product, identified with its real scalar value.
+
+\exercise{6.1.22}{Inner-product and norm calculations}
+We have $u\cdot u=u_1^2+u_2^2+u_3^2$. Every real square is
+nonnegative, so the sum is nonnegative. If the sum is zero, none of the
+nonnegative summands can be positive, so $u_i^2=0$ for every $i$.
+This forces all three entries to be zero. Conversely the zero vector has
+zero inner product with itself.
+\answer{$u\cdot u\ge0$, with equality if and only if $u=0$.}
+
+\exercise{6.1.23}{Inner-product and norm calculations}
+Compute directly rather than invoking the Pythagorean theorem:
+\[u\cdot v=(2)(-7)+(-5)(-4)+(-1)(6)=0,\]
+\[\|u\|^2=30,\qquad\|v\|^2=101,\qquad u+v=\left[\begin{array}{r}-5\\-9\\5\end{array}\right].\]
+\[\|u+v\|^2=(-5)^2+(-9)^2+(5)^2=131=30+101.\]
+The dot product is zero, so this example agrees with the orthogonal-sum identity, which has now been verified by arithmetic.
+
+\exercise{6.1.24}{Inner-product and norm calculations}
+Use bilinearity and symmetry to expand both squared norms:
+\[
+\|u+v\|^2=\|u\|^2+2u\cdot v+\|v\|^2,
+\]
+\[
+\|u-v\|^2=\|u\|^2-2u\cdot v+\|v\|^2.
+\]
+Adding cancels the two cross terms and gives
+$\|u+v\|^2+\|u-v\|^2=2\|u\|^2+2\|v\|^2$.
+\answer{The parallelogram law holds for all $u,v\in\R^n$;
+orthogonality is not assumed.}
+
+\exercise{6.1.25}{Inner-product and norm calculations}
+Orthogonality to $(a,b)^T$ is the single homogeneous equation
+$ax+by=0$. If $a=b=0$, every $(x,y)$ works, so $H=\R^2$.
+If $(a,b)\ne(0,0)$, the nonzero vector $(-b,a)^T$ is orthogonal
+to $(a,b)^T$ and its multiples solve the equation. Conversely, if
+$a\ne0$ solve $x=-(b/a)y$; if $a=0$ then $b\ne0$ and the
+equation gives $y=0$. Either way every solution is a multiple of
+$(-b,a)^T$.
+\answer{For $v\ne0$, $H$ is the line through the origin perpendicular
+to $v$; for $v=0$, it is the entire plane.}
+
+\exercise{6.1.26}{Inner-product and norm calculations}
+We can write $W=\Nul[5\ {-6}\ 7]$. The Chapter 4 theorem that
+a null space is a subspace therefore applies. Explicitly its equation is
+$5x_1-6x_2+7x_3=0$, one nonzero homogeneous linear constraint.
+Solving for $x_1$ leaves two freely chosen coordinates, so the geometric
+set is a plane through the origin. The normal direction is $u$ because
+$u\cdot x=0$ for every vector in the plane.
+\answer{$W$ is the plane perpendicular to $(5,-6,7)^T$ through zero.}
+
+\exercise{6.1.27}{Inner-product and norm calculations}
+By distributivity,
+$y\cdot(u+v)=y\cdot u+y\cdot v=0+0=0$.
+The two zero values follow from the two given orthogonality assumptions.
+\answer{$y$ is orthogonal to $u+v$.}
+
+\exercise{6.1.28}{Inner-product and norm calculations}
+Take any $w\in\Span\{u,v\}$. There are real scalars $c_1,c_2$
+with $w=c_1u+c_2v$. Then
+$y\cdot w=c_1(y\cdot u)+c_2(y\cdot v)=0$.
+Because $w$ was arbitrary, the claim holds for every vector in the span,
+not merely for its two generators.
+\answer{$y\in(\Span\{u,v\})^\perp$.}
+
+\exercise{6.1.29}{Inner-product and norm calculations}
+An arbitrary $w\in W$ can be written $w=\sum_{j=1}^pc_jv_j$.
+Apply distributivity repeatedly:
+\[
+x\cdot w=\sum_{j=1}^pc_j(x\cdot v_j)=\sum_{j=1}^pc_j0=0.
+\]
+Thus every $w$ in $W$ is orthogonal to $x$.
+\answer{Testing orthogonality against a spanning family tests all of $W$.}
+
+\exercise{6.1.30}{Inner-product and norm calculations}
+\step{(a) Closure under scalar multiplication.}
+Let $z\in W^\perp$, $c\in\R$, and let $u$ be any vector of $W$.
+Then $(cz)\cdot u=c(z\cdot u)=c0=0$. Since this holds for every
+$u\in W$, $cz\in W^\perp$.
+\step{(b) Closure under addition.}
+For $z_1,z_2\in W^\perp$ and any $u\in W$,
+$(z_1+z_2)\cdot u=z_1\cdot u+z_2\cdot u=0+0=0$.
+Hence $z_1+z_2\in W^\perp$.
+\step{(c) Include zero and apply the subspace test.}
+The zero vector has zero dot product with every $u\in W$, so it lies
+in $W^\perp$. Together with (a) and (b), these are all three required
+subspace properties.
+\answer{$W^\perp$ is a subspace of $\R^n$.}
+
+\exercise{6.1.31}{Inner-product and norm calculations}
+If $x\in W$ and $x\in W^\perp$, then the latter membership makes
+$x$ orthogonal to every member of $W$, including itself. Thus
+$x\cdot x=\|x\|^2=0$, which forces $x=0$ by positive definiteness.
+\answer{$W\cap W^\perp=\{0\}$.}
+
+\exercise{6.1.32}{Inner-product and norm calculations}
+\step{(a) Check all column lengths and mutual dot products.}
+The single exact calculation $A^TA=I_4$ states that every column has squared length $1$ and all six off-diagonal pairwise products are zero. Thus the four lengths are $1,1,1,1$ and the six requested dot products are $0$.
+\step{(b)--(d) Perform three reproducible random experiments.}
+Using integer draws from $[-3,3]$ with Python random seed $61032$ gives the following three nonzero pairs. Listed equalities compare the original and transformed quantities.
+\[u=\left[\begin{array}{r}2\\2\\0\\-3\end{array}\right],\quad v=\left[\begin{array}{r}-1\\-2\\1\\0\end{array}\right];\]
+\[\|u\|=\|Au\|=\sqrt{17},\quad\|v\|=\|Av\|=\sqrt{6},\]
+\[\cos\angle(u,v)=\cos\angle(Au,Av)=- \frac{\sqrt{102}}{17}.\]
+\[u=\left[\begin{array}{r}-1\\0\\3\\2\end{array}\right],\quad v=\left[\begin{array}{r}3\\0\\2\\1\end{array}\right];\]
+\[\|u\|=\|Au\|=\sqrt{14},\quad\|v\|=\|Av\|=\sqrt{14},\]
+\[\cos\angle(u,v)=\cos\angle(Au,Av)=\frac{5}{14}.\]
+\[u=\left[\begin{array}{r}-1\\1\\1\\-1\end{array}\right],\quad v=\left[\begin{array}{r}0\\2\\-1\\-1\end{array}\right];\]
+\[\|u\|=\|Au\|=2,\quad\|v\|=\|Av\|=\sqrt{6},\]
+\[\cos\angle(u,v)=\cos\angle(Au,Av)=\frac{\sqrt{6}}{6}.\]
+\step{Prove the observed behavior for every pair.}
+For arbitrary $u,v$, $(Au)^T(Av)=u^TA^TAv=u^Tv$. Taking $v=u$ proves norm preservation, and dividing by nonzero norms proves angle preservation for nonzero vectors.
+\answer{$A$ preserves lengths and angles; the numerical experiments are instances of this identity.}
+
+\exercise{6.1.33}{Inner-product and norm calculations}
+\step{Compute two actual random examples with one fixed nonzero direction.}
+Using seed $61033$ and integer draws from $[-3,3]$, take $v=\left[\begin{array}{r}2\\0\\0\\1\end{array}\right]$, with $v\cdot v=5$. Each scalar below multiplies this same explicitly given column.
+\[x=\left[\begin{array}{r}3\\-1\\0\\2\end{array}\right],\quad y=\left[\begin{array}{r}-2\\-3\\1\\1\end{array}\right],\]
+\[T(x)=(\frac{8}{5})v,\quad T(y)=(- \frac{3}{5})v,\]
+\[T(x+y)=(1)v,\quad T(10x)=(16)v.\]
+\[x=\left[\begin{array}{r}-2\\3\\1\\3\end{array}\right],\quad y=\left[\begin{array}{r}-1\\2\\3\\-1\end{array}\right],\]
+\[T(x)=(- \frac{1}{5})v,\quad T(y)=(- \frac{3}{5})v,\]
+\[T(x+y)=(- \frac{4}{5})v,\quad T(10x)=(-2)v.\]
+\step{Verify the conjectured linearity algebraically.}
+For scalars $a,b$ and any inputs $x,y$, distributivity gives
+\[T(ax+by)=\frac{(ax+by)\cdot v}{v\cdot v}v=aT(x)+bT(y).\]
+The fixed denominator is nonzero because $v\ne0$.
+\answer{Projection onto a fixed nonzero direction is linear; the displayed experiments satisfy additivity and scalar homogeneity exactly.}
+
+\exercise{6.1.34}{Inner-product and norm calculations}
+\step{Read the free variables from an exact row reduction.}
+\[\operatorname{rref}(A)=\left[\begin{array}{rrrrr}1&0&5&0&- \frac{1}{3}\\0&1&1&0&- \frac{4}{3}\\0&0&0&1&\frac{1}{3}\\0&0&0&0&0\\0&0&0&0&0\end{array}\right].\]
+The pivot columns are $1,2,4$, leaving free coordinates $3,5$. A null-space basis, with the second vector scaled by $3$ to avoid fractions, and a nonzero-row basis for the row space give
+\[N=\left[\begin{array}{rr}-5&1\\-1&4\\1&0\\0&-1\\0&3\end{array}\right],\qquad R=\left[\begin{array}{rrrrr}3&0&15&0&-1\\0&3&3&0&-4\\0&0&0&3&1\end{array}\right].\]
+The two columns of $N$ have independent free-coordinate choices, and the three rows of $R$ are scaled nonzero rows of RREF, so they are bases of the required spaces.
+\step{Multiply the two basis matrices.}
+\[RN=\left[\begin{array}{rr}0&0\\0&0\\0&0\end{array}\right].\]
+Each entry is the dot product of one row-space basis vector with one null-space basis vector. All are zero, illustrating $(\operatorname{Row}A)^\perp=\Nul A$ from Theorem 3. The additional check $AN=0$ verifies the null-space computation directly.

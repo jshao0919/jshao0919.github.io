@@ -1,0 +1,13 @@
+{
+  "chapter": 8,
+  "section": 1,
+  "title": "Affine combinations",
+  "exercise_count": 26,
+  "practice_count": 1,
+  "source_pages": [
+    459,
+    460,
+    461
+  ],
+  "verification": "Exact SymPy numerical inputs/solutions verified, plus full-precision SVD/PCA orthogonality and reconstruction/eigen residual checks as applicable. Standalone latexmk clean; requested sketches included."
+}

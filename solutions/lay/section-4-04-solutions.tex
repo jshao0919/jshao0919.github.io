@@ -1,0 +1,527 @@
+\section{Coordinate systems}
+An ordered basis $\mathcal B=(b_1,\ldots,b_n)$ assigns to each vector
+$x$ its unique list of weights $[x]_{\mathcal B}=(c_1,\ldots,c_n)^T$
+in the expression $x=\sum_jc_jb_j$. Changing the basis order changes
+the meaning of this list.
+
+For a basis in $\R^n$, put $P_{\mathcal B}=[b_1\ \cdots\ b_n]$.
+The two directions are
+\[
+x=P_{\mathcal B}[x]_{\mathcal B},\qquad
+[x]_{\mathcal B}=P_{\mathcal B}^{-1}x.
+\]
+The first assembles a vector from weights; the second finds its weights.
+For polynomials use the standard coefficient order $1,t,t^2,\ldots$.
+A missing power has coefficient zero and must still occupy its position.
+
+\practice{4.4.P1}{Both directions of a basis-coordinate matrix}
+\step{(a) Check independence and spanning.}
+The matrix
+\[
+P_{\mathcal B}=\begin{bmatrix}1&-3&3\\0&4&-6\\0&0&3\end{bmatrix}
+\]
+is triangular with three nonzero pivots. It is invertible, so its columns
+are independent and span $\R^3$; they are a basis.
+\step{(b)--(c) State the matrix and direction correctly.}
+The displayed matrix is the change from $\mathcal B$ coordinates to
+standard coordinates, and the equation is $x=P_{\mathcal B}[x]_{\mathcal B}$.
+\step{(d) Solve for the weights.}
+For $x=(-8,2,3)^T$, the last equation is $3c_3=3$, so $c_3=1$.
+The middle equation $4c_2-6c_3=2$ gives $c_2=2$.
+The first $c_1-3c_2+3c_3=-8$ gives $c_1=-5$.
+\answer{$[x]_{\mathcal B}=(-5,2,1)^T$, and multiplication by the
+matrix gives back $(-8,2,3)^T$.}
+
+\practice{4.4.P2}{Coordinates of a quadratic polynomial}
+\step{Compare coefficients in the fixed standard order $1,t,t^2$.}
+Write $p=c_1b_1+c_2b_2+c_3b_3$. Equality of polynomials means equality of the constant, linear, and quadratic coefficients, so the coefficient matrix has the coefficient vectors of $b_1,b_2,b_3$ as columns.
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}1&1&0&6\\1&0&1&3\\0&1&1&-1\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(1)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&1&0&6\\0&-1&1&-3\\0&1&1&-1\end{array}\right].\]
+Use $R_{2}\leftarrow(-1)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&1&0&6\\0&1&-1&3\\0&1&1&-1\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(1)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&1&0&6\\0&1&-1&3\\0&0&2&-4\end{array}\right].\]
+Use $R_{3}\leftarrow(\frac{1}{2})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&1&0&6\\0&1&-1&3\\0&0&1&-2\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(-1)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&1&0&6\\0&1&0&1\\0&0&1&-2\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(1)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&0&5\\0&1&0&1\\0&0&1&-2\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}c_{1}=5\\c_{2}=1\\c_{3}=-2\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}
+\answer{Since the unknowns are basis weights, $[x]_{\mathcal B}=\left[\begin{array}{r}5\\1\\-2\end{array}\right]$.}
+
+\exercise{4.4.1}{Coordinates and basis representations}
+\goal Assemble the vector from its given ordered basis weights.
+The entries of $[x]_{\mathcal B}$ multiply the corresponding basis vectors; they are not generally the standard coordinates of $x$.
+\[x=\left[\begin{array}{rr}3&-4\\-5&6\end{array}\right]\left[\begin{array}{r}5\\3\end{array}\right]=\left[\begin{array}{r}3\\-7\end{array}\right].\]
+Coordinate by coordinate the calculation is
+\[x=\begin{bmatrix}(3)(5)+(-4)(3)\\(-5)(5)+(6)(3)\end{bmatrix}=\left[\begin{array}{r}3\\-7\end{array}\right].\]
+\answer{The standard-coordinate vector is the final column displayed above.}
+
+\exercise{4.4.2}{Coordinates and basis representations}
+\goal Assemble the vector from its given ordered basis weights.
+The entries of $[x]_{\mathcal B}$ multiply the corresponding basis vectors; they are not generally the standard coordinates of $x$.
+\[x=\left[\begin{array}{rr}3&-4\\2&1\end{array}\right]\left[\begin{array}{r}-2\\5\end{array}\right]=\left[\begin{array}{r}-26\\1\end{array}\right].\]
+Coordinate by coordinate the calculation is
+\[x=\begin{bmatrix}(3)(-2)+(-4)(5)\\(2)(-2)+(1)(5)\end{bmatrix}=\left[\begin{array}{r}-26\\1\end{array}\right].\]
+\answer{The standard-coordinate vector is the final column displayed above.}
+
+\exercise{4.4.3}{Coordinates and basis representations}
+\goal Assemble the vector from its given ordered basis weights.
+The entries of $[x]_{\mathcal B}$ multiply the corresponding basis vectors; they are not generally the standard coordinates of $x$.
+\[x=\left[\begin{array}{rrr}1&5&4\\-2&0&-3\\3&-2&0\end{array}\right]\left[\begin{array}{r}1\\0\\-2\end{array}\right]=\left[\begin{array}{r}-7\\4\\3\end{array}\right].\]
+Coordinate by coordinate the calculation is
+\[x=\begin{bmatrix}(1)(1)+(5)(0)+(4)(-2)\\(-2)(1)+(0)(0)+(-3)(-2)\\(3)(1)+(-2)(0)+(0)(-2)\end{bmatrix}=\left[\begin{array}{r}-7\\4\\3\end{array}\right].\]
+\answer{The standard-coordinate vector is the final column displayed above.}
+
+\exercise{4.4.4}{Coordinates and basis representations}
+\goal Assemble the vector from its given ordered basis weights.
+The entries of $[x]_{\mathcal B}$ multiply the corresponding basis vectors; they are not generally the standard coordinates of $x$.
+\[x=\left[\begin{array}{rrr}-2&3&4\\2&0&-1\\0&2&3\end{array}\right]\left[\begin{array}{r}-3\\2\\-1\end{array}\right]=\left[\begin{array}{r}8\\-5\\1\end{array}\right].\]
+Coordinate by coordinate the calculation is
+\[x=\begin{bmatrix}(-2)(-3)+(3)(2)+(4)(-1)\\(2)(-3)+(0)(2)+(-1)(-1)\\(0)(-3)+(2)(2)+(3)(-1)\end{bmatrix}=\left[\begin{array}{r}8\\-5\\1\end{array}\right].\]
+\answer{The standard-coordinate vector is the final column displayed above.}
+
+\exercise{4.4.5}{Find weights by reducing a basis system}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rr|r}1&3&-1\\-2&-5&1\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(-2)R_{1}$ to obtain
+\[ \left[\begin{array}{rr|r}1&3&-1\\0&1&-1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(3)R_{2}$ to obtain
+\[ \left[\begin{array}{rr|r}1&0&2\\0&1&-1\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}c_{1}=2\\c_{2}=-1\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}
+\answer{Since the unknowns are basis weights, $[x]_{\mathcal B}=\left[\begin{array}{r}2\\-1\end{array}\right]$.}
+
+\exercise{4.4.6}{Find weights by reducing a basis system}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rr|r}1&2&-1\\-4&-3&-6\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(-4)R_{1}$ to obtain
+\[ \left[\begin{array}{rr|r}1&2&-1\\0&5&-10\end{array}\right].\]
+Use $R_{2}\leftarrow(\frac{1}{5})R_{2}$ to obtain
+\[ \left[\begin{array}{rr|r}1&2&-1\\0&1&-2\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(2)R_{2}$ to obtain
+\[ \left[\begin{array}{rr|r}1&0&3\\0&1&-2\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}c_{1}=3\\c_{2}=-2\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}
+\answer{Since the unknowns are basis weights, $[x]_{\mathcal B}=\left[\begin{array}{r}3\\-2\end{array}\right]$.}
+
+\exercise{4.4.7}{Find weights by reducing a basis system}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}1&-3&2&8\\-1&4&-2&-9\\-3&9&4&6\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(-1)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-3&2&8\\0&1&0&-1\\-3&9&4&6\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(-3)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-3&2&8\\0&1&0&-1\\0&0&10&30\end{array}\right].\]
+Use $R_{3}\leftarrow(\frac{1}{10})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-3&2&8\\0&1&0&-1\\0&0&1&3\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(2)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-3&0&2\\0&1&0&-1\\0&0&1&3\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-3)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&0&-1\\0&1&0&-1\\0&0&1&3\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}c_{1}=-1\\c_{2}=-1\\c_{3}=3\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}
+\answer{Since the unknowns are basis weights, $[x]_{\mathcal B}=\left[\begin{array}{r}-1\\-1\\3\end{array}\right]$.}
+
+\exercise{4.4.8}{Find weights by reducing a basis system}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}1&2&1&0\\1&0&-1&0\\3&8&3&-2\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(1)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&2&1&0\\0&-2&-2&0\\3&8&3&-2\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(3)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&2&1&0\\0&-2&-2&0\\0&2&0&-2\end{array}\right].\]
+Use $R_{2}\leftarrow(- \frac{1}{2})R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&2&1&0\\0&1&1&0\\0&2&0&-2\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(2)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&2&1&0\\0&1&1&0\\0&0&-2&-2\end{array}\right].\]
+Use $R_{3}\leftarrow(- \frac{1}{2})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&2&1&0\\0&1&1&0\\0&0&1&1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(1)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&2&0&-1\\0&1&1&0\\0&0&1&1\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(1)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&2&0&-1\\0&1&0&-1\\0&0&1&1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(2)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&0&1\\0&1&0&-1\\0&0&1&1\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}c_{1}=1\\c_{2}=-1\\c_{3}=1\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}
+\answer{Since the unknowns are basis weights, $[x]_{\mathcal B}=\left[\begin{array}{r}1\\-1\\1\end{array}\right]$.}
+
+\exercise{4.4.9}{Coordinates and basis representations}
+The map from basis coordinates to standard coordinates places each ordered basis vector in the corresponding matrix column:
+\[P_{\mathcal B}=\left[\begin{array}{rr}1&2\\-3&-5\end{array}\right].\]
+Indeed, multiplying by $(c_1,\ldots,c_n)^T$ gives $c_1b_1+\cdots+c_nb_n=x$, so this matrix has exactly the required direction.
+
+\exercise{4.4.10}{Coordinates and basis representations}
+The map from basis coordinates to standard coordinates places each ordered basis vector in the corresponding matrix column:
+\[P_{\mathcal B}=\left[\begin{array}{rrr}3&2&1\\0&2&-2\\6&-4&3\end{array}\right].\]
+Indeed, multiplying by $(c_1,\ldots,c_n)^T$ gives $c_1b_1+\cdots+c_nb_n=x$, so this matrix has exactly the required direction.
+
+\exercise{4.4.11}{Coordinates and basis representations}
+\step{Invert the ordered basis matrix.}
+For a $2\times2$ matrix, the inverse is the adjugate divided by the nonzero determinant. Here
+\[P_{\mathcal B}=\left[\begin{array}{rr}1&-3\\-2&5\end{array}\right],\qquad\det P_{\mathcal B}=-1,\qquad P_{\mathcal B}^{-1}=\left[\begin{array}{rr}-5&-3\\-2&-1\end{array}\right].\]
+\step{Apply the inverse to the actual standard vector.}
+\[[x]_{\mathcal B}=\left[\begin{array}{rr}-5&-3\\-2&-1\end{array}\right]\left[\begin{array}{r}2\\-5\end{array}\right]=\left[\begin{array}{r}5\\1\end{array}\right].\]
+Multiplying the answer by $P_{\mathcal B}$ returns $x$, so the direction of the change has been checked.
+
+\exercise{4.4.12}{Coordinates and basis representations}
+\step{Invert the ordered basis matrix.}
+For a $2\times2$ matrix, the inverse is the adjugate divided by the nonzero determinant. Here
+\[P_{\mathcal B}=\left[\begin{array}{rr}1&2\\-1&-1\end{array}\right],\qquad\det P_{\mathcal B}=1,\qquad P_{\mathcal B}^{-1}=\left[\begin{array}{rr}-1&-2\\1&1\end{array}\right].\]
+\step{Apply the inverse to the actual standard vector.}
+\[[x]_{\mathcal B}=\left[\begin{array}{rr}-1&-2\\1&1\end{array}\right]\left[\begin{array}{r}2\\3\end{array}\right]=\left[\begin{array}{r}-8\\5\end{array}\right].\]
+Multiplying the answer by $P_{\mathcal B}$ returns $x$, so the direction of the change has been checked.
+
+\exercise{4.4.13}{Coordinates and basis representations}
+\step{Compare coefficients in the fixed standard order $1,t,t^2$.}
+Write $p=c_1b_1+c_2b_2+c_3b_3$. Equality of polynomials means equality of the constant, linear, and quadratic coefficients, so the coefficient matrix has the coefficient vectors of $b_1,b_2,b_3$ as columns.
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}1&0&1&1\\0&1&2&4\\1&1&1&7\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(1)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&1&1\\0&1&2&4\\0&1&0&6\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(1)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&1&1\\0&1&2&4\\0&0&-2&2\end{array}\right].\]
+Use $R_{3}\leftarrow(- \frac{1}{2})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&1&1\\0&1&2&4\\0&0&1&-1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(1)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&0&2\\0&1&2&4\\0&0&1&-1\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(2)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&0&2\\0&1&0&6\\0&0&1&-1\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}c_{1}=2\\c_{2}=6\\c_{3}=-1\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}
+\answer{Since the unknowns are basis weights, $[x]_{\mathcal B}=\left[\begin{array}{r}2\\6\\-1\end{array}\right]$.}
+
+\exercise{4.4.14}{Coordinates and basis representations}
+\step{Compare coefficients in the fixed standard order $1,t,t^2$.}
+Write $p=c_1b_1+c_2b_2+c_3b_3$. Equality of polynomials means equality of the constant, linear, and quadratic coefficients, so the coefficient matrix has the coefficient vectors of $b_1,b_2,b_3$ as columns.
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}1&0&2&1\\0&1&-1&3\\-1&-1&1&-6\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(-1)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&2&1\\0&1&-1&3\\0&-1&3&-5\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(-1)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&2&1\\0&1&-1&3\\0&0&2&-2\end{array}\right].\]
+Use $R_{3}\leftarrow(\frac{1}{2})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&2&1\\0&1&-1&3\\0&0&1&-1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(2)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&0&3\\0&1&-1&3\\0&0&1&-1\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(-1)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&0&3\\0&1&0&2\\0&0&1&-1\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}c_{1}=3\\c_{2}=2\\c_{3}=-1\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}
+\answer{Since the unknowns are basis weights, $[x]_{\mathcal B}=\left[\begin{array}{r}3\\2\\-1\end{array}\right]$.}
+
+\exercise{4.4.15}{Coordinates and basis representations}
+\begin{enumerate}[label=(\alph*)]
+\item True. A basis with $n$ ordered members produces exactly $n$
+real weights, hence a coordinate vector in $\R^n$, whatever type of
+object $x$ itself may be.
+\item False. For a basis of $\R^n$, $P_{\mathcal B}$ maps weights to
+standard vectors: $x=P_{\mathcal B}[x]_{\mathcal B}$. The coordinate
+map uses $P_{\mathcal B}^{-1}$ instead.
+\item False. The four independent polynomials $1,t,t^2,t^3$ would have
+independent images under an isomorphism, but four vectors cannot be
+independent in $\R^3$. In fact $\mathcal P_3$ corresponds to $\R^4$.
+\end{enumerate}
+
+\exercise{4.4.16}{Coordinates and basis representations}
+\begin{enumerate}[label=(\alph*)]
+\item True. For the standard basis, $x=x_1e_1+\cdots+x_ne_n$,
+so its basis weights are exactly its usual coordinates.
+\item False. The coordinate mapping goes from $x$ to $[x]_{\mathcal B}$.
+The displayed reverse direction is its inverse, assembling a vector
+from its weights.
+\item True. Every two-dimensional plane through the origin has a two-vector
+basis. Its coordinate map is a linear bijection onto $\R^2$. An affine
+plane not through zero would not be a vector space under the usual operations.
+\end{enumerate}
+
+\exercise{4.4.17}{Coordinates and basis representations}
+One representation is $5v_1-2v_2+0v_3=(1,1)^T$.
+There is also the nontrivial relation $5v_1-v_2+v_3=0$, since
+\[
+5(1,-3)^T-(2,-8)^T+(-3,7)^T=(0,0)^T.
+\]
+Add that zero relation to the first representation. It gives
+$10v_1-3v_2+v_3=(1,1)^T$.
+The two weight triples $(5,-2,0)$ and $(10,-3,1)$ differ, and direct
+substitution verifies both.
+\answer{The failure of independence permits distinct representations
+of the same vector.}
+
+\exercise{4.4.18}{Coordinates and basis representations}
+The $j$th basis vector has the representation
+\[
+b_j=0b_1+\cdots+0b_{j-1}+1b_j+0b_{j+1}+\cdots+0b_n.
+\]
+A basis makes representations unique, so these are exactly its
+coordinates. The coefficient column is $e_j$, with a $1$ in place $j$
+and zero elsewhere.
+\answer{$[b_j]_{\mathcal B}=e_j$ for each $j$, the columns of $I_n$.}
+
+\exercise{4.4.19}{Coordinates and basis representations}
+The assumed existence of a representation for every vector says
+$\Span S=V$. To establish independence, compare two representations
+of zero. One uses all coefficients zero. If a nontrivial zero
+combination existed, it would give a different representation of zero,
+contradicting uniqueness. Thus the only zero combination is trivial.
+\answer{$S$ is independent and spans $V$, hence is a basis.}
+
+\exercise{4.4.20}{Coordinates and basis representations}
+Because the four generators span, write $w=\sum_{j=1}^4k_jv_j$.
+Their dependence supplies $a_1,\ldots,a_4$, not all zero, with
+$\sum_ja_jv_j=0$. For every real $t$,
+\[
+w=\sum_{j=1}^4(k_j+ta_j)v_j.
+\]
+At least one $a_j$ is nonzero, so changing $t$ changes that coefficient.
+The resulting coefficient lists are distinct, although the resulting
+vector remains $w$.
+\answer{Every $w\in V$ has infinitely many representations in the
+dependent spanning family, in particular more than one.}
+
+\exercise{4.4.21}{Coordinates and basis representations}
+The basis matrix and its determinant are
+\[
+P_{\mathcal B}=\begin{bmatrix}1&-2\\-4&9\end{bmatrix},
+\qquad\det P_{\mathcal B}=9-8=1.
+\]
+Thus the matrix implementing the coordinate map is its inverse:
+\[
+A=P_{\mathcal B}^{-1}=\begin{bmatrix}9&2\\4&1\end{bmatrix}.
+\]
+Indeed $AP_{\mathcal B}=I_2$, so $Ax=AP_{\mathcal B}[x]_{\mathcal B}
+=[x]_{\mathcal B}$ for every $x$.
+\answer{$A=\begin{bmatrix}9&2\\4&1\end{bmatrix}$.}
+
+\exercise{4.4.22}{Coordinates and basis representations}
+Form $P_{\mathcal B}=[b_1\ \cdots\ b_n]$. Its columns are a basis,
+so it is invertible. Since $x=P_{\mathcal B}[x]_{\mathcal B}$,
+multiply by the inverse to obtain
+\[
+[x]_{\mathcal B}=P_{\mathcal B}^{-1}x.
+\]
+\answer{The implementing matrix is $A=[b_1\ \cdots\ b_n]^{-1}$,
+not the basis matrix itself.}
+
+\exercise{4.4.23}{Coordinates and basis representations}
+Suppose $[u]_{\mathcal B}=[w]_{\mathcal B}=(c_1,\ldots,c_n)^T$.
+By the definition of coordinates, $u=\sum_jc_jb_j$ and
+$w=\sum_jc_jb_j$. The right sides are identical, so $u=w$.
+\answer{Equal coordinate outputs imply equal vector inputs;
+the coordinate map is one-to-one.}
+
+\exercise{4.4.24}{Coordinates and basis representations}
+Take any $y=(y_1,\ldots,y_n)^T\in\R^n$ and define
+$u=y_1b_1+\cdots+y_nb_n\in V$. This is a legitimate vector because
+$V$ is closed under sums and scalar multiplication. The defining
+representation has weight list $y$, and its uniqueness gives
+$[u]_{\mathcal B}=y$.
+\answer{Every vector of $\R^n$ is reached, so the coordinate map is onto.}
+
+\exercise{4.4.25}{Coordinates and basis representations}
+Let $C(x)=[x]_{\mathcal B}$. It is linear and one-to-one. For any
+scalars $c_j$,
+\[
+\sum_jc_ju_j=0
+\quad\Longleftrightarrow\quad
+C\left(\sum_jc_ju_j\right)=0
+\quad\Longleftrightarrow\quad
+\sum_jc_jC(u_j)=0.
+\]
+The forward implication in the first equivalence uses $C(0)=0$;
+the reverse uses injectivity. The second equivalence uses linearity.
+Thus the two homogeneous equations have exactly the same coefficient
+solutions. One family has only the trivial zero combination if and
+only if the other does.
+\answer{The original vectors are independent exactly when their
+coordinate vectors are independent.}
+
+\exercise{4.4.26}{Coordinates and basis representations}
+If $w=\sum_jc_ju_j$, linearity gives
+$[w]_{\mathcal B}=\sum_jc_j[u_j]_{\mathcal B}$.
+Conversely suppose the latter relation holds. Linearity rewrites it as
+$C(w)=C(\sum_jc_ju_j)$. Injectivity of $C$ then implies
+$w=\sum_jc_ju_j$. The coefficients themselves are the same in both
+representations.
+\answer{Span membership is preserved in both directions by coordinates.}
+
+\exercise{4.4.27}{Test polynomial independence using all four coefficient positions}
+\step{Move the problem to coefficient coordinates.}
+Use the ordered basis $(1,t,t^2,t^3)$ for $\mathcal P_3$, so each polynomial gives one coefficient column. Expanding powers first where necessary gives
+\[A=\left[\begin{array}{rrr}1&2&0\\0&1&-1\\0&-3&2\\2&0&-1\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrr}1&0&0\\0&1&0\\0&0&1\\0&0&0\end{array}\right].\]
+There is a pivot in every column, so the coefficient columns are independent. The coordinate map is injective and linear, so the polynomials are independent as well.
+\answer{The set is linearly independent.}
+
+\exercise{4.4.28}{Test polynomial independence using all four coefficient positions}
+\step{Move the problem to coefficient coordinates.}
+Use the ordered basis $(1,t,t^2,t^3)$ for $\mathcal P_3$, so each polynomial gives one coefficient column. Expanding powers first where necessary gives
+\[A=\left[\begin{array}{rrr}1&0&1\\0&1&1\\-2&0&-2\\-1&2&0\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrr}1&0&0\\0&1&0\\0&0&1\\0&0&0\end{array}\right].\]
+There is a pivot in every column, so the coefficient columns are independent. The coordinate map is injective and linear, so the polynomials are independent as well.
+\answer{The set is linearly independent.}
+
+\exercise{4.4.29}{Test polynomial independence using all four coefficient positions}
+\step{Move the problem to coefficient coordinates.}
+Use the ordered basis $(1,t,t^2,t^3)$ for $\mathcal P_3$, so each polynomial gives one coefficient column. Expanding powers first where necessary gives
+\[A=\left[\begin{array}{rrr}1&0&1\\-2&1&-3\\1&-2&3\\0&1&-1\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrr}1&0&1\\0&1&-1\\0&0&0\\0&0&0\end{array}\right].\]
+A nonzero zero-combination coefficient vector is $\left[\begin{array}{r}-1\\1\\1\end{array}\right]$. It gives the polynomial relation
+\[(-1)p_{1}+(1)p_{2}+(1)p_{3}=0.\]
+Thus the polynomials are dependent.
+\answer{The set is linearly dependent.}
+
+\exercise{4.4.30}{Test polynomial independence using all four coefficient positions}
+\step{Move the problem to coefficient coordinates.}
+Use the ordered basis $(1,t,t^2,t^3)$ for $\mathcal P_3$, so each polynomial gives one coefficient column. Expanding powers first where necessary gives
+\[A=\left[\begin{array}{rrr}8&9&1\\-12&-6&6\\6&1&-5\\-1&0&1\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrr}1&0&-1\\0&1&1\\0&0&0\\0&0&0\end{array}\right].\]
+A nonzero zero-combination coefficient vector is $\left[\begin{array}{r}1\\-1\\1\end{array}\right]$. It gives the polynomial relation
+\[(1)p_{1}+(-1)p_{2}+(1)p_{3}=0.\]
+Thus the polynomials are dependent.
+\answer{The set is linearly dependent.}
+
+\exercise{4.4.31}{Coordinates and basis representations}
+Use the coefficient order $(1,t,t^2)$. Spanning $\mathcal P_2$ is equivalent to having a pivot in every row of the coefficient matrix.
+\step{(a) Reduce the coefficient matrix.}
+\[\left[\begin{array}{rrrr}1&-3&-4&1\\-3&5&5&0\\5&-7&-6&-1\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrr}1&0&\frac{5}{4}&- \frac{5}{4}\\0&1&\frac{7}{4}&- \frac{3}{4}\\0&0&0&0\end{array}\right].\]
+Only 2 rows contain pivots, so the set does not span $\mathcal P_2$.
+\step{(b) Reduce the coefficient matrix.}
+\[\left[\begin{array}{rrrr}0&1&-3&2\\5&-8&4&-3\\1&-2&2&0\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrr}1&0&-4&0\\0&1&-3&0\\0&0&0&1\end{array}\right].\]
+All three rows contain pivots, so the set spans $\mathcal P_2$.
+
+
+\exercise{4.4.32}{Coordinates and basis representations}
+\step{(a) Check the three coefficient columns.}
+\[A=\left[\begin{array}{rrr}1&0&1\\0&1&1\\1&-3&-3\end{array}\right],\qquad\det A=-1\ne0.\]
+Therefore these columns form a basis of $\R^3$, so the polynomials form a basis of $\mathcal P_2$.
+\step{(b) Assemble the specified polynomial.}
+\[q=-p_1+p_2+2p_3=-(1+t^2)+(t-3t^2)+2(1+t-3t^2)=1+3t-10t^2.\]
+\answer{$q(t)=1+3t-10t^2$.}
+
+\exercise{4.4.33}{Test polynomial independence using all four coefficient positions}
+\step{Move the problem to coefficient coordinates.}
+Use the ordered basis $(1,t,t^2,t^3)$ for $\mathcal P_3$, so each polynomial gives one coefficient column. Expanding powers first where necessary gives
+\[A=\left[\begin{array}{rrrr}3&5&0&1\\7&1&1&16\\0&0&-2&-6\\0&-2&0&2\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrr}1&0&0&2\\0&1&0&-1\\0&0&1&3\\0&0&0&0\end{array}\right].\]
+A nonzero zero-combination coefficient vector is $\left[\begin{array}{r}-2\\1\\-3\\1\end{array}\right]$. It gives the polynomial relation
+\[(-2)p_{1}+(1)p_{2}+(-3)p_{3}+(1)p_{4}=0.\]
+Thus the polynomials are dependent.
+\answer{The polynomials do not form a basis of $\mathcal P_3$, since they are dependent.}
+
+\exercise{4.4.34}{Test polynomial independence using all four coefficient positions}
+\step{Move the problem to coefficient coordinates.}
+Use the ordered basis $(1,t,t^2,t^3)$ for $\mathcal P_3$, so each polynomial gives one coefficient column. Expanding powers first where necessary gives
+\[A=\left[\begin{array}{rrrr}5&9&6&0\\-3&1&-2&0\\4&8&5&0\\2&-6&0&1\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrr}1&0&\frac{3}{4}&0\\0&1&\frac{1}{4}&0\\0&0&0&1\\0&0&0&0\end{array}\right].\]
+A nonzero zero-combination coefficient vector is $\left[\begin{array}{r}- \frac{3}{4}\\- \frac{1}{4}\\1\\0\end{array}\right]$. It gives the polynomial relation
+\[(- \frac{3}{4})p_{1}+(- \frac{1}{4})p_{2}+(1)p_{3}=0.\]
+Thus the polynomials are dependent.
+\answer{The polynomials do not form a basis of $\mathcal P_3$, since they are dependent.}
+
+\exercise{4.4.35}{Coordinates and basis representations}
+\step{Check that the ordered generators are independent.}
+The coefficient matrix has a pivot in every column, as the reduction below verifies. Hence the generators form a basis of their stated span $H$.
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rr|r}11&14&19\\-5&-8&-13\\10&13&18\\7&10&15\end{array}\right].\]
+Use $R_{1}\leftarrow(\frac{1}{11})R_{1}$ to obtain
+\[ \left[\begin{array}{rr|r}1&\frac{14}{11}&\frac{19}{11}\\-5&-8&-13\\10&13&18\\7&10&15\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(-5)R_{1}$ to obtain
+\[ \left[\begin{array}{rr|r}1&\frac{14}{11}&\frac{19}{11}\\0&- \frac{18}{11}&- \frac{48}{11}\\10&13&18\\7&10&15\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(10)R_{1}$ to obtain
+\[ \left[\begin{array}{rr|r}1&\frac{14}{11}&\frac{19}{11}\\0&- \frac{18}{11}&- \frac{48}{11}\\0&\frac{3}{11}&\frac{8}{11}\\7&10&15\end{array}\right].\]
+Use $R_{4}\leftarrow R_{4}-(7)R_{1}$ to obtain
+\[ \left[\begin{array}{rr|r}1&\frac{14}{11}&\frac{19}{11}\\0&- \frac{18}{11}&- \frac{48}{11}\\0&\frac{3}{11}&\frac{8}{11}\\0&\frac{12}{11}&\frac{32}{11}\end{array}\right].\]
+Use $R_{2}\leftarrow(- \frac{11}{18})R_{2}$ to obtain
+\[ \left[\begin{array}{rr|r}1&\frac{14}{11}&\frac{19}{11}\\0&1&\frac{8}{3}\\0&\frac{3}{11}&\frac{8}{11}\\0&\frac{12}{11}&\frac{32}{11}\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(\frac{3}{11})R_{2}$ to obtain
+\[ \left[\begin{array}{rr|r}1&\frac{14}{11}&\frac{19}{11}\\0&1&\frac{8}{3}\\0&0&0\\0&\frac{12}{11}&\frac{32}{11}\end{array}\right].\]
+Use $R_{4}\leftarrow R_{4}-(\frac{12}{11})R_{2}$ to obtain
+\[ \left[\begin{array}{rr|r}1&\frac{14}{11}&\frac{19}{11}\\0&1&\frac{8}{3}\\0&0&0\\0&0&0\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(\frac{14}{11})R_{2}$ to obtain
+\[ \left[\begin{array}{rr|r}1&0&- \frac{5}{3}\\0&1&\frac{8}{3}\\0&0&0\\0&0&0\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}c_{1}=- \frac{5}{3}\\c_{2}=\frac{8}{3}\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}
+\answer{Since the unknowns are basis weights, $[x]_{\mathcal B}=\left[\begin{array}{r}- \frac{5}{3}\\\frac{8}{3}\end{array}\right]$.}\step{Verify membership directly.}
+The computed weights satisfy $\left[\begin{array}{rr}11&14\\-5&-8\\10&13\\7&10\end{array}\right]\left[\begin{array}{r}- \frac{5}{3}\\\frac{8}{3}\end{array}\right]=\left[\begin{array}{r}19\\-13\\18\\15\end{array}\right]$, so $x\in H$ and the listed coordinates are the unique basis weights.
+
+\exercise{4.4.36}{Coordinates and basis representations}
+\step{Check that the ordered generators are independent.}
+The coefficient matrix has a pivot in every column, as the reduction below verifies. Hence the generators form a basis of their stated span $H$.
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}-6&8&-9&4\\4&-3&5&7\\-9&7&-8&-8\\4&-3&3&3\end{array}\right].\]
+Use $R_{1}\leftarrow(- \frac{1}{6})R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&- \frac{4}{3}&\frac{3}{2}&- \frac{2}{3}\\4&-3&5&7\\-9&7&-8&-8\\4&-3&3&3\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(4)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&- \frac{4}{3}&\frac{3}{2}&- \frac{2}{3}\\0&\frac{7}{3}&-1&\frac{29}{3}\\-9&7&-8&-8\\4&-3&3&3\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(-9)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&- \frac{4}{3}&\frac{3}{2}&- \frac{2}{3}\\0&\frac{7}{3}&-1&\frac{29}{3}\\0&-5&\frac{11}{2}&-14\\4&-3&3&3\end{array}\right].\]
+Use $R_{4}\leftarrow R_{4}-(4)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&- \frac{4}{3}&\frac{3}{2}&- \frac{2}{3}\\0&\frac{7}{3}&-1&\frac{29}{3}\\0&-5&\frac{11}{2}&-14\\0&\frac{7}{3}&-3&\frac{17}{3}\end{array}\right].\]
+Use $R_{2}\leftarrow(\frac{3}{7})R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&- \frac{4}{3}&\frac{3}{2}&- \frac{2}{3}\\0&1&- \frac{3}{7}&\frac{29}{7}\\0&-5&\frac{11}{2}&-14\\0&\frac{7}{3}&-3&\frac{17}{3}\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(-5)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&- \frac{4}{3}&\frac{3}{2}&- \frac{2}{3}\\0&1&- \frac{3}{7}&\frac{29}{7}\\0&0&\frac{47}{14}&\frac{47}{7}\\0&\frac{7}{3}&-3&\frac{17}{3}\end{array}\right].\]
+Use $R_{4}\leftarrow R_{4}-(\frac{7}{3})R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&- \frac{4}{3}&\frac{3}{2}&- \frac{2}{3}\\0&1&- \frac{3}{7}&\frac{29}{7}\\0&0&\frac{47}{14}&\frac{47}{7}\\0&0&-2&-4\end{array}\right].\]
+Use $R_{3}\leftarrow(\frac{14}{47})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&- \frac{4}{3}&\frac{3}{2}&- \frac{2}{3}\\0&1&- \frac{3}{7}&\frac{29}{7}\\0&0&1&2\\0&0&-2&-4\end{array}\right].\]
+Use $R_{4}\leftarrow R_{4}-(-2)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&- \frac{4}{3}&\frac{3}{2}&- \frac{2}{3}\\0&1&- \frac{3}{7}&\frac{29}{7}\\0&0&1&2\\0&0&0&0\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(\frac{3}{2})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&- \frac{4}{3}&0&- \frac{11}{3}\\0&1&- \frac{3}{7}&\frac{29}{7}\\0&0&1&2\\0&0&0&0\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(- \frac{3}{7})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&- \frac{4}{3}&0&- \frac{11}{3}\\0&1&0&5\\0&0&1&2\\0&0&0&0\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(- \frac{4}{3})R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&0&3\\0&1&0&5\\0&0&1&2\\0&0&0&0\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}c_{1}=3\\c_{2}=5\\c_{3}=2\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}
+\answer{Since the unknowns are basis weights, $[x]_{\mathcal B}=\left[\begin{array}{r}3\\5\\2\end{array}\right]$.}\step{Verify membership directly.}
+The computed weights satisfy $\left[\begin{array}{rrr}-6&8&-9\\4&-3&5\\-9&7&-8\\4&-3&3\end{array}\right]\left[\begin{array}{r}3\\5\\2\end{array}\right]=\left[\begin{array}{r}4\\7\\-8\\3\end{array}\right]$, so $x\in H$ and the listed coordinates are the unique basis weights.
+
+\exercise{4.4.37}{Coordinates and basis representations}
+\goal Convert lattice weights into ordinary spatial coordinates.
+The basis columns are given in angstroms, so use $x=P_{\mathcal B}[x]_{\mathcal B}$ rather than the inverse direction:
+\[x=\left[\begin{array}{rrr}\frac{13}{5}&0&0\\- \frac{3}{2}&3&0\\0&0&\frac{24}{5}\end{array}\right]\left[\begin{array}{r}\frac{1}{2}\\\frac{1}{4}\\\frac{1}{6}\end{array}\right]=\left[\begin{array}{r}\frac{13}{10}\\0\\\frac{4}{5}\end{array}\right].\]
+Coordinatewise, the first value is $2.6(1/2)=1.3$, the second is the sum of the contributions from the first two basis columns, and the third is $4.8$ times the third lattice coordinate.
+\answer{The standard-coordinate location is $(\frac{13}{10},0,\frac{4}{5})^T$ angstroms.}
+
+\exercise{4.4.38}{Coordinates and basis representations}
+\goal Convert lattice weights into ordinary spatial coordinates.
+The basis columns are given in angstroms, so use $x=P_{\mathcal B}[x]_{\mathcal B}$ rather than the inverse direction:
+\[x=\left[\begin{array}{rrr}\frac{13}{5}&0&0\\- \frac{3}{2}&3&0\\0&0&\frac{24}{5}\end{array}\right]\left[\begin{array}{r}\frac{1}{2}\\\frac{1}{2}\\\frac{1}{3}\end{array}\right]=\left[\begin{array}{r}\frac{13}{10}\\\frac{3}{4}\\\frac{8}{5}\end{array}\right].\]
+Coordinatewise, the first value is $2.6(1/2)=1.3$, the second is the sum of the contributions from the first two basis columns, and the third is $4.8$ times the third lattice coordinate.
+\answer{The standard-coordinate location is $(\frac{13}{10},\frac{3}{4},\frac{8}{5})^T$ angstroms.}

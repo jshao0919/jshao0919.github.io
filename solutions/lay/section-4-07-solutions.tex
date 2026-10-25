@@ -1,0 +1,268 @@
+\section{Change of basis}
+A vector stays the same when a basis changes; its list of coordinates changes.
+We use $P_{C\leftarrow B}$ to mean \emph{from $B$-coordinates to $C$-coordinates}:
+\[
+ [x]_C=P_{C\leftarrow B}[x]_B,
+ \qquad P_{C\leftarrow B}=[\,[b_1]_C\ \cdots\ [b_n]_C\,].
+\]
+In $\R^n$, if $B_0,C_0$ are the matrices of the basis vectors in standard
+coordinates, then $P_{C\leftarrow B}=C_0^{-1}B_0$. In practice reduce
+$[\,C_0\ B_0\,]$ to $[\,I\ P_{C\leftarrow B}\,]$. Reversing the
+change uses the inverse matrix; swapping the labels without inverting is incorrect.
+
+\practice{4.7.P1}{Read the coordinate labels on the columns}
+The columns of $P$ are $[f_1]_G,[f_2]_G$. If
+$v=af_1+bf_2$, linearity of coordinates gives
+$[v]_G=a[f_1]_G+b[f_2]_G=P(a,b)^T=P[v]_F$.
+Thus the correct choice is \textbf{(ii)}.
+
+\practice{4.7.P2}{Reverse the change from the example}
+Example 1 gives $P_{C\leftarrow B}=\left(\begin{smallmatrix}4&-6\\1&1\end{smallmatrix}\right)$.
+Its determinant is $4+6=10$, so the inverse is
+\[
+ P_{B\leftarrow C}=\frac1{10}\begin{pmatrix}1&6\\-1&4\end{pmatrix}.
+\]
+Multiplying it by the original matrix gives $I_2$, confirming that changing
+there and back restores every coordinate vector.
+
+\exercise{4.7.1}{Construct columns directly from the given equations}
+\step{(a) Record the $C$-coordinates of each $b$-vector.}
+From $b_1=6c_1-2c_2$ and $b_2=9c_1-4c_2$,
+\[
+ P_{C\leftarrow B}=\begin{pmatrix}6&9\\-2&-4\end{pmatrix}.
+\]
+\step{(b) Apply that change to the specified vector.}
+For $x=-3b_1+2b_2$, its $B$-coordinate vector is $(-3,2)$, so
+\[
+ [x]_C=\begin{pmatrix}6&9\\-2&-4\end{pmatrix}
+ \begin{pmatrix}-3\\2\end{pmatrix}=\begin{pmatrix}-18+18\\6-8\end{pmatrix}
+ =\begin{pmatrix}0\\-2\end{pmatrix}.
+\]
+
+\exercise{4.7.2}{A singular matrix reveals a printed inconsistency}
+The supplied relations are $b_1=-2c_1+4c_2$ and $b_2=3c_1-6c_2$.
+But then $b_2=-\tfrac32b_1$, so $\{b_1,b_2\}$ is dependent and cannot
+be a basis. These relations are incompatible with the printed assumption
+that $B$ and $C$ are both bases. This is visible in the formal column matrix
+\[
+ Q=\begin{pmatrix}-2&3\\4&-6\end{pmatrix},\qquad\det Q=12-12=0.
+\]
+\step{(a) State what the formal calculation does and does not mean.}
+The columns are the given $C$-coordinates, but $Q$ is not a change-of-basis
+matrix between two bases and has no inverse. There is no valid instance
+satisfying all the printed assumptions.
+\step{(b) Evaluate the specified linear combination nevertheless.}
+The vector $x=2b_1+3b_2$ is meaningful even for dependent generators:
+\[
+ x=(-4+9)c_1+(8-18)c_2=5c_1-10c_2.
+\]
+Thus $[x]_C=(5,-10)$. The coefficient list $(2,3)$ is one representation
+using $b_1,b_2$, but cannot be called a unique $B$-coordinate vector.
+
+\exercise{4.7.3}{The output coordinate system matches the columns}
+The columns are $[u_1]_W,[u_2]_W$, so multiplying by the coefficients of
+$x$ in $U$ forms the $W$-coordinates of $x$. Hence
+$[x]_W=P[x]_U$, choice \textbf{(ii)}. The reverse equation would need $P^{-1}$.
+
+\exercise{4.7.4}{A three-vector version of the same rule}
+Here $P$ has columns $[d_1]_A,[d_2]_A,[d_3]_A$. Therefore the input
+coefficients are $D$-coordinates, and the output is an $A$-coordinate vector:
+$[x]_A=P[x]_D$. The correct choice is \textbf{(i)}.
+
+\exercise{4.7.5}{Translate three linear-combination equations}
+\step{(a) Put the $B$-coordinates of $a_1,a_2,a_3$ into columns.}
+The equations give
+\[
+ P_{B\leftarrow A}=\begin{pmatrix}4&-1&0\\-1&1&1\\0&1&-2\end{pmatrix}.
+\]
+\step{(b) Multiply by the $A$-coordinate vector.}
+For $x=3a_1+4a_2+a_3$,
+\[
+ [x]_B=\begin{pmatrix}4&-1&0\\-1&1&1\\0&1&-2\end{pmatrix}
+ \begin{pmatrix}3\\4\\1\end{pmatrix}=\begin{pmatrix}8\\2\\2\end{pmatrix}.
+\]
+For example, the first output entry is $4(3)-1(4)+0(1)=8$.
+
+\exercise{4.7.6}{Change from $F$ to $D$}
+The columns must be $[f_1]_D,[f_2]_D,[f_3]_D$, giving
+\[
+ P_{D\leftarrow F}=\begin{pmatrix}2&0&-3\\-1&3&0\\1&1&2\end{pmatrix}.
+\]
+For $x=f_1-2f_2+2f_3$, multiply by $(1,-2,2)$ to obtain
+\[
+ [x]_D=(2-6,\,-1-6,\,1-2+4)=(-4,-7,3).
+\]
+This answers (a) and (b), keeping the direction of the coordinate change explicit.
+
+\exercise{4.7.7}{Compute both directions in standard coordinates}
+The standard-coordinate basis matrices are $B_0=\begin{pmatrix}7&-3\\5&-1\end{pmatrix}$ and $C_0=\begin{pmatrix}1&-2\\-5&2\end{pmatrix}$. Solve $C_0P=B_0$ column by column, or reduce $[\,C_0\ B_0\,]$, to obtain
+\[ P_{C\leftarrow B}=\begin{pmatrix}-3&1\\-5&2\end{pmatrix},\qquad P_{B\leftarrow C}=\begin{pmatrix}-2&1\\-5&3\end{pmatrix}.\]
+The first identity is checked by $C_0P_{C\leftarrow B}=B_0$; the second is the inverse, checked by $P_{B\leftarrow C}P_{C\leftarrow B}=I_2$. For example, column one of $C_0P$ reconstructs $b_1$ as a combination of the $c$-vectors. These checks ensure that the two directions have not been interchanged.
+
+\exercise{4.7.8}{Compute both directions in standard coordinates}
+The standard-coordinate basis matrices are $B_0=\begin{pmatrix}-1&1\\8&-7\end{pmatrix}$ and $C_0=\begin{pmatrix}1&1\\2&1\end{pmatrix}$. Solve $C_0P=B_0$ column by column, or reduce $[\,C_0\ B_0\,]$, to obtain
+\[ P_{C\leftarrow B}=\begin{pmatrix}9&-8\\-10&9\end{pmatrix},\qquad P_{B\leftarrow C}=\begin{pmatrix}9&8\\10&9\end{pmatrix}.\]
+The first identity is checked by $C_0P_{C\leftarrow B}=B_0$; the second is the inverse, checked by $P_{B\leftarrow C}P_{C\leftarrow B}=I_2$. For example, column one of $C_0P$ reconstructs $b_1$ as a combination of the $c$-vectors. These checks ensure that the two directions have not been interchanged.
+
+\exercise{4.7.9}{Compute both directions in standard coordinates}
+The standard-coordinate basis matrices are $B_0=\begin{pmatrix}4&8\\4&4\end{pmatrix}$ and $C_0=\begin{pmatrix}2&-2\\2&2\end{pmatrix}$. Solve $C_0P=B_0$ column by column, or reduce $[\,C_0\ B_0\,]$, to obtain
+\[ P_{C\leftarrow B}=\begin{pmatrix}2&3\\0&-1\end{pmatrix},\qquad P_{B\leftarrow C}=\begin{pmatrix}\frac{1}{2}&\frac{3}{2}\\0&-1\end{pmatrix}.\]
+The first identity is checked by $C_0P_{C\leftarrow B}=B_0$; the second is the inverse, checked by $P_{B\leftarrow C}P_{C\leftarrow B}=I_2$. For example, column one of $C_0P$ reconstructs $b_1$ as a combination of the $c$-vectors. These checks ensure that the two directions have not been interchanged.
+
+\exercise{4.7.10}{Compute both directions in standard coordinates}
+The standard-coordinate basis matrices are $B_0=\begin{pmatrix}6&4\\-12&2\end{pmatrix}$ and $C_0=\begin{pmatrix}4&3\\2&9\end{pmatrix}$. Solve $C_0P=B_0$ column by column, or reduce $[\,C_0\ B_0\,]$, to obtain
+\[ P_{C\leftarrow B}=\begin{pmatrix}3&1\\-2&0\end{pmatrix},\qquad P_{B\leftarrow C}=\begin{pmatrix}0&- \frac{1}{2}\\1&\frac{3}{2}\end{pmatrix}.\]
+The first identity is checked by $C_0P_{C\leftarrow B}=B_0$; the second is the inverse, checked by $P_{B\leftarrow C}P_{C\leftarrow B}=I_2$. For example, column one of $C_0P$ reconstructs $b_1$ as a combination of the $c$-vectors. These checks ensure that the two directions have not been interchanged.
+
+\exercise{4.7.11}{Two statements about the direction of a change}
+\step{(a) False.}
+The columns of $P_{C\leftarrow B}$ are the $C$-coordinates of the $B$
+vectors, $[b_j]_C$, not the $B$-coordinates of the $C$ vectors.
+The latter columns belong to its inverse $P_{B\leftarrow C}$.
+\step{(b) True.}
+If $C$ is the standard basis of $\R^n$, $[x]_C=x$ and
+$[b_j]_C=b_j$. Thus $P_{C\leftarrow B}=[\,b_1\ \cdots\ b_n\,]=P_B$.
+
+\exercise{4.7.12}{Independence and an algorithm's direction}
+\step{(a) True.}
+A change-of-coordinates matrix between bases is invertible: composing it
+with the reverse change gives identity. By the Invertible Matrix Theorem,
+its columns are therefore independent.
+\step{(b) False.}
+Reducing $[\,c_1\ c_2\ b_1\ b_2\,]$ to $[\,I\ P\,]$ computes
+$P=C_0^{-1}B_0$. It therefore satisfies $[x]_C=P[x]_B$, the reverse of
+the printed assertion. The printed equation would use $P^{-1}$ instead.
+
+\exercise{4.7.13}{Change from a polynomial basis to coefficients}
+The standard coordinate vector of $a+bt+ct^2$ is $(a,b,c)$.
+Consequently, reading coefficients of the three given polynomials gives
+\[
+ P_{C\leftarrow B}=\begin{pmatrix}1&3&0\\-2&-5&2\\1&4&3\end{pmatrix}.
+\]
+To find $[-1+2t]_B$, solve $Pz=(-1,2,0)$. Exact elimination gives
+$z=(5,-2,1)$. Check directly:
+\[
+ 5(1-2t+t^2)-2(3-5t+4t^2)+(2t+3t^2)=-1+2t.
+\]
+Thus the coordinate vector is $(5,-2,1)$, and the displayed matrix is the
+requested change to the standard basis.
+
+\exercise{4.7.14}{Represent $t^2$ using three different polynomials}
+Reading constant, linear, and quadratic coefficients gives
+\[
+ P=\begin{pmatrix}1&2&1\\0&1&2\\-3&-5&0\end{pmatrix}.
+\]
+Solve $Pz=(0,0,1)$. Its first two equations are
+$z_1+2z_2+z_3=0$ and $z_2+2z_3=0$, so $z_2=-2z_3$ and $z_1=3z_3$.
+The last equation gives $-9z_3+10z_3=1$, hence $z_3=1$.
+Therefore
+\[
+ t^2=3(1-3t^2)-2(2+t-5t^2)+(1+2t).
+\]
+The coefficients $(3,-2,1)$ can be checked by canceling constant and linear terms.
+
+\exercise{4.7.15}{Justify the construction of the change matrix}
+\begin{enumerate}[label=(\alph*)]
+\item $B$ spans $V$, because $B$ is a basis. Therefore $v$ has an expansion
+$v=\sum_jx_jb_j$.
+\item The coordinate mapping determined by a basis is linear. It takes
+that expansion to $[v]_C=\sum_jx_j[b_j]_C$.
+\item This is the definition of a matrix-vector product as a linear
+combination of the matrix's columns.
+\item The column $(x_1,\ldots,x_n)$ is $[v]_B$, by the definition and
+uniqueness of coordinates relative to $B$.
+\end{enumerate}
+These observations prove $[v]_C=P_{C\leftarrow B}[v]_B$ for every vector $v$.
+
+\exercise{4.7.16}{Justify uniqueness of the change matrix}
+\begin{enumerate}[label=(\alph*)]
+\item $[b_1]_B=e_1$, so $Q[b_1]_B=Qe_1$ is the first column of $Q$.
+\item For a general $k$, column $k$ must be $[b_k]_C$.
+\item Indeed $[b_k]_B=e_k$, and multiplying $Q$ by $e_k$ selects its
+$k$th column.
+\end{enumerate}
+Thus every column of $Q$ is forced. It must equal
+$[\,[b_1]_C\ \cdots\ [b_n]_C\,]=P_{C\leftarrow B}$.
+
+\exercise{4.7.17}{Change between powers of cosine and multiple angles}
+Write $x_j(t)=\cos^j t$, $y_j(t)=\cos(jt)$ for $j=0,\ldots,6$.
+\step{(a) Form $P$ from the multiple-angle identities, then invert it.}
+The angle-addition formulas recursively give the polynomials
+$T_0(u)=1$, $T_1(u)=u$, $T_{j+1}(u)=2uT_j(u)-T_{j-1}(u)$ with
+$y_j(t)=T_j(\cos t)$. Taking their coefficients as columns gives
+\[ P=\begin{pmatrix}1&0&-1&0&1&0&-1\\0&1&0&-3&0&5&0\\0&0&2&0&-8&0&18\\0&0&0&4&0&-20&0\\0&0&0&0&8&0&-48\\0&0&0&0&0&16&0\\0&0&0&0&0&0&32\end{pmatrix}.\]
+\[ P^{-1}=\begin{pmatrix}1&0&\frac{1}{2}&0&\frac{3}{8}&0&\frac{5}{16}\\0&1&0&\frac{3}{4}&0&\frac{5}{8}&0\\0&0&\frac{1}{2}&0&\frac{1}{2}&0&\frac{15}{32}\\0&0&0&\frac{1}{4}&0&\frac{5}{16}&0\\0&0&0&0&\frac{1}{8}&0&\frac{3}{16}\\0&0&0&0&0&\frac{1}{16}&0\\0&0&0&0&0&0&\frac{1}{32}\end{pmatrix}.\]
+
+Exact multiplication gives $PP^{-1}=P^{-1}P=I_7$.
+\step{(b) Interpret every column, rather than just listing numbers.}
+Since $P=P_{B\leftarrow C}$, its inverse converts $B$-coordinates to
+$C$-coordinates. The $j$th $x$-vector has $B$-coordinates equal to the
+corresponding standard coordinate vector, so its $C$-coordinates are a
+column of $P^{-1}$. Reading those seven columns gives
+\begin{align*}
+ 1&=\cos0t,\\
+ \cos t&=\cos t,\\
+ \cos^2t&=\tfrac12+\tfrac12\cos2t,\\
+ \cos^3t&=\tfrac34\cos t+\tfrac14\cos3t,\\
+ \cos^4t&=\tfrac38+\tfrac12\cos2t+\tfrac18\cos4t,\\
+ \cos^5t&=\tfrac58\cos t+\tfrac5{16}\cos3t+\tfrac1{16}\cos5t,\\
+ \cos^6t&=\tfrac5{16}+\tfrac{15}{32}\cos2t+\tfrac3{16}\cos4t+\tfrac1{32}\cos6t.
+\end{align*}
+
+\exercise{4.7.18}{Integrate after changing the function basis}
+The integrand has $B$-coordinates $(0,0,0,5,-6,5,-12)$ in the notation
+of Exercise 4.7.17. Multiplication by $P^{-1}$ gives its $C$-coordinates
+\[
+ (-6,\ 55/8,\ -69/8,\ 45/16,\ -3,\ 5/16,\ -3/8).
+\]
+Thus it equals
+\[
+ -6+\tfrac{55}8\cos t-\tfrac{69}8\cos2t+\tfrac{45}{16}\cos3t
+ -3\cos4t+\tfrac5{16}\cos5t-\tfrac38\cos6t.
+\]
+Integrate these simple cosine terms using
+$\int\cos(jt)\,dt=\sin(jt)/j$ for $j>0$:
+\begin{align*}
+ \int &(5\cos^3t-6\cos^4t+5\cos^5t-12\cos^6t)\,dt\\
+ &=-6t+\tfrac{55}8\sin t-\tfrac{69}{16}\sin2t+\tfrac{15}{16}\sin3t
+ -\tfrac34\sin4t+\tfrac1{16}\sin5t-\tfrac1{16}\sin6t+C.
+\end{align*}
+Differentiating the result restores the multiple-angle expression, which
+Exercise 4.7.17 identifies with the original polynomial in cosine.
+
+\exercise{4.7.19}{Find bases when a change matrix is prescribed}
+Let $V_0=[\,v_1\ v_2\ v_3\,]$ and let $P$ be the supplied matrix.
+\step{(a) Its columns give the new $u$-vectors in $v$-coordinates.}
+For $P=P_{V\leftarrow U}$ we need $U_0=V_0P$. Multiplication gives
+\[ U_0=\begin{pmatrix}-6&-6&-5\\-5&-9&0\\21&32&3\end{pmatrix}.\]
+Take its columns as $u_1,u_2,u_3$. Since $V_0$ and $P$ are invertible (the latter has determinant $-1$), their product is invertible, so these columns are a basis.
+\step{(b) Solve the reversed requirement.}
+Now $P=P_{W\leftarrow V}$ means $V_0=W_0P$, so $W_0=V_0P^{-1}$. This gives
+\[ W_0=\begin{pmatrix}28&38&21\\-9&-13&-7\\-3&2&3\end{pmatrix}.\]
+Take these three columns as $w_1,w_2,w_3$. Their matrix is invertible for the same reason, and $W_0P=V_0$ checks the required direction.
+
+\exercise{4.7.20}{Compose changes in the same order as their actions}
+\step{(a) Apply the first change, then the second.}
+For every $x\in V$,
+\[
+ [x]_D=P_{D\leftarrow C}[x]_C
+       =P_{D\leftarrow C}P_{C\leftarrow B}[x]_B.
+\]
+By uniqueness of the change matrix,
+$P_{D\leftarrow B}=P_{D\leftarrow C}P_{C\leftarrow B}$.
+The rightmost factor acts first, exactly as in composition of functions.
+\step{(b) A concrete exact check.}
+Use the bases with standard-coordinate matrices
+\[
+ B_0=\begin{pmatrix}7&-3\\5&-1\end{pmatrix},\quad
+ C_0=\begin{pmatrix}1&-2\\-5&2\end{pmatrix},\quad
+ D_0=\begin{pmatrix}-1&1\\8&-7\end{pmatrix}.
+\]
+The program calculation $C_0^{-1}B_0$, $D_0^{-1}C_0$, $D_0^{-1}B_0$
+(using exact matrix inversion) gives
+\[
+ \begin{pmatrix}2&-12\\3&-14\end{pmatrix}
+ \begin{pmatrix}-3&1\\-5&2\end{pmatrix}
+ =\begin{pmatrix}54&-22\\61&-25\end{pmatrix}.
+\]
+The right side is $D_0^{-1}B_0$, independently verifying the composition rule.

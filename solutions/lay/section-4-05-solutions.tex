@@ -1,0 +1,349 @@
+\section{The dimension of a vector space}
+The dimension of a finite-dimensional space is the number of vectors in
+any basis. A spanning list need not have that size: it can contain
+redundant vectors. An independent list can be too short to span.
+
+To analyze a parametrized subspace, split its vector expression into one
+coefficient vector per parameter, then remove any dependent generators.
+For $A$ with $n$ columns and $r$ pivots, $\dim\Col A=r$ and
+$\dim\Nul A=n-r$: the null-space basis has one vector per free variable.
+The zero space has the empty basis and dimension zero.
+
+\practice{4.5.P1}{Dependence alone does not bound the list size}
+False. The singleton $S=\{0\}$ is dependent because $1\cdot0=0$
+is a nontrivial relation, yet it has only one element. In the nonzero
+space $V$ with dimension $p\ge1$, one is not greater than $p$.
+\answer{A short set can be dependent; being too large is sufficient
+for dependence but is not necessary.}
+
+\practice{4.5.P2}{A larger set than a spanning set is dependent}
+The finite spanning set $S$ contains a basis, obtained by deleting
+redundant vectors. Thus $\dim V\le |S|$. If $T$ contains more vectors
+than $S$, then $|T|>|S|\ge\dim V$. Any family with more vectors than
+the dimension is dependent. If $T$ is infinite, take already a finite
+subset of more than $\dim V$ elements to obtain a dependence relation.
+\answer{True. The conclusion uses that $S$ spans, not that $S$ itself
+must be a basis.}
+
+\exercise{4.5.1}{Find a dimension from a checked basis}
+\step{Separate the independent parameter contributions.}
+The given vector expression is a linear combination of the following coefficient columns, in the order of its printed parameters. Their column space is exactly the requested subspace.
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rr}1&-2\\1&1\\0&3\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rr}1&0\\0&1\\0&0\end{array}\right].\]
+The pivot columns are 1, 2. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}1\\1\\0\end{array}\right],\left[\begin{array}{r}-2\\1\\3\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. There are no remaining generators to express: every original column is included. The column span consequently has dimension $2$.
+\answer{A basis is the set of original pivot columns displayed above, and the dimension is $2$.}
+
+\exercise{4.5.2}{Find a dimension from a checked basis}
+\step{Separate the independent parameter contributions.}
+The given vector expression is a linear combination of the following coefficient columns, in the order of its printed parameters. Their column space is exactly the requested subspace.
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rr}2&0\\0&-4\\-2&0\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rr}1&0\\0&1\\0&0\end{array}\right].\]
+The pivot columns are 1, 2. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}2\\0\\-2\end{array}\right],\left[\begin{array}{r}0\\-4\\0\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. There are no remaining generators to express: every original column is included. The column span consequently has dimension $2$.
+\answer{A basis is the set of original pivot columns displayed above, and the dimension is $2$.}
+
+\exercise{4.5.3}{Find a dimension from a checked basis}
+\step{Separate the independent parameter contributions.}
+The given vector expression is a linear combination of the following coefficient columns, in the order of its printed parameters. Their column space is exactly the requested subspace.
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rrr}0&0&2\\1&-1&0\\0&1&-3\\1&2&0\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrr}1&0&0\\0&1&0\\0&0&1\\0&0&0\end{array}\right].\]
+The pivot columns are 1, 2, 3. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}0\\1\\0\\1\end{array}\right],\left[\begin{array}{r}0\\-1\\1\\2\end{array}\right],\left[\begin{array}{r}2\\0\\-3\\0\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. There are no remaining generators to express: every original column is included. The column span consequently has dimension $3$.
+\answer{A basis is the set of original pivot columns displayed above, and the dimension is $3$.}
+
+\exercise{4.5.4}{Find a dimension from a checked basis}
+\step{Separate the independent parameter contributions.}
+The given vector expression is a linear combination of the following coefficient columns, in the order of its printed parameters. Their column space is exactly the requested subspace.
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rr}1&2\\-1&0\\3&-1\\1&1\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rr}1&0\\0&1\\0&0\\0&0\end{array}\right].\]
+The pivot columns are 1, 2. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}1\\-1\\3\\1\end{array}\right],\left[\begin{array}{r}2\\0\\-1\\1\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. There are no remaining generators to express: every original column is included. The column span consequently has dimension $2$.
+\answer{A basis is the set of original pivot columns displayed above, and the dimension is $2$.}
+
+\exercise{4.5.5}{Find a dimension from a checked basis}
+\step{Separate the independent parameter contributions.}
+The given vector expression is a linear combination of the following coefficient columns, in the order of its printed parameters. Their column space is exactly the requested subspace.
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rrr}1&-2&0\\2&0&5\\0&-2&2\\-3&0&6\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrr}1&0&0\\0&1&0\\0&0&1\\0&0&0\end{array}\right].\]
+The pivot columns are 1, 2, 3. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}1\\2\\0\\-3\end{array}\right],\left[\begin{array}{r}-2\\0\\-2\\0\end{array}\right],\left[\begin{array}{r}0\\5\\2\\6\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. There are no remaining generators to express: every original column is included. The column span consequently has dimension $3$.
+\answer{A basis is the set of original pivot columns displayed above, and the dimension is $3$.}
+
+\exercise{4.5.6}{Find a dimension from a checked basis}
+\step{Separate the independent parameter contributions.}
+The given vector expression is a linear combination of the following coefficient columns, in the order of its printed parameters. Their column space is exactly the requested subspace.
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rrr}3&0&-1\\0&-1&-3\\-7&6&5\\-3&0&1\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrr}1&0&0\\0&1&0\\0&0&1\\0&0&0\end{array}\right].\]
+The pivot columns are 1, 2, 3. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}3\\0\\-7\\-3\end{array}\right],\left[\begin{array}{r}0\\-1\\6\\0\end{array}\right],\left[\begin{array}{r}-1\\-3\\5\\1\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. There are no remaining generators to express: every original column is included. The column span consequently has dimension $3$.
+\answer{A basis is the set of original pivot columns displayed above, and the dimension is $3$.}
+
+\exercise{4.5.7}{A homogeneous system defining the zero space}
+The second equation gives $b=2c$. Substitution into the third,
+$2b-c=0$, gives $4c-c=3c=0$, so $c=0$ and then $b=0$.
+The first equation now yields $a=0$. Thus the subspace contains only
+$(0,0,0)$.
+\answer{(a) The empty set is a basis of the zero subspace.
+(b) Its dimension is $0$. The singleton containing zero is not a basis,
+because it is dependent.}
+
+\exercise{4.5.8}{One constraint in four coordinates}
+Solve for $a$: $a=3b-c$, with $b,c,d$ unrestricted. Then
+\[
+(a,b,c,d)^T=b(3,1,0,0)^T+c(-1,0,1,0)^T+d(0,0,0,1)^T.
+\]
+This proves spanning. For a zero combination, coordinates 2,3,4
+force the three coefficients to be zero, proving independence.
+\answer{(a) The three displayed coefficient vectors form a basis.
+(b) The dimension is $3$.}
+
+\exercise{4.5.9}{An equal-coordinate plane}
+A vector whose first and third coordinates agree has form
+$(s,t,s)^T=s(1,0,1)^T+t(0,1,0)^T$.
+These two coefficient vectors are independent: a zero combination has
+first coordinate equal to the first weight and second coordinate equal
+to the second weight. Both therefore vanish.
+\answer{The dimension is $2$, with basis $\{(1,0,1)^T,(0,1,0)^T\}$.}
+
+\exercise{4.5.10}{Three generators of one line}
+The second and third generators are $-2$ and $-3$ times
+$(1,-5)^T$. Thus all three generate the same line as this one nonzero
+vector. A nonzero singleton is independent, so
+$\{(1,-5)^T\}$ is a basis.
+\answer{$\dim H=1$, not three: redundant generators do not add dimensions.}
+
+\exercise{4.5.11}{Find a dimension from a checked basis}
+\step{Find a basis rather than counting the generators.}
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rrrr}1&3&-2&5\\0&1&-1&2\\2&1&1&2\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrr}1&0&1&0\\0&1&-1&0\\0&0&0&1\end{array}\right].\]
+The pivot columns are 1, 2, 4. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}1\\0\\2\end{array}\right],\left[\begin{array}{r}3\\1\\1\end{array}\right],\left[\begin{array}{r}5\\2\\2\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. To see explicitly why they span all the original generators, read each nonpivot column from the reduced matrix:
+\[\begin{aligned}v_{3}&=(1)v_{1}+(-1)v_{2}\end{aligned}\]
+Row operations preserve these linear relations, so the displayed relations hold for the original columns too. The column span consequently has dimension $3$.
+\answer{A basis is the set of original pivot columns displayed above, and the dimension is $3$.}
+
+\exercise{4.5.12}{Find a dimension from a checked basis}
+\step{Find a basis rather than counting the generators.}
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rrrr}1&-3&-2&-3\\-2&-6&3&5\\0&0&5&5\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrr}1&0&0&-1\\0&1&0&0\\0&0&1&1\end{array}\right].\]
+The pivot columns are 1, 2, 3. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}1\\-2\\0\end{array}\right],\left[\begin{array}{r}-3\\-6\\0\end{array}\right],\left[\begin{array}{r}-2\\3\\5\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. To see explicitly why they span all the original generators, read each nonpivot column from the reduced matrix:
+\[\begin{aligned}v_{4}&=(-1)v_{1}+(1)v_{3}\end{aligned}\]
+Row operations preserve these linear relations, so the displayed relations hold for the original columns too. The column span consequently has dimension $3$.
+\answer{A basis is the set of original pivot columns displayed above, and the dimension is $3$.}
+
+\exercise{4.5.13}{Nullity and column dimension from pivots}
+\step{Count pivots and variable columns separately.}
+\[A=\left[\begin{array}{rrrrr}1&-6&9&0&-2\\0&1&2&-4&5\\0&0&0&5&1\\0&0&0&0&0\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrrr}1&0&21&0&\frac{164}{5}\\0&1&2&0&\frac{29}{5}\\0&0&0&1&\frac{1}{5}\\0&0&0&0&0\end{array}\right].\]
+There are $5$ variable columns and $3$ pivots, in columns 1, 2, 4. The free-variable columns are 3, 5.
+\answer{$\dim\Col A=3$ and $\dim\Nul A=5-3=2$. The column-space dimension counts pivot columns; the null-space dimension counts free variables.}
+
+\exercise{4.5.14}{Seven columns with four pivots}
+\step{Count pivots and variable columns separately.}
+\[A=\left[\begin{array}{rrrrrrr}1&2&-4&3&-2&6&0\\0&0&0&1&0&-3&7\\0&0&0&0&1&4&-2\\0&0&0&0&0&0&1\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrrrrr}1&2&-4&0&0&23&0\\0&0&0&1&0&-3&0\\0&0&0&0&1&4&0\\0&0&0&0&0&0&1\end{array}\right].\]
+There are $7$ variable columns and $4$ pivots, in columns 1, 4, 5, 7. The free-variable columns are 2, 3, 6.
+\answer{$\dim\Col A=4$ and $\dim\Nul A=7-4=3$. The column-space dimension counts pivot columns; the null-space dimension counts free variables.}
+
+\exercise{4.5.15}{A nonconsecutive pivot pattern}
+\step{Count pivots and variable columns separately.}
+\[A=\left[\begin{array}{rrrrr}1&2&3&0&0\\0&0&1&0&1\\0&0&0&1&0\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrrr}1&2&0&0&-3\\0&0&1&0&1\\0&0&0&1&0\end{array}\right].\]
+There are $5$ variable columns and $3$ pivots, in columns 1, 3, 4. The free-variable columns are 2, 5.
+\answer{$\dim\Col A=3$ and $\dim\Nul A=5-3=2$. The column-space dimension counts pivot columns; the null-space dimension counts free variables.}
+
+\exercise{4.5.16}{An invertible two-by-two matrix}
+\step{Count pivots and variable columns separately.}
+\[A=\left[\begin{array}{rr}3&2\\-6&5\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rr}1&0\\0&1\end{array}\right].\]
+There are $2$ variable columns and $2$ pivots, in columns 1, 2. There are no free-variable columns.
+\answer{$\dim\Col A=2$ and $\dim\Nul A=2-2=0$. The column-space dimension counts pivot columns; the null-space dimension counts free variables.}
+
+\exercise{4.5.17}{Three nonzero triangular pivots}
+\step{Count pivots and variable columns separately.}
+\[A=\left[\begin{array}{rrr}1&-1&0\\0&1&3\\0&0&1\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrr}1&0&0\\0&1&0\\0&0&1\end{array}\right].\]
+There are $3$ variable columns and $3$ pivots, in columns 1, 2, 3. There are no free-variable columns.
+\answer{$\dim\Col A=3$ and $\dim\Nul A=3-3=0$. The column-space dimension counts pivot columns; the null-space dimension counts free variables.}
+
+\exercise{4.5.18}{Two pivots and a zero row}
+\step{Count pivots and variable columns separately.}
+\[A=\left[\begin{array}{rrr}1&1&-1\\0&2&0\\0&0&0\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrr}1&0&-1\\0&1&0\\0&0&0\end{array}\right].\]
+There are $3$ variable columns and $2$ pivots, in columns 1, 2. The free-variable columns are 3.
+\answer{$\dim\Col A=2$ and $\dim\Nul A=3-2=1$. The column-space dimension counts pivot columns; the null-space dimension counts free variables.}
+
+\exercise{4.5.19}{Dimension definitions and missing hypotheses}
+\begin{enumerate}[label=(\alph*)]
+\item True. The original pivot columns form a basis of the column space,
+so their number equals its dimension.
+\item False as stated: a plane not through zero is not a subspace at all.
+For example $z=1$ is a plane in $\R^3$ but excludes the zero vector.
+A plane \emph{through the origin} is a two-dimensional subspace.
+\item False. $\mathcal P_4$ has basis $1,t,t^2,t^3,t^4$, of size five.
+\item False. An independent set can be shorter than $n$; for example
+$\{e_1\}$ is independent in $\R^2$ but does not span it.
+\item True. A spanning family of $p$ vectors gives $\dim V\le p$.
+More than $p$ vectors means more than the dimension, forcing dependence.
+\end{enumerate}
+
+\exercise{4.5.20}{Subspace identity and spanning-set cautions}
+\begin{enumerate}[label=(\alph*)]
+\item False. Elements of $\R^2$ have two coordinates and are not
+literally elements of $\R^3$. The embedded set $\{(x,y,0)\}$ is a
+subspace isomorphic to $\R^2$, which is a different assertion.
+\item False. Nullity counts \emph{free} variables. For $A=I_n$ there
+are $n$ variables but no free variables, so $\dim\Nul A=0$.
+\item False. A one-dimensional line is spanned by its infinitely many
+vectors; an infinite spanning set need not be independent or minimal.
+\item False. A spanning set can be redundant; $\{e_1,e_2,e_1+e_2\}$
+spans $\R^2$ but is dependent.
+\item True. A three-vector basis of such a subspace is independent in
+$\R^3$, so it also spans $\R^3$. Hence the subspace is the whole space.
+\end{enumerate}
+
+\exercise{4.5.21}{Hermite polynomial coefficients}
+\step{Record every coefficient, including zeros.}
+Relative to the standard basis $(1,t,t^2,t^3)$, the polynomial coefficient matrix is
+\[A=\left[\begin{array}{rrrr}1&0&-2&0\\0&2&0&-12\\0&0&4&0\\0&0&0&8\end{array}\right].\]
+It is triangular, with nonzero diagonal entries $1$, $2$, $4$, $8$. Thus its determinant is $64\ne0$, and its four columns are independent and span $\R^4$.
+The standard coefficient map is a linear bijection between $\mathcal P_3$ and $\R^4$, so the same two properties hold for the four polynomials.
+\answer{The four Hermite polynomials form a basis of $\mathcal P_3$.}
+
+\exercise{4.5.22}{Laguerre polynomial coefficients}
+\step{Record every coefficient, including zeros.}
+Relative to the standard basis $(1,t,t^2,t^3)$, the polynomial coefficient matrix is
+\[A=\left[\begin{array}{rrrr}1&1&2&6\\0&-1&-4&-18\\0&0&1&9\\0&0&0&-1\end{array}\right].\]
+It is triangular, with nonzero diagonal entries $1$, $-1$, $1$, $-1$. Thus its determinant is $1\ne0$, and its four columns are independent and span $\R^4$.
+The standard coefficient map is a linear bijection between $\mathcal P_3$ and $\R^4$, so the same two properties hold for the four polynomials.
+\answer{The four Laguerre polynomials form a basis of $\mathcal P_3$.}
+
+\exercise{4.5.23}{Hermite coordinates of a cubic}
+\goal Express the given polynomial in the specified ordered basis.
+The coefficient equation uses the same ordered coefficient columns as in the preceding basis calculation:
+\[\left[\begin{array}{rrrr}1&0&-2&0\\0&2&0&-12\\0&0&4&0\\0&0&0&8\end{array}\right]c=\left[\begin{array}{r}-1\\0\\8\\8\end{array}\right].\]
+Solve from the last coefficient upward. This gives $c_{4}=1$, $c_{3}=2$, $c_{2}=6$, $c_{1}=3$.
+For a direct check, multiply the coefficient matrix by these weights; the result is exactly the target coefficient column displayed on the right.
+\answer{$[p]_{\mathcal B}=\left[\begin{array}{r}3\\6\\2\\1\end{array}\right]$.}
+
+\exercise{4.5.24}{Laguerre coordinates of a quadratic}
+\goal Express the given polynomial in the specified ordered basis.
+The coefficient equation uses the same ordered coefficient columns as in the preceding basis calculation:
+\[\left[\begin{array}{rrr}1&1&2\\0&-1&-4\\0&0&1\end{array}\right]c=\left[\begin{array}{r}5\\5\\-2\end{array}\right].\]
+Solve from the last coefficient upward. This gives $c_{3}=-2$, $c_{2}=3$, $c_{1}=6$.
+For a direct check, multiply the coefficient matrix by these weights; the result is exactly the target coefficient column displayed on the right.
+\answer{$[p]_{\mathcal B}=\left[\begin{array}{r}6\\3\\-2\end{array}\right]$.}
+
+\exercise{4.5.25}{A short set cannot span}
+Suppose $S$ did span $V$. A finite spanning set contains a basis,
+obtained by deleting redundant vectors. That basis would have at most
+$|S|<n$ members, contradicting the fact that every basis of $V$ has
+$n$ members. Thus the assumed spanning property is impossible.
+\answer{Fewer than $n$ vectors cannot span an $n$-dimensional space.}
+
+\exercise{4.5.26}{Equal finite dimensions force equality}
+Choose a basis $h_1,\ldots,h_n$ for $H$. Because $H\subseteq V$,
+these are also $n$ independent vectors in the $n$-dimensional space $V$.
+The basis theorem says they span $V$. But their span is already $H$,
+so $V=H$.
+\answer{A subspace with the full finite ambient dimension is the entire space.}
+
+\exercise{4.5.27}{Why all polynomials have no finite basis}
+Take any finite set of polynomials. Choose an integer $d\ge0$ at
+least as large as all their degrees. Every linear combination of them
+still has degree at most $d$, since addition and scalar multiplication
+cannot create a nonzero coefficient of $t^{d+1}$. Thus this set cannot
+span the polynomial $t^{d+1}$. No finite spanning set, and hence no
+finite basis, exists for all polynomials.
+\answer{The polynomial space $\mathcal P$ is infinite-dimensional.}
+
+\exercise{4.5.28}{Continuous functions contain arbitrarily large independent families}
+For every integer $m\ge0$, the $m+1$ functions
+$1,t,t^2,\ldots,t^m$ are continuous and linearly independent on $\R$:
+an identical zero polynomial has every coefficient zero. If $C(\R)$
+had finite dimension $d$, take $m=d$. It would then contain $d+1$
+independent vectors, contradicting the dimension bound.
+\answer{$C(\R)$ is infinite-dimensional because it contains independent
+families of arbitrarily large finite size.}
+
+\exercise{4.5.29}{Compare spanning and independent family sizes}
+\begin{enumerate}[label=(\alph*)]
+\item True. Deleting redundancies from the $p$ spanning vectors gives
+a basis with at most $p$ members, so $\dim V\le p$.
+\item True. An independent family extends to a basis; the basis
+therefore contains at least its original $p$ vectors, so $\dim V\ge p$.
+\item True. Take any $p$-vector basis and adjoin the zero vector. Since
+$V\ne\{0\}$, we have $p\ge1$, and zero is not a basis member.
+The resulting $p+1$ distinct vectors still span $V$.
+\end{enumerate}
+
+\exercise{4.5.30}{Counterexamples to incorrect dimension converses}
+\begin{enumerate}[label=(\alph*)]
+\item False. In $V=\R^{p+1}$, the $p$ distinct vectors
+$0,e_1,\ldots,e_{p-1}$ are dependent, but $\dim V=p+1>p$.
+For $p=1$ this example is simply the singleton $\{0\}$ in $\R^2$.
+\item True. If instead $\dim V=d\le p$, take a $d$-vector basis and,
+if necessary, add distinct redundant multiples of one nonzero basis
+vector until there are $p$ distinct members. This $p$-element set spans,
+contradicting the assumption. Thus $d>p$.
+\item False in general. For $p=3$, the two nonzero vectors $e_1,2e_1$
+in $\R^3$ are dependent, despite there being $p-1=2$ of them.
+The special boundary case $p=2$ would be true, since a single nonzero
+vector is independent; it does not make the general statement true.
+\end{enumerate}
+
+\exercise{4.5.31}{A linear image cannot gain dimension}
+Let $h_1,\ldots,h_d$ be a basis of $H$, where $d=\dim H$.
+For any $h\in H$, write $h=\sum_jc_jh_j$. Linearity gives
+$T(h)=\sum_jc_jT(h_j)$, so the $d$ vectors $T(h_j)$ span $T(H)$.
+Removing redundant images gives a basis with at most $d$ vectors.
+They may all vanish, in which case the image is the zero space of
+dimension zero.
+\answer{$\dim T(H)\le d=\dim H$. Images cannot need more independent
+directions than the inputs supplying them.}
+
+\exercise{4.5.32}{An injective image preserves dimension}
+As in Exercise 31, the images of a basis $h_1,\ldots,h_d$ span
+$T(H)$. If $\sum_jc_jT(h_j)=0$, linearity gives
+$T(\sum_jc_jh_j)=T(0)$. Injectivity yields $\sum_jc_jh_j=0$;
+independence of the basis forces every $c_j=0$. Thus the images are
+also independent and form a $d$-element basis of $T(H)$.
+Taking $H=V$ and using surjectivity when it is assumed gives $T(V)=W$,
+so $\dim W=\dim V$.
+\answer{$\dim T(H)=\dim H$ for an injective $T$; in particular finite-
+dimensional isomorphic vector spaces have equal dimensions.}
+
+\exercise{4.5.33}{Extend an independent family to a basis}
+\step{(a) Append the standard coordinate directions.}
+Form $A=[v_1\ v_2\ v_3\ e_1\ \cdots\ e_5]$. The following reduction and pivot-column certificate give a basis; columns 4 through 8 refer to the standard vectors in order.
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rrrrrrrr}-9&9&6&1&0&0&0&0\\-7&4&7&0&1&0&0&0\\8&1&-8&0&0&1&0&0\\-5&6&5&0&0&0&1&0\\7&-7&-7&0&0&0&0&1\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrrrrrr}1&0&0&- \frac{1}{3}&0&0&1&\frac{3}{7}\\0&1&0&0&0&0&1&\frac{5}{7}\\0&0&1&- \frac{1}{3}&0&0&0&- \frac{3}{7}\\0&0&0&0&1&0&3&\frac{22}{7}\\0&0&0&0&0&1&-9&- \frac{53}{7}\end{array}\right].\]
+The pivot columns are 1, 2, 3, 5, 6. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}-9\\-7\\8\\-5\\7\end{array}\right],\left[\begin{array}{r}9\\4\\1\\6\\-7\end{array}\right],\left[\begin{array}{r}6\\7\\-8\\5\\-7\end{array}\right],\left[\begin{array}{r}0\\1\\0\\0\\0\end{array}\right],\left[\begin{array}{r}0\\0\\1\\0\\0\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. To see explicitly why they span all the original generators, read each nonpivot column from the reduced matrix:
+\[\begin{aligned}v_{4}&=(- \frac{1}{3})v_{1}+(- \frac{1}{3})v_{3}\\v_{7}&=(1)v_{1}+(1)v_{2}+(3)v_{5}+(-9)v_{6}\\v_{8}&=(\frac{3}{7})v_{1}+(\frac{5}{7})v_{2}+(- \frac{3}{7})v_{3}+(\frac{22}{7})v_{5}+(- \frac{53}{7})v_{6}\end{aligned}\]
+Row operations preserve these linear relations, so the displayed relations hold for the original columns too. The column span consequently has dimension $5$.
+\step{(b) Explain why the construction works generally.}
+The original independent columns $v_1,\ldots,v_k$ each add a new pivot as the columns are processed left to right: none lies in the span of its predecessors. Thus all are retained among the pivot columns. Appending every $e_j$ makes the full column space $\R^n$, because those columns alone already span $\R^n$. The pivot columns therefore form a basis of the whole space that contains all the original independent vectors.
+
+\exercise{4.5.34}{Cosine multiples give another basis}
+\step{(a) Use the given identities to read coefficient columns.}
+In the ordered basis $\mathcal B=(1,\cos t,\ldots,\cos^6t)$, the coordinate columns of $\mathcal C=(1,\cos t,\cos2t,\ldots,\cos6t)$ are
+\[P=\left[\begin{array}{rrrrrrr}1&0&-1&0&1&0&-1\\0&1&0&-3&0&5&0\\0&0&2&0&-8&0&18\\0&0&0&4&0&-20&0\\0&0&0&0&8&0&-48\\0&0&0&0&0&16&0\\0&0&0&0&0&0&32\end{array}\right].\]
+The $j$th column is the coordinate vector of the $j$th function in $\mathcal C$. The matrix is triangular with diagonal $1,1,2,4,8,16,32$, whose product is $32768\ne0$. Hence its columns are independent. Because coordinates preserve dependence relations, the functions in $\mathcal C$ are independent too.
+\step{(b) Compare the number of independent functions with the dimension.}
+By Exercise 4.3.38, $\mathcal B$ is a seven-element basis of $H$, so $\dim H=7$. The seven independent members of $\mathcal C$ lie in $H$ by the supplied identities. An independent family of seven vectors in a seven-dimensional space is a basis.
+\answer{$\mathcal C$ is a basis for $H$. The displayed columns give all requested $\mathcal B$ coordinates.}

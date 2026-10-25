@@ -1,0 +1,360 @@
+\section{Applications of inner product spaces}
+\textbf{Two conventions matter.} The book uses $W$ to multiply
+\emph{residuals}, so weighted least squares minimizes
+$\|W(y-X\beta)\|^2$. Therefore its normal matrix contains
+$W^TW=W^2$ when $W$ is diagonal. Do not replace this by $W$
+unless the supplied weights have first been square-rooted.
+For Fourier approximations, the inner product is the ordinary integral
+$\langle f,g\rangle=\int_0^{2\pi}fg$; the constant coefficient is
+$a_0/2$, with $a_0=(1/\pi)\int f$, while
+$a_k=(1/\pi)\int f\cos kt$ and $b_k=(1/\pi)\int f\sin kt$.
+These differing denominators arise because $\|1\|^2=2\pi$ and
+$\|\sin kt\|^2=\|\cos kt\|^2=\pi$ for positive integer $k$.
+
+\practice{6.8.P1}{Check the three integral products}
+For $q_1=1$, $q_2=t$, $q_3=3t^2-4$ on $[-2,2]$,
+\[
+ \langle q_1,q_2\rangle=\int_{-2}^2t\,dt=0,
+\]
+\[
+ \langle q_1,q_3\rangle=[t^3-4t]_{-2}^2=0,
+\]
+\[
+ \langle q_2,q_3\rangle=\int_{-2}^2(3t^3-4t)\,dt=0.
+\]
+The first and third vanish also by oddness. All three polynomials
+are nonzero, so the pairwise zero products prove an orthogonal set.
+
+\practice{6.8.P2}{Read approximations from a finite trigonometric expression}
+The function is already
+$f(t)=3-2\sin t+5\sin2t-6\cos2t$.
+The first-order space retains only the constant and frequency-one
+terms, so its approximation is $3-2\sin t$.
+The third-order space contains all the displayed terms (there are no
+frequency-three terms to add), so its approximation is $f$ itself.
+Orthogonality makes the discarded higher-frequency terms perpendicular
+to the lower-order space; this is why simply retaining terms gives
+the least-squares approximation here.
+
+\exercise{6.8.1}{Half-size residual multipliers at the two endpoints}
+Use design rows $(1,x_i)$ for $x_i=-2,-1,0,1,2$ and
+$y=(0,0,2,4,4)^T$. Following the book's convention, take
+$W=\operatorname{diag}(1,2,2,2,1)$: the endpoint residuals receive
+half the multiplier of the interior ones. Scaling all multipliers
+by a common positive factor does not change the fit.
+The weighted normal equations are
+\[
+ X^TW^2X\widehat\beta=X^TW^2y,
+ \qquad
+ \begin{bmatrix}14&0\\0&16\end{bmatrix}\widehat\beta
+ =\begin{bmatrix}28\\24\end{bmatrix}.
+\]
+Thus $\widehat\beta_0=2$ and $\widehat\beta_1=3/2$.
+\answer{The fitted line is $y=2+(3/2)x$. Here ``half'' refers to
+the residual multiplier used in the text, whose square enters the objective.}
+
+\exercise{6.8.2}{A common rescaling leaves the minimizers unchanged}
+The second weighting matrix is $W_2=2W_1$, because every point's
+multiplier is doubled. For any parameter vector,
+\[
+ \|W_2(y-X\beta)\|^2=4\|W_1(y-X\beta)\|^2.
+\]
+Multiplication by the positive constant $4$ preserves every ordering
+of objective values, so the minimizing parameter vectors are exactly
+the same. The numerical minimum changes by that factor, but the
+fitted curve does not. This also holds when the minimizer is not unique.
+
+\exercise{6.8.3}{Add the cubic trend to the quadratic trend}
+Use nodes $-2,-1,0,1,2$ and observations $g=(3,5,5,4,3)$.
+The orthogonal polynomials from Example 2 and the question are
+$p_0=1,p_1=t,p_2=t^2-2,p_3=(5t^3-17t)/6$.
+Their inner products with the data and squared norms are
+\[
+\begin{array}{c|rrrr}
+ j&0&1&2&3\\\hline
+ \langle g,p_j\rangle&20&-1&-7&2\\
+ \langle p_j,p_j\rangle&5&10&14&10
+\end{array}
+\]
+The cubic values are $(-1,2,0,-2,1)$, so its coefficient is
+$2/10=1/5$. The fitted cubic trend is
+\[
+ \widehat g=4p_0-\tfrac1{10}p_1-\tfrac12p_2+\tfrac15p_3
+ =\boxed{5-\tfrac23t-\tfrac12t^2+\tfrac16t^3}.
+\]
+Because the basis is orthogonal, adding the cubic term does not require
+recomputing the earlier three coefficients.
+
+\exercise{6.8.4}{Orthogonal trends at six evenly spaced nodes}
+\step{(a) Check the evaluation vectors.}
+At $-5,-3,-1,1,3,5$, the proposed polynomials have lists
+\[
+ p_0:(1,1,1,1,1,1),\quad p_1:(-5,-3,-1,1,3,5),
+\]
+\[
+ p_2:(5,-1,-4,-4,-1,5).
+\]
+The lists for $p_1$ and $p_2$ each sum to zero, so both are
+orthogonal to $p_0$. Their mutual product sums to zero by odd-even
+cancellation. Their squared norms are $6,70,84$, all positive.
+Thus they form the required orthogonal basis of the quadratic space.
+\step{(b) Project the actual data onto that basis.}
+For $g=(1,1,4,4,6,8)$, the three inner products are $24,50,6$.
+Hence
+\[
+ \widehat g=\frac{24}{6}p_0+\frac{50}{70}p_1+\frac6{84}p_2
+ =4+\frac57t+\frac1{14}\left(\frac38t^2-\frac{35}{8}\right).
+\]
+Equivalently the quadratic is
+$\boxed{\widehat g(t)=59/16+(5/7)t+(3/112)t^2}$.
+The projection residual is orthogonal to all three basis lists, verifying the fit.
+
+\exercise{6.8.5}{Sines of distinct integer frequencies are orthogonal}
+For unequal positive integers $m,n$, use
+$2\sin mt\sin nt=\cos((m-n)t)-\cos((m+n)t)$.
+Both $m-n$ and $m+n$ are nonzero integers. Their cosine integrals
+on $[0,2\pi]$ are zero, since
+$\int_0^{2\pi}\cos(kt)\,dt=[\sin(kt)/k]_0^{2\pi}=0$.
+Thus the integral of the original product is zero, proving orthogonality.
+
+\exercise{6.8.6}{Sine and cosine terms are orthogonal even at equal frequency}
+Use $2\sin mt\cos nt=\sin((m+n)t)+\sin((m-n)t)$.
+Every nonzero integer-frequency sine integrates to zero over $[0,2\pi]$.
+If $m=n$, the second term is identically $\sin0=0$, so it also
+has zero integral without any division by zero. Thus
+$\langle\sin mt,\cos nt\rangle=0$ for all the stated positive integers.
+
+\exercise{6.8.7}{The Fourier basis elements have squared norm pi}
+For positive integer $k$, the identities
+$\cos^2kt=(1+\cos2kt)/2$ and
+$\sin^2kt=(1-\cos2kt)/2$ give
+\[
+ \|\cos kt\|^2=\tfrac12(2\pi)+0=\pi,\qquad
+ \|\sin kt\|^2=\tfrac12(2\pi)-0=\pi.
+\]
+The Fourier setting uses integer frequencies. For an arbitrary noninteger
+real $k$, the boundary term $\sin(4\pi k)/(4k)$ need not vanish,
+so the integer-frequency condition is what justifies these equalities.
+
+\exercise{6.8.8}{A constant shift changes only the constant coefficient}
+For $f(t)=t-1$, the mean coefficient is
+$(1/(2\pi))\int_0^{2\pi}(t-1)\,dt=\pi-1$.
+For $k\ge1$, integration by parts gives $a_k=0$ and $b_k=-2/k$;
+the constant $-1$ has zero product with those sines and cosines.
+\answer{The third-order approximation is
+$\pi-1-2\sin t-\sin2t-(2/3)\sin3t$.}
+
+\exercise{6.8.9}{Reverse the slope of the linear function}
+For $f(t)=2\pi-t$, the constant coefficient is $\pi$.
+The nonconstant Fourier coefficients of $t$ have their signs reversed:
+$a_k=0$, $b_k=2/k$. These also follow directly by integrating
+$(2\pi-t)\sin kt$ by parts.
+\answer{The third-order approximation is
+$\pi+2\sin t+\sin2t+(2/3)\sin3t$.}
+
+\exercise{6.8.10}{Project an integrable square wave onto continuous trigonometric functions}
+The square wave in the exercise has a jump at $\pi$, so it is not
+literally a member of $C[0,2\pi]$. Nevertheless it is bounded and
+Riemann integrable, as are all its products with the finite continuous
+trigonometric basis. The finite-dimensional least-squares problem
+$\min_g\int_0^{2\pi}(f-g)^2$ is therefore well defined on that
+continuous trigonometric subspace. Its normal equations use the
+same integrals; no assertion about an inner product on all pointwise
+piecewise-continuous functions is needed. Values assigned at isolated
+jump endpoints do not change any of these integrals.
+The mean is zero. For $k\ge1$,
+\[
+ a_k=\frac1\pi\left(\int_0^\pi\cos kt\,dt
+ -\int_\pi^{2\pi}\cos kt\,dt\right)=0,
+\]
+\[
+ b_k=\frac1\pi\left(\int_0^\pi\sin kt\,dt
+ -\int_\pi^{2\pi}\sin kt\,dt\right)
+ =\frac{2(1-(-1)^k)}{\pi k}.
+\]
+Thus even sine coefficients vanish and odd ones equal $4/(\pi k)$.
+\answer{The third-order approximation is
+$(4/\pi)(\sin t+(1/3)\sin3t)$.}
+
+\exercise{6.8.11}{An exact finite trigonometric identity}
+The identity $\sin^2t=(1-\cos2t)/2$ already expresses the function
+in the third-order target subspace. It is therefore its own best
+approximation, with zero error. Its only nonzero coefficients are
+the constant $1/2$ and the cosine-two coefficient $-1/2$.
+\answer{$1/2-(1/2)\cos2t$. No integration is necessary.}
+
+\exercise{6.8.12}{Use the cosine triple-angle identity}
+From $\cos3t=4\cos^3t-3\cos t$, solve for the cube:
+$\cos^3t=(3/4)\cos t+(1/4)\cos3t$.
+This lies entirely in the third-order target space, so the best
+approximation is exact, again with zero error.
+\answer{$(3/4)\cos t+(1/4)\cos3t$.}
+
+\exercise{6.8.13}{Each coefficient depends linearly on the function}
+For example,
+\[
+ a_k(f+g)=\frac1\pi\int_0^{2\pi}(f+g)\cos kt
+ =a_k(f)+a_k(g)
+\]
+by linearity of the integral. Replacing cosine by sine proves the
+same identity for $b_k$, and taking the constant term proves it
+for $a_0$ too. The fixed denominators are the same for both functions,
+so no extra normalization appears when adding coefficients.
+
+\exercise{6.8.14}{One additional correct Fourier coefficient cannot worsen the fit}
+The difference is $h-g=b_2\sin2t$. Since $b_2$ is the Fourier
+coefficient of $f$, the residual $f-h$ is orthogonal to $\sin2t$.
+Therefore the Pythagorean theorem gives
+\[
+ \|f-g\|^2=\|(f-h)+b_2\sin2t\|^2
+ =\|f-h\|^2+\pi b_2^2.
+\]
+\answer{$h$ is at least as close as $g$. It is strictly closer if
+$b_2\ne0$; if $b_2=0$, the two functions and their errors are identical.}
+
+\exercise{6.8.15}{A weighted cubic takeoff fit}
+Use the thirteen times and position observations from Exercise 6.6.13,
+with design row $(1,t,t^2,t^3)$ and the stated diagonal residual
+multipliers $1,1,1,0.9,0.9,0.8,0.7,0.6,0.5,0.4,0.3,0.2,0.1$.
+The normal equations must use $X^TW^2X$, not $X^TWX$.
+For reproducibility their coefficient matrix and right side are
+\[
+ \begin{bmatrix}
+6.66&22.23&120.77&797.19\\
+22.23&120.77&797.19&5956.13\\
+120.77&797.19&5956.13&48490.23\\
+797.19&5956.13&48490.23&420477.17
+\end{bmatrix}\widehat\beta
+ =\begin{bmatrix}747.844\\4815.438\\35420.468\\285262.44\end{bmatrix}.
+\]
+Solving with the supplied decimals treated as exact rational data gives,
+after rounding for display,
+\[
+ y(t)\approx-0.2685118943+3.6095481671t
+ +5.8575839604t^2-0.04770303371t^3.
+\]
+The exact fitted residual satisfies $X^TW^2(y-X\widehat\beta)=0$,
+which checks that this curve minimizes the weighted objective.
+Differentiate and evaluate at $4.5$ seconds:
+\[
+ y'(4.5)=\widehat\beta_1+9\widehat\beta_2+60.75\widehat\beta_3
+ \approx\boxed{53.42984451\text{ feet/second}}.
+\]
+The later observations receive less influence because their residuals
+are multiplied by smaller numbers before squaring.
+
+\exercise{6.8.16}{Graph two Fourier orders and their periodic continuation}
+From Exercise 10, even sine coefficients vanish, so
+\[
+ f_4(t)=\frac4\pi\left(\sin t+\frac{\sin3t}{3}\right),\qquad
+ f_5(t)=f_4(t)+\frac4{5\pi}\sin5t.
+\]
+Thus the fourth-order projection equals the third-order projection:
+its new frequency-four coefficients are zero. The fifth adds a
+nonzero frequency-five term. The requested three separate plots follow;
+the formulas determine the values exactly, while the curves are sampled
+densely for drawing. Both are $2\pi$-periodic, explaining the
+continuation on the third plot.
+
+\begin{center}\begin{minipage}{\linewidth}\centering\textbf{$f_4$ on $[0,2\pi]$}\par
+\setlength{\unitlength}{1mm}\begin{picture}(145,75)
+\put(10,35){\vector(1,0){122}}
+\put(15,7){\vector(0,1){60}}
+\put(134,31){$t$}
+\put(15.000,34){\line(0,1){2}}\put(15.000,30){\makebox(0,0){\scriptsize$0$}}
+\put(70.000,34){\line(0,1){2}}\put(70.000,30){\makebox(0,0){\scriptsize$\pi$}}
+\put(125.000,34){\line(0,1){2}}\put(125.000,30){\makebox(0,0){\scriptsize$2\pi$}}
+\put(14,15){\line(1,0){2}}\put(10,15){\makebox(0,0){\scriptsize$-1$}}
+\put(14,55){\line(1,0){2}}\put(10,55){\makebox(0,0){\scriptsize$1$}}
+{\color{blue}\linethickness{0.8pt}\polyline(15.000,35.000)(15.458,36.333)(15.917,37.661)(16.375,38.979)(16.833,40.285)(17.292,41.572)(17.750,42.837)(18.208,44.076)(18.667,45.284)(19.125,46.457)(19.583,47.593)(20.042,48.687)
+(20.500,49.736)(20.958,50.738)(21.417,51.689)(21.875,52.587)(22.333,53.430)(22.792,54.217)(23.250,54.945)(23.708,55.613)(24.167,56.221)(24.625,56.767)(25.083,57.253)(25.542,57.677)
+(26.000,58.041)(26.458,58.344)(26.917,58.589)(27.375,58.775)(27.833,58.906)(28.292,58.983)(28.750,59.008)(29.208,58.984)(29.667,58.913)(30.125,58.799)(30.583,58.643)(31.042,58.451)
+(31.500,58.224)(31.958,57.968)(32.417,57.684)(32.875,57.378)(33.333,57.053)(33.792,56.713)(34.250,56.361)(34.708,56.003)(35.167,55.640)(35.625,55.278)(36.083,54.920)(36.542,54.569)
+(37.000,54.229)(37.458,53.903)(37.917,53.595)(38.375,53.307)(38.833,53.041)(39.292,52.801)(39.750,52.588)(40.208,52.405)(40.667,52.252)(41.125,52.133)(41.583,52.046)(42.042,51.994)
+(42.500,51.977)(42.958,51.994)(43.417,52.046)(43.875,52.133)(44.333,52.252)(44.792,52.405)(45.250,52.588)(45.708,52.801)(46.167,53.041)(46.625,53.307)(47.083,53.595)(47.542,53.903)
+(48.000,54.229)(48.458,54.569)(48.917,54.920)(49.375,55.278)(49.833,55.640)(50.292,56.003)(50.750,56.361)(51.208,56.713)(51.667,57.053)(52.125,57.378)(52.583,57.684)(53.042,57.968)
+(53.500,58.224)(53.958,58.451)(54.417,58.643)(54.875,58.799)(55.333,58.913)(55.792,58.984)(56.250,59.008)(56.708,58.983)(57.167,58.906)(57.625,58.775)(58.083,58.589)(58.542,58.344)
+(59.000,58.041)(59.458,57.677)(59.917,57.253)(60.375,56.767)(60.833,56.221)(61.292,55.613)(61.750,54.945)(62.208,54.217)(62.667,53.430)(63.125,52.587)(63.583,51.689)(64.042,50.738)
+(64.500,49.736)(64.958,48.687)(65.417,47.593)(65.875,46.457)(66.333,45.284)(66.792,44.076)(67.250,42.837)(67.708,41.572)(68.167,40.285)(68.625,38.979)(69.083,37.661)(69.542,36.333)
+(70.000,35.000)(70.458,33.667)(70.917,32.339)(71.375,31.021)(71.833,29.715)(72.292,28.428)(72.750,27.163)(73.208,25.924)(73.667,24.716)(74.125,23.543)(74.583,22.407)(75.042,21.313)
+(75.500,20.264)(75.958,19.262)(76.417,18.311)(76.875,17.413)(77.333,16.570)(77.792,15.783)(78.250,15.055)(78.708,14.387)(79.167,13.779)(79.625,13.233)(80.083,12.747)(80.542,12.323)
+(81.000,11.959)(81.458,11.656)(81.917,11.411)(82.375,11.225)(82.833,11.094)(83.292,11.017)(83.750,10.992)(84.208,11.016)(84.667,11.087)(85.125,11.201)(85.583,11.357)(86.042,11.549)
+(86.500,11.776)(86.958,12.032)(87.417,12.316)(87.875,12.622)(88.333,12.947)(88.792,13.287)(89.250,13.639)(89.708,13.997)(90.167,14.360)(90.625,14.722)(91.083,15.080)(91.542,15.431)
+(92.000,15.771)(92.458,16.097)(92.917,16.405)(93.375,16.693)(93.833,16.959)(94.292,17.199)(94.750,17.412)(95.208,17.595)(95.667,17.748)(96.125,17.867)(96.583,17.954)(97.042,18.006)
+(97.500,18.023)(97.958,18.006)(98.417,17.954)(98.875,17.867)(99.333,17.748)(99.792,17.595)(100.250,17.412)(100.708,17.199)(101.167,16.959)(101.625,16.693)(102.083,16.405)(102.542,16.097)
+(103.000,15.771)(103.458,15.431)(103.917,15.080)(104.375,14.722)(104.833,14.360)(105.292,13.997)(105.750,13.639)(106.208,13.287)(106.667,12.947)(107.125,12.622)(107.583,12.316)(108.042,12.032)
+(108.500,11.776)(108.958,11.549)(109.417,11.357)(109.875,11.201)(110.333,11.087)(110.792,11.016)(111.250,10.992)(111.708,11.017)(112.167,11.094)(112.625,11.225)(113.083,11.411)(113.542,11.656)
+(114.000,11.959)(114.458,12.323)(114.917,12.747)(115.375,13.233)(115.833,13.779)(116.292,14.387)(116.750,15.055)(117.208,15.783)(117.667,16.570)(118.125,17.413)(118.583,18.311)(119.042,19.262)
+(119.500,20.264)(119.958,21.313)(120.417,22.407)(120.875,23.543)(121.333,24.716)(121.792,25.924)(122.250,27.163)(122.708,28.428)(123.167,29.715)(123.625,31.021)(124.083,32.339)(124.542,33.667)
+(125.000,35.000)}
+\end{picture}\end{minipage}\end{center}
+
+\begin{center}\begin{minipage}{\linewidth}\centering\textbf{$f_5$ on $[0,2\pi]$}\par
+\setlength{\unitlength}{1mm}\begin{picture}(145,75)
+\put(10,35){\vector(1,0){122}}
+\put(15,7){\vector(0,1){60}}
+\put(134,31){$t$}
+\put(15.000,34){\line(0,1){2}}\put(15.000,30){\makebox(0,0){\scriptsize$0$}}
+\put(70.000,34){\line(0,1){2}}\put(70.000,30){\makebox(0,0){\scriptsize$\pi$}}
+\put(125.000,34){\line(0,1){2}}\put(125.000,30){\makebox(0,0){\scriptsize$2\pi$}}
+\put(14,15){\line(1,0){2}}\put(10,15){\makebox(0,0){\scriptsize$-1$}}
+\put(14,55){\line(1,0){2}}\put(10,55){\makebox(0,0){\scriptsize$1$}}
+{\color{blue}\linethickness{0.8pt}\polyline(15.000,35.000)(15.458,36.997)(15.917,38.979)(16.375,40.928)(16.833,42.831)(17.292,44.673)(17.750,46.438)(18.208,48.116)(18.667,49.694)(19.125,51.163)(19.583,52.512)(20.042,53.736)
+(20.500,54.829)(20.958,55.787)(21.417,56.608)(21.875,57.292)(22.333,57.841)(22.792,58.257)(23.250,58.546)(23.708,58.713)(24.167,58.767)(24.625,58.716)(25.083,58.571)(25.542,58.342)
+(26.000,58.041)(26.458,57.679)(26.917,57.270)(27.375,56.827)(27.833,56.360)(28.292,55.883)(28.750,55.407)(29.208,54.944)(29.667,54.503)(30.125,54.093)(30.583,53.724)(31.042,53.402)
+(31.500,53.132)(31.958,52.918)(32.417,52.765)(32.875,52.673)(33.333,52.643)(33.792,52.672)(34.250,52.760)(34.708,52.902)(35.167,53.094)(35.625,53.329)(36.083,53.602)(36.542,53.904)
+(37.000,54.229)(37.458,54.568)(37.917,54.913)(38.375,55.256)(38.833,55.588)(39.292,55.901)(39.750,56.189)(40.208,56.445)(40.667,56.663)(41.125,56.838)(41.583,56.966)(42.042,57.043)
+(42.500,57.069)(42.958,57.043)(43.417,56.966)(43.875,56.838)(44.333,56.663)(44.792,56.445)(45.250,56.189)(45.708,55.901)(46.167,55.588)(46.625,55.256)(47.083,54.913)(47.542,54.568)
+(48.000,54.229)(48.458,53.904)(48.917,53.602)(49.375,53.329)(49.833,53.094)(50.292,52.902)(50.750,52.760)(51.208,52.672)(51.667,52.643)(52.125,52.673)(52.583,52.765)(53.042,52.918)
+(53.500,53.132)(53.958,53.402)(54.417,53.724)(54.875,54.093)(55.333,54.503)(55.792,54.944)(56.250,55.407)(56.708,55.883)(57.167,56.360)(57.625,56.827)(58.083,57.270)(58.542,57.679)
+(59.000,58.041)(59.458,58.342)(59.917,58.571)(60.375,58.716)(60.833,58.767)(61.292,58.713)(61.750,58.546)(62.208,58.257)(62.667,57.841)(63.125,57.292)(63.583,56.608)(64.042,55.787)
+(64.500,54.829)(64.958,53.736)(65.417,52.512)(65.875,51.163)(66.333,49.694)(66.792,48.116)(67.250,46.438)(67.708,44.673)(68.167,42.831)(68.625,40.928)(69.083,38.979)(69.542,36.997)
+(70.000,35.000)(70.458,33.003)(70.917,31.021)(71.375,29.072)(71.833,27.169)(72.292,25.327)(72.750,23.562)(73.208,21.884)(73.667,20.306)(74.125,18.837)(74.583,17.488)(75.042,16.264)
+(75.500,15.171)(75.958,14.213)(76.417,13.392)(76.875,12.708)(77.333,12.159)(77.792,11.743)(78.250,11.454)(78.708,11.287)(79.167,11.233)(79.625,11.284)(80.083,11.429)(80.542,11.658)
+(81.000,11.959)(81.458,12.321)(81.917,12.730)(82.375,13.173)(82.833,13.640)(83.292,14.117)(83.750,14.593)(84.208,15.056)(84.667,15.497)(85.125,15.907)(85.583,16.276)(86.042,16.598)
+(86.500,16.868)(86.958,17.082)(87.417,17.235)(87.875,17.327)(88.333,17.357)(88.792,17.328)(89.250,17.240)(89.708,17.098)(90.167,16.906)(90.625,16.671)(91.083,16.398)(91.542,16.096)
+(92.000,15.771)(92.458,15.432)(92.917,15.087)(93.375,14.744)(93.833,14.412)(94.292,14.099)(94.750,13.811)(95.208,13.555)(95.667,13.337)(96.125,13.162)(96.583,13.034)(97.042,12.957)
+(97.500,12.931)(97.958,12.957)(98.417,13.034)(98.875,13.162)(99.333,13.337)(99.792,13.555)(100.250,13.811)(100.708,14.099)(101.167,14.412)(101.625,14.744)(102.083,15.087)(102.542,15.432)
+(103.000,15.771)(103.458,16.096)(103.917,16.398)(104.375,16.671)(104.833,16.906)(105.292,17.098)(105.750,17.240)(106.208,17.328)(106.667,17.357)(107.125,17.327)(107.583,17.235)(108.042,17.082)
+(108.500,16.868)(108.958,16.598)(109.417,16.276)(109.875,15.907)(110.333,15.497)(110.792,15.056)(111.250,14.593)(111.708,14.117)(112.167,13.640)(112.625,13.173)(113.083,12.730)(113.542,12.321)
+(114.000,11.959)(114.458,11.658)(114.917,11.429)(115.375,11.284)(115.833,11.233)(116.292,11.287)(116.750,11.454)(117.208,11.743)(117.667,12.159)(118.125,12.708)(118.583,13.392)(119.042,14.213)
+(119.500,15.171)(119.958,16.264)(120.417,17.488)(120.875,18.837)(121.333,20.306)(121.792,21.884)(122.250,23.562)(122.708,25.327)(123.167,27.169)(123.625,29.072)(124.083,31.021)(124.542,33.003)
+(125.000,35.000)}
+\end{picture}\end{minipage}\end{center}
+
+\begin{center}\begin{minipage}{\linewidth}\centering\textbf{$f_5$ on $[-2\pi,2\pi]$}\par
+\setlength{\unitlength}{1mm}\begin{picture}(145,75)
+\put(10,35){\vector(1,0){122}}
+\put(70,7){\vector(0,1){60}}
+\put(134,31){$t$}
+\put(15.000,34){\line(0,1){2}}\put(15.000,30){\makebox(0,0){\scriptsize$-2\pi$}}
+\put(42.500,34){\line(0,1){2}}\put(42.500,30){\makebox(0,0){\scriptsize$-\pi$}}
+\put(70.000,34){\line(0,1){2}}\put(70.000,30){\makebox(0,0){\scriptsize$0$}}
+\put(97.500,34){\line(0,1){2}}\put(97.500,30){\makebox(0,0){\scriptsize$\pi$}}
+\put(125.000,34){\line(0,1){2}}\put(125.000,30){\makebox(0,0){\scriptsize$2\pi$}}
+\put(69,15){\line(1,0){2}}\put(65,15){\makebox(0,0){\scriptsize$-1$}}
+\put(69,55){\line(1,0){2}}\put(65,55){\makebox(0,0){\scriptsize$1$}}
+{\color{blue}\linethickness{0.8pt}\polyline(15.000,35.000)(15.458,38.979)(15.917,42.831)(16.375,46.438)(16.833,49.694)(17.292,52.512)(17.750,54.829)(18.208,56.608)(18.667,57.841)(19.125,58.546)(19.583,58.767)(20.042,58.571)
+(20.500,58.041)(20.958,57.270)(21.417,56.360)(21.875,55.407)(22.333,54.503)(22.792,53.724)(23.250,53.132)(23.708,52.765)(24.167,52.643)(24.625,52.760)(25.083,53.094)(25.542,53.602)
+(26.000,54.229)(26.458,54.913)(26.917,55.588)(27.375,56.189)(27.833,56.663)(28.292,56.966)(28.750,57.069)(29.208,56.966)(29.667,56.663)(30.125,56.189)(30.583,55.588)(31.042,54.913)
+(31.500,54.229)(31.958,53.602)(32.417,53.094)(32.875,52.760)(33.333,52.643)(33.792,52.765)(34.250,53.132)(34.708,53.724)(35.167,54.503)(35.625,55.407)(36.083,56.360)(36.542,57.270)
+(37.000,58.041)(37.458,58.571)(37.917,58.767)(38.375,58.546)(38.833,57.841)(39.292,56.608)(39.750,54.829)(40.208,52.512)(40.667,49.694)(41.125,46.438)(41.583,42.831)(42.042,38.979)
+(42.500,35.000)(42.958,31.021)(43.417,27.169)(43.875,23.562)(44.333,20.306)(44.792,17.488)(45.250,15.171)(45.708,13.392)(46.167,12.159)(46.625,11.454)(47.083,11.233)(47.542,11.429)
+(48.000,11.959)(48.458,12.730)(48.917,13.640)(49.375,14.593)(49.833,15.497)(50.292,16.276)(50.750,16.868)(51.208,17.235)(51.667,17.357)(52.125,17.240)(52.583,16.906)(53.042,16.398)
+(53.500,15.771)(53.958,15.087)(54.417,14.412)(54.875,13.811)(55.333,13.337)(55.792,13.034)(56.250,12.931)(56.708,13.034)(57.167,13.337)(57.625,13.811)(58.083,14.412)(58.542,15.087)
+(59.000,15.771)(59.458,16.398)(59.917,16.906)(60.375,17.240)(60.833,17.357)(61.292,17.235)(61.750,16.868)(62.208,16.276)(62.667,15.497)(63.125,14.593)(63.583,13.640)(64.042,12.730)
+(64.500,11.959)(64.958,11.429)(65.417,11.233)(65.875,11.454)(66.333,12.159)(66.792,13.392)(67.250,15.171)(67.708,17.488)(68.167,20.306)(68.625,23.562)(69.083,27.169)(69.542,31.021)
+(70.000,35.000)(70.458,38.979)(70.917,42.831)(71.375,46.438)(71.833,49.694)(72.292,52.512)(72.750,54.829)(73.208,56.608)(73.667,57.841)(74.125,58.546)(74.583,58.767)(75.042,58.571)
+(75.500,58.041)(75.958,57.270)(76.417,56.360)(76.875,55.407)(77.333,54.503)(77.792,53.724)(78.250,53.132)(78.708,52.765)(79.167,52.643)(79.625,52.760)(80.083,53.094)(80.542,53.602)
+(81.000,54.229)(81.458,54.913)(81.917,55.588)(82.375,56.189)(82.833,56.663)(83.292,56.966)(83.750,57.069)(84.208,56.966)(84.667,56.663)(85.125,56.189)(85.583,55.588)(86.042,54.913)
+(86.500,54.229)(86.958,53.602)(87.417,53.094)(87.875,52.760)(88.333,52.643)(88.792,52.765)(89.250,53.132)(89.708,53.724)(90.167,54.503)(90.625,55.407)(91.083,56.360)(91.542,57.270)
+(92.000,58.041)(92.458,58.571)(92.917,58.767)(93.375,58.546)(93.833,57.841)(94.292,56.608)(94.750,54.829)(95.208,52.512)(95.667,49.694)(96.125,46.438)(96.583,42.831)(97.042,38.979)
+(97.500,35.000)(97.958,31.021)(98.417,27.169)(98.875,23.562)(99.333,20.306)(99.792,17.488)(100.250,15.171)(100.708,13.392)(101.167,12.159)(101.625,11.454)(102.083,11.233)(102.542,11.429)
+(103.000,11.959)(103.458,12.730)(103.917,13.640)(104.375,14.593)(104.833,15.497)(105.292,16.276)(105.750,16.868)(106.208,17.235)(106.667,17.357)(107.125,17.240)(107.583,16.906)(108.042,16.398)
+(108.500,15.771)(108.958,15.087)(109.417,14.412)(109.875,13.811)(110.333,13.337)(110.792,13.034)(111.250,12.931)(111.708,13.034)(112.167,13.337)(112.625,13.811)(113.083,14.412)(113.542,15.087)
+(114.000,15.771)(114.458,16.398)(114.917,16.906)(115.375,17.240)(115.833,17.357)(116.292,17.235)(116.750,16.868)(117.208,16.276)(117.667,15.497)(118.125,14.593)(118.583,13.640)(119.042,12.730)
+(119.500,11.959)(119.958,11.429)(120.417,11.233)(120.875,11.454)(121.333,12.159)(121.792,13.392)(122.250,15.171)(122.708,17.488)(123.167,20.306)(123.625,23.562)(124.083,27.169)(124.542,31.021)
+(125.000,35.000)}
+\end{picture}\end{minipage}\end{center}
+
+Near the target's jumps the approximations overshoot; adding terms improves the integral fit without making these low-order continuous curves equal a discontinuous square wave. The finite trigonometric sums have value zero at the jump locations, the midpoint of the adjacent target levels.

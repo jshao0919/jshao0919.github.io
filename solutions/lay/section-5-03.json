@@ -1,0 +1,12 @@
+{
+  "chapter": 5,
+  "section": 3,
+  "title": "Diagonalization",
+  "exercise_count": 36,
+  "practice_count": 3,
+  "source_pages": [
+    303,
+    304
+  ],
+  "verification": "Exact SymPy characteristic polynomials, eigenspace nullspaces, AP=PD/AP=PC and basis coordinate products verified; standalone PDF compiles without layout/reference warnings."
+}

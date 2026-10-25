@@ -1,0 +1,365 @@
+\section{Orthogonal sets}
+An orthogonal set has pairwise zero inner products; it may include zero.
+An orthonormal set is orthogonal and has every length equal to $1$, so
+its vectors are necessarily nonzero. For nonzero orthogonal columns
+$u_j$, a vector in their span has unique weights
+$c_j=(x\cdot u_j)/(u_j\cdot u_j)$.
+
+For a line $L=\Span\{u\}$, $u\ne0$, the orthogonal projection of $y$
+is $\widehat y=((y\cdot u)/(u\cdot u))u$.
+Its residual $y-\widehat y$ is perpendicular to the line; the distance
+to the line is the length of that residual. A rectangular matrix can
+have orthonormal columns, but the term \emph{orthogonal matrix} is
+reserved here for a square matrix with $U^{-1}=U^T$.
+
+\practice{6.2.P1}{Two orthonormal vectors form a plane basis}
+Their dot product is $(-1/\sqrt5)(2/\sqrt5)+(2/\sqrt5)(1/\sqrt5)=0$.
+Their squared lengths are $(1+4)/5=1$ and $(4+1)/5=1$.
+Thus they are orthonormal and in particular independent. Two independent
+vectors in $\R^2$ form a basis.
+\answer{The proposed pair is an orthonormal basis of $\R^2$.}
+
+\practice{6.2.P2}{The same projection using a different line generator}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{r}5\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{20}{5}=4.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{r}2\\1\end{array}\right]\left[\begin{array}{r}4\end{array}\right]=\left[\begin{array}{r}8\\4\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}-1\\2\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+\answer{The projection is $(8,4)^T$, the same point obtained with any nonzero generator of the same line.}
+
+\practice{6.2.P3}{A rectangular isometry preserves inner products}
+The data from Example 6 are
+\[
+U=\begin{bmatrix}1/\sqrt2&2/3\\1/\sqrt2&-2/3\\0&1/3\end{bmatrix},
+\quad x=(\sqrt2,3)^T,\quad y=(-3\sqrt2,6)^T.
+\]
+Multiplication gives $Ux=(3,-1,1)^T$ and $Uy=(1,-7,2)^T$.
+Consequently $(Ux)\cdot(Uy)=3+7+2=12$, while
+$x\cdot y=(\sqrt2)(-3\sqrt2)+3(6)=-6+18=12$.
+\answer{The two inner products agree exactly, although the outputs
+have three coordinates and the inputs only two.}
+
+\exercise{6.2.1}{Orthogonality and orthogonal coordinates}
+Put the listed vectors in columns of $V$. The Gram matrix records every pairwise inner product:
+\[V^TV=\left[\begin{array}{rrr}26&0&2\\0&30&0\\2&0&74\end{array}\right].\]
+The three products to test are the off-diagonal entries in positions $(1,2),(1,3),(2,3)$; diagonal entries instead record squared lengths.
+\answer{The set is not orthogonal: at least one off-diagonal product is nonzero.}
+
+\exercise{6.2.2}{Orthogonality and orthogonal coordinates}
+Put the listed vectors in columns of $V$. The Gram matrix records every pairwise inner product:
+\[V^TV=\left[\begin{array}{rrr}6&0&0\\0&5&0\\0&0&30\end{array}\right].\]
+The three products to test are the off-diagonal entries in positions $(1,2),(1,3),(2,3)$; diagonal entries instead record squared lengths.
+\answer{The set is orthogonal: all three off-diagonal products are zero.}
+
+\exercise{6.2.3}{Orthogonality and orthogonal coordinates}
+Put the listed vectors in columns of $V$. The Gram matrix records every pairwise inner product:
+\[V^TV=\left[\begin{array}{rrr}54&0&0\\0&126&-30\\0&-30&11\end{array}\right].\]
+The three products to test are the off-diagonal entries in positions $(1,2),(1,3),(2,3)$; diagonal entries instead record squared lengths.
+\answer{The set is not orthogonal: at least one off-diagonal product is nonzero.}
+
+\exercise{6.2.4}{Orthogonality and orthogonal coordinates}
+Put the listed vectors in columns of $V$. The Gram matrix records every pairwise inner product:
+\[V^TV=\left[\begin{array}{rrr}38&0&0\\0&0&0\\0&0&56\end{array}\right].\]
+The three products to test are the off-diagonal entries in positions $(1,2),(1,3),(2,3)$; diagonal entries instead record squared lengths.
+\answer{The set is orthogonal: all three off-diagonal products are zero.}The zero vector causes no difficulty for orthogonality, but it would prevent the set from being independent or orthonormal.
+
+\exercise{6.2.5}{Orthogonality and orthogonal coordinates}
+Put the listed vectors in columns of $V$. The Gram matrix records every pairwise inner product:
+\[V^TV=\left[\begin{array}{rrr}23&0&0\\0&35&0\\0&0&122\end{array}\right].\]
+The three products to test are the off-diagonal entries in positions $(1,2),(1,3),(2,3)$; diagonal entries instead record squared lengths.
+\answer{The set is orthogonal: all three off-diagonal products are zero.}
+
+\exercise{6.2.6}{Orthogonality and orthogonal coordinates}
+Put the listed vectors in columns of $V$. The Gram matrix records every pairwise inner product:
+\[V^TV=\left[\begin{array}{rrr}50&0&0\\0&90&-32\\0&-32&44\end{array}\right].\]
+The three products to test are the off-diagonal entries in positions $(1,2),(1,3),(2,3)$; diagonal entries instead record squared lengths.
+\answer{The set is not orthogonal: at least one off-diagonal product is nonzero.}
+
+\exercise{6.2.7}{Orthogonality and orthogonal coordinates}
+\step{Verify the basis properties.}
+\[U^TU=\left[\begin{array}{rr}13&0\\0&52\end{array}\right].\]
+All off-diagonal entries are zero and every diagonal entry is positive. Thus the vectors are nonzero and mutually orthogonal, hence independent. There are as many of them as the ambient dimension, so they form a basis.
+\step{Take inner products rather than solving a new linear system.}
+\[c_{1}=\frac{x\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{39}{13}=3.\]
+\[c_{2}=\frac{x\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{26}{52}=\frac{1}{2}.\]
+\answer{$x=(3)u_{1}+(\frac{1}{2})u_{2}$. Multiplying the stated weights by the original columns returns the given $x$ exactly.}
+
+\exercise{6.2.8}{Orthogonality and orthogonal coordinates}
+\step{Verify the basis properties.}
+\[U^TU=\left[\begin{array}{rr}10&0\\0&40\end{array}\right].\]
+All off-diagonal entries are zero and every diagonal entry is positive. Thus the vectors are nonzero and mutually orthogonal, hence independent. There are as many of them as the ambient dimension, so they form a basis.
+\step{Take inner products rather than solving a new linear system.}
+\[c_{1}=\frac{x\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{-15}{10}=- \frac{3}{2}.\]
+\[c_{2}=\frac{x\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{30}{40}=\frac{3}{4}.\]
+\answer{$x=(- \frac{3}{2})u_{1}+(\frac{3}{4})u_{2}$. Multiplying the stated weights by the original columns returns the given $x$ exactly.}
+
+\exercise{6.2.9}{Orthogonality and orthogonal coordinates}
+\step{Verify the basis properties.}
+\[U^TU=\left[\begin{array}{rrr}2&0&0\\0&18&0\\0&0&9\end{array}\right].\]
+All off-diagonal entries are zero and every diagonal entry is positive. Thus the vectors are nonzero and mutually orthogonal, hence independent. There are as many of them as the ambient dimension, so they form a basis.
+\step{Take inner products rather than solving a new linear system.}
+\[c_{1}=\frac{x\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{5}{2}=\frac{5}{2}.\]
+\[c_{2}=\frac{x\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{-27}{18}=- \frac{3}{2}.\]
+\[c_{3}=\frac{x\cdot u_{3}}{u_{3}\cdot u_{3}}=\frac{18}{9}=2.\]
+\answer{$x=(\frac{5}{2})u_{1}+(- \frac{3}{2})u_{2}+(2)u_{3}$. Multiplying the stated weights by the original columns returns the given $x$ exactly.}
+
+\exercise{6.2.10}{Orthogonality and orthogonal coordinates}
+\step{Verify the basis properties.}
+\[U^TU=\left[\begin{array}{rrr}18&0&0\\0&9&0\\0&0&18\end{array}\right].\]
+All off-diagonal entries are zero and every diagonal entry is positive. Thus the vectors are nonzero and mutually orthogonal, hence independent. There are as many of them as the ambient dimension, so they form a basis.
+\step{Take inner products rather than solving a new linear system.}
+\[c_{1}=\frac{x\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{24}{18}=\frac{4}{3}.\]
+\[c_{2}=\frac{x\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{3}{9}=\frac{1}{3}.\]
+\[c_{3}=\frac{x\cdot u_{3}}{u_{3}\cdot u_{3}}=\frac{6}{18}=\frac{1}{3}.\]
+\answer{$x=(\frac{4}{3})u_{1}+(\frac{1}{3})u_{2}+(\frac{1}{3})u_{3}$. Multiplying the stated weights by the original columns returns the given $x$ exactly.}
+
+\exercise{6.2.11}{Projection, residual, and distance to a line}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{r}20\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{10}{20}=\frac{1}{2}.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{r}-4\\2\end{array}\right]\left[\begin{array}{r}\frac{1}{2}\end{array}\right]=\left[\begin{array}{r}-2\\1\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}3\\6\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+
+
+\exercise{6.2.12}{Projection, residual, and distance to a line}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{r}10\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{-4}{10}=- \frac{2}{5}.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{r}-1\\3\end{array}\right]\left[\begin{array}{r}- \frac{2}{5}\end{array}\right]=\left[\begin{array}{r}\frac{2}{5}\\- \frac{6}{5}\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}\frac{3}{5}\\\frac{1}{5}\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+
+
+\exercise{6.2.13}{Projection, residual, and distance to a line}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{r}65\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{-13}{65}=- \frac{1}{5}.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{r}4\\-7\end{array}\right]\left[\begin{array}{r}- \frac{1}{5}\end{array}\right]=\left[\begin{array}{r}- \frac{4}{5}\\\frac{7}{5}\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}\frac{14}{5}\\\frac{8}{5}\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+
+
+\exercise{6.2.14}{Projection, residual, and distance to a line}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{r}50\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{20}{50}=\frac{2}{5}.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{r}7\\1\end{array}\right]\left[\begin{array}{r}\frac{2}{5}\end{array}\right]=\left[\begin{array}{r}\frac{14}{5}\\\frac{2}{5}\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}- \frac{4}{5}\\\frac{28}{5}\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+
+
+\exercise{6.2.15}{Projection, residual, and distance to a line}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{r}100\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{30}{100}=\frac{3}{10}.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{r}8\\6\end{array}\right]\left[\begin{array}{r}\frac{3}{10}\end{array}\right]=\left[\begin{array}{r}\frac{12}{5}\\\frac{9}{5}\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}\frac{3}{5}\\- \frac{4}{5}\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+\answer{The distance is the residual length $\|z\|=\sqrt{1}=1$, not the projection length.}
+
+\exercise{6.2.16}{Projection, residual, and distance to a line}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{r}5\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{15}{5}=3.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{r}1\\2\end{array}\right]\left[\begin{array}{r}3\end{array}\right]=\left[\begin{array}{r}3\\6\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}-6\\3\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+\answer{The distance is the residual length $\|z\|=\sqrt{45}=3 \sqrt{5}$, not the projection length.}
+
+\exercise{6.2.17}{Classify the set and normalize when appropriate}
+The pairwise products and squared lengths are recorded by
+\[V^TV=\left[\begin{array}{rr}\frac{1}{3}&0\\0&\frac{1}{2}\end{array}\right].\]
+The set is orthogonal but not normalized. Divide each column by its own positive length to get the following orthonormal columns:
+\[Q=\left[\begin{array}{rr}\frac{\sqrt{3}}{3}&- \frac{\sqrt{2}}{2}\\\frac{\sqrt{3}}{3}&0\\\frac{\sqrt{3}}{3}&\frac{\sqrt{2}}{2}\end{array}\right],\qquad Q^TQ=I.\]
+
+\exercise{6.2.18}{Classify the set and normalize when appropriate}
+The pairwise products and squared lengths are recorded by
+\[V^TV=\left[\begin{array}{rr}1&-1\\-1&1\end{array}\right].\]
+\answer{The set is not orthogonal and hence not orthonormal. Merely normalizing the individual lengths cannot make a nonzero pairwise dot product become zero.}
+
+\exercise{6.2.19}{Classify the set and normalize when appropriate}
+The pairwise products and squared lengths are recorded by
+\[V^TV=\left[\begin{array}{rr}1&0\\0&1\end{array}\right].\]
+\answer{The diagonal entries are all $1$ and all off-diagonal entries are zero, so the set is already orthonormal.}
+
+\exercise{6.2.20}{Classify the set and normalize when appropriate}
+The pairwise products and squared lengths are recorded by
+\[V^TV=\left[\begin{array}{rr}1&0\\0&\frac{5}{9}\end{array}\right].\]
+The set is orthogonal but not normalized. Divide each column by its own positive length to get the following orthonormal columns:
+\[Q=\left[\begin{array}{rr}- \frac{2}{3}&\frac{\sqrt{5}}{5}\\\frac{1}{3}&\frac{2 \sqrt{5}}{5}\\\frac{2}{3}&0\end{array}\right],\qquad Q^TQ=I.\]
+
+\exercise{6.2.21}{Classify the set and normalize when appropriate}
+The pairwise products and squared lengths are recorded by
+\[V^TV=\left[\begin{array}{rrr}1&0&0\\0&1&0\\0&0&1\end{array}\right].\]
+\answer{The diagonal entries are all $1$ and all off-diagonal entries are zero, so the set is already orthonormal.}
+
+\exercise{6.2.22}{Classify the set and normalize when appropriate}
+The pairwise products and squared lengths are recorded by
+\[V^TV=\left[\begin{array}{rrr}1&0&0\\0&1&0\\0&0&1\end{array}\right].\]
+\answer{The diagonal entries are all $1$ and all off-diagonal entries are zero, so the set is already orthonormal.}
+
+\exercise{6.2.23}{Orthogonality and orthogonal coordinates}
+\begin{enumerate}[label=(\alph*)]
+\item True. For example $(1,0)^T,(1,1)^T$ are independent but have
+dot product $1$, so independence need not mean orthogonality.
+\item True. For a nonzero orthogonal family, take $y\cdot u_j$ to obtain
+$c_j=(y\cdot u_j)/(u_j\cdot u_j)$, without row reduction.
+\item False. Scaling two distinct vectors changes their dot product by
+a product of scalars; a zero product remains zero. Normalization uses
+nonzero scales and preserves orthogonality.
+\item False unless the matrix is square. The single column $(1,0)^T$
+is orthonormal but is a rectangular matrix, not an orthogonal matrix.
+\item False. The distance is $\|y-\widehat y\|$, not $\|\widehat y\|$.
+For nonzero $y\in L$, the distance is zero while $\|\widehat y\|=\|y\|>0$.
+\end{enumerate}
+
+\exercise{6.2.24}{Orthogonality and orthogonal coordinates}
+\begin{enumerate}[label=(\alph*)]
+\item True. An orthogonal set can contain zero; $\{0,e_1\}$ is
+orthogonal but dependent. Nonzero orthogonal vectors are independent.
+\item False. The condition gives orthogonality only; the lengths may
+be different from one. For instance $\{2e_1,3e_2\}$ meets it.
+\item True. $A^TA=I_n$ implies $\|Ax\|^2=x^TA^TAx=x^Tx$.
+Taking nonnegative square roots gives length preservation.
+\item True. The factors of a nonzero $c$ cancel in the projection
+formula, as proved explicitly in Exercise 31.
+\item True. Invertibility is part of the definition, and its inverse is
+its transpose.
+\end{enumerate}
+
+\exercise{6.2.25}{Orthogonality and orthogonal coordinates}
+Let $U$ have orthonormal columns, so $U^TU=I$.
+\step{(b) Prove inner-product preservation first.}
+For all input vectors $x,y$,
+$(Ux)\cdot(Uy)=x^TU^TUy=x^Ty=x\cdot y$.
+\step{(a) Deduce preservation of lengths.}
+Set $y=x$ in the previous identity:
+$\|Ux\|^2=\|x\|^2$. Since both norms are nonnegative,
+$\|Ux\|=\|x\|$.
+\step{(c) Deduce preservation of orthogonality in both directions.}
+Part (b) says that the two dot products are equal. Therefore
+\[
+(Ux)\cdot(Uy)=0\quad\Longleftrightarrow\quad x\cdot y=0.
+\]
+This equivalence includes zero inputs, for which angle formulas would
+not be defined. As an additional consequence, for nonzero inputs the
+preserved dot products and norms also preserve the angle cosine.
+\answer{All three conclusions of Theorem 7 follow from $U^TU=I$.}
+
+\exercise{6.2.26}{Orthogonality and orthogonal coordinates}
+A nonzero orthogonal family is independent: in a zero combination,
+taking the dot product with each generator forces its coefficient to
+vanish. Thus the given $n$ vectors are independent in $\R^n$.
+An independent set of exactly $n$ vectors in this $n$-dimensional space
+is a basis, so its span is all of $\R^n$.
+\answer{$W=\R^n$.}
+
+\exercise{6.2.27}{Orthogonality and orthogonal coordinates}
+The orthonormal columns of $U$ satisfy $U^TU=I_n$. Their nonzero
+orthogonality also makes them linearly independent. By the Invertible
+Matrix Theorem, a square matrix with independent columns is invertible.
+Multiplying $U^TU=I_n$ on the right by its inverse gives $U^T=U^{-1}$.
+\answer{$U$ is invertible and orthogonal. Squareness is essential to
+this inverse conclusion.}
+
+\exercise{6.2.28}{Orthogonality and orthogonal coordinates}
+For an orthogonal square matrix, $U^{-1}=U^T$. Hence
+$UU^T=UU^{-1}=I_n$. The $(i,j)$ entry of $UU^T$ is the inner
+product of row $i$ and row $j$. The identity matrix says these products
+are zero for distinct rows and one for each row with itself. Thus the
+rows are orthonormal. They are $n$ nonzero orthogonal vectors in
+$\R^n$, so they form a basis.
+\answer{The rows form an orthonormal basis, just as the columns do.}
+
+\exercise{6.2.29}{Orthogonality and orthogonal coordinates}
+The product of invertible matrices is invertible and
+$(UV)^{-1}=V^{-1}U^{-1}$. Since $U,V$ are orthogonal,
+\[
+(UV)^{-1}=V^TU^T=(UV)^T,
+\]
+using the transpose-of-product rule in the last equality.
+\answer{$UV$ is a square invertible matrix whose inverse is its
+transpose, so it is orthogonal.}
+
+\exercise{6.2.30}{Orthogonality and orthogonal coordinates}
+A column permutation keeps the same column vectors, each of length
+one, with the same zero dot products between distinct columns. Thus $V$
+is still square with orthonormal columns. The result of Exercise 27
+makes it invertible with inverse $V^T$.
+Equivalently write $V=UP$ for a permutation matrix $P$; then
+$V^TV=P^TU^TUP=P^TP=I$.
+\answer{Every column permutation of an orthogonal matrix is orthogonal.}
+
+\exercise{6.2.31}{Orthogonality and orthogonal coordinates}
+For $c\ne0$, replace $u$ by $cu$ in the projection formula:
+\[
+\frac{y\cdot(cu)}{(cu)\cdot(cu)}(cu)
+=\frac{c(y\cdot u)}{c^2(u\cdot u)}cu
+=\frac{y\cdot u}{u\cdot u}u.
+\]
+The cancellation is valid because $c\ne0$ and $u\ne0$. Any two
+nonzero generators of a fixed line are related by just such a scale.
+\answer{The projection depends on the line, not on the chosen nonzero
+generator or its orientation.}
+
+\exercise{6.2.32}{Orthogonality and orthogonal coordinates}
+The two scaled vectors are nonzero because both original vectors and
+both scalars are nonzero. Their dot product is
+$(c_1v_1)\cdot(c_2v_2)=c_1c_2(v_1\cdot v_2)=c_1c_2(0)=0$.
+Thus they remain an orthogonal nonzero pair. Applying the same identity
+to each pair proves the assertion for a whole orthogonal family.
+\answer{In particular normalization preserves orthogonality.}
+
+\exercise{6.2.33}{Orthogonality and orthogonal coordinates}
+For any inputs $x,y$ and scalars $a,b$,
+\[
+\operatorname{proj}_L(ax+by)
+=\frac{(ax+by)\cdot u}{u\cdot u}u
+=a\frac{x\cdot u}{u\cdot u}u+b\frac{y\cdot u}{u\cdot u}u.
+\]
+The right side is $a\operatorname{proj}_Lx+b\operatorname{proj}_Ly$,
+so both addition and scalar multiplication are preserved. The fixed
+nonzero $u$ guarantees the denominator is positive.
+\answer{Projection onto a fixed line through zero is linear.}
+
+\exercise{6.2.34}{Orthogonality and orthogonal coordinates}
+Let $P(y)=\operatorname{proj}_Ly$. Exercise 33 proves $P$ linear;
+the identity map $I$ is also linear. Reflection is $2P-I$.
+For scalars $a,b$,
+\[
+(2P-I)(ay+bz)=2aP(y)+2bP(z)-ay-bz
+=a(2P(y)-y)+b(2P(z)-z).
+\]
+\answer{Reflection in a fixed line through the origin is linear,
+with matrix $2uu^T/(u^Tu)-I$.}
+
+\exercise{6.2.35}{Orthogonality and orthogonal coordinates}
+The appropriate calculation is the Gram matrix:
+\[A^TA=\left[\begin{array}{rrrr}100&0&0&0\\0&100&0&0\\0&0&100&0\\0&0&0&100\end{array}\right].\]
+The six off-diagonal products are all zero, so the four columns are pairwise orthogonal. The diagonal entries also show that each column has length $10$.
+\answer{The columns are orthogonal, and their normalized matrix in the next exercise is $U=A/10$.}
+
+\exercise{6.2.36}{Orthogonality and orthogonal coordinates}
+\step{(a) Compute both products with the correct dimensions.}
+Normalization gives $U=A/10$, so
+\[U^TU=I_4,\qquad UU^T=\frac1{100}\left[\begin{array}{rrrrrrrr}82&0&-20&8&6&20&24&0\\0&42&24&0&-20&6&20&-32\\-20&24&58&20&0&32&0&6\\8&0&20&82&24&-20&6&0\\6&-20&0&24&18&0&-8&20\\20&6&32&-20&0&58&0&24\\24&20&0&6&-8&0&18&-20\\0&-32&6&0&20&24&-20&42\end{array}\right].\]
+The first product is $4\times4$ identity. The second is an $8\times8$ rank-four projection matrix, not $I_8$.
+\step{(b) Perform one reproducible random-vector calculation.}
+Integer draws from $[-3,3]$ with seed $62036$ give
+\[y=\left[\begin{array}{r}-1\\-1\\-1\\0\\-1\\2\\-3\\0\end{array}\right],\quad p=UU^Ty=\left[\begin{array}{r}-1\\- \frac{47}{50}\\\frac{1}{50}\\- \frac{11}{10}\\\frac{1}{5}\\\frac{29}{50}\\- \frac{9}{10}\\\frac{57}{50}\end{array}\right],\quad z=y-p=\left[\begin{array}{r}0\\- \frac{3}{50}\\- \frac{51}{50}\\\frac{11}{10}\\- \frac{6}{5}\\\frac{71}{50}\\- \frac{21}{10}\\- \frac{57}{50}\end{array}\right].\]
+The formula $p=U(U^Ty)$ explicitly writes $p$ as a combination of the columns of $U$, so $p\in\Col U=\Col A$. Direct multiplication yields $z^Tp=0$.
+\step{(c) Check every column, not just $p$.}
+\[U^Tz=\left[\begin{array}{r}0\\0\\0\\0\end{array}\right].\]
+These four entries are the four required column dot products.
+\step{(d) Extend the check to the whole column space.}
+If $w=Uc$, then $z\cdot w=z^TUc=(U^Tz)^Tc=0$. Thus $z\in(\Col A)^\perp$, and by construction $y=p+z$.
+\answer{The displayed vectors give the requested orthogonal decomposition; the orthogonality also follows algebraically from $U^T(y-UU^Ty)=0$.}

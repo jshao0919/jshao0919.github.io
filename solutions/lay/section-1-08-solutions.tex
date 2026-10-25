@@ -1,0 +1,625 @@
+\section{Introduction to linear transformations}
+\textbf{A matrix as a rule.} An $m\times n$ matrix acts on an
+$n$-coordinate input and produces an $m$-coordinate output. The
+\emph{domain} is $\R^n$, the \emph{codomain} is $\R^m$, and the
+\emph{range} is the subset of outputs actually attained. A linear
+transformation satisfies
+\[
+ T(cu+dv)=cT(u)+dT(v)
+\]
+for all inputs $u,v$ and scalars $c,d$. In particular $T(0)=0$.
+To find inputs producing $b$, solve $Ax=b$. To find inputs sent to
+zero, solve $Ax=0$. These are different questions: existence concerns
+whether $b$ is attained; uniqueness concerns whether it is attained
+by only one input.
+
+\practice{1.8.P1}{Read matrix dimensions from input and output}
+Five input coordinates require five columns, so that each column
+receives one coefficient. Two output coordinates require two rows,
+one row computation per output entry. Thus $A$ is $2\times5$.
+
+\practice{1.8.P2}{Interpret the sign change}
+Multiplication by $\begin{bmatrix}1&0\\0&-1\end{bmatrix}$ takes
+$(x_1,x_2)$ to $(x_1,-x_2)$. Horizontal position is unchanged and
+vertical position is reversed, so this is reflection across the $x_1$-axis.
+Points on that axis are fixed.
+
+\practice{1.8.P3}{Map a segment starting at zero}
+A point of the segment has the form $x=tu$ with $0\le t\le1$.
+Linearity gives $T(x)=tT(u)$, which has exactly the form of a
+point on the segment from $0$ to $T(u)$ with the same parameter.
+Conversely each such output comes from $tu$. Thus the image is the
+whole segment, possibly collapsed to one point if $T(u)=0$.
+
+\exercise{1.8.1}{Multiply by a scalar matrix}
+Here $A=2I_2$. Hence
+\[
+ T(1,-3)^T=(2,-6)^T,\qquad T(a,b)^T=(2a,2b)^T.
+\]
+Each output entry is twice the corresponding input entry. Geometrically
+this doubles lengths from the origin without changing direction.
+
+\exercise{1.8.2}{A uniform contraction}
+Here $A=\tfrac13 I_3$, so multiplying each input coordinate by
+$1/3$ gives
+\[
+ T(3,6,-9)^T=(1,2,-3)^T,\qquad
+ T(a,b,c)^T=(a/3,b/3,c/3)^T.
+\]
+The factor is $1/3$, not $3$: it is the value on each diagonal entry.
+
+
+\exercise{1.8.3}{Solve for an input with the specified image}
+
+\goal Solve $Ax=b$ and decide whether the input is unique. Put the target vector in the last column and apply the same row operations to the whole augmented matrix.
+
+\[ [A\mid b]=\begin{bmatrix}1 & 0 & -3 & -2\\-3 & 1 & 6 & 3\\2 & -2 & -1 & -1\end{bmatrix}.\]
+Use $R_{2}\leftarrow R_{2}-(-3)R_{1},\quad R_{3}\leftarrow R_{3}-(2)R_{1}$. Then
+\[ \begin{bmatrix}1 & 0 & -3 & -2\\0 & 1 & -3 & -3\\0 & -2 & 5 & 3\end{bmatrix}.\]
+Use $R_{3}\leftarrow R_{3}-(-2)R_{2}$. Then
+\[ \begin{bmatrix}1 & 0 & -3 & -2\\0 & 1 & -3 & -3\\0 & 0 & -1 & -3\end{bmatrix}.\]
+Use $R_{3}\leftarrow -1R_{3},\quad R_{1}\leftarrow R_{1}-(-3)R_{3},\quad R_{2}\leftarrow R_{2}-(-3)R_{3}$. Then
+\[ \begin{bmatrix}1 & 0 & 0 & 7\\0 & 1 & 0 & 6\\0 & 0 & 1 & 3\end{bmatrix}.\]
+
+The reduced equations give $x=(7,6,3)^T$. Every one of the three variable columns has a pivot, so the solution is unique.
+
+As an independent check, multiplying the displayed particular input by the original $A$ gives $\begin{bmatrix}-2\\3\\-1\end{bmatrix}$, exactly the required target.
+
+
+\exercise{1.8.4}{Solve for an input with the specified image}
+
+\goal Solve $Ax=b$ and decide whether the input is unique. Put the target vector in the last column and apply the same row operations to the whole augmented matrix.
+
+\[ [A\mid b]=\begin{bmatrix}1 & -2 & 3 & -6\\0 & 1 & -3 & -4\\2 & -5 & 6 & -5\end{bmatrix}.\]
+Use $R_{3}\leftarrow R_{3}-(2)R_{1}$. Then
+\[ \begin{bmatrix}1 & -2 & 3 & -6\\0 & 1 & -3 & -4\\0 & -1 & 0 & 7\end{bmatrix}.\]
+Use $R_{1}\leftarrow R_{1}-(-2)R_{2},\quad R_{3}\leftarrow R_{3}-(-1)R_{2}$. Then
+\[ \begin{bmatrix}1 & 0 & -3 & -14\\0 & 1 & -3 & -4\\0 & 0 & -3 & 3\end{bmatrix}.\]
+Use $R_{3}\leftarrow - \frac{1}{3}R_{3},\quad R_{1}\leftarrow R_{1}-(-3)R_{3},\quad R_{2}\leftarrow R_{2}-(-3)R_{3}$. Then
+\[ \begin{bmatrix}1 & 0 & 0 & -17\\0 & 1 & 0 & -7\\0 & 0 & 1 & -1\end{bmatrix}.\]
+
+The reduced equations give $x=(-17,-7,-1)^T$. Every variable is a pivot variable, so this input is unique.
+
+As an independent check, multiplying the displayed particular input by the original $A$ gives $\begin{bmatrix}-6\\-4\\-5\end{bmatrix}$, exactly the required target.
+
+
+\exercise{1.8.5}{Solve for an input with the specified image}
+
+\goal Solve $Ax=b$ and decide whether the input is unique. Put the target vector in the last column and apply the same row operations to the whole augmented matrix.
+
+\[ [A\mid b]=\begin{bmatrix}1 & -5 & -7 & -2\\-3 & 7 & 5 & -2\end{bmatrix}.\]
+Use $R_{2}\leftarrow R_{2}-(-3)R_{1}$. Then
+\[ \begin{bmatrix}1 & -5 & -7 & -2\\0 & -8 & -16 & -8\end{bmatrix}.\]
+Use $R_{2}\leftarrow - \frac{1}{8}R_{2},\quad R_{1}\leftarrow R_{1}-(-5)R_{2}$. Then
+\[ \begin{bmatrix}1 & 0 & 3 & 3\\0 & 1 & 2 & 1\end{bmatrix}.\]
+
+The reduced equations give $x=(3-3t,1-2t,t)^T$, $t\in\R$. Here $x_3=t$ is free. For example $t=0$ gives $(3,1,0)^T$. Varying $t$ gives different inputs with the same output, so uniqueness fails.
+
+As an independent check, multiplying the displayed particular input by the original $A$ gives $\begin{bmatrix}-2\\-2\end{bmatrix}$, exactly the required target.
+
+
+\exercise{1.8.6}{Solve for an input with the specified image}
+
+\goal Solve $Ax=b$ and decide whether the input is unique. Put the target vector in the last column and apply the same row operations to the whole augmented matrix.
+
+\[ [A\mid b]=\begin{bmatrix}1 & -3 & 2 & 1\\3 & -8 & 8 & 6\\0 & 1 & 2 & 3\\1 & 0 & 8 & 10\end{bmatrix}.\]
+Use $R_{2}\leftarrow R_{2}-(3)R_{1},\quad R_{4}\leftarrow R_{4}-(1)R_{1}$. Then
+\[ \begin{bmatrix}1 & -3 & 2 & 1\\0 & 1 & 2 & 3\\0 & 1 & 2 & 3\\0 & 3 & 6 & 9\end{bmatrix}.\]
+Use $R_{1}\leftarrow R_{1}-(-3)R_{2},\quad R_{3}\leftarrow R_{3}-(1)R_{2},\quad R_{4}\leftarrow R_{4}-(3)R_{2}$. Then
+\[ \begin{bmatrix}1 & 0 & 8 & 10\\0 & 1 & 2 & 3\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\end{bmatrix}.\]
+
+The reduced equations give $x=(10-8t,3-2t,t)^T$, $t\in\R$. Here $x_3=t$ is free. Taking $t=0$ gives $(10,3,0)^T$, but other values give additional inputs. The zero rows impose no extra restrictions.
+
+As an independent check, multiplying the displayed particular input by the original $A$ gives $\begin{bmatrix}1\\6\\3\\10\end{bmatrix}$, exactly the required target.
+
+
+\exercise{1.8.7}{The domain and codomain of a six-by-five matrix}
+There are five columns, so $Ax$ requires $x\in\R^5$; there are
+six rows, so $Ax\in\R^6$. Therefore $\boxed{a=5,b=6}$.
+The range can be smaller than $\R^6$; the question asks for the codomain.
+
+\exercise{1.8.8}{Construct the required shape}
+A map $\R^5\to\R^7$ implemented by $Ax$ needs $\boxed{7\text{ rows
+and }5\text{ columns}}$. Five entries are consumed and seven entries
+are produced. Reversing these numbers would define a different map.
+
+
+\exercise{1.8.9}{Find every input sent to zero}
+
+\goal Solve $Ax=0$. The right-hand side stays zero under row operations, so we can reduce the coefficient matrix alone.
+
+\[ A=\begin{bmatrix}1 & -3 & 5 & -5\\0 & 1 & -3 & 5\\2 & -4 & 4 & -4\end{bmatrix}.\]
+Use $R_{3}\leftarrow R_{3}-(2)R_{1}$. Then
+\[ \begin{bmatrix}1 & -3 & 5 & -5\\0 & 1 & -3 & 5\\0 & 2 & -6 & 6\end{bmatrix}.\]
+Use $R_{1}\leftarrow R_{1}-(-3)R_{2},\quad R_{3}\leftarrow R_{3}-(2)R_{2}$. Then
+\[ \begin{bmatrix}1 & 0 & -4 & 10\\0 & 1 & -3 & 5\\0 & 0 & 0 & -4\end{bmatrix}.\]
+Use $R_{3}\leftarrow - \frac{1}{4}R_{3},\quad R_{1}\leftarrow R_{1}-(10)R_{3},\quad R_{2}\leftarrow R_{2}-(5)R_{3}$. Then
+\[ \begin{bmatrix}1 & 0 & -4 & 0\\0 & 1 & -3 & 0\\0 & 0 & 0 & 1\end{bmatrix}.\]
+
+The equations are $x_1-4x_3=0$, $x_2-3x_3=0$, $x_4=0$. Let $x_3=t$. Then
+\[ x=t\begin{bmatrix}4\\3\\1\\0\end{bmatrix},\qquad t\in\R.\]
+
+Each displayed generator is sent to zero by the original matrix. Conversely, every solution must obey the reduced equations, so no additional inputs are missing.
+
+
+\exercise{1.8.10}{Find every input sent to zero}
+
+\goal Solve $Ax=0$. The right-hand side stays zero under row operations, so we can reduce the coefficient matrix alone.
+
+\[ A=\begin{bmatrix}3 & 2 & 10 & -6\\1 & 0 & 2 & -4\\0 & 1 & 2 & 3\\1 & 4 & 10 & 8\end{bmatrix}.\]
+Use $R_{1}\leftrightarrow R_{2},\quad R_{2}\leftarrow R_{2}-(3)R_{1},\quad R_{4}\leftarrow R_{4}-(1)R_{1}$. Then
+\[ \begin{bmatrix}1 & 0 & 2 & -4\\0 & 2 & 4 & 6\\0 & 1 & 2 & 3\\0 & 4 & 8 & 12\end{bmatrix}.\]
+Use $R_{2}\leftrightarrow R_{3},\quad R_{3}\leftarrow R_{3}-(2)R_{2},\quad R_{4}\leftarrow R_{4}-(4)R_{2}$. Then
+\[ \begin{bmatrix}1 & 0 & 2 & -4\\0 & 1 & 2 & 3\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\end{bmatrix}.\]
+
+The equations are $x_1+2x_3-4x_4=0$ and $x_2+2x_3+3x_4=0$. Set $x_3=s,x_4=t$. Then
+\[ x=s\begin{bmatrix}-2\\-2\\1\\0\end{bmatrix}+t\begin{bmatrix}4\\-3\\0\\1\end{bmatrix},\quad s,t\in\R.\]
+
+Each displayed generator is sent to zero by the original matrix. Conversely, every solution must obey the reduced equations, so no additional inputs are missing.
+
+
+\exercise{1.8.11}{Test membership in the range}
+
+The target belongs to the range exactly when $Ax=b$ is consistent. Reducing the augmented matrix gives
+\[ [A\mid b]\sim \begin{bmatrix}1 & 0 & -4 & 0 & 2\\0 & 1 & -3 & 0 & 1\\0 & 0 & 0 & 1 & 0\end{bmatrix}.\]
+
+The equations give $x_1=2+4t$, $x_2=1+3t$, $x_3=t$, $x_4=0$. In particular $x=(2,1,0,0)^T$ produces $b=(-1,1,0)^T$. Thus the target is in the range. A free variable does not prevent existence; it only prevents uniqueness.
+
+
+\exercise{1.8.12}{Test membership in the range}
+
+The target belongs to the range exactly when $Ax=b$ is consistent. Reducing the augmented matrix gives
+\[ [A\mid b]\sim \begin{bmatrix}1 & 0 & 2 & -4 & 0\\0 & 1 & 2 & 3 & 0\\0 & 0 & 0 & 0 & 1\\0 & 0 & 0 & 0 & 0\end{bmatrix}.\]
+
+The third row says $0=1$, which is impossible. There is no input with image $(-1,3,-1,4)^T$, so the target is not in the range. The fact that it lies in the codomain $\R^4$ is not enough.
+
+
+\exercise{1.8.13}{Calculate and sketch the transformed vectors}
+
+Multiply each row of $A$ by the input coordinates:
+\[ T(u)=\begin{bmatrix}-5\\-2\end{bmatrix},\qquad T(v)=\begin{bmatrix}2\\-4\end{bmatrix}.\]
+
+For a general point, $T(x_1,x_2)=(- x_{1},- x_{2})$. This is reflection through the origin (equivalently a rotation through $180^\circ$). The black arrows show the original vectors; the blue arrows show their images.
+
+\begin{center}\setlength{\unitlength}{1mm}
+\begin{picture}(130,90)
+\put(5,30){\vector(1,0){118}}
+\put(60,5){\vector(0,1){78}}
+\put(122,25){$x_1$}\put(62,82){$x_2$}
+\put(56,25){\scriptsize$0$}
+\put(20,29){\line(0,1){2}}\put(20,25){\makebox(0,0){\scriptsize$-10$}}
+\put(40,29){\line(0,1){2}}\put(40,25){\makebox(0,0){\scriptsize$-5$}}
+\put(80,29){\line(0,1){2}}\put(80,25){\makebox(0,0){\scriptsize$5$}}
+\put(100,29){\line(0,1){2}}\put(100,25){\makebox(0,0){\scriptsize$10$}}
+\put(59,10){\line(1,0){2}}\put(55,10){\makebox(0,0){\scriptsize$-5$}}
+\put(59,50){\line(1,0){2}}\put(55,50){\makebox(0,0){\scriptsize$5$}}
+\put(59,70){\line(1,0){2}}\put(55,70){\makebox(0,0){\scriptsize$10$}}
+{\color{black}\linethickness{0.8pt}\put(60,30){\vector(5,2){20}}}
+\put(82,40){\makebox(0,0)[l]{\small$u$}}
+{\color{black}\linethickness{0.8pt}\put(60,30){\vector(-1,2){8}}}
+\put(43,48){\makebox(0,0)[l]{\small$v$}}
+{\color{blue}\linethickness{0.8pt}\put(60,30){\vector(-5,-2){20}}}
+\put(42,18){\makebox(0,0)[l]{\small$T(u)$}}
+{\color{blue}\linethickness{0.8pt}\put(60,30){\vector(1,-2){8}}}
+\put(70,16){\makebox(0,0)[l]{\small$T(v)$}}
+\end{picture}\end{center}
+
+
+\exercise{1.8.14}{Calculate and sketch the transformed vectors}
+
+Multiply each row of $A$ by the input coordinates:
+\[ T(u)=\begin{bmatrix}10\\4\end{bmatrix},\qquad T(v)=\begin{bmatrix}-4\\8\end{bmatrix}.\]
+
+For a general point, $T(x_1,x_2)=(2 x_{1},2 x_{2})$. This is expansion by a factor of $2$ about the origin. The black arrows show the original vectors; the blue arrows show their images.
+
+\begin{center}\setlength{\unitlength}{1mm}
+\begin{picture}(130,90)
+\put(5,30){\vector(1,0){118}}
+\put(60,5){\vector(0,1){78}}
+\put(122,25){$x_1$}\put(62,82){$x_2$}
+\put(56,25){\scriptsize$0$}
+\put(20,29){\line(0,1){2}}\put(20,25){\makebox(0,0){\scriptsize$-10$}}
+\put(40,29){\line(0,1){2}}\put(40,25){\makebox(0,0){\scriptsize$-5$}}
+\put(80,29){\line(0,1){2}}\put(80,25){\makebox(0,0){\scriptsize$5$}}
+\put(100,29){\line(0,1){2}}\put(100,25){\makebox(0,0){\scriptsize$10$}}
+\put(59,10){\line(1,0){2}}\put(55,10){\makebox(0,0){\scriptsize$-5$}}
+\put(59,50){\line(1,0){2}}\put(55,50){\makebox(0,0){\scriptsize$5$}}
+\put(59,70){\line(1,0){2}}\put(55,70){\makebox(0,0){\scriptsize$10$}}
+{\color{black}\linethickness{0.8pt}\put(60,30){\vector(5,2){20}}}
+\put(82,40){\makebox(0,0)[l]{\small$u$}}
+{\color{black}\linethickness{0.8pt}\put(60,30){\vector(-1,2){8}}}
+\put(43,48){\makebox(0,0)[l]{\small$v$}}
+{\color{blue}\linethickness{0.8pt}\put(60,30){\vector(5,2){40}}}
+\put(102,42){\makebox(0,0)[l]{\small$T(u)$}}
+{\color{blue}\linethickness{0.8pt}\put(60,30){\vector(-1,2){16}}}
+\put(46,64){\makebox(0,0)[l]{\small$T(v)$}}
+\end{picture}\end{center}
+
+
+\exercise{1.8.15}{Calculate and sketch the transformed vectors}
+
+Multiply each row of $A$ by the input coordinates:
+\[ T(u)=\begin{bmatrix}2\\5\end{bmatrix},\qquad T(v)=\begin{bmatrix}4\\-2\end{bmatrix}.\]
+
+For a general point, $T(x_1,x_2)=(x_{2},x_{1})$. This is reflection through the line $x_2=x_1$. The black arrows show the original vectors; the blue arrows show their images.
+
+\begin{center}\setlength{\unitlength}{1mm}
+\begin{picture}(130,90)
+\put(5,30){\vector(1,0){118}}
+\put(60,5){\vector(0,1){78}}
+\put(122,25){$x_1$}\put(62,82){$x_2$}
+\put(56,25){\scriptsize$0$}
+\put(20,29){\line(0,1){2}}\put(20,25){\makebox(0,0){\scriptsize$-10$}}
+\put(40,29){\line(0,1){2}}\put(40,25){\makebox(0,0){\scriptsize$-5$}}
+\put(80,29){\line(0,1){2}}\put(80,25){\makebox(0,0){\scriptsize$5$}}
+\put(100,29){\line(0,1){2}}\put(100,25){\makebox(0,0){\scriptsize$10$}}
+\put(59,10){\line(1,0){2}}\put(55,10){\makebox(0,0){\scriptsize$-5$}}
+\put(59,50){\line(1,0){2}}\put(55,50){\makebox(0,0){\scriptsize$5$}}
+\put(59,70){\line(1,0){2}}\put(55,70){\makebox(0,0){\scriptsize$10$}}
+{\color{black}\linethickness{0.8pt}\put(60,30){\vector(5,2){20}}}
+\put(82,40){\makebox(0,0)[l]{\small$u$}}
+{\color{black}\linethickness{0.8pt}\put(60,30){\vector(-1,2){8}}}
+\put(43,48){\makebox(0,0)[l]{\small$v$}}
+{\color{blue}\linethickness{0.8pt}\put(60,30){\vector(2,5){8}}}
+\put(70,46){\makebox(0,0)[l]{\small$T(u)$}}
+{\color{blue}\linethickness{0.8pt}\put(60,30){\vector(2,-1){16}}}
+\put(78,24){\makebox(0,0)[l]{\small$T(v)$}}
+\end{picture}\end{center}
+
+
+\exercise{1.8.16}{Calculate and sketch the transformed vectors}
+
+Multiply each row of $A$ by the input coordinates:
+\[ T(u)=\begin{bmatrix}0\\4\end{bmatrix},\qquad T(v)=\begin{bmatrix}0\\8\end{bmatrix}.\]
+
+For a general point, $T(x_1,x_2)=(0,2 x_{2})$. This is projection onto the $x_2$-axis followed by multiplication of the remaining coordinate by $2$. The black arrows show the original vectors; the blue arrows show their images.
+
+\begin{center}\setlength{\unitlength}{1mm}
+\begin{picture}(130,90)
+\put(5,30){\vector(1,0){118}}
+\put(60,5){\vector(0,1){78}}
+\put(122,25){$x_1$}\put(62,82){$x_2$}
+\put(56,25){\scriptsize$0$}
+\put(20,29){\line(0,1){2}}\put(20,25){\makebox(0,0){\scriptsize$-10$}}
+\put(40,29){\line(0,1){2}}\put(40,25){\makebox(0,0){\scriptsize$-5$}}
+\put(80,29){\line(0,1){2}}\put(80,25){\makebox(0,0){\scriptsize$5$}}
+\put(100,29){\line(0,1){2}}\put(100,25){\makebox(0,0){\scriptsize$10$}}
+\put(59,10){\line(1,0){2}}\put(55,10){\makebox(0,0){\scriptsize$-5$}}
+\put(59,50){\line(1,0){2}}\put(55,50){\makebox(0,0){\scriptsize$5$}}
+\put(59,70){\line(1,0){2}}\put(55,70){\makebox(0,0){\scriptsize$10$}}
+{\color{black}\linethickness{0.8pt}\put(60,30){\vector(5,2){20}}}
+\put(82,40){\makebox(0,0)[l]{\small$u$}}
+{\color{black}\linethickness{0.8pt}\put(60,30){\vector(-1,2){8}}}
+\put(43,48){\makebox(0,0)[l]{\small$v$}}
+{\color{blue}\linethickness{0.8pt}\put(60,30){\vector(0,1){16}}}
+\put(62,42){\makebox(0,0)[l]{\small$T(u)$}}
+{\color{blue}\linethickness{0.8pt}\put(60,30){\vector(0,1){32}}}
+\put(62,64){\makebox(0,0)[l]{\small$T(v)$}}
+\end{picture}\end{center}
+
+
+\exercise{1.8.17}{Apply linearity before looking for a matrix}
+The given images are $T(u)=(4,1)^T$ and $T(v)=(-1,3)^T$.
+Homogeneity and then additivity give
+\[
+ T(2u)=2T(u)=(8,2)^T,\qquad T(3v)=3T(v)=(-3,9)^T,
+\]
+\[
+ T(2u+3v)=2T(u)+3T(v)=(8,2)^T+(-3,9)^T=(5,11)^T.
+\]
+We do not need to reconstruct $T$ on every input to answer these questions.
+
+\exercise{1.8.18}{Transfer a graphical linear combination}
+In the input diagram, $w=u+2v$: adding two copies of the
+left-pointing vector $v$ cancels the horizontal component of $u$
+without changing its vertical component. By linearity,
+\[
+ T(w)=T(u)+2T(v).
+\]
+In the output diagram, begin at the tip of $T(u)$, append two copies
+of $T(v)$ head to tail, and draw the arrow from the origin to the final
+point. The blue arrow below gives the result. These are schematic
+coordinate drawings of the relation, not new numerical measurements
+assigned to the textbook's unlabeled vectors.
+
+\begin{center}\setlength{\unitlength}{1mm}
+\begin{picture}(110,75)
+\put(5,22){\vector(1,0){98}}
+\put(45,5){\vector(0,1){63}}
+\put(102,17){$x_1$}\put(47,67){$x_2$}
+\put(41,17){\scriptsize$0$}
+{\color{black}\linethickness{0.8pt}\put(45,22){\vector(1,1){28}}}
+\put(75,52){\makebox(0,0)[l]{\small$u$}}
+{\color{black}\linethickness{0.8pt}\put(45,22){\vector(-1,0){14}}}
+\put(25,18){\makebox(0,0)[l]{\small$v$}}
+{\color{blue}\linethickness{0.8pt}\put(45,22){\vector(0,1){28}}}
+\put(39,53){\makebox(0,0)[l]{\small$w$}}
+\end{picture}\end{center}
+
+\begin{center}\setlength{\unitlength}{1mm}
+\begin{picture}(120,75)
+\put(5,25){\vector(1,0){108}}
+\put(25,5){\vector(0,1){63}}
+\put(112,20){$x_1$}\put(27,67){$x_2$}
+\put(21,20){\scriptsize$0$}
+{\color{black}\linethickness{0.8pt}\put(25,25){\vector(2,-1){26}}}
+\put(53,14){\makebox(0,0)[l]{\small$T(u)$}}
+{\color{black}\linethickness{0.8pt}\put(25,25){\vector(16,17){20.8}}}
+\put(47.8,49.1){\makebox(0,0)[l]{\small$T(v)$}}
+{\color{blue}\linethickness{0.8pt}\put(25,25){\vector(13,6){67.6}}}
+\put(94.6,58.2){\makebox(0,0)[l]{\small$T(w)$}}
+\end{picture}\end{center}
+
+
+\exercise{1.8.19}{Use the standard coordinate vectors}
+Write $(5,-3)^T=5e_1-3e_2$. Then
+\[
+ T(5,-3)^T=5(2,5)^T-3(-1,6)^T=(13,7)^T.
+\]
+More generally, $x=x_1e_1+x_2e_2$ gives
+\[
+ T(x)=x_1(2,5)^T+x_2(-1,6)^T=(2x_1-x_2,5x_1+6x_2)^T.
+\]
+The images of the two coordinate vectors determine every image.
+
+\exercise{1.8.20}{Make the two image vectors into columns}
+The rule is $T(x)=x_1(-3,5)^T+x_2(7,-2)^T$. Matrix multiplication
+forms exactly this column combination, so
+\[
+ A=\begin{bmatrix}-3&7\\5&-2\end{bmatrix},\qquad T(x)=Ax.
+\]
+Putting the image vectors into rows instead would give the wrong formula.
+
+\exercise{1.8.21}{Functions, codomains, ranges, and linearity}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} A transformation is a function; a linear transformation
+is one satisfying additional addition and scaling identities.
+\item \textbf{False.} Five columns require inputs in $\R^5$. Three
+rows determine the codomain $\R^3$, not the domain.
+\item \textbf{False.} The range is $\Col A$, which need not equal
+$\R^m$. For the zero matrix the only output is zero.
+\item \textbf{True in the setting of this chapter, $\R^n\to\R^m$.}
+For any such linear $T$, write $x=\sum_jx_je_j$; then
+$T(x)=\sum_jx_jT(e_j)=[T(e_1)\ \cdots\ T(e_n)]x$.
+Thus it has a matrix implementation. A transformation on other vector
+spaces requires a choice of coordinates before this literal formula applies.
+\item \textbf{True.} Additivity and homogeneity imply the displayed
+combination rule. Conversely, setting both scalars to $1$ gives
+additivity, and setting the second scalar to $0$ gives homogeneity.
+Those are exactly the two defining properties.
+\end{enumerate}
+
+\exercise{1.8.22}{Separate an existence question from a uniqueness question}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} The products $Ax$ are precisely all weighted
+combinations of the columns, by the definition of matrix multiplication.
+\item \textbf{True.} $A(cu+dv)=cAu+dAv$, by distributivity and scaling
+of matrix products.
+\item \textbf{False.} Membership of $c$ in the range asks whether
+\emph{some} input gives $c$: it is an existence question. A uniqueness
+question asks whether two different inputs can give that same output.
+\item \textbf{True.} These are the defining properties of a linear map.
+\item \textbf{True.} $T(0)=T(0+0)=T(0)+T(0)$; subtracting $T(0)$
+from both sides gives $T(0)=0$.
+\end{enumerate}
+
+\exercise{1.8.23}{A straight-line graph need not define a linear map}
+\step{(a) Put $b=0$.}
+For $f(x)=mx$ and any real $c,d,u,v$,
+$f(cu+dv)=m(cu+dv)=c(mu)+d(mv)=cf(u)+df(v)$. Hence it is linear.
+\step{(b) Inspect zero when $b\ne0$.}
+Then $f(0)=b\ne0$, violating the necessary condition that a linear
+transformation sends zero to zero.
+\step{(c) Explain the terminology.}
+In elementary algebra and calculus, ``linear function'' often means a
+function whose graph is a straight line, allowing an intercept. Linear
+algebra uses the stricter operation-preserving meaning. A nonzero intercept
+makes the function affine rather than linear in this stricter sense.
+
+\exercise{1.8.24}{An affine displacement}
+For $T(x)=Ax+b$, the zero input gives $T(0)=b$. If $b\ne0$,
+this cannot equal zero, whereas every linear transformation sends zero
+to zero. Thus the affine map is not linear. The matrix part is linear;
+it is the added fixed displacement that violates the condition.
+
+\exercise{1.8.25}{The image of an entire line}
+Write the input line as $x=p+tv$ for all $t\in\R$, with $v\ne0$.
+Then $T(x)=T(p)+tT(v)$. If $T(v)\ne0$, these outputs form the
+line through $T(p)$ in direction $T(v)$. Every point of that line
+comes from the same parameter $t$, so the map is onto that line.
+If $T(v)=0$, every input on the line maps to the single point $T(p)$.
+\answer{The image is a line or a single point.}
+
+\exercise{1.8.26}{Affine combinations describe lines and segments}
+\step{(a) Rewrite a line's usual parametrization.}
+For distinct $p,q$, the line is $p+t(q-p)$. Distributing gives
+$(1-t)p+tq$, for all real $t$. Conversely these formulas are equal
+for every $t$, so they describe the same set. If $p=q$, the formula
+instead describes the degenerate line consisting of that one point.
+\step{(b) Restrict the parameter to the segment.}
+For $0\le t\le1$, linearity gives
+$T((1-t)p+tq)=(1-t)T(p)+tT(q)$. As $t$ runs over the whole
+interval $[0,1]$, the outputs cover the segment between $T(p)$ and
+$T(q)$. If these endpoints coincide, that segment is a single point.
+
+\exercise{1.8.27}{A plane can collapse in two ways}
+Every input in $P$ is $su+tv$ with $s,t\in\R$. Its image is
+$sT(u)+tT(v)$, and conversely every combination of those two image
+vectors comes from such an input. Thus
+\[
+ T(P)=\Span\{T(u),T(v)\}.
+\]
+If the image vectors are independent, their span is a plane through zero.
+If they are dependent but at least one is nonzero, their span is a line
+through zero. If both are zero, the span is just $\{0\}$.
+\answer{The image is a plane precisely when $T(u),T(v)$ are independent.}
+
+\exercise{1.8.28}{A parallelogram maps into the corresponding parallelogram}
+An input in the given parallelogram has the form $au+bv$ with
+$0\le a,b\le1$. Its image is $aT(u)+bT(v)$ with the same two
+coefficients in the same ranges. This is precisely a point of the
+parallelogram generated by $T(u),T(v)$. In fact the image is the
+whole of that set, since every allowed pair $a,b$ also gives an input.
+The output parallelogram may degenerate to a segment or a point.
+
+\exercise{1.8.29}{Two sketches for reflection across the vertical axis}
+Here $T(x_1,x_2)=(-x_1,x_2)$.
+For addition, choose $u=(2,1)$, $v=(1,2)$. Then $u+v=(3,3)$,
+while $T(u)=(-2,1)$, $T(v)=(-1,2)$, and
+$T(u)+T(v)=(-3,3)=T(u+v)$. The paired arrows below have matching
+vertical coordinates and opposite horizontal coordinates.
+
+\begin{center}\setlength{\unitlength}{1mm}
+\begin{picture}(130,90)
+\put(5,15){\vector(1,0){118}}
+\put(65,5){\vector(0,1){78}}
+\put(122,10){$x_1$}\put(67,82){$x_2$}
+\put(61,10){\scriptsize$0$}
+{\color{black}\linethickness{0.8pt}\put(65,15){\vector(2,1){24}}}
+\put(91,29){\makebox(0,0)[l]{\small$u$}}
+{\color{black}\linethickness{0.8pt}\put(65,15){\vector(1,2){12}}}
+\put(79,41){\makebox(0,0)[l]{\small$v$}}
+{\color{black}\linethickness{0.8pt}\put(65,15){\vector(1,1){36}}}
+\put(103,53){\makebox(0,0)[l]{\small$u+v$}}
+{\color{blue}\linethickness{0.8pt}\put(65,15){\vector(-2,1){24}}}
+\put(26,24){\makebox(0,0)[l]{\small$T(u)$}}
+{\color{blue}\linethickness{0.8pt}\put(65,15){\vector(-1,2){12}}}
+\put(38,41){\makebox(0,0)[l]{\small$T(v)$}}
+{\color{blue}\linethickness{0.8pt}\put(65,15){\vector(-1,1){36}}}
+\put(9,54){\makebox(0,0)[l]{\small$T(u+v)$}}
+\end{picture}\end{center}
+
+For scaling, take $u=(2,1)$ and $c=2$. Then $T(2u)=(-4,2)=2T(u)$. Both the original ray and its reflected ray double their lengths; their directions are reflected across the vertical axis.
+
+\begin{center}\setlength{\unitlength}{1mm}
+\begin{picture}(145,80)
+\put(5,15){\vector(1,0){133}}
+\put(72,5){\vector(0,1){68}}
+\put(137,10){$x_1$}\put(74,72){$x_2$}
+\put(68,10){\scriptsize$0$}
+{\color{black}\linethickness{0.8pt}\put(72,15){\vector(2,1){24}}}
+\put(98,23){\makebox(0,0)[l]{\small$u$}}
+{\color{black}\linethickness{0.8pt}\put(72,15){\vector(2,1){48}}}
+\put(122,41){\makebox(0,0)[l]{\small$2u$}}
+{\color{blue}\linethickness{0.8pt}\put(72,15){\vector(-2,1){24}}}
+\put(33,23){\makebox(0,0)[l]{\small$T(u)$}}
+{\color{blue}\linethickness{0.8pt}\put(72,15){\vector(-2,1){48}}}
+\put(4,43){\makebox(0,0)[l]{\small$2T(u)=T(2u)$}}
+\end{picture}\end{center}
+
+
+\exercise{1.8.30}{A linear map vanishing on a spanning list is zero}
+Take any $x\in\R^n$. Since $v_1,\ldots,v_p$ span the domain,
+there are scalars $c_j$ with $x=\sum_{j=1}^pc_jv_j$.
+Repeated use of linearity gives
+\[
+ T(x)=\sum_{j=1}^pc_jT(v_j)=\sum_{j=1}^pc_j0=0.
+\]
+The choice of $x$ was arbitrary, so $T$ sends every input to zero.
+The spanning assumption is essential: vanishing on just one line would
+not generally determine a map on the whole domain.
+
+\exercise{1.8.31}{A dependence relation survives applying a linear map}
+Dependence gives scalars $c_1,c_2,c_3$, not all zero, such that
+$c_1v_1+c_2v_2+c_3v_3=0$. Apply $T$ and use $T(0)=0$:
+\[
+ c_1T(v_1)+c_2T(v_2)+c_3T(v_3)
+ =T(c_1v_1+c_2v_2+c_3v_3)=0.
+\]
+The same coefficients are still not all zero. Thus they form a
+nontrivial relation among the three image vectors, proving dependence.
+
+\exercise{1.8.32}{An absolute value violates homogeneity}
+For $T(x_1,x_2)=(x_1-2|x_2|,x_1-4x_2)$, choose $u=(0,1)$.
+Then $T(u)=(-2,-4)$, so $-T(u)=(2,4)$. But
+$T(-u)=T(0,-1)=(-2,4)$, which differs in its first coordinate.
+Hence $T(-u)\ne-T(u)$, violating homogeneity for scalar $-1$.
+\answer{The transformation is not linear.}
+
+\exercise{1.8.33}{A constant term violates preservation of zero}
+The displayed rule gives
+$T(0,0)=(0,-3,0)\ne(0,0,0)$.
+Since every linear transformation must map the zero input to the zero
+output, this single counterexample disproves linearity. No complicated
+comparison of general inputs is needed.
+
+\exercise{1.8.34}{Reflection through a coordinate plane is linear}
+Let $u,v\in\R^3$ and $c,d\in\R$. For the stated rule,
+\begin{align*}
+ T(cu+dv)
+ &=(cu_1+dv_1,cu_2+dv_2,-cu_3-dv_3)\\
+ &=c(u_1,u_2,-u_3)+d(v_1,v_2,-v_3)\\
+ &=cT(u)+dT(v).
+\end{align*}
+This is the combined linearity condition for arbitrary inputs and scalars.
+Equivalently, $T$ is multiplication by $\operatorname{diag}(1,1,-1)$.
+
+\exercise{1.8.35}{A coordinate projection is linear}
+For $T(x_1,x_2,x_3)=(x_1,0,x_3)$,
+\begin{align*}
+ T(cu+dv)&=(cu_1+dv_1,0,cu_3+dv_3)\\
+ &=c(u_1,0,u_3)+d(v_1,0,v_3)=cT(u)+dT(v).
+\end{align*}
+The middle zero is preserved under addition and scaling. Thus the map
+is linear; its matrix is $\operatorname{diag}(1,0,1)$.
+
+\exercise{1.8.36}{Dependence created in the output forces a nonzero zero-input}
+Because $T(u),T(v)$ are dependent, some $a,b$, not both zero,
+satisfy $aT(u)+bT(v)=0$. Set $x=au+bv$. Linearity gives
+$T(x)=0$. Moreover $x\ne0$: if $au+bv=0$, independence of
+$u,v$ would force $a=b=0$, contrary to their choice.
+\answer{$x$ is a nontrivial solution of $T(x)=0$.}
+
+
+\exercise{1.8.37}{Compute all inputs in the kernel}
+
+The supplied matrix is
+\[ A=\begin{bmatrix}2 & 3 & 5 & -5\\-7 & 7 & 0 & 0\\-3 & 4 & 1 & 3\\-9 & 3 & -6 & -4\end{bmatrix}.\]
+
+Exact row reduction yields
+\[ \operatorname{rref}(A)=\begin{bmatrix}1 & 0 & 1 & 0\\0 & 1 & 1 & 0\\0 & 0 & 0 & 1\\0 & 0 & 0 & 0\end{bmatrix}.\]
+
+Choose the sole free variable to be $t$. Reading the pivot equations gives
+\[ x=t\begin{bmatrix}-1\\-1\\1\\0\end{bmatrix},\qquad t\in\R.\]
+
+Direct multiplication of the original $A$ by this generator gives zero in every row. Conversely the pivot equations determine all remaining coordinates from $t$, so the displayed family is the complete solution set.
+
+
+\exercise{1.8.38}{Compute all inputs in the kernel}
+
+The supplied matrix is
+\[ A=\begin{bmatrix}3 & 4 & -7 & 0\\5 & -8 & 7 & 4\\6 & -8 & 6 & 4\\9 & -7 & -2 & 0\end{bmatrix}.\]
+
+Exact row reduction yields
+\[ \operatorname{rref}(A)=\begin{bmatrix}1 & 0 & 0 & 1\\0 & 1 & 0 & 1\\0 & 0 & 1 & 1\\0 & 0 & 0 & 0\end{bmatrix}.\]
+
+Choose the sole free variable to be $t$. Reading the pivot equations gives
+\[ x=t\begin{bmatrix}-1\\-1\\-1\\1\end{bmatrix},\qquad t\in\R.\]
+
+Direct multiplication of the original $A$ by this generator gives zero in every row. Conversely the pivot equations determine all remaining coordinates from $t$, so the displayed family is the complete solution set.
+
+
+\exercise{1.8.39}{Find an input for a specified output}
+
+Use the matrix in Exercise 37 and append the stated target. The exact reduced matrix is
+\[ [A\mid b]\sim \begin{bmatrix}1 & 0 & 1 & 0 & 1\\0 & 1 & 1 & 0 & 2\\0 & 0 & 0 & 1 & 0\\0 & 0 & 0 & 0 & 0\end{bmatrix}.\]
+
+No row says $0=1$, so the equations are consistent. A particular input is $x=\begin{bmatrix}1\\2\\0\\0\end{bmatrix}$. Substitution gives $Ax=\begin{bmatrix}8\\7\\5\\-3\end{bmatrix}=b$.
+
+All inputs with that same image are
+\[ x=\begin{bmatrix}1\\2\\0\\0\end{bmatrix}+t\begin{bmatrix}-1\\-1\\1\\0\end{bmatrix},\quad t\in\R.\]
+
+The homogeneous part changes the input without changing its image, because its product with $A$ is zero.
+
+
+\exercise{1.8.40}{Find an input for a specified output}
+
+Use the matrix in Exercise 38 and append the stated target. The exact reduced matrix is
+\[ [A\mid b]\sim \begin{bmatrix}1 & 0 & 0 & 1 & 1\\0 & 1 & 0 & 1 & 2\\0 & 0 & 1 & 1 & 1\\0 & 0 & 0 & 0 & 0\end{bmatrix}.\]
+
+No row says $0=1$, so the equations are consistent. A particular input is $x=\begin{bmatrix}1\\2\\1\\0\end{bmatrix}$. Substitution gives $Ax=\begin{bmatrix}4\\-4\\-4\\-7\end{bmatrix}=b$.
+
+All inputs with that same image are
+\[ x=\begin{bmatrix}1\\2\\1\\0\end{bmatrix}+t\begin{bmatrix}-1\\-1\\-1\\1\end{bmatrix},\quad t\in\R.\]
+
+The homogeneous part changes the input without changing its image, because its product with $A$ is zero.

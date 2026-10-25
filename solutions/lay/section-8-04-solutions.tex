@@ -1,0 +1,336 @@
+\section{Hyperplanes}
+A linear functional has scalar output: $f:\R^n\to\R$.
+It can be written $f(x)=n^Tx$ for a fixed vector $n$. When $n\ne0$,
+the level set $[f:d]=\{x:n^Tx=d\}$ is a hyperplane.
+Its two open sides have $f(x)<d$ and $f(x)>d$.
+To separate sets weakly, put them in opposite closed sides; to separate
+strictly, put them in opposite open sides.
+Here ``open'' and ``closed'' refer to the ambient $\R^n$, not just the
+set's own line or plane. In Euclidean space compact means closed and bounded.
+
+\practice{8.4.P1}{An explicit line where two planes intersect}
+The normal equations are $x_1+x_2-2x_3=-3$ and
+$-2x_1+x_2+3x_3=7$, using $n_1\cdot p_1=-3$ and $n_2\cdot p_2=7$.
+Subtracting the second equation from the first after elimination gives
+the reduced equations
+$x_1-(5/3)x_3=-10/3$, $x_2-(1/3)x_3=1/3$.
+Thus their intersection is
+\[
+ x=(-10/3,1/3,0)+t(5/3,1/3,1),\qquad t\in\R.
+\]
+Substitution verifies both plane equations for every $t$, and the single
+free variable shows that every point in the intersection has this form.
+
+\exercise{8.4.1}{An implicit equation for a line}
+The direction from $(-1,4)$ to $(3,1)$ is $(4,-3)$.
+Choose the perpendicular normal $n=(3,4)$, since $3(4)+4(-3)=0$.
+Then $d=n\cdot(-1,4)=-3+16=13$, so take
+$f(x,y)=3x+4y$ and $d=13$.
+Both points satisfy this equation, and its nonzero normal makes it the
+unique line through those two distinct points.
+
+\exercise{8.4.2}{A second line functional}
+The direction between $(1,4)$ and $(-2,-1)$ is $(-3,-5)$.
+A perpendicular normal is $(5,-3)$; its dot product with the direction is
+$-15+15=0$. At the first point it has value $5-12=-7$.
+Thus $f(x,y)=5x-3y$ and $d=-7$ give the required line $[f:d]$.
+
+\exercise{8.4.3}{Open, closed, or neither}
+\begin{enumerate}[label=(\alph*)]
+\item $y>0$ is \textbf{open}, not closed. Every point has a ball staying
+above the axis; $(0,1/k)$ tends to the excluded origin.
+\item The segment $x=2$, $1\le y\le3$ is \textbf{closed}, not open.
+It includes its endpoints and is the intersection of closed constraints.
+Every disk about a point on it contains points with $x\ne2$.
+\item The segment $x=2$, $1<y<3$ is \textbf{neither}. It has no ambient
+open disk, and $(2,1+1/k)$ tends to an excluded endpoint.
+\item The positive branch $xy=1$, $x>0$ is \textbf{closed}, not open.
+For a convergent sequence on it, the limit satisfies $xy=1$ by continuity;
+its $x$ cannot be zero or negative, so the limit stays on this branch.
+No disk about a curve point lies entirely on the curve.
+\item The region $xy\ge1$, $x>0$ is \textbf{closed}, not open.
+For a finite convergent sequence its limit has $x\ge0$ and $xy\ge1$,
+so $x=0$ is impossible and the limit remains in the set. Boundary points
+with $xy=1$ prevent openness.
+\end{enumerate}
+
+\exercise{8.4.4}{Five curved planar sets}
+\begin{enumerate}[label=(\alph*)]
+\item The circle $x^2+y^2=1$ is \textbf{closed}, not open, by continuity
+of $x^2+y^2$ and the absence of any disk contained in a circle.
+\item The region $x^2+y^2>1$ is \textbf{open}, not closed: continuity
+preserves its strict inequality locally, but $(1+1/k,0)$ tends to the excluded circle.
+\item The region $x^2+y^2\le1$, $y>0$ is \textbf{neither}.
+The included arc point $(0,1)$ is not interior; $(0,1/k)$ tends to the
+excluded origin on the diameter.
+\item The region $y\ge x^2$ is \textbf{closed}, not open. It is defined
+by the nonnegative value of the continuous function $y-x^2$, and equality
+points have nearby points below the boundary.
+\item The region $y<x^2$ is \textbf{open}, not closed. It is a strict
+continuous inequality; for example $(0,-1/k)$ tends to the excluded origin.
+\end{enumerate}
+
+\exercise{8.4.5}{Compactness and convexity for the sets of Exercise 3}
+\begin{enumerate}[label=(\alph*)]
+\item The upper open half-plane is unbounded, hence not compact, but
+it is convex because averages of positive $y$-coordinates remain positive.
+\item The closed vertical segment is closed and bounded, hence compact.
+A segment is convex.
+\item The open vertical segment is not closed, hence not compact. It
+is convex: averaging two coordinates strictly between $1$ and $3$ keeps
+that coordinate strictly between the same bounds.
+\item The positive reciprocal curve is unbounded, hence not compact.
+It is not convex: the midpoint of $(1,1)$ and $(2,1/2)$ is $(3/2,3/4)$,
+whose coordinate product is $9/8\ne1$.
+\item The region on and above the reciprocal curve is unbounded, hence
+not compact. It is convex: for positive $x_1,x_2$ and $0\le t\le1$,
+\[
+ \frac1{(1-t)x_1+tx_2}\le\frac{1-t}{x_1}+\frac{t}{x_2}.
+\]
+This reciprocal convexity inequality, together with $y_i\ge1/x_i$,
+puts each segment point on or above the same curve. Its horizontal coordinate
+stays positive. The inequality also follows by expanding the nonnegative
+quantity $t(1-t)(x_1-x_2)^2$ after clearing positive denominators.
+\end{enumerate}
+
+\exercise{8.4.6}{Compactness and convexity for the sets of Exercise 4}
+\begin{enumerate}[label=(\alph*)]
+\item The circle is compact (closed and bounded) but not convex:
+$(1,0)$ and $(-1,0)$ have midpoint zero, off the circle.
+\item The exterior of the disk is unbounded and not compact. It is
+not convex: $(2,0),(-2,0)$ are in it but their midpoint is not.
+\item The upper half-disk with the diameter excluded is not closed,
+hence not compact. It is convex as the intersection of the closed unit disk
+and the convex open half-plane $y>0$.
+\item The epigraph $y\ge x^2$ is unbounded, hence not compact.
+It is convex because
+$((1-t)x_1+tx_2)^2\le(1-t)x_1^2+tx_2^2\le(1-t)y_1+ty_2$.
+The first inequality follows by subtracting the left side to get
+$t(1-t)(x_1-x_2)^2\ge0$.
+\item The region $y<x^2$ is unbounded and not compact. It is not convex:
+$(-1,1/2),(1,1/2)$ are in it, but their midpoint $(0,1/2)$ is not.
+\end{enumerate}
+
+\exercise{8.4.7}{Find the normal from difference vectors}
+Subtract the first point from every other listed point to get directions parallel to the hyperplane. Solve $D^Tn=0$, where these directions form the columns of $D$. One nonzero solution is
+\[ n=(0,2,3)^T,\qquad n^Tp_1=11.\]
+Checking gives $n^T(p_j-p_1)=0$ for every other listed point. Thus (a) this $n$ is a normal and (b) the required functional is $f(x)=n^Tx$, with $d=11$. The equation $n^Tx=11$ contains all the points. The difference vectors have rank 2, so their affine hull has the correct hyperplane dimension; the equation describes that whole hyperplane.
+
+\exercise{8.4.8}{Find the normal from difference vectors}
+Subtract the first point from every other listed point to get directions parallel to the hyperplane. Solve $D^Tn=0$, where these directions form the columns of $D$. One nonzero solution is
+\[ n=(-4,-3,6)^T,\qquad n^Tp_1=8.\]
+Checking gives $n^T(p_j-p_1)=0$ for every other listed point. Thus (a) this $n$ is a normal and (b) the required functional is $f(x)=n^Tx$, with $d=8$. The equation $n^Tx=8$ contains all the points. The difference vectors have rank 2, so their affine hull has the correct hyperplane dimension; the equation describes that whole hyperplane.
+
+\exercise{8.4.9}{Find the normal from difference vectors}
+Subtract the first point from every other listed point to get directions parallel to the hyperplane. Solve $D^Tn=0$, where these directions form the columns of $D$. One nonzero solution is
+\[ n=(3,-1,2,1)^T,\qquad n^Tp_1=5.\]
+Checking gives $n^T(p_j-p_1)=0$ for every other listed point. Thus (a) this $n$ is a normal and (b) the required functional is $f(x)=n^Tx$, with $d=5$. The equation $n^Tx=5$ contains all the points. The difference vectors have rank 3, so their affine hull has the correct hyperplane dimension; the equation describes that whole hyperplane.
+
+\exercise{8.4.10}{Find the normal from difference vectors}
+Subtract the first point from every other listed point to get directions parallel to the hyperplane. Solve $D^Tn=0$, where these directions form the columns of $D$. One nonzero solution is
+\[ n=(-2,3,-5,1)^T,\qquad n^Tp_1=4.\]
+Checking gives $n^T(p_j-p_1)=0$ for every other listed point. Thus (a) this $n$ is a normal and (b) the required functional is $f(x)=n^Tx$, with $d=4$. The equation $n^Tx=4$ contains all the points. The difference vectors have rank 3, so their affine hull has the correct hyperplane dimension; the equation describes that whole hyperplane.
+
+\exercise{8.4.11}{Use the sign of the functional relative to its level}
+Here $f(x)=2x_1+x_2+5x_3-x_4$ and
+$d=f(p)=2-3+5-2=2$. At the origin $f(0)-d=-2<0$.
+For the three proposed points the functional values are
+$f(v_1)=5$, $f(v_2)=-2$, and $f(v_3)=2$.
+Thus $v_2$ is on the same open side as the origin, $v_1$ is on the
+opposite side, and $v_3$ lies in the hyperplane itself, on neither open side.
+
+\exercise{8.4.12}{Weak separation without strict parallel separation}
+With the prescribed normal $n=(3,1,-2)$, use $f(x)=3x_1+x_2-2x_3$.
+Evaluation at the three points of $A$ gives $-5,4,3$; at those of $B$
+it gives $7,4,6$. Hence $H=[f:4]$ separates the sets weakly:
+$f(A)\le4\le f(B)$.
+But $\max f(A)=4=\min f(B)$, so there is no real number strictly between
+these two bounds. No hyperplane parallel to $H$ strictly separates them.
+This only answers the prescribed-normal question; it does not assert that
+no differently oriented separating hyperplane could exist.
+
+\exercise{8.4.13}{The intersection of two hyperplanes in four dimensions}
+The two constants are $n_1\cdot p_1=4$ and $n_2\cdot p_2=22$.
+Thus solve
+\[
+ x_1+2x_2+4x_3+2x_4=4,\qquad
+ 2x_1+3x_2+x_3+5x_4=22.
+\]
+Elimination gives $x_1-10x_3+4x_4=32$ and $x_2+7x_3-x_4=-14$.
+Take $x_3=s,x_4=t$ freely. The explicit answer is
+\[
+ x=(32,-14,0,0)+s(10,-7,1,0)+t(-4,1,0,1),\qquad s,t\in\R.
+\]
+Substitution checks both equations. The two direction vectors are
+independent because their third and fourth coordinates isolate $s,t$.
+Every solution was obtained through the two free variables, so this is the
+entire intersection, a two-dimensional flat.
+
+\exercise{8.4.14}{Possible dimensions of an intersection of flats}
+Choose $p\in F_1\cap F_2$ and translate it to zero. Then
+$F_1=p+U$, $F_2=p+V$ with $\dim U=\dim V=4$, and
+$F_1\cap F_2=p+(U\cap V)$.
+The dimension formula gives
+\[
+ \dim(U\cap V)=\dim U+\dim V-\dim(U+V)\ge8-6=2,
+\]
+and the intersection has dimension at most four. Each possibility occurs:
+take $U=\Span\{e_1,e_2,e_3,e_4\}$ in $\R^6$, and take $V$ respectively
+as $\Span\{e_1,e_2,e_5,e_6\}$, $\Span\{e_1,e_2,e_3,e_5\}$, or $U$.
+The intersection dimensions are $2,3,4$.
+
+\exercise{8.4.15}{An already implicit hyperplane equation}
+The equation $Ax=b$ is $x_1-3x_2+4x_3-2x_4=5$.
+Thus $f(x)=x_1-3x_2+4x_3-2x_4$ and $d=5$.
+The coefficient vector is nonzero, so its level set is a hyperplane in $\R^4$.
+
+\exercise{8.4.16}{A null space of codimension one}
+Set $f(x)=2x_1+5x_2-3x_3+6x_5$ and $d=0$.
+Then $[f:0]$ is exactly the given null space in $\R^5$.
+The fourth coordinate is free because its coefficient is zero; the functional
+itself is nonzero, so this is a hyperplane rather than the whole space.
+
+\exercise{8.4.17}{Describe a row plane by its perpendicular direction}
+Solve $Bn=0$ for $B=\left(\begin{smallmatrix}1&3&5\\0&2&4\end{smallmatrix}\right)$.
+The second equation gives $n_2=-2n_3$, the first then gives $n_1=n_3$.
+Take $n=(1,-2,1)$. Both independent rows are perpendicular to $n$, so
+their two-dimensional span equals $\{x:n^Tx=0\}$.
+Thus $f(x)=x_1-2x_2+x_3$, $d=0$.
+
+\exercise{8.4.18}{A second row plane}
+For $B=\left(\begin{smallmatrix}1&4&-5\\0&-2&8\end{smallmatrix}\right)$,
+solving $Bn=0$ gives $n_2=4n_3$ and $n_1=-11n_3$.
+Choose $n=(-11,4,1)$. Since the two rows of $B$ are independent, their
+span is the plane $-11x_1+4x_2+x_3=0$.
+Take $f(x)=-11x_1+4x_2+x_3$ and $d=0$.
+
+\exercise{8.4.19}{A column plane and a transpose null space}
+A normal must be perpendicular to both columns, so solve $B^Tn=0$:
+$n_1+4n_2-7n_3=0$, $2n_2-6n_3=0$.
+These give $n_2=3n_3$, $n_1=-5n_3$. Thus $n=(-5,3,1)$ is a normal.
+The columns are independent, so the column space is the full plane
+$-5x_1+3x_2+x_3=0$. Take this expression as $f$ and take $d=0$.
+
+\exercise{8.4.20}{A second column-plane equation}
+The normal equations are $n_1+5n_2-4n_3=0$ and $2n_2-4n_3=0$.
+Choose $n_3=1$, giving $n=(-6,2,1)$.
+The two original columns are independent, so $H=\Col B$ equals
+$\{x:-6x_1+2x_2+x_3=0\}$. Hence $f(x)=-6x_1+2x_2+x_3$, $d=0$.
+
+\exercise{8.4.21}{Four assertions about functionals and separation}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} A linear functional maps $\R^n$ \emph{to} $\R$,
+not generally from $\R$ to $\R^n$.
+\item \textbf{False.} The correct general formula is $f(x)=n^Tx$,
+a dot product with a fixed vector, not scalar multiplication $kx$, which
+has vector output when $n>1$. For example $f(x_1,x_2)=x_1+x_2$ is a functional.
+\item \textbf{True.} A point in both sets would have its functional
+value simultaneously strictly below and strictly above the same level $d$.
+That is impossible.
+\item \textbf{False.} Two disjoint closed convex sets need not have a
+positive separating gap if neither is compact. For example
+$A=\{(x,y):y\ge e^x\}$ and $B=\{(x,0):x\in\R\}$ are closed, convex,
+and disjoint. Any functional bounded on one side along the entire line
+$B$ must have zero $x$-coefficient. Separation would then have to be
+horizontal, but $A$ has positive $y$ values arbitrarily close to zero,
+while $B$ has $y=0$. No horizontal level lies strictly between the sets.
+\end{enumerate}
+
+\exercise{8.4.22}{Four further assertions about separating hyperplanes}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} A nonzero functional has a nonzero coefficient vector,
+so each of its real level sets is a hyperplane.
+\item \textbf{False.} The normal must be nonzero. If $n=0,d=0$, the
+set is all of $\R^n$; if $n=0,d\ne0$, it is empty. Neither is a hyperplane.
+\item \textbf{False.} Convexity is missing. Take $A=\{0\}$ and $B$ the
+unit circle. They are disjoint, with $A$ compact and $B$ closed, but the
+center cannot be strictly separated from all points of the surrounding circle.
+If $b\in B$, both $b$ and $-b$ belong to it, so no functional can put both
+strictly on the same side of a level separating them from zero.
+\item \textbf{False.} Failure of one chosen hyperplane does not imply
+failure of every choice. Take $A=\{(0,0)\}$, $B=\{(2,0)\}$, and the
+line $y=100$, which does not strictly separate them. Their convex hulls
+are still disjoint, and the line $x=1$ does strictly separate them.
+\end{enumerate}
+
+\exercise{8.4.23}{Separate a point from a triangle by an edge normal}
+Take $f(x,y)=3x-2y$. Its values at the three listed triangle vertices are
+$1,9,9$, whereas $f(p)=10$ for $p=(4,1)$.
+Every convex combination of the vertices therefore has value at most $9$.
+Thus the line $[f:19/2]$, or $3x-2y=9.5$, strictly separates the triangle
+from $p$: all its hull values are below $9.5$, and the point's value is above.
+
+\exercise{8.4.24}{A second point outside a triangle}
+Take $f(x,y)=-2x+3y$. At $(1,2),(5,1),(4,4)$ the values are $4,-7,4$;
+at $p=(2,3)$ the value is $5$.
+Thus $[f:9/2]$ strictly separates $p$ from the triangle, since its entire
+convex hull has functional value at most $4<4.5<5$.
+
+\exercise{8.4.25}{Separate two open balls using their center direction}
+Let $p=(4,1)$, $f(x)=p\cdot x=4x_1+x_2$, and
+$v=(3/4)p=(3,3/4)$. Set $d=f(v)=51/4$.
+For $x\in B(0,3)$, Cauchy--Schwarz gives $f(x)<3\sqrt{17}<51/4$.
+For $x\in B(p,1)$, it gives
+$f(x)=17+p\cdot(x-p)>17-\sqrt{17}>51/4$.
+Thus $[f:51/4]$ strictly separates the balls.
+The hinted point $v$ lies in neither ball because
+$\|v\|=3\sqrt{17}/4>3$ and $\|v-p\|=\sqrt{17}/4>1$.
+The strict inequalities are justified by $\sqrt{17}<17/4$ and
+$3\sqrt{17}<51/4$, which follow on squaring positive quantities.
+
+\exercise{8.4.26}{Translate the two-ball construction}
+The center difference is $n=p-q=(4,-2)$, with $\|n\|=\sqrt{20}$.
+Take $f(x)=4x_1-2x_2$, so $f(q)=2$, $f(p)=22$.
+The point $v=q+(3/4)(p-q)=(5,3/2)$ has $f(v)=17$.
+For $x\in B(q,3)$, $f(x)<2+3\sqrt{20}<17$;
+for $x\in B(p,1)$, $f(x)>22-\sqrt{20}>17$.
+Therefore $[f:17]$ strictly separates the balls. The inequalities follow
+from $\sqrt{20}<5$, and they leave a positive gap between the sets.
+
+\exercise{8.4.27}{A closed set whose convex hull loses closedness}
+Let
+\[
+ S=\{(n,1/n),(-n,1/n):n=1,2,3,\ldots\}.
+\]
+This set is closed: any convergent sequence in it is bounded, so its
+integer first coordinates range through only finitely many possibilities;
+its limit is in that finite subset of $S$.
+But the midpoint of $(n,1/n)$ and $(-n,1/n)$ is $(0,1/n)$, so these
+points lie in $\operatorname{conv}S$ and tend to $(0,0)$.
+No convex combination of points in $S$ has height zero, because it is a
+finite weighted average of strictly positive heights. Thus $(0,0)$ is not
+in the convex hull, which is consequently not closed.
+
+\exercise{8.4.28}{Disjoint hulls need not give a strict separating gap}
+Take the closed set $B=S$ of Exercise 8.4.27 and the compact set
+$A=\{(0,0)\}$. Every point in $\operatorname{conv}B$ has positive height,
+so the two convex hulls are disjoint.
+Suppose a hyperplane strictly separated $A$ and $B$. After changing the
+functional's sign if necessary, its level would satisfy
+$0=f(0)<d<f(b)$ for every $b\in B$.
+Taking the midpoint of the two points with first coordinates $\pm n$
+would give $f(0,1/n)>d$. Letting $n\to\infty$ contradicts $d>0$, since
+$f(0,1/n)\to0$. Thus strict separation is impossible.
+The compact-set separation theorem cannot be applied to $\operatorname{conv}B$
+as a closed set here: Exercise 8.4.27 shows that it is not closed.
+
+\exercise{8.4.29}{An open ball is convex}
+For $x,y\in B(p,\delta)$ and $0\le t\le1$, the triangle inequality gives
+\[
+ \|(1-t)x+ty-p\|
+ =\|(1-t)(x-p)+t(y-p)\|
+ \le(1-t)\|x-p\|+t\|y-p\|<\delta.
+\]
+At $t=0$ or $1$ this is the original strict inequality; between them it
+is a weighted average of two numbers strictly below $\delta$.
+Thus the whole segment remains inside the open ball.
+
+\exercise{8.4.30}{Convex hull preserves boundedness}
+Since $S$ is bounded, choose $R$ with $\|s\|\le R$ for every $s\in S$.
+For a convex combination $y=\sum_i\lambda_i s_i$, use the triangle
+inequality, nonnegativity, and sum-one property to obtain
+\[
+ \|y\|\le\sum_i\lambda_i\|s_i\|\le\sum_i\lambda_iR=R.
+\]
+Hence the same ball bounds $\operatorname{conv}S$.
+If $S$ is empty its hull is empty and bounded as well.

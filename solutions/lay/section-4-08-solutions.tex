@@ -1,0 +1,434 @@
+\section{Applications to difference equations}
+A signal in this section is a sequence $\{y_k\}$ defined for every integer
+$k$, including negative integers. For an order-$n$ constant-coefficient
+homogeneous equation with nonzero first and last coefficients, specifying
+$n$ consecutive values determines exactly one signal (Theorem 16).
+Its solution space therefore has dimension $n$ (Theorem 17).
+To prove that $n$ proposed solutions form a basis, verify the equations
+when necessary and prove independence. One convenient independence test is
+the Casorati matrix whose columns are the signals evaluated at $n$
+consecutive indices. If that matrix is invertible at one index, the signals
+are independent. Fewer than $n$ solutions cannot span an $n$-dimensional space.
+
+\practice{4.8.P1}{A three-signal basis}
+The problem already supplies that $2^k$, $3^k\sin(k\pi/2)$, and
+$3^k\cos(k\pi/2)$ solve the third-order equation. Their values at $0,1,2$
+form the matrix
+\[
+ C(0)=\begin{pmatrix}1&0&1\\2&3&0\\4&0&-9\end{pmatrix},
+ \qquad\det C(0)=-39\ne0.
+\]
+A relation among the three signals would give $C(0)c=0$, forcing all
+coefficients to vanish. The solution space has dimension three; these
+three independent solutions are therefore a basis.
+
+\exercise{4.8.1}{Substitute two exponential signals}
+For $y_k=r^k$, the left side of $y_{k+2}+2y_{k+1}-8y_k=0$ is
+$r^k(r^2+2r-8)=r^k(r-2)(r+4)$. It vanishes for $r=2$ and $r=-4$.
+Both are nonzero, so these signals are defined at negative indices as well.
+Thus $2^k$ and $(-4)^k$ are solutions for every integer $k$.
+
+\exercise{4.8.2}{Two roots with opposite signs}
+For $y_k=r^k$, the equation $y_{k+2}-25y_k=0$ becomes
+$r^k(r^2-25)=0$. The roots $r=5$ and $r=-5$ make it hold for every
+integer $k$, verifying the two proposed solutions.
+
+\exercise{4.8.3}{Show the first two verified solutions span}
+By Exercise 4.8.1 the signals solve the equation. Their values at $k=0,1$
+form $\left(\begin{smallmatrix}1&1\\2&-4\end{smallmatrix}\right)$,
+with determinant $-6\ne0$. They are independent. The equation is of order
+$2$ and has nonzero last coefficient $-8$, so its solution space has
+dimension two. Thus the two signals form a basis, and all solutions are
+$y_k=c_1 2^k+c_2(-4)^k$.
+
+\exercise{4.8.4}{A basis for the second equation}
+The solutions $5^k,(-5)^k$ from Exercise 4.8.2 give initial-value matrix
+$\left(\begin{smallmatrix}1&1\\5&-5\end{smallmatrix}\right)$,
+whose determinant is $-10$. Thus they are independent and, since the
+solution space has dimension two, form a basis. Every solution is
+$y_k=c_1 5^k+c_2(-5)^k$.
+
+\exercise{4.8.5}{A repeated root produces a factor of $k$}
+For $u_k=(-2)^k$, the substitution factor is $r^2+4r+4=(r+2)^2$, so $u$
+solves the equation. For $v_k=k(-2)^k$, substitution gives
+\[
+ v_{k+2}+4v_{k+1}+4v_k
+ =(-2)^k[4(k+2)-8(k+1)+4k]=0.
+\]
+The initial-value matrix $\left(\begin{smallmatrix}1&0\\-2&-2\end{smallmatrix}\right)$
+has determinant $-2\ne0$, proving independence. There are two independent
+solutions in a two-dimensional solution space; hence all solutions are
+$y_k=(c_1+c_2k)(-2)^k$.
+
+\exercise{4.8.6}{A cosine-sine pair}
+For either sine or cosine, adding $\pi$ to the angle changes its sign.
+Thus the signals $u_k=4^k\cos(k\pi/2)$ and $v_k=4^k\sin(k\pi/2)$
+satisfy $u_{k+2}=-16u_k$ and $v_{k+2}=-16v_k$.
+The initial-value matrix is
+$\left(\begin{smallmatrix}1&0\\0&4\end{smallmatrix}\right)$ with determinant $4$.
+They are independent and, by the order-two dimension theorem, a basis.
+Every solution is $4^k[c_1\cos(k\pi/2)+c_2\sin(k\pi/2)]$.
+
+\exercise{4.8.7}{Test the three supplied solutions by initial values}
+The exercise permits us to assume the three listed signals solve its order-three equation. Evaluate them at $k=0,1,2$ in the listed order:
+\[ C(0)=\begin{pmatrix}1&1&1\\1&2&-2\\1&4&4\end{pmatrix},\qquad\det C(0)=12\ne0.\]
+Therefore the three signals are independent: a relation holding at every index must in particular vanish at these three indices, where the invertible matrix forces all coefficients to be zero. Since the solution space has dimension three, the proposed signals form a basis.
+
+\exercise{4.8.8}{Test the three supplied solutions by initial values}
+The exercise permits us to assume the three listed signals solve its order-three equation. Evaluate them at $k=0,1,2$ in the listed order:
+\[ C(0)=\begin{pmatrix}1&1&1\\-1&2&3\\1&4&9\end{pmatrix},\qquad\det C(0)=12\ne0.\]
+Therefore the three signals are independent: a relation holding at every index must in particular vanish at these three indices, where the invertible matrix forces all coefficients to be zero. Since the solution space has dimension three, the proposed signals form a basis.
+
+\exercise{4.8.9}{Test the three supplied solutions by initial values}
+The exercise permits us to assume the three listed signals solve its order-three equation. Evaluate them at $k=0,1,2$ in the listed order:
+\[ C(0)=\begin{pmatrix}1&1&0\\2&0&5\\4&-25&0\end{pmatrix},\qquad\det C(0)=145\ne0.\]
+Therefore the three signals are independent: a relation holding at every index must in particular vanish at these three indices, where the invertible matrix forces all coefficients to be zero. Since the solution space has dimension three, the proposed signals form a basis.
+
+\exercise{4.8.10}{Test the three supplied solutions by initial values}
+The exercise permits us to assume the three listed signals solve its order-three equation. Evaluate them at $k=0,1,2$ in the listed order:
+\[ C(0)=\begin{pmatrix}1&0&1\\-2&-2&3\\4&8&9\end{pmatrix},\qquad\det C(0)=-50\ne0.\]
+Therefore the three signals are independent: a relation holding at every index must in particular vanish at these three indices, where the invertible matrix forces all coefficients to be zero. Since the solution space has dimension three, the proposed signals form a basis.
+
+\exercise{4.8.11}{Too few solutions for a third-order equation}
+The equation has order $3$ and nonzero last coefficient $4$, so its solution
+space has dimension $3$. Only two signals are listed. Even if independent,
+their span has dimension at most $2$, so they cannot form a basis for the
+whole solution space. The answer is no.
+
+\exercise{4.8.12}{Too few solutions for a fourth-order equation}
+Here the highest and lowest shifts differ by four and the last coefficient
+is $36\ne0$. The solution space therefore has dimension four. Two listed
+signals cannot span it. Thus they are not a basis, despite being solutions.
+
+\exercise{4.8.13}{Two distinct fractional roots}
+The auxiliary polynomial factors as
+$r^2-r+2/9=(r-1/3)(r-2/3)$. Hence $(1/3)^k$ and $(2/3)^k$ solve
+the equation. Their initial-value matrix has determinant $2/3-1/3=1/3\ne0$,
+so they are independent. The dimension-two theorem proves that they span:
+\[
+ y_k=c_1(1/3)^k+c_2(2/3)^k.
+\]
+
+\exercise{4.8.14}{Two positive integer roots}
+The auxiliary polynomial is $r^2-5r+6=(r-2)(r-3)$.
+The solutions $2^k,3^k$ have initial-value determinant $3-2=1\ne0$.
+They are therefore independent; since the solution space has dimension two,
+all solutions are $y_k=c_1 2^k+c_2 3^k$.
+
+\exercise{4.8.15}{A leading coefficient different from one}
+The auxiliary polynomial is $6r^2+r-2=(2r-1)(3r+2)$, with roots
+$1/2,-2/3$. Dividing the original equation by $6$ gives an equivalent
+order-two equation with nonzero last coefficient, so its solution space has
+dimension two. The initial-value determinant is $-2/3-1/2=-7/6\ne0$.
+Thus a basis is $\{(1/2)^k,(-2/3)^k\}$ and every solution is their linear combination.
+
+\exercise{4.8.16}{A familiar difference equation}
+The polynomial $r^2-25$ has roots $5,-5$. Their exponential signals solve
+the equation and have initial-value determinant $-10\ne0$.
+Consequently they form a basis by the dimension-two theorem:
+$y_k=c_1 5^k+c_2(-5)^k$.
+
+\exercise{4.8.17}{Income approaches its equilibrium}
+For $a=9/10,b=4/9$ the equation becomes
+\[
+ Y_{k+2}-\tfrac{13}{10}Y_{k+1}+\tfrac25Y_k=1.
+\]
+A constant solution $Y_k=T$ satisfies $(1-13/10+2/5)T=1$, giving $T=10$.
+The homogeneous polynomial factors as $(r-4/5)(r-1/2)$.
+Its two distinct roots give independent exponential solutions, hence span
+the homogeneous solution space. Subtracting the particular solution $10$
+from any nonhomogeneous solution gives a homogeneous solution. Therefore
+\[
+ Y_k=10+c_1(4/5)^k+c_2(1/2)^k.
+\]
+Both geometric terms tend to zero as $k\to+\infty$, so $Y_k\to10$,
+regardless of the fixed initial values.
+
+\exercise{4.8.18}{A second stable income model}
+For $a=9/10,b=1/2$, the equation is
+$Y_{k+2}-(27/20)Y_{k+1}+(9/20)Y_k=1$.
+A constant particular solution is again $10$, since $1-27/20+9/20=1/10$.
+The characteristic roots are $3/4$ and $3/5$, as
+$(r-3/4)(r-3/5)=r^2-(27/20)r+9/20$.
+Thus the full solution is
+\[
+ Y_k=10+c_1(3/4)^k+c_2(3/5)^k.
+\]
+The distinct-root initial-value matrix is invertible, so these terms give
+every homogeneous solution, not just examples. In particular this model
+also tends to $10$ as $k$ increases.
+
+\exercise{4.8.19}{Two real roots for the bending-moment recurrence}
+For $y_{k+2}+4y_{k+1}+y_k=0$, the roots of $r^2+4r+1$ are
+$r=-2+\sqrt3$ and $s=-2-\sqrt3$. They are distinct and nonzero.
+The initial-value matrix for $r^k,s^k$ has determinant $s-r=-2\sqrt3\ne0$.
+The order-two theorem therefore gives the general solution
+\[
+ y_k=c_1r^k+c_2s^k.
+\]
+These two terms can equivalently be written with exponent $k-1$ by absorbing
+one nonzero factor into each arbitrary coefficient.
+
+\exercise{4.8.20}{Impose the two boundary values}
+Assume $N\ge2$; for $N=1$ the two stated boundary values would conflict.
+Write $y_k=Ar^{k-1}+Bs^{k-1}$ using the roots in Exercise 4.8.19.
+Then $y_1=5000$ and $y_N=0$ give
+$A+B=5000$ and $Ar^{N-1}+Bs^{N-1}=0$.
+Eliminating one coefficient gives
+\[
+ y_k=5000\,
+ \frac{r^{k-1}s^{N-1}-s^{k-1}r^{N-1}}{s^{N-1}-r^{N-1}}.
+\]
+The denominator is nonzero because $|r|\ne|s|$ and $N-1>0$.
+At $k=1$ the fraction is $1$; at $k=N$ its numerator is zero.
+Every term solves the recurrence, so their combination does too. Thus this
+is the required, uniquely determined bending-moment sequence on the support indices.
+
+\exercise{4.8.21}{Compute and plot a moving average}
+Each output is the average of the entry and its two neighbors:
+$z_k=(y_{k-1}+y_k+y_{k+1})/3$. For instance $z_1=(9+5+7)/3=7$ and
+$z_2=(5+7+3)/3=5$. Continuing through the supplied fifteen entries gives
+\[
+ (z_1,\ldots,z_{13})=(7,5,4,3,4,5,6,6,7,8,9,8,7).
+\]
+The original signal has indices $0$ through $14$, but the smoothed signal
+here only has indices $1$ through $13$; there is no invented endpoint average.
+In the plot below, the solid broken line is the original signal and the
+thicker gray broken line is the moving average, using the same axes.
+\begin{center}\setlength{\unitlength}{1mm}\begin{picture}(125,59)\put(7,6){\vector(1,0){113}}\put(7,4){\vector(0,1){48}}
+{\color{black}\linethickness{.5pt}\put(7,6){\polyline(0.00,36.00)(7.00,20.00)(14.00,28.00)(21.00,12.00)(28.00,8.00)(35.00,16.00)(42.00,24.00)(49.00,20.00)(56.00,28.00)(63.00,24.00)(70.00,32.00)(77.00,40.00)(84.00,36.00)(91.00,20.00)(98.00,28.00)}}
+{\color{gray}\linethickness{1pt}\put(7,6){\polyline(7.00,28.00)(14.00,20.00)(21.00,16.00)(28.00,12.00)(35.00,16.00)(42.00,20.00)(49.00,24.00)(56.00,24.00)(63.00,28.00)(70.00,32.00)(77.00,36.00)(84.00,32.00)(91.00,28.00)}}
+\put(5,0){\scriptsize$0$}\put(101,0){\scriptsize$14$}\put(1,44){\scriptsize$10$}\put(117,0){$k$}\end{picture}\end{center}
+
+\exercise{4.8.22}{A filter separates two frequencies}
+The filter of Example 3 is
+$z_k=(\sqrt2/4)y_{k+2}+(1/2)y_{k+1}+(\sqrt2/4)y_k$.
+The decimals $.35$ and $.7$ in the example abbreviate exact radicals;
+treating them as rounded decimal inputs would introduce artificial error.
+\step{(a) Compute the exact output.}
+The input is $y_k=2\cos(k\pi/4)+\cos(3k\pi/4)$.
+For $u_k=\cos(k\theta)$, angle addition gives
+\[
+ u_{k+2}+u_k=2\cos\theta\cos((k+1)\theta).
+\]
+Thus its filtered output is
+$[1/2+(\sqrt2/2)\cos\theta]\cos((k+1)\theta)$.
+For $\theta=\pi/4$ the bracket is $1$; for $\theta=3\pi/4$ it is $0$.
+Therefore
+\[
+ z_k=2\cos((k+1)\pi/4),
+\]
+with successive values, starting at $k=0$,
+$\sqrt2,0,-\sqrt2,-2,-\sqrt2,0,\sqrt2,2,\ldots$.
+\step{(b) Explain the relation to the example.}
+The filter is linear, so it processes the two input components separately.
+Example 3 passes the lower-frequency component with a one-index advance
+and removes the higher-frequency component. The coefficient $2$ simply
+doubles the former output; the latter still contributes zero.
+
+\exercise{4.8.23}{A loan paid off by a final smaller payment}
+\step{(a) Model interest before each payment.}
+The balance obeys $y_{k+1}=1.01y_k-450$, with $y_0=10000$, until the last
+payment. Solving gives $y_k=45000-35000(1.01)^k$ while full payments are made.
+\step{(b) A complete balance table and a reproducible program.}
+The table uses full-precision internal balances and displays dollars rounded
+to cents; the recurrence itself does not round the balance after each month.
+\begin{center}\begin{tabular}{rrrrrr}
+\toprule
+Month&Balance&Month&Balance&Month&Balance\\\midrule
+0&10,000.00&9&6,721.02&18&3,134.84\\
+1&9,650.00&10&6,338.23&19&2,716.19\\
+2&9,296.50&11&5,951.61&20&2,293.35\\
+3&8,939.46&12&5,561.12&21&1,866.28\\
+4&8,578.86&13&5,166.74&22&1,434.94\\
+5&8,214.65&14&4,768.40&23&999.29\\
+6&7,846.79&15&4,366.09&24&559.29\\
+7&7,475.26&16&3,959.75&25&114.88\\
+8&7,100.02&17&3,549.34&26&0.00\\
+\bottomrule\end{tabular}\end{center}
+The following Python code generates the table and adjusts the last payment:
+\begin{verbatim}
+from decimal import Decimal, getcontext
+getcontext().prec = 50
+y = Decimal('10000'); payment = Decimal('450'); k = 0
+print(k, f'{y:.2f}')
+while y * Decimal('1.01') > payment:
+    y = y * Decimal('1.01') - payment
+    k += 1
+    print(k, f'{y:.2f}')
+last = y * Decimal('1.01')
+print(k + 1, '0.00', 'last payment', f'{last:.2f}')
+\end{verbatim}
+\step{(c) Find the last payment and the total amount paid.}
+After payment $25$, the unrounded balance is about $114.8801743968$.
+One more month's interest makes the amount due $116.0289761408$.
+Thus the final payment is at month $26$, for approximately \$116.03;
+there have been $25$ full \$450 payments. The total paid is
+$25(450)+116.0289761408\approx\$11{,}366.03$.
+Continuing to subtract a full \$450 after payoff would produce a negative
+balance and would not model the actual final payment.
+
+\exercise{4.8.24}{Monthly deposits and compound interest}
+\step{(a) Apply interest, then make the new deposit.}
+The recurrence is $y_{k+1}=1.005y_k+200$ with $y_0=1000$.
+Its closed form is $y_k=41000(1.005)^k-40000$: substituting it checks both
+the initial value and the recurrence.
+\step{(b) The complete table for months zero through sixty.}
+\begin{center}\begin{tabular}{rrrrrr}
+\toprule
+Month&Balance&Month&Balance&Month&Balance\\\midrule
+0&1,000.00&21&5,527.22&42&10,554.34\\
+1&1,205.00&22&5,754.86&43&10,807.11\\
+2&1,411.02&23&5,983.63&44&11,061.15\\
+3&1,618.08&24&6,213.55&45&11,316.45\\
+4&1,826.17&25&6,444.62&46&11,573.04\\
+5&2,035.30&26&6,676.84&47&11,830.90\\
+6&2,245.48&27&6,910.23&48&12,090.06\\
+7&2,456.71&28&7,144.78&49&12,350.51\\
+8&2,668.99&29&7,380.50&50&12,612.26\\
+9&2,882.33&30&7,617.40&51&12,875.32\\
+10&3,096.75&31&7,855.49&52&13,139.70\\
+11&3,312.23&32&8,094.77&53&13,405.39\\
+12&3,528.79&33&8,335.24&54&13,672.42\\
+13&3,746.43&34&8,576.92&55&13,940.78\\
+14&3,965.17&35&8,819.80&56&14,210.49\\
+15&4,184.99&36&9,063.90&57&14,481.54\\
+16&4,405.92&37&9,309.22&58&14,753.95\\
+17&4,627.95&38&9,555.77&59&15,027.72\\
+18&4,851.09&39&9,803.55&60&15,302.86\\
+19&5,075.34&40&10,052.56&&\\
+20&5,300.72&41&10,302.83&&\\
+\bottomrule\end{tabular}\end{center}
+Here is the program used, retaining internal precision until display:
+\begin{verbatim}
+from decimal import Decimal, getcontext
+getcontext().prec = 50
+y = Decimal('1000')
+for k in range(61):
+    print(k, f'{y:.2f}')
+    y = y * Decimal('1.005') + Decimal('200')
+\end{verbatim}
+\step{(c) Separate deposits from interest.}
+At months $24,48,60$, the balances are respectively
+\$6,213.55, \$12,090.06, and \$15,302.86, rounded to cents.
+By month $60$ the deposits total $1000+60(200)=13000$.
+Thus interest accounts for $15302.8562545-13000\approx\$2{,}302.86$.
+
+\exercise{4.8.25}{A quadratic particular solution}
+For $y_k=k^2$, substitution gives
+\[
+ (k+2)^2+3(k+1)^2-4k^2=10k+7,
+\]
+which is the required right-hand side. The homogeneous polynomial is
+$r^2+3r-4=(r-1)(r+4)$, with independent exponential solutions
+$1,(-4)^k$. Any two particular solutions differ by a homogeneous solution,
+so the general solution is $y_k=k^2+c_1+c_2(-4)^k$.
+
+\exercise{4.8.26}{A linear particular solution}
+For $y_k=1+k$, the left side is
+$(k+3)-6(k+2)+5(k+1)=-4$.
+The homogeneous roots of $r^2-6r+5$ are $1,5$, so its solutions are
+$c_1+c_2 5^k$. Hence all solutions are
+$y_k=1+k+c_1+c_2 5^k$. The constant $1$ could be absorbed into $c_1$,
+but retaining it makes the supplied particular solution visible.
+
+\exercise{4.8.27}{Another linear particular solution}
+For $y_k=k-2$, compute $y_{k+2}-4y_k=k-4(k-2)=8-3k$.
+The homogeneous roots are $2,-2$. Thus the full solution is
+$y_k=k-2+c_1 2^k+c_2(-2)^k$. The two exponential solutions are independent
+because their values at indices zero and one have determinant $-4\ne0$.
+
+\exercise{4.8.28}{An affine particular solution with roots of magnitude five}
+For $y_k=1+2k$, the left side is
+$(1+2(k+2))-25(1+2k)=-48k-20$, exactly as required.
+The associated homogeneous equation has roots $5,-5$.
+Therefore the general solution is $y_k=1+2k+c_1 5^k+c_2(-5)^k$.
+
+\exercise{4.8.29}{A fourth-order equation as a first-order vector recurrence}
+Choose the state $x_k=(y_k,y_{k+1},y_{k+2},y_{k+3})^T$.
+The first three entries of $x_{k+1}$ just shift those coordinates left.
+Solving the recurrence for $y_{k+4}$ gives
+$y_{k+4}=2y_k-6y_{k+1}+8y_{k+2}-3y_{k+3}$.
+Thus
+\[
+ x_{k+1}=\begin{pmatrix}0&1&0&0\\0&0&1&0\\0&0&0&1\\2&-6&8&-3\end{pmatrix}x_k.
+\]
+The state definition is part of the answer: reversing the order of its
+coordinates would change the companion matrix.
+
+\exercise{4.8.30}{A third-order companion system}
+Set $x_k=(y_k,y_{k+1},y_{k+2})^T$. Since
+$y_{k+3}=5y_{k+2}-8y_k$, the desired system is
+\[
+ x_{k+1}=\begin{pmatrix}0&1&0\\0&0&1\\-8&0&5\end{pmatrix}x_k.
+\]
+The middle coefficient is zero because there is no $y_{k+1}$ term in the
+original equation.
+
+\exercise{4.8.31}{Remove an irrelevant common shift}
+The equation $y_{k+3}+5y_{k+2}+6y_{k+1}=0$ has no $y_k$ term.
+Put $j=k+1$. Because the equation holds for \emph{all} integers $k$, it
+is equivalent to $y_{j+2}+5y_{j+1}+6y_j=0$ for all integers $j$.
+Its order is therefore $2$, not $3$: the largest and smallest shifts differ
+by two and both endpoint coefficients are nonzero.
+
+\exercise{4.8.32}{The order depends on the last nonzero coefficient}
+For $y_{k+3}+a_1y_{k+2}+a_2y_{k+1}+a_3y_k=0$:
+if $a_3\ne0$ the order is $3$; if $a_3=0,a_2\ne0$ a shift makes the
+order $2$; if $a_3=a_2=0,a_1\ne0$ it is $1$.
+If all three are zero, it says $y_{k+3}=0$ at every integer, which is
+just the zero-signal condition, of order $0$ in this shift-width convention.
+Without a nonzero hypothesis on the final coefficient, one cannot simply
+call every equation in the displayed form third order.
+
+\exercise{4.8.33}{Independence does not require an invertible Casorati sample for arbitrary signals}
+Let $y_k=k^2$ and $z_k=2k|k|$. If $ay_k+bz_k=0$ for every integer $k$,
+using $k=1$ gives $a+2b=0$ and using $k=-1$ gives $a-2b=0$.
+Subtracting gives $b=0$, then $a=0$. Thus the signals are independent on
+all integers (they would be dependent if restricted to nonnegative indices).
+The requested matrices are
+\[
+ C(0)=\begin{pmatrix}0&0\\1&2\end{pmatrix},\quad
+ C(-1)=\begin{pmatrix}1&-2\\0&0\end{pmatrix},\quad
+ C(-2)=\begin{pmatrix}4&-8\\1&-2\end{pmatrix}.
+\]
+All are singular. Invertibility of one Casorati matrix is a sufficient
+independence test, but its failure alone does not prove dependence for
+arbitrary signals. No common second-order recurrence hypothesis was given here.
+
+\exercise{4.8.34}{Sampling can destroy independence}
+Take $f(t)=1$, $g(t)=t$, and $h(t)=\sin(\pi t)$.
+They are independent functions: a relation $a+bt+c\sin(\pi t)=0$
+for every real $t$, evaluated at $0,1,1/2$, successively gives $a=b=c=0$.
+But sampling at integers turns $h$ into the zero signal. The three sampled
+signals are therefore dependent. Thus the answer is no: distinct continuous
+behaviors can become indistinguishable at the chosen sample points.
+
+\exercise{4.8.35}{A linear difference operator on signals}
+For two signals $u,v$ and a scalar $c$, evaluate each index:
+\begin{align*}
+ (T(u+v))_k
+ &=(u_{k+2}+v_{k+2})+a(u_{k+1}+v_{k+1})+b(u_k+v_k)\\
+ &=(Tu)_k+(Tv)_k,\\
+ (T(cu))_k&=cu_{k+2}+ac u_{k+1}+bc u_k=c(Tu)_k.
+\end{align*}
+The resulting sequences are defined at every integer, so $T$ maps $S$ into
+$S$. The two coordinate-wise identities prove linearity as an equality of signals.
+
+\exercise{4.8.36}{Add a homogeneous solution to a particular solution}
+Suppose $T(x_p)=z$ and $u\in\ker T$, so $T(u)=0$.
+Linearity gives $T(u+x_p)=T(u)+T(x_p)=0+z=z$.
+Thus $u+x_p$ solves the same nonhomogeneous equation.
+Conversely, if $T(x)=z$, then $T(x-x_p)=z-z=0$, explaining why all
+solutions are precisely a particular solution plus kernel vectors.
+
+\exercise{4.8.37}{One-sided shifts have only a one-sided inverse}
+Apply the maps directly to an arbitrary sequence $y=(y_0,y_1,\ldots)$:
+\[
+ TD(y)=T(0,y_0,y_1,\ldots)=(y_0,y_1,\ldots)=y.
+\]
+Hence $TD=I$. But
+$DT(y)=D(y_1,y_2,\ldots)=(0,y_1,y_2,\ldots)$, which need not equal $y$.
+For example $y=(1,0,0,\ldots)$ is sent to the zero sequence by $DT$.
+Thus $DT\ne I$, illustrating why the finite-dimensional square-matrix
+conclusion about one-sided inverses does not extend to this infinite-dimensional space.

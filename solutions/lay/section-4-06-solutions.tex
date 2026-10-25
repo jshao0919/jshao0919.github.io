@@ -1,0 +1,376 @@
+\section{Rank}
+For an $m\times n$ matrix, the rank $r$ is the number of pivots, the
+dimension of its column space, and the dimension of its row space. The
+rank--nullity equation is
+\[
+ \dim\Nul A=n-r.
+\]
+Notice the number of \emph{columns} on the right. Row operations preserve
+the row space and null space, but may change the column space. Consequently
+use pivot columns of the \emph{original} matrix for a column-space basis;
+use nonzero rows of an echelon form for a row-space basis. A basis for a
+null space comes from solving the homogeneous equations with free variables.
+
+\practice{4.6.P1}{Rank and nullity from the given echelon form}
+The given echelon matrix $B$ has two nonzero rows and two pivot positions.
+Thus $\rank A=2$. Since $A$ has five columns, rank--nullity gives
+$\dim\Nul A=5-2=3$.
+
+\practice{4.6.P2}{Choose the correct rows and columns}
+The pivot columns of $B$ are columns $1,2$. Therefore a column-space basis
+uses the original columns $(2,1,-7,4)$ and $(-1,-2,8,-5)$ of $A$.
+A row-space basis uses the two nonzero rows of $B$:
+\[
+ (1,-2,-4,3,-2),\qquad(0,3,9,-12,12).
+\]
+The former vectors have four entries and live in $\R^4$; the latter have
+five entries and live in $\R^5$. This is a useful check on their roles.
+
+\practice{4.6.P3}{The next step toward a null-space basis}
+Continue reducing $B$ to reduced echelon form: divide its second row by
+$3$, then add twice that new row to its first. The nonzero rows become
+$(1,0,2,-5,6)$ and $(0,1,3,-4,4)$. From there take $x_3,x_4,x_5$ free,
+express $x_1,x_2$ in terms of them, and separate their coefficient vectors.
+It is the free variables, not the pivot columns, that directly produce this basis.
+
+\practice{4.6.P4}{Transpose does not change rank}
+The rank theorem gives $\rank A^T=\rank A=2$. Therefore every row echelon
+form of $A^T$ has exactly two pivot columns.
+
+\exercise{4.6.1}{Three bases from the supplied echelon form}
+The supplied $B$ has 2 pivots, so $\rank A=2$ and $\dim\Nul A=4-2=2$, without row reducing $A$. Its pivot columns are 1, 2.
+\step{Column and row bases use different source matrices.}
+A matrix whose columns form a basis of $\Col A$ is
+\[ C=\begin{pmatrix}1&-4\\-1&2\\5&-6\end{pmatrix}.\]
+These are the pivot columns of $A$, not $B$. A matrix whose rows form a basis of $\operatorname{Row}A$ is
+\[ R=\begin{pmatrix}1&0&-1&5\\0&-2&5&-6\end{pmatrix}.\]
+\step{Solve the homogeneous equations for the free variables.}
+Back substitution in $Bx=0$ gives a basis matrix
+\[ N=\begin{pmatrix}2&-5\\5&-3\\2&0\\0&1\end{pmatrix},\qquad\Nul A=\{Nz:z\in\R^{2}\}.\]
+The columns of $N$ are the coefficient vectors of the free parameters (some have been multiplied by nonzero scalars to avoid fractions). Each solves $Bx=0$, and hence $Ax=0$. They are independent because their free-coordinate entries isolate the parameters; their number equals the number of free variables. Thus they span the entire null space, not only some solutions.
+
+\exercise{4.6.2}{Three bases from the supplied echelon form}
+The supplied $B$ has 3 pivots, so $\rank A=3$ and $\dim\Nul A=5-3=2$, without row reducing $A$. Its pivot columns are 1, 3, 5.
+\step{Column and row bases use different source matrices.}
+A matrix whose columns form a basis of $\Col A$ is
+\[ C=\begin{pmatrix}1&4&2\\2&6&-3\\3&3&-3\\3&0&0\end{pmatrix}.\]
+These are the pivot columns of $A$, not $B$. A matrix whose rows form a basis of $\operatorname{Row}A$ is
+\[ R=\begin{pmatrix}1&3&4&-1&2\\0&0&1&-1&1\\0&0&0&0&-5\end{pmatrix}.\]
+\step{Solve the homogeneous equations for the free variables.}
+Back substitution in $Bx=0$ gives a basis matrix
+\[ N=\begin{pmatrix}-3&-3\\1&0\\0&1\\0&1\\0&0\end{pmatrix},\qquad\Nul A=\{Nz:z\in\R^{2}\}.\]
+The columns of $N$ are the coefficient vectors of the free parameters (some have been multiplied by nonzero scalars to avoid fractions). Each solves $Bx=0$, and hence $Ax=0$. They are independent because their free-coordinate entries isolate the parameters; their number equals the number of free variables. Thus they span the entire null space, not only some solutions.
+
+\exercise{4.6.3}{Three bases from the supplied echelon form}
+The supplied $B$ has 3 pivots, so $\rank A=3$ and $\dim\Nul A=6-3=3$, without row reducing $A$. Its pivot columns are 1, 2, 5.
+\step{Column and row bases use different source matrices.}
+A matrix whose columns form a basis of $\Col A$ is
+\[ C=\begin{pmatrix}2&6&3\\-2&-3&0\\4&9&3\\-2&3&3\end{pmatrix}.\]
+These are the pivot columns of $A$, not $B$. A matrix whose rows form a basis of $\operatorname{Row}A$ is
+\[ R=\begin{pmatrix}2&6&-6&6&3&6\\0&3&0&3&3&0\\0&0&0&0&3&0\end{pmatrix}.\]
+\step{Solve the homogeneous equations for the free variables.}
+Back substitution in $Bx=0$ gives a basis matrix
+\[ N=\begin{pmatrix}3&0&-3\\0&-1&0\\1&0&0\\0&1&0\\0&0&0\\0&0&1\end{pmatrix},\qquad\Nul A=\{Nz:z\in\R^{3}\}.\]
+The columns of $N$ are the coefficient vectors of the free parameters (some have been multiplied by nonzero scalars to avoid fractions). Each solves $Bx=0$, and hence $Ax=0$. They are independent because their free-coordinate entries isolate the parameters; their number equals the number of free variables. Thus they span the entire null space, not only some solutions.
+
+\exercise{4.6.4}{Three bases from the supplied echelon form}
+The supplied $B$ has 5 pivots, so $\rank A=5$ and $\dim\Nul A=6-5=1$, without row reducing $A$. Its pivot columns are 1, 2, 3, 5, 6.
+\step{Column and row bases use different source matrices.}
+A matrix whose columns form a basis of $\Col A$ is
+\[ C=\begin{pmatrix}1&1&-2&1&-2\\1&2&-3&-2&-3\\1&-1&0&1&6\\1&-2&2&-3&0\\1&-2&1&2&-1\end{pmatrix}.\]
+These are the pivot columns of $A$, not $B$. A matrix whose rows form a basis of $\operatorname{Row}A$ is
+\[ R=\begin{pmatrix}1&1&-2&0&1&-2\\0&1&-1&0&-3&-1\\0&0&1&1&-13&-1\\0&0&0&0&1&-1\\0&0&0&0&0&1\end{pmatrix}.\]
+\step{Solve the homogeneous equations for the free variables.}
+Back substitution in $Bx=0$ gives a basis matrix
+\[ N=\begin{pmatrix}-1\\-1\\-1\\1\\0\\0\end{pmatrix},\qquad\Nul A=\{Nz:z\in\R^{1}\}.\]
+The columns of $N$ are the coefficient vectors of the free parameters (some have been multiplied by nonzero scalars to avoid fractions). Each solves $Bx=0$, and hence $Ax=0$. They are independent because their free-coordinate entries isolate the parameters; their number equals the number of free variables. Thus they span the entire null space, not only some solutions.
+
+\exercise{4.6.5}{A rank-three matrix with seven columns}
+Rank--nullity gives $\dim\Nul A=7-3=4$. The row-space dimension equals
+rank, so $\dim\operatorname{Row}A=3$. Transpose preserves rank, so $\rank A^T=3$.
+
+\exercise{4.6.6}{A rank-two matrix with five columns}
+There are $5-2=3$ nonpivot columns, giving $\dim\Nul A=3$.
+The rank theorem gives $\dim\operatorname{Row}A=2$ and $\rank A^T=2$.
+
+\exercise{4.6.7}{Full row rank does not identify a null space with its coordinate space}
+Four pivot columns in a $4\times7$ matrix mean rank $4$, so its columns span
+all of $\R^4$: $\Col A=\R^4$. Rank--nullity gives nullity $7-4=3$.
+But $\Nul A$ is a three-dimensional subspace of $\R^7$, not the set
+$\R^3$ of triples. Equality $\Nul A=\R^3$ is therefore false; a choice of
+basis gives an isomorphism with $\R^3$, not literal equality of the sets.
+
+\exercise{4.6.8}{Rank four with six output coordinates}
+The nullity is $8-4=4$. The column space is a four-dimensional subspace of
+$\R^6$, because the columns have six entries. Thus it is not literally
+$\R^4$; dimension does not change the number of entries in its vectors.
+
+\exercise{4.6.9}{Recover rank from a known nullity}
+The matrix has six columns and nullity three, so its rank is $6-3=3$.
+Thus $\dim\Col A=3$. But the columns have four entries, so $\Col A$ is a
+subspace of $\R^4$, not literally $\R^3$.
+
+\exercise{4.6.10}{Seven columns and five free coordinates}
+By rank--nullity, $\rank A=7-5=2$. Column-space dimension equals rank,
+so the requested dimension is $2$. The eight rows specify the ambient
+output space but do not replace the seven in the rank--nullity equation.
+
+\exercise{4.6.11}{From nullity to row-space dimension}
+Here $n=5$ and nullity is $3$, so rank is $5-3=2$.
+The row-space dimension equals rank and is therefore $2$.
+
+\exercise{4.6.12}{A second row-space dimension}
+There are four columns and nullity $2$. Hence rank, and therefore row-space
+dimension, equals $4-2=2$.
+
+\exercise{4.6.13}{The largest possible rank}
+There can be no more pivots than rows or columns, so an $m\times n$ matrix
+has rank at most $\min(m,n)$. Both a $7\times5$ and a $5\times7$ matrix
+therefore have largest possible rank $5$. This is attainable by placing a
+$5\times5$ identity matrix in the first five rows or columns and filling
+remaining entries with zeros.
+
+\exercise{4.6.14}{The largest row-space dimension}
+The row-space dimension is rank. For sizes $5\times4$ and $4\times5$,
+the maximum rank is $4$ in each case. Identity blocks with an additional
+zero row or zero column show that this bound is attained.
+
+\exercise{4.6.15}{The smallest nullity for a wide matrix}
+A $3\times7$ matrix has rank at most $3$, so its nullity is
+$7-\rank A\ge7-3=4$. The matrix $[\,I_3\ 0\,]$ attains rank $3$ and
+nullity $4$. Thus the smallest possible nullity is $4$.
+
+\exercise{4.6.16}{The smallest nullity for a tall matrix}
+A $7\times5$ matrix can have rank $5$, so its nullity can be $5-5=0$.
+For example stack two zero rows below $I_5$. Nullity cannot be negative,
+so zero is the minimum.
+
+\exercise{4.6.17}{Five rank statements}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} The columns of $A^T$ are exactly the transposed rows
+of $A$; their spans are the same coordinate vectors.
+\item \textbf{False.} The first original rows need not be independent.
+For $A=\left(\begin{smallmatrix}1&0&0\\2&0&0\\0&1&0\\0&0&1\end{smallmatrix}\right)$
+there are three pivots but the first three rows are dependent.
+\item \textbf{True.} Both dimensions equal rank, including for rectangular matrices.
+\item \textbf{False.} The sum equals the number of \emph{columns}, $n$,
+not the number of rows $m$.
+\item \textbf{True.} Finite-precision rounding can turn an exact zero
+pivot into a small nonzero value or the reverse. Exact elementary operations
+preserve rank; its apparent computed value may change, as the Numerical Note explains.
+\end{enumerate}
+
+\exercise{4.6.18}{Five statements about row operations}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} Use pivot columns of $A$ for $\Col A$, not generally
+those of its echelon form. For example swapping the rows of
+$\left(\begin{smallmatrix}1&0\\0&0\end{smallmatrix}\right)$ changes its column span.
+\item \textbf{False.} The row span is preserved, but the particular
+relations among the rows can change. Rows $(1,0),(1,0)$ satisfy $r_2-r_1=0$;
+a row replacement gives rows $(1,0),(0,0)$, for which that relation no longer holds.
+\item \textbf{True.} Nullity equals the number of free variables,
+namely the number of nonpivot columns.
+\item \textbf{True.} Transposing the rows of $A^T$ gives the columns of $A$.
+\item \textbf{True.} Every new row is a combination of old rows, and
+invertibility of elementary operations gives the reverse inclusion of row spans.
+\end{enumerate}
+
+\exercise{4.6.19}{A one-dimensional kernel of a five-row system}
+All homogeneous solutions are multiples of one nonzero solution, so nullity
+is $1$. With six columns, rank is $6-1=5$, equal to the number of rows.
+Thus there is a pivot in every row, and $Ax=b$ is consistent for every
+right-hand side $b\in\R^5$. The answer is yes.
+
+\exercise{4.6.20}{Two free variables in an eight-variable system}
+A consistent system with eight variables and two free variables has six
+pivots. There are also six equations, so every row has a pivot. Therefore
+$Ax=b$ is consistent for every $b\in\R^6$; changing constants alone cannot
+make it inconsistent. The answer is no.
+
+\exercise{4.6.21}{Onto with just one free direction}
+Consistency for every right-hand side in a nine-row system means rank $9$.
+With ten variables the nullity is $10-9=1$. Thus all homogeneous solutions
+are multiples of one vector. It is impossible to find two nonzero
+homogeneous solutions that are not multiples of each other.
+
+\exercise{4.6.22}{Too many variables for a one-dimensional kernel}
+For ten equations in twelve variables, rank is at most ten. Nullity is
+therefore at least $12-10=2$. It cannot be $1$, so not all homogeneous
+solutions can be multiples of one fixed nonzero vector.
+
+\exercise{4.6.23}{Replace redundant equations}
+The two given nonproportional solutions are independent and span the kernel,
+so nullity is $2$. There are eight variables, giving rank $8-2=6$.
+Row reduction therefore leaves six nonzero rows and six redundant zero rows.
+Keeping just the six nonzero homogeneous equations describes exactly the same
+solutions. Fewer than six cannot suffice: a matrix with fewer rows would
+have rank below six and nullity above two.
+
+\exercise{4.6.24}{A unique solution for one right-hand side versus all}
+A $7\times6$ matrix may have rank $6$, giving zero kernel. Then every
+consistent system has a unique solution; for example
+$A=\left(\begin{smallmatrix}I_6\\0\end{smallmatrix}\right)$ and $b=0$ do.
+But rank is at most $6<7$, so the column space cannot be all of $\R^7$.
+Thus a unique solution for some right-hand side is possible, while a unique
+solution for every right-hand side is impossible.
+
+\exercise{4.6.25}{One missing pivot row leaves some constants unattainable}
+Twelve variables and three free variables mean rank $9$. The system has ten
+rows, so it lacks a pivot in one row. Its column space is a proper subspace
+of $\R^{10}$, and some right-hand sides lie outside it. Thus the scientist
+cannot guarantee a solution after changing the constants; indeed there
+necessarily exist choices of constants that make the system inconsistent.
+
+\exercise{4.6.26}{Full rank for a tall matrix}
+When $m>n$, the largest possible rank is $n$. The columns are independent
+if and only if all $n$ columns are pivot columns, which is equivalent to
+rank $n$. This is precisely full rank for the given shape of matrix.
+
+\exercise{4.6.27}{Locate the four fundamental spaces}
+Rows of $A$ and inputs to $A$ have $n$ entries; columns of $A$ and inputs
+to $A^T$ have $m$ entries. Consequently
+\[
+ \begin{array}{c|c}
+ \R^n&\operatorname{Row}A=\Col A^T,\quad\Nul A\\
+ \R^m&\Col A=\operatorname{Row}A^T,\quad\Nul A^T
+ \end{array}
+\]
+The six names reduce to four fundamental spaces after the two displayed
+identifications. For special matrices some of these four may coincide as
+sets (for example several can be the zero space); ``four'' refers to the
+four roles, not a guarantee of four different sets in every example.
+
+\exercise{4.6.28}{Two rank--nullity identities}
+\step{(a) Apply rank--nullity to $A$.}
+Since $\dim\operatorname{Row}A=\rank A$ and
+$\dim\Nul A=n-\rank A$, their sum is $n$.
+\step{(b) Apply rank--nullity to $A^T$.}
+This transpose has $m$ columns and rank equal to that of $A$.
+Thus $\dim\Nul A^T=m-\rank A$; adding $\dim\Col A=\rank A$ gives $m$.
+
+\exercise{4.6.29}{Onto is equivalent to a trivial transpose kernel}
+The equation $Ax=b$ is solvable for every $b\in\R^m$ if and only if
+$\dim\Col A=m$. By Exercise 4.6.28(b), this is equivalent to
+$\dim\Nul A^T=0$, which is equivalent to $\Nul A^T=\{0\}$.
+That last condition says exactly that $A^Tx=0$ has only the trivial solution.
+
+\exercise{4.6.30}{The augmented-rank consistency criterion}
+Adding $b$ as a new column increases rank precisely when $b$ is outside
+the span of the old columns. Therefore $Ax=b$ is consistent if and only if
+\[
+ \rank[\,A\ b\,]=\rank A.
+\]
+Equivalently, an inconsistent row in the reduced augmented matrix gives an
+extra pivot in its last column. If ranks agree, that extra pivot is absent.
+
+\exercise{4.6.31}{An outer product has at most one independent column}
+For $u=(2,-3,5)$ and $v=(a,b,c)$,
+\[
+ uv^T=\begin{pmatrix}2a&2b&2c\\-3a&-3b&-3c\\5a&5b&5c\end{pmatrix}.
+\]
+Its columns are $au,bu,cu$, so its column space is contained in
+$\Span\{u\}$, a one-dimensional space. Hence rank is at most $1$.
+It is zero when $v=0$, and otherwise is exactly $1$, since $u\ne0$.
+
+\exercise{4.6.32}{Factor a rank-one matrix}
+With $u=(1,2)$ the matrix $uv^T$ has first row $v^T$ and second row $2v^T$.
+Thus choose $v=(1,-3,4)$, giving
+\[
+ \begin{pmatrix}1\\2\end{pmatrix}[\,1\ -3\ 4\,]
+ =\begin{pmatrix}1&-3&4\\2&-6&8\end{pmatrix}.
+\]
+
+\exercise{4.6.33}{Every nonzero column generates a rank-one column space}
+If rank is $1$ and the first column $u$ is nonzero, it is a basis for the
+column space. Thus the three columns have form $u,\alpha u,\beta u$.
+Taking $v=(1,\alpha,\beta)$ gives $A=uv^T$.
+If the first column is zero, choose any other nonzero column as $u$ (one
+exists because rank is $1$). Express each column as $v_j u$, including
+coefficient zero for a zero column, and set $v=(v_1,v_2,v_3)$.
+The same outer-product formula then holds.
+
+\exercise{4.6.34}{A rank-$r$ matrix is a sum of $r$ rank-one matrices}
+Since $U$ is obtained by elementary row operations, $U=FA$ for an invertible
+product $F$ of elementary matrices. Set $E=F^{-1}$ to get $A=EU$.
+Write $E=[\,e_1\ \cdots\ e_m\,]$ and let $u_i^T$ be row $i$ of $U$.
+Matrix multiplication by columns and rows gives
+\[
+ A=EU=\sum_{i=1}^m e_i u_i^T=\sum_{i=1}^r e_i u_i^T.
+\]
+The last equality uses the zero rows below the first $r$ rows of the echelon
+matrix. Each of those first $r$ rows is nonzero, and each column $e_i$ of
+an invertible matrix is nonzero. Thus every displayed outer product has
+rank exactly $1$, proving the assertion.
+
+\exercise{4.6.35}{Four fundamental bases and two invertible assembled matrices}
+\[ A=\begin{pmatrix}7&-9&-4&5&3&-3&-7\\-4&6&7&-2&-6&-5&5\\5&-7&-6&5&-6&2&8\\-3&5&8&-1&-7&-4&8\\6&-8&-5&4&4&9&3\end{pmatrix}.\]
+\step{(a) Supply and verify the three requested bases.}
+The pivot columns are 1, 2, 4, 6, so rank is $4$. The following matrices give respectively a column-space basis in their columns, a null-space basis in their columns, and a row-space basis in their rows:
+\[ C=\begin{pmatrix}7&-9&5&-3\\-4&6&-2&-5\\5&-7&5&2\\-3&5&-1&-4\\6&-8&4&9\end{pmatrix}.\]
+\[ N=\begin{pmatrix}-13&-10&3\\-11&-1&-2\\2&0&0\\0&11&-7\\0&2&0\\0&0&-1\\0&0&1\end{pmatrix}.\]
+\[ R=\begin{pmatrix}1&0&\frac{13}{2}&0&5&0&-3\\0&1&\frac{11}{2}&0&\frac{1}{2}&0&2\\0&0&0&1&- \frac{11}{2}&0&7\\0&0&0&0&0&1&1\end{pmatrix}.\]
+The rows of $R$ are the nonzero rows of the reduced echelon form. The $3$ columns of $N$ result from its free-variable equations; exact multiplication gives $AN=0$, and their free coordinates show independence. Thus these are bases, not only spanning lists.
+\step{(b) Supply the transpose-kernel basis and check invertibility.}
+\[ M=\begin{pmatrix}2\\41\\0\\-28\\11\end{pmatrix}.\]
+Here $A^TM=0$, and its $1$ columns are independent. Form $S=[\,R^T\ N\,]$ and $T=[\,C\ M\,]$ using the displayed blocks. There are $4+3=7$ columns in $S\in M_{7\times 7}$ and $4+1=5$ columns in $T\in M_{5\times 5}$. Exact determinants are
+\[ \det S=- \frac{88369}{2},\qquad\det T=10360.\]
+Both are nonzero, verifying that both square matrices are invertible. Conceptually, a vector in both $\operatorname{Row}A$ and $\Nul A$ has form $x=A^Ty$ and satisfies $Ax=0$, so $x^Tx=y^TAx=0$. Since $x^Tx$ is a sum of squares, $x=0$. The same argument with $A^T$ treats $\Col A$ and $\Nul A^T$; their dimensions add to the full ambient dimensions. This explains why assembling their bases produces invertible matrices.
+
+\exercise{4.6.36}{Four fundamental bases and two invertible assembled matrices}
+The problem permits a generated example. Here is one reproducible sample: with Python \texttt{random.Random(46)}, draw the entries of a $6\times2$ matrix $J$ and then a $2\times7$ matrix $K$ successively from \texttt{randint(-1,1)}, and set $A=JK$. This guarantees rank at most $2$, which in particular is at most $4$. The resulting matrix is displayed below; its first two columns are independent, so its actual rank is $2$.
+\[ A=\begin{pmatrix}1&1&0&-1&1&1&1\\2&1&1&-1&2&0&1\\-2&-1&-1&1&-2&0&-1\\0&-1&1&1&0&-2&-1\\2&1&1&-1&2&0&1\\-2&-1&-1&1&-2&0&-1\end{pmatrix}.\]
+\step{(a) Supply and verify the three requested bases.}
+The pivot columns are 1, 2, so rank is $2$. The following matrices give respectively a column-space basis in their columns, a null-space basis in their columns, and a row-space basis in their rows:
+\[ C=\begin{pmatrix}1&1\\2&1\\-2&-1\\0&-1\\2&1\\-2&-1\end{pmatrix}.\]
+\[ N=\begin{pmatrix}-1&0&-1&1&0\\1&1&0&-2&-1\\1&0&0&0&0\\0&1&0&0&0\\0&0&1&0&0\\0&0&0&1&0\\0&0&0&0&1\end{pmatrix}.\]
+\[ R=\begin{pmatrix}1&0&1&0&1&-1&0\\0&1&-1&-1&0&2&1\end{pmatrix}.\]
+The rows of $R$ are the nonzero rows of the reduced echelon form. The $5$ columns of $N$ result from its free-variable equations; exact multiplication gives $AN=0$, and their free coordinates show independence. Thus these are bases, not only spanning lists.
+\step{(b) Supply the transpose-kernel basis and check invertibility.}
+\[ M=\begin{pmatrix}0&2&0&0\\1&-1&-1&1\\1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1\end{pmatrix}.\]
+Here $A^TM=0$, and its $4$ columns are independent. Form $S=[\,R^T\ N\,]$ and $T=[\,C\ M\,]$ using the displayed blocks. There are $2+5=7$ columns in $S\in M_{7\times 7}$ and $2+4=6$ columns in $T\in M_{6\times 6}$. Exact determinants are
+\[ \det S=23,\qquad\det T=-21.\]
+Both are nonzero, verifying that both square matrices are invertible. Conceptually, a vector in both $\operatorname{Row}A$ and $\Nul A$ has form $x=A^Ty$ and satisfies $Ax=0$, so $x^Tx=y^TAx=0$. Since $x^Tx$ is a sum of squares, $x=0$. The same argument with $A^T$ treats $\Col A$ and $\Nul A^T$; their dimensions add to the full ambient dimensions. This explains why assembling their bases produces invertible matrices.
+
+\exercise{4.6.37}{Reconstruct the original matrix from pivot columns}
+Use the $C$ and $R$ displayed in Exercise 4.6.35. Those are precisely the
+pivot columns of the original $A$ and the nonzero rows of its reduced
+echelon form. Multiplication gives
+\[
+ CR=\begin{pmatrix}
+ 7&-9&-4&5&3&-3&-7\\-4&6&7&-2&-6&-5&5\\
+ 5&-7&-6&5&-6&2&8\\-3&5&8&-1&-7&-4&8\\6&-8&-5&4&4&9&3
+ \end{pmatrix}=A.
+\]
+For example, the third column of $R$ is $(13/2,11/2,0,0)$, so the third
+column of $CR$ is $(13/2)a_1+(11/2)a_2=a_3$.
+The reduced matrix records the coefficients of every original column in
+terms of the pivot columns. Thus this product restores all columns exactly.
+
+\exercise{4.6.38}{Three generated rank factorizations and a general proof}
+For a reproducible family, use \texttt{random.Random(4600+r)} for each
+$r=5,4,3$. Form $C$ by stacking $I_r$ over a $(5-r)\times r$ array of
+successive \texttt{randint(-2,2)} draws, and form $R$ by placing an
+$r\times(7-r)$ array of subsequent draws after $I_r$. Set $A=CR$.
+The first $r$ columns of $A$ are $C$; its reduced echelon form has nonzero
+rows $R$. Thus these are actual examples of the exercise's construction,
+with exact rank $r$, rather than uncontrolled random ranks.
+\step{The rank-5 sample.}
+\[ C=\begin{pmatrix}1&0&0&0&0\\0&1&0&0&0\\0&0&1&0&0\\0&0&0&1&0\\0&0&0&0&1\end{pmatrix},\qquad R=\begin{pmatrix}1&0&0&0&0&2&-1\\0&1&0&0&0&-1&-2\\0&0&1&0&0&0&2\\0&0&0&1&0&0&0\\0&0&0&0&1&-1&0\end{pmatrix}.\]
+\[ CR=A=\begin{pmatrix}1&0&0&0&0&2&-1\\0&1&0&0&0&-1&-2\\0&0&1&0&0&0&2\\0&0&0&1&0&0&0\\0&0&0&0&1&-1&0\end{pmatrix}.\]
+\step{The rank-4 sample.}
+\[ C=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1\\-2&0&2&1\end{pmatrix},\qquad R=\begin{pmatrix}1&0&0&0&-1&-1&-1\\0&1&0&0&-2&-1&-1\\0&0&1&0&-2&0&-1\\0&0&0&1&-1&0&2\end{pmatrix}.\]
+\[ CR=A=\begin{pmatrix}1&0&0&0&-1&-1&-1\\0&1&0&0&-2&-1&-1\\0&0&1&0&-2&0&-1\\0&0&0&1&-1&0&2\\-2&0&2&1&-3&2&2\end{pmatrix}.\]
+\step{The rank-3 sample.}
+\[ C=\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\\2&2&-2\\1&2&2\end{pmatrix},\qquad R=\begin{pmatrix}1&0&0&1&0&-2&0\\0&1&0&2&-2&2&-1\\0&0&1&2&-1&-2&1\end{pmatrix}.\]
+\[ CR=A=\begin{pmatrix}1&0&0&1&0&-2&0\\0&1&0&2&-2&2&-1\\0&0&1&2&-1&-2&1\\2&2&-2&2&-2&4&-4\\1&2&2&9&-6&-2&0\end{pmatrix}.\]
+
+\step{Prove the observed equality for every matrix.}
+Let $C$ consist of the original pivot columns of a rank-$r$ matrix $A$,
+and $R$ of the nonzero rows of its reduced echelon form $U$.
+In $U$, the pivot columns are the first $r$ coordinate vectors above the
+zero rows. Therefore the entries of column $j$ of $R$ express column $j$
+of $U$ as a combination of its pivot columns. Elementary row operations
+preserve all column dependence relations: if $U=EA$ with $E$ invertible,
+then $U\alpha=0$ if and only if $A\alpha=0$. The same coefficients thus
+express column $j$ of $A$ using columns of $C$. This means column $j$ of
+$CR$ is column $j$ of $A$, for every $j$; hence $CR=A$.

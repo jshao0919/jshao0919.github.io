@@ -1,0 +1,398 @@
+\section{Eigenvectors and linear transformations}
+The matrix of a linear map depends on its \emph{ordered} domain and codomain bases. Column $j$ is the coordinate vector of the image of domain basis vector $j$, written in the codomain basis. For $T(x)=Ax$ on $\R^n$, if $P$ has the basis vectors as its columns, then $[T]_{\mathcal B}=P^{-1}AP$.
+
+The relation $[T(x)]_{\mathcal B}=[T]_{\mathcal B}[x]_{\mathcal B}$ uses coordinates on both sides. A coordinate column is not automatically the same as the vector it represents; they coincide only when using the standard basis. Similarity changes coordinates without changing the underlying linear transformation.
+
+\practice{5.4.P1}{Recover a polynomial from its coordinate column}
+Relative to $(1,t,t^2)$, the polynomial $p=a_0+a_1t+a_2t^2$ has column $(a_0,a_1,a_2)^T$. Multiply by the supplied matrix:
+\[
+[T(p)]_{\mathcal B}=\begin{bmatrix}3&4&0\\0&5&-1\\1&-2&7\end{bmatrix}
+\begin{bmatrix}a_0\\a_1\\a_2\end{bmatrix}
+=\begin{bmatrix}3a_0+4a_1\\5a_1-a_2\\a_0-2a_1+7a_2\end{bmatrix}.
+\]
+Translate this column back into the polynomial
+$T(p)=(3a_0+4a_1)+(5a_1-a_2)t+(a_0-2a_1+7a_2)t^2$.
+
+\practice{5.4.P2}{Reflexivity and transitivity of similarity}
+\step{(a) Every matrix is similar to itself.} Choose $P=I$; then $P^{-1}AP=A$ and $P$ is invertible.
+\step{(b) Compose two changes of basis.} If $B=P^{-1}AP$ and $C=Q^{-1}BQ$, substitute the first equation into the second:
+\[
+C=Q^{-1}P^{-1}APQ=(PQ)^{-1}A(PQ).
+\]
+The product $PQ$ is invertible, so this is exactly the definition saying $C$ is similar to $A$. The reversed order in $(PQ)^{-1}=Q^{-1}P^{-1}$ is essential.
+
+\exercise{5.4.1}{Construct a matrix from basis-vector images}
+The codomain coordinate vectors of $T(b_1)$, $T(b_2)$, $T(b_3)$ are $(3,-5)^T$, $(-1,6)^T$, and $(0,4)^T$. Put them in columns, in that order:
+\[
+[T]_{\mathcal D\leftarrow\mathcal B}
+=\begin{bmatrix}3&-1&0\\-5&6&4\end{bmatrix}.
+\]
+It has two rows (the codomain dimension) and three columns (the domain dimension). Multiplication by a column $(x_1,x_2,x_3)^T$ produces the coordinates of $x_1T(b_1)+x_2T(b_2)+x_3T(b_3)$, explaining the column rule.
+
+\exercise{5.4.2}{Construct a matrix from basis-vector images}
+The domain basis is now $\mathcal D$ and the codomain basis is $\mathcal B$. The supplied images have coordinate columns $(3,-3)^T$ and $(-2,5)^T$ in $\mathcal B$. Therefore
+\[
+[T]_{\mathcal B\leftarrow\mathcal D}
+=\begin{bmatrix}3&-2\\-3&5\end{bmatrix}.
+\]
+The arrow in the subscript records the direction of coordinates and helps avoid reversing the bases.
+
+\exercise{5.4.3}{Construct a matrix from basis-vector images}
+\step{(a) Substitute the standard basis vectors one at a time.}
+The formula gives $T(e_1)=b_3$, $T(e_2)=-b_1-2b_2$, and $T(e_3)=2b_1+3b_3$.
+\step{(b) Read their coefficients in $\mathcal B$.}
+These columns are $(0,0,1)^T$, $(-1,-2,0)^T$, and $(2,0,3)^T$.
+\step{(c) Put them in the original basis order.}
+Thus the matrix relative to the standard domain basis and codomain basis $\mathcal B$ is
+\[
+\begin{bmatrix}0&-1&2\\0&-2&0\\1&0&3\end{bmatrix}.
+\]
+Multiplying by $(x_1,x_2,x_3)^T$ recovers exactly $(2x_3-x_2,-2x_2,x_1+3x_3)^T$, the coefficients in the given transformation.
+
+\exercise{5.4.4}{Construct a matrix from basis-vector images}
+The input column in $\mathcal B$ is $(x_1,x_2,x_3)^T$, while the output is already in standard coordinates of $\R^2$. Reading the coefficient of each input scalar gives
+\[
+[T]_{\mathcal E\leftarrow\mathcal B}
+=\begin{bmatrix}2&-3&1\\-2&0&5\end{bmatrix}.
+\]
+In particular the zero in row 2, column 2 is needed because the second output component does not contain $x_2$.
+
+\exercise{5.4.5}{Multiplication of polynomials as a linear map}
+\step{(a) Multiply the specified polynomial, combining like powers.}
+\[T(3-2t+t^2)=(t + 3)(3-2t+t^2)=t^{3} + t^{2} - 3 t + 9.\]
+\step{(b) Verify linearity for arbitrary inputs and scalars.}
+For polynomials $p,q$ and scalars $c,d$, distributivity gives
+\[T(cp+dq)=(t + 3)(cp+dq)=cT(p)+dT(q).\]
+The degree is at most $3$, so the image does belong to the stated codomain.
+\step{(c) Apply the map to each monomial in the domain basis.}
+$T(1)=t + 3$. $T(t)=t^{2} + 3 t$. $T(t^{2})=t^{3} + 3 t^{2}$.
+Writing those coefficients in increasing powers of $t$ gives the matrix
+\[C=\begin{bmatrix}3&0&0\\1&3&0\\0&1&3\\0&0&1\end{bmatrix}.\]
+The column lengths reflect the codomain degree bound, even when one image has lower degree and hence trailing zero coefficients.
+
+\exercise{5.4.6}{Multiplication of polynomials as a linear map}
+\step{(a) Multiply the specified polynomial, combining like powers.}
+\[T(3-2t+t^2)=(2 t^{2} + 1)(3-2t+t^2)=2 t^{4} - 4 t^{3} + 7 t^{2} - 2 t + 3.\]
+\step{(b) Verify linearity for arbitrary inputs and scalars.}
+For polynomials $p,q$ and scalars $c,d$, distributivity gives
+\[T(cp+dq)=(2 t^{2} + 1)(cp+dq)=cT(p)+dT(q).\]
+The degree is at most $4$, so the image does belong to the stated codomain.
+\step{(c) Apply the map to each monomial in the domain basis.}
+$T(1)=2 t^{2} + 1$. $T(t)=2 t^{3} + t$. $T(t^{2})=2 t^{4} + t^{2}$.
+Writing those coefficients in increasing powers of $t$ gives the matrix
+\[C=\begin{bmatrix}1&0&0\\0&1&0\\2&0&1\\0&2&0\\0&0&2\end{bmatrix}.\]
+The column lengths reflect the codomain degree bound, even when one image has lower degree and hence trailing zero coefficients.
+
+\exercise{5.4.7}{Coordinates determine a linear transformation}
+Evaluate the formula at the three basis polynomials: $T(1)=3+5t$, $T(t)=-2t+4t^2$, $T(t^2)=t^2$. Their coefficient columns give
+\[
+[T]_{\mathcal B}=\begin{bmatrix}3&0&0\\5&-2&0\\0&4&1\end{bmatrix}.
+\]
+As a check, multiplying this by $(a_0,a_1,a_2)^T$ yields $(3a_0,5a_0-2a_1,4a_1+a_2)^T$, exactly the supplied coefficient rule.
+
+\exercise{5.4.8}{Coordinates determine a linear transformation}
+The input has coordinate vector $(4,-3,0)^T$. Thus
+\[
+[T(4b_1-3b_2)]_{\mathcal B}
+=\begin{bmatrix}0&0&1\\2&1&-2\\1&3&1\end{bmatrix}
+\begin{bmatrix}4\\-3\\0\end{bmatrix}
+=\begin{bmatrix}0\\5\\-5\end{bmatrix}.
+\]
+Translate back to the vector space: $T(4b_1-3b_2)=5b_2-5b_3$. The result is not the coordinate column itself unless these basis vectors happen to be standard coordinate vectors.
+
+\exercise{5.4.9}{Evaluation at three input values}
+\step{(a) Evaluate the given polynomial.} For $p(t)=5+3t$, the three values are $p(-1)=2$, $p(0)=5$, and $p(1)=8$, so $T(p)=(2,5,8)^T$.
+\step{(b) Establish linearity.} For any fixed input $s$, $(cp+dq)(s)=cp(s)+dq(s)$. Applying this at $s=-1,0,1$ componentwise proves $T(cp+dq)=cT(p)+dT(q)$.
+\step{(c) Evaluate the three basis polynomials.} The image columns for $1,t,t^2$ are $(1,1,1)^T$, $(-1,0,1)^T$, and $(1,0,1)^T$. Therefore
+\[
+[T]=\begin{bmatrix}1&-1&1\\1&0&0\\1&1&1\end{bmatrix}.
+\]
+For example this matrix times $(5,3,0)^T$ returns the value found in part (a).
+
+\exercise{5.4.10}{Evaluation of a cubic at four points}
+\step{(a) Linearity holds componentwise.} Evaluation at any fixed input distributes over polynomial addition and scalar multiplication. Applying this at $-2,3,1,0$ proves the vector-valued map is linear.
+\step{(b) Respect the given order of evaluation points.} Evaluate each of $1,t,t^2,t^3$, putting its four values in a column. The matrix is
+\[
+[T]=\begin{bmatrix}1&-2&4&-8\\1&3&9&27\\1&1&1&1\\1&0&0&0\end{bmatrix}.
+\]
+For a general coefficient column $(a_0,a_1,a_2,a_3)^T$, multiplication gives the polynomial's values at those four points. The row for input $0$ is last, not first, because the output order was specified that way.
+
+\exercise{5.4.11}{Change both input and output coordinates}
+Place the ordered basis vectors in columns:
+\[P=\begin{bmatrix}-1&-1\\2&1\end{bmatrix},\qquad\det P=1\ne0.\]
+The columns of $AP$ are the images of those basis vectors in standard coordinates:
+\[AP=\begin{bmatrix}2&3\\-4&-5\end{bmatrix}.\]
+To express those images in the given basis, solve $PC=AP$ column by column. Equivalently row reduce $[P\mid AP]$ to $[I\mid C]$. The result is
+\[C=P^{-1}AP=\begin{bmatrix}-2&-2\\0&-1\end{bmatrix}.\]
+This is the required basis matrix. Exact multiplication verifies $PC=AP$, so each of its columns really is the coordinate vector of the corresponding image, in the stated basis order.
+
+
+\exercise{5.4.12}{Change both input and output coordinates}
+Place the ordered basis vectors in columns:
+\[P=\begin{bmatrix}0&-1\\1&2\end{bmatrix},\qquad\det P=1\ne0.\]
+The columns of $AP$ are the images of those basis vectors in standard coordinates:
+\[AP=\begin{bmatrix}-2&2\\0&-4\end{bmatrix}.\]
+To express those images in the given basis, solve $PC=AP$ column by column. Equivalently row reduce $[P\mid AP]$ to $[I\mid C]$. The result is
+\[C=P^{-1}AP=\begin{bmatrix}-4&0\\2&-2\end{bmatrix}.\]
+This is the required basis matrix. Exact multiplication verifies $PC=AP$, so each of its columns really is the coordinate vector of the corresponding image, in the stated basis order.
+
+
+\exercise{5.4.13}{Choose an eigenvector basis}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}0&1\\-3&4\end{bmatrix}.\]
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=\left(t - 3\right) \left(t - 1\right).\]
+\step{Find the eigenspace for $\lambda=1$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(1)I)=\begin{bmatrix}1&-1\\0&0\end{bmatrix}.\]
+Columns 2 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{1}=\Span\left\{\begin{bmatrix}1\\1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(1)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=3$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(3)I)=\begin{bmatrix}1&- \frac{1}{3}\\0&0\end{bmatrix}.\]
+Columns 2 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{3}=\Span\left\{\begin{bmatrix}1\\3\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(3)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $1+1=2$.
+This equals the matrix size, so it provides the required basis. In the order just listed, take
+\[P=\begin{bmatrix}1&1\\1&3\end{bmatrix},\qquad D=\begin{bmatrix}1&0\\0&3\end{bmatrix}.\]
+The exact checks are $\det P=2\ne0$ and $AP=PD$. Multiplying the latter by $P^{-1}$ on the right proves $A=PDP^{-1}$. The order of entries in $D$ must match the order of eigenvectors in $P$.
+The columns of $P$ are the requested ordered basis $\mathcal B$, and its basis matrix is $[T]_{\mathcal B}=D$.
+
+\exercise{5.4.14}{Choose an eigenvector basis}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}2&3\\3&2\end{bmatrix}.\]
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=\left(t - 5\right) \left(t + 1\right).\]
+\step{Find the eigenspace for $\lambda=-1$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(-1)I)=\begin{bmatrix}1&1\\0&0\end{bmatrix}.\]
+Columns 2 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{-1}=\Span\left\{\begin{bmatrix}1\\-1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(-1)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=5$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(5)I)=\begin{bmatrix}1&-1\\0&0\end{bmatrix}.\]
+Columns 2 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{5}=\Span\left\{\begin{bmatrix}1\\1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(5)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $1+1=2$.
+This equals the matrix size, so it provides the required basis. In the order just listed, take
+\[P=\begin{bmatrix}1&1\\-1&1\end{bmatrix},\qquad D=\begin{bmatrix}-1&0\\0&5\end{bmatrix}.\]
+The exact checks are $\det P=2\ne0$ and $AP=PD$. Multiplying the latter by $P^{-1}$ on the right proves $A=PDP^{-1}$. The order of entries in $D$ must match the order of eigenvectors in $P$.
+The columns of $P$ are the requested ordered basis $\mathcal B$, and its basis matrix is $[T]_{\mathcal B}=D$.
+
+\exercise{5.4.15}{Choose an eigenvector basis}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}1&2\\3&-4\end{bmatrix}.\]
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=\left(t - 2\right) \left(t + 5\right).\]
+\step{Find the eigenspace for $\lambda=-5$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(-5)I)=\begin{bmatrix}1&\frac{1}{3}\\0&0\end{bmatrix}.\]
+Columns 2 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{-5}=\Span\left\{\begin{bmatrix}1\\-3\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(-5)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=2$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(2)I)=\begin{bmatrix}1&-2\\0&0\end{bmatrix}.\]
+Columns 2 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{2}=\Span\left\{\begin{bmatrix}2\\1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(2)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $1+1=2$.
+This equals the matrix size, so it provides the required basis. In the order just listed, take
+\[P=\begin{bmatrix}1&2\\-3&1\end{bmatrix},\qquad D=\begin{bmatrix}-5&0\\0&2\end{bmatrix}.\]
+The exact checks are $\det P=7\ne0$ and $AP=PD$. Multiplying the latter by $P^{-1}$ on the right proves $A=PDP^{-1}$. The order of entries in $D$ must match the order of eigenvectors in $P$.
+The columns of $P$ are the requested ordered basis $\mathcal B$, and its basis matrix is $[T]_{\mathcal B}=D$.
+
+\exercise{5.4.16}{Choose an eigenvector basis}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}4&-2\\-1&5\end{bmatrix}.\]
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=\left(t - 6\right) \left(t - 3\right).\]
+\step{Find the eigenspace for $\lambda=3$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(3)I)=\begin{bmatrix}1&-2\\0&0\end{bmatrix}.\]
+Columns 2 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{3}=\Span\left\{\begin{bmatrix}2\\1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(3)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=6$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(6)I)=\begin{bmatrix}1&1\\0&0\end{bmatrix}.\]
+Columns 2 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{6}=\Span\left\{\begin{bmatrix}1\\-1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(6)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $1+1=2$.
+This equals the matrix size, so it provides the required basis. In the order just listed, take
+\[P=\begin{bmatrix}2&1\\1&-1\end{bmatrix},\qquad D=\begin{bmatrix}3&0\\0&6\end{bmatrix}.\]
+The exact checks are $\det P=-3\ne0$ and $AP=PD$. Multiplying the latter by $P^{-1}$ on the right proves $A=PDP^{-1}$. The order of entries in $D$ must match the order of eigenvectors in $P$.
+The columns of $P$ are the requested ordered basis $\mathcal B$, and its basis matrix is $[T]_{\mathcal B}=D$.
+
+\exercise{5.4.17}{An eigenvector without an eigenvector basis}
+\step{(a) Verify the stated eigenvector and inspect multiplicity.}
+Multiplication gives $A(1,-1)^T=(3,-3)^T=3(1,-1)^T$. But
+\[
+\det(tI-A)=(t-3)^2,\qquad
+A-3I=\begin{bmatrix}1&1\\-1&-1\end{bmatrix}.
+\]
+The homogeneous equation is $x_1+x_2=0$, so its eigenspace has only dimension $1$. It cannot supply a basis for $\R^2$; thus $A$ is not diagonalizable.
+\step{(b) Use the specified basis anyway.}
+Place the ordered basis vectors in columns:
+\[P=\begin{bmatrix}1&-1\\-1&2\end{bmatrix},\qquad\det P=1\ne0.\]
+The columns of $AP$ are the images of those basis vectors in standard coordinates:
+\[AP=\begin{bmatrix}3&-2\\-3&5\end{bmatrix}.\]
+To express those images in the given basis, solve $PC=AP$ column by column. Equivalently row reduce $[P\mid AP]$ to $[I\mid C]$. The result is
+\[C=P^{-1}AP=\begin{bmatrix}3&1\\0&3\end{bmatrix}.\]
+This is the required basis matrix. Exact multiplication verifies $PC=AP$, so each of its columns really is the coordinate vector of the corresponding image, in the stated basis order.
+The resulting matrix is not diagonal. A valid change of basis exists even when no diagonalizing change of basis exists.
+
+\exercise{5.4.18}{Similarity and coordinate identities}
+The eigenvalues alone do not decide the question. A diagonal basis matrix exists precisely when $A$ is diagonalizable, which here means the eigenspace for $5$ has dimension $2$. The eigenspace for $-2$, whose algebraic multiplicity is $1$, has dimension $1$.
+
+For a positive example take $A=\operatorname{diag}(5,5,-2)$; the standard basis works. For a negative example take $A=\left[\begin{smallmatrix}5&1&0\\0&5&0\\0&0&-2\end{smallmatrix}\right]$. It has the same eigenvalues, but its $5$-eigenspace is only one-dimensional. Thus one must compute an eigenspace or equivalent rank information before answering for a particular $A$.
+
+\exercise{5.4.19}{Similarity and coordinate identities}
+Write $B=P^{-1}AP$ with $P$ invertible. The product is invertible because all three factors are, and reversing the factors gives
+\[
+B^{-1}=P^{-1}A^{-1}P.
+\]
+Thus the same change of basis $Q=P$ exhibits similarity of the inverses. It is legitimate to invert this expression because invertibility was established first.
+
+\exercise{5.4.20}{Similarity and coordinate identities}
+If $B=P^{-1}AP$, then $B^2=P^{-1}AP\,P^{-1}AP=P^{-1}A^2P$, since the middle $PP^{-1}=I$. This is the required similarity factorization for the squares. The same cancellation would prove the result for any positive integer power.
+
+\exercise{5.4.21}{Similarity and coordinate identities}
+Write $B=P^{-1}AP$ and $C=Q^{-1}AQ$. Solving the second identity for $A$ gives $A=QCQ^{-1}$. Substitution yields
+\[
+B=P^{-1}QCQ^{-1}P=R^{-1}CR,\qquad R=Q^{-1}P.
+\]
+The matrix $R$ is invertible as a product of invertible matrices, so $B$ and $C$ are similar. This argument is the symmetry-plus-transitivity property in explicit form.
+
+\exercise{5.4.22}{Similarity and coordinate identities}
+Suppose $A=PDP^{-1}$ with $D$ diagonal and $B=Q^{-1}AQ$. Then
+\[
+B=(Q^{-1}P)D(P^{-1}Q).
+\]
+The last factor is $(Q^{-1}P)^{-1}$. Thus this is a diagonalization of $B$, with an invertible change-of-basis matrix $Q^{-1}P$.
+
+\exercise{5.4.23}{Similarity and coordinate identities}
+Set $y=P^{-1}x$. This vector is nonzero: if $y=0$, multiplication by $P$ would force $x=0$, contradicting the eigenvector definition. Now
+\[
+By=P^{-1}AP\,P^{-1}x=P^{-1}Ax=P^{-1}(\lambda x)=\lambda y.
+\]
+Therefore $y$ is an eigenvector of $B$ for the same eigenvalue. The nonzero check is an essential part of the proof.
+
+\exercise{5.4.24}{Similarity and coordinate identities}
+For $B=P^{-1}AP$, first note that $AP$ has the same column space as $A$. Every column of $AP$ is a combination of columns of $A$, and $A=(AP)P^{-1}$ supplies the reverse inclusion. Thus $\rank(AP)=\rank A$. Next, multiplication on the left by $P^{-1}$ is an invertible linear map on the codomain. It maps the column space of $AP$ bijectively onto that of $B$, preserving its dimension. Consequently $\rank B=\rank A$.
+
+\exercise{5.4.25}{Similarity and coordinate identities}
+Use the supplied cyclic identity on two square factors, $F=P^{-1}A$ and $G=P$:
+\[
+\operatorname{tr}(B)=\operatorname{tr}((P^{-1}A)P)
+=\operatorname{tr}(P(P^{-1}A))=\operatorname{tr}(A).
+\]
+Only associativity and $PP^{-1}=I$ are used; this does not incorrectly commute arbitrary matrix factors.
+
+\exercise{5.4.26}{Similarity and coordinate identities}
+If $A=PDP^{-1}$ with $D=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)$, Exercise 25 gives $\operatorname{tr}A=\operatorname{tr}D$. The latter is the sum of the diagonal entries, hence $\sum_{j=1}^n\lambda_j$. These diagonal entries are the eigenvalues counted with their algebraic multiplicities in a diagonalization, proving the assertion in the requested case.
+
+\exercise{5.4.27}{Similarity and coordinate identities}
+The identity map sends the $j$th domain basis vector $b_j$ to the same vector $b_j$, now expressed in the standard codomain basis. Thus its columns are $b_1,\ldots,b_n$:
+\[
+[I]_{\mathcal E\leftarrow\mathcal B}=[b_1\ \cdots\ b_n]=P_{\mathcal B}.
+\]
+This is the change-of-coordinates matrix from $\mathcal B$ coordinates to standard coordinates, also called the basis matrix in Section 4.4. Its action is $x=P_{\mathcal B}[x]_{\mathcal B}$.
+
+\exercise{5.4.28}{Similarity and coordinate identities}
+The identity sends $b_j$ to $b_j$, whose codomain coordinate column is $[b_j]_{\mathcal C}$. Therefore
+\[
+[I]_{\mathcal C\leftarrow\mathcal B}
+=\big[[b_1]_{\mathcal C}\ \cdots\ [b_n]_{\mathcal C}\big].
+\]
+This is the change-of-coordinates matrix from $\mathcal B$ to $\mathcal C$ in Section 4.7. Its defining equation is $[x]_{\mathcal C}=P_{\mathcal C\leftarrow\mathcal B}[x]_{\mathcal B}$; the vector $x$ itself does not change.
+
+\exercise{5.4.29}{Similarity and coordinate identities}
+With the same basis on both sides, $[I(b_j)]_{\mathcal B}=[b_j]_{\mathcal B}=e_j$. The matrix with those columns is exactly $I_n$. Hence $[I]_{\mathcal B}=I_n$ for every ordered basis, not merely the standard one.
+
+\exercise{5.4.30}{An exact basis-matrix computation}
+The standard matrix is
+\[A=\begin{bmatrix}6&-2&-2\\3&1&-2\\2&-2&2\end{bmatrix}.\]
+Place the ordered basis vectors in columns:
+\[P=\begin{bmatrix}1&2&-1\\1&1&-1\\1&3&0\end{bmatrix},\qquad\det P=-1\ne0.\]
+The columns of $AP$ are the images of those basis vectors in standard coordinates:
+\[AP=\begin{bmatrix}2&4&-4\\2&1&-4\\2&8&0\end{bmatrix}.\]
+To express those images in the given basis, solve $PC=AP$ column by column. Equivalently row reduce $[P\mid AP]$ to $[I\mid C]$. The result is
+\[C=P^{-1}AP=\begin{bmatrix}2&-1&0\\0&3&0\\0&1&4\end{bmatrix}.\]
+This is the required basis matrix. Exact multiplication verifies $PC=AP$, so each of its columns really is the coordinate vector of the corresponding image, in the stated basis order.
+This computer-assisted calculation can be reproduced exactly by setting the displayed matrices in SymPy and evaluating
+\begin{verbatim}
+C = P.inv()*A*P
+assert P*C == A*P
+print(C)
+\end{verbatim}
+Solving the augmented system instead of explicitly forming the inverse gives the same result.
+
+\exercise{5.4.31}{An exact basis-matrix computation}
+The standard matrix is
+\[A=\begin{bmatrix}-7&-48&-16\\1&14&6\\-3&-45&-19\end{bmatrix}.\]
+Place the ordered basis vectors in columns:
+\[P=\begin{bmatrix}-3&-2&3\\1&1&-1\\-3&-3&0\end{bmatrix},\qquad\det P=3\ne0.\]
+The columns of $AP$ are the images of those basis vectors in standard coordinates:
+\[AP=\begin{bmatrix}21&14&27\\-7&-6&-11\\21&18&36\end{bmatrix}.\]
+To express those images in the given basis, solve $PC=AP$ column by column. Equivalently row reduce $[P\mid AP]$ to $[I\mid C]$. The result is
+\[C=P^{-1}AP=\begin{bmatrix}-7&-2&-6\\0&-4&-6\\0&0&-1\end{bmatrix}.\]
+This is the required basis matrix. Exact multiplication verifies $PC=AP$, so each of its columns really is the coordinate vector of the corresponding image, in the stated basis order.
+This computer-assisted calculation can be reproduced exactly by setting the displayed matrices in SymPy and evaluating
+\begin{verbatim}
+C = P.inv()*A*P
+assert P*C == A*P
+print(C)
+\end{verbatim}
+Solving the augmented system instead of explicitly forming the inverse gives the same result.
+
+\exercise{5.4.32}{Find a diagonal coordinate representation}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}-6&4&0&9\\-3&0&1&6\\-1&-2&1&0\\-4&4&0&7\end{bmatrix}.\]
+This is a matrix-program exercise; the eigenvalue and null-space calculations below were carried out with exact rational arithmetic, then checked by multiplication.
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=\left(t - 5\right) \left(t - 1\right) \left(t + 2\right)^{2}.\]
+\step{Find the eigenspace for $\lambda=-2$.}
+The algebraic multiplicity is $2$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(-2)I)=\begin{bmatrix}1&0&-1&- \frac{3}{2}\\0&1&-1&\frac{3}{4}\\0&0&0&0\\0&0&0&0\end{bmatrix}.\]
+Columns 3, 4 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{-2}=\Span\left\{\begin{bmatrix}1\\1\\1\\0\end{bmatrix},\ \begin{bmatrix}6\\-3\\0\\4\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $2$. Direct multiplication checks $Av=(-2)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=1$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(1)I)=\begin{bmatrix}1&0&0&-1\\0&1&0&\frac{1}{2}\\0&0&1&\frac{7}{2}\\0&0&0&0\end{bmatrix}.\]
+Columns 4 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{1}=\Span\left\{\begin{bmatrix}2\\-1\\-7\\2\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(1)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=5$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(5)I)=\begin{bmatrix}1&0&0&-1\\0&1&0&- \frac{1}{2}\\0&0&1&\frac{1}{2}\\0&0&0&0\end{bmatrix}.\]
+Columns 4 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{5}=\Span\left\{\begin{bmatrix}2\\1\\-1\\2\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(5)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $2+1+1=4$.
+This equals the matrix size, so it provides the required basis. In the order just listed, take
+\[P=\begin{bmatrix}1&6&2&2\\1&-3&-1&1\\1&0&-7&-1\\0&4&2&2\end{bmatrix},\qquad D=\begin{bmatrix}-2&0&0&0\\0&-2&0&0\\0&0&1&0\\0&0&0&5\end{bmatrix}.\]
+The exact checks are $\det P=84\ne0$ and $AP=PD$. Multiplying the latter by $P^{-1}$ on the right proves $A=PDP^{-1}$. The order of entries in $D$ must match the order of eigenvectors in $P$.
+A reproducible exact command pattern is:
+\begin{verbatim}
+for lam,multiplicity,basis in A.eigenvects():
+    print(lam,multiplicity,(A-lam*eye(A.rows)).rref())
+    print(basis)
+\end{verbatim}
+Here \texttt{A} is the displayed matrix and \texttt{Matrix, eye} are imported from \texttt{sympy}. The printed bases may be rescaled without changing their spans.The columns of the displayed $P$ form the requested basis; the corresponding matrix of the transformation is $D$.

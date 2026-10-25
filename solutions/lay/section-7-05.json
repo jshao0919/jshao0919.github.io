@@ -1,0 +1,12 @@
+{
+  "chapter": 7,
+  "section": 5,
+  "title": "Applications to image processing and statistics",
+  "exercise_count": 13,
+  "practice_count": 2,
+  "source_pages": [
+    447,
+    448
+  ],
+  "verification": "Exact SymPy numerical inputs/solutions verified, plus full-precision SVD/PCA orthogonality and reconstruction/eigen residual checks as applicable. Standalone latexmk clean; requested sketches included."
+}

@@ -1,0 +1,983 @@
+{
+  "edition": "Fourth edition, 2012",
+  "body_pdf_offset": 17,
+  "printed_section_count": 58,
+  "groups": [
+    {
+      "chapter": 1,
+      "section": 1,
+      "title": "Systems of Linear Equations",
+      "printed_start": 2,
+      "pdf_start": 19,
+      "exercise_pdf_pages": [
+        27,
+        28
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 29
+    },
+    {
+      "chapter": 1,
+      "section": 2,
+      "title": "Row Reduction and Echelon Forms",
+      "printed_start": 12,
+      "pdf_start": 29,
+      "exercise_pdf_pages": [
+        38,
+        39,
+        40
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 41
+    },
+    {
+      "chapter": 1,
+      "section": 3,
+      "title": "Vector Equations",
+      "printed_start": 24,
+      "pdf_start": 41,
+      "exercise_pdf_pages": [
+        49,
+        50,
+        51
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 51
+    },
+    {
+      "chapter": 1,
+      "section": 4,
+      "title": "The Matrix Equation Ax = b",
+      "printed_start": 34,
+      "pdf_start": 51,
+      "exercise_pdf_pages": [
+        57,
+        58,
+        59
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 60
+    },
+    {
+      "chapter": 1,
+      "section": 5,
+      "title": "Solution Sets of Linear Systems",
+      "printed_start": 43,
+      "pdf_start": 60,
+      "exercise_pdf_pages": [
+        64,
+        65
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 66
+    },
+    {
+      "chapter": 1,
+      "section": 6,
+      "title": "Applications of Linear Systems",
+      "printed_start": 49,
+      "pdf_start": 66,
+      "exercise_pdf_pages": [
+        71,
+        72
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 72
+    },
+    {
+      "chapter": 1,
+      "section": 7,
+      "title": "Linear Independence",
+      "printed_start": 55,
+      "pdf_start": 72,
+      "exercise_pdf_pages": [
+        77,
+        78,
+        79
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 79
+    },
+    {
+      "chapter": 1,
+      "section": 8,
+      "title": "Introduction to Linear Transformations",
+      "printed_start": 62,
+      "pdf_start": 79,
+      "exercise_pdf_pages": [
+        85,
+        86,
+        87
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 87
+    },
+    {
+      "chapter": 1,
+      "section": 9,
+      "title": "The Matrix of a Linear Transformation",
+      "printed_start": 70,
+      "pdf_start": 87,
+      "exercise_pdf_pages": [
+        95,
+        96,
+        97
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 97
+    },
+    {
+      "chapter": 1,
+      "section": 10,
+      "title": "Linear Models in Business, Science, and Engineering",
+      "printed_start": 80,
+      "pdf_start": 97,
+      "exercise_pdf_pages": [
+        103,
+        104,
+        105
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 105
+    },
+    {
+      "chapter": 1,
+      "section": "S",
+      "title": "Supplementary Exercises",
+      "printed_start": 88,
+      "pdf_start": 105,
+      "exercise_pdf_pages": [
+        105,
+        106,
+        107,
+        108
+      ],
+      "exercise_count": null,
+      "practice_count": 0,
+      "pdf_end": 109
+    },
+    {
+      "chapter": 2,
+      "section": 1,
+      "title": "Matrix Operations",
+      "printed_start": 92,
+      "pdf_start": 109,
+      "exercise_pdf_pages": [
+        117,
+        118,
+        119
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 119
+    },
+    {
+      "chapter": 2,
+      "section": 2,
+      "title": "The Inverse of a Matrix",
+      "printed_start": 102,
+      "pdf_start": 119,
+      "exercise_pdf_pages": [
+        126,
+        127,
+        128
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 128
+    },
+    {
+      "chapter": 2,
+      "section": 3,
+      "title": "Characterizations of Invertible Matrices",
+      "printed_start": 111,
+      "pdf_start": 128,
+      "exercise_pdf_pages": [
+        132,
+        133,
+        134
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 134
+    },
+    {
+      "chapter": 2,
+      "section": 4,
+      "title": "Partitioned Matrices",
+      "printed_start": 117,
+      "pdf_start": 134,
+      "exercise_pdf_pages": [
+        138,
+        139,
+        140
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 140
+    },
+    {
+      "chapter": 2,
+      "section": 5,
+      "title": "Matrix Factorizations",
+      "printed_start": 123,
+      "pdf_start": 140,
+      "exercise_pdf_pages": [
+        146,
+        147,
+        148,
+        149
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 149
+    },
+    {
+      "chapter": 2,
+      "section": 6,
+      "title": "The Leontief Input\u2013Output Model",
+      "printed_start": 132,
+      "pdf_start": 149,
+      "exercise_pdf_pages": [
+        153,
+        154,
+        155
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 155
+    },
+    {
+      "chapter": 2,
+      "section": 7,
+      "title": "Applications to Computer Graphics",
+      "printed_start": 138,
+      "pdf_start": 155,
+      "exercise_pdf_pages": [
+        161,
+        162,
+        163
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 163
+    },
+    {
+      "chapter": 2,
+      "section": 8,
+      "title": "Subspaces of Rn",
+      "printed_start": 146,
+      "pdf_start": 163,
+      "exercise_pdf_pages": [
+        168,
+        169,
+        170
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 170
+    },
+    {
+      "chapter": 2,
+      "section": 9,
+      "title": "Dimension and Rank",
+      "printed_start": 153,
+      "pdf_start": 170,
+      "exercise_pdf_pages": [
+        174,
+        175,
+        176
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 177
+    },
+    {
+      "chapter": 2,
+      "section": "S",
+      "title": "Supplementary Exercises",
+      "printed_start": 160,
+      "pdf_start": 177,
+      "exercise_pdf_pages": [
+        177,
+        178,
+        179,
+        180
+      ],
+      "exercise_count": null,
+      "practice_count": 0,
+      "pdf_end": 181
+    },
+    {
+      "chapter": 3,
+      "section": 1,
+      "title": "Introduction to Determinants",
+      "printed_start": 164,
+      "pdf_start": 181,
+      "exercise_pdf_pages": [
+        184,
+        185,
+        186
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 186
+    },
+    {
+      "chapter": 3,
+      "section": 2,
+      "title": "Properties of Determinants",
+      "printed_start": 169,
+      "pdf_start": 186,
+      "exercise_pdf_pages": [
+        192,
+        193
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 194
+    },
+    {
+      "chapter": 3,
+      "section": 3,
+      "title": "Cramer's Rule, Volume, and Linear Transformations",
+      "printed_start": 177,
+      "pdf_start": 194,
+      "exercise_pdf_pages": [
+        201,
+        202
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 202
+    },
+    {
+      "chapter": 3,
+      "section": "S",
+      "title": "Supplementary Exercises",
+      "printed_start": 185,
+      "pdf_start": 202,
+      "exercise_pdf_pages": [
+        202,
+        203,
+        204,
+        205,
+        206
+      ],
+      "exercise_count": null,
+      "practice_count": 0,
+      "pdf_end": 207
+    },
+    {
+      "chapter": 4,
+      "section": 1,
+      "title": "Vector Spaces and Subspaces",
+      "printed_start": 190,
+      "pdf_start": 207,
+      "exercise_pdf_pages": [
+        212,
+        213,
+        214,
+        215
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 215
+    },
+    {
+      "chapter": 4,
+      "section": 2,
+      "title": "Null Spaces, Column Spaces, and Linear Transformations",
+      "printed_start": 198,
+      "pdf_start": 215,
+      "exercise_pdf_pages": [
+        222,
+        223,
+        224
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 225
+    },
+    {
+      "chapter": 4,
+      "section": 3,
+      "title": "Linearly Independent Sets; Bases",
+      "printed_start": 208,
+      "pdf_start": 225,
+      "exercise_pdf_pages": [
+        230,
+        231,
+        232
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 233
+    },
+    {
+      "chapter": 4,
+      "section": 4,
+      "title": "Coordinate Systems",
+      "printed_start": 216,
+      "pdf_start": 233,
+      "exercise_pdf_pages": [
+        239,
+        240,
+        241
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 242
+    },
+    {
+      "chapter": 4,
+      "section": 5,
+      "title": "The Dimension of a Vector Space",
+      "printed_start": 225,
+      "pdf_start": 242,
+      "exercise_pdf_pages": [
+        246,
+        247
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 247
+    },
+    {
+      "chapter": 4,
+      "section": 6,
+      "title": "Rank",
+      "printed_start": 230,
+      "pdf_start": 247,
+      "exercise_pdf_pages": [
+        253,
+        254,
+        255
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 256
+    },
+    {
+      "chapter": 4,
+      "section": 7,
+      "title": "Change of Basis",
+      "printed_start": 239,
+      "pdf_start": 256,
+      "exercise_pdf_pages": [
+        259,
+        260,
+        261
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 261
+    },
+    {
+      "chapter": 4,
+      "section": 8,
+      "title": "Applications to Difference Equations",
+      "printed_start": 244,
+      "pdf_start": 261,
+      "exercise_pdf_pages": [
+        268,
+        269,
+        270
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 270
+    },
+    {
+      "chapter": 4,
+      "section": 9,
+      "title": "Applications to Markov Chains",
+      "printed_start": 253,
+      "pdf_start": 270,
+      "exercise_pdf_pages": [
+        277,
+        278,
+        279
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 279
+    },
+    {
+      "chapter": 4,
+      "section": "S",
+      "title": "Supplementary Exercises",
+      "printed_start": 262,
+      "pdf_start": 279,
+      "exercise_pdf_pages": [
+        279,
+        280,
+        281,
+        282
+      ],
+      "exercise_count": null,
+      "practice_count": 0,
+      "pdf_end": 283
+    },
+    {
+      "chapter": 5,
+      "section": 1,
+      "title": "Eigenvectors and Eigenvalues",
+      "printed_start": 266,
+      "pdf_start": 283,
+      "exercise_pdf_pages": [
+        288,
+        289,
+        290
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 290
+    },
+    {
+      "chapter": 5,
+      "section": 2,
+      "title": "The Characteristic Equation",
+      "printed_start": 273,
+      "pdf_start": 290,
+      "exercise_pdf_pages": [
+        296,
+        297,
+        298
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 298
+    },
+    {
+      "chapter": 5,
+      "section": 3,
+      "title": "Diagonalization",
+      "printed_start": 281,
+      "pdf_start": 298,
+      "exercise_pdf_pages": [
+        303,
+        304,
+        305
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 305
+    },
+    {
+      "chapter": 5,
+      "section": 4,
+      "title": "Eigenvectors and Linear Transformations",
+      "printed_start": 288,
+      "pdf_start": 305,
+      "exercise_pdf_pages": [
+        310,
+        311,
+        312
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 312
+    },
+    {
+      "chapter": 5,
+      "section": 5,
+      "title": "Complex Eigenvalues",
+      "printed_start": 295,
+      "pdf_start": 312,
+      "exercise_pdf_pages": [
+        317,
+        318
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 318
+    },
+    {
+      "chapter": 5,
+      "section": 6,
+      "title": "Discrete Dynamical Systems",
+      "printed_start": 301,
+      "pdf_start": 318,
+      "exercise_pdf_pages": [
+        326,
+        327,
+        328
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 328
+    },
+    {
+      "chapter": 5,
+      "section": 7,
+      "title": "Applications to Differential Equations",
+      "printed_start": 311,
+      "pdf_start": 328,
+      "exercise_pdf_pages": [
+        334,
+        335
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 336
+    },
+    {
+      "chapter": 5,
+      "section": 8,
+      "title": "Iterative Estimates for Eigenvalues",
+      "printed_start": 319,
+      "pdf_start": 336,
+      "exercise_pdf_pages": [
+        341,
+        342,
+        343
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 343
+    },
+    {
+      "chapter": 5,
+      "section": "S",
+      "title": "Supplementary Exercises",
+      "printed_start": 326,
+      "pdf_start": 343,
+      "exercise_pdf_pages": [
+        343,
+        344,
+        345,
+        346
+      ],
+      "exercise_count": null,
+      "practice_count": 0,
+      "pdf_end": 347
+    },
+    {
+      "chapter": 6,
+      "section": 1,
+      "title": "Inner Product, Length, and Orthogonality",
+      "printed_start": 330,
+      "pdf_start": 347,
+      "exercise_pdf_pages": [
+        353,
+        354,
+        355
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 355
+    },
+    {
+      "chapter": 6,
+      "section": 2,
+      "title": "Orthogonal Sets",
+      "printed_start": 338,
+      "pdf_start": 355,
+      "exercise_pdf_pages": [
+        361,
+        362,
+        363
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 364
+    },
+    {
+      "chapter": 6,
+      "section": 3,
+      "title": "Orthogonal Projections",
+      "printed_start": 347,
+      "pdf_start": 364,
+      "exercise_pdf_pages": [
+        369,
+        370,
+        371
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 371
+    },
+    {
+      "chapter": 6,
+      "section": 4,
+      "title": "The Gram\u2013Schmidt Process",
+      "printed_start": 354,
+      "pdf_start": 371,
+      "exercise_pdf_pages": [
+        375,
+        376,
+        377
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 377
+    },
+    {
+      "chapter": 6,
+      "section": 5,
+      "title": "Least-Squares Problems",
+      "printed_start": 360,
+      "pdf_start": 377,
+      "exercise_pdf_pages": [
+        383,
+        384,
+        385
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 385
+    },
+    {
+      "chapter": 6,
+      "section": 6,
+      "title": "Applications to Linear Models",
+      "printed_start": 368,
+      "pdf_start": 385,
+      "exercise_pdf_pages": [
+        391,
+        392,
+        393
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 393
+    },
+    {
+      "chapter": 6,
+      "section": 7,
+      "title": "Inner Product Spaces",
+      "printed_start": 376,
+      "pdf_start": 393,
+      "exercise_pdf_pages": [
+        399,
+        400
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 400
+    },
+    {
+      "chapter": 6,
+      "section": 8,
+      "title": "Applications of Inner Product Spaces",
+      "printed_start": 383,
+      "pdf_start": 400,
+      "exercise_pdf_pages": [
+        406
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 407
+    },
+    {
+      "chapter": 6,
+      "section": "S",
+      "title": "Supplementary Exercises",
+      "printed_start": 390,
+      "pdf_start": 407,
+      "exercise_pdf_pages": [
+        407,
+        408,
+        409,
+        410,
+        411
+      ],
+      "exercise_count": null,
+      "practice_count": 0,
+      "pdf_end": 412
+    },
+    {
+      "chapter": 7,
+      "section": 1,
+      "title": "Diagonalization of Symmetric Matrices",
+      "printed_start": 395,
+      "pdf_start": 412,
+      "exercise_pdf_pages": [
+        416,
+        417
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 418
+    },
+    {
+      "chapter": 7,
+      "section": 2,
+      "title": "Quadratic Forms",
+      "printed_start": 401,
+      "pdf_start": 418,
+      "exercise_pdf_pages": [
+        423,
+        424,
+        425
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 425
+    },
+    {
+      "chapter": 7,
+      "section": 3,
+      "title": "Constrained Optimization",
+      "printed_start": 408,
+      "pdf_start": 425,
+      "exercise_pdf_pages": [
+        430,
+        431
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 431
+    },
+    {
+      "chapter": 7,
+      "section": 4,
+      "title": "The Singular Value Decomposition",
+      "printed_start": 414,
+      "pdf_start": 431,
+      "exercise_pdf_pages": [
+        440,
+        441
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 441
+    },
+    {
+      "chapter": 7,
+      "section": 5,
+      "title": "Applications to Image Processing and Statistics",
+      "printed_start": 424,
+      "pdf_start": 441,
+      "exercise_pdf_pages": [
+        447,
+        448
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 449
+    },
+    {
+      "chapter": 7,
+      "section": "S",
+      "title": "Supplementary Exercises",
+      "printed_start": 432,
+      "pdf_start": 449,
+      "exercise_pdf_pages": [
+        449,
+        450,
+        451,
+        452
+      ],
+      "exercise_count": null,
+      "practice_count": 0,
+      "pdf_end": 453
+    },
+    {
+      "chapter": 8,
+      "section": 1,
+      "title": "Affine Combinations",
+      "printed_start": 436,
+      "pdf_start": 453,
+      "exercise_pdf_pages": [
+        459,
+        460,
+        461
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 461
+    },
+    {
+      "chapter": 8,
+      "section": 2,
+      "title": "Affine Independence",
+      "printed_start": 444,
+      "pdf_start": 461,
+      "exercise_pdf_pages": [
+        469,
+        470
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 471
+    },
+    {
+      "chapter": 8,
+      "section": 3,
+      "title": "Convex Combinations",
+      "printed_start": 454,
+      "pdf_start": 471,
+      "exercise_pdf_pages": [
+        476,
+        477
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 478
+    },
+    {
+      "chapter": 8,
+      "section": 4,
+      "title": "Hyperplanes",
+      "printed_start": 461,
+      "pdf_start": 478,
+      "exercise_pdf_pages": [
+        484,
+        485,
+        486
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 486
+    },
+    {
+      "chapter": 8,
+      "section": 5,
+      "title": "Polytopes",
+      "printed_start": 469,
+      "pdf_start": 486,
+      "exercise_pdf_pages": [
+        496,
+        497,
+        498
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 498
+    },
+    {
+      "chapter": 8,
+      "section": 6,
+      "title": "Curves and Surfaces",
+      "printed_start": 481,
+      "pdf_start": 498,
+      "exercise_pdf_pages": [
+        507,
+        508,
+        509
+      ],
+      "exercise_count": null,
+      "practice_count": null,
+      "pdf_end": 509
+    }
+  ],
+  "appendix_exercise_pages": [],
+  "notes": [
+    "Chapters 1\u20138 printed; 58 sections and 7 chapter supplementary sets. Chapter8 has no supplementary set in supplied PDF.",
+    "Neither Appendix A (uniqueness of RREF, PDF510) nor Appendix B (complex numbers, PDF511\u2013515) has a numbered exercise set.",
+    "Chapters9 and10 are online-only supplementary chapters absent from supplied PDF; TOC identifies10 additional sections but original exercise statements required.",
+    "Exercise-page ranges are conservative bounds: start heading confirmed, end clamped by next section start; authors should verify exact final page and counts."
+  ]
+}

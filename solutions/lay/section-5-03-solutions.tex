@@ -1,0 +1,599 @@
+\section{Diagonalization}
+In this section diagonalization is over $\R$: only real eigenvectors can form the required basis of $\R^n$. Diagonalization is a change to an eigenvector coordinate system. If the columns of an invertible matrix $P$ are eigenvectors and the corresponding eigenvalues are placed in the same order on the diagonal of $D$, then $AP=PD$ and $A=PDP^{-1}$. The requirement is \emph{enough independent eigenvectors}, not merely enough vectors or roots of the characteristic polynomial.
+
+The algebraic multiplicity of an eigenvalue is its number of appearances as a characteristic-polynomial root. Its geometric multiplicity is the dimension of its eigenspace. These are different notions. A repeated root must be checked by solving a homogeneous system; it neither guarantees nor forbids diagonalization.
+
+\practice{5.3.P1}{A high power from two eigenvectors}
+The characteristic polynomial is $(t-2)(t-1)$. Solving the two homogeneous systems gives eigenvectors $(3,2)$ for $2$ and $(1,1)$ for $1$. Thus
+\[
+P=\begin{bmatrix}3&1\\2&1\end{bmatrix},\quad
+D=\begin{bmatrix}2&0\\0&1\end{bmatrix},\quad
+P^{-1}=\begin{bmatrix}1&-1\\-2&3\end{bmatrix}.
+\]
+In $(PDP^{-1})^8$, every adjacent $P^{-1}P$ cancels to $I$, giving $A^8=PD^8P^{-1}$. Since $D^8=\operatorname{diag}(256,1)$,
+\[
+A^8=\begin{bmatrix}766&-765\\510&-509\end{bmatrix}.
+\]
+This result was also checked by eightfold exact matrix multiplication.
+
+\practice{5.3.P2}{Use the supplied eigenvectors}
+Multiplying by $A=\left[\begin{smallmatrix}-3&12\\-2&7\end{smallmatrix}\right]$ gives $A(3,1)^T=(3,1)^T$ and $A(2,1)^T=3(2,1)^T$. The eigenvalues are therefore $1$ and $3$, in that order. Take $P=\left[\begin{smallmatrix}3&2\\1&1\end{smallmatrix}\right]$ and $D=\operatorname{diag}(1,3)$. Since $\det P=1\ne0$ and $AP=PD$, we obtain $A=PDP^{-1}$.
+
+\practice{5.3.P3}{Count eigenspace dimensions}
+Yes. The eigenspace for $3$ supplies two independent vectors. The distinct eigenvalues $5$ and $-2$ each supply at least one nonzero eigenvector. Combining bases from distinct eigenspaces gives independent vectors, hence at least $2+1+1=4$ independent vectors in $\R^4$. There cannot be more than four. Thus they form an eigenvector basis and the matrix is diagonalizable.
+
+\exercise{5.3.1}{Cancel the inner change-of-basis factors}
+\goal Compute $A^4$ from the given $A=PDP^{-1}$.
+Associativity gives $(PDP^{-1})^4=PD(P^{-1}P)D(P^{-1}P)D(P^{-1}P)DP^{-1}=PD^4P^{-1}$. Here
+\[
+P=\begin{bmatrix}5&7\\2&3\end{bmatrix},\quad D^4=\begin{bmatrix}16&0\\0&1\end{bmatrix},\quad P^{-1}=\begin{bmatrix}3&-7\\-2&5\end{bmatrix}.
+\]
+Multiplying these three displayed matrices gives
+\[A^4=\begin{bmatrix}226&-525\\90&-209\end{bmatrix}.\]
+The calculation involves taking fourth powers of the diagonal entries of $D$, not taking fourth powers entry by entry in $A$.
+
+\exercise{5.3.2}{Cancel the inner change-of-basis factors}
+\goal Compute $A^4$ from the given $A=PDP^{-1}$.
+Associativity gives $(PDP^{-1})^4=PD(P^{-1}P)D(P^{-1}P)D(P^{-1}P)DP^{-1}=PD^4P^{-1}$. Here
+\[
+P=\begin{bmatrix}1&2\\2&3\end{bmatrix},\quad D^4=\begin{bmatrix}1&0\\0&81\end{bmatrix},\quad P^{-1}=\begin{bmatrix}-3&2\\2&-1\end{bmatrix}.
+\]
+Multiplying these three displayed matrices gives
+\[A^4=\begin{bmatrix}321&-160\\480&-239\end{bmatrix}.\]
+The calculation involves taking fourth powers of the diagonal entries of $D$, not taking fourth powers entry by entry in $A$.
+
+\exercise{5.3.3}{An arbitrary power of a parameterized triangular matrix}
+Use the supplied factorization with $P=\left[\begin{smallmatrix}1&0\\2&1\end{smallmatrix}\right]$, $D=\operatorname{diag}(a,b)$, and $P^{-1}=\left[\begin{smallmatrix}1&0\\-2&1\end{smallmatrix}\right]$. For every positive integer $k$,
+\[
+A^k=PD^kP^{-1}
+=\begin{bmatrix}1&0\\2&1\end{bmatrix}
+\begin{bmatrix}a^k&0\\0&b^k\end{bmatrix}
+\begin{bmatrix}1&0\\-2&1\end{bmatrix}
+=\begin{bmatrix}a^k&0\\2(a^k-b^k)&b^k\end{bmatrix}.
+\]
+There is no division by $a-b$, so this remains true when $a=b$ or one parameter is zero.
+
+\exercise{5.3.4}{An arbitrary power with negative eigenvalues}
+Put $\alpha=(-3)^k$ and $\beta=(-2)^k$. The supplied matrices give
+\[
+A^k=\begin{bmatrix}3&-2\\2&-1\end{bmatrix}
+\begin{bmatrix}\alpha&0\\0&\beta\end{bmatrix}
+\begin{bmatrix}-1&2\\-2&3\end{bmatrix}
+=\begin{bmatrix}-3\alpha+4\beta&6\alpha-6\beta\\-2\alpha+2\beta&4\alpha-3\beta\end{bmatrix}.
+\]
+The signs in $(-3)^k$ and $(-2)^k$ depend on the parity of $k$ and must remain inside parentheses. Setting $k=1$ recovers the original matrix, a useful quick check.
+
+\exercise{5.3.5}{Read eigenspaces from an existing factorization}
+Read matching columns and diagonal entries in the supplied factorization. If $p_j$ is column $j$ of $P$, then $Ap_j=d_{jj}p_j$. Here
+\[P=\begin{bmatrix}1&-1&0\\-1&1&-1\\0&-1&1\end{bmatrix},\qquad D=\begin{bmatrix}3&0&0\\0&2&0\\0&0&3\end{bmatrix}.\]
+For $\lambda=2$, a basis is $\{\begin{bmatrix}-1\\1\\-1\end{bmatrix}\}$.
+For $\lambda=3$, a basis is $\{\begin{bmatrix}1\\-1\\0\end{bmatrix},\ \begin{bmatrix}0\\-1\\1\end{bmatrix}\}$.
+Because $P$ is invertible, its columns are independent. All columns at a repeated diagonal value are needed; retaining only one of them would lose an eigenspace direction.
+
+\exercise{5.3.6}{Read eigenspaces from an existing factorization}
+Read matching columns and diagonal entries in the supplied factorization. If $p_j$ is column $j$ of $P$, then $Ap_j=d_{jj}p_j$. Here
+\[P=\begin{bmatrix}3&0&-1\\0&1&-3\\1&0&0\end{bmatrix},\qquad D=\begin{bmatrix}3&0&0\\0&4&0\\0&0&3\end{bmatrix}.\]
+For $\lambda=3$, a basis is $\{\begin{bmatrix}3\\0\\1\end{bmatrix},\ \begin{bmatrix}-1\\-3\\0\end{bmatrix}\}$.
+For $\lambda=4$, a basis is $\{\begin{bmatrix}0\\1\\0\end{bmatrix}\}$.
+Because $P$ is invertible, its columns are independent. All columns at a repeated diagonal value are needed; retaining only one of them would lose an eigenspace direction.
+
+\exercise{5.3.7}{Find enough independent eigenvectors}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}1&0\\6&-1\end{bmatrix}.\]
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=\left(t - 1\right) \left(t + 1\right).\]
+\step{Find the eigenspace for $\lambda=-1$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(-1)I)=\begin{bmatrix}1&0\\0&0\end{bmatrix}.\]
+Columns 2 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{-1}=\Span\left\{\begin{bmatrix}0\\1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(-1)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=1$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(1)I)=\begin{bmatrix}1&- \frac{1}{3}\\0&0\end{bmatrix}.\]
+Columns 2 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{1}=\Span\left\{\begin{bmatrix}1\\3\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(1)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $1+1=2$.
+This equals the matrix size, so it provides the required basis. In the order just listed, take
+\[P=\begin{bmatrix}0&1\\1&3\end{bmatrix},\qquad D=\begin{bmatrix}-1&0\\0&1\end{bmatrix}.\]
+The exact checks are $\det P=-1\ne0$ and $AP=PD$. Multiplying the latter by $P^{-1}$ on the right proves $A=PDP^{-1}$. The order of entries in $D$ must match the order of eigenvectors in $P$.
+
+
+\exercise{5.3.8}{Find enough independent eigenvectors}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}3&2\\0&3\end{bmatrix}.\]
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=\left(t - 3\right)^{2}.\]
+\step{Find the eigenspace for $\lambda=3$.}
+The algebraic multiplicity is $2$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(3)I)=\begin{bmatrix}0&1\\0&0\end{bmatrix}.\]
+Columns 1 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{3}=\Span\left\{\begin{bmatrix}1\\0\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(3)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $1=1$.
+This is smaller than $2$, so no eigenvector basis exists. Hence $A$ is not diagonalizable. Repeating or rescaling one of these vectors cannot supply a missing independent direction.
+
+
+\exercise{5.3.9}{Find enough independent eigenvectors}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}2&-1\\1&4\end{bmatrix}.\]
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=\left(t - 3\right)^{2}.\]
+\step{Find the eigenspace for $\lambda=3$.}
+The algebraic multiplicity is $2$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(3)I)=\begin{bmatrix}1&1\\0&0\end{bmatrix}.\]
+Columns 2 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{3}=\Span\left\{\begin{bmatrix}1\\-1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(3)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $1=1$.
+This is smaller than $2$, so no eigenvector basis exists. Hence $A$ is not diagonalizable. Repeating or rescaling one of these vectors cannot supply a missing independent direction.
+
+
+\exercise{5.3.10}{Find enough independent eigenvectors}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}1&3\\4&2\end{bmatrix}.\]
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=\left(t - 5\right) \left(t + 2\right).\]
+\step{Find the eigenspace for $\lambda=-2$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(-2)I)=\begin{bmatrix}1&1\\0&0\end{bmatrix}.\]
+Columns 2 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{-2}=\Span\left\{\begin{bmatrix}1\\-1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(-2)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=5$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(5)I)=\begin{bmatrix}1&- \frac{3}{4}\\0&0\end{bmatrix}.\]
+Columns 2 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{5}=\Span\left\{\begin{bmatrix}3\\4\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(5)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $1+1=2$.
+This equals the matrix size, so it provides the required basis. In the order just listed, take
+\[P=\begin{bmatrix}1&3\\-1&4\end{bmatrix},\qquad D=\begin{bmatrix}-2&0\\0&5\end{bmatrix}.\]
+The exact checks are $\det P=7\ne0$ and $AP=PD$. Multiplying the latter by $P^{-1}$ on the right proves $A=PDP^{-1}$. The order of entries in $D$ must match the order of eigenvectors in $P$.
+
+
+\exercise{5.3.11}{Find enough independent eigenvectors}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}0&1&1\\2&1&2\\3&3&2\end{bmatrix}.\]
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=\left(t - 5\right) \left(t + 1\right)^{2}.\]
+\step{Find the eigenspace for $\lambda=-1$.}
+The algebraic multiplicity is $2$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(-1)I)=\begin{bmatrix}1&1&1\\0&0&0\\0&0&0\end{bmatrix}.\]
+Columns 2, 3 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{-1}=\Span\left\{\begin{bmatrix}1\\-1\\0\end{bmatrix},\ \begin{bmatrix}1\\0\\-1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $2$. Direct multiplication checks $Av=(-1)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=5$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(5)I)=\begin{bmatrix}1&0&- \frac{1}{3}\\0&1&- \frac{2}{3}\\0&0&0\end{bmatrix}.\]
+Columns 3 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{5}=\Span\left\{\begin{bmatrix}1\\2\\3\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(5)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $2+1=3$.
+This equals the matrix size, so it provides the required basis. In the order just listed, take
+\[P=\begin{bmatrix}1&1&1\\-1&0&2\\0&-1&3\end{bmatrix},\qquad D=\begin{bmatrix}-1&0&0\\0&-1&0\\0&0&5\end{bmatrix}.\]
+The exact checks are $\det P=6\ne0$ and $AP=PD$. Multiplying the latter by $P^{-1}$ on the right proves $A=PDP^{-1}$. The order of entries in $D$ must match the order of eigenvectors in $P$.
+
+
+\exercise{5.3.12}{Find enough independent eigenvectors}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}3&1&1\\1&3&1\\1&1&3\end{bmatrix}.\]
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=\left(t - 5\right) \left(t - 2\right)^{2}.\]
+\step{Find the eigenspace for $\lambda=2$.}
+The algebraic multiplicity is $2$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(2)I)=\begin{bmatrix}1&1&1\\0&0&0\\0&0&0\end{bmatrix}.\]
+Columns 2, 3 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{2}=\Span\left\{\begin{bmatrix}1\\-1\\0\end{bmatrix},\ \begin{bmatrix}1\\0\\-1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $2$. Direct multiplication checks $Av=(2)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=5$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(5)I)=\begin{bmatrix}1&0&-1\\0&1&-1\\0&0&0\end{bmatrix}.\]
+Columns 3 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{5}=\Span\left\{\begin{bmatrix}1\\1\\1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(5)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $2+1=3$.
+This equals the matrix size, so it provides the required basis. In the order just listed, take
+\[P=\begin{bmatrix}1&1&1\\-1&0&1\\0&-1&1\end{bmatrix},\qquad D=\begin{bmatrix}2&0&0\\0&2&0\\0&0&5\end{bmatrix}.\]
+The exact checks are $\det P=3\ne0$ and $AP=PD$. Multiplying the latter by $P^{-1}$ on the right proves $A=PDP^{-1}$. The order of entries in $D$ must match the order of eigenvectors in $P$.
+
+
+\exercise{5.3.13}{Find enough independent eigenvectors}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}2&2&-1\\1&3&-1\\-1&-2&2\end{bmatrix}.\]
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=\left(t - 5\right) \left(t - 1\right)^{2}.\]
+\step{Find the eigenspace for $\lambda=1$.}
+The algebraic multiplicity is $2$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(1)I)=\begin{bmatrix}1&2&-1\\0&0&0\\0&0&0\end{bmatrix}.\]
+Columns 2, 3 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{1}=\Span\left\{\begin{bmatrix}2\\-1\\0\end{bmatrix},\ \begin{bmatrix}1\\0\\1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $2$. Direct multiplication checks $Av=(1)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=5$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(5)I)=\begin{bmatrix}1&0&1\\0&1&1\\0&0&0\end{bmatrix}.\]
+Columns 3 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{5}=\Span\left\{\begin{bmatrix}1\\1\\-1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(5)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $2+1=3$.
+This equals the matrix size, so it provides the required basis. In the order just listed, take
+\[P=\begin{bmatrix}2&1&1\\-1&0&1\\0&1&-1\end{bmatrix},\qquad D=\begin{bmatrix}1&0&0\\0&1&0\\0&0&5\end{bmatrix}.\]
+The exact checks are $\det P=-4\ne0$ and $AP=PD$. Multiplying the latter by $P^{-1}$ on the right proves $A=PDP^{-1}$. The order of entries in $D$ must match the order of eigenvectors in $P$.
+
+
+\exercise{5.3.14}{Find enough independent eigenvectors}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}2&0&-2\\1&3&2\\0&0&3\end{bmatrix}.\]
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=\left(t - 3\right)^{2} \left(t - 2\right).\]
+\step{Find the eigenspace for $\lambda=2$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(2)I)=\begin{bmatrix}1&1&0\\0&0&1\\0&0&0\end{bmatrix}.\]
+Columns 2 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{2}=\Span\left\{\begin{bmatrix}1\\-1\\0\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(2)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=3$.}
+The algebraic multiplicity is $2$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(3)I)=\begin{bmatrix}1&0&2\\0&0&0\\0&0&0\end{bmatrix}.\]
+Columns 2, 3 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{3}=\Span\left\{\begin{bmatrix}0\\1\\0\end{bmatrix},\ \begin{bmatrix}2\\0\\-1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $2$. Direct multiplication checks $Av=(3)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $1+2=3$.
+This equals the matrix size, so it provides the required basis. In the order just listed, take
+\[P=\begin{bmatrix}1&0&2\\-1&1&0\\0&0&-1\end{bmatrix},\qquad D=\begin{bmatrix}2&0&0\\0&3&0\\0&0&3\end{bmatrix}.\]
+The exact checks are $\det P=-1\ne0$ and $AP=PD$. Multiplying the latter by $P^{-1}$ on the right proves $A=PDP^{-1}$. The order of entries in $D$ must match the order of eigenvectors in $P$.
+
+
+\exercise{5.3.15}{Find enough independent eigenvectors}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}0&-1&-1\\1&2&1\\-1&-1&0\end{bmatrix}.\]
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=t \left(t - 1\right)^{2}.\]
+\step{Find the eigenspace for $\lambda=0$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(0)I)=\begin{bmatrix}1&0&-1\\0&1&1\\0&0&0\end{bmatrix}.\]
+Columns 3 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{0}=\Span\left\{\begin{bmatrix}1\\-1\\1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(0)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=1$.}
+The algebraic multiplicity is $2$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(1)I)=\begin{bmatrix}1&1&1\\0&0&0\\0&0&0\end{bmatrix}.\]
+Columns 2, 3 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{1}=\Span\left\{\begin{bmatrix}1\\-1\\0\end{bmatrix},\ \begin{bmatrix}1\\0\\-1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $2$. Direct multiplication checks $Av=(1)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $1+2=3$.
+This equals the matrix size, so it provides the required basis. In the order just listed, take
+\[P=\begin{bmatrix}1&1&1\\-1&-1&0\\1&0&-1\end{bmatrix},\qquad D=\begin{bmatrix}0&0&0\\0&1&0\\0&0&1\end{bmatrix}.\]
+The exact checks are $\det P=1\ne0$ and $AP=PD$. Multiplying the latter by $P^{-1}$ on the right proves $A=PDP^{-1}$. The order of entries in $D$ must match the order of eigenvectors in $P$.
+
+
+\exercise{5.3.16}{Find enough independent eigenvectors}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}1&2&-3\\2&5&-2\\1&3&1\end{bmatrix}.\]
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=t \left(t^{2} - 7 t + 16\right).\]
+\step{Find the eigenspace for $\lambda=0$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(0)I)=\begin{bmatrix}1&0&-11\\0&1&4\\0&0&0\end{bmatrix}.\]
+Columns 3 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{0}=\Span\left\{\begin{bmatrix}11\\-4\\1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(0)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $1=1$.
+This is smaller than $3$, so no eigenvector basis exists. Hence $A$ is not diagonalizable. Repeating or rescaling one of these vectors cannot supply a missing independent direction.
+The remaining quadratic factor is $t^2-7t+16$, whose discriminant is $49-64=-15<0$. Thus its other eigenvalues are nonreal. They do not supply real eigenvectors for a basis of $\R^3$; complex diagonalization is a different question introduced in Section 5.5.
+
+\exercise{5.3.17}{Find enough independent eigenvectors}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}2&0&0\\2&2&0\\2&2&2\end{bmatrix}.\]
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=\left(t - 2\right)^{3}.\]
+\step{Find the eigenspace for $\lambda=2$.}
+The algebraic multiplicity is $3$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(2)I)=\begin{bmatrix}1&0&0\\0&1&0\\0&0&0\end{bmatrix}.\]
+Columns 3 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{2}=\Span\left\{\begin{bmatrix}0\\0\\1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(2)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $1=1$.
+This is smaller than $3$, so no eigenvector basis exists. Hence $A$ is not diagonalizable. Repeating or rescaling one of these vectors cannot supply a missing independent direction.
+
+
+\exercise{5.3.18}{Find enough independent eigenvectors}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}2&-2&-2\\3&-3&-2\\2&-2&-2\end{bmatrix}.\]
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=t \left(t + 1\right) \left(t + 2\right).\]
+\step{Find the eigenspace for $\lambda=-2$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(-2)I)=\begin{bmatrix}1&0&-1\\0&1&-1\\0&0&0\end{bmatrix}.\]
+Columns 3 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{-2}=\Span\left\{\begin{bmatrix}1\\1\\1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(-2)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=-1$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(-1)I)=\begin{bmatrix}1&0&-1\\0&1&- \frac{1}{2}\\0&0&0\end{bmatrix}.\]
+Columns 3 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{-1}=\Span\left\{\begin{bmatrix}2\\1\\2\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(-1)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=0$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(0)I)=\begin{bmatrix}1&-1&0\\0&0&1\\0&0&0\end{bmatrix}.\]
+Columns 2 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{0}=\Span\left\{\begin{bmatrix}1\\1\\0\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(0)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $1+1+1=3$.
+This equals the matrix size, so it provides the required basis. In the order just listed, take
+\[P=\begin{bmatrix}1&2&1\\1&1&1\\1&2&0\end{bmatrix},\qquad D=\begin{bmatrix}-2&0&0\\0&-1&0\\0&0&0\end{bmatrix}.\]
+The exact checks are $\det P=1\ne0$ and $AP=PD$. Multiplying the latter by $P^{-1}$ on the right proves $A=PDP^{-1}$. The order of entries in $D$ must match the order of eigenvectors in $P$.
+
+
+\exercise{5.3.19}{Find enough independent eigenvectors}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}5&-3&0&9\\0&3&1&-2\\0&0&2&0\\0&0&0&2\end{bmatrix}.\]
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=\left(t - 5\right) \left(t - 3\right) \left(t - 2\right)^{2}.\]
+\step{Find the eigenspace for $\lambda=2$.}
+The algebraic multiplicity is $2$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(2)I)=\begin{bmatrix}1&0&1&1\\0&1&1&-2\\0&0&0&0\\0&0&0&0\end{bmatrix}.\]
+Columns 3, 4 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{2}=\Span\left\{\begin{bmatrix}1\\1\\-1\\0\end{bmatrix},\ \begin{bmatrix}1\\-2\\0\\-1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $2$. Direct multiplication checks $Av=(2)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=3$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(3)I)=\begin{bmatrix}1&- \frac{3}{2}&0&0\\0&0&1&0\\0&0&0&1\\0&0&0&0\end{bmatrix}.\]
+Columns 2 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{3}=\Span\left\{\begin{bmatrix}3\\2\\0\\0\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(3)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=5$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(5)I)=\begin{bmatrix}0&1&0&0\\0&0&1&0\\0&0&0&1\\0&0&0&0\end{bmatrix}.\]
+Columns 1 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{5}=\Span\left\{\begin{bmatrix}1\\0\\0\\0\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(5)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $2+1+1=4$.
+This equals the matrix size, so it provides the required basis. In the order just listed, take
+\[P=\begin{bmatrix}1&1&3&1\\1&-2&2&0\\-1&0&0&0\\0&-1&0&0\end{bmatrix},\qquad D=\begin{bmatrix}2&0&0&0\\0&2&0&0\\0&0&3&0\\0&0&0&5\end{bmatrix}.\]
+The exact checks are $\det P=-2\ne0$ and $AP=PD$. Multiplying the latter by $P^{-1}$ on the right proves $A=PDP^{-1}$. The order of entries in $D$ must match the order of eigenvectors in $P$.
+
+
+\exercise{5.3.20}{Find enough independent eigenvectors}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}3&0&0&0\\0&2&0&0\\0&0&2&0\\1&0&0&3\end{bmatrix}.\]
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=\left(t - 3\right)^{2} \left(t - 2\right)^{2}.\]
+\step{Find the eigenspace for $\lambda=2$.}
+The algebraic multiplicity is $2$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(2)I)=\begin{bmatrix}1&0&0&0\\0&0&0&1\\0&0&0&0\\0&0&0&0\end{bmatrix}.\]
+Columns 2, 3 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{2}=\Span\left\{\begin{bmatrix}0\\1\\0\\0\end{bmatrix},\ \begin{bmatrix}0\\0\\1\\0\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $2$. Direct multiplication checks $Av=(2)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=3$.}
+The algebraic multiplicity is $2$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(3)I)=\begin{bmatrix}1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&0\end{bmatrix}.\]
+Columns 4 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{3}=\Span\left\{\begin{bmatrix}0\\0\\0\\1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(3)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $2+1=3$.
+This is smaller than $4$, so no eigenvector basis exists. Hence $A$ is not diagonalizable. Repeating or rescaling one of these vectors cannot supply a missing independent direction.
+
+
+\exercise{5.3.21}{Diagonalization criteria and constructions}
+\step{(a) False.} The condition must say that $D$ is \emph{diagonal}. Without that, every matrix has the factorization $A=IAI^{-1}$, including a nondiagonalizable Jordan block.
+\step{(b) True.} A basis consists of $n$ independent vectors; the Diagonalization Theorem applies to that eigenvector basis.
+\step{(c) False.} Counting roots with multiplicities does not count independent eigenvectors. For instance $\left[\begin{smallmatrix}1&1\\0&1\end{smallmatrix}\right]$ has characteristic polynomial $(t-1)^2$ but only the one-dimensional eigenspace $\Span\{(1,0)\}$.
+\step{(d) False.} A diagonal matrix can have a zero diagonal entry. The zero matrix is diagonalizable but not invertible.
+
+\exercise{5.3.22}{Diagonalization criteria and constructions}
+\step{(a) False.} The vectors must be linearly independent. One eigenvector and its nonzero scalar multiples give arbitrarily many eigenvectors but only one direction.
+\step{(b) False.} $I_n$ is diagonalizable and has only the eigenvalue $1$ when $n>1$.
+\step{(c) True.} Taking column $j$ of $AP=PD$ gives $Ap_j=d_{jj}p_j$. If $p_j\ne0$, this is exactly an eigenvector equation; zero columns are excluded by the definition.
+\step{(d) False.} The Jordan block $\left[\begin{smallmatrix}1&1\\0&1\end{smallmatrix}\right]$ has determinant $1$ and is invertible, but its eigenspace has dimension $1$, so it is not diagonalizable.
+
+\exercise{5.3.23}{Diagonalization criteria and constructions}
+Yes. Choose a basis of three vectors from the first eigenspace and a basis of two from the other. Eigenvectors from different eigenspaces combine independently, so the union has $3+2=5$ independent vectors in $\R^5$. It is an eigenvector basis, giving diagonalizability.
+
+\exercise{5.3.24}{Diagonalization criteria and constructions}
+No. The dimensions of the only two eigenspaces add to $1+1=2$, which is less than $3$. Every eigenvector belongs to one of those spaces, so one cannot obtain a third independent eigenvector. Thus the Diagonalization Theorem fails.
+
+\exercise{5.3.25}{Diagonalization criteria and constructions}
+No: under these assumptions the matrix must be diagonalizable. The two known dimensions are $1$ and $2$. The third eigenspace has at least dimension $1$, giving at least $1+2+1=4$ independent eigenvectors from the three distinct eigenspaces. Since the ambient space has dimension $4$, this is exactly a basis.
+
+\exercise{5.3.26}{Diagonalization criteria and constructions}
+Yes, failure is possible. The known dimensions add to $2+3=5$, and the third can have dimension $1$ or $2$. If it has dimension $1$, the total is $6<7$. For a concrete example take
+\[
+A=\operatorname{diag}(0,0,1,1,1,J),\qquad
+J=\begin{bmatrix}2&1\\0&2\end{bmatrix}.
+\]
+The eigenspace dimensions for $0,1,2$ are $2,3,1$, respectively, so this $7\times7$ matrix is not diagonalizable. If the last block were $2I_2$, the third dimension would instead be $2$ and the matrix would be diagonalizable. The supplied data do not decide which occurs.
+
+\exercise{5.3.27}{Diagonalization criteria and constructions}
+Write $A=PDP^{-1}$. Invertibility of $A$ implies no diagonal entry of $D$ is zero. Inverting the product in reverse order gives $A^{-1}=PD^{-1}P^{-1}$, where $D^{-1}$ is again diagonal. Thus $A^{-1}$ is diagonalizable, and it is invertible because its inverse is $A$. Equivalently, $Av=\lambda v$ implies $A^{-1}v=\lambda^{-1}v$ for the same eigenvector basis.
+
+\exercise{5.3.28}{Diagonalization criteria and constructions}
+The hypothesis means $A=PDP^{-1}$ with $D$ diagonal. Transpose this equality:
+\[
+A^T=(P^{-1})^TDP^T=QDQ^{-1},\qquad Q=(P^{-1})^T.
+\]
+The matrix $Q$ is invertible, and its columns therefore form $n$ independent eigenvectors of $A^T$. The transpose generally does not have the \emph{same} individual eigenvectors; the point is that it has its own eigenvector basis.
+
+\exercise{5.3.29}{Diagonalization criteria and constructions}
+In Example 2, $A=\left[\begin{smallmatrix}7&2\\-4&1\end{smallmatrix}\right]$, with eigenvectors $(1,-1)$ for $5$ and $(1,-2)$ for $3$. The new $D_1=\operatorname{diag}(3,5)$ reverses the eigenvalue order, so reverse the columns as well:
+\[
+P_1=\begin{bmatrix}1&1\\-2&-1\end{bmatrix}.
+\]
+Its determinant is $1\ne0$, and multiplication verifies $AP_1=P_1D_1$. Thus $A=P_1D_1P_1^{-1}$. Reordering eigenvalues without reordering eigenvectors would generally be wrong.
+
+\exercise{5.3.30}{Diagonalization criteria and constructions}
+Keep $D=\operatorname{diag}(5,3)$ from Example 2, but rescale its first eigenvector. For instance,
+\[
+P_2=\begin{bmatrix}2&1\\-2&-2\end{bmatrix}
+\]
+has columns $2(1,-1)$ and $(1,-2)$ and determinant $-2\ne0$. It differs from the displayed $P$, but $AP_2=P_2D$ still holds, so $A=P_2DP_2^{-1}$. Any nonzero rescaling of a basis eigenvector gives another valid factorization with that eigenvalue order.
+
+\exercise{5.3.31}{Diagonalization criteria and constructions}
+Take $A=\left[\begin{smallmatrix}1&1\\0&1\end{smallmatrix}\right]$. Its determinant is $1$, so it is invertible and certainly nonzero. Its only eigenvalue is $1$, and $(A-I)x=0$ says $x_2=0$, leaving only a one-dimensional eigenspace. Therefore it is not diagonalizable.
+
+\exercise{5.3.32}{Diagonalization criteria and constructions}
+Take $A=\left[\begin{smallmatrix}1&1\\0&0\end{smallmatrix}\right]$. It is nondiagonal and has determinant $0$, so is not invertible. Its distinct eigenvalues are $1$ and $0$; corresponding independent eigenvectors are $(1,0)$ and $(-1,1)$. Thus with $P=\left[\begin{smallmatrix}1&-1\\0&1\end{smallmatrix}\right]$ and $D=\operatorname{diag}(1,0)$, we have $AP=PD$ and $A=PDP^{-1}$.
+
+\exercise{5.3.33}{Exact computer-assisted diagonalization}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}9&-4&-2&-4\\-56&32&-28&44\\-14&-14&6&-14\\42&-33&21&-45\end{bmatrix}.\]
+This is a matrix-program exercise; the eigenvalue and null-space calculations below were carried out with exact rational arithmetic, then checked by multiplication.
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=\left(t - 13\right)^{2} \left(t + 12\right)^{2}.\]
+\step{Find the eigenspace for $\lambda=-12$.}
+The algebraic multiplicity is $2$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(-12)I)=\begin{bmatrix}1&0&- \frac{2}{7}&0\\0&1&-1&1\\0&0&0&0\\0&0&0&0\end{bmatrix}.\]
+Columns 3, 4 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{-12}=\Span\left\{\begin{bmatrix}2\\7\\7\\0\end{bmatrix},\ \begin{bmatrix}0\\1\\0\\-1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $2$. Direct multiplication checks $Av=(-12)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=13$.}
+The algebraic multiplicity is $2$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(13)I)=\begin{bmatrix}1&0&\frac{1}{2}&- \frac{1}{3}\\0&1&0&\frac{4}{3}\\0&0&0&0\\0&0&0&0\end{bmatrix}.\]
+Columns 3, 4 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{13}=\Span\left\{\begin{bmatrix}1\\0\\-2\\0\end{bmatrix},\ \begin{bmatrix}1\\-4\\0\\3\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $2$. Direct multiplication checks $Av=(13)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $2+2=4$.
+This equals the matrix size, so it provides the required basis. In the order just listed, take
+\[P=\begin{bmatrix}2&0&1&1\\7&1&0&-4\\7&0&-2&0\\0&-1&0&3\end{bmatrix},\qquad D=\begin{bmatrix}-12&0&0&0\\0&-12&0&0\\0&0&13&0\\0&0&0&13\end{bmatrix}.\]
+The exact checks are $\det P=25\ne0$ and $AP=PD$. Multiplying the latter by $P^{-1}$ on the right proves $A=PDP^{-1}$. The order of entries in $D$ must match the order of eigenvectors in $P$.
+A reproducible exact command pattern is:
+\begin{verbatim}
+for lam,multiplicity,basis in A.eigenvects():
+    print(lam,multiplicity,(A-lam*eye(A.rows)).rref())
+    print(basis)
+\end{verbatim}
+Here \texttt{A} is the displayed matrix and \texttt{Matrix, eye} are imported from \texttt{sympy}. The printed bases may be rescaled without changing their spans.
+
+\exercise{5.3.34}{Exact computer-assisted diagonalization}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}4&-9&-7&8&2\\-7&-9&0&7&14\\5&10&5&-5&-10\\-2&3&7&0&4\\-3&-13&-7&10&11\end{bmatrix}.\]
+This is a matrix-program exercise; the eigenvalue and null-space calculations below were carried out with exact rational arithmetic, then checked by multiplication.
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=\left(t - 5\right)^{3} \left(t + 2\right)^{2}.\]
+\step{Find the eigenspace for $\lambda=-2$.}
+The algebraic multiplicity is $2$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(-2)I)=\begin{bmatrix}1&0&0&\frac{2}{5}&- \frac{3}{5}\\0&1&0&- \frac{7}{5}&- \frac{7}{5}\\0&0&1&1&1\\0&0&0&0&0\\0&0&0&0&0\end{bmatrix}.\]
+Columns 4, 5 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{-2}=\Span\left\{\begin{bmatrix}2\\-7\\5\\-5\\0\end{bmatrix},\ \begin{bmatrix}3\\7\\-5\\0\\5\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $2$. Direct multiplication checks $Av=(-2)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=5$.}
+The algebraic multiplicity is $3$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(5)I)=\begin{bmatrix}1&0&-2&1&-2\\0&1&1&-1&0\\0&0&0&0&0\\0&0&0&0&0\\0&0&0&0&0\end{bmatrix}.\]
+Columns 3, 4, 5 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{5}=\Span\left\{\begin{bmatrix}2\\-1\\1\\0\\0\end{bmatrix},\ \begin{bmatrix}1\\-1\\0\\-1\\0\end{bmatrix},\ \begin{bmatrix}2\\0\\0\\0\\1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $3$. Direct multiplication checks $Av=(5)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $2+3=5$.
+This equals the matrix size, so it provides the required basis. In the order just listed, take
+\[P=\begin{bmatrix}2&3&2&1&2\\-7&7&-1&-1&0\\5&-5&1&0&0\\-5&0&0&-1&0\\0&5&0&0&1\end{bmatrix},\qquad D=\begin{bmatrix}-2&0&0&0&0\\0&-2&0&0&0\\0&0&5&0&0\\0&0&0&5&0\\0&0&0&0&5\end{bmatrix}.\]
+The exact checks are $\det P=35\ne0$ and $AP=PD$. Multiplying the latter by $P^{-1}$ on the right proves $A=PDP^{-1}$. The order of entries in $D$ must match the order of eigenvectors in $P$.
+A reproducible exact command pattern is:
+\begin{verbatim}
+for lam,multiplicity,basis in A.eigenvects():
+    print(lam,multiplicity,(A-lam*eye(A.rows)).rref())
+    print(basis)
+\end{verbatim}
+Here \texttt{A} is the displayed matrix and \texttt{Matrix, eye} are imported from \texttt{sympy}. The printed bases may be rescaled without changing their spans.
+
+\exercise{5.3.35}{Exact computer-assisted diagonalization}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}13&-12&9&-15&9\\6&-5&9&-15&9\\6&-12&-5&6&9\\6&-12&9&-8&9\\-6&12&12&-6&-2\end{bmatrix}.\]
+This is a matrix-program exercise; the eigenvalue and null-space calculations below were carried out with exact rational arithmetic, then checked by multiplication.
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=\left(t - 7\right)^{3} \left(t + 14\right)^{2}.\]
+\step{Find the eigenspace for $\lambda=-14$.}
+The algebraic multiplicity is $2$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(-14)I)=\begin{bmatrix}1&0&0&-1&0\\0&1&0&-1&0\\0&0&1&0&1\\0&0&0&0&0\\0&0&0&0&0\end{bmatrix}.\]
+Columns 4, 5 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{-14}=\Span\left\{\begin{bmatrix}1\\1\\0\\1\\0\end{bmatrix},\ \begin{bmatrix}0\\0\\1\\0\\-1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $2$. Direct multiplication checks $Av=(-14)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=7$.}
+The algebraic multiplicity is $3$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(7)I)=\begin{bmatrix}1&-2&0&-1&\frac{3}{2}\\0&0&1&-1&0\\0&0&0&0&0\\0&0&0&0&0\\0&0&0&0&0\end{bmatrix}.\]
+Columns 2, 4, 5 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{7}=\Span\left\{\begin{bmatrix}2\\1\\0\\0\\0\end{bmatrix},\ \begin{bmatrix}1\\0\\1\\1\\0\end{bmatrix},\ \begin{bmatrix}3\\0\\0\\0\\-2\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $3$. Direct multiplication checks $Av=(7)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $2+3=5$.
+This equals the matrix size, so it provides the required basis. In the order just listed, take
+\[P=\begin{bmatrix}1&0&2&1&3\\1&0&1&0&0\\0&1&0&1&0\\1&0&0&1&0\\0&-1&0&0&-2\end{bmatrix},\qquad D=\begin{bmatrix}-14&0&0&0&0\\0&-14&0&0&0\\0&0&7&0&0\\0&0&0&7&0\\0&0&0&0&7\end{bmatrix}.\]
+The exact checks are $\det P=-7\ne0$ and $AP=PD$. Multiplying the latter by $P^{-1}$ on the right proves $A=PDP^{-1}$. The order of entries in $D$ must match the order of eigenvectors in $P$.
+A reproducible exact command pattern is:
+\begin{verbatim}
+for lam,multiplicity,basis in A.eigenvects():
+    print(lam,multiplicity,(A-lam*eye(A.rows)).rref())
+    print(basis)
+\end{verbatim}
+Here \texttt{A} is the displayed matrix and \texttt{Matrix, eye} are imported from \texttt{sympy}. The printed bases may be rescaled without changing their spans.
+
+\exercise{5.3.36}{Exact computer-assisted diagonalization}
+\goal Determine whether $A$ has a basis of eigenvectors, where
+\[A=\begin{bmatrix}24&-6&2&6&2\\72&51&9&-99&9\\0&-63&15&63&63\\72&15&9&-63&9\\0&63&21&-63&-27\end{bmatrix}.\]
+This is a matrix-program exercise; the eigenvalue and null-space calculations below were carried out with exact rational arithmetic, then checked by multiplication.
+\step{Find eigenvalues with multiplicities.}
+Use $p(t)=\det(tI-A)$; changing to $\det(A-tI)$ changes only an overall sign and not its roots. Here
+\[p(t)=\left(t - 36\right)^{2} \left(t - 24\right) \left(t + 48\right)^{2}.\]
+\step{Find the eigenspace for $\lambda=-48$.}
+The algebraic multiplicity is $2$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(-48)I)=\begin{bmatrix}1&0&0&0&0\\0&1&0&-1&0\\0&0&1&0&1\\0&0&0&0&0\\0&0&0&0&0\end{bmatrix}.\]
+Columns 4, 5 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{-48}=\Span\left\{\begin{bmatrix}0\\1\\0\\1\\0\end{bmatrix},\ \begin{bmatrix}0\\0\\1\\0\\-1\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $2$. Direct multiplication checks $Av=(-48)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=24$.}
+The algebraic multiplicity is $1$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(24)I)=\begin{bmatrix}1&0&0&-1&0\\0&1&0&-1&0\\0&0&1&0&0\\0&0&0&0&1\\0&0&0&0&0\end{bmatrix}.\]
+Columns 4 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{24}=\Span\left\{\begin{bmatrix}1\\1\\0\\1\\0\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $1$. Direct multiplication checks $Av=(24)v$ for each listed vector.
+\step{Find the eigenspace for $\lambda=36$.}
+The algebraic multiplicity is $2$. Solve $(A-\lambda I)x=0$; row reduction gives
+\[\operatorname{rref}(A-(36)I)=\begin{bmatrix}1&0&0&-1&\frac{1}{3}\\0&1&0&0&-1\\0&0&1&-3&0\\0&0&0&0&0\\0&0&0&0&0\end{bmatrix}.\]
+Columns 4, 5 are nonpivot columns, so their variables can be chosen freely. Solving the pivot equations gives
+\[E_{36}=\Span\left\{\begin{bmatrix}1\\0\\3\\1\\0\end{bmatrix},\ \begin{bmatrix}1\\-3\\0\\0\\-3\end{bmatrix}\right\}.\]
+The displayed vectors are independent (their free coordinates give independent parameter choices), and every solution is their linear combination. Thus this eigenspace has dimension $2$. Direct multiplication checks $Av=(36)v$ for each listed vector.
+\step{Count independent eigenvectors.}
+Bases for eigenspaces at different eigenvalues combine into an independent set. The total dimension is $2+1+2=5$.
+This equals the matrix size, so it provides the required basis. In the order just listed, take
+\[P=\begin{bmatrix}0&0&1&1&1\\1&0&1&0&-3\\0&1&0&3&0\\1&0&1&1&0\\0&-1&0&0&-3\end{bmatrix},\qquad D=\begin{bmatrix}-48&0&0&0&0\\0&-48&0&0&0\\0&0&24&0&0\\0&0&0&36&0\\0&0&0&0&36\end{bmatrix}.\]
+The exact checks are $\det P=-12\ne0$ and $AP=PD$. Multiplying the latter by $P^{-1}$ on the right proves $A=PDP^{-1}$. The order of entries in $D$ must match the order of eigenvectors in $P$.
+A reproducible exact command pattern is:
+\begin{verbatim}
+for lam,multiplicity,basis in A.eigenvects():
+    print(lam,multiplicity,(A-lam*eye(A.rows)).rref())
+    print(basis)
+\end{verbatim}
+Here \texttt{A} is the displayed matrix and \texttt{Matrix, eye} are imported from \texttt{sympy}. The printed bases may be rescaled without changing their spans.

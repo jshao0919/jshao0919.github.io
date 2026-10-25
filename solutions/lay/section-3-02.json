@@ -1,0 +1,14 @@
+{
+  "chapter": 3,
+  "section": 2,
+  "title": "Properties of determinants",
+  "exercise_count": 46,
+  "practice_count": 2,
+  "source_pages": [
+    191,
+    192,
+    193,
+    194
+  ],
+  "verification": "All numerical determinants, adjugates, inverses and solution substitutions checked with exact SymPy arithmetic; stated computer experiments executed; standalone PDF compiles without layout/reference warnings."
+}

@@ -1,0 +1,270 @@
+\section{Affine independence}
+An indexed set of points is affinely dependent if there are coefficients, not all zero, whose sum is $0$ and whose weighted point sum is $0$. It is affinely independent otherwise. Appending a final coordinate $1$ converts this definition into the ordinary null-space test for linear dependence.
+
+An affinely independent set gives \emph{unique} affine coefficients, called barycentric coordinates, for every point in its affine hull. These coefficients sum to $1$, but may be negative outside the convex region between the points. For a triangle, the coordinate belonging to a vertex is zero on the line through the other two vertices, positive on the vertex's side of that line, and negative on the opposite side. This geometric sign rule is particularly useful in Exercises 15 and 16.
+
+\practice{8.2.P1}{A fast collinearity test}
+For points $v_1,v_2,v_3$, compute the two differences $u=v_2-v_1$ and $w=v_3-v_1$. They are collinear exactly when $u,w$ are linearly dependent, which can be checked by a two-column row reduction. In $\R^2$ one can simply test $\det[u\ w]=0$. Repeated points also satisfy the test. If the differences are independent, the three points are not on one line and are affinely independent.
+
+\practice{8.2.P2}{A nontrivial relation with coefficient sum zero}
+Append a final $1$ to each point and form
+\[H=\begin{bmatrix}4&1&5&1\\1&0&4&2\\1&1&1&1\end{bmatrix}.\]
+An affine dependence is exactly a nonzero solution of $Hc=0$: its first rows assert $\sum c_jv_j=0$, and its last row asserts $\sum c_j=0$. Row reduction gives
+\[\operatorname{rref}H=\begin{bmatrix}1&0&0&-1\\0&1&0&\frac{5}{4}\\0&0&1&\frac{3}{4}\end{bmatrix}.\]
+There is a free variable, so the points are affinely dependent. One explicit nonzero coefficient column is
+\[c=\begin{bmatrix}4\\-5\\-3\\4\end{bmatrix}.\]
+Its entries sum to zero and multiplying $Hc$ gives zero in every coordinate. Thus
+\[(4)v_1 + (-5)v_2 + (-3)v_3 + (4)v_4=0\]
+is the requested affine dependence relation. The weights sum to $0$, not $1$, for a dependence.
+
+\exercise{8.2.1}{Test affine dependence using homogeneous columns}
+Append a final $1$ to each point and form
+\[H=\begin{bmatrix}3&0&2\\-3&6&0\\1&1&1\end{bmatrix}.\]
+An affine dependence is exactly a nonzero solution of $Hc=0$: its first rows assert $\sum c_jv_j=0$, and its last row asserts $\sum c_j=0$. Row reduction gives
+\[\operatorname{rref}H=\begin{bmatrix}1&0&\frac{2}{3}\\0&1&\frac{1}{3}\\0&0&0\end{bmatrix}.\]
+There is a free variable, so the points are affinely dependent. One explicit nonzero coefficient column is
+\[c=\begin{bmatrix}-2\\-1\\3\end{bmatrix}.\]
+Its entries sum to zero and multiplying $Hc$ gives zero in every coordinate. Thus
+\[(-2)v_1 + (-1)v_2 + (3)v_3=0\]
+is the requested affine dependence relation. The weights sum to $0$, not $1$, for a dependence.
+
+\exercise{8.2.2}{Test affine dependence using homogeneous columns}
+Append a final $1$ to each point and form
+\[H=\begin{bmatrix}2&5&-3\\1&4&-2\\1&1&1\end{bmatrix}.\]
+An affine dependence is exactly a nonzero solution of $Hc=0$: its first rows assert $\sum c_jv_j=0$, and its last row asserts $\sum c_j=0$. Row reduction gives
+\[\operatorname{rref}H=\begin{bmatrix}1&0&0\\0&1&0\\0&0&1\end{bmatrix}.\]
+Every column is a pivot column, so $Hc=0$ has only the zero solution. Hence the points are affinely independent and no affine dependence relation exists.
+
+\exercise{8.2.3}{Test affine dependence using homogeneous columns}
+Append a final $1$ to each point and form
+\[H=\begin{bmatrix}1&-2&2&0\\2&-4&-1&15\\-1&8&11&-9\\1&1&1&1\end{bmatrix}.\]
+An affine dependence is exactly a nonzero solution of $Hc=0$: its first rows assert $\sum c_jv_j=0$, and its last row asserts $\sum c_j=0$. Row reduction gives
+\[\operatorname{rref}H=\begin{bmatrix}1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1\end{bmatrix}.\]
+Every column is a pivot column, so $Hc=0$ has only the zero solution. Hence the points are affinely independent and no affine dependence relation exists.
+
+\exercise{8.2.4}{Test affine dependence using homogeneous columns}
+Append a final $1$ to each point and form
+\[H=\begin{bmatrix}-2&0&1&-2\\5&-3&-2&7\\3&7&-6&-3\\1&1&1&1\end{bmatrix}.\]
+An affine dependence is exactly a nonzero solution of $Hc=0$: its first rows assert $\sum c_jv_j=0$, and its last row asserts $\sum c_j=0$. Row reduction gives
+\[\operatorname{rref}H=\begin{bmatrix}1&0&0&\frac{6}{5}\\0&1&0&- \frac{3}{5}\\0&0&1&\frac{2}{5}\\0&0&0&0\end{bmatrix}.\]
+There is a free variable, so the points are affinely dependent. One explicit nonzero coefficient column is
+\[c=\begin{bmatrix}-6\\3\\-2\\5\end{bmatrix}.\]
+Its entries sum to zero and multiplying $Hc$ gives zero in every coordinate. Thus
+\[(-6)v_1 + (3)v_2 + (-2)v_3 + (5)v_4=0\]
+is the requested affine dependence relation. The weights sum to $0$, not $1$, for a dependence.
+
+\exercise{8.2.5}{Test affine dependence using homogeneous columns}
+Append a final $1$ to each point and form
+\[H=\begin{bmatrix}1&0&-1&0\\0&1&5&5\\-2&1&1&-3\\1&1&1&1\end{bmatrix}.\]
+An affine dependence is exactly a nonzero solution of $Hc=0$: its first rows assert $\sum c_jv_j=0$, and its last row asserts $\sum c_j=0$. Row reduction gives
+\[\operatorname{rref}H=\begin{bmatrix}1&0&0&\frac{4}{3}\\0&1&0&- \frac{5}{3}\\0&0&1&\frac{4}{3}\\0&0&0&0\end{bmatrix}.\]
+There is a free variable, so the points are affinely dependent. One explicit nonzero coefficient column is
+\[c=\begin{bmatrix}-4\\5\\-4\\3\end{bmatrix}.\]
+Its entries sum to zero and multiplying $Hc$ gives zero in every coordinate. Thus
+\[(-4)v_1 + (5)v_2 + (-4)v_3 + (3)v_4=0\]
+is the requested affine dependence relation. The weights sum to $0$, not $1$, for a dependence.
+
+\exercise{8.2.6}{Test affine dependence using homogeneous columns}
+Append a final $1$ to each point and form
+\[H=\begin{bmatrix}1&0&2&3\\3&-1&5&5\\1&-2&2&0\\1&1&1&1\end{bmatrix}.\]
+An affine dependence is exactly a nonzero solution of $Hc=0$: its first rows assert $\sum c_jv_j=0$, and its last row asserts $\sum c_j=0$. Row reduction gives
+\[\operatorname{rref}H=\begin{bmatrix}1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1\end{bmatrix}.\]
+Every column is a pivot column, so $Hc=0$ has only the zero solution. Hence the points are affinely independent and no affine dependence relation exists.
+
+\exercise{8.2.7}{Unique barycentric coordinates in a higher-dimensional affine hull}
+To require both the point equation and the coefficient-sum condition, solve
+\[Hc=\widetilde y,\qquad H=\begin{bmatrix}1&2&1\\-1&1&2\\2&0&-2\\1&1&0\\1&1&1\end{bmatrix},\quad\widetilde y=\begin{bmatrix}5\\4\\-2\\2\\1\end{bmatrix}.\]
+The last row of $H$ enforces $c_1+\cdots+c_k=1$. Row reduction of the augmented system gives
+\[\operatorname{rref}[H\mid\widetilde y]=\begin{bmatrix}1&0&0&-2\\0&1&0&4\\0&0&1&-1\\0&0&0&0\\0&0&0&0\end{bmatrix}.\]
+One affine coefficient column is
+\[c=\begin{bmatrix}-2\\4\\-1\end{bmatrix}.\]
+Its entries sum to $1$, and substituting them in $\sum c_jv_j$ gives exactly $\begin{bmatrix}5\\4\\-2\\2\end{bmatrix}$. Thus the requested affine combination exists. Since the points are affinely independent, the coefficient column is unique and is precisely the requested barycentric coordinate column.
+
+\exercise{8.2.8}{Unique barycentric coordinates in a higher-dimensional affine hull}
+To require both the point equation and the coefficient-sum condition, solve
+\[Hc=\widetilde y,\qquad H=\begin{bmatrix}0&1&1\\1&1&4\\-2&0&-6\\1&2&5\\1&1&1\end{bmatrix},\quad\widetilde y=\begin{bmatrix}-1\\1\\-4\\0\\1\end{bmatrix}.\]
+The last row of $H$ enforces $c_1+\cdots+c_k=1$. Row reduction of the augmented system gives
+\[\operatorname{rref}[H\mid\widetilde y]=\begin{bmatrix}1&0&0&2\\0&1&0&-1\\0&0&1&0\\0&0&0&0\\0&0&0&0\end{bmatrix}.\]
+One affine coefficient column is
+\[c=\begin{bmatrix}2\\-1\\0\end{bmatrix}.\]
+Its entries sum to $1$, and substituting them in $\sum c_jv_j$ gives exactly $\begin{bmatrix}-1\\1\\-4\\0\end{bmatrix}$. Thus the requested affine combination exists. Since the points are affinely independent, the coefficient column is unique and is precisely the requested barycentric coordinate column.
+
+\exercise{8.2.9}{Affine independence and barycentric meaning}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} The differences are based at $v_2$, not $v_1$, but the same criterion works for any base point. If $\sum_{j\ne2}c_j(v_j-v_2)=0$ is nontrivial, give $v_2$ coefficient $-\sum_{j\ne2}c_j$. The resulting nontrivial point relation has coefficient sum zero.
+\item \textbf{False.} Independent homogeneous columns mean the original points are affinely \emph{independent}, not dependent.
+\item \textbf{False.} A dependence requires coefficient sum $0$. The distinct points $v_1=(1,0)$, $v_2=(2,0)$ are affinely independent, but $2v_1-v_2=0$ has coefficient sum $1$, satisfying the proposed incorrect test.
+\item \textbf{False.} A negative coordinate can occur for a point in the affine hull, but outside the convex hull. For the two points $(0,0),(1,0)$, the point $(2,0)$ has barycentric coordinates $(-1,2)$ and is still in their affine line.
+\item \textbf{True for the stated triangle.} A point in a closed triangular region is a convex combination of the vertices, so its barycentric coordinates are nonnegative; an edge or vertex can give zeros. The ray is merely a way to locate that point and does not change this condition.
+\end{enumerate}
+
+\exercise{8.2.10}{Affine independence and barycentric meaning}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} A nontrivial affine dependence gives a nontrivial linear dependence of the homogeneous forms with the very same coefficients. They cannot be independent.
+\item \textbf{True.} Three independent differences based at $v_1$ imply affine independence of the four original points by the difference criterion.
+\item \textbf{False without affine independence.} For $S=\{(1,0),(2,0),(3,0)\}$, the middle point is both itself and $\tfrac12(1,0)+\tfrac12(3,0)$. These are distinct affine representations.
+\item \textbf{True as an affine color rule.} Use the three barycentric weights for each color component at the vertices. Inside the triangle this interpolates the colors; outside, negative weights give affine extrapolation and may leave a physical color range.
+\item \textbf{True.} A point on an edge has coefficient zero for the opposite vertex. Hence the three coefficients are not all strictly positive, including the vertex endpoints of the edge.
+\end{enumerate}
+
+\exercise{8.2.11}{Affine independence and barycentric meaning}
+Append a $1$ to every point of $\R^3$, producing vectors in $\R^4$. Five or more vectors in a four-dimensional vector space are linearly dependent. Therefore some nontrivial coefficient column has both weighted point sum zero and coefficient sum zero. That is an affine dependence of the original indexed points.
+
+\exercise{8.2.12}{Affine independence and barycentric meaning}
+The homogeneous forms lie in $\R^{n+1}$. If $p\ge n+2$, there are more columns than the dimension, so their homogeneous system has a free variable and a nonzero solution $c$. Its first $n$ equations give $\sum_jc_jv_j=0$, and its last gives $\sum_jc_j=0$. This is precisely the affine-dependence definition.
+
+\exercise{8.2.13}{Affine independence and barycentric meaning}
+Suppose $c_1v_1+c_2v_2=0$, $c_1+c_2=0$, and the coefficient pair is nonzero. Then $c_2=-c_1$, with $c_1\ne0$. The point equation becomes $c_1(v_1-v_2)=0$, so division by $c_1$ gives $v_1=v_2$. Conversely, if $v_1=v_2$, take $(c_1,c_2)=(1,-1)$. Their sum is zero and their weighted point sum is zero, so the indexed pair is affinely dependent. Both directions use only the definition.
+
+\exercise{8.2.14}{Affine independence and barycentric meaning}
+For $S_1=\{(1,0),(2,0),(3,0)\}$, the relation $v_1-2v_2+v_3=0$ has nonzero coefficients summing to zero, so this set is both affinely and linearly dependent.
+
+For $S_2=\{(1,0),(2,0)\}$, the relation $2v_1-v_2=0$ proves linear dependence, but the two points are distinct and hence affinely independent by Exercise 13. All points in both examples are nonzero, as requested. Linear dependence does not force its coefficients to sum to zero.
+
+\exercise{8.2.15}{Barycentric coordinates and signs in the printed figure}
+\step{(a) Check affine independence.}
+The homogeneous matrix has determinant $-8\ne0$, so its three columns are independent and the original points are affinely independent.
+\[H=\begin{bmatrix}-1&0&2\\2&4&0\\1&1&1\end{bmatrix}.\]
+\step{(b) Solve for all five ordered coordinate triples.}
+The inverse mapping, obtained by row reduction, is
+\[H^{-1}=\begin{bmatrix}- \frac{1}{2}&- \frac{1}{4}&1\\\frac{1}{4}&\frac{3}{8}&- \frac{1}{2}\\\frac{1}{4}&- \frac{1}{8}&\frac{1}{2}\end{bmatrix}.\]
+Thus multiply $H^{-1}(x,y,1)^T$ for each given point. The exact results are
+\[\begin{array}{c|ccc}\text{point}&r&s&t\\\hline
+p_1&- \frac{3}{4}&\frac{9}{8}&\frac{5}{8}\\p_2&0&\frac{1}{2}&\frac{1}{2}\\p_3&\frac{7}{4}&- \frac{5}{8}&- \frac{1}{8}\\p_4&\frac{3}{4}&- \frac{5}{8}&\frac{7}{8}\\p_5&\frac{1}{4}&\frac{1}{8}&\frac{5}{8}
+\end{array}\]
+Each row sums to $1$ and reconstructs its point, supplying independent checks on the arithmetic.
+\step{(c) Use the positions in Figure 8 rather than inventing coordinates for its unlabeled points.}
+A coordinate is zero on the opposite edge line, positive on its own vertex's side, and negative on the other side. Reading the three side tests in the figure gives
+\[
+p_6:\ (-,-,+),\qquad
+p_7:\ (0,+,-),\qquad
+p_8:\ (+,+,-).
+\]
+The zero for $p_7$ matters: the dot is on the \emph{extended line} through $v_2,v_3$, beyond $v_2$, not in an adjacent open region. Its second weight is positive and third negative along that extension. Point $p_6$ lies across both edge lines opposite $v_1$ and $v_2$; point $p_8$ is opposite $v_3$ but on the other two vertices' positive sides.
+
+\exercise{8.2.16}{A plotted triangle with extended sides and boundary points}
+\step{(a) Verify independence of the triangle vertices.}
+The homogeneous matrix
+\[H=\begin{bmatrix}0&1&4\\1&5&3\\1&1&1\end{bmatrix}\]
+has determinant $-14\ne0$, proving affine independence.
+\step{(b) Compute the first three coordinate triples.}
+Solve $Hc=(p_x,p_y,1)^T$. Row reduction gives
+\[\begin{array}{c|ccc}\text{point}&r&s&t\\\hline
+p_1&- \frac{2}{7}&\frac{5}{7}&\frac{4}{7}\\p_2&\frac{2}{7}&- \frac{5}{7}&\frac{10}{7}\\p_3&\frac{2}{7}&\frac{2}{7}&\frac{3}{7}
+\end{array}\]
+\step{(c) Plot the remaining points and test which side of each line they occupy.}
+\begin{center}\setlength{\unitlength}{6mm}
+\begin{picture}(10.00,10.00)
+\put(0.2,2.500){\vector(1,0){9.700}}
+\put(2.500,0.2){\vector(0,1){9.700}}
+\put(0.500,2.500){\line(0,1){.12}}\put(0.500,2.200){\makebox(0,0){\tiny -2}}
+\put(1.500,2.500){\line(0,1){.12}}\put(1.500,2.200){\makebox(0,0){\tiny -1}}
+\put(2.500,2.500){\line(0,1){.12}}\put(2.500,2.200){\makebox(0,0){\tiny 0}}
+\put(3.500,2.500){\line(0,1){.12}}\put(3.500,2.200){\makebox(0,0){\tiny 1}}
+\put(4.500,2.500){\line(0,1){.12}}\put(4.500,2.200){\makebox(0,0){\tiny 2}}
+\put(5.500,2.500){\line(0,1){.12}}\put(5.500,2.200){\makebox(0,0){\tiny 3}}
+\put(6.500,2.500){\line(0,1){.12}}\put(6.500,2.200){\makebox(0,0){\tiny 4}}
+\put(7.500,2.500){\line(0,1){.12}}\put(7.500,2.200){\makebox(0,0){\tiny 5}}
+\put(8.500,2.500){\line(0,1){.12}}\put(8.500,2.200){\makebox(0,0){\tiny 6}}
+\put(9.500,2.500){\line(0,1){.12}}\put(9.500,2.200){\makebox(0,0){\tiny 7}}
+\put(2.500,0.500){\line(1,0){.12}}\put(2.200,0.500){\makebox(0,0){\tiny -2}}
+\put(2.500,1.500){\line(1,0){.12}}\put(2.200,1.500){\makebox(0,0){\tiny -1}}
+\put(2.500,3.500){\line(1,0){.12}}\put(2.200,3.500){\makebox(0,0){\tiny 1}}
+\put(2.500,4.500){\line(1,0){.12}}\put(2.200,4.500){\makebox(0,0){\tiny 2}}
+\put(2.500,5.500){\line(1,0){.12}}\put(2.200,5.500){\makebox(0,0){\tiny 3}}
+\put(2.500,6.500){\line(1,0){.12}}\put(2.200,6.500){\makebox(0,0){\tiny 4}}
+\put(2.500,7.500){\line(1,0){.12}}\put(2.200,7.500){\makebox(0,0){\tiny 5}}
+\put(2.500,8.500){\line(1,0){.12}}\put(2.200,8.500){\makebox(0,0){\tiny 6}}
+\put(2.500,9.500){\line(1,0){.12}}\put(2.200,9.500){\makebox(0,0){\tiny 7}}
+\linethickness{.3pt}
+\polyline(1.750,0.500)(4.000,9.500)
+\polyline(0.500,9.500)(9.500,3.500)
+\polyline(0.500,2.500)(9.500,7.000)
+\linethickness{.9pt}
+\polyline(2.500,3.500)(3.500,7.500)(6.500,5.500)(2.500,3.500)
+\put(2.500,3.500){\circle*{.12}}\put(2.620,3.680){\scriptsize $v_1$}
+\put(3.500,7.500){\circle*{.12}}\put(3.620,7.680){\scriptsize $v_2$}
+\put(6.500,5.500){\circle*{.12}}\put(6.620,5.680){\scriptsize $v_3$}
+\put(1.500,2.500){\circle*{.12}}\put(1.620,2.680){\scriptsize $p_4$}
+\put(2.500,6.500){\circle*{.12}}\put(2.620,6.680){\scriptsize $p_5$}
+\put(3.500,4.500){\circle*{.12}}\put(3.620,4.680){\scriptsize $p_6$}
+\put(8.500,6.500){\circle*{.12}}\put(8.620,6.680){\scriptsize $p_7$}
+\end{picture}\end{center}
+The thin lines extend the three sides; the bold triangle joins the actual vertices. For a weight belonging to $v_j$, compare the point with $v_j$ across the line through the other two vertices. These side tests give
+\[
+p_4:\ (+,-,-),\qquad p_5:\ (+,+,-),\qquad
+p_6:\ (+,+,+),\qquad p_7:\ (-,0,+).
+\]
+Here $p_6$ lies inside the triangle, while $p_7=(6,4)$ lies exactly on the extension of the side through $v_1=(0,1)$ and $v_3=(4,3)$, so its $v_2$ coordinate is zero. This boundary check prevents treating every exterior point as having three nonzero coordinates. No numerical barycentric weights are needed for these sign conclusions.
+
+\exercise{8.2.17}{Barycentric proofs and geometric consequences}
+\goal Prove both existence and uniqueness in Theorem 6.
+Existence is the definition of $p\in\operatorname{aff}S$: some coefficients $c_j$ sum to $1$ and satisfy $p=\sum_jc_jv_j$.
+For uniqueness suppose also $p=\sum_jd_jv_j$ with $\sum_jd_j=1$. Subtract the two point equations and the two coefficient sums:
+\[
+\sum_j(c_j-d_j)v_j=0,\qquad\sum_j(c_j-d_j)=0.
+\]
+Affine independence says the only coefficient column satisfying both zero equations is zero. Thus $c_j-d_j=0$ for every $j$, so all weights agree. This is uniqueness of the entire ordered coordinate column, not merely uniqueness of the represented point.
+
+\exercise{8.2.18}{Barycentric proofs and geometric consequences}
+The ordered vertices are $ae_1,be_2,ce_3,0$, with $a,b,c>0$ in the stated standard position. If $p=(p_1,p_2,p_3)$ has barycentric coordinates $(r,s,t,u)$, coordinate comparison gives $ar=p_1$, $bs=p_2$, and $ct=p_3$. The sum condition then determines the last coordinate. Hence
+\[
+(r,s,t,u)=\left(\frac{p_1}{a},\frac{p_2}{b},\frac{p_3}{c},
+1-\frac{p_1}{a}-\frac{p_2}{b}-\frac{p_3}{c}\right).
+\]
+These formulas work for every point of $\R^3$, not only interior points. The point belongs to the closed tetrahedron exactly when all four coordinates are nonnegative. The three edge vectors $ae_1,be_2,ce_3$ are independent, so the coordinate column is unique.
+
+\exercise{8.2.19}{Barycentric proofs and geometric consequences}
+Choose a nontrivial affine-dependence coefficient triple $c_1,c_2,c_3$. By assumption $\sum_jc_jp_j=0$ and $\sum_jc_j=0$. Linearity gives
+\[
+\sum_jc_jf(p_j)=f\left(\sum_jc_jp_j\right)=f(0)=0.
+\]
+The coefficients have not changed and are still not all zero, so the indexed image points satisfy an affine dependence. The map may identify some points; this does not destroy the displayed indexed relation.
+
+\exercise{8.2.20}{Barycentric proofs and geometric consequences}
+Suppose the translated points have a coefficient relation with $\sum_jc_j=0$ and $\sum_jc_j(p_j+q)=0$. Expanding yields
+\[
+0=\sum_jc_jp_j+\left(\sum_jc_j\right)q=\sum_jc_jp_j.
+\]
+Affine independence of the original points now forces every $c_j=0$. Therefore no nontrivial affine dependence exists among the translated points. Translation changes location but not affine independence.
+
+\exercise{8.2.21}{Barycentric proofs and geometric consequences}
+The homogeneous-column determinant is
+\[
+D=\det\begin{bmatrix}a_1&b_1&c_1\\a_2&b_2&c_2\\1&1&1\end{bmatrix}.
+\]
+Subtract its first column from columns 2 and 3, then expand across the final row. This gives $D=\det[b-a\ c-a]$. The parallelogram on those two edges has area $|D|$, and the triangle has half that area. The stipulated vertex order makes $D>0$, so the triangle area is $D/2$ without absolute-value bars. For a different order one would need $|D|/2$.
+
+\exercise{8.2.22}{Barycentric proofs and geometric consequences}
+A point on the line is $p=(1-t)a+tb$ for some real $t$. Because these two weights sum to $1$, its homogeneous form satisfies $\widetilde p=(1-t)\widetilde a+t\widetilde b$. Therefore the three homogeneous columns are linearly dependent, and $\det[\widetilde a\ \widetilde b\ \widetilde p]=0$. This also follows by expanding linearly in the third column, where both resulting determinants have repeated columns.
+
+\exercise{8.2.23}{Barycentric proofs and geometric consequences}
+Write $\widetilde p=r\widetilde a+s\widetilde b+t\widetilde c$ and let $D=\det[\widetilde a\ \widetilde b\ \widetilde c]>0$. Expand a determinant linearly in its replaced column. Repeated-column terms vanish, so
+\[
+\det[\widetilde p\ \widetilde b\ \widetilde c]=rD,\quad
+\det[\widetilde a\ \widetilde p\ \widetilde c]=sD,\quad
+\det[\widetilde a\ \widetilde b\ \widetilde p]=tD.
+\]
+Since $p$ is interior, it lies on the same side of each opposite edge as the replaced vertex; each displayed subtriangle has the same positive orientation as the original triangle. Thus its ordinary area is one half of its displayed determinant. Divide those area expressions by $D/2$, the area of the full triangle, to obtain
+\[
+r=\frac{\operatorname{area}(\triangle pbc)}{\operatorname{area}(\triangle abc)},\qquad
+s=\frac{\operatorname{area}(\triangle apc)}{\operatorname{area}(\triangle abc)},
+\]
+\[
+t=\frac{\operatorname{area}(\triangle abp)}{\operatorname{area}(\triangle abc)}.
+\]
+These are positive ratios for an interior point. Signed determinants, rather than unsigned areas alone, are needed if extending the formulas outside the triangle.
+
+\exercise{8.2.24}{Barycentric proofs and geometric consequences}
+Because $q$ lies on the segment $bc$, it has the form $q=(1-t)b+tc$ for some $0\le t\le1$. The given line point therefore has affine representation
+\[
+p=x a+(1-x)(1-t)b+(1-x)t c.
+\]
+Its three weights sum to $1$. Appending final coordinates and expanding the determinant linearly in its first column gives
+\[
+\det[\widetilde p\ \widetilde b\ \widetilde c]
+=x\det[\widetilde a\ \widetilde b\ \widetilde c],
+\]
+because both terms involving $\widetilde b$ or $\widetilde c$ in the first column have repeated columns. The original triangle is nondegenerate, so its vertices are affinely independent. Uniqueness of barycentric coordinates makes $x$ exactly the first coordinate of $p$.
+
+Also $p-q=x(a-q)$, so for $0\le x\le1$, $\|p-q\|/\|a-q\|=x$. For other real $x$, it is an \emph{oriented} relative position; the ordinary distance ratio is $|x|$. A vertex color and the color at $q$ combine as $xC_a+(1-x)C_q$, varying linearly and continuously as the point moves. This is the stated smooth interpolation along the segment.

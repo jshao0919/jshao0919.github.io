@@ -1,0 +1,435 @@
+\section{Subspaces of Rn}
+A subspace contains zero and is closed under \emph{every} vector sum and
+\emph{every} scalar multiple of its members. A single failure disproves
+subspace status. A span is always a subspace. For an $m\times n$ matrix,
+\[
+ \Col A=\{Ax:x\in\R^n\}\subseteq\R^m,\qquad
+ \Nul A=\{x\in\R^n:Ax=0\}\subseteq\R^n.
+\]
+Column space concerns attainable \emph{outputs}; null space concerns
+\emph{inputs} with zero output. A basis is an independent spanning set.
+Row reduction preserves null space and dependence relations between columns,
+but generally changes the column space itself. To construct a column-space
+basis, take the \emph{original} columns in the pivot positions.
+To construct a null-space basis, solve $Ax=0$, choose the free variables
+as independent parameters, and read off their coefficient vectors.
+
+\practice{2.8.P1}{Membership in two very different spaces}
+For the supplied $A$ and $u=(-7,3,2)^T$,
+\[
+ Au=\begin{bmatrix}-7-3+10\\-14+14\\21-15-6\end{bmatrix}=0.
+\]
+Thus $u\in\Nul A$. It is not in $\Col A$.
+Indeed row 3 of $A$ equals five times row 1 minus four times row 2.
+Every possible output $b=Ax$ must consequently obey $b_3=5b_1-4b_2$.
+For $u$, that would require $2=5(-7)-4(3)=-47$, which is false.
+Thus the same vector can belong to the null space but not the column space,
+even when these spaces happen to share the same ambient dimension.
+
+\practice{2.8.P2}{Read a shift matrix}
+Here $A(x_1,x_2,x_3)^T=(x_2,x_3,0)^T$.
+Thus $e_1=(1,0,0)^T$ is a nonzero null vector.
+The second column of $A$ is $e_1$, so $e_1$ is also a nonzero vector in
+$\Col A$. Alternatively $e_2$ belongs to the column space as column 3.
+It is legitimate for a vector to lie in both spaces in this example.
+
+\practice{2.8.P3}{The spaces of an invertible matrix}
+If $A$ is invertible, every $b\in\R^n$ equals $A(A^{-1}b)$,
+so $\Col A=\R^n$. Also $Ax=0$ implies $x=A^{-1}0=0$,
+so $\Nul A=\{0\}$. The zero subspace contains one vector; it is not
+an empty set.
+
+\noindent\begin{minipage}{\linewidth}
+\exercise{2.8.1}{A quadrant fails negative scaling}
+The shaded set is the first quadrant, including its axes.
+The vector $u=(1,1)$ belongs to it, but $-u=(-1,-1)$ does not.
+Since $-1$ is an allowed scalar, closure under scalar multiplication fails.
+The following is a finite-window sketch; the quadrant continues outward.
+\begin{center}\setlength{\unitlength}{1mm}
+\begin{picture}(60,48)
+\put(27,23){\color{blue!15}\polygon*(0,0)(23,0)(23,20)(0,20)}
+\put(3,23){\vector(1,0){53}}\put(27,2){\vector(0,1){44}}
+\put(38,34){\circle*{1.3}}\put(40,35){$u$}
+\put(16,12){\circle*{1.3}}\put(7,8){$-u$}
+\put(55,18){$x$}\put(29,44){$y$}
+\end{picture}\end{center}
+\end{minipage}\par\medskip
+
+\noindent\begin{minipage}{\linewidth}
+\exercise{2.8.2}{Two allowed quadrants fail addition}
+The set consists of quadrants II and IV, with boundary axes.
+Take $u=(-1,2)$ in quadrant II and $v=(2,-1)$ in quadrant IV.
+Their sum is $(1,1)$ in quadrant I, outside the set. Thus addition is not closed.
+\begin{center}\setlength{\unitlength}{1mm}
+\begin{picture}(60,48)
+\put(27,23){\color{blue!15}\polygon*(-22,0)(0,0)(0,20)(-22,20)
+\polygon*(0,0)(22,0)(22,-20)(0,-20)}
+\put(3,23){\vector(1,0){53}}\put(27,2){\vector(0,1){44}}
+\put(19,39){\circle*{1.3}}\put(12,41){$u$}
+\put(43,15){\circle*{1.3}}\put(45,13){$v$}
+\put(35,31){\circle*{1.3}}\put(36,33){$u+v$}
+\end{picture}\end{center}
+\end{minipage}\par\medskip
+
+\noindent\begin{minipage}{\linewidth}
+\exercise{2.8.3}{A strip fails large scaling}
+Let the positive vertical boundary have coordinate $x=a>0$.
+The point $u=(a,0)$ lies on that included boundary, but $2u=(2a,0)$
+lies to its right, outside the strip. Hence closure under scalar multiplication fails.
+The finite upper and lower ends in the sketch are viewing limits, not extra boundaries.
+\begin{center}\setlength{\unitlength}{1mm}
+\begin{picture}(60,48)
+\put(27,23){\color{blue!15}\polygon*(-10,-21)(10,-21)(10,21)(-10,21)}
+\put(17,2){\line(0,1){42}}\put(37,2){\line(0,1){42}}
+\put(3,23){\vector(1,0){53}}\put(27,2){\vector(0,1){44}}
+\put(37,23){\circle*{1.3}}\put(35,17){$u$}
+\put(47,23){\circle*{1.3}}\put(44,27){$2u$}
+\end{picture}\end{center}
+\end{minipage}\par\medskip
+
+\noindent\begin{minipage}{\linewidth}
+\exercise{2.8.4}{One side of a line is not a vector space}
+The shaded half-plane includes the region below a line through the origin.
+Take a point on the negative vertical axis, such as $u=(0,-1)$.
+It belongs to the shaded region, but $-u=(0,1)$ lies on the unshaded side.
+Thus multiplying by $-1$ leaves the set, so it is not a subspace.
+\begin{center}\setlength{\unitlength}{1mm}
+\begin{picture}(60,48)
+\put(27,23){\color{blue!15}\polygon*(-21,21)(-21,-21)(21,-21)}
+\put(6,44){\line(1,-1){42}}
+\put(3,23){\vector(1,0){53}}\put(27,2){\vector(0,1){44}}
+\put(27,13){\circle*{1.3}}\put(30,10){$u$}
+\put(27,33){\circle*{1.3}}\put(30,33){$-u$}
+\end{picture}\end{center}
+\end{minipage}\par\medskip
+
+\exercise{2.8.5}{Exhibit the required linear combination}
+Compute
+\[
+ v_1+2v_2=(1,3,-4)^T+2(-2,-3,7)^T=(-3,-3,10)^T=w.
+\]
+Thus $w\in\Span\{v_1,v_2\}$. Giving coefficients that reproduce every
+coordinate proves membership directly; merely noticing that all vectors
+have three entries would not prove it.
+
+\exercise{2.8.6}{A consistency obstruction in four dimensions}
+Form $A=[v_1\ v_2\ v_3]$. Its four rows obey the relation
+$-11\operatorname{row}_1A+5\operatorname{row}_2A+
+10\operatorname{row}_3A+2\operatorname{row}_4A=0$.
+This identity is checked by its three entries:
+$-11-15+20+6=0$, $-44-20+50+14=0$, and
+$-55-15+60+10=0$.
+If $Ac=u$ had a solution, the same combination of its right-hand sides
+would be zero. Instead it equals
+$-11(-1)+5(-7)+10(-1)+2(2)=-30$.
+This contradiction proves $u\notin\Span\{v_1,v_2,v_3\}$.
+Equivalently, elimination of $[A\mid u]$ creates an inconsistent row.
+
+\exercise{2.8.7}{A finite generating set versus its infinite span}
+\begin{enumerate}[label=(\alph*)]
+\item The set $\{v_1,v_2,v_3\}$ contains exactly three distinct vectors.
+\item Its column space contains infinitely many vectors: all multiples
+$t v_1$ are in it, and $v_1\ne0$ makes these distinct for distinct real $t$.
+\item Yes, $p\in\Col A$. Solving $Ac=p$ gives the reduced equations
+$c_1+(7/4)c_3=-9/4$, $c_2+(5/2)c_3=-7/2$.
+Choosing the free variable $c_3=0$ yields
+$p=(-9/4)v_1-(7/2)v_2$. Its coordinates are $(6,-10,11)$, as required.
+\end{enumerate}
+
+\exercise{2.8.8}{Another column-space membership test}
+A convenient combination with integer coefficients is
+\[
+ v_1+2v_2+v_3=(-2,0,6)^T+2(-2,3,3)^T+(0,-5,5)^T
+ =(-6,1,17)^T=p.
+\]
+Thus $p\in\Col A$. One could instead reduce $[A\mid p]$;
+the displayed coefficients give a direct, independently checkable witness.
+
+\exercise{2.8.9}{Column membership is not null membership}
+With $A,p$ from Exercise 7, compute
+\[
+ Ap=\begin{bmatrix}2(6)-3(-10)-4(11)\\
+ -8(6)+8(-10)+6(11)\\6(6)-7(-10)-7(11)\end{bmatrix}
+ =\begin{bmatrix}-2\\-62\\29\end{bmatrix}\ne0.
+\]
+Therefore $p\notin\Nul A$, even though Exercise 7 placed $p$ in $\Col A$.
+
+\exercise{2.8.10}{A nonzero null vector}
+For $u=(-5,5,3)^T$ and the matrix in Exercise 8,
+\[
+ Au=\begin{bmatrix}10-10+0\\0+15-15\\-30+15+15\end{bmatrix}=0.
+\]
+Hence $u\in\Nul A$. Every coordinate has been checked; the nonzero
+input being sent to zero is exactly the definition of null-space membership.
+
+\exercise{2.8.11}{Ambient dimensions from the matrix shape}
+The given matrix has three rows and four columns.
+An input to $A$ has four entries and an output has three, so
+$\Nul A\subseteq\R^4$ and $\Col A\subseteq\R^3$.
+Thus $\boxed{p=4,q=3}$. These are ambient dimensions, not necessarily
+the dimensions of the two subspaces themselves.
+
+\exercise{2.8.12}{Five outputs and three inputs}
+Here $A$ is $5\times3$. Consequently
+$\Nul A\subseteq\R^3$ and $\Col A\subseteq\R^5$,
+giving $\boxed{p=3,q=5}$.
+Count columns for inputs and rows for outputs; these roles should not be reversed.
+
+\exercise{2.8.13}{One null vector and one column vector}
+For the matrix in Exercise 11, use
+\[
+ z=(1,-2,1,0)^T,\qquad a_1=(3,-9,9)^T.
+\]
+Multiplication gives $Az=(3-4+1,-9+8+1,9-4-5)^T=0$,
+so the nonzero $z$ is in $\Nul A$.
+The nonzero $a_1$ belongs to $\Col A$ because it is an actual column,
+namely $Ae_1$. The two vectors have different numbers of entries, as their
+respective ambient spaces require.
+
+\exercise{2.8.14}{Choose a null vector with integer entries}
+For the $5\times3$ matrix in Exercise 12, take
+$z=(1,-5,3)^T$. Its row products are
+$1-10+9$, $4-25+21$, $-5+5+0$, $2-35+33$, and $3-15+12$,
+all zero. Thus $z\ne0$ belongs to $\Nul A$.
+A nonzero column-space vector is $a_1=(1,4,-5,2,3)^T$.
+It belongs to $\Col A$ by its definition as column 1.
+
+\exercise{2.8.15}{A basis of the plane}
+The two vectors $(4,-2)^T$ and $(16,-3)^T$ have determinant
+$4(-3)-16(-2)=20\ne0$. Their $2\times2$ column matrix is invertible,
+so they are independent and span $\R^2$. Therefore they form a basis
+for $\R^2$.
+
+\exercise{2.8.16}{A dependent pair cannot be a basis}
+The second vector $(4,-10)^T$ is $-2$ times the first $(-2,5)^T$.
+Thus the set is dependent and spans only one line. It is not a basis for
+$\R^2$, which requires two independent directions.
+
+\exercise{2.8.17}{Three pivots after a cyclic row reordering}
+Place the given vectors into columns:
+$A=\begin{bmatrix}0&5&6\\0&0&3\\-2&4&2\end{bmatrix}$.
+Moving row 3 to the top gives the echelon matrix
+$\begin{bmatrix}-2&4&2\\0&5&6\\0&0&3\end{bmatrix}$.
+Its three pivots show independence and spanning, so the given vectors
+form a basis for $\R^3$.
+
+\exercise{2.8.18}{An explicit dependence in three dimensions}
+The third vector equals twice the first plus the second:
+$2(1,1,-3)^T+(3,-1,2)^T=(5,1,-4)^T$.
+Thus $2v_1+v_2-v_3=0$ is a nontrivial dependence relation.
+The set is not a basis for $\R^3$.
+
+\exercise{2.8.19}{Too few vectors to span three-dimensional space}
+Only two vectors are supplied. Their $3\times2$ column matrix has at most
+two pivots, so it cannot have a pivot in every one of its three rows.
+They do not span $\R^3$ and therefore do not form a basis for it.
+Their own span can have a basis of two vectors; that is a different question.
+
+\exercise{2.8.20}{Too many vectors for independence in three dimensions}
+Four vectors in $\R^3$ are necessarily dependent: the associated
+$3\times4$ homogeneous system has at least one free variable.
+Hence these four vectors do not form a basis for $\R^3$, regardless
+of whether they happen to span the whole space.
+
+\exercise{2.8.21}{Subspace definitions and preserved dependence}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False as written.} The closure requirements must say
+\emph{for every $u,v\in H$, $u+v\in H$} and
+\emph{for every $u\in H$ and every scalar $c$, $cu\in H$}.
+Simply listing that some $u,v,u+v,cu$ are in $H$ is insufficient.
+For example $H=\{0,e_1,-e_1\}$ has zero and satisfies those listed facts
+with $u=v=0$, but $2e_1\notin H$.
+With the universal conditional quantifiers restored, the statement is
+exactly the correct subspace definition.
+\item \textbf{True.} $[v_1\ \cdots\ v_p]x$ is precisely a linear
+combination of the listed vectors, so its set of possible values is their span.
+\item \textbf{False.} There are $n$ unknowns, so the solution vectors
+have $n$ entries; the subspace is in $\R^n$, not generally $\R^m$.
+\item \textbf{True.} The IMT supplies both independence and spanning
+for the columns of an invertible $n\times n$ matrix.
+\item \textbf{True.} If row operations give $B=EA$ with invertible $E$,
+then $Ac=0$ if and only if $Bc=0$. Thus precisely the same coefficient
+vectors express dependencies among the corresponding columns.
+\end{enumerate}
+
+\exercise{2.8.22}{Distinguish spaces from their descriptions}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} $H=\{0,e_1\}$ contains zero but not $2e_1$,
+so it fails scalar closure.
+\item \textbf{False.} Pivot columns must be selected from $A$ itself.
+For example $A=\begin{bmatrix}0&0\\1&0\end{bmatrix}$ reduces to
+$B=\begin{bmatrix}1&0\\0&0\end{bmatrix}$. Its pivot column $e_1$
+is not in $\Col A=\Span\{e_2\}$.
+\item \textbf{True.} The set contains zero (all coefficients zero),
+and sums or scalar multiples of linear combinations are linear combinations.
+These are exactly the three subspace tests.
+\item \textbf{False.} Closure requires both added vectors in $H$.
+Take $H=\Span\{e_1\}\subset\R^2$, $x=0$, and $y=e_2$;
+then $x+y=e_2\notin H$.
+\item \textbf{False.} $\Col A$ is the set of right sides $b$ for which
+$Ax=b$ has a solution. It is not the set of solution inputs $x$ to one
+fixed equation; input and output spaces can even have different dimensions.
+\end{enumerate}
+
+\exercise{2.8.23}{Two pivot columns and two free variables}
+The given echelon form has pivots in columns 1 and 2.
+Therefore a column-space basis is
+\[
+ \mathcal C=\{(4,6,3)^T,(5,5,4)^T\},
+\]
+taken from the \emph{original} matrix.
+For $Ax=0$, the echelon equations are
+$x_1+2x_2+6x_3-5x_4=0$ and $x_2+5x_3-6x_4=0$.
+Set $x_3=s$, $x_4=t$; then $x_2=-5s+6t$ and $x_1=4s-7t$.
+Thus
+\[
+ x=s(4,-5,1,0)^T+t(-7,6,0,1)^T,
+\]
+and the two displayed coefficient vectors form a basis for $\Nul A$.
+They span because this is the general solution, and they are independent
+because their free coordinates $x_3,x_4$ force $s=t=0$ in a zero combination.
+
+\exercise{2.8.24}{A nonadjacent pair of pivot columns}
+The pivot columns are 1 and 3, so a basis for $\Col A$ is
+$\{(3,2,3)^T,(9,7,6)^T\}$.
+The echelon equations reduce to
+$x_3=-2x_4$ and $x_1-2x_2-6x_4=0$.
+Let $x_2=s$, $x_4=t$. Then
+\[
+ x=s(2,1,0,0)^T+t(6,0,-2,1)^T.
+\]
+The coefficient vectors form a null-space basis: they describe all solutions
+and their free-coordinate entries make them independent.
+
+\exercise{2.8.25}{Three pivot columns among five inputs}
+The echelon form has pivot columns 1,2,4. A column-space basis is
+\[
+ \{(1,-1,-2,3)^T,(4,2,2,6)^T,(-3,3,5,-5)^T\}.
+\]
+The three equations are
+$x_1+4x_2+8x_3+5x_5=0$,
+$2x_2+5x_3-x_5=0$, and $x_4+4x_5=0$.
+Taking $x_3=s$, $x_5=t$ gives
+$x_2=-5s/2+t/2$, $x_4=-4t$, $x_1=2s-7t$.
+Hence a basis for $\Nul A$ is
+\[
+ \{(2,-5/2,1,0,0)^T,(-7,1/2,0,-4,1)^T\}.
+\]
+Substituting either vector into the three echelon equations yields zero;
+independence follows from their third and fifth coordinates.
+
+\exercise{2.8.26}{Another three-pivot example}
+The pivot positions are in columns 1,2,4 of the original matrix.
+A column-space basis is
+\[
+ \{(3,3,0,6)^T,(-1,1,3,3)^T,(-1,0,-1,-2)^T\}.
+\]
+The echelon equations give
+$x_4=2x_5$, $x_2=-3x_3+2x_5$, and
+$3x_1-x_2-3x_3+6x_5=0$, so $x_1=-4x_5/3$.
+Thus a null-space basis is
+\[
+ \{(0,-3,1,0,0)^T,(-4/3,2,0,2,1)^T\}.
+\]
+The free variables are $x_3,x_5$; this explains both why there are two
+basis vectors and why they are independent.
+
+\exercise{2.8.27}{A column combination different from every column}
+Choose $A=I_3$ and $b=(1,1,0)^T$.
+Then $b=e_1+e_2=A(1,1,0)^T\in\Col A$, and $b\ne0$.
+It differs from each of $e_1,e_2,e_3$, the columns of $A$.
+Column space contains all combinations, not just the listed columns.
+
+\exercise{2.8.28}{Construct an unattainable output}
+Take $A=\operatorname{diag}(1,1,0)$ and $b=e_3$.
+Every output $Ax$ has third coordinate zero, whereas $b$ has third
+coordinate one. Hence $b\notin\Col A$.
+
+\exercise{2.8.29}{A nonzero input annihilated by a nonzero matrix}
+Take $A=\operatorname{diag}(1,0,0)$ and $b=e_2$.
+Both $A$ and $b$ are nonzero, but $Ab=0$, so $b\in\Nul A$.
+This does not violate any rule about scalars: nonzero matrices can annihilate
+nonzero vectors.
+
+\exercise{2.8.30}{Independent columns are already a basis for their own span}
+By definition $\Col A=\Span\{a_1,\ldots,a_p\}$, so the columns span
+this space. The given assumption supplies independence. These are exactly
+the two conditions for a basis, hence the columns are a basis for $\Col A$.
+No claim that the column space equals the whole codomain is needed.
+
+\exercise{2.8.31}{A proper column space of a square matrix}
+Since $\Col F\ne\R^5$, the $5\times5$ matrix is not onto.
+The IMT makes it singular, so $\Nul F$ contains a nonzero vector.
+It is a subspace of $\R^5$ and contains infinitely many vectors, since
+all real multiples of any nonzero null vector are distinct members.
+The exact size of a basis is not determined by the premise.
+
+\exercise{2.8.32}{Full column space in seven dimensions}
+$\Col B=\R^7$ says every $b$ is attained.
+Because $B$ is square, the IMT makes it invertible. Thus for every
+$b\in\R^7$, $Bx=b$ has exactly one solution, $B^{-1}b$.
+In particular $\Nul B=\{0\}$; there are no free variables.
+
+\exercise{2.8.33}{A trivial null space in six dimensions}
+The only homogeneous solution is zero, so the square matrix $C$ is
+invertible by the IMT. Therefore for every $b\in\R^6$ the equation
+$Cx=b$ has a unique solution $C^{-1}b$, and $\Col C=\R^6$.
+The conclusion would require qualification for a nonsquare matrix.
+
+\exercise{2.8.34}{A column basis of the entire codomain fixes the shape}
+Spanning $\R^m$ requires a pivot in every row, so there are $m$ pivots.
+Independence requires every column to be a pivot column, so there are
+$n$ pivots. Hence $m=n$: $A$ is square. It is then invertible by the
+IMT. Both basis requirements, rather than spanning alone, forced equality.
+
+\exercise{2.8.35}{A nontrivial null space implies a proper column space}
+The given nonzero null vector makes the $5\times5$ matrix singular.
+Therefore its column space is a proper subspace of $\R^5$ by the IMT.
+Some right sides are unattainable. Every attainable right side has
+infinitely many preimages: if $Bx=b$ and $Bz=0$ with $z\ne0$, then
+$B(x+tz)=b$ for every real $t$.
+
+\exercise{2.8.36}{Independent columns of a tall matrix}
+The four columns are independent, so $Cx=0$ has only $x=0$.
+Hence $\boxed{\Nul C=\{0\}\subseteq\R^4}$.
+Although there are six output coordinates, inputs and null vectors have
+four coordinates. The independent columns do not span $\R^6$, so not
+every right side is attained, despite uniqueness whenever one is attained.
+
+\exercise{2.8.37}{An exact computer-assisted pair of bases}
+Exact row reduction of the supplied matrix gives
+\[
+ R=\begin{bmatrix}
+ 1&0&5/2&-9/2&7/2\\0&1&3/2&-5/2&3/2\\
+ 0&0&0&0&0\\0&0&0&0&0
+ \end{bmatrix}.
+\]
+The pivot columns are 1 and 2, so
+$\{(3,-7,-5,3)^T,(-5,9,7,-7)^T\}$ is a column-space basis.
+For the null space, solve
+$x_1=-5x_3/2+9x_4/2-7x_5/2$ and
+$x_2=-3x_3/2+5x_4/2-3x_5/2$.
+Taking each free variable in turn equal to $2$ gives the integer basis
+\[
+ \{(-5,-3,2,0,0)^T,(9,5,0,2,0)^T,(-7,-3,0,0,2)^T\}.
+\]
+Scaling basis vectors by $2$ does not change their span or independence.
+These were checked by exact multiplication by the original $A$.
+A reproducible computation is \texttt{R,pivots=Matrix(A).rref()}
+in SymPy, followed by \texttt{Matrix(A).nullspace()}; the latter may
+return scalar multiples of the chosen vectors.
+
+\exercise{2.8.38}{Four pivot columns and one free coordinate}
+Exact row reduction gives
+\[
+ R=\begin{bmatrix}1&0&1&0&0\\0&1&-1&0&0\\0&0&0&1&0\\0&0&0&0&1\end{bmatrix}.
+\]
+Thus original columns 1,2,4,5 form a column-space basis. Explicitly they
+are the columns of
+\[
+ C=\begin{bmatrix}5&3&-6&-8\\4&1&-8&-7\\5&1&5&19\\-7&-5&8&5\end{bmatrix}.
+\]
+For $Rx=0$, $x_1=-x_3$, $x_2=x_3$, and $x_4=x_5=0$.
+Hence $\{(-1,1,1,0,0)^T\}$ is a basis for $\Nul A$.
+Multiplication by the original matrix checks the null vector, and the
+four pivot positions establish independence of the selected original columns.

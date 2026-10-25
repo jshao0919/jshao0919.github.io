@@ -1,0 +1,444 @@
+\section{The matrix of a linear transformation}
+For a linear map $T:\R^n\to\R^m$, its standard matrix is
+\[
+ A=[T(e_1)\ \cdots\ T(e_n)].
+\]
+The image of $e_j$ is column $j$, not row $j$. This works because
+$x=\sum_jx_je_j$ and linearity gives $T(x)=\sum_jx_jT(e_j)=Ax$.
+The map is one-to-one exactly when every column has a pivot, so
+$Ax=0$ has only the trivial solution. It is onto $\R^m$ exactly when
+every row has a pivot. One-to-one means at most one input for any
+output; onto means at least one input for every output in the codomain.
+For a composition, the transformation applied first corresponds to
+the matrix farther to the right in the product.
+
+\practice{1.9.P1}{A shear followed by reflection}
+The shear fixes $e_1$ and takes $e_2$ to $e_2-\tfrac12e_1$.
+Reflection across the $x_2$-axis negates the first coordinate and leaves
+the second unchanged. Thus the final images are
+$T(e_1)=(-1,0)^T$ and $T(e_2)=(1/2,1)^T$. Therefore
+\[
+ A=\begin{bmatrix}-1&1/2\\0&1\end{bmatrix}.
+\]
+We follow the image through both operations before making it a column.
+
+\exercise{1.9.1}{Put two four-coordinate images into columns}
+The domain has dimension two and the output has four coordinates.
+Use the two specified images in their stated order:
+\[
+ A=[T(e_1)\ T(e_2)]=
+ \begin{bmatrix}3&-5\\1&2\\3&0\\1&0\end{bmatrix}.
+\]
+Indeed its first column is $T(e_1)$ and its second is $T(e_2)$,
+which is enough to determine the linear map on every input.
+
+\exercise{1.9.2}{Three input coordinates and two output coordinates}
+There must be three columns and two rows. The standard matrix is
+\[
+ A=\begin{bmatrix}1&-2&3\\4&9&-8\end{bmatrix}.
+\]
+For example, the second column is the given image $(-2,9)^T$.
+Multiplying $A$ by any $(x_1,x_2,x_3)^T$ forms the required weighted
+combination of the three images.
+
+\exercise{1.9.3}{A vertical shear}
+The given images are $T(e_1)=e_1-3e_2=(1,-3)^T$ and
+$T(e_2)=e_2=(0,1)^T$. Hence
+\[
+ A=\begin{bmatrix}1&0\\-3&1\end{bmatrix},\qquad
+ T(x_1,x_2)=(x_1,x_2-3x_1).
+\]
+The horizontal coordinate stays fixed while the vertical coordinate
+changes in proportion to it.
+
+\exercise{1.9.4}{A horizontal shear}
+Here $T(e_1)=e_1$ and $T(e_2)=e_2+2e_1=(2,1)^T$.
+Thus
+\[
+ A=\begin{bmatrix}1&2\\0&1\end{bmatrix},\qquad
+ T(x_1,x_2)=(x_1+2x_2,x_2).
+\]
+This time the vertical coordinate stays fixed.
+
+\exercise{1.9.5}{A counterclockwise quarter turn}
+Rotation through $\pi/2$ takes $e_1$ to $e_2$ and $e_2$ to
+$-e_1$. Therefore
+\[
+ A=\begin{bmatrix}0&-1\\1&0\end{bmatrix}.
+\]
+The resulting rule $T(x_1,x_2)=(-x_2,x_1)$ agrees with both
+coordinate-vector images.
+
+\exercise{1.9.6}{A clockwise three-quarter turn}
+An angle of $-3\pi/2$ differs from $\pi/2$ by a full turn.
+Consequently the final coordinate-vector images are again
+$e_1\mapsto e_2$ and $e_2\mapsto-e_1$, giving
+\[
+ A=\begin{bmatrix}0&-1\\1&0\end{bmatrix}.
+\]
+The direction of travel is different, but the final transformation is the same.
+
+\exercise{1.9.7}{Rotate, then reflect}
+Rotation through $-3\pi/4$ has matrix
+\[
+ R=\frac1{\sqrt2}\begin{bmatrix}-1&1\\-1&-1\end{bmatrix}.
+\]
+Reflection across the horizontal axis negates the second output
+coordinate, so it changes the signs in the second row of $R$.
+Thus
+\[
+ A=\frac1{\sqrt2}\begin{bmatrix}-1&1\\1&1\end{bmatrix}.
+\]
+In particular the first column is $(-1/\sqrt2,1/\sqrt2)^T$, agreeing
+with the hint. The order is important: reflect the rotated image.
+
+\exercise{1.9.8}{Shear, then reflect across a sloping line}
+The shear is $S(x_1,x_2)=(x_1+2x_2,x_2)$.
+Reflection across $x_2=-x_1$ takes $(a,b)$ to $(-b,-a)$.
+Composing these two explicit rules gives
+\[
+ T(x_1,x_2)=(-x_2,-x_1-2x_2),\qquad
+ A=\begin{bmatrix}0&-1\\-1&-2\end{bmatrix}.
+\]
+The columns can also be checked by applying the two rules to $e_1,e_2$.
+
+\exercise{1.9.9}{Reflect, then rotate clockwise}
+The first step takes $(x_1,x_2)$ to $(x_1,-x_2)$.
+A clockwise quarter turn takes $(a,b)$ to $(b,-a)$. Hence the
+final image is $(-x_2,-x_1)$, and
+\[
+ A=\begin{bmatrix}0&-1\\-1&0\end{bmatrix}.
+\]
+Applying the two steps in the opposite order would produce a different map.
+
+\exercise{1.9.10}{Two reflections make a rotation}
+The horizontal reflection gives $(x_1,-x_2)$; reflection across
+$x_2=x_1$ exchanges its coordinates. Thus
+\[
+ T(x_1,x_2)=(-x_2,x_1),\qquad
+ A=\begin{bmatrix}0&-1\\1&0\end{bmatrix}.
+\]
+The result is a counterclockwise quarter turn.
+
+\exercise{1.9.11}{Reflect across the two coordinate axes}
+After horizontal reflection, $(x_1,x_2)$ becomes $(x_1,-x_2)$.
+Vertical reflection then gives $(-x_1,-x_2)$. The standard matrix
+is $-I_2$, whose columns are $-e_1,-e_2$. A rotation by $\pi$
+radians has the same two images, so it is the same linear transformation.
+\answer{A half turn, through $\pi$ radians (equivalently $-\pi$).}
+
+\exercise{1.9.12}{Identify the angle from the coordinate-vector images}
+Exercise 10 gives $e_1\mapsto e_2$, $e_2\mapsto-e_1$.
+These are precisely the images under counterclockwise rotation by
+$\pi/2$. Since a linear map is determined by its values on the
+standard coordinate vectors, the two transformations agree on every vector.
+\answer{The rotation angle is $\pi/2$ modulo $2\pi$.}
+
+\exercise{1.9.13}{Draw a weighted sum of the two column images}
+The vector $(2,1)^T$ equals $2e_1+e_2$, so linearity gives
+\[
+ T(2,1)^T=2T(e_1)+T(e_2).
+\]
+Take two copies of the up-left arrow $T(e_1)$, followed head to tail
+by one copy of the up-right arrow $T(e_2)$. The final arrow from
+zero ends high above the origin and slightly to its right. The
+following schematic preserves the source directions; the exact
+statement is the linear-combination formula, since the source gives
+no numerical coordinates for these image vectors.
+
+\begin{center}\setlength{\unitlength}{1mm}
+\begin{picture}(140,90)
+\put(5,15){\vector(1,0){128}}
+\put(55,5){\vector(0,1){78}}
+\put(132,10){$x_1$}\put(57,82){$x_2$}
+\put(51,10){\scriptsize$0$}
+{\color{black}\linethickness{0.8pt}\put(55,15){\vector(-5,2){28}}}
+\put(7,28.2){\makebox(0,0)[l]{\small$T(e_1)$}}
+{\color{black}\linethickness{0.8pt}\put(55,15){\vector(9,2){63}}}
+\put(120,31){\makebox(0,0)[l]{\small$T(e_2)$}}
+{\color{blue}\linethickness{0.8pt}\put(55,15){\vector(5,26){7}}}
+\put(64,53.4){\makebox(0,0)[l]{\small$T(2,1)$}}
+\end{picture}\end{center}
+
+
+\exercise{1.9.14}{Subtract twice the second column}
+The product $A(1,-2)^T$ is $a_1-2a_2$. Reverse the
+up-right/down-right source arrow $a_2$ and double its length,
+then attach it at the tip of $a_1$. The resultant points up and to
+the left. This construction uses the original columns as vectors,
+not their lengths alone. A schematic is shown below.
+
+\begin{center}\setlength{\unitlength}{1mm}
+\begin{picture}(130,90)
+\put(5,25){\vector(1,0){118}}
+\put(65,5){\vector(0,1){78}}
+\put(122,20){$x_1$}\put(67,82){$x_2$}
+\put(61,20){\scriptsize$0$}
+{\color{black}\linethickness{0.8pt}\put(65,25){\vector(1,2){14}}}
+\put(81,55){\makebox(0,0)[l]{\small$a_1$}}
+{\color{black}\linethickness{0.8pt}\put(65,25){\vector(3,-1){21}}}
+\put(88,20){\makebox(0,0)[l]{\small$a_2$}}
+{\color{blue}\linethickness{0.8pt}\put(65,25){\vector(-2,3){28}}}
+\put(13,70){\makebox(0,0)[l]{\small$a_1-2a_2$}}
+\end{picture}\end{center}
+
+
+\exercise{1.9.15}{Read each coefficient into the correct row and column}
+
+Each output coordinate becomes one row. In that row, use the coefficients of $x_1,x_2,\ldots$ in order, inserting $0$ for a missing variable. This gives
+\[ A=\begin{bmatrix}2 & -4 & 0\\1 & 0 & -1\\0 & -1 & 3\end{bmatrix}.\]
+
+Indeed direct row-by-column multiplication yields
+\[ Ax=\begin{bmatrix}2 x_{1} - 4 x_{2}\\x_{1} - x_{3}\\- x_{2} + 3 x_{3}\end{bmatrix}.\]
+
+The identity is required for \emph{all} inputs, so these coefficients are forced; one numerical input would not be enough to determine all the entries.
+
+
+\exercise{1.9.16}{Read each coefficient into the correct row and column}
+
+Each output coordinate becomes one row. In that row, use the coefficients of $x_1,x_2,\ldots$ in order, inserting $0$ for a missing variable. This gives
+\[ A=\begin{bmatrix}3 & -2\\1 & 4\\0 & 1\end{bmatrix}.\]
+
+Indeed direct row-by-column multiplication yields
+\[ Ax=\begin{bmatrix}3 x_{1} - 2 x_{2}\\x_{1} + 4 x_{2}\\x_{2}\end{bmatrix}.\]
+
+The identity is required for \emph{all} inputs, so these coefficients are forced; one numerical input would not be enough to determine all the entries.
+
+
+\exercise{1.9.17}{Read each coefficient into the correct row and column}
+
+Each output coordinate becomes one row. In that row, use the coefficients of $x_1,x_2,\ldots$ in order, inserting $0$ for a missing variable. This gives
+\[ A=\begin{bmatrix}1 & 2 & 0 & 0\\0 & 0 & 0 & 0\\0 & 2 & 0 & 1\\0 & 1 & 0 & -1\end{bmatrix}.\]
+
+Indeed direct row-by-column multiplication yields
+\[ Ax=\begin{bmatrix}x_{1} + 2 x_{2}\\0\\2 x_{2} + x_{4}\\x_{2} - x_{4}\end{bmatrix}.\]
+
+This is exactly the stated rule $T(x)$, so $T$ is a matrix transformation and therefore linear. For any $u,v,c,d$, $A(cu+dv)=cAu+dAv$ verifies the definition.
+
+
+\exercise{1.9.18}{Read each coefficient into the correct row and column}
+
+Each output coordinate becomes one row. In that row, use the coefficients of $x_1,x_2,\ldots$ in order, inserting $0$ for a missing variable. This gives
+\[ A=\begin{bmatrix}1 & 4\\0 & 0\\1 & -3\\1 & 0\end{bmatrix}.\]
+
+Indeed direct row-by-column multiplication yields
+\[ Ax=\begin{bmatrix}x_{1} + 4 x_{2}\\0\\x_{1} - 3 x_{2}\\x_{1}\end{bmatrix}.\]
+
+This is exactly the stated rule $T(x)$, so $T$ is a matrix transformation and therefore linear. For any $u,v,c,d$, $A(cu+dv)=cAu+dAv$ verifies the definition.
+
+
+\exercise{1.9.19}{Read each coefficient into the correct row and column}
+
+Each output coordinate becomes one row. In that row, use the coefficients of $x_1,x_2,\ldots$ in order, inserting $0$ for a missing variable. This gives
+\[ A=\begin{bmatrix}1 & -5 & 4\\0 & 1 & -6\end{bmatrix}.\]
+
+Indeed direct row-by-column multiplication yields
+\[ Ax=\begin{bmatrix}x_{1} - 5 x_{2} + 4 x_{3}\\x_{2} - 6 x_{3}\end{bmatrix}.\]
+
+This is exactly the stated rule $T(x)$, so $T$ is a matrix transformation and therefore linear. For any $u,v,c,d$, $A(cu+dv)=cAu+dAv$ verifies the definition.
+
+
+\exercise{1.9.20}{Read each coefficient into the correct row and column}
+
+Each output coordinate becomes one row. In that row, use the coefficients of $x_1,x_2,\ldots$ in order, inserting $0$ for a missing variable. This gives
+\[ A=\begin{bmatrix}3 & 0 & 4 & -2\end{bmatrix}.\]
+
+Indeed direct row-by-column multiplication yields
+\[ Ax=\begin{bmatrix}3 x_{1} + 4 x_{3} - 2 x_{4}\end{bmatrix}.\]
+
+This is exactly the stated rule $T(x)$, so $T$ is a matrix transformation and therefore linear. For any $u,v,c,d$, $A(cu+dv)=cAu+dAv$ verifies the definition.
+
+
+\exercise{1.9.21}{Find the input producing two prescribed coordinates}
+The equations are $x_1+x_2=3$ and $4x_1+5x_2=8$.
+Subtract four times the first from the second: $x_2=-4$.
+Substitute into the first: $x_1=3-(-4)=7$.
+A check gives $T(7,-4)=(7-4,28-20)=(3,8)$.
+\answer{$x=(7,-4)^T$. The elimination determines both variables uniquely.}
+
+\exercise{1.9.22}{Check all three output coordinates}
+From $2x_1-x_2=0$, obtain $x_2=2x_1$. The second equation
+$-3x_1+x_2=-1$ then becomes $-x_1=-1$, so $x_1=1$ and
+$x_2=2$. The third equation must still be checked:
+$2(1)-3(2)=-4$, as required.
+\answer{$x=(1,2)^T$. The third equation is consistent with the values
+forced by the first two.}
+
+\exercise{1.9.23}{What coordinate-vector images determine}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} Every $x\in\R^n$ is $\sum_jx_je_j$, so linearity
+determines $T(x)$ from all the images $T(e_j)$.
+\item \textbf{True.} The rotation matrix
+$\begin{bmatrix}\cos\phi&-\sin\phi\\\sin\phi&\cos\phi\end{bmatrix}$
+implements the stated rotation, and multiplication by a matrix is linear.
+\item \textbf{False.} A composition of linear maps is always linear:
+$T(S(cu+dv))=T(cS(u)+dS(v))=cT(S(u))+dT(S(v))$.
+\item \textbf{False.} Every map with that codomain sends each input
+somewhere in $\R^m$, whether or not it is onto. Onto means every
+\emph{output} in $\R^m$ is reached by some input. The zero map to
+$\R$ is a counterexample to the claimed implication.
+\item \textbf{False.} The $3\times2$ matrix with columns $e_1,e_2$
+in $\R^3$ has independent columns, so its map is one-to-one.
+Having more output coordinates than input coordinates does not obstruct injectivity.
+\end{enumerate}
+
+\exercise{1.9.24}{Distinguish being a function from being one-to-one}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} A $4\times3$ matrix has at most three pivots,
+so it cannot have a pivot in all four rows. Its columns cannot span $\R^4$.
+\item \textbf{True.} The matrix with columns $T(e_j)$ implements any
+linear map between the stated coordinate spaces.
+\item \textbf{True.} This is exactly the column construction of the standard matrix.
+\item \textbf{False.} Having one output for each input merely says
+$T$ is a function. One-to-one requires different inputs to give different
+outputs. The zero map has a unique output at every input but is not one-to-one
+on a nontrivial domain.
+\item \textbf{False.} A horizontal shear has matrix
+$\begin{bmatrix}1&k\\0&1\end{bmatrix}$, with nonzero shear amount $k$.
+The displayed diagonal matrices instead change signs of coordinate axes.
+\end{enumerate}
+
+\exercise{1.9.25}{An unused input coordinate and a zero output coordinate}
+For the map in Exercise 17, the third column is zero, so
+$T(e_3)=0=T(0)$ with $e_3\ne0$. Thus it is \textbf{not one-to-one}.
+The second output coordinate is always zero, so the vector
+$(0,1,0,0)^T$ is never attained. Therefore it is also \textbf{not onto $\R^4$}.
+These two failures concern different sides of the same matrix: a zero
+column creates nonuniqueness, and a zero row here prevents some outputs.
+
+\exercise{1.9.26}{A wide matrix can be onto but not one-to-one}
+The matrix in Exercise 2 is
+$\begin{bmatrix}1&-2&3\\4&9&-8\end{bmatrix}$.
+Replacing $R_2$ by $R_2-4R_1$ gives
+$\begin{bmatrix}1&-2&3\\0&17&-20\end{bmatrix}$.
+There is a pivot in both rows, so the map is \textbf{onto $\R^2$}.
+But three columns and only two pivots leave a free variable, so it
+is \textbf{not one-to-one}. For example $(-11,20,17)^T$ is a nonzero
+input sent to zero, as substitution verifies.
+
+\exercise{1.9.27}{Two pivot rows with one free variable}
+For Exercise 19, the matrix
+$\begin{bmatrix}1&-5&4\\0&1&-6\end{bmatrix}$ is already in echelon form.
+Its two nonzero rows each have a pivot, making the map \textbf{onto $\R^2$}.
+The homogeneous equations yield $x_2=6x_3$ and $x_1=26x_3$,
+so $(26,6,1)^T$ is a nonzero input sent to zero. Hence the map is
+\textbf{not one-to-one}.
+
+\exercise{1.9.28}{Use the geometry of two column directions}
+In Exercise 14 the vectors $a_1$ and $a_2$ are nonzero and not
+parallel: the first points up-right and the second down-right.
+They are therefore independent, giving two pivot columns. In a
+$2\times2$ matrix those are also two pivot rows. Thus the map is
+\textbf{one-to-one and onto $\R^2$}. Equivalently, the two independent
+column directions span the whole plane, and each combination has
+unique coefficients.
+
+\exercise{1.9.29}{A tall one-to-one matrix}
+For $T:\R^3\to\R^4$ to be one-to-one, its $4\times3$ matrix
+must have a pivot in every column. The sole echelon pattern is
+\[
+ \begin{bmatrix}p&*&*\\0&q&*\\0&0&r\\0&0&0\end{bmatrix},
+ \qquad p,q,r\ne0.
+\]
+The last row must be zero because the three available pivots occupy
+the first three nonzero rows.
+
+\exercise{1.9.30}{Every full-row-rank three-by-four echelon pattern}
+Onto $\R^3$ requires three pivots, one in each row. They can
+occupy any three of the four columns, subject to moving right
+as one moves down. Thus the possible patterns are
+\[
+ \begin{bmatrix}p&*&*&*\\0&q&*&*\\0&0&r&*\end{bmatrix},\qquad
+ \begin{bmatrix}p&*&*&*\\0&q&*&*\\0&0&0&r\end{bmatrix},
+\]
+\[
+ \begin{bmatrix}p&*&*&*\\0&0&q&*\\0&0&0&r\end{bmatrix},\qquad
+ \begin{bmatrix}0&p&*&*\\0&0&q&*\\0&0&0&r\end{bmatrix},
+ \qquad p,q,r\ne0.
+\]
+Here $*$ denotes any entry. There are no additional patterns, because
+there are exactly four ways to choose three pivot columns out of four.
+
+\exercise{1.9.31}{Count columns for injectivity}
+The blank is $\boxed{n}$. One-to-one is equivalent to $Ax=0$
+having only zero as a solution. With $n$ variables, this happens
+exactly when none is free, that is, when all $n$ columns are pivot columns.
+Conversely any missing column pivot leaves a free variable and thus
+a nonzero input with the same image as zero.
+
+\exercise{1.9.32}{Count rows for surjectivity}
+The blank is $\boxed{m}$. Theorem 12 says onto is equivalent to
+columns spanning $\R^m$. Theorem 4 in Section 1.4 says this is
+equivalent to a pivot in every row. There are $m$ rows, so there
+must be $m$ pivots and hence $m$ pivot columns. A row without a pivot
+would allow an inconsistent target after row reduction.
+
+\exercise{1.9.33}{The standard matrix is unique}
+Suppose $T(x)=Ax=Bx$ for every $x\in\R^n$. Substitute $x=e_j$.
+The vector $Ae_j$ is column $j$ of $A$ and $Be_j$ is column $j$
+of $B$. Both equal $T(e_j)$, so these columns agree for every
+$j=1,\ldots,n$. Matrices with identical corresponding columns are
+identical, proving $A=B$. Equality on just a single nonbasis input
+would not imply equality of all columns.
+
+\exercise{1.9.34}{A composition preserves both operations}
+Take $u,v\in\R^p$ and scalars $c,d$. Linearity of $S$ first gives
+$S(cu+dv)=cS(u)+dS(v)$, where the two image vectors lie in
+$\R^n$, the domain of $T$. Applying linearity of $T$ then gives
+\[
+ T(S(cu+dv))=T(cS(u)+dS(v))=cT(S(u))+dT(S(v)).
+\]
+This is the combined linearity criterion for $T\circ S$ on $\R^p$,
+with outputs in $\R^m$. The domain matching is what makes the composition defined.
+
+\exercise{1.9.35}{Compare input and output dimensions}
+If $T$ is onto, its $m\times n$ matrix has $m$ pivot rows,
+so it needs at least $m$ columns: $\boxed{m\le n}$.
+If it is one-to-one, the matrix has $n$ pivot columns and therefore
+needs at least $n$ rows: $\boxed{n\le m}$.
+If both properties hold, both inequalities force $m=n$. These are
+necessary dimension conditions, not sufficient ones; even a square
+zero matrix has neither property in positive dimension.
+
+\exercise{1.9.36}{Onto asks for the existence of a preimage}
+Saying $T$ is onto means: for \emph{every} $b$ in the codomain,
+there \emph{exists} an input $x$ with $T(x)=b$. Thus it asks
+whether each target can be reached at all. It does not require that
+such an input be unique. A wide full-row-rank matrix can be onto
+while each target has infinitely many preimages.
+
+
+\exercise{1.9.37}{Use exact reduction to test the requested property}
+
+The source matrix and its exact reduced echelon form are
+\[ A=\begin{bmatrix}-5 & 6 & -5 & -6\\8 & 3 & -3 & 8\\2 & 9 & 5 & -12\\-3 & 2 & 7 & -12\end{bmatrix},\]
+\[ \operatorname{rref}(A)=\begin{bmatrix}1 & 0 & 0 & 1\\0 & 1 & 0 & -1\\0 & 0 & 1 & -1\\0 & 0 & 0 & 0\end{bmatrix}.\]
+
+There are only three pivots in four columns. Taking the free variable $x_4=1$ gives the nonzero solution $x=\begin{bmatrix}-1\\1\\1\\1\end{bmatrix}$ of $Ax=0$. Direct multiplication verifies this relation. Hence $T$ is not one-to-one.
+
+
+\exercise{1.9.38}{Use exact reduction to test the requested property}
+
+The source matrix and its exact reduced echelon form are
+\[ A=\begin{bmatrix}7 & 5 & 9 & -9\\5 & 6 & 4 & -4\\4 & 8 & 0 & 7\\-6 & -6 & 6 & 5\end{bmatrix},\]
+\[ \operatorname{rref}(A)=\begin{bmatrix}1 & 0 & 0 & 0\\0 & 1 & 0 & 0\\0 & 0 & 1 & 0\\0 & 0 & 0 & 1\end{bmatrix}.\]
+
+Every one of the four columns has a pivot, so $Ax=0$ forces $x=0$. Thus $T$ is one-to-one. Since there is also a pivot in every row, this particular map is onto as well, although injectivity is the requested property.
+
+
+\exercise{1.9.39}{Use exact reduction to test the requested property}
+
+The source matrix and its exact reduced echelon form are
+\[ A=\begin{bmatrix}4 & -7 & 3 & 7 & 5\\6 & -8 & 5 & 12 & -8\\-7 & 10 & -8 & -9 & 14\\3 & -5 & 4 & 2 & -6\\-5 & 6 & -6 & -7 & 3\end{bmatrix},\]
+\[ \operatorname{rref}(A)=\begin{bmatrix}1 & 0 & 0 & 5 & 0\\0 & 1 & 0 & 1 & 0\\0 & 0 & 1 & -2 & 0\\0 & 0 & 0 & 0 & 1\\0 & 0 & 0 & 0 & 0\end{bmatrix}.\]
+
+There are four pivots and five rows. The zero row in the reduced coefficient matrix means there is not a pivot in every row, so the columns cannot span $\R^5$. Therefore $T$ does not map $\R^5$ onto $\R^5$.
+
+
+\exercise{1.9.40}{Use exact reduction to test the requested property}
+
+The source matrix and its exact reduced echelon form are
+\[ A=\begin{bmatrix}9 & 43 & 5 & 6 & -1\\14 & 15 & -7 & -5 & 4\\-8 & -6 & 12 & -5 & -9\\-5 & -6 & -4 & 9 & 8\\13 & 14 & 15 & 3 & 11\end{bmatrix},\]
+\[ \operatorname{rref}(A)=\begin{bmatrix}1 & 0 & 0 & 0 & 0\\0 & 1 & 0 & 0 & 0\\0 & 0 & 1 & 0 & 0\\0 & 0 & 0 & 1 & 0\\0 & 0 & 0 & 0 & 1\end{bmatrix}.\]
+
+There is a pivot in every one of the five rows. Appending any right-hand side cannot create an inconsistent zero-coefficient row, so $Ax=b$ is solvable for every $b\in\R^5$. Thus $T$ maps $\R^5$ onto $\R^5$; it is also one-to-one because every column has a pivot.

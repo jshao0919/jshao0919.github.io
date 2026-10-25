@@ -1,0 +1,326 @@
+\section{Polytopes}
+A polytope is the convex hull of finitely many points. Its minimal
+representation consists exactly of its extreme points, or vertices.
+For a linear functional, the value at a convex combination is the same
+combination of the values at its generators. Hence its maximum is the
+largest generator value; the full maximizing set is the convex hull of
+\emph{all} generators tying for that largest value. The analogous statement
+holds for minima. A $k$-face has dimension $k$; vertices have dimension zero,
+edges dimension one, and facets of an $n$-polytope dimension $n-1$.
+
+\practice{8.5.P1}{Turn five inequalities into a vertex list}
+In the first quadrant the constraints are
+$x+3y\le12$, $x+2y\le9$, $2x+y\le12$.
+The axis vertices are $(0,0),(6,0),(0,4)$, obtained by imposing the most
+restrictive intercept on each axis. Pairwise boundary intersections are
+$(3,3),(5,2),(24/5,12/5)$. The last violates $x+2y\le9$, because
+$24/5+24/5=48/5>9$. The first two pass the remaining inequalities.
+Thus the minimal representation is
+\[
+ P=\operatorname{conv}\{(0,0),(6,0),(5,2),(3,3),(0,4)\}.
+\]
+Each retained point is a genuine corner of the feasible polygon; no retained
+point is a convex combination of the others. The printed final sentence
+calls these ``three'' vertices while listing five; there are five.
+
+\exercise{8.5.1}{All maximizers of three functionals on a triangle}
+At $p_1=(1,0),p_2=(2,3),p_3=(-1,2)$, the functional values are
+\[
+ \begin{array}{c|rrr|c|l}
+ &p_1&p_2&p_3&\max&\text{all maximizing points}\\\hline
+ x-y&1&-1&-3&1&p_1\\
+ x+y&1&5&1&5&p_2\\
+ -3x+y&-3&-3&5&5&p_3
+ \end{array}
+\]
+These respectively answer (a), (b), (c). To justify completeness, write
+$x=\sum_i\lambda_ip_i$ with nonnegative coefficients of sum one.
+If a positive coefficient were attached to a vertex with value below the
+maximum, their weighted average would be strictly below that maximum.
+Here each maximum occurs at just one vertex, so no other point can attain it.
+
+\exercise{8.5.2}{Two maximizing edges}
+For $p_1=(0,-1),p_2=(2,1),p_3=(1,2)$, evaluation gives
+\[
+ \begin{array}{c|rrr|c|l}
+ &p_1&p_2&p_3&\max&\text{all maximizing points}\\\hline
+ x+y&-1&3&3&3&\operatorname{conv}\{p_2,p_3\}\\
+ x-y&1&1&-1&1&\operatorname{conv}\{p_1,p_2\}\\
+ -2x+y&-1&-3&0&0&p_3
+ \end{array}
+\]
+In each tied case every point on the listed edge has the same value by
+linearity. A convex combination involving the lower-value vertex with
+positive weight has smaller value, so the whole maximizing set is exactly that edge.
+
+\exercise{8.5.3}{Minima for the first triangle}
+Use the values from Exercise 8.5.1 and select the smallest in each row.
+For (a), the minimum of $x-y$ is $-3$, attained only at $p_3$.
+For (b), the minimum of $x+y$ is $1$, attained at every point of the edge
+$\operatorname{conv}\{p_1,p_3\}$ and nowhere else.
+For (c), the minimum of $-3x+y$ is $-3$, attained exactly on
+$\operatorname{conv}\{p_1,p_2\}$.
+The weighted-average argument used for maxima also proves these sets contain all minimizers.
+
+\exercise{8.5.4}{Minima for the second triangle}
+From the values in Exercise 8.5.2:
+(a) $x+y$ has minimum $-1$ only at $p_1$;
+(b) $x-y$ has minimum $-1$ only at $p_3$;
+(c) $-2x+y$ has minimum $-3$ only at $p_2$.
+No other point can attain one of these strict vertex minima, because a
+combination using another vertex would increase the weighted average.
+
+\exercise{8.5.5}{A polygon bounded by two sloping lines}
+The inequalities are $x+2y\le10$, $3x+y\le15$, $x,y\ge0$.
+The axis endpoints are $(5,0)$ and $(0,5)$. Solve both boundary equations:
+substitute $y=15-3x$ into the first, obtaining $x+30-6x=10$,
+so $x=4,y=3$. This intersection is in the first quadrant.
+Together with the origin these are all corners:
+\[
+ P=\operatorname{conv}\{(0,0),(5,0),(4,3),(0,5)\}.
+\]
+Each corner is the meeting point of two boundary lines of the feasible
+polygon, and each lies on its boundary with a change in direction, so none
+is redundant in the minimal representation.
+
+\exercise{8.5.6}{Another two-constraint polygon}
+Here $2x+3y\le18$, $4x+y\le16$, $x,y\ge0$.
+The axis endpoints are $(4,0),(0,6)$.
+The two sloping boundaries intersect where $y=16-4x$ and
+$2x+3(16-4x)=18$, giving $x=3,y=4$.
+Thus
+\[
+ P=\operatorname{conv}\{(0,0),(4,0),(3,4),(0,6)\}.
+\]
+All listed points satisfy all constraints and are the successive corners
+of the feasible polygon, hence give its minimal representation.
+
+\exercise{8.5.7}{Three boundaries meet at one corner}
+The constraints are $x+3y\le18$, $x+y\le10$, $4x+y\le28$,
+with nonnegative coordinates. The restrictive axis intercepts are $(7,0)$
+and $(0,6)$. Solving any pair of the sloping equalities gives the same
+point $(6,4)$, which satisfies all three with equality.
+Hence there is only one non-axis corner, not three:
+\[
+ P=\operatorname{conv}\{(0,0),(7,0),(6,4),(0,6)\}.
+\]
+The inequality $x+y\le10$ touches this corner but introduces no new vertex.
+
+\exercise{8.5.8}{A redundant inequality}
+The constraints are $2x+y\le8$, $x+y\le6$, $x+2y\le7$,
+with $x,y\ge0$. Their restrictive axis endpoints are $(4,0),(0,7/2)$.
+The first and third boundaries meet at $(3,2)$, which satisfies $x+y\le6$.
+The intersections with the middle boundary are $(2,4)$ and $(5,1)$;
+they violate respectively $x+2y\le7$ and $2x+y\le8$ and must be discarded.
+Therefore
+\[
+ P=\operatorname{conv}\{(0,0),(4,0),(3,2),(0,7/2)\}.
+\]
+The discarded points are intersections of boundary lines, but they are
+not feasible and therefore cannot be vertices of this polytope.
+
+\exercise{8.5.9}{An extreme point that is not an exposed vertex}
+Let $D=\{(x,y):x^2+(y-1)^2\le1\}$ and
+$K=\operatorname{conv}(D\cup\{(3,0)\})$.
+Every point of $K$ has $y\ge0$, and its points with $y=0$ form precisely
+the segment $[(0,0),(3,0)]$. Indeed the disk itself touches $y=0$ only
+at the origin.
+If the origin were a strict convex combination of two distinct points in
+$K$, their nonnegative heights would both have to be zero. Their
+nonnegative horizontal coordinates on that segment could then average to
+zero only if both points were the origin. Thus the origin is extreme.
+However, the only supporting line to the disk at the origin is its tangent
+$y=0$. Any supporting line to $K$ there must also support the contained
+disk, so it must be that same line. It intersects $K$ in the whole segment
+to $(3,0)$, not in a singleton.
+\answer{The origin is extreme but is not a vertex in the section's
+supporting-hyperplane (zero-dimensional exposed-face) sense.}
+
+\exercise{8.5.10}{A closed unbounded counterexample to profile generation}
+Take the ray $S=\{(x,0):x\ge0\}$. It is closed and convex.
+Its origin is extreme, while every point with $x>0$ is the midpoint of
+two other ray points. Thus its profile is $\{(0,0)\}$.
+The convex hull of that profile is just the singleton, not the whole ray.
+This shows why closedness without boundedness is insufficient.
+
+\exercise{8.5.11}{A bounded but nonclosed counterexample}
+Take the half-open segment $S=\{(x,0):0\le x<1\}$.
+It is bounded and convex. Its profile is again just the origin, since
+any other point has two distinct nearby points on either side inside the segment.
+The hull of the nonempty profile is a singleton, not $S$.
+This time the missing hypothesis is closedness.
+
+\exercise{8.5.12}{Face counts for simplices}
+\step{(a) Count the faces of the five-simplex.}
+A five-simplex has six vertices; each $k$-face is determined by choosing
+$k+1$ of them. Thus its counts for $k=0,1,2,3,4$ are
+$6,15,20,15,6$. Their alternating sum is $6-15+20-15+6=2$,
+equal to $1+(-1)^4$, as Euler's formula requires.
+\step{(b) Display the pattern and explain it.}
+\[
+ \begin{array}{c|rrrrr}
+ n\backslash k&0&1&2&3&4\\\hline
+ 1&2&-&-&-&-\\2&3&3&-&-&-\\3&4&6&4&-&-\\
+ 4&5&10&10&5&-\\5&6&15&20&15&6
+ \end{array}
+\]
+The general formula is $f_k(S^n)=\binom{n+1}{k+1}$ for $0\le k\le n-1$.
+Affine independence ensures that each chosen $k+1$ vertices defines a
+$k$-simplex face and that different subsets give different faces.
+Dashes denote dimensions not belonging to the list of proper faces.
+
+\exercise{8.5.13}{Face counts for hypercubes}
+\step{(a) Count a five-cube and check Euler.}
+Choose $k$ coordinates allowed to vary and fix each remaining coordinate
+at either endpoint. Thus $f_k(C^n)=2^{n-k}\binom nk$.
+For $n=5$ the counts are $32,80,80,40,10$;
+$32-80+80-40+10=2=1+(-1)^4$.
+\step{(b) The requested chart.}
+\[
+ \begin{array}{c|rrrrr}
+ n\backslash k&0&1&2&3&4\\\hline
+ 1&2&-&-&-&-\\2&4&4&-&-&-\\3&8&12&6&-&-\\
+ 4&16&32&24&8&-\\5&32&80&80&40&10
+ \end{array}
+\]
+The coordinate-choice argument proves the formula, rather than only
+predicting it from these few values.
+
+\exercise{8.5.14}{Crosspolytopes in increasing dimensions}
+\step{(a) Draw the first two cases.}
+$X^1$ is the segment joining $-v_1$ to $v_1$.
+$X^2$ is the parallelogram with successive vertices
+$v_1,v_2,-v_1,-v_2$. Below are representatives using standard-coordinate
+generators; an invertible linear change gives the analogous pictures for
+any independent generators.
+\begin{center}\setlength{\unitlength}{1mm}
+\begin{picture}(125,40)
+\put(5,20){\line(1,0){40}}\put(5,20){\circle*{1.3}}\put(45,20){\circle*{1.3}}
+\put(1,14){$-v_1$}\put(42,14){$v_1$}\put(22,25){$X^1$}
+\put(85,20){\polyline(18,0)(0,16)(-18,0)(0,-16)(18,0)}
+\put(106,19){$v_1$}\put(83,37){$v_2$}\put(56,19){$-v_1$}\put(82,0){$-v_2$}
+\end{picture}\end{center}
+\step{(b) The three-dimensional case.}
+There are $6$ vertices, $12$ edges, and $8$ triangular facets.
+The standard-coordinate version is a regular octahedron; for arbitrary
+independent generators it is a linearly distorted octahedron with the same face counts.
+\step{(c) The four-dimensional case.}
+Its counts are $8,24,32,16$. The alternating sum is
+$8-24+32-16=0=1+(-1)^3$, as required.
+\step{(d) Explain the general formula.}
+A proper face selects $k+1$ of the $n$ opposite vertex pairs, and selects
+one sign from each selected pair; both opposite vertices cannot belong to
+one proper face. These choices give
+\[
+ f_k(X^n)=2^{k+1}\binom n{k+1},\qquad0\le k\le n-1.
+\]
+Every such selection is a simplex face: for the standard crosspolytope a
+supporting functional assigning the selected signed coordinates value one
+and all other coordinate coefficients zero exposes exactly that face.
+Linear equivalence preserves the face structure for general independent generators.
+
+\exercise{8.5.15}{Face counts for a pyramid}
+Let the $(n-1)$-dimensional base be $Q$ and the apex lie outside its affine hull.
+\step{(a) Vertices.}
+All base vertices remain vertices and the apex adds one, so
+$f_0(P^n)=f_0(Q)+1$.
+\step{(b) Intermediate dimensions.}
+A $k$-face not containing the apex is a $k$-face of $Q$.
+A $k$-face containing the apex is the pyramid over a $(k-1)$-face of $Q$.
+Thus $f_k(P^n)=f_k(Q)+f_{k-1}(Q)$ for $1\le k\le n-2$.
+\step{(c) Facets.}
+There is one base facet $Q$; each of its $(n-2)$-faces joined to the apex
+gives a side facet. Therefore $f_{n-1}(P^n)=1+f_{n-2}(Q)$, for $n\ge2$.
+These types are disjoint and cover every face of a pyramid.
+
+\exercise{8.5.16}{Four statements about profiles and simplices}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} This is the definition of a polytope.
+\item \textbf{True.} An extreme point cannot lie strictly between two
+other points of the convex set. If $p\in uv$ and $p\ne u$, it must equal $v$.
+\item \textbf{False.} Compactness is necessary in the profile theorem;
+the ray in Exercise 8.5.10 is a counterexample.
+\item \textbf{True.} A four-simplex has five vertices; omit one at a
+time to obtain its five facets, each a three-simplex, or tetrahedron.
+\end{enumerate}
+
+\exercise{8.5.17}{Four more statements about faces}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} A three-dimensional cube has six square facets.
+\item \textbf{True.} For polytopes the minimal-representation theorem
+identifies extreme points with vertices. The distinction seen for a nonpolytope
+in Exercise 8.5.9 does not occur for polytopes.
+\item \textbf{False.} A maximizing point need not itself be extreme.
+On the square $[-1,1]^2$, $f(x,y)=x$ is maximal at $(1,0)$, the midpoint
+of the edge joining $(1,-1)$ and $(1,1)$.
+\item \textbf{True.} A two-dimensional polytope is a polygon; each edge
+joins successive vertices around its boundary, giving equally many vertices and edges.
+\end{enumerate}
+
+\exercise{8.5.18}{Removing an extreme point preserves convexity}
+Suppose $v$ is extreme and $x,y\in S\setminus\{v\}$.
+Their segment lies in $S$ by convexity and cannot pass through $v$ in its
+interior, by extremality; neither endpoint is $v$. Thus the whole segment
+lies in $S\setminus\{v\}$, proving that set convex.
+Conversely, if $S\setminus\{v\}$ is convex and $v$ were strictly between
+some distinct $x,y\in S$, neither could equal $v$.
+Their segment would lie in the set with $v$ removed, contradicting its
+containing $v$. Hence $v$ is extreme. Singleton cases work because the empty set is convex.
+
+\exercise{8.5.19}{Add two positive dilations of one convex set}
+An arbitrary element of $cS+dS$ is $cx+dy$ with $x,y\in S$.
+Since $c,d>0$,
+\[
+ cx+dy=(c+d)\left(\frac c{c+d}x+\frac d{c+d}y\right)\in(c+d)S
+\]
+by convexity. This proves one inclusion. Conversely, for each $s\in S$,
+$(c+d)s=cs+ds\in cS+dS$, proving the reverse inclusion.
+Thus $cS+dS=(c+d)S$.
+
+\exercise{8.5.20}{Convexity cannot be omitted}
+Take $S=\{(0,0),(1,0)\}$ and $c=d=1$.
+Then $S+S=\{(0,0),(1,0),(2,0)\}$, whereas
+$2S=\{(0,0),(2,0)\}$. The point $(1,0)$ occurs only in the sum.
+Thus the equality from Exercise 8.5.19 can fail for a nonconvex set.
+
+\exercise{8.5.21}{A Minkowski sum of convex sets is convex}
+Take two points $x=a_1+b_1$ and $y=a_2+b_2$ in $A+B$.
+For $0\le t\le1$,
+\[
+ (1-t)x+ty=((1-t)a_1+ta_2)+((1-t)b_1+tb_2).
+\]
+The first parenthesis belongs to $A$ and the second to $B$ by their
+convexity. Thus their sum is in $A+B$. This proves the entire segment is
+included, as required.
+
+\exercise{8.5.22}{Why the list of regular polyhedra has five entries}
+\step{(a) Count incidences in two ways.}
+Every one of the $r$ facets has $k$ edges, giving $kr$ facet-edge
+incidences. Each edge belongs to two facets, giving $2e$; hence $kr=2e$.
+Likewise every one of the $v$ vertices meets $s$ edges, while every edge
+has two endpoints, so $sv=2e$.
+\step{(b) Substitute those counts into Euler's formula.}
+From $v-e+r=2$, substitute $v=2e/s$ and $r=2e/k$, then divide by $2e$:
+\[
+ \frac1s+\frac1k=\frac12+\frac1e.
+\]
+\step{(c) Exhaust the possible integer pairs.}
+A face has at least three sides, so $k\ge3$; at least three edges meet at
+any vertex, so $s\ge3$. The equation makes $1/s+1/k>1/2$.
+If $k\ge6$, its left side is at most $1/3+1/6=1/2$, impossible.
+For $k=3$, the strict inequality gives $s<6$, so $s=3,4,5$.
+For $k=4$, it gives $s<4$, so $s=3$.
+For $k=5$, it gives $s<10/3$, again $s=3$.
+The counts follow from $e=(1/s+1/k-1/2)^{-1}$ and the incidence formulas:
+\[
+ \begin{array}{cc|rrr|l}
+ k&s&v&e&r&\text{polyhedron}\\\hline
+ 3&3&4&6&4&\text{tetrahedron}\\
+ 4&3&8&12&6&\text{cube}\\
+ 3&4&6&12&8&\text{octahedron}\\
+ 5&3&20&30&12&\text{dodecahedron}\\
+ 3&5&12&30&20&\text{icosahedron}
+ \end{array}
+\]
+These are the five realized regular convex polyhedra named in the exercise,
+and the integer argument rules out every other possibility.

@@ -44,6 +44,28 @@ The earlier Sections 1–20 PDFs remain available at their existing paths.
 See the [source and build instructions](solutions/ross/sections-21-38/README.md)
 for exercise counts, build commands, and notes about printed source errors.
 
+## Lay linear algebra solutions
+
+The Lay collection follows *Linear Algebra and Its Applications*, fourth
+edition (2012), using the actual textbook in `Lay01.pdf`. It is organized by
+chapter and section, including odd- and even-numbered exercises, all subparts,
+practice problems, and the seven supplementary exercise sets in the printed
+Chapters 1–8. The website uses the same section-table format as the Ross page.
+This includes all 1,920 numbered exercises and 115 practice problems.
+
+[Read the complete 815-page collection](solutions/lay/lay-complete.pdf) or
+[download its LaTeX sources](solutions/lay/lay-latex.zip).
+
+Solutions explain definitions, row operations, intermediate computations,
+proof strategies, geometric interpretations, and the hypotheses of theorems.
+Computer exercises include reproducible calculations where appropriate;
+source ambiguities and genuine errors are discussed explicitly.
+
+See the [source inventory and build instructions](solutions/lay/README.md).
+The supplied PDF does not contain the separately published online Chapters
+9–10, so their exercises require an additional source and are marked
+accordingly on the website.
+
 ## Arithmetic Lab
 
 The homepage links to [Arithmetic Lab](arithmetic/), a Zetamac-inspired mental math

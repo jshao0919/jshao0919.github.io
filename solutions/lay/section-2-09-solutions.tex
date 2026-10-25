@@ -1,0 +1,365 @@
+\section{Dimension and rank}
+For an ordered basis $\mathcal B=(b_1,\ldots,b_p)$, the coordinate vector
+$[x]_{\mathcal B}=(c_1,\ldots,c_p)^T$ means
+$x=c_1b_1+\cdots+c_pb_p$. Coordinates depend on the basis and its order.
+The dimension of a subspace is the number of vectors in any basis for it.
+For an $m\times n$ matrix, rank counts pivots, while nullity counts free
+variables; therefore
+\[
+ \dim\Col A=\rank A,\qquad \dim\Nul A=n-\rank A.
+\]
+A subspace's dimension is different from the number of coordinates in
+its vectors. A two-dimensional subspace of $\R^6$ still consists of
+six-entry vectors, not two-entry vectors.
+
+\practice{2.9.P1}{Count independent directions rather than generators}
+Put the three vectors into a matrix. Eliminating below column 1 gives
+\[
+ \begin{bmatrix}2&3&-1\\-8&-7&6\\6&-1&-7\end{bmatrix}
+ \longrightarrow
+ \begin{bmatrix}2&3&-1\\0&5&2\\0&-10&-4\end{bmatrix}
+ \longrightarrow
+ \begin{bmatrix}2&3&-1\\0&5&2\\0&0&0\end{bmatrix}.
+\]
+Columns 1 and 2 are pivot columns. Thus a basis for $H$ is
+$\{(2,-8,6)^T,(3,-7,-1)^T\}$, and $\dim H=2$.
+The third vector is redundant: $v_3=-11v_1/10+2v_2/5$.
+
+\practice{2.9.P2}{Turn coordinates into a vector}
+The coordinate entries are weights, so
+\[
+ x=3(1,.2)^T+2(.2,1)^T=(3+.4,.6+2)^T=(3.4,2.6)^T.
+\]
+This ordinary coordinate vector differs from $(3,2)^T$, because the
+basis is not the standard basis.
+
+\practice{2.9.P3}{A subspace cannot have more independent directions than its ambient space}
+No subspace of $\R^3$ can have dimension four.
+A four-dimensional subspace would have a basis of four independent vectors
+in $\R^3$, but any $3\times4$ homogeneous system has a free variable,
+making four such columns dependent. In fact possible dimensions are only
+$0,1,2,3$; a three-dimensional subspace of $\R^3$ must be $\R^3$ itself.
+
+\exercise{2.9.1}{Combine two basis vectors and sketch the result}
+The supplied coordinate vector gives
+$x=3(1,1)^T+2(2,-1)^T=(7,1)^T$.
+The sketch shows the parallelogram with sides $3b_1=(3,3)$ and
+$2b_2=(4,-2)$; its diagonal is $x$.
+\begin{center}\setlength{\unitlength}{5mm}
+\begin{picture}(11,7)
+\put(1,3){\vector(1,0){9}}\put(1,0.5){\vector(0,1){6}}
+\put(1,3){\polyline(0,0)(3,3)(7,1)(4,-2)(0,0)}
+\put(1,3){\vector(7,1){7}}
+\put(3,6.2){$3b_1$}\put(5,0.3){$2b_2$}\put(8.2,4.2){$x=(7,1)$}
+\put(.3,2.2){$0$}
+\end{picture}\end{center}
+
+\exercise{2.9.2}{A negative basis coordinate reverses a direction}
+Now
+$x=-1(-3,1)^T+2(3,2)^T=(3,-1)^T+(6,4)^T=(9,3)^T$.
+A negative coefficient means travel opposite to $b_1$, not negate the
+whole answer. The parallelogram below has sides $-b_1$ and $2b_2$.
+\begin{center}\setlength{\unitlength}{4mm}
+\begin{picture}(14,8)
+\put(1,2){\vector(1,0){12}}\put(1,.5){\vector(0,1){7}}
+\put(1,2){\polyline(0,0)(3,-1)(9,3)(6,4)(0,0)}
+\put(1,2){\vector(3,1){9}}
+\put(4,.2){$-b_1$}\put(6,6.5){$2b_2$}\put(10.2,5.2){$x=(9,3)$}
+\put(.2,1.2){$0$}
+\end{picture}\end{center}
+
+\exercise{2.9.3}{Recover coordinates from two equations}
+Write $x=c_1b_1+c_2b_2$. The two coordinates require
+$2c_1-c_2=0$ and $-3c_1+5c_2=7$.
+The first gives $c_2=2c_1$; substituting into the second gives
+$7c_1=7$, hence $c_1=1,c_2=2$.
+Thus $\boxed{[x]_{\mathcal B}=(1,2)^T}$, and
+$(2,-3)^T+2(-1,5)^T=(0,7)^T$ verifies the answer.
+
+\exercise{2.9.4}{Coordinates may both be negative}
+The equations are $c_1-2c_2=1$ and $-5c_1+3c_2=9$.
+Substitute $c_1=1+2c_2$ into the second:
+$-5-10c_2+3c_2=9$, so $c_2=-2$ and $c_1=-3$.
+Therefore $\boxed{[x]_{\mathcal B}=(-3,-2)^T}$.
+Indeed $-3(1,-5)^T-2(-2,3)^T=(1,9)^T$.
+
+\exercise{2.9.5}{Two coordinates describe a three-entry vector}
+From the first two entries of $c_1b_1+c_2b_2=x$,
+$c_1-2c_2=2$ and $4c_1-7c_2=9$.
+Subtract four times the first equation from the second to get $c_2=1$;
+then $c_1=4$. The third entry also matches: $-3(4)+5(1)=-7$.
+Thus $\boxed{[x]_{\mathcal B}=(4,1)^T}$.
+Checking the third coordinate is important: a solution to only two equations
+would not by itself prove the vector equality in $\R^3$.
+
+\exercise{2.9.6}{Verify the remaining coordinate after solving}
+The first two equations are $-3c_1+7c_2=5$ and $2c_1-3c_2=0$.
+The second gives $c_1=3c_2/2$; the first becomes
+$(5/2)c_2=5$. Thus $c_2=2,c_1=3$.
+The last coordinate is $-4(3)+5(2)=-2$, as required.
+Therefore $\boxed{[x]_{\mathcal B}=(3,2)^T}$.
+
+\exercise{2.9.7}{Read the skew grid and confirm algebraically}
+The diagram suggests two units in the $b_1$ direction and minus one unit
+in the $b_2$ direction for $w$, and one and a half $b_1$ units plus half
+a $b_2$ unit for $x$. Algebra confirms
+\[
+ [w]_{\mathcal B}=(2,-1)^T,\qquad
+ [x]_{\mathcal B}=(3/2,1/2)^T.
+\]
+Indeed $2(3,0)^T-(-1,2)^T=(7,-2)^T=w$, and
+$(3/2)(3,0)^T+(1/2)(-1,2)^T=(4,1)^T=x$.
+These computations turn approximate visual readings into exact answers.
+
+\exercise{2.9.8}{A second skew coordinate grid}
+Here $c_1b_1+c_2b_2=(2c_2,2c_1+c_2)^T$.
+Thus for a vector $(u,v)^T$, $c_2=u/2$ and
+$c_1=(v-u/2)/2$. Applying this formula gives
+\[
+ [x]_{\mathcal B}=(2,-1)^T,\quad
+ [y]_{\mathcal B}=(3/2,1)^T,\quad
+ [z]_{\mathcal B}=(-1,-1/2)^T.
+\]
+The first matches the picture's movement two $b_1$ steps and minus one
+$b_2$ step. The requested confirmations are
+$(3/2)(0,2)^T+(2,1)^T=(2,4)^T=y$ and
+$-(0,2)^T-(1/2)(2,1)^T=(-1,-5/2)^T=z$.
+
+\exercise{2.9.9}{Rank three, nullity one}
+The supplied echelon form has pivots in columns 1,3,4, so an original-column
+basis is
+\[
+ \mathcal C=\{(1,3,2,5)^T,(2,1,-1,0)^T,(-6,5,9,14)^T\}.
+\]
+The bottom nonzero equation gives $x_4=0$; the next gives $x_3=0$;
+the first then gives $x_1=-3x_2$. Thus
+$\mathcal N=\{(-3,1,0,0)^T\}$ is a null-space basis.
+Consequently $\dim\Col A=3$ and $\dim\Nul A=1$.
+Their sum is four, the number of columns, not necessarily the number of rows
+in other examples.
+
+\exercise{2.9.10}{Four pivots among five columns}
+The pivot positions are columns 1,2,4,5. A column-space basis consists
+of the columns of
+\[
+ C=\begin{bmatrix}1&-2&5&4\\2&-1&5&6\\-2&0&1&-6\\3&1&1&5\end{bmatrix}.
+\]
+Reading the supplied echelon equations from the bottom upward gives
+$x_5=0$, $x_4=0$, $x_2=-x_3$, and $x_1=-x_3$.
+Thus $\{(-1,-1,1,0,0)^T\}$ is a null-space basis.
+The dimensions are $\boxed{4\text{ and }1}$ for column and null spaces,
+respectively. The basis vectors for the column space are from the original
+$A$, while the equations for the null space come from its echelon form.
+
+\exercise{2.9.11}{Two pivot directions and three degrees of freedom}
+The pivots are in columns 1 and 3. Thus a column-space basis is
+\[
+ \{(2,3,0,-3)^T,(-5,-8,9,-7)^T\}.
+\]
+The second echelon equation gives $x_3=-x_5$.
+Substitution in the first gives $x_1=-2x_2-x_4-x_5$.
+Taking $x_2,x_4,x_5$ as independent parameters gives a null-space basis
+\[
+ \{(-2,1,0,0,0)^T,(-1,0,0,1,0)^T,(-1,0,-1,0,1)^T\}.
+\]
+These vectors have independent free-coordinate entries, so they are independent
+and span all solutions. Therefore $\dim\Col A=2$, $\dim\Nul A=3$.
+
+\exercise{2.9.12}{A third free-variable calculation}
+The echelon form has pivots in columns 1,2,3. A column-space basis is
+\[
+ \{(1,5,4,3)^T,(2,1,6,4)^T,(-4,-9,-9,-5)^T\}.
+\]
+The bottom nonzero equation gives $x_3=x_5$.
+The preceding equation then gives $x_2=-2x_4-x_5$,
+and the first gives $x_1=0$. Hence a null-space basis is
+\[
+ \{(0,-2,0,1,0)^T,(0,-1,1,0,1)^T\}.
+\]
+The dimensions are $\boxed{3\text{ and }2}$. Direct substitution into
+the original $A$ checks both null vectors, and the free coordinates prove
+their independence.
+
+\exercise{2.9.13}{Discard one redundant spanning vector}
+Place the four supplied vectors into $A=[v_1\ v_2\ v_3\ v_4]$.
+Exact row reduction gives
+\[
+ R=\begin{bmatrix}1&-3&0&0\\0&0&1&0\\0&0&0&1\\0&0&0&0\end{bmatrix}.
+\]
+The pivot columns are 1,3,4, so
+\[
+ \{(1,-3,2,-4)^T,(2,-1,4,2)^T,(-4,5,-3,7)^T\}
+\]
+is a basis for the supplied span, whose dimension is $3$.
+The omitted vector is $v_2=-3v_1$. The other three are independent by
+the pivot test; discarding a multiple does not by itself establish that
+last fact without the reduction.
+
+\exercise{2.9.14}{Select three of five generators}
+The column matrix of the five vectors reduces exactly to
+\[
+ R=\begin{bmatrix}1&0&-2&0&15/2\\0&1&1&0&-7/2\\
+ 0&0&0&1&-5/2\\0&0&0&0&0\end{bmatrix}.
+\]
+Thus $v_1,v_2,v_4$ are pivot columns, giving the basis
+\[
+ \{(1,-1,-2,3)^T,(2,-3,-1,4)^T,(-1,4,-7,7)^T\}
+\]
+and dimension $3$.
+For a check on spanning, $v_3=-2v_1+v_2$ and
+$v_5=(15/2)v_1-(7/2)v_2-(5/2)v_4$. Thus the two omitted vectors
+are indeed combinations of the selected ones.
+
+\exercise{2.9.15}{Equal dimensions do not mean equal sets}
+Four pivot columns in a $4\times6$ matrix give four pivot rows,
+so $\Col A=\R^4$. There are $6-4=2$ free variables,
+so $\dim\Nul A=2$. However $\Nul A\ne\R^2$:
+its vectors have six entries and it is a subspace of $\R^6$.
+A basis identifies it with $\R^2$ through coordinates; an identification
+by coordinates is different from literal equality of the sets.
+
+\exercise{2.9.16}{A three-dimensional column space inside four dimensions}
+The column space has dimension $3$ but consists of four-entry vectors.
+It is a proper subspace of $\R^4$, not literally $\R^3$.
+Rank--nullity gives $\dim\Nul A=7-3=\boxed4$.
+The five words ``three-dimensional subspace of $\R^4$'' specify both
+its internal dimension and its ambient space.
+
+\exercise{2.9.17}{True--false questions about dimension}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} For an ordered basis, the unique weights in
+$x=\sum c_iv_i$ are precisely its basis coordinates.
+\item \textbf{False.} A line must pass through zero to be a subspace.
+The line $\{(1,t):t\in\R\}$ does not contain zero, for instance.
+A line through zero does form a one-dimensional subspace.
+\item \textbf{True.} Pivot columns form a basis for $\Col A$,
+so their number equals its dimension.
+\item \textbf{True.} Pivots plus free variables count all $n$ columns:
+$\dim\Col A+\dim\Nul A=n$.
+\item \textbf{True.} A spanning set of $p$ vectors in a $p$-dimensional
+space is a basis. If it were dependent, one vector could be deleted without
+changing its span, leaving at most $p-1$ generators for a space of dimension $p$,
+which is impossible.
+\end{enumerate}
+
+\exercise{2.9.18}{Uniqueness, nullity, and coordinate maps}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} Two coefficient representations would subtract
+to a dependence relation among basis vectors; independence forces the
+corresponding coefficients to be identical.
+\item \textbf{False.} The null-space dimension is the number of
+\emph{free} variables, not all variables. For $A=I_n$ it is zero despite
+there being $n$ variables.
+\item \textbf{True.} Rank is the number of pivots, which is the
+column-space dimension.
+\item \textbf{True.} The coordinate map is a linear bijection to
+$\R^p$, with inverse $(c_1,\ldots,c_p)^T\mapsto\sum c_iv_i$.
+Thus it preserves addition and scalar multiplication and assigns one
+coordinate vector to every vector of $H$.
+\item \textbf{True.} If $p$ independent vectors in a $p$-dimensional
+space did not span it, a vector outside their span could be appended to
+produce $p+1$ independent vectors, contradicting the dimension.
+\end{enumerate}
+
+\exercise{2.9.19}{Recover rank from nullity}
+The null space has a basis of three vectors, so its dimension is $3$.
+There are seven columns. Thus $\rank A=7-3=\boxed4$ by rank--nullity.
+The five rows impose the separate upper bound $\rank A\le5$, which this
+answer respects.
+
+\exercise{2.9.20}{A six-by-eight matrix}
+There are eight columns and nullity three, so
+$\rank A=8-3=\boxed5$. This is possible because five pivots fit into
+six rows.
+
+\exercise{2.9.21}{The dimension of a homogeneous solution space}
+The solution space is $\Nul A$. Rank--nullity with eight columns and
+rank seven gives $\dim\Nul A=8-7=\boxed1$.
+Its vectors have eight entries even though only one parameter is needed
+to describe them.
+
+\exercise{2.9.22}{Five generators of a four-dimensional span are dependent}
+If the five vectors were independent, they would be a basis for their
+own span, making its dimension five by the definition of dimension.
+The given dimension is four, a contradiction. Hence the vectors are dependent.
+The ambient value of $n$ does not change this argument.
+
+\exercise{2.9.23}{Construct prescribed rank and nullity}
+Take
+\[
+ A=\begin{bmatrix}1&0&0&0&0\\0&1&0&0&0\\0&0&0&0&0\end{bmatrix}.
+\]
+Its column-space basis is $\{e_1,e_2\}\subset\R^3$, so its rank is $2$.
+Its homogeneous solutions are $(0,0,s,t,u)^T$, so nullity is $3$.
+Thus the requested $3\times5$ shape and both dimensions are achieved.
+
+\exercise{2.9.24}{Construct rank one}
+Choose
+\[
+ A=\begin{bmatrix}1&2&3&4\\0&0&0&0\\0&0&0&0\end{bmatrix}.
+\]
+Every column is a multiple of the nonzero first column, so the column space
+is exactly one line. Hence $A$ has rank $1$; it has the required $3\times4$ shape.
+
+\exercise{2.9.25}{Full column-space dimension forces independent columns}
+The $p$ columns span $\Col A$ by definition, and this space has dimension
+$p$ by hypothesis. A spanning set with exactly its dimension many vectors
+is a basis. Therefore the columns are independent.
+Equivalently rank $p$ in a matrix with $p$ columns leaves no free variables.
+
+\exercise{2.9.26}{A basis need not be the leftmost pivot selection}
+The five named columns lie in $\Col A$, which has dimension five because
+$\rank A=5$. They are independent by hypothesis. An independent set
+of five vectors in a five-dimensional space is a basis, so these columns
+span $\Col A$. The pivot-column algorithm is one way to find a basis,
+not a claim that all bases must use the same indices.
+
+\exercise{2.9.27}{More vectors than a spanning set must be dependent}
+\begin{enumerate}[label=(\alph*)]
+\item Since $a_j\in W=\Span\{b_1,\ldots,b_p\}$,
+there are coefficients $c_{1j},\ldots,c_{pj}$ with
+$a_j=\sum_i c_{ij}b_i$. Collect them in $c_j\in\R^p$ to obtain
+$a_j=Bc_j$.
+\item The matrix $C=[c_1\ \cdots\ c_q]$ has $p$ rows and $q>p$
+columns. Its homogeneous system has more variables than possible pivots,
+so at least one variable is free. Thus some $u\ne0$ satisfies $Cu=0$.
+\item The column identities in part (a) give $A=BC$. Therefore
+$Au=B(Cu)=B0=0$. Since $u\ne0$, its entries furnish a nontrivial
+linear dependence among $a_1,\ldots,a_q$.
+\end{enumerate}
+This proves the claim without assuming the two supplied lists were bases.
+
+\exercise{2.9.28}{Every basis has the same number of vectors}
+Let $\mathcal A,\mathcal B$ be bases of $W$, with $q,p$ vectors,
+respectively. If $q>p$, then Exercise 27 applied to the spanning set
+$\mathcal B$ would make $\mathcal A$ dependent, contrary to its being a
+basis. Hence $q\le p$. Interchanging the roles gives $p\le q$.
+Thus $p=q$. This justifies defining dimension using \emph{any} basis.
+
+\exercise{2.9.29}{Compute coordinates in a two-dimensional subspace of R4}
+The vectors $v_1,v_2$ are independent: their first two coordinates have
+$2\times2$ determinant $15(-10)-14(-5)=-80\ne0$.
+Thus they are a basis for their span $H$.
+A direct calculation gives
+\[
+ 2v_1-v_2=(30-14,-10+10,24-13,14-17)^T=(16,0,11,-3)^T=x.
+\]
+Therefore $x\in H$ and $\boxed{[x]_{\mathcal B}=(2,-1)^T}$.
+These exact integer products also verify the computer-assisted answer.
+
+\exercise{2.9.30}{Three coordinates in a four-dimensional ambient space}
+Put $V=[v_1\ v_2\ v_3]$ and row reduce the augmented matrix.
+Exact arithmetic gives
+\[
+ [V\mid x]\ \sim\
+ \left[\begin{array}{rrr|r}1&0&0&-2\\0&1&0&1\\0&0&1&1\\0&0&0&0\end{array}\right].
+\]
+The three coefficient pivots show that $v_1,v_2,v_3$ are independent,
+so $\mathcal B$ is a basis for $H$. The consistent right block gives
+$[x]_{\mathcal B}=\boxed{(-2,1,1)^T}$.
+For an independent check,
+\[
+ -2v_1+v_2+v_3=(12+8-9,-6+0+4,18+7-8,-8-3+3)^T
+ =(11,-2,17,-8)^T=x.
+\]
+Thus the coordinate vector has three entries while $x$ itself has four.

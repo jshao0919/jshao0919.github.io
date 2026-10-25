@@ -1,0 +1,325 @@
+\section{Constrained optimization}
+A quadratic form is an expression $Q(x)=x^TAx$, where we take $A$ to be
+symmetric. A coefficient of $x_ix_j$ with $i\ne j$ must be divided equally
+between $a_{ij}$ and $a_{ji}$. For example, $6x_1x_2$ means
+$a_{12}=a_{21}=3$, not $6$.
+
+\textbf{The central argument.} The spectral theorem gives an orthonormal
+eigenbasis $u_1,\ldots,u_n$ with eigenvalues
+$\lambda_1\ge\cdots\ge\lambda_n$. Put $P=[u_1\ \cdots\ u_n]$ and $x=Py$.
+Then $P^TP=I$, so
+\[
+ x^Tx=y^Ty,\qquad Q(x)=\sum_{j=1}^n\lambda_j y_j^2.
+\]
+On the unit sphere, the nonnegative numbers $y_j^2$ add to one. Thus
+\[
+ \lambda_n\le Q(x)\le\lambda_1.
+\]
+Taking $x=u_1$ attains the upper bound. If we also require $x^Tu_1=0$,
+then $y_1=0$, and the maximum becomes $\lambda_2$, attained at $u_2$.
+Eigenvalues here are listed \emph{with multiplicities}; a repeated largest
+eigenvalue can remain the largest value after one direction is excluded.
+These observations explain the optimization steps below without requiring
+multivariable differentiation.
+
+\practice{7.3.P1}{Remove the mixed term using an orthonormal basis}
+\goal Diagonalize $3x_1^2+3x_2^2+2x_1x_2$ by $x=Py$.
+The symmetric matrix is $A=\begin{bmatrix}3&1\\1&3\end{bmatrix}$.
+Its characteristic polynomial is $(3-\lambda)^2-1$, with roots $4,2$.
+For $4$, solving $(A-4I)v=0$ gives $v_2=v_1$; choose $(1,1)^T$.
+For $2$, the equations give $v_2=-v_1$; choose $(-1,1)^T$.
+Each vector has length $\sqrt2$, so use
+\[
+ P=\frac1{\sqrt2}\begin{bmatrix}1&-1\\1&1\end{bmatrix}.
+\]
+Its columns have length one and dot product zero. Therefore
+$P^TAP=\operatorname{diag}(4,2)$, and $Q(Py)=4y_1^2+2y_2^2$.
+\answer{The displayed $P$ gives the requested substitution. Normalizing
+the eigenvectors is essential to making $P$ orthogonal.}
+
+\practice{7.3.P2}{Translate the maximizing direction back to the original variables}
+For a unit $x$, the preceding change of variables gives $y_1^2+y_2^2=1$.
+Consequently $Q(x)=4y_1^2+2y_2^2\le4$. Equality holds for $y=(1,0)^T$.
+But the requested vector is $x$, not $y$: multiplying by $P$ gives
+$x=(1,1)^T/\sqrt2$. Its squared length is $(1+1)/2=1$.
+\answer{The maximum is $4$, attained at $(1,1)^T/\sqrt2$. Its negative
+also attains the same value.}
+
+\exercise{7.3.1}{An orthogonal substitution in three variables}
+\goal Obtain the diagonal coefficients $9,6,3$ for the given quadratic form.
+\step{Build the matrix and find its eigenvectors.}
+The coefficients give
+\[
+ A=\begin{bmatrix}5&2&0\\2&6&-2\\0&-2&7\end{bmatrix}.
+\]
+Expanding $\det(\lambda I-A)$ gives
+$(\lambda-9)(\lambda-6)(\lambda-3)$. Solving the corresponding
+homogeneous systems gives the convenient eigenvectors
+\[
+ v_9=(-1,-2,2)^T,\quad v_6=(2,1,2)^T,\quad v_3=(-2,2,1)^T.
+\]
+For example, at $\lambda=9$ the first equation is $-4a+2b=0$,
+so $b=2a$; the last is $-2b-2c=0$, so $c=-b$. Taking $a=-1$
+produces $v_9$. The other two vectors are checked by multiplying by $A$.
+Each has squared length $9$, and their pairwise dot products are zero.
+\step{Normalize and put the columns in the requested order.}
+Set
+\[
+ P=\frac13\begin{bmatrix}-1&2&-2\\-2&1&2\\2&2&1\end{bmatrix}.
+\]
+Then $P^TP=I$ and $AP=P\operatorname{diag}(9,6,3)$. Multiplying this
+last identity on the left by $P^T$ gives $P^TAP=\operatorname{diag}(9,6,3)$.
+\answer{With $x=Py$, the form is $9y_1^2+6y_2^2+3y_3^2$.}
+
+\exercise{7.3.2}{Include the missing zero coefficient}
+\goal Obtain the stated diagonal form, keeping three coordinates.
+The symmetric matrix is
+\[
+ A=\begin{bmatrix}3&1&1\\1&2&2\\1&2&2\end{bmatrix},\qquad
+ \det(\lambda I-A)=\lambda(\lambda-2)(\lambda-5).
+\]
+Corresponding eigenvectors are $(1,1,1)^T$, $(-2,1,1)^T$, and
+$(0,-1,1)^T$, for $5,2,0$, respectively. Their squared lengths are
+$3,6,2$, and their pairwise dot products vanish. Thus take
+\[
+ P=\begin{bmatrix}
+ 1/\sqrt3&-2/\sqrt6&0\\
+ 1/\sqrt3&1/\sqrt6&-1/\sqrt2\\
+ 1/\sqrt3&1/\sqrt6&1/\sqrt2
+ \end{bmatrix}.
+\]
+Direct multiplication gives $P^TAP=\operatorname{diag}(5,2,0)$.
+\answer{$x=Py$ transforms the form to $5y_1^2+2y_2^2+0y_3^2$.
+The zero coefficient does not remove a coordinate from the substitution.}
+
+\exercise{7.3.3}{Exclude one principal direction}
+\step{(a) Bound the form on all unit vectors.}
+Exercise 7.3.1 gives $Q(x)=9y_1^2+6y_2^2+3y_3^2$ and
+$y_1^2+y_2^2+y_3^2=1$. Replacing $6$ and $3$ by $9$ shows $Q(x)\le9$.
+\step{(b) Give a maximizing unit vector in the original coordinates.}
+Take $u=(-1,-2,2)^T/3$, the first column of $P$. Then $Au=9u$
+and $u^Tu=1$, so $Q(u)=u^T(9u)=9$.
+\step{(c) Impose the orthogonality condition.}
+Because $x=Py$ and $u=Pe_1$, we have $x^Tu=y^Te_1=y_1$.
+Thus $x^Tu=0$ forces $y_1=0$. Now
+$Q(x)=6y_2^2+3y_3^2\le6(y_2^2+y_3^2)=6$.
+Equality holds at the second column $(2,1,2)^T/3$ of $P$.
+\answer{The answers are $9$, $u=(-1,-2,2)^T/3$, and $6$.}
+
+\exercise{7.3.4}{The same constraints with a null direction}
+Use the orthogonal coordinates of Exercise 7.3.2. On the unit sphere,
+$Q(x)=5y_1^2+2y_2^2\le5(y_1^2+y_2^2+y_3^2)=5$.
+The unit vector $u=(1,1,1)^T/\sqrt3$ has $Au=5u$, so it attains $5$.
+The additional equation $x^Tu=0$ is $y_1=0$. Therefore
+$Q(x)=2y_2^2\le2$, with equality at $(-2,1,1)^T/\sqrt6$.
+\answer{(a) $5$; (b) $u=(1,1,1)^T/\sqrt3$; (c) $2$.}
+
+\exercise{7.3.5}{A negative mixed coefficient}
+The matrix is $A=\begin{bmatrix}5&-2\\-2&5\end{bmatrix}$.
+The equation $(5-\lambda)^2-4=0$ gives eigenvalues $7,3$.
+Their unit eigenvectors are $u=(-1,1)^T/\sqrt2$ and
+$v=(1,1)^T/\sqrt2$. They are perpendicular. Writing $x=au+bv$ gives
+$\|x\|^2=a^2+b^2$ and $Q(x)=7a^2+3b^2$.
+Hence the unrestricted unit maximum is $7$, attained at $u$.
+When $x^Tu=0$, we have $a=0$ and $b^2=1$, so the value is $3$.
+\answer{(a) $7$; (b) $(-1,1)^T/\sqrt2$; (c) $3$.}
+
+\exercise{7.3.6}{Remember to halve an odd mixed coefficient}
+Here $A=\begin{bmatrix}7&3/2\\3/2&3\end{bmatrix}$, since the mixed
+term is $3x_1x_2$. Its characteristic equation is
+\[
+ (7-\lambda)(3-\lambda)-\frac94=0,
+\]
+whose roots are $15/2$ and $5/2$. At $15/2$, the first row of
+$(A-\lambda I)v=0$ gives $-v_1+3v_2=0$; choose $(3,1)^T$.
+Its unit version is $u=(3,1)^T/\sqrt{10}$. A perpendicular unit
+eigenvector is $v=(-1,3)^T/\sqrt{10}$, for $5/2$.
+For $x=au+bv$, the unit constraint gives $a^2+b^2=1$, and
+$Q(x)=(15/2)a^2+(5/2)b^2$. Requiring $x^Tu=0$ sets $a=0$.
+\answer{(a) $15/2$; (b) $(3,1)^T/\sqrt{10}$; (c) $5/2$.}
+
+\exercise{7.3.7}{Normalize the largest-eigenvalue vector}
+The given coefficients give
+\[
+ A=\begin{bmatrix}-2&2&0\\2&-1&2\\0&2&0\end{bmatrix}.
+\]
+Its eigenvalues are $2,-1,-4$, so the maximum on the unit sphere is $2$.
+To find a maximizing vector, solve $(A-2I)v=0$. The first row gives
+$-4v_1+2v_2=0$, hence $v_2=2v_1$. The last gives
+$2v_2-2v_3=0$, hence $v_3=v_2$. Taking $v_1=1$ gives
+$v=(1,2,2)^T$, with length $3$. Consequently $x=v/3$ is unit, and
+$Q(x)=x^T(2x)=2$.
+\answer{One required vector is $(1,2,2)^T/3$.}
+
+\exercise{7.3.8}{A repeated largest eigenvalue}
+The matrix is
+\[
+ A=\begin{bmatrix}7&-4&-2\\-4&1&-4\\-2&-4&7\end{bmatrix}.
+\]
+Its eigenvalues are $9,9,-3$. At $9$, every row equation reduces to
+$v_1+2v_2+v_3=0$. Choose $v=(-1,0,1)^T$ in this plane and normalize:
+$x=(-1,0,1)^T/\sqrt2$. The squared length is one, $Ax=9x$,
+and $Q(x)=9$. No unit vector can exceed the largest eigenvalue.
+\answer{$(-1,0,1)^T/\sqrt2$ is a maximizing unit vector; the maximum is $9$.}
+
+\exercise{7.3.9}{Find the maximum without finding a vector}
+The mixed coefficient $-2$ gives
+$A=\begin{bmatrix}7&-1\\-1&3\end{bmatrix}$. Its characteristic equation is
+\[
+ (7-\lambda)(3-\lambda)-1
+ =\lambda^2-10\lambda+20=0.
+\]
+The quadratic formula gives $\lambda=5\pm\sqrt5$.
+By the unit-sphere bound established at the start, the maximum is the
+larger root. No eigenvector is needed for the question asked.
+\answer{The maximum is $5+\sqrt5$.}
+
+\exercise{7.3.10}{A form with both positive and negative values}
+Now $A=\begin{bmatrix}-3&-1\\-1&5\end{bmatrix}$. The equation is
+\[
+ (-3-\lambda)(5-\lambda)-1
+ =\lambda^2-2\lambda-16=0,
+\]
+with roots $1\pm\sqrt{17}$. The constraint is exactly the unit-sphere
+constraint, so the larger eigenvalue gives the maximum.
+\answer{The maximum is $1+\sqrt{17}$.}
+
+\exercise{7.3.11}{Evaluate a form at a unit eigenvector}
+If $Ax=3x$ and $x^Tx=1$, substitute the eigenvector equation first:
+\[
+ x^TAx=x^T(3x)=3(x^Tx)=3.
+\]
+This particular calculation does not require symmetry of $A$; the two
+stated equations are sufficient.
+\answer{The value is $3$.}
+
+\exercise{7.3.12}{Every eigenvalue lies between the extreme unit values}
+Let $\lambda$ be an eigenvalue of the real symmetric matrix $A$.
+The spectral theorem supplies a nonzero real eigenvector $v$. Normalize it:
+$x=v/\|v\|$. Then $x^Tx=1$ and $Ax=\lambda x$, so
+$x^TAx=\lambda x^Tx=\lambda$. By definition, $m$ is a lower bound
+and $M$ is an upper bound for the values of the form at all unit vectors.
+They therefore bound this particular value.
+\answer{$m\le\lambda\le M$. Normalization places the eigenvector on
+the very set over which the extrema are defined.}
+
+\exercise{7.3.13}{Every intermediate value is attained}
+\goal Given $m\le t\le M$, construct a unit $x$ with $x^TAx=t$.
+\step{First separate the constant case.}
+If $M=m$, then $t=m$ and any unit eigenvector for $m$ works.
+The proposed expression can use $\alpha=0$, giving $x=u_n$.
+This also handles the one-dimensional case without demanding two
+perpendicular vectors in a one-dimensional space.
+\step{For $M>m$, choose the interpolation weight explicitly.}
+Put $\alpha=(t-m)/(M-m)$. The inequalities on $t$ imply
+$0\le\alpha\le1$, and rearrangement gives
+$t=(1-\alpha)m+\alpha M$.
+Let $Au_1=Mu_1$ and $Au_n=mu_n$, where the vectors are unit.
+Distinct eigenvalues of a symmetric matrix have orthogonal eigenvectors:
+indeed $u_1^TAu_n=m u_1^Tu_n$ and, by symmetry, the same expression
+equals $(Au_1)^Tu_n=M u_1^Tu_n$. Since $M-m\ne0$,
+$u_1^Tu_n=0$.
+\step{Check both the constraint and the desired value.}
+Define $x=\sqrt{1-\alpha}\,u_n+\sqrt\alpha\,u_1$. Expanding gives
+\[
+ x^Tx=(1-\alpha)\underbrace{u_n^Tu_n}_{1}
+ +\alpha\underbrace{u_1^Tu_1}_{1}
+ +2\sqrt{\alpha(1-\alpha)}\underbrace{u_n^Tu_1}_{0}=1.
+\]
+The mixed terms in $x^TAx$ also vanish, because, for example,
+$u_n^TAu_1=M u_n^Tu_1=0$. The remaining terms give
+\[
+ x^TAx=(1-\alpha)m+\alpha M=t.
+\]
+\answer{Every number in $[m,M]$ occurs. The square roots in $x$ make
+the squared coefficients, rather than the coefficients, add to one.}
+
+\exercise{7.3.14}{An exact computer-assisted four-dimensional example}
+\step{Convert the mixed terms to a symmetric matrix.}
+\[
+ A=\frac12\begin{bmatrix}0&1&3&30\\1&0&30&3\\3&30&0&1\\30&3&1&0\end{bmatrix}.
+\]
+To check its spectrum without trusting rounded output, use the four
+pairwise perpendicular vectors
+\[
+ (1,1,1,1)^T,\quad(1,-1,-1,1)^T,\quad(-1,1,-1,1)^T,\quad(-1,-1,1,1)^T.
+\]
+Multiplication by $A$ gives these same vectors times $17,13,-14,-16$,
+respectively. Each has length $2$; dividing them by $2$ gives an
+orthonormal eigenbasis and verifies the entire spectrum.
+\step{Answer the three optimization questions.}
+The maximum on unit vectors is $17$, attained at $u=(1,1,1,1)^T/2$.
+Orthogonality to $u$ removes its coordinate, leaving the next largest
+eigenvalue, $13$. It is attained at $(1,-1,-1,1)^T/2$.
+\answer{(a) $17$; (b) $(1,1,1,1)^T/2$; (c) $13$.}
+
+\exercise{7.3.15}{A negative constrained maximum}
+\[
+ A=\frac12\begin{bmatrix}0&3&5&7\\3&0&7&5\\5&7&0&3\\7&5&3&0\end{bmatrix}.
+\]
+The same four orthogonal sign vectors from Exercise 7.3.14 are eigenvectors,
+now with eigenvalues $15/2,-1/2,-5/2,-9/2$, in that order. For instance,
+the first row sum is $(3+5+7)/2=15/2$, verifying the first coordinate
+of the all-ones eigenvector equation; the other rows have the same sum.
+Checking the other three sign vectors verifies the remaining eigenvalues.
+Their unit versions form a basis, so no eigenvalue is omitted.
+Thus the unit-sphere maximum is $15/2$, at $u=(1,1,1,1)^T/2$.
+On $u^\perp$, the largest remaining eigenvalue is $-1/2$, attained at
+$(1,-1,-1,1)^T/2$. A maximum need not be positive.
+\answer{(a) $15/2$; (b) $(1,1,1,1)^T/2$; (c) $-1/2$.}
+
+\exercise{7.3.16}{One diagonal term and six mixed terms}
+The symmetric matrix and a factored characteristic polynomial are
+\[
+ A=\begin{bmatrix}4&-3&-5&-5\\-3&0&-3&-3\\-5&-3&0&-1\\-5&-3&-1&0\end{bmatrix},
+\]
+\[
+ \det(\lambda I-A)=(\lambda-9)(\lambda-3)(\lambda-1)(\lambda+9).
+\]
+For an exact check, vectors $(-2,0,1,1)^T$, $(1,-3,1,1)^T$,
+$(0,0,-1,1)^T$, and $(1,1,1,1)^T$ have eigenvalues $9,3,1,-9$,
+respectively. Each assertion follows by one matrix--vector multiplication,
+and the vectors are nonzero and pairwise perpendicular.
+The first has length $\sqrt6$, so choose
+$u=(-2,0,1,1)^T/\sqrt6$. Then $Q(u)=9$. With $x\perp u$,
+the maximum becomes $3$, attained at $(1,-3,1,1)^T/\sqrt{12}$.
+\answer{(a) $9$; (b) $(-2,0,1,1)^T/\sqrt6$; (c) $3$.}
+
+\exercise{7.3.17}{The largest eigenvalue can itself be negative}
+Here
+\[
+ A=\begin{bmatrix}-6&-2&-2&-2\\-2&-10&0&0\\-2&0&-13&3\\-2&0&3&-13\end{bmatrix}.
+\]
+Its characteristic polynomial is
+$(\lambda+4)(\lambda+10)(\lambda+12)(\lambda+16)$.
+Nonzero eigenvectors for $-4,-10,-12,-16$, respectively, are
+\[
+ (-3,1,1,1)^T,\quad(0,-2,1,1)^T,\quad(1,1,1,1)^T,\quad(0,0,-1,1)^T.
+\]
+They are pairwise perpendicular. Checking $Av=\lambda v$ for each
+one verifies the spectrum independently of an eigenvalue routine.
+The largest eigenvalue is $-4$, since $-4>-10>-12>-16$; one does
+\emph{not} choose the largest absolute value. The first vector has squared
+length $12$. After excluding its unit direction, $-10$ is the largest
+remaining eigenvalue, attained at $(0,-2,1,1)^T/\sqrt6$.
+\answer{(a) $-4$; (b) $(-3,1,1,1)^T/\sqrt{12}$; (c) $-10$.}
+
+\textbf{Reproducing the computer checks in 14--17.}
+Enter each displayed matrix using exact fractions, not rounded decimals.
+For a symmetric matrix, the following Python/SymPy commands return an exact
+spectrum and check a chosen vector. Replace \texttt{entries}, \texttt{vector},
+and \texttt{eigenvalue} with the data displayed in the corresponding solution:
+\begin{verbatim}
+from sympy import Matrix, Rational, eye
+A = Matrix(entries)
+print(A.eigenvals())
+v = Matrix(vector)
+lam = eigenvalue
+assert A == A.T
+assert A*v == lam*v
+u = v / (v.dot(v))**Rational(1, 2)
+assert (u.T*u)[0] == 1
+\end{verbatim}
+The exact eigenvector certificates above also give a complete verification
+without installing software. The matrices, results, and certificates are all
+specified; the computer problems do not require an external dataset.

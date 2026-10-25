@@ -1,0 +1,553 @@
+\section{The inverse of a matrix}
+An inverse is a \emph{two-sided} undoing operation: for a square matrix,
+$AB=BA=I$ means $B=A^{-1}$. Multiplication order matters. In particular,
+$(AB)^{-1}=B^{-1}A^{-1}$ when both inverses exist. For a $2\times2$ matrix,
+\[
+ \begin{bmatrix}a&b\\c&d\end{bmatrix}^{-1}
+ =\frac1{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}
+ \quad\text{provided }ad-bc\ne0.
+\]
+For larger matrices, apply the \emph{same row operations} to both halves of
+$[A\mid I]$. If the left half becomes $I$, the right half is $A^{-1}$.
+If a pivot is missing on the left, the inverse does not exist. To solve
+$Ax=b$, one usually row reduces $[A\mid b]$ rather than calculating an
+entire inverse; both routes are explained where requested below.
+
+\practice{2.2.P1}{Three determinant tests}
+Compute the scalar $ad-bc$ in each case:
+\begin{enumerate}[label=(\alph*)]
+\item For $\begin{bmatrix}3&-9\\2&6\end{bmatrix}$ it is
+$3\cdot6-(-9)2=36\ne0$: invertible.
+\item For $\begin{bmatrix}4&-9\\0&5\end{bmatrix}$ it is
+$4\cdot5-(-9)0=20\ne0$: invertible.
+\item For $\begin{bmatrix}6&-9\\-4&6\end{bmatrix}$ it is
+$36-36=0$: not invertible. Indeed row 2 is $-2/3$ times row 1.
+\end{enumerate}
+
+\practice{2.2.P2}{Detect singularity while seeking an inverse}
+Begin with the augmented matrix and eliminate its first column:
+\[
+ \left[\begin{array}{rrr|rrr}1&-2&-1&1&0&0\\-1&5&6&0&1&0\\5&-4&5&0&0&1\end{array}\right]
+ \xrightarrow{\substack{R_2\gets R_2+R_1\\R_3\gets R_3-5R_1}}
+ \left[\begin{array}{rrr|rrr}1&-2&-1&1&0&0\\0&3&5&1&1&0\\0&6&10&-5&0&1\end{array}\right].
+\]
+Now $R_3\gets R_3-2R_2$ makes row 3 equal to
+$[0\ 0\ 0\mid-7\ {-2}\ 1]$. The coefficient half has only two pivots,
+so it cannot reduce to $I_3$. Therefore the given matrix has no inverse.
+A nonzero row in the \emph{right} half does not repair a missing pivot in $A$.
+
+\exercise{2.2.1}{An inverse with determinant two}
+Here $ad-bc=8\cdot4-6\cdot5=2$. Swap the diagonal entries, negate the
+other two, and divide by $2$:
+\[
+ A^{-1}=\frac12\begin{bmatrix}4&-6\\-5&8\end{bmatrix}
+ =\begin{bmatrix}2&-3\\-5/2&4\end{bmatrix}.
+\]
+For example, the first row of $AA^{-1}$ is
+$(16-15,-24+24)=(1,0)$, and the second is $(10-10,-15+16)=(0,1)$.
+The reverse product is also $I_2$, either by direct multiplication or the
+verified $2\times2$ inverse formula.
+
+\exercise{2.2.2}{An inverse with determinant negative one}
+For $A=\begin{bmatrix}3&2\\8&5\end{bmatrix}$,
+$ad-bc=15-16=-1$. Hence
+\[
+ A^{-1}=-\begin{bmatrix}5&-2\\-8&3\end{bmatrix}
+ =\begin{bmatrix}-5&2\\8&-3\end{bmatrix}.
+\]
+The negative denominator changes \emph{every} sign, not just the diagonal.
+Multiplication gives diagonal entries $-15+16=1$ and $16-15=1$,
+and off-diagonal entries $6-6=0$ and $-40+40=0$.
+
+\exercise{2.2.3}{Keep track of a negative determinant}
+For $A=\begin{bmatrix}7&3\\-6&-3\end{bmatrix}$,
+$ad-bc=-21+18=-3$. Therefore
+\[
+ A^{-1}=-\frac13\begin{bmatrix}-3&-3\\6&7\end{bmatrix}
+ =\begin{bmatrix}1&1\\-2&-7/3\end{bmatrix}.
+\]
+As a check, $AA^{-1}$ has rows $(7-6,7-7)=(1,0)$ and
+$(-6+6,-6+7)=(0,1)$.
+
+\exercise{2.2.4}{An inverse with fractional entries}
+The determinant is $2(-6)-(-4)4=4\ne0$, so
+\[
+ A^{-1}=\frac14\begin{bmatrix}-6&4\\-4&2\end{bmatrix}
+ =\begin{bmatrix}-3/2&1\\-1&1/2\end{bmatrix}.
+\]
+Fractions cause no problem: inverse entries need not be integers even when
+all entries of the original matrix are integers.
+
+\exercise{2.2.5}{Use the first inverse to solve a system}
+Multiply the right side by the inverse from Exercise 1:
+\[
+ x=A^{-1}b=\begin{bmatrix}2&-3\\-5/2&4\end{bmatrix}
+ \begin{bmatrix}2\\-1\end{bmatrix}
+ =\begin{bmatrix}4+3\\-5-4\end{bmatrix}
+ =\begin{bmatrix}7\\-9\end{bmatrix}.
+\]
+Check in the original equations: $8(7)+6(-9)=2$ and
+$5(7)+4(-9)=-1$. Since $A$ is invertible, this solution is unique.
+
+\exercise{2.2.6}{Solve using the inverse from Exercise 3}
+\[
+ x=\begin{bmatrix}1&1\\-2&-7/3\end{bmatrix}
+ \begin{bmatrix}-9\\4\end{bmatrix}
+ =\begin{bmatrix}-5\\18-28/3\end{bmatrix}
+ =\begin{bmatrix}-5\\26/3\end{bmatrix}.
+\]
+Substitution gives $7(-5)+3(26/3)=-9$ and
+$-6(-5)-3(26/3)=4$. Both equations, including their signs, are satisfied.
+
+\exercise{2.2.7}{Four right sides, one set of row operations}
+\step{(a) Compute the inverse and multiply each right side.}
+The determinant of $A=\begin{bmatrix}1&2\\5&12\end{bmatrix}$ is $12-10=2$,
+so $A^{-1}=\begin{bmatrix}6&-1\\-5/2&1/2\end{bmatrix}$.
+For any $b=(c,d)^T$, its solution is $(6c-d,(-5c+d)/2)^T$.
+Applying this formula to the four supplied columns gives, in order,
+\[
+ (-9,4)^T,\quad(11,-5)^T,\quad(6,-2)^T,\quad(13,-5)^T.
+\]
+\step{(b) Solve the four systems together.}
+Use $R_2\gets R_2-5R_1$, then $R_2\gets R_2/2$, then
+$R_1\gets R_1-2R_2$:
+\[
+ \left[\begin{array}{rr|rrrr}1&2&-1&1&2&3\\5&12&3&-5&6&5\end{array}\right]
+ \longrightarrow
+ \left[\begin{array}{rr|rrrr}1&2&-1&1&2&3\\0&2&8&-10&-4&-10\end{array}\right]
+\]
+\[
+ \longrightarrow
+ \left[\begin{array}{rr|rrrr}1&0&-9&11&6&13\\0&1&4&-5&-2&-5\end{array}\right].
+\]
+Every column on the right has undergone the same operations as its own
+separate augmented system, so the final block lists exactly the four solutions.
+
+\exercise{2.2.8}{Undo a similarity expression}
+From $A=PBP^{-1}$, multiply on the left by $P^{-1}$ and on the right by $P$:
+\[
+ P^{-1}AP=P^{-1}(PBP^{-1})P=(P^{-1}P)B(P^{-1}P)=B.
+\]
+Thus $\boxed{B=P^{-1}AP}$. Putting both new factors on the same side
+would not cancel the original factors.
+
+\exercise{2.2.9}{True--false tests for inverses}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} The definition of inverse requires $AB=BA=I$.
+For square matrices one equality eventually implies the other, but both
+equalities are still true when $B$ is the inverse.
+\item \textbf{False.} The correct order is $(AB)^{-1}=B^{-1}A^{-1}$.
+For instance take $A=\begin{bmatrix}1&1\\0&1\end{bmatrix}$,
+$B=\operatorname{diag}(1,2)$. Then $A^{-1}B^{-1}$ is
+$\begin{bmatrix}1&-1/2\\0&1/2\end{bmatrix}$, whereas the actual inverse
+is $\begin{bmatrix}1&-1\\0&1/2\end{bmatrix}$.
+\item \textbf{False.} The determinant is $ad-bc$, not $ab-cd$.
+The singular matrix $\begin{bmatrix}1&2\\2&4\end{bmatrix}$ has
+$ab-cd=2-8=-6\ne0$, disproving the assertion.
+\item \textbf{True.} For each $b$, $x=A^{-1}b$ satisfies
+$Ax=AA^{-1}b=b$.
+\item \textbf{True.} Reverse the underlying row operation: a swap
+undoes itself, nonzero scaling is undone by its reciprocal, and adding
+$r$ times another row is undone by adding $-r$ times that row.
+The corresponding elementary matrix is the inverse.
+\end{enumerate}
+
+\exercise{2.2.10}{Five further inverse statements}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} Operations taking $A$ to $I$ collectively multiply
+by $A^{-1}$. Applied to $A^{-1}$ they give $A^{-2}$, usually not $I$.
+For $A=2I$, dividing rows by $2$ takes $A^{-1}=I/2$ to $I/4$.
+\item \textbf{True.} $A^{-1}A=AA^{-1}=I$ says precisely that $A$
+is the inverse of $A^{-1}$.
+\item \textbf{False.} The product is invertible, but inverses occur
+in reverse order; the counterexample in Exercise 9(b) applies.
+\item \textbf{True.} Solvability for each $e_j$ lets us place solutions
+in columns of $D$ with $AD=I$. Alternatively, every $b=\sum_jb_je_j$
+is an output of $A$ by linearity, so $A$ has a pivot in every row.
+Since $A$ is square, its reduction is $I$, proving invertibility.
+\item \textbf{True.} This is the row-reduction characterization:
+applying the same operations to $I$ produces the inverse.
+\end{enumerate}
+
+\exercise{2.2.11}{Solve a matrix equation and prove uniqueness}
+If $AX=B$, multiply on the left by $A^{-1}$ to obtain $X=A^{-1}B$.
+This proves every solution must have that form. Conversely,
+$A(A^{-1}B)=(AA^{-1})B=B$, so that form really is a solution.
+The two arguments together prove existence and uniqueness. Shapes agree:
+$A^{-1}B$ is $n\times p$, just as $X$ must be.
+
+\exercise{2.2.12}{A right inverse of an invertible matrix is its inverse}
+Multiply $AD=I$ on the left by $A^{-1}$:
+\[
+ D=(A^{-1}A)D=A^{-1}(AD)=A^{-1}I=A^{-1}.
+\]
+The existing inverse of $A$ justifies the cancellation; it is not a general
+rule for arbitrary rectangular or singular matrices.
+
+\exercise{2.2.13}{Cancellation and the necessity of invertibility}
+If $AB=AC$ and $A$ is invertible, multiply both sides on the left by
+$A^{-1}$ to get $B=C$. Without invertibility this need not hold.
+For example, $A=\operatorname{diag}(1,0)$,
+$B=\begin{bmatrix}0&0\\1&0\end{bmatrix}$, and $C=0$ satisfy
+$AB=0=AC$ but $B\ne C$. Thus the hypothesis performs real work.
+
+\exercise{2.2.14}{Cancel on the correct side}
+Starting from $(B-C)D=0$, multiply on the \emph{right} by $D^{-1}$:
+$B-C=(B-C)(DD^{-1})=0D^{-1}=0$. Therefore $B=C$.
+Left multiplication would not put $D$ next to its inverse.
+
+\exercise{2.2.15}{What the augmented reduction computes}
+Let the row operations be represented by elementary matrices
+$E_1,\ldots,E_k$, applied in that order. Their combined multiplier is
+$E=E_k\cdots E_1$. Reducing $[A\mid B]$ to $[I\mid X]$ means
+$EA=I$ and $EB=X$. Since $A$ is invertible,
+$E=EAA^{-1}=A^{-1}$, whence $X=A^{-1}B$.
+The right block has been transformed along with $A$, avoiding a separate
+full inverse calculation.
+
+\exercise{2.2.16}{Recover an invertible factor from its product}
+Put $C=AB$, which is invertible by hypothesis. Right multiplication by
+$B^{-1}$ gives $A=CB^{-1}$. This is a product of two matrices whose
+inverses are known: $C^{-1}$ and $B$.
+Indeed $B C^{-1}$ is an inverse of $A$, because
+\[
+ (CB^{-1})(BC^{-1})=I,\qquad
+ (BC^{-1})(CB^{-1})=I.
+\]
+Thus $A$ is invertible without assuming the desired result in advance.
+
+\exercise{2.2.17}{The inverse of three factors}
+Choose $D=C^{-1}B^{-1}A^{-1}$. Associativity allows the adjacent cancellations
+\[
+ (ABC)D=AB(CC^{-1})B^{-1}A^{-1}=AA^{-1}=I,
+\]
+\[
+ D(ABC)=C^{-1}B^{-1}(A^{-1}A)BC=C^{-1}C=I.
+\]
+Both sides have been checked, so $D$ is an inverse of $ABC$.
+
+\exercise{2.2.18}{Solve without pretending that factors commute}
+From $AB=BC$, right-multiply by $B^{-1}$:
+$\boxed{A=BCB^{-1}}$. Substitution checks
+$(BCB^{-1})B=BC$. In general $BCB^{-1}$ is not $C$; cancelling the two
+$B$ factors across $C$ would be invalid.
+
+\exercise{2.2.19}{An equation with two outside inverses}
+Multiply $C^{-1}(A+X)B^{-1}=I$ first on the left by $C$, then on the
+right by $B$. This gives $A+X=CB$, hence
+$\boxed{X=CB-A}$. Substitution gives
+$C^{-1}(CB)B^{-1}=I$, proving that a solution always exists under the
+stated hypotheses. The rearrangement also proves uniqueness.
+
+\exercise{2.2.20}{An unknown matrix appearing inside an inverse}
+\step{(a) First prove that the required inverse exists.}
+From $(A-AX)^{-1}=X^{-1}B$, left multiplication by $X$ gives
+$B=X(A-AX)^{-1}$. Both factors on the right are invertible by hypothesis,
+so $B$ is invertible.
+\step{(b) Remove the inverse, then collect the unknown on one side.}
+The same equality gives $B(A-AX)=X$, or
+$BA-BAX=X$. Therefore
+\[
+ (I+BA)X=BA.
+\]
+This also shows $I+BA=BAX^{-1}$, a product of invertible matrices,
+so the next inverse is justified. Left multiplication yields
+\[
+ \boxed{X=(I+BA)^{-1}BA}.
+\]
+The original assumptions already require an admissible solution $X$;
+we used them to prove that every inverse in this expression exists.
+
+\exercise{2.2.21}{Invertibility implies independent columns}
+Suppose a combination of the columns is zero, equivalently $Ax=0$.
+Multiplying by $A^{-1}$ gives $x=0$. Thus all coefficients in the
+combination are zero, which is exactly linear independence.
+
+\exercise{2.2.22}{Invertibility implies spanning}
+For every $b\in\R^n$, the vector $x=A^{-1}b$ satisfies $Ax=b$.
+But $Ax$ is the linear combination of $A$'s columns with coefficients
+from $x$. Thus every $b$ is such a combination: the columns span $\R^n$.
+
+\exercise{2.2.23}{No homogeneous freedom means every column is a pivot}
+A nonpivot column corresponds to a free variable and would produce a
+nontrivial solution of $Ax=0$. The hypothesis rules out that possibility,
+so all $n$ columns are pivot columns. In an $n\times n$ matrix this means
+all rows have pivots too. Its reduced echelon form has a leading $1$ in
+each column and zeros elsewhere in those columns, hence is $I_n$.
+The inverse algorithm then proves that $A$ is invertible.
+
+\exercise{2.2.24}{Every right side means every row has a pivot}
+If a coefficient row lacked a pivot, some right side would produce a
+contradictory augmented row $[0\ \cdots\ 0\mid1]$. Consistency for every
+right side therefore forces $n$ pivot rows. With only $n$ columns there
+are also $n$ pivot columns, so the reduced echelon form is $I_n$.
+Again the inverse algorithm proves invertibility.
+
+\exercise{2.2.25}{A zero determinant produces a nonzero null vector}
+\goal Prove singularity directly when $ad-bc=0$.
+If $(a,b)\ne(0,0)$, use $x=(-b,a)^T\ne0$. Multiplication gives
+$Ax=(-ab+ba,-bc+da)^T=0$.
+If $a=b=0$ but $(c,d)\ne(0,0)$, use $x=(-d,c)^T\ne0$;
+both rows again give zero. If all four entries vanish, any nonzero
+$x$, such as $(1,0)^T$, works.
+Thus both $x=0$ and a nonzero $x$ solve $Ax=0$. An inverse would imply
+$x=A^{-1}0=0$, contradicting the nonzero solution. Hence $A$ is not invertible.
+
+\exercise{2.2.26}{Verify the two-by-two formula}
+Let $\Delta=ad-bc\ne0$ and
+$B=\Delta^{-1}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}$. Then
+\[
+ AB=\frac1\Delta\begin{bmatrix}ad-bc&-ab+ba\\cd-dc&-cb+da\end{bmatrix}=I_2,
+\]
+\[
+ BA=\frac1\Delta\begin{bmatrix}da-bc&db-bd\\-ca+ac&-cb+ad\end{bmatrix}=I_2.
+\]
+Division by $\Delta$ is legal by hypothesis. Both products equal the
+identity, so $B=A^{-1}$ by definition.
+
+\exercise{2.2.27}{Elementary matrices select and change rows}
+\begin{enumerate}[label=(\alph*)]
+\item Row $i$ of $I_3$ has a $1$ in position $i$ and zeros elsewhere.
+Consequently $(\operatorname{row}_iI_3)A$ is $1$ times row $i$ of $A$
+plus zero times the other rows: it equals $\operatorname{row}_iA$.
+\item Set $E=\begin{bmatrix}0&1&0\\1&0&0\\0&0&1\end{bmatrix}$.
+The three rows of $EA$ are, by part (a), rows $2,1,3$ of $A$.
+Thus it swaps rows 1 and 2, exactly as the same operation on $I_3$ does.
+\item Set $E=\operatorname{diag}(1,1,5)$. Its rows select row 1 of $A$,
+row 2 of $A$, and five times row 3 of $A$. Thus $EA$ performs the desired
+scaling, and $E$ is obtained by scaling row 3 of $I_3$ by $5$.
+\end{enumerate}
+
+\exercise{2.2.28}{An elementary row replacement and a printed typo}
+The intended elementary matrix is
+\[
+ E=\begin{bmatrix}1&0&0\\-3&1&0\\0&0&1\end{bmatrix}.
+\]
+Its rows show that $EA$ has rows
+$\operatorname{row}_1A$, $-3\operatorname{row}_1A+\operatorname{row}_2A$,
+and $\operatorname{row}_3A$, as required.
+To construct $E$ from $I$, the replacement must be
+$\operatorname{row}_2(I)\gets\operatorname{row}_2(I)-3\operatorname{row}_1(I)$.
+The supplied edition prints $\operatorname{row}_1(A)$ in that last
+construction. Read literally that is incorrect: it would make $E$
+depend on $A$ and need not be the elementary matrix for this operation.
+The computation above states and verifies the corrected version explicitly.
+
+\exercise{2.2.29}{Find an inverse by the augmented algorithm}
+Start with $[A\mid I]$ and perform the indicated operations:
+\[
+ \left[\begin{array}{rr|rr}1&-3&1&0\\4&-9&0&1\end{array}\right]
+ \xrightarrow{R_2\gets R_2-4R_1}
+ \left[\begin{array}{rr|rr}1&-3&1&0\\0&3&-4&1\end{array}\right].
+\]
+Divide row 2 by $3$, then add three times the new row 2 to row 1.
+The result is
+$\left[\begin{array}{rr|rr}1&0&-3&1\\0&1&-4/3&1/3\end{array}\right]$.
+Thus $A^{-1}=\begin{bmatrix}-3&1\\-4/3&1/3\end{bmatrix}$.
+
+\exercise{2.2.30}{A second augmented inverse calculation}
+For $[A\mid I]$, first use $R_1\gets R_1/3$, then
+$R_2\gets R_2-4R_1$:
+\[
+ \left[\begin{array}{rr|rr}3&6&1&0\\4&7&0&1\end{array}\right]
+ \longrightarrow
+ \left[\begin{array}{rr|rr}1&2&1/3&0\\0&-1&-4/3&1\end{array}\right].
+\]
+Negate row 2 and replace row 1 by $R_1-2R_2$. This gives
+\[
+ [I\mid A^{-1}]=
+ \left[\begin{array}{rr|rr}1&0&-7/3&2\\0&1&4/3&-1\end{array}\right].
+\]
+Both left-hand pivots exist, so the inverse is the displayed right block.
+
+\exercise{2.2.31}{A full three-by-three inverse}
+Eliminate below the first pivot of $[A\mid I]$ with
+$R_2\gets R_2+3R_1$, $R_3\gets R_3-2R_1$, then
+$R_3\gets R_3+3R_2$:
+\[
+ \left[\begin{array}{rrr|rrr}1&0&-2&1&0&0\\-3&1&4&0&1&0\\2&-3&4&0&0&1\end{array}\right]
+ \longrightarrow
+ \left[\begin{array}{rrr|rrr}1&0&-2&1&0&0\\0&1&-2&3&1&0\\0&0&2&7&3&1\end{array}\right].
+\]
+Next divide row 3 by $2$ and add twice this new row to each of rows 1 and 2.
+The coefficient block is now $I_3$, and the right block is
+\[
+ \boxed{A^{-1}=\begin{bmatrix}8&3&1\\10&4&1\\7/2&3/2&1/2\end{bmatrix}}.
+\]
+For instance the first row $[1,0,-2]$ of $A$ times this block is
+$[8,3,1]-2[7/2,3/2,1/2]=[1,0,0]$; the other two rows similarly
+check the identity. Exact multiplication verifies all nine entries.
+
+\exercise{2.2.32}{A failed inverse algorithm is useful information}
+Apply $R_2\gets R_2+4R_1$ and $R_3\gets R_3+2R_1$ to $[A\mid I]$:
+\[
+ \left[\begin{array}{rrr|rrr}1&2&-1&1&0&0\\-4&-7&3&0&1&0\\-2&-6&4&0&0&1\end{array}\right]
+ \longrightarrow
+ \left[\begin{array}{rrr|rrr}1&2&-1&1&0&0\\0&1&-1&4&1&0\\0&-2&2&2&0&1\end{array}\right].
+\]
+Now $R_3\gets R_3+2R_2$ gives a zero coefficient row, with right
+block row $[10,2,1]$. The coefficient block has only two pivots and cannot
+become $I_3$. Therefore the inverse does not exist. Stopping here is a
+conclusion about singularity, not an unfinished calculation.
+
+\exercise{2.2.33}{Invert a cumulative-sum matrix}
+For the $3\times3$ lower-triangular matrix of ones, apply
+$R_3\gets R_3-R_2$ first and then $R_2\gets R_2-R_1$ to $[A\mid I]$.
+The order ensures that the subtracted rows are still the original rows.
+The left block becomes $I$ and the right becomes
+\[
+ B_3=\begin{bmatrix}1&0&0\\-1&1&0\\0&-1&1\end{bmatrix}.
+\]
+For the $4\times4$ case, work upward with
+$R_4\gets R_4-R_3$, $R_3\gets R_3-R_2$, $R_2\gets R_2-R_1$:
+\[
+ B_4=\begin{bmatrix}1&0&0&0\\-1&1&0&0\\0&-1&1&0\\0&0&-1&1\end{bmatrix}.
+\]
+In general $B$ has $1$ on the diagonal, $-1$ immediately below it, and
+zero elsewhere. For $j<n$, column $j$ of $AB$ is
+$Ae_j-Ae_{j+1}$. The two cumulative columns agree below row $j$, and
+differ by $1$ exactly in row $j$, so this is $e_j$. The last column is
+$Ae_n=e_n$. Thus $AB=I_n$; the same upward row-reduction construction
+shows $B$ is indeed the inverse for every $n$.
+
+\exercise{2.2.34}{A scaled cumulative-sum matrix}
+Let $L$ be the lower-triangular ones matrix and
+$D=\operatorname{diag}(1,2,\ldots,n)$. The given $A$ is $DL$,
+because row $i$ consists of $i$'s up through its diagonal entry.
+Thus its inverse is $B=L^{-1}D^{-1}$. Explicitly,
+\[
+ b_{ii}=1/i,\qquad b_{i,i-1}=-1/(i-1)\ (i\ge2),
+\]
+with every other entry zero. For example,
+$B_3=\begin{bmatrix}1&0&0\\-1&1/2&0\\0&-1/2&1/3\end{bmatrix}$;
+$B_4$ appends a last row $(0,0,-1/3,1/4)$ to the corresponding four-column
+pattern. For $j<n$, column $j$ of $AB$ is $(Ae_j-Ae_{j+1})/j=e_j$,
+since the two columns differ only in row $j$, where their difference is $j$.
+The last column is $Ae_n/n=e_n$. Hence $AB=I_n$, verifying the formula.
+
+\exercise{2.2.35}{Find one inverse column without the others}
+The third column $z$ of $A^{-1}$ satisfies $Az=e_3$, since
+$AA^{-1}=I$. Its equations are
+\[
+ -z_1-7z_2-3z_3=0,\quad
+ 2z_1+15z_2+6z_3=0,\quad z_1+3z_2+2z_3=1.
+\]
+Add twice the first equation to the second: $z_2=0$.
+Add the first to the third: $-4z_2-z_3=1$, so $z_3=-1$.
+The first then gives $z_1=3$. Thus the requested column is
+$\boxed{(3,0,-1)^T}$. Substitution verifies all three equations.
+The coefficient matrix has pivots in all three columns by this elimination,
+so the use of its inverse is justified.
+
+\exercise{2.2.36}{Two inverse columns in one augmented system}
+Solve $Az=e_2$ and $Aw=e_3$ together. No first inverse column is needed.
+Start with $[A\mid e_2\ e_3]$. To avoid early fractions, multiply row 2
+by $25$ and add $536$ times row 1; multiply row 3 by $25$ and add $154$
+times row 1. These are compositions of legal elementary operations:
+\[
+ \left[\begin{array}{rrr|rr}-25&-9&-27&0&0\\536&185&537&1&0\\154&52&143&0&1\end{array}\right]
+ \longrightarrow
+ \left[\begin{array}{rrr|rr}-25&-9&-27&0&0\\0&-199&-1047&25&0\\0&-86&-583&0&25\end{array}\right].
+\]
+Replacing row 3 by $199R_3-86R_2$ gives its coefficient row
+$[0,0,-25975]$ and right side $[-2150,4975]$.
+Back-substitution gives
+\[
+ z=\frac1{1039}\begin{bmatrix}117\\-583\\86\end{bmatrix},\qquad
+ w=\frac1{1039}\begin{bmatrix}-162\\1047\\-199\end{bmatrix}.
+\]
+For example $z_3=2150/25975=86/1039$; the preceding row determines
+$z_2$, and the first row determines $z_1$. The same steps give $w$.
+All three triangular pivots are nonzero; exact substitution gives
+$Az=e_2$ and $Aw=e_3$ and verifies both requested columns.
+
+\exercise{2.2.37}{A rectangular left inverse need not be a right inverse}
+For the supplied $3\times2$ matrix, choose
+\[
+ C=\begin{bmatrix}1&1&-1\\-1&1&0\end{bmatrix}.
+\]
+All entries are allowed. In $CA$, its first row gives
+$[1,2]+[1,3]-[1,5]=[1,0]$; the second gives
+$-[1,2]+[1,3]=[0,1]$. Thus $CA=I_2$.
+In the other order,
+\[
+ AC=\begin{bmatrix}-1&3&-1\\-2&4&-1\\-4&6&-1\end{bmatrix}\ne I_3.
+\]
+The unequal dimensions prevent a general reversal of the identity.
+
+\exercise{2.2.38}{A rectangular right inverse}
+The first and fourth columns of the given $A$ are $e_1$ and $e_2$.
+Select them by taking
+\[
+ D=\begin{bmatrix}1&0\\0&0\\0&0\\0&1\end{bmatrix}.
+\]
+Its entries are only $0,1$, and $AD=[e_1\ e_2]=I_2$.
+There cannot be a $4\times2$ matrix $C$ with $CA=I_4$.
+Indeed the nonzero vector $(0,1,1,0)^T$ satisfies $Ax=0$.
+If $CA=I_4$, then $x=CAx=C0=0$, a contradiction.
+
+\exercise{2.2.39}{Convert forces into deflections}
+The model is $y=Df$: flexibility times force gives deflection.
+With $f=(40,50,30)^T$ pounds, the three entries are
+\[
+ y_1=.011(40)+.003(50)+.001(30)=.62,
+\]
+\[
+ y_2=.003(40)+.009(50)+.003(30)=.66,\qquad
+ y_3=.001(40)+.003(50)+.011(30)=.52.
+\]
+Thus the deflections are $\boxed{(.62,.66,.52)^T}$ inches.
+Multiplying units, inches per pound times pounds gives inches.
+
+\exercise{2.2.40}{Stiffness and a prescribed third deflection}
+Row reduction, or exact rational arithmetic on the decimal entries, gives
+\[
+ D^{-1}=\begin{bmatrix}100&-100/3&0\\-100/3&400/3&-100/3\\0&-100/3&100\end{bmatrix}.
+\]
+To check rather than trust the calculation, write
+$D=10^{-3}\begin{bmatrix}11&3&1\\3&9&3\\1&3&11\end{bmatrix}$.
+Its first row times the displayed stiffness matrix gives
+$[1100-100, -1100/3+400-100/3, -100+100]=[1000,0,0]$;
+the other rows give $[0,1000,0]$ and $[0,0,1000]$. The factor $10^{-3}$
+therefore makes the product $I$.
+For $y=.04e_3$, use only column 3 of $D^{-1}$:
+\[
+ f=D^{-1}y=.04(0,-100/3,100)^T=(0,-4/3,4)^T\text{ pounds}.
+\]
+The negative second force points opposite to the chosen positive direction;
+it is needed to keep the second deflection at zero.
+
+\exercise{2.2.41}{Four measured deflections determine four forces}
+Let $S=1000D$, an integer matrix, and use the measured $y$ in centimeters.
+Then $Df=y$ is equivalent to
+\[
+ \begin{bmatrix}13&5&2&1\\5&10&4&2\\2&4&10&5\\1&2&5&13\end{bmatrix}f
+ =\begin{bmatrix}70\\120\\160\\120\end{bmatrix}.
+\]
+Exact row reduction produces
+\[
+ [I\mid f],\qquad
+ \boxed{f=(20/21,130/21,80/7,80/21)^T}\text{ newtons}.
+\]
+For a transparent check with integers, write
+$f=(20,130,240,80)^T/21$. Multiplying by $S$ gives
+$(1470,2520,3360,2520)^T/21=(70,120,160,120)^T$,
+which verifies all four equations. The inverse used in this computation is
+\[
+ D^{-1}=\frac{1000}{21}
+ \begin{bmatrix}2&-1&0&0\\-1&3&-1&0\\0&-1&3&-1\\0&0&-1&2\end{bmatrix}.
+\]
+Multiplication by the given $D$ gives $I_4$, so the forces are unique.
+The form of this inverse makes the next requested calculation especially simple.
+
+\exercise{2.2.42}{Prescribe only the second deflection}
+A unit deflection $e_2$ requires $D^{-1}e_2$, precisely column 2 of the
+stiffness matrix. By linearity, a deflection $.22e_2$ requires $.22$ times
+that column. Using the inverse from Exercise 41,
+\[
+ f=.22\frac{1000}{21}(-1,3,-1,0)^T
+   =\boxed{(-220/21,220/7,-220/21,0)^T}\text{ newtons}.
+\]
+Multiplication by $D$ gives $(0,.22,0,0)^T$ centimeters. The last force is
+zero, while two forces are negative: forcing a single deflection does not
+mean that only one applied force is needed.

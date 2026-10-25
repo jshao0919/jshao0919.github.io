@@ -1,0 +1,376 @@
+\section{Solution sets of linear systems}
+A homogeneous system has right side zero: $Ax=0$. It is always
+consistent, because $x=0$ works. A nontrivial solution means any solution
+other than this entire zero vector; some individual coordinates may still
+be zero. A homogeneous system has a nontrivial solution exactly when
+there is a free variable.
+
+To write a solution set parametrically, solve for pivot variables in terms
+of the free variables, then separate the resulting vector into its constant
+part and its parameter-dependent parts. If $p$ is one solution of $Ax=b$,
+all solutions are $p+v$, where $Av=0$. Thus a consistent nonhomogeneous
+solution set is a translation of the homogeneous solution set.
+
+\practice{1.5.P1}{Intersect two planes by solving their simultaneous equations}
+The two equations must hold at the same time. Starting with
+$x_1+4x_2-5x_3=0$ and $2x_1-x_2+8x_3=9$, subtract twice
+the first from the second to get $-9x_2+18x_3=9$.
+Thus $x_2=-1+2x_3$ and the first equation gives $x_1=4-3x_3$.
+Write $x_3=t$. Then
+\[x=(4,-1,0)^T+t(-3,2,1)^T,\qquad t\in\R.\]
+Substitution gives $4-4+(-3+8-5)t=0$ in the first equation
+and $8+1+(-6-2+8)t=9$ in the second. The intersection is
+therefore the displayed line, not an empty set or an entire plane.
+
+\practice{1.5.P2}{A translated plane}
+Solve $10x_1-3x_2-2x_3=7$ for its pivot variable:
+$x_1=7/10+(3/10)x_2+(1/5)x_3$. With $x_2=s,x_3=t$ this gives
+\[x=(7/10,0,0)^T+s(3/10,1,0)^T+t(1/5,0,1)^T.\]
+The two direction vectors are the same as for the homogeneous equation
+in Example 2. The constant vector translates that plane; it satisfies the
+new equation itself, since $10(7/10)=7$.
+
+\exercise{1.5.1}{Find a free variable with two eliminations}
+Add row 1 to row 2 and subtract twice row 1 from row 3. The
+coefficient matrix becomes
+\[\begin{bmatrix}2&-5&8\\0&-12&9\\0&12&-9\end{bmatrix}.\]
+The last two rows are negatives. Their sum is zero, leaving only two
+pivot rows for three unknowns. Hence $x_3$ is free and a nontrivial
+solution exists. For an explicit check, $(-17,6,8)^T$ gives
+$-34-30+64=0$, $34-42+8=0$, and $-68+12+56=0$.
+\answer{Yes, the system has nontrivial solutions.}
+
+\exercise{1.5.2}{Three pivots force the zero solution}
+The operations $R_2\leftarrow R_2+2R_1$ and
+$R_3\leftarrow R_3-2R_1$ give
+\[\begin{bmatrix}1&-2&3\\0&-7&2\\0&0&3\end{bmatrix}.\]
+All three columns have pivots. Back substitution gives $x_3=0$,
+then $x_2=0$, then $x_1=0$.
+\answer{No: the only solution is the trivial solution.}
+
+\exercise{1.5.3}{Fewer equations guarantee a free variable here}
+A two-row coefficient matrix can have at most two pivots. With
+three unknowns, at least one variable must be free. Since the system
+is homogeneous, it is consistent, and the free variable gives a
+nontrivial solution. One such solution is $(-8,-4,1)^T$:
+$24-16-8=0$ and $16-20+4=0$.
+\answer{Yes; the pivot-count argument needs no row operations.}
+
+\exercise{1.5.4}{A second two-equation homogeneous system}
+There are three coefficient columns but only two rows. There cannot
+be a pivot in every column, so a free variable exists. Homogeneity
+ensures consistency, hence a nontrivial solution.
+For a numerical check, $(-2,16,29)^T$ gives
+$-10-48+58=0$ and $6-64+58=0$.
+\answer{Yes, the system has nontrivial solutions.}
+
+\exercise{1.5.5}{Separate the common free parameter}
+The second equation is $-2$ times the first, so it adds no restriction.
+The last equation gives $x_2=-x_3$. Divide the first equation by $2$
+to obtain $x_1+x_2+2x_3=0$, hence $x_1=-x_3$.
+Writing $x_3=t$ gives
+\[x=(-t,-t,t)^T=t(-1,-1,1)^T,\qquad t\in\R.\]
+Substitution into each original row gives zero.
+\answer{The solution set is a line through the origin.}
+
+\exercise{1.5.6}{Three equal coordinates}
+The third equation gives $x_2=x_1$. Substituting into the first
+produces $3x_1-3x_3=0$, so $x_1=x_3$. The second equation then
+also holds, since $2x_3+x_3-3x_3=0$.
+Thus, with $x_3=t$,
+\[x=t(1,1,1)^T,\qquad t\in\R.\]
+\answer{This is another line through the origin.}
+
+\exercise{1.5.7}{Two free variables in four coordinates}
+Row equivalence preserves solutions to the homogeneous equation.
+The second displayed row gives $x_2=4x_3-5x_4$; substitute into the
+first to obtain $x_1=-9x_3+8x_4$. Let $x_3=s$ and $x_4=t$.
+\[x=s(-9,4,1,0)^T+t(8,-5,0,1)^T,\qquad s,t\in\R.\]
+These expressions satisfy both displayed rows, and every solution
+arises because its free coordinates may be chosen arbitrarily.
+
+\exercise{1.5.8}{Solve the second pivot row first}
+The second row gives $x_2=-2x_3+4x_4$. The first gives
+$x_1=3x_2+8x_3-5x_4=2x_3+7x_4$. Hence
+\[x=s(2,-2,1,0)^T+t(7,4,0,1)^T,\qquad s,t\in\R.\]
+Here $s=x_3$ and $t=x_4$ are independent parameters; neither is
+silently set to zero.
+
+\exercise{1.5.9}{The third coordinate is a pivot variable}
+The equations are $3x_1-6x_2+6x_3=0$ and
+$-2x_1+4x_2-2x_3=0$. Twice the first plus three times the second
+gives $6x_3=0$. Thus $x_3=0$ and $x_1=2x_2$.
+\[x=t(2,1,0)^T,\qquad t\in\R.\]
+The parameter is $x_2$, not $x_3$: the latter has been forced to zero.
+
+\exercise{1.5.10}{A missing column gives a completely free coordinate}
+The equations are $-x_1-4x_2-4x_4=0$ and
+$2x_1-8x_2+8x_4=0$. Adding twice the first to the second gives
+$-16x_2=0$. Hence $x_2=0$ and $x_1=-4x_4$.
+The variable $x_3$ never appears, so it is independently free.
+\[x=s(0,0,1,0)^T+t(-4,0,0,1)^T,\qquad s,t\in\R.\]
+
+\exercise{1.5.11}{Three free coordinates in a six-coordinate vector}
+The third nonzero row gives $x_5=4x_6$ and the second gives
+$x_3=x_6$. Substitution into the first yields
+\[x_1=4x_2+2x_3-3x_5+5x_6=4x_2-5x_6.\]
+The free variables are $x_2=s$, $x_4=t$, and $x_6=u$. Therefore
+\[x=s(4,1,0,0,0,0)^T+t(0,0,0,1,0,0)^T
++u(-5,0,1,0,4,1)^T.\]
+All three parameters range independently over $\R$. The zero fourth
+row imposes no additional equation.
+
+\exercise{1.5.12}{A pivot in the last coefficient column is not inconsistency}
+The third row is $x_6=0$; this is a coefficient matrix for $Ax=0$,
+not an augmented matrix with a nonzero right-side pivot.
+The second row gives $x_4=-4x_5+6x_6=-4x_5$.
+The first then gives
+$x_1=2x_2-3x_3+6x_4-5x_5=2x_2-3x_3-29x_5$.
+Thus
+\[x=s(2,1,0,0,0,0)^T+t(-3,0,1,0,0,0)^T
++u(-29,0,0,-4,1,0)^T,\qquad s,t,u\in\R.\]
+The parameters are precisely the free coordinates $x_2,x_3,x_5$.
+
+\exercise{1.5.13}{Read the point and direction of a line}
+Put $x_3=t$ in the given coordinate description:
+\[x=(5+4t,-2-7t,t)^T=(5,-2,0)^T+t(4,-7,1)^T.\]
+Thus the line passes through $(5,-2,0)^T$ and has nonzero direction
+$(4,-7,1)^T$. Every real $t$ is allowed.
+
+\exercise{1.5.14}{A line can lie in four-dimensional space}
+With $x_4=t$, the given formulas assemble into
+\[x=(5t,3-2t,2+5t,t)^T
+=(0,3,2,0)^T+t(5,-2,5,1)^T.\]
+There is just one free parameter and one nonzero direction vector,
+so the set is a line in $\R^4$. A line does not require its ambient
+space to have only two or three dimensions.
+
+\exercise{1.5.15}{Parallel planes from the same left side}
+Solve for $x_1$ and set $x_2=s,x_3=t$. The homogeneous equation gives
+\[x=s(-5,1,0)^T+t(3,0,1)^T.\]
+The equation with right side $-2$ gives
+\[x=(-2,0,0)^T+s(-5,1,0)^T+t(3,0,1)^T.\]
+The same two independent directions occur in both descriptions.
+The second plane is the first translated by $(-2,0,0)^T$.
+They are distinct and disjoint: the same point cannot make the
+left-hand expression equal both $0$ and $-2$.
+
+\exercise{1.5.16}{Translate the homogeneous plane by a particular solution}
+Using $x_2=s,x_3=t$, the homogeneous solutions are
+\[x=s(2,1,0)^T+t(-3,0,1)^T.\]
+For right side $4$ the solutions become
+\[x=(4,0,0)^T+s(2,1,0)^T+t(-3,0,1)^T.\]
+Both are planes with the same two directions. One passes through
+zero, while the translated plane does not, since the left side at
+zero is $0$, not $4$.
+
+\exercise{1.5.17}{Translate the line from Exercise 5}
+The last equation gives $x_2=-4-x_3$. Divide the first by $2$:
+$x_1+x_2+2x_3=4$, so $x_1=8-x_3$. The second equation is again
+$-2$ times the first and adds nothing. With $x_3=t$,
+\[x=(8,-4,0)^T+t(-1,-1,1)^T,\qquad t\in\R.\]
+The constant vector satisfies the original right side $(8,-16,12)^T$.
+The direction agrees with Exercise 1.5.5, so the two solution lines
+are parallel; the current line is translated away from the origin.
+
+\exercise{1.5.18}{Translate the line from Exercise 6}
+The third equation gives $x_2=x_1-8$. The first becomes
+$3x_1-16-3x_3=5$, so $x_1=7+x_3$ and $x_2=-1+x_3$.
+The second equation checks: $2(7+x_3)+(-1+x_3)-3x_3=13$.
+Thus
+\[x=(7,-1,0)^T+t(1,1,1)^T,\qquad t\in\R.\]
+This line has the same direction as the homogeneous line in
+Exercise 1.5.6 and is its translation by $(7,-1,0)^T$.
+
+\exercise{1.5.19}{A line through a point with a specified direction}
+A point on the required line is obtained by starting at $a$ and
+moving any real multiple of $b$. Thus
+\[x=(-2,0)^T+t(-5,3)^T,\qquad t\in\R.\]
+At $t=0$ the point is $a$; differences between two points are scalar
+multiples of the nonzero vector $b$, so the line is parallel to $b$.
+
+\exercise{1.5.20}{A line through a point with a specified direction}
+A point on the required line is obtained by starting at $a$ and
+moving any real multiple of $b$. Thus
+\[x=(3,-2)^T+t(-7,6)^T,\qquad t\in\R.\]
+At $t=0$ the point is $a$; differences between two points are scalar
+multiples of the nonzero vector $b$, so the line is parallel to $b$.
+
+\exercise{1.5.21}{Use the difference of two points as direction}
+Subtract the starting point from the endpoint:
+$q-p=(1,4)^T$. Hence the line is
+\[x=(3,-3)^T+t(1,4)^T,\qquad t\in\R.\]
+The value $t=0$ gives $p$ and $t=1$ gives $q$; all displacements
+are parallel to $q-p$.
+
+\exercise{1.5.22}{Use the difference of two points as direction}
+Subtract the starting point from the endpoint:
+$q-p=(3,-5)^T$. Hence the line is
+\[x=(-3,2)^T+t(3,-5)^T,\qquad t\in\R.\]
+The value $t=0$ gives $p$ and $t=1$ gives $q$; all displacements
+are parallel to $q-p$.
+
+\exercise{1.5.23}{Five statements about homogeneous and translated systems}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} $x=0$ always solves a homogeneous equation.
+\item \textbf{False.} $Ax=0$ is an implicit condition. Parametric
+vector form is an explicit description in terms of free parameters.
+\item \textbf{False.} The trivial solution exists whether or not
+there is a free variable. A free variable is equivalent to existence
+of a \emph{nontrivial} solution.
+\item \textbf{False.} $x=p+tv$ describes the line through $p$
+parallel to $v$, not in general a line through $v$ parallel to $p$.
+For example $p=(1,0)^T,v=(0,1)^T$ give the vertical line $x_1=1$.
+\item \textbf{False as stated.} Such a representation requires $p$
+to be a particular solution and $Ax=b$ to be consistent. Without
+those hypotheses it need not hold. With them it is Theorem 6.
+\end{enumerate}
+
+\exercise{1.5.24}{Five further statements and their justifications}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} A homogeneous system has the solution $0$, so
+it cannot be inconsistent.
+\item \textbf{False.} Nontrivial means not \emph{all} coordinates
+are zero. For example $(1,0)^T$ is a nontrivial solution of
+$[0\ 1]x=0$ even though its second entry is zero.
+\item \textbf{True.} The displacement from $v$ to $v+p$ is
+$(v+p)-v=p$, so it is in the direction of $p$ (with no movement
+when $p=0$).
+\item \textbf{True.} If $0$ solves $Ax=b$, then $b=A0=0$;
+that is exactly the homogeneous case.
+\item \textbf{True.} Consistency supplies a particular solution $p$;
+Theorem 6 states the entire solution set is $p+\{v:Av=0\}$.
+\end{enumerate}
+
+\exercise{1.5.25}{Prove the translation theorem in both directions}
+\goal Assume $Ap=b$. Relate every solution to the homogeneous system.
+\step{(a) Add a homogeneous solution.}
+If $Av_h=0$ and $w=p+v_h$, additivity of multiplication gives
+$Aw=Ap+Av_h=b+0=b$. Thus every proposed vector really is a solution.
+\step{(b) Recover the homogeneous part from any solution.}
+If $Aw=b$, let $v_h=w-p$. Then
+$Av_h=A(w-p)=Aw-Ap=b-b=0$, and $w=p+v_h$.
+\answer{Both inclusions hold, so the two described solution sets
+are exactly equal, not merely one contained in the other.}
+
+\exercise{1.5.26}{The zero coefficient matrix imposes no restriction}
+For the $3\times3$ zero matrix, $Ax=(0,0,0)^T$ for every input
+$x\in\R^3$. Thus every vector satisfies the equation.
+\[x=s(1,0,0)^T+t(0,1,0)^T+u(0,0,1)^T,\qquad s,t,u\in\R.\]
+\answer{The solution set is all of $\R^3$.}
+
+\exercise{1.5.27}{Uniqueness is equivalent to a trivial homogeneous kernel}
+Because a solution exists, fix one and call it $p$. By Theorem 6,
+all solutions are $p+v_h$ with $Av_h=0$.
+If the only homogeneous solution is $0$, the only translated
+solution is $p+0=p$, so uniqueness holds.
+Conversely, if there were a nonzero homogeneous $v_h$, the vector
+$p+v_h\ne p$ would give a second solution. This contradicts
+uniqueness.
+\answer{The equivalence follows in both directions. Consistency is
+needed in order to fix $p$.}
+
+\exercise{1.5.28}{Use the numbers of pivots, rows, and columns}
+There are 3 unknowns and 3 coefficient pivots.
+Consequently there are 0 free variables.
+\step{(a) Nontrivial homogeneous solutions.}
+Every variable is a pivot variable, so the only homogeneous
+solution is zero; there is no nontrivial solution.
+\step{(b) Consistency for every right side.}
+Every one of the 3 rows contains a pivot. Theorem 4 therefore
+guarantees consistency for every $b\in\R^{3}$.
+
+\exercise{1.5.29}{Use the numbers of pivots, rows, and columns}
+There are 4 unknowns and 3 coefficient pivots.
+Consequently there are 1 free variables.
+\step{(a) Nontrivial homogeneous solutions.}
+Since there is at least one free variable, the homogeneous
+system has nontrivial solutions.
+\step{(b) Consistency for every right side.}
+There are fewer pivots than rows. Theorem 4 therefore says that
+some right sides have no solution.
+
+\exercise{1.5.30}{Use the numbers of pivots, rows, and columns}
+There are 5 unknowns and 2 coefficient pivots.
+Consequently there are 3 free variables.
+\step{(a) Nontrivial homogeneous solutions.}
+Since there is at least one free variable, the homogeneous
+system has nontrivial solutions.
+\step{(b) Consistency for every right side.}
+Every one of the 2 rows contains a pivot. Theorem 4 therefore
+guarantees consistency for every $b\in\R^{2}$.
+
+\exercise{1.5.31}{Use the numbers of pivots, rows, and columns}
+There are 2 unknowns and 2 coefficient pivots.
+Consequently there are 0 free variables.
+\step{(a) Nontrivial homogeneous solutions.}
+Every variable is a pivot variable, so the only homogeneous
+solution is zero; there is no nontrivial solution.
+\step{(b) Consistency for every right side.}
+There are fewer pivots than rows. Theorem 4 therefore says that
+some right sides have no solution.
+
+\exercise{1.5.32}{A nonzero right side excludes the origin}
+If a solution set were a plane through the origin, it would contain
+$x=0$. But $A0=0\ne b$ when $b\ne0$.
+\answer{No. A nonzero right side makes the origin impossible as a
+solution, regardless of the dimension of the solution set.}
+
+\exercise{1.5.33}{Arrange for row sums to vanish}
+Take
+\[A=\begin{bmatrix}1&-1&0\\0&1&-1\\1&0&-1\end{bmatrix}.\]
+This is nonzero, and multiplying by $(1,1,1)^T$ gives row sums
+$1-1+0=0$, $0+1-1=0$, and $1+0-1=0$.
+\answer{The displayed matrix has the required nonzero null vector.}
+
+\exercise{1.5.34}{Make every row orthogonal to the prescribed vector}
+Take
+\[A=\begin{bmatrix}1&2&0\\0&1&1\\1&0&-2\end{bmatrix}.\]
+The row products with $(2,-1,1)^T$ are respectively
+$2-2=0$, $-1+1=0$, and $2-2=0$.
+Thus $A(2,-1,1)^T=0$, and $A$ is plainly not the zero matrix.
+
+\exercise{1.5.35}{Cancel proportional columns by inspection}
+The second column is three times the first. Therefore
+$-3a_1+a_2=0$. By the column definition this means
+$A(-3,1)^T=0$. The vector is nonzero, so it is nontrivial.
+No elimination is needed.
+
+\exercise{1.5.36}{Cancel a different proportionality}
+The columns satisfy $2a_1+3a_2=0$, since
+$2(3,-6,12)^T+3(-2,4,-8)^T=(0,0,0)^T$.
+Thus $(2,3)^T$ is a nontrivial solution of $Ax=0$.
+
+\exercise{1.5.37}{An inconsistent right side is not a translated line}
+Choose
+\[A=\begin{bmatrix}1&-4\\0&0\end{bmatrix}.\]
+The homogeneous equation is $x_1=4x_2$, with solution line
+$x=t(4,1)^T$, exactly the line through $(4,1)^T$ and zero.
+Now choose $b=(0,1)^T$. The second row of $Ax=b$ says $0=1$,
+so its solution set is empty, not a line parallel to the original one.
+\answer{There is no contradiction: Theorem 6 assumes consistency,
+and this selected right side violates that assumption.}
+
+\exercise{1.5.38}{Scalar multiples stay in the homogeneous solution set}
+The scalar-multiplication rule gives
+\[A(cw)=c(Aw)=c0=0.\]
+This holds for every real $c$, including $c=0$ and negative values.
+\answer{Every multiple $cw$ is another homogeneous solution.}
+
+\exercise{1.5.39}{Sums and linear combinations stay in the solution set}
+Additivity first gives $A(v+w)=Av+Aw=0+0=0$.
+For any scalars $c,d$, combine both multiplication rules:
+\[A(cv+dw)=A(cv)+A(dw)=cAv+dAw=c0+d0=0.\]
+\answer{Every such linear combination is a homogeneous solution.}
+
+\exercise{1.5.40}{A missing right side rules out any unique solution}
+Suppose there were a right-side vector $y$ for which $Ax=y$ had a
+unique solution. Uniqueness would mean all
+three coefficient columns have pivots. A $3\times3$ matrix would
+then have a pivot in every row. Theorem 4 would make $Ax=b$
+consistent for every $b\in\R^3$, contradicting the specified missing
+right side.
+Equivalently, the missing right side implies at most two pivots,
+so at least one variable is free. Every consistent system with this
+coefficient matrix consequently has infinitely many solutions.
+\answer{No vector on the right can produce a unique solution.}

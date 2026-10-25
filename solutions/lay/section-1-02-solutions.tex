@@ -1,0 +1,502 @@
+\section{Row reduction and echelon forms}
+A pivot is a leading nonzero entry of an echelon row. In echelon form,
+zero rows are at the bottom, pivots move strictly to the right as one moves
+downward, and all entries below a pivot are zero. In reduced echelon form
+(RREF), every pivot is $1$ and is the only nonzero entry of its column.
+RREF is unique even though the sequence of operations leading to it is not.
+
+For a system, pivot variable columns correspond to basic variables, and
+nonpivot variable columns correspond to free variables. \emph{First test
+consistency}: a pivot in the augmented column means no solution. Only a
+consistent system with a free variable has infinitely many solutions.
+
+\practice{1.2.P1}{Describe every solution with one parameter}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}1&-3&-5&0\\0&1&1&3\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-3)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&-2&9\\0&1&1&3\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+The nonpivot variable is $x_{3}$. Set $x_{3}=t_{1}$, where the parameters range independently over $\R$.
+\[ \begin{cases}x_{1}=2 t_{1} + 9\\x_{2}=3 - t_{1}\\x_{3}=t_{1}\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{Infinitely many solutions, exactly as parametrized above.}
+
+\practice{1.2.P2}{Elimination with two free variables}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrrr|r}1&-2&-1&3&0\\-2&4&5&-5&3\\3&-6&-6&8&2\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(-2)R_{1}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&-2&-1&3&0\\0&0&3&1&3\\3&-6&-6&8&2\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(3)R_{1}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&-2&-1&3&0\\0&0&3&1&3\\0&0&-3&-1&2\end{array}\right].\]
+Use $R_{2}\leftarrow(\frac{1}{3})R_{2}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&-2&-1&3&0\\0&0&1&\frac{1}{3}&1\\0&0&-3&-1&2\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(-3)R_{2}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&-2&-1&3&0\\0&0&1&\frac{1}{3}&1\\0&0&0&0&5\end{array}\right].\]
+Use $R_{3}\leftarrow(\frac{1}{5})R_{3}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&-2&-1&3&0\\0&0&1&\frac{1}{3}&1\\0&0&0&0&1\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(1)R_{3}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&-2&-1&3&0\\0&0&1&\frac{1}{3}&0\\0&0&0&0&1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-1)R_{2}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&-2&0&\frac{10}{3}&0\\0&0&1&\frac{1}{3}&0\\0&0&0&0&1\end{array}\right].\]
+\answer{A row with all variable coefficients zero and a nonzero constant asserts $0=1$ after scaling. This is impossible, so the system is inconsistent and its solution set is empty.}
+
+\exercise{1.2.1}{Distinguish echelon form from reduced form}
+\begin{enumerate}[label=(\alph*)]
+\item Echelon only. The first pivot is $10$, not $1$, so reduced form
+fails, although pivots move right and their columns are zero below them.
+\item Reduced echelon form. The pivots are $1$ in columns 1, 2, 4, and
+these pivot columns have no other nonzero entries. The $1$ in column 3
+of the first row does not matter because column 3 is not a pivot column.
+\item Neither. Row 3 is zero but row 4 is nonzero; zero rows must be last.
+\item Echelon only. The successive pivots $1,2,3,4$ move right, but
+three pivots are not $1$, and pivot columns may have entries above them.
+\end{enumerate}
+
+\exercise{1.2.2}{Check all echelon requirements}
+\begin{enumerate}[label=(\alph*)]
+\item Reduced echelon form: pivots in columns 1 and 2 are $1$ and are
+the only nonzero entries in their columns; the zero row is last.
+\item Echelon only: the middle pivot is $2$, so it is not reduced.
+\item Neither: the zero row is above nonzero rows.
+\item Echelon only: pivots in columns 2, 3, 5 move right and are $1$,
+but there are nonzero entries above the latter pivots. A pivot being $1$
+by itself does not make a matrix reduced.
+\end{enumerate}
+
+\exercise{1.2.3}{Locate two pivot positions}
+\goal Reduce the matrix itself; it is not being declared an augmented matrix.
+\[ \left[\begin{array}{rrrr}1&2&4&8\\2&4&6&8\\3&6&9&12\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(2)R_{1}$ to obtain
+\[ \left[\begin{array}{rrrr}1&2&4&8\\0&0&-2&-8\\3&6&9&12\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(3)R_{1}$ to obtain
+\[ \left[\begin{array}{rrrr}1&2&4&8\\0&0&-2&-8\\0&0&-3&-12\end{array}\right].\]
+Use $R_{2}\leftarrow(- \frac{1}{2})R_{2}$ to obtain
+\[ \left[\begin{array}{rrrr}1&2&4&8\\0&0&1&4\\0&0&-3&-12\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(-3)R_{2}$ to obtain
+\[ \left[\begin{array}{rrrr}1&2&4&8\\0&0&1&4\\0&0&0&0\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(4)R_{2}$ to obtain
+\[ \left[\begin{array}{rrrr}1&2&0&-8\\0&0&1&4\\0&0&0&0\end{array}\right].\]
+\answer{The pivot positions are $(1,1)$ and $(2,3)$ in both the final matrix and the original matrix; the pivot columns are columns 1 and 3.}
+The circled entries mark those positions explicitly:
+\[
+\begin{bmatrix}\text{\textcircled{\scriptsize1}}&2&4&8\\2&4&\text{\textcircled{\scriptsize6}}&8\\3&6&9&12\end{bmatrix}
+\quad\longrightarrow\quad
+\begin{bmatrix}\text{\textcircled{\scriptsize1}}&2&0&-8\\0&0&\text{\textcircled{\scriptsize1}}&4\\0&0&0&0\end{bmatrix}.
+\]
+A pivot position refers to a location, not necessarily the same numerical
+entry before and after reduction.
+
+\exercise{1.2.4}{Locate three pivot positions}
+\goal Reduce the matrix itself; it is not being declared an augmented matrix.
+\[ \left[\begin{array}{rrrr}1&2&4&5\\2&4&5&4\\4&5&4&2\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(2)R_{1}$ to obtain
+\[ \left[\begin{array}{rrrr}1&2&4&5\\0&0&-3&-6\\4&5&4&2\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(4)R_{1}$ to obtain
+\[ \left[\begin{array}{rrrr}1&2&4&5\\0&0&-3&-6\\0&-3&-12&-18\end{array}\right].\]
+Use $R_{2}\leftrightarrow R_{3}$ to obtain
+\[ \left[\begin{array}{rrrr}1&2&4&5\\0&-3&-12&-18\\0&0&-3&-6\end{array}\right].\]
+Use $R_{2}\leftarrow(- \frac{1}{3})R_{2}$ to obtain
+\[ \left[\begin{array}{rrrr}1&2&4&5\\0&1&4&6\\0&0&-3&-6\end{array}\right].\]
+Use $R_{3}\leftarrow(- \frac{1}{3})R_{3}$ to obtain
+\[ \left[\begin{array}{rrrr}1&2&4&5\\0&1&4&6\\0&0&1&2\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(4)R_{3}$ to obtain
+\[ \left[\begin{array}{rrrr}1&2&0&-3\\0&1&4&6\\0&0&1&2\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(4)R_{3}$ to obtain
+\[ \left[\begin{array}{rrrr}1&2&0&-3\\0&1&0&-2\\0&0&1&2\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(2)R_{2}$ to obtain
+\[ \left[\begin{array}{rrrr}1&0&0&1\\0&1&0&-2\\0&0&1&2\end{array}\right].\]
+\answer{The pivot positions are $(1,1)$, $(2,2)$, and $(3,3)$ in both the final matrix and the original matrix; the pivot columns are columns 1, 2, and 3.}
+The original and reduced pivot positions can be circled as follows:
+\[
+\begin{bmatrix}\text{\textcircled{\scriptsize1}}&2&4&5\\2&\text{\textcircled{\scriptsize4}}&5&4\\4&5&\text{\textcircled{\scriptsize4}}&2\end{bmatrix}
+\quad\longrightarrow\quad
+\begin{bmatrix}\text{\textcircled{\scriptsize1}}&0&0&1\\0&\text{\textcircled{\scriptsize1}}&0&-2\\0&0&\text{\textcircled{\scriptsize1}}&2\end{bmatrix}.
+\]
+
+\exercise{1.2.5}{All nonzero two-by-two echelon patterns}
+Let $\blacksquare$ mean a nonzero pivot and $*$ an arbitrary entry.
+A nonzero $2\times2$ matrix has either one or two nonzero echelon rows.
+With one nonzero row, its pivot is in column 1 or column 2. With two,
+pivots must be in columns 1 then 2. Thus all possibilities are
+\[
+\begin{bmatrix}\blacksquare&*\\0&0\end{bmatrix},\qquad
+\begin{bmatrix}0&\blacksquare\\0&0\end{bmatrix},\qquad
+\begin{bmatrix}\blacksquare&*\\0&\blacksquare\end{bmatrix}.
+\]
+There are no other choices: a pivot cannot occur to the left of the pivot
+above it, and zero rows cannot precede nonzero rows.
+
+\exercise{1.2.6}{All nonzero three-by-two echelon patterns}
+There can be at most two pivots because there are only two columns.
+As in Exercise 5, either the sole pivot is in column 1, the sole pivot is
+in column 2, or the two pivots occupy columns 1 and 2 in succession:
+\[
+\begin{bmatrix}\blacksquare&*\\0&0\\0&0\end{bmatrix},\qquad
+\begin{bmatrix}0&\blacksquare\\0&0\\0&0\end{bmatrix},\qquad
+\begin{bmatrix}\blacksquare&*\\0&\blacksquare\\0&0\end{bmatrix}.
+\]
+The third row must be zero in every case, and nonzeroness excludes the
+all-zero matrix. These exhaust the echelon possibilities.
+
+\exercise{1.2.7}{Two pivots and one free variable}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}1&3&4&7\\3&9&7&6\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(3)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&3&4&7\\0&0&-5&-15\end{array}\right].\]
+Use $R_{2}\leftarrow(- \frac{1}{5})R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&3&4&7\\0&0&1&3\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(4)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&3&0&-5\\0&0&1&3\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+The nonpivot variable is $x_{2}$. Set $x_{2}=t_{1}$, where the parameters range independently over $\R$.
+\[ \begin{cases}x_{1}=- 3 t_{1} - 5\\x_{2}=t_{1}\\x_{3}=3\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{Infinitely many solutions, exactly as parametrized above.}
+
+\exercise{1.2.8}{A variable absent from both equations}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}1&-3&0&-5\\-3&7&0&9\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(-3)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-3&0&-5\\0&-2&0&-6\end{array}\right].\]
+Use $R_{2}\leftarrow(- \frac{1}{2})R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-3&0&-5\\0&1&0&3\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-3)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&0&4\\0&1&0&3\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+The nonpivot variable is $x_{3}$. Set $x_{3}=t_{1}$, where the parameters range independently over $\R$.
+\[ \begin{cases}x_{1}=4\\x_{2}=3\\x_{3}=t_{1}\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{Infinitely many solutions, exactly as parametrized above.}
+
+\exercise{1.2.9}{Interchange before eliminating}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}0&1&-2&3\\1&-3&4&-6\end{array}\right].\]
+Use $R_{1}\leftrightarrow R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-3&4&-6\\0&1&-2&3\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-3)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&-2&3\\0&1&-2&3\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+The nonpivot variable is $x_{3}$. Set $x_{3}=t_{1}$, where the parameters range independently over $\R$.
+\[ \begin{cases}x_{1}=2 t_{1} + 3\\x_{2}=2 t_{1} + 3\\x_{3}=t_{1}\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{Infinitely many solutions, exactly as parametrized above.}
+
+\exercise{1.2.10}{A nonzero second pivot after elimination}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}1&-2&-1&4\\-2&4&-5&6\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(-2)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-2&-1&4\\0&0&-7&14\end{array}\right].\]
+Use $R_{2}\leftarrow(- \frac{1}{7})R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-2&-1&4\\0&0&1&-2\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-1)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-2&0&2\\0&0&1&-2\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+The nonpivot variable is $x_{2}$. Set $x_{2}=t_{1}$, where the parameters range independently over $\R$.
+\[ \begin{cases}x_{1}=2 t_{1} + 2\\x_{2}=t_{1}\\x_{3}=-2\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{Infinitely many solutions, exactly as parametrized above.}
+
+\exercise{1.2.11}{Repeated equations leave two free variables}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}3&-2&4&0\\9&-6&12&0\\6&-4&8&0\end{array}\right].\]
+Use $R_{1}\leftarrow(\frac{1}{3})R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&- \frac{2}{3}&\frac{4}{3}&0\\9&-6&12&0\\6&-4&8&0\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(9)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&- \frac{2}{3}&\frac{4}{3}&0\\0&0&0&0\\6&-4&8&0\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(6)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&- \frac{2}{3}&\frac{4}{3}&0\\0&0&0&0\\0&0&0&0\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+The nonpivot variables are $x_{2}$, $x_{3}$. Set $x_{2}=t_{1}$, $x_{3}=t_{2}$, where the parameters range independently over $\R$.
+\[ \begin{cases}x_{1}=\frac{2 t_{1}}{3} - \frac{4 t_{2}}{3}\\x_{2}=t_{1}\\x_{3}=t_{2}\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{Infinitely many solutions, exactly as parametrized above.}
+
+\exercise{1.2.12}{An augmented-column pivot rules out solutions}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrrr|r}1&0&-9&0&4\\0&1&3&0&-1\\0&0&0&1&-7\\0&0&0&0&1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(4)R_{4}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&0&-9&0&0\\0&1&3&0&-1\\0&0&0&1&-7\\0&0&0&0&1\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(-1)R_{4}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&0&-9&0&0\\0&1&3&0&0\\0&0&0&1&-7\\0&0&0&0&1\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(-7)R_{4}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&0&-9&0&0\\0&1&3&0&0\\0&0&0&1&0\\0&0&0&0&1\end{array}\right].\]
+\answer{A row with all variable coefficients zero and a nonzero constant asserts $0=1$ after scaling. This is impossible, so the system is inconsistent and its solution set is empty.}
+
+\exercise{1.2.13}{Five variables and two free choices}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrrrr|r}1&-3&0&-1&0&-2\\0&1&0&0&-4&1\\0&0&0&1&9&4\\0&0&0&0&0&0\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-1)R_{3}$ to obtain
+\[ \left[\begin{array}{rrrrr|r}1&-3&0&0&9&2\\0&1&0&0&-4&1\\0&0&0&1&9&4\\0&0&0&0&0&0\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-3)R_{2}$ to obtain
+\[ \left[\begin{array}{rrrrr|r}1&0&0&0&-3&5\\0&1&0&0&-4&1\\0&0&0&1&9&4\\0&0&0&0&0&0\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+The nonpivot variables are $x_{3}$, $x_{5}$. Set $x_{3}=t_{1}$, $x_{5}=t_{2}$, where the parameters range independently over $\R$.
+\[ \begin{cases}x_{1}=3 t_{2} + 5\\x_{2}=4 t_{2} + 1\\x_{3}=t_{1}\\x_{4}=4 - 9 t_{2}\\x_{5}=t_{2}\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{Infinitely many solutions, exactly as parametrized above.}
+
+\exercise{1.2.14}{A zero basic variable simplifies the parameters}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrrrr|r}1&0&-5&0&-8&3\\0&1&4&-1&0&6\\0&0&0&0&1&0\\0&0&0&0&0&0\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-8)R_{3}$ to obtain
+\[ \left[\begin{array}{rrrrr|r}1&0&-5&0&0&3\\0&1&4&-1&0&6\\0&0&0&0&1&0\\0&0&0&0&0&0\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+The nonpivot variables are $x_{3}$, $x_{4}$. Set $x_{3}=t_{1}$, $x_{4}=t_{2}$, where the parameters range independently over $\R$.
+\[ \begin{cases}x_{1}=5 t_{1} + 3\\x_{2}=- 4 t_{1} + t_{2} + 6\\x_{3}=t_{1}\\x_{4}=t_{2}\\x_{5}=0\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{Infinitely many solutions, exactly as parametrized above.}
+
+\exercise{1.2.15}{Read two symbolic echelon patterns}
+\step{(a) Two pivots among three variable columns.}
+The last row is zero, and the augmented column is not a pivot column.
+Thus the system is consistent. Columns 1 and 2 are pivot columns;
+column 3 supplies one free variable. Every choice of that variable
+allows back substitution, so there are infinitely many solutions.
+\step{(b) Three pivots among four variable columns.}
+The pivot columns are 2, 3, 4; column 5 is the augmented column and
+has no pivot. Thus the system is consistent. The first variable is free,
+so the solution is not unique: there are infinitely many solutions.
+\answer{Both systems are consistent and neither has a unique solution.}
+
+\exercise{1.2.16}{Contrast variable pivots with a constant pivot}
+\step{(a) A pivot in the constant column.}
+There are three columns total, so column 3 is augmented. The last row
+is $[0\ 0\mid\blacksquare]$, where $\blacksquare\ne0$.
+It asserts $0=\blacksquare$, a contradiction. The system is inconsistent.
+\step{(b) No pivot in the constant column.}
+Column 5 is augmented and has no pivot; the pivots are in columns 1,
+3, 4. The system is consistent, and variable 2 is free. It consequently
+has infinitely many solutions.
+\answer{Part (a) has no solution; part (b) is consistent but not unique.}
+
+\exercise{1.2.17}{A parameter in the constant column}
+Eliminate the first coefficient in row 2 by $R_2\leftarrow R_2+2R_1$.
+The last row becomes $[0\ 1\mid h+8]$. Its variable coefficient is $1$
+for every $h$, so it never produces a contradiction. Set $x_2=h+8$
+and then $x_1=4+x_2=h+12$.
+\answer{The system is consistent for every real $h$.}
+
+\exercise{1.2.18}{A parameter that can remove one equation}
+Use $R_2\leftarrow R_2-hR_1$. Its result is
+$[0\ 6+3h\mid-2-h]$. If $h\ne-2$, the variable coefficient is
+nonzero and gives a solution by back substitution. If $h=-2$, both
+entries are zero, so the second row is merely $0=0$; solutions still exist.
+\answer{All real $h$ work. At $h=-2$ the solutions are not unique;
+at every other $h$ there is a unique solution.}
+
+\exercise{1.2.19}{Choose parameters for all three outcomes}
+Elimination gives
+\[
+\begin{bmatrix}1&h&2\\0&8-4h&k-8\end{bmatrix}.
+\]
+If $h\ne2$, the second coefficient is nonzero, giving a unique solution
+for every $k$. If $h=2$, the last equation is $0=k-8$.
+It is impossible for $k\ne8$ and imposes no constraint for $k=8$,
+leaving $x_2$ free.
+\answer{(a) No solution: $h=2,k\ne8$, for example $(2,0)$.
+(b) Unique: $h\ne2$, any $k$, for example $(0,0)$.
+(c) Infinitely many: $h=2,k=8$.}
+
+\exercise{1.2.20}{A second three-outcome parameter family}
+Replace row 2 by row 2 minus twice row 1. The last row is
+$[0\ h+6\mid k-2]$. If $h\ne-6$ it determines $x_2$ uniquely.
+If $h=-6$, it is compatible precisely when $k=2$, and then $x_2$
+is unrestricted.
+\answer{(a) No solution: $h=-6,k\ne2$, for example $(-6,0)$.
+(b) Unique: $h\ne-6$, any $k$, for example $(0,0)$.
+(c) Infinitely many: $h=-6,k=2$.}
+
+\exercise{1.2.21}{Definitions of basic variables and solutions}
+\begin{enumerate}[label=(\alph*)]
+\item False. The uniqueness-of-RREF theorem says every matrix has
+exactly one reduced echelon form; different operation sequences give
+that same matrix.
+\item False. Row reduction applies to any rectangular matrix, whether
+or not its last column represents constants in a system.
+\item True. A basic variable corresponds by definition to a pivot column
+of the coefficient matrix.
+\item True. Solving a system means describing all its solutions. A
+parametric description does this while recording the free choices.
+\item False. In $[0\ 0\ 0\ 5\mid0]$ the nonzero entry is in a
+variable column: the equation is $5x_4=0$, which is satisfiable.
+\end{enumerate}
+
+\exercise{1.2.22}{Uniqueness of RREF and consistency cautions}
+\begin{enumerate}[label=(\alph*)]
+\item True. This is precisely the uniqueness theorem for RREF.
+\item False. A pivot in \emph{every} augmented-matrix column includes
+a pivot in the final column, implying an impossible equation.
+For example $[0\mid1]$ already exhibits the obstruction (and an identity
+augmented matrix gives examples with every column a pivot column).
+\item False. Pivot positions are determined from the unique RREF,
+not by the particular path of row operations.
+\item True. A general solution explicitly describes all solutions,
+including the parameters and their allowed values.
+\item False. Consistency is also required. The system $0x_1+0x_2=1$
+has nonpivot variable columns but no solutions.
+\end{enumerate}
+
+\exercise{1.2.23}{Four coefficient pivots force uniqueness}
+There are four variable columns and all four are pivot columns.
+In echelon form, the four pivots occupy all four rows, so the final
+augmented column cannot contain an additional pivot. Hence there is no
+contradiction row and the system is consistent. Since all variables are
+basic, no free choice remains; back substitution determines exactly one
+value for each variable.
+\answer{The system has a unique solution.}
+
+\exercise{1.2.24}{No pivot in the last augmented column}
+The fifth column is the constant column. By hypothesis it is not a
+pivot column. Thus RREF has no row $[0\ 0\ 0\ 0\mid d]$ with
+$d\ne0$, which is exactly the consistency criterion.
+\answer{Yes, the system is consistent. It cannot have a unique solution:
+four variable columns but only three rows leave at least one free variable.}
+
+\exercise{1.2.25}{A pivot in every coefficient row}
+A pivot in every coefficient-matrix row uses all available rows.
+Appending a right side cannot change the coefficient entries or create
+an additional row in which all coefficients vanish but the constant is
+nonzero. More concretely, apply to the right side the same row operations
+that put the coefficient matrix in echelon form. Every resulting row has
+a variable pivot, so no resulting row can assert $0=d\ne0$.
+\answer{The system is consistent for every possible right side.}
+
+\exercise{1.2.26}{Three pivots in a three-by-five coefficient matrix}
+There are three rows and three pivot columns. Different pivots occupy
+different rows, so there is a pivot in every coefficient row. By the
+argument in Exercise 25, there can be no contradiction row for any right
+side. There are five variables but only three pivots, so two variables
+are free.
+\answer{The system is consistent and has infinitely many solutions.}
+
+\exercise{1.2.27}{Restate uniqueness in pivot language}
+The exact completion is: ``every column of the coefficient matrix is a
+pivot column.'' A nonpivot variable column is equivalent to a free
+variable. In a consistent system a free variable gives infinitely many
+solutions; without any free variables, all variables are fixed.
+\answer{For a consistent system, uniqueness is equivalent to a pivot in
+every variable column.}
+
+\exercise{1.2.28}{Combine existence and uniqueness conditions}
+Two facts are needed. The last (augmented) column must \emph{not} be a
+pivot column, ensuring consistency. Every preceding (coefficient) column
+must be a pivot column, ensuring that there are no free variables.
+Conversely those two facts give existence and uniqueness by Theorem 2.
+\answer{Pivots in every coefficient column, and no pivot in the
+augmented column. Neither requirement alone is sufficient.}
+
+\exercise{1.2.29}{Why underdetermined systems cannot be unique}
+If there are $m$ equations and $n$ unknowns with $m<n$, there can be
+at most $m$ pivots. Thus at least $n-m>0$ variable columns are nonpivot.
+If the system is consistent, these give free variables and infinitely
+many solutions. If it is inconsistent, it has no solutions. Neither case
+has exactly one solution.
+\answer{No underdetermined linear system can have a unique solution.}
+
+\exercise{1.2.30}{An inconsistent underdetermined example}
+For example,
+\[
+ x_1+x_2+x_3=0,\qquad x_1+x_2+x_3=1.
+\]
+There are only two equations for three unknowns. Subtracting the first
+from the second gives $0=1$, so the system is inconsistent.
+\answer{Underdetermined does not mean consistent.}
+
+\exercise{1.2.31}{A consistent overdetermined example}
+Yes. Consider
+\[
+ x_1=1,\qquad x_2=2,\qquad x_1+x_2=3.
+\]
+The pair $(1,2)$ satisfies every equation, so this three-equation,
+two-variable system is consistent. The third equation is redundant: it
+is the sum of the first two, rather than an incompatible additional
+constraint.
+\answer{An overdetermined system can be consistent; equation counts
+alone do not decide consistency.}
+
+\exercise{1.2.32}{Estimate the backward share of reduction cost}
+The numerical note estimates the forward cost by
+$F_n=2n^3/3+n^2/2-7n/6$ and bounds the backward cost by $B_n=n^2$.
+Using the leading forward term, the approximate backward fraction of
+\emph{total} cost is
+\[
+ \frac{n^2}{(2/3)n^3+n^2}=\frac3{2n+3}.
+\]
+At $n=20$ this is $3/43\approx0.06977$, about $7\%$; at $n=200$
+it is $3/403\approx0.007444$, about $0.74\%$.
+Using the full stated forward count instead gives
+$400/(5510+400)\approx6.77\%$ and
+$40000/(5353100+40000)\approx0.742\%$.
+The cost of the backward phase is stated as an upper bound, so these are
+cost-model estimates, not an exact count for every input matrix.
+\answer{About $7\%$ for $n=20$ and $0.74\%$ for $n=200$.}
+
+\exercise{1.2.33}{Interpolate three points with a quadratic}
+The coefficient vector is $(a_0,a_1,a_2)$. Its augmented matrix is
+\[
+\begin{bmatrix}1&1&1&6\\1&2&4&15\\1&3&9&28\end{bmatrix}.
+\]
+Use $R_2\leftarrow R_2-R_1$ and $R_3\leftarrow R_3-R_1$ to get
+rows $[0\ 1\ 3\mid9]$ and $[0\ 2\ 8\mid22]$ below the first.
+Then $R_3\leftarrow R_3-2R_2$ gives $[0\ 0\ 2\mid4]$.
+Thus $a_2=2$, $a_1=9-3(2)=3$, and $a_0=6-3-2=1$.
+\[
+ p(t)=1+3t+2t^2.
+\]
+Check: $p(1)=6$, $p(2)=15$, and $p(3)=28$.
+\answer{The unique interpolating quadratic is $1+3t+2t^2$.}
+
+\exercise{1.2.34}{Interpolate wind-tunnel measurements}
+\goal Interpolate all six measured data points and convert the requested
+velocity into the table's units.
+\step{Set up six equations for six coefficients.}
+For each listed pair $(t,F)$, use
+$a_0+a_1t+a_2t^2+a_3t^3+a_4t^4+a_5t^5=F$.
+The coefficient matrix has rows $[1,t,t^2,t^3,t^4,t^5]$ for
+$t=0,2,4,6,8,10$; the right side is
+$[0,29/10,74/5,198/5,743/10,119]^T$.
+Treating the printed decimals as the given exact data, elimination gives
+\[
+\begin{aligned}
+a_0&=0,&a_1&=137/80,&a_2&=-1147/960,\\
+a_3&=127/192,&a_4&=-269/3840,&a_5&=1/384.
+\end{aligned}
+\]
+Thus
+\[
+p(t)=\frac{137t}{80}-\frac{1147t^2}{960}
+ +\frac{127t^3}{192}-\frac{269t^4}{3840}+\frac{t^5}{384}.
+\]
+Substitution at the six inputs gives exactly the six measured outputs,
+so the computed coefficients satisfy the full system. They are unique:
+a difference of two degree-at-most-five interpolants would have six
+distinct zeros and hence would be the zero polynomial.
+\step{Use the measurement units.}
+The velocity $750$ ft/sec corresponds to $t=7.5$, not $t=750$.
+The force is tabulated in hundreds of pounds. Consequently
+\[
+ p(7.5)=\frac{132789}{2048}\approx64.83838,
+ \qquad \text{force}\approx6483.84\text{ lb}.
+\]
+\step{Explain why lowering the degree fails.}
+The unique degree-at-most-five interpolant has nonzero $t^5$
+coefficient $1/384$. Thus no polynomial of degree less than five can
+pass through all six data points. For a direct cubic check, fitting the
+first four points gives
+\[
+ q(t)=\frac{13t^3}{160}+\frac{51t^2}{80}-\frac{3t}{20}.
+\]
+But $q(8)=81.2\ne74.3$ and $q(10)=143.5\ne119$. The six-equation
+cubic system is inconsistent, rather than merely less accurate.
+\answer{The displayed quintic interpolates the data; its prediction
+at $750$ ft/sec is approximately $6484$ lb.}

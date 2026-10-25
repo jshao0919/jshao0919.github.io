@@ -1,0 +1,341 @@
+\section{Inner product spaces}
+An inner product assigns real numbers $\langle u,v\rangle$ and
+satisfies symmetry, additivity, homogeneity, and positive definiteness.
+The associated norm is $\|u\|=\sqrt{\langle u,u\rangle}$;
+orthogonality means $\langle u,v\rangle=0$. The formula depends
+on the space: a weighted coordinate product, evaluation of polynomials,
+and integration of functions are different inner products.
+For a nonzero vector $p$, projection onto its span is
+$\langle q,p\rangle p/\langle p,p\rangle$.
+For an orthogonal list, add these separate projections. Always use
+the inner product stipulated in the exercise rather than substituting
+the ordinary coordinate dot product.
+
+\practice{6.7.P1}{A zero vector has zero inner product with every vector}
+By homogeneity, $\langle0,v\rangle=\langle0u,v\rangle
+=0\langle u,v\rangle=0$, for any $u$ in the space.
+Symmetry then gives $\langle v,0\rangle=\langle0,v\rangle=0$.
+The choice of $u$ does not matter, because its scalar multiple is zero.
+
+\practice{6.7.P2}{Additivity in the second argument}
+Use symmetry to move the sum into the first argument, where additivity
+is an axiom:
+\[
+ \langle u,v+w\rangle=\langle v+w,u\rangle
+ =\langle v,u\rangle+\langle w,u\rangle
+ =\langle u,v\rangle+\langle u,w\rangle.
+\]
+The last equality applies symmetry to each term separately.
+
+\exercise{6.7.1}{A weighted norm and its orthogonal line}
+Example 1 uses $\langle u,v\rangle=4u_1v_1+5u_2v_2$.
+\step{(a) Apply those weights to the stated vectors.}
+For $x=(1,1)$ and $y=(5,-1)$,
+$\|x\|^2=4+5=9$, $\|y\|^2=4(25)+5=105$,
+and $\langle x,y\rangle=20-5=15$.
+Thus $\|x\|=3$, $\|y\|=\sqrt{105}$, and
+$|\langle x,y\rangle|^2=225$.
+\step{(b) Solve the orthogonality equation.}
+A vector $z=(z_1,z_2)$ is orthogonal to $y$ exactly when
+$20z_1-5z_2=0$, or $z_2=4z_1$.
+\answer{All such vectors are $t(1,4)$, $t\in\R$, including zero.}
+
+\exercise{6.7.2}{Verify Cauchy--Schwarz with the weighted product}
+For $x=(3,-2)$ and $y=(-2,1)$,
+\[
+ \langle x,y\rangle=4(3)(-2)+5(-2)(1)=-34,
+\]
+\[
+ \|x\|^2=4(9)+5(4)=56,\qquad
+ \|y\|^2=4(4)+5(1)=21.
+\]
+Therefore $|\langle x,y\rangle|^2=1156\le1176=\|x\|^2\|y\|^2$.
+Both sides of $|\langle x,y\rangle|\le\|x\|\|y\|$ are nonnegative,
+so the squared comparison proves the desired inequality.
+
+\textbf{Evaluation convention for Exercises 3--8.}
+The inner product is the dot product of the three value lists at
+$-1,0,1$, not of the polynomial coefficient lists.
+For Exercise 3, $p$ and $q$ have value vectors $(3,4,5)$ and
+$(1,5,1)$. For Exercise 4, their value vectors are $(-4,0,2)$
+and $(5,3,5)$.
+
+\exercise{6.7.3}{Evaluate before multiplying}
+For $p(t)=4+t$ and $q(t)=5-4t^2$,
+\[
+ \langle p,q\rangle=p(-1)q(-1)+p(0)q(0)+p(1)q(1)
+ =3(1)+4(5)+5(1)=\boxed{28}.
+\]
+Each product uses values at the same input.
+
+\exercise{6.7.4}{A negative inner product is allowed}
+For $p(t)=3t-t^2$ and $q(t)=3+2t^2$,
+\[
+ \langle p,q\rangle=(-4)(5)+0(3)+2(5)=\boxed{-10}.
+\]
+Only self-products must be nonnegative; products of different vectors
+can be negative, as this example shows.
+
+\exercise{6.7.5}{Norms from the first pair of value lists}
+Using the value vectors $(3,4,5)$ and $(1,5,1)$,
+\[
+ \|p\|=\sqrt{9+16+25}=\boxed{5\sqrt2},\qquad
+ \|q\|=\sqrt{1+25+1}=\boxed{3\sqrt3}.
+\]
+The norm is the square root of the sum of squared values, not its square.
+
+\exercise{6.7.6}{Norms from the second pair}
+The value vectors are $(-4,0,2)$ and $(5,3,5)$, so
+\[
+ \|p\|=\sqrt{16+0+4}=\boxed{2\sqrt5},\qquad
+ \|q\|=\sqrt{25+9+25}=\boxed{\sqrt{59}}.
+\]
+These are norms in the specified evaluation inner product.
+
+\exercise{6.7.7}{Project onto the first polynomial line}
+For the pair in Exercise 3, $\langle q,p\rangle=28$ and
+$\langle p,p\rangle=50$. Since $p\ne0$, projection onto
+$\Span\{p\}$ is
+\[
+ \operatorname{proj}_{\Span\{p\}}q
+ =\frac{28}{50}p=\boxed{\frac{14}{25}(4+t)}.
+\]
+A check is $\langle q-(14/25)p,p\rangle=28-(14/25)50=0$.
+Thus the residual is orthogonal to the whole one-dimensional target space.
+
+\exercise{6.7.8}{Project onto the second polynomial line}
+For the pair in Exercise 4, the coefficient is
+$\langle q,p\rangle/\langle p,p\rangle=-10/20=-1/2$.
+Hence the projection is
+$\boxed{-\tfrac12(3t-t^2)=(t^2-3t)/2}$.
+Its residual check is $-10-(-1/2)20=0$.
+A negative projection coefficient is perfectly possible.
+
+\exercise{6.7.9}{Remove the lower-degree part of a quadratic}
+Use evaluation nodes $-3,-1,1,3$.
+The value lists for $p_0,p_1,p_2$ are
+$(1,1,1,1)$, $(-3,-1,1,3)$, and $(9,1,1,9)$.
+\step{(a) Project onto the first two orthogonal polynomials.}
+The first two lists have dot product zero. Also
+$\langle p_2,p_0\rangle=20$, $\langle p_0,p_0\rangle=4$,
+and $\langle p_2,p_1\rangle=-27-1+1+27=0$.
+Thus the projection is $5p_0=5$.
+\step{(b) Form and scale the orthogonal remainder.}
+The remainder $t^2-5$ has values $(4,-4,-4,4)$.
+Divide by four to get
+$\boxed{q(t)=(t^2-5)/4}$, whose values are $(1,-1,-1,1)$.
+It is orthogonal to both $p_0,p_1$ and is nonzero. The three
+polynomials have distinct increasing degrees, so they are independent
+and span the same space as $1,t,t^2$.
+
+\exercise{6.7.10}{Best quadratic approximation to an odd cubic}
+In the same four-node inner product, $t^3$ is orthogonal to the
+even polynomials $p_0$ and $q$: the products cancel at opposite nodes.
+Its only nonzero coefficient in the orthogonal list is on $p_1=t$:
+\[
+ \frac{\langle t^3,t\rangle}{\langle t,t\rangle}
+ =\frac{81+1+1+81}{9+1+1+9}=\frac{41}{5}.
+\]
+\answer{The best approximation is $(41/5)t$. The best member of a
+quadratic-polynomial space need not have a nonzero quadratic term.}
+
+\exercise{6.7.11}{A cubic projected onto a five-node quadratic space}
+Here evaluation is at $-2,-1,0,1,2$, and the source's orthogonal
+polynomials are $p_0=1$, $p_1=t$, $p_2=t^2-2$.
+Odd-even cancellation makes the projection coefficients on $p_0,p_2$
+zero. The coefficient on $t$ is
+\[
+ \frac{\sum t_i^4}{\sum t_i^2}
+ =\frac{16+1+0+1+16}{4+1+0+1+4}=\frac{17}{5}.
+\]
+\answer{The orthogonal projection is $(17/5)t$.}
+
+\exercise{6.7.12}{Choose a scaled orthogonal cubic}
+Subtract the projection from Exercise 11 to obtain
+$r(t)=t^3-(17/5)t$. Its values at the five nodes are
+$(-6/5,12/5,0,-12/5,6/5)$.
+Multiplying by $5/6$ yields
+\[
+ \boxed{p_3(t)=(5t^3-17t)/6},
+\]
+with the requested values $(-1,2,0,-2,1)$. The remainder is
+orthogonal to all of $\Span\{p_0,p_1,p_2\}$. Its degree is three,
+so it is nonzero and adds a new direction. Thus the four polynomials
+are an orthogonal basis for $\mathcal P_3$.
+
+\exercise{6.7.13}{Transport the Euclidean product through an invertible map}
+Define $\langle u,v\rangle=(Au)^T(Av)$.
+Symmetry follows from symmetry of the dot product. For addition,
+$A(u+w)=Au+Aw$, so
+$\langle u+w,v\rangle=(Au+Aw)^TAv=\langle u,v\rangle+\langle w,v\rangle$.
+Similarly $A(cu)=cAu$ gives homogeneity.
+Finally $\langle u,u\rangle=\|Au\|^2\ge0$.
+If it is zero, $Au=0$; invertibility gives $u=0$.
+Conversely $u=0$ clearly gives zero. All four axioms hold.
+The last step is why invertibility, rather than merely linearity of $A$,
+was required.
+
+\exercise{6.7.14}{The same construction for an injective transformation}
+Define $\langle u,v\rangle=T(u)\cdot T(v)$.
+Symmetry and the two linearity axioms follow exactly by applying
+linearity of $T$ and the dot-product rules in $\R^n$.
+The self-product is $\|T(u)\|^2$, nonnegative and zero exactly when
+$T(u)=0$. Because $T$ is one-to-one and $T(0)=0$, this happens
+only for $u=0$. Thus positive definiteness holds, proving an inner
+product on $V$. Without injectivity, a nonzero kernel vector would
+have self-product zero and violate that axiom.
+
+\exercise{6.7.15}{Move a scalar out of the second argument}
+Symmetry and homogeneity in the first argument give
+\[
+ \langle u,cv\rangle=\langle cv,u\rangle
+ =c\langle v,u\rangle=c\langle u,v\rangle.
+\]
+These are real inner products, so no complex-conjugation convention is involved.
+
+\exercise{6.7.16}{The distance between two orthonormal vectors}
+Expand using bilinearity and symmetry:
+\[
+ \|u-v\|^2=\langle u,u\rangle-2\langle u,v\rangle+\langle v,v\rangle
+ =1-0+1=2.
+\]
+Taking the nonnegative square root gives $\boxed{\|u-v\|=\sqrt2}$.
+
+\exercise{6.7.17}{Recover an inner product from two norms}
+Expand the two squared norms:
+$\|u+v\|^2=\|u\|^2+2\langle u,v\rangle+\|v\|^2$ and
+$\|u-v\|^2=\|u\|^2-2\langle u,v\rangle+\|v\|^2$.
+Subtracting cancels both self-products and leaves
+$\|u+v\|^2-\|u-v\|^2=4\langle u,v\rangle$.
+Division by four proves the stated identity.
+
+\exercise{6.7.18}{The parallelogram identity}
+Add, instead of subtracting, the two expansions in Exercise 17.
+The mixed terms $2\langle u,v\rangle$ and $-2\langle u,v\rangle$
+cancel, leaving
+\[
+ \boxed{\|u+v\|^2+\|u-v\|^2=2\|u\|^2+2\|v\|^2}.
+\]
+The proof uses only inner-product axioms, so it is not restricted to coordinate vectors.
+
+\exercise{6.7.19}{Arithmetic mean dominates geometric mean}
+Use the ordinary dot product on the two supplied coordinate vectors.
+Their dot product is $2\sqrt{ab}$, while each squared norm is
+$a+b$. Cauchy--Schwarz gives
+$2\sqrt{ab}\le\sqrt{a+b}\sqrt{a+b}=a+b$,
+where nonnegativity of $a,b$ makes the square roots defined and the
+left side nonnegative. Divide by two:
+$\boxed{\sqrt{ab}\le(a+b)/2}$. The case $a=b=0$ is included.
+
+\exercise{6.7.20}{The square of a mean versus the mean of squares}
+For $u=(a,b)^T$ and $v=(1,1)^T$, squared Cauchy--Schwarz gives
+$(a+b)^2\le(a^2+b^2)(1+1)=2(a^2+b^2)$.
+Divide by four to obtain
+\[
+ \boxed{\left(\frac{a+b}{2}\right)^2\le\frac{a^2+b^2}{2}}.
+\]
+This holds for all real $a,b$, with no nonnegativity assumption needed.
+
+\exercise{6.7.21}{An integral inner product that vanishes}
+The product expands as
+$(1-3t^2)(t-t^3)=t-4t^3+3t^5$.
+Therefore
+\[
+ \langle f,g\rangle=\int_0^1(t-4t^3+3t^5)\,dt
+ =\frac12-1+\frac12=\boxed0.
+\]
+Both functions are continuous, so this is the specified inner product;
+they are orthogonal even though neither is zero.
+
+\exercise{6.7.22}{Another orthogonal pair of functions}
+Expanding $(5t-3)(t^3-t^2)$ gives $5t^4-8t^3+3t^2$.
+Thus
+$\langle f,g\rangle=\int_0^1(5t^4-8t^3+3t^2)\,dt
+=1-2+1=\boxed0$.
+The integral of a product can cancel even when the functions have nonzero norms.
+
+\exercise{6.7.23}{An integral norm is a square root}
+For $f(t)=1-3t^2$,
+\[
+ \|f\|^2=\int_0^1(1-6t^2+9t^4)\,dt
+ =1-2+\frac95=\frac45.
+\]
+Hence $\boxed{\|f\|=2/\sqrt5}$. Nonnegativity determines the choice
+of square root.
+
+\exercise{6.7.24}{The norm of a cubic-minus-quadratic function}
+For $g(t)=t^3-t^2$,
+\[
+ \|g\|^2=\int_0^1(t^6-2t^5+t^4)\,dt
+ =\frac17-\frac13+\frac15=\frac1{105}.
+\]
+Thus $\boxed{\|g\|=1/\sqrt{105}}$.
+
+\exercise{6.7.25}{An orthogonal polynomial basis on a symmetric interval}
+On $[-1,1]$, oddness gives $\langle1,t\rangle=0$ and
+$\langle t,t^2\rangle=0$. The projection of $t^2$ onto $1$
+has coefficient $(\int_{-1}^1t^2)/(\int_{-1}^11)=(2/3)/2=1/3$.
+Thus $t^2-1/3$ is orthogonal to both lower-degree polynomials.
+A conventional scaling gives the basis
+\[
+ \boxed{\{1,\ t,\ (3t^2-1)/2\}}.
+\]
+The last polynomial has integral zero and its product with $t$ is odd.
+All three are nonzero of distinct degrees, so they form a basis of
+$\Span\{1,t,t^2\}$. Their squared norms are $2,2/3,2/5$, respectively.
+
+\exercise{6.7.26}{Repeat the orthogonalization on a wider interval}
+On $[-2,2]$, the first two polynomials are again orthogonal by oddness.
+The coefficient to subtract from $t^2$ is
+$(\int_{-2}^2t^2)/(\int_{-2}^21)=(16/3)/4=4/3$.
+Scaling the remainder by $3$ gives
+$\boxed{\{1,t,3t^2-4\}}$.
+The last polynomial has integral $3(16/3)-4(4)=0$, and its
+product with $t$ is odd. Distinct degrees give independence and the
+same polynomial span. All squared norms are positive; the last is $256/5$.
+
+\exercise{6.7.27}{Complete the five-node orthogonal polynomial basis}
+Use the evaluation nodes $-2,-1,0,1,2$ and start with
+$p_0=1,p_1=t,p_2=t^2-2$. They are orthogonal.
+For $t^3$, only the projection onto $t$ is nonzero, with coefficient
+$17/5$ as computed in Exercise 11. Set $r_3=t^3-(17/5)t$.
+For $t^4$, oddness makes the projections onto $p_1$ and $r_3$
+zero. The constant projection coefficient is $34/5$, while
+\[
+ \frac{\langle t^4,p_2\rangle}{\langle p_2,p_2\rangle}
+ =\frac{(\sum t_i^6)-2(\sum t_i^4)}{14}
+ =\frac{130-68}{14}=\frac{31}{7}.
+\]
+Hence the final remainder is
+\[
+ r_4=t^4-\frac{34}{5}-\frac{31}{7}(t^2-2)
+ =t^4-\frac{31}{7}t^2+\frac{72}{35}.
+\]
+One convenient rescaled basis is
+\[
+ \boxed{\{1,t,t^2-2,5t^3-17t,35t^4-155t^2+72\}}.
+\]
+Their distinct degrees prove independence, and Gram--Schmidt preserves
+the original span $\mathcal P_4$. Exact dot products of their five-node
+value vectors are zero for every distinct pair, verifying orthogonality.
+
+\exercise{6.7.28}{Orthogonalize powers of cosine by integration}
+Start with $q_0=1$ and $q_1=\cos t$: their integral product over
+$[0,2\pi]$ is zero. Since $\int\cos^2t=\pi$ and
+$\int1=2\pi$, the projection of $\cos^2t$ onto the constant
+is $1/2$. Its projection onto $\cos t$ is zero because
+$\int_0^{2\pi}\cos^3t\,dt=0$. Thus
+$q_2=\cos^2t-1/2$.
+For $\cos^3t$, the constant and $q_2$ projections vanish by
+cancellation over a half-period. The remaining coefficient is
+\[
+ \frac{\int_0^{2\pi}\cos^4t\,dt}{\int_0^{2\pi}\cos^2t\,dt}
+ =\frac{3\pi/4}{\pi}=\frac34.
+\]
+Therefore $q_3=\cos^3t-(3/4)\cos t$, giving the orthogonal basis
+\[
+ \boxed{\{1,\cos t,\cos^2t-1/2,\cos^3t-(3/4)\cos t\}}.
+\]
+The squared norms are $2\pi,\pi,\pi/4,\pi/16$, all nonzero.
+Equivalently the last two are $(1/2)\cos2t$ and $(1/4)\cos3t$,
+so the basis spans the same four-dimensional space as the original list.

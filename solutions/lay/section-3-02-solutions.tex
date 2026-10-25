@@ -1,0 +1,484 @@
+\section{Properties of determinants}
+A row replacement preserves a determinant, a row interchange reverses its sign, and multiplying a single row by $k$ multiplies it by $k$. In the calculations below, keeping the operations visible is how we avoid losing a sign or a scale factor. Once a matrix is triangular its determinant is the product of its diagonal entries.
+
+A square matrix is invertible exactly when its determinant is nonzero. Thus $n$ vectors in $\R^n$ are linearly independent exactly when the determinant of the matrix having those vectors as columns is nonzero. The multiplication theorem says $\det(AB)=\det A\det B$, and transposition preserves a determinant.
+
+\practice{3.2.P1}{Create a zero row}
+Apply $R_2\leftarrow R_2-2R_1$ and $R_4\leftarrow R_4+3R_1$. Both resulting rows 2 and 4 are $(0,1,-3,2)$. Then $R_4\leftarrow R_4-R_2$ creates a zero row. All three operations preserve the determinant, and expansion along the zero row gives $\det A=0$.
+
+\practice{3.2.P2}{A determinant tests independence}
+Place the three vectors in columns, not rows:
+\[A=\begin{bmatrix}5&-3&2\\-7&3&-7\\9&-5&5\end{bmatrix}.\]
+Replace $R_2$ by $R_2+R_1=( -2,0,-5)$. Expanding down column 2 now gives
+\[
+\det A=3\begin{vmatrix}-2&-5\\9&5\end{vmatrix}
+ +5\begin{vmatrix}5&2\\-2&-5\end{vmatrix}
+ =3(35)+5(-21)=0.
+\]
+Thus $A$ is not invertible, and the three columns are linearly dependent by the Invertible Matrix Theorem.
+
+\exercise{3.2.1}{Identify the determinant rule}
+The displayed matrices differ by $R_1\leftrightarrow R_2$. A single interchange reverses the determinant's sign, which explains the minus sign in the equation.
+
+\exercise{3.2.2}{Identify the determinant rule}
+The first row $(2,-6,4)$ is $2(1,-3,2)$, while the other rows are fixed. Linearity in one row gives exactly the displayed factor $2$.
+
+\exercise{3.2.3}{Identify the determinant rule}
+The right-hand matrix results from $R_2\leftarrow R_2-2R_1$, since $(2,0,-3)-2(1,3,-4)=(0,-6,5)$. A row replacement preserves the determinant.
+
+\exercise{3.2.4}{Identify the determinant rule}
+Apply $R_3\leftarrow R_3-3R_1$: $(3,7,4)-3(1,2,3)=(0,1,-5)$. This is a row replacement and does not change the determinant.
+
+\exercise{3.2.5}{Row reduction with determinant bookkeeping}
+\goal Compute the determinant of
+\[A=\begin{bmatrix}1&5&-6\\-1&-4&4\\-2&-7&9\end{bmatrix}.\]
+Use only row replacements and, when needed, row interchanges. A replacement preserves the determinant; an interchange multiplies it by $-1$. No row is scaled.
+Perform $R_2\leftarrow R_2-(-1)R_1,\quad R_3\leftarrow R_3-(-2)R_1$, giving
+\[
+\begin{bmatrix}1&5&-6\\0&1&-2\\0&3&-3\end{bmatrix}.
+\]
+Perform $R_3\leftarrow R_3-(3)R_2$, giving
+\[
+\begin{bmatrix}1&5&-6\\0&1&-2\\0&0&3\end{bmatrix}.
+\]
+There were $0$ row interchanges. The final matrix is triangular, so
+\[\det A=(-1)^{0}(1)(1)(3)=3.\]
+
+
+\exercise{3.2.6}{Row reduction with determinant bookkeeping}
+\goal Compute the determinant of
+\[A=\begin{bmatrix}1&5&-3\\3&-3&3\\2&13&-7\end{bmatrix}.\]
+Use only row replacements and, when needed, row interchanges. A replacement preserves the determinant; an interchange multiplies it by $-1$. No row is scaled.
+Perform $R_2\leftarrow R_2-(3)R_1,\quad R_3\leftarrow R_3-(2)R_1$, giving
+\[
+\begin{bmatrix}1&5&-3\\0&-18&12\\0&3&-1\end{bmatrix}.
+\]
+Perform $R_3\leftarrow R_3-(- \frac{1}{6})R_2$, giving
+\[
+\begin{bmatrix}1&5&-3\\0&-18&12\\0&0&1\end{bmatrix}.
+\]
+There were $0$ row interchanges. The final matrix is triangular, so
+\[\det A=(-1)^{0}(1)(-18)(1)=-18.\]
+
+
+\exercise{3.2.7}{Row reduction with determinant bookkeeping}
+\goal Compute the determinant of
+\[A=\begin{bmatrix}1&3&0&2\\-2&-5&7&4\\3&5&2&1\\1&-1&2&-3\end{bmatrix}.\]
+Use only row replacements and, when needed, row interchanges. A replacement preserves the determinant; an interchange multiplies it by $-1$. No row is scaled.
+Perform $R_2\leftarrow R_2-(-2)R_1,\quad R_3\leftarrow R_3-(3)R_1,\quad R_4\leftarrow R_4-(1)R_1$, giving
+\[
+\begin{bmatrix}1&3&0&2\\0&1&7&8\\0&-4&2&-5\\0&-4&2&-5\end{bmatrix}.
+\]
+Perform $R_3\leftarrow R_3-(-4)R_2,\quad R_4\leftarrow R_4-(-4)R_2$, giving
+\[
+\begin{bmatrix}1&3&0&2\\0&1&7&8\\0&0&30&27\\0&0&30&27\end{bmatrix}.
+\]
+Perform $R_4\leftarrow R_4-(1)R_3$, giving
+\[
+\begin{bmatrix}1&3&0&2\\0&1&7&8\\0&0&30&27\\0&0&0&0\end{bmatrix}.
+\]
+There were $0$ row interchanges. The final matrix is triangular, so
+\[\det A=(-1)^{0}(1)(1)(30)(0)=0.\]
+
+
+\exercise{3.2.8}{Row reduction with determinant bookkeeping}
+\goal Compute the determinant of
+\[A=\begin{bmatrix}1&3&3&-4\\0&1&2&-5\\2&5&4&-3\\-3&-7&-5&2\end{bmatrix}.\]
+Use only row replacements and, when needed, row interchanges. A replacement preserves the determinant; an interchange multiplies it by $-1$. No row is scaled.
+Perform $R_3\leftarrow R_3-(2)R_1,\quad R_4\leftarrow R_4-(-3)R_1$, giving
+\[
+\begin{bmatrix}1&3&3&-4\\0&1&2&-5\\0&-1&-2&5\\0&2&4&-10\end{bmatrix}.
+\]
+Perform $R_3\leftarrow R_3-(-1)R_2,\quad R_4\leftarrow R_4-(2)R_2$, giving
+\[
+\begin{bmatrix}1&3&3&-4\\0&1&2&-5\\0&0&0&0\\0&0&0&0\end{bmatrix}.
+\]
+There were $0$ row interchanges. The final matrix is triangular, so
+\[\det A=(-1)^{0}(1)(1)(0)(0)=0.\]
+
+
+\exercise{3.2.9}{Row reduction with determinant bookkeeping}
+\goal Compute the determinant of
+\[A=\begin{bmatrix}1&-1&-3&0\\0&1&5&4\\-1&2&8&5\\3&-1&-2&3\end{bmatrix}.\]
+Use only row replacements and, when needed, row interchanges. A replacement preserves the determinant; an interchange multiplies it by $-1$. No row is scaled.
+Perform $R_3\leftarrow R_3-(-1)R_1,\quad R_4\leftarrow R_4-(3)R_1$, giving
+\[
+\begin{bmatrix}1&-1&-3&0\\0&1&5&4\\0&1&5&5\\0&2&7&3\end{bmatrix}.
+\]
+Perform $R_3\leftarrow R_3-(1)R_2,\quad R_4\leftarrow R_4-(2)R_2$, giving
+\[
+\begin{bmatrix}1&-1&-3&0\\0&1&5&4\\0&0&0&1\\0&0&-3&-5\end{bmatrix}.
+\]
+Perform $R_3\leftrightarrow R_4$, giving
+\[
+\begin{bmatrix}1&-1&-3&0\\0&1&5&4\\0&0&-3&-5\\0&0&0&1\end{bmatrix}.
+\]
+There were $1$ row interchanges. The final matrix is triangular, so
+\[\det A=(-1)^{1}(1)(1)(-3)(1)=3.\]
+
+
+\exercise{3.2.10}{Row reduction with determinant bookkeeping}
+\goal Compute the determinant of
+\[A=\begin{bmatrix}1&3&-1&0&-2\\0&2&-4&-1&-6\\-2&-6&2&3&9\\3&7&-3&8&-7\\3&5&5&2&7\end{bmatrix}.\]
+Use only row replacements and, when needed, row interchanges. A replacement preserves the determinant; an interchange multiplies it by $-1$. No row is scaled.
+Perform $R_3\leftarrow R_3-(-2)R_1,\quad R_4\leftarrow R_4-(3)R_1,\quad R_5\leftarrow R_5-(3)R_1$, giving
+\[
+\begin{bmatrix}1&3&-1&0&-2\\0&2&-4&-1&-6\\0&0&0&3&5\\0&-2&0&8&-1\\0&-4&8&2&13\end{bmatrix}.
+\]
+Perform $R_4\leftarrow R_4-(-1)R_2,\quad R_5\leftarrow R_5-(-2)R_2$, giving
+\[
+\begin{bmatrix}1&3&-1&0&-2\\0&2&-4&-1&-6\\0&0&0&3&5\\0&0&-4&7&-7\\0&0&0&0&1\end{bmatrix}.
+\]
+Perform $R_3\leftrightarrow R_4$, giving
+\[
+\begin{bmatrix}1&3&-1&0&-2\\0&2&-4&-1&-6\\0&0&-4&7&-7\\0&0&0&3&5\\0&0&0&0&1\end{bmatrix}.
+\]
+There were $1$ row interchanges. The final matrix is triangular, so
+\[\det A=(-1)^{1}(1)(2)(-4)(3)(1)=24.\]
+
+
+\exercise{3.2.11}{Row reduction with determinant bookkeeping}
+\goal Compute the determinant of
+\[A=\begin{bmatrix}2&5&-3&-1\\3&0&1&-3\\-6&0&-4&9\\4&10&-4&-1\end{bmatrix}.\]
+Use only row replacements and, when needed, row interchanges. A replacement preserves the determinant; an interchange multiplies it by $-1$. No row is scaled.
+Perform $R_2\leftarrow R_2-(\frac{3}{2})R_1,\quad R_3\leftarrow R_3-(-3)R_1,\quad R_4\leftarrow R_4-(2)R_1$, giving
+\[
+\begin{bmatrix}2&5&-3&-1\\0&- \frac{15}{2}&\frac{11}{2}&- \frac{3}{2}\\0&15&-13&6\\0&0&2&1\end{bmatrix}.
+\]
+Perform $R_3\leftarrow R_3-(-2)R_2$, giving
+\[
+\begin{bmatrix}2&5&-3&-1\\0&- \frac{15}{2}&\frac{11}{2}&- \frac{3}{2}\\0&0&-2&3\\0&0&2&1\end{bmatrix}.
+\]
+Perform $R_4\leftarrow R_4-(-1)R_3$, giving
+\[
+\begin{bmatrix}2&5&-3&-1\\0&- \frac{15}{2}&\frac{11}{2}&- \frac{3}{2}\\0&0&-2&3\\0&0&0&4\end{bmatrix}.
+\]
+There were $0$ row interchanges. The final matrix is triangular, so
+\[\det A=(-1)^{0}(2)(- \frac{15}{2})(-2)(4)=120.\]
+This last product can also be read as repeated cofactor expansion down the first column of the triangular matrix: each expansion removes its first row and column and leaves the next diagonal entry as a factor. Thus the calculation combines row reduction with sparse cofactor expansion.
+
+
+\exercise{3.2.12}{Row reduction with determinant bookkeeping}
+\goal Compute the determinant of
+\[A=\begin{bmatrix}-1&2&3&0\\3&4&3&0\\5&4&6&6\\4&2&4&3\end{bmatrix}.\]
+Use only row replacements and, when needed, row interchanges. A replacement preserves the determinant; an interchange multiplies it by $-1$. No row is scaled.
+Perform $R_2\leftarrow R_2-(-3)R_1,\quad R_3\leftarrow R_3-(-5)R_1,\quad R_4\leftarrow R_4-(-4)R_1$, giving
+\[
+\begin{bmatrix}-1&2&3&0\\0&10&12&0\\0&14&21&6\\0&10&16&3\end{bmatrix}.
+\]
+Perform $R_3\leftarrow R_3-(\frac{7}{5})R_2,\quad R_4\leftarrow R_4-(1)R_2$, giving
+\[
+\begin{bmatrix}-1&2&3&0\\0&10&12&0\\0&0&\frac{21}{5}&6\\0&0&4&3\end{bmatrix}.
+\]
+Perform $R_4\leftarrow R_4-(\frac{20}{21})R_3$, giving
+\[
+\begin{bmatrix}-1&2&3&0\\0&10&12&0\\0&0&\frac{21}{5}&6\\0&0&0&- \frac{19}{7}\end{bmatrix}.
+\]
+There were $0$ row interchanges. The final matrix is triangular, so
+\[\det A=(-1)^{0}(-1)(10)(\frac{21}{5})(- \frac{19}{7})=114.\]
+This last product can also be read as repeated cofactor expansion down the first column of the triangular matrix: each expansion removes its first row and column and leaves the next diagonal entry as a factor. Thus the calculation combines row reduction with sparse cofactor expansion.
+
+
+\exercise{3.2.13}{Row reduction with determinant bookkeeping}
+\goal Compute the determinant of
+\[A=\begin{bmatrix}2&5&4&1\\4&7&6&2\\6&-2&-4&0\\-6&7&7&0\end{bmatrix}.\]
+Use only row replacements and, when needed, row interchanges. A replacement preserves the determinant; an interchange multiplies it by $-1$. No row is scaled.
+Perform $R_2\leftarrow R_2-(2)R_1,\quad R_3\leftarrow R_3-(3)R_1,\quad R_4\leftarrow R_4-(-3)R_1$, giving
+\[
+\begin{bmatrix}2&5&4&1\\0&-3&-2&0\\0&-17&-16&-3\\0&22&19&3\end{bmatrix}.
+\]
+Perform $R_3\leftarrow R_3-(\frac{17}{3})R_2,\quad R_4\leftarrow R_4-(- \frac{22}{3})R_2$, giving
+\[
+\begin{bmatrix}2&5&4&1\\0&-3&-2&0\\0&0&- \frac{14}{3}&-3\\0&0&\frac{13}{3}&3\end{bmatrix}.
+\]
+Perform $R_4\leftarrow R_4-(- \frac{13}{14})R_3$, giving
+\[
+\begin{bmatrix}2&5&4&1\\0&-3&-2&0\\0&0&- \frac{14}{3}&-3\\0&0&0&\frac{3}{14}\end{bmatrix}.
+\]
+There were $0$ row interchanges. The final matrix is triangular, so
+\[\det A=(-1)^{0}(2)(-3)(- \frac{14}{3})(\frac{3}{14})=6.\]
+This last product can also be read as repeated cofactor expansion down the first column of the triangular matrix: each expansion removes its first row and column and leaves the next diagonal entry as a factor. Thus the calculation combines row reduction with sparse cofactor expansion.
+
+
+\exercise{3.2.14}{Row reduction with determinant bookkeeping}
+\goal Compute the determinant of
+\[A=\begin{bmatrix}-3&-2&1&-4\\1&3&0&-3\\-3&4&-2&8\\3&-4&0&4\end{bmatrix}.\]
+Use only row replacements and, when needed, row interchanges. A replacement preserves the determinant; an interchange multiplies it by $-1$. No row is scaled.
+Perform $R_2\leftarrow R_2-(- \frac{1}{3})R_1,\quad R_3\leftarrow R_3-(1)R_1,\quad R_4\leftarrow R_4-(-1)R_1$, giving
+\[
+\begin{bmatrix}-3&-2&1&-4\\0&\frac{7}{3}&\frac{1}{3}&- \frac{13}{3}\\0&6&-3&12\\0&-6&1&0\end{bmatrix}.
+\]
+Perform $R_3\leftarrow R_3-(\frac{18}{7})R_2,\quad R_4\leftarrow R_4-(- \frac{18}{7})R_2$, giving
+\[
+\begin{bmatrix}-3&-2&1&-4\\0&\frac{7}{3}&\frac{1}{3}&- \frac{13}{3}\\0&0&- \frac{27}{7}&\frac{162}{7}\\0&0&\frac{13}{7}&- \frac{78}{7}\end{bmatrix}.
+\]
+Perform $R_4\leftarrow R_4-(- \frac{13}{27})R_3$, giving
+\[
+\begin{bmatrix}-3&-2&1&-4\\0&\frac{7}{3}&\frac{1}{3}&- \frac{13}{3}\\0&0&- \frac{27}{7}&\frac{162}{7}\\0&0&0&0\end{bmatrix}.
+\]
+There were $0$ row interchanges. The final matrix is triangular, so
+\[\det A=(-1)^{0}(-3)(\frac{7}{3})(- \frac{27}{7})(0)=0.\]
+This last product can also be read as repeated cofactor expansion down the first column of the triangular matrix: each expansion removes its first row and column and leaves the next diagonal entry as a factor. Thus the calculation combines row reduction with sparse cofactor expansion.
+
+
+\exercise{3.2.15}{Transform a known determinant}
+The third row is scaled by $5$ and the other rows are fixed. Thus the determinant is $5\cdot7=35$.
+
+\exercise{3.2.16}{Transform a known determinant}
+The second row is scaled by $3$, so the determinant is $3\cdot7=21$.
+
+\exercise{3.2.17}{Transform a known determinant}
+Interchanging rows 2 and 3 once gives the displayed matrix. Its determinant is $-7$.
+
+\exercise{3.2.18}{Transform a known determinant}
+Move the original third row to the top by two interchanges: first interchange rows 2 and 3, then rows 1 and 2. The two sign changes cancel, leaving determinant $7$.
+
+\exercise{3.2.19}{Transform a known determinant}
+First scale the second row by $2$, multiplying the determinant by $2$. Then add row 1 to it, which preserves that new determinant. The answer is $2\cdot7=14$.
+
+\exercise{3.2.20}{Transform a known determinant}
+The operation $R_1\leftarrow R_1+R_2$ preserves the determinant, so the answer is $7$.
+
+\exercise{3.2.21}{A square-matrix determinant test}
+\goal Test invertibility of the displayed square matrix.
+\[A=\begin{bmatrix}2&3&0\\1&3&4\\1&2&1\end{bmatrix}.\]
+Use only row replacements and, when needed, row interchanges. A replacement preserves the determinant; an interchange multiplies it by $-1$. No row is scaled.
+Perform $R_2\leftarrow R_2-(\frac{1}{2})R_1,\quad R_3\leftarrow R_3-(\frac{1}{2})R_1$, giving
+\[
+\begin{bmatrix}2&3&0\\0&\frac{3}{2}&4\\0&\frac{1}{2}&1\end{bmatrix}.
+\]
+Perform $R_3\leftarrow R_3-(\frac{1}{3})R_2$, giving
+\[
+\begin{bmatrix}2&3&0\\0&\frac{3}{2}&4\\0&0&- \frac{1}{3}\end{bmatrix}.
+\]
+There were $0$ row interchanges. The final matrix is triangular, so
+\[\det A=(-1)^{0}(2)(\frac{3}{2})(- \frac{1}{3})=-1.\]
+Since the determinant is $-1$, the matrix is invertible by the determinant criterion.
+
+\exercise{3.2.22}{A square-matrix determinant test}
+\goal Test invertibility of the displayed square matrix.
+\[A=\begin{bmatrix}5&0&-1\\1&-3&-2\\0&5&3\end{bmatrix}.\]
+Use only row replacements and, when needed, row interchanges. A replacement preserves the determinant; an interchange multiplies it by $-1$. No row is scaled.
+Perform $R_2\leftarrow R_2-(\frac{1}{5})R_1$, giving
+\[
+\begin{bmatrix}5&0&-1\\0&-3&- \frac{9}{5}\\0&5&3\end{bmatrix}.
+\]
+Perform $R_3\leftarrow R_3-(- \frac{5}{3})R_2$, giving
+\[
+\begin{bmatrix}5&0&-1\\0&-3&- \frac{9}{5}\\0&0&0\end{bmatrix}.
+\]
+There were $0$ row interchanges. The final matrix is triangular, so
+\[\det A=(-1)^{0}(5)(-3)(0)=0.\]
+Since the determinant is $0$, the matrix is not invertible by the determinant criterion.
+
+\exercise{3.2.23}{A square-matrix determinant test}
+\goal Test invertibility of the displayed square matrix.
+\[A=\begin{bmatrix}2&0&0&8\\1&-7&-5&0\\3&8&6&0\\0&7&5&4\end{bmatrix}.\]
+Use only row replacements and, when needed, row interchanges. A replacement preserves the determinant; an interchange multiplies it by $-1$. No row is scaled.
+Perform $R_2\leftarrow R_2-(\frac{1}{2})R_1,\quad R_3\leftarrow R_3-(\frac{3}{2})R_1$, giving
+\[
+\begin{bmatrix}2&0&0&8\\0&-7&-5&-4\\0&8&6&-12\\0&7&5&4\end{bmatrix}.
+\]
+Perform $R_3\leftarrow R_3-(- \frac{8}{7})R_2,\quad R_4\leftarrow R_4-(-1)R_2$, giving
+\[
+\begin{bmatrix}2&0&0&8\\0&-7&-5&-4\\0&0&\frac{2}{7}&- \frac{116}{7}\\0&0&0&0\end{bmatrix}.
+\]
+There were $0$ row interchanges. The final matrix is triangular, so
+\[\det A=(-1)^{0}(2)(-7)(\frac{2}{7})(0)=0.\]
+Since the determinant is $0$, the matrix is not invertible by the determinant criterion.
+
+\exercise{3.2.24}{A square-matrix determinant test}
+\goal Test independence by placing the given vectors in columns.
+\[A=\begin{bmatrix}4&-7&-3\\6&0&-5\\-7&2&6\end{bmatrix}.\]
+Use only row replacements and, when needed, row interchanges. A replacement preserves the determinant; an interchange multiplies it by $-1$. No row is scaled.
+Perform $R_2\leftarrow R_2-(\frac{3}{2})R_1,\quad R_3\leftarrow R_3-(- \frac{7}{4})R_1$, giving
+\[
+\begin{bmatrix}4&-7&-3\\0&\frac{21}{2}&- \frac{1}{2}\\0&- \frac{41}{4}&\frac{3}{4}\end{bmatrix}.
+\]
+Perform $R_3\leftarrow R_3-(- \frac{41}{42})R_2$, giving
+\[
+\begin{bmatrix}4&-7&-3\\0&\frac{21}{2}&- \frac{1}{2}\\0&0&\frac{11}{42}\end{bmatrix}.
+\]
+There were $0$ row interchanges. The final matrix is triangular, so
+\[\det A=(-1)^{0}(4)(\frac{21}{2})(\frac{11}{42})=11.\]
+There are $3$ vectors in $\R^3$, so the determinant test applies. The determinant is $11$; hence the set is linearly independent.
+
+\exercise{3.2.25}{A square-matrix determinant test}
+\goal Test independence by placing the given vectors in columns.
+\[A=\begin{bmatrix}7&-8&7\\-4&5&0\\-6&7&-5\end{bmatrix}.\]
+Use only row replacements and, when needed, row interchanges. A replacement preserves the determinant; an interchange multiplies it by $-1$. No row is scaled.
+Perform $R_2\leftarrow R_2-(- \frac{4}{7})R_1,\quad R_3\leftarrow R_3-(- \frac{6}{7})R_1$, giving
+\[
+\begin{bmatrix}7&-8&7\\0&\frac{3}{7}&4\\0&\frac{1}{7}&1\end{bmatrix}.
+\]
+Perform $R_3\leftarrow R_3-(\frac{1}{3})R_2$, giving
+\[
+\begin{bmatrix}7&-8&7\\0&\frac{3}{7}&4\\0&0&- \frac{1}{3}\end{bmatrix}.
+\]
+There were $0$ row interchanges. The final matrix is triangular, so
+\[\det A=(-1)^{0}(7)(\frac{3}{7})(- \frac{1}{3})=-1.\]
+There are $3$ vectors in $\R^3$, so the determinant test applies. The determinant is $-1$; hence the set is linearly independent.
+
+\exercise{3.2.26}{A square-matrix determinant test}
+\goal Test independence by placing the given vectors in columns.
+\[A=\begin{bmatrix}3&2&-2&0\\5&-6&-1&0\\-6&0&3&0\\4&7&0&-3\end{bmatrix}.\]
+Use only row replacements and, when needed, row interchanges. A replacement preserves the determinant; an interchange multiplies it by $-1$. No row is scaled.
+Perform $R_2\leftarrow R_2-(\frac{5}{3})R_1,\quad R_3\leftarrow R_3-(-2)R_1,\quad R_4\leftarrow R_4-(\frac{4}{3})R_1$, giving
+\[
+\begin{bmatrix}3&2&-2&0\\0&- \frac{28}{3}&\frac{7}{3}&0\\0&4&-1&0\\0&\frac{13}{3}&\frac{8}{3}&-3\end{bmatrix}.
+\]
+Perform $R_3\leftarrow R_3-(- \frac{3}{7})R_2,\quad R_4\leftarrow R_4-(- \frac{13}{28})R_2$, giving
+\[
+\begin{bmatrix}3&2&-2&0\\0&- \frac{28}{3}&\frac{7}{3}&0\\0&0&0&0\\0&0&\frac{15}{4}&-3\end{bmatrix}.
+\]
+Perform $R_3\leftrightarrow R_4$, giving
+\[
+\begin{bmatrix}3&2&-2&0\\0&- \frac{28}{3}&\frac{7}{3}&0\\0&0&\frac{15}{4}&-3\\0&0&0&0\end{bmatrix}.
+\]
+There were $1$ row interchanges. The final matrix is triangular, so
+\[\det A=(-1)^{1}(3)(- \frac{28}{3})(\frac{15}{4})(0)=0.\]
+There are $4$ vectors in $\R^4$, so the determinant test applies. The determinant is $0$; hence the set is linearly dependent.
+
+\exercise{3.2.27}{Properties, proofs, and exact calculations}
+\step{(a) True.} This is the row-replacement part of Theorem 3.
+\step{(b) False as stated for an arbitrary echelon form.} The proposed sign correction accounts for row interchanges, but not row scalings. Starting with $A=I_2$, scale row 1 by $2$. The resulting echelon form has pivot product $2$ and no interchanges, although $\det A=1$. If reduction uses \emph{only} replacements and interchanges, the stated product with its sign correction is valid.
+\step{(c) True.} Dependent columns mean that $A$ is not invertible, by the Invertible Matrix Theorem; Theorem 4 then gives $\det A=0$.
+\step{(d) False.} Take $A=B=I_2$. The left side is $\det(2I_2)=4$, while the right side is $1+1=2$.
+
+\exercise{3.2.28}{Properties, proofs, and exact calculations}
+\step{(a) True.} Each interchange multiplies the determinant by $-1$, so two multiply it by $(-1)^2=1$.
+\step{(b) False.} The diagonal-product rule needs a triangular matrix. For example, $\left[\begin{smallmatrix}1&1\\1&1\end{smallmatrix}\right]$ has determinant $0$, but diagonal product $1$.
+\step{(c) False.} The matrix $\left[\begin{smallmatrix}1&2&3\\4&5&6\\5&7&9\end{smallmatrix}\right]$ has row 3 equal to row 1 plus row 2 and therefore determinant zero. None of its rows or columns is zero or identical to another.
+\step{(d) False.} Theorem 5 gives $\det A^T=\det A$. The identity matrix, whose determinant is $1$, disproves the proposed minus sign.
+
+\exercise{3.2.29}{Properties, proofs, and exact calculations}
+For $B=\left[\begin{smallmatrix}1&0&1\\1&1&2\\1&2&1\end{smallmatrix}\right]$, subtract row 1 from rows 2 and 3, giving lower right block $\left[\begin{smallmatrix}1&1\\2&0\end{smallmatrix}\right]$. Thus $\det B=1(0-2)=-2$. Applying multiplicativity repeatedly gives $\det(B^5)=(\det B)^5=(-2)^5=-32$.
+
+\exercise{3.2.30}{Properties, proofs, and exact calculations}
+Interchange the two equal rows. The numerical matrix does not change, but Theorem 3 says its determinant changes sign. Thus $d=-d$, where $d=\det A$. Adding $d$ gives $2d=0$, hence $d=0$. If two columns are equal, transpose the matrix; its transpose has two equal rows and the same determinant by Theorem 5. This proof does not use the invertibility criterion in Theorem 4.
+
+\exercise{3.2.31}{Properties, proofs, and exact calculations}
+Since $A$ is invertible, Theorem 4 gives $\det A\ne0$. The multiplication theorem applied to $AA^{-1}=I$ gives $(\det A)(\det A^{-1})=\det I=1$. Dividing by the nonzero scalar $\det A$ proves $\det A^{-1}=1/\det A$.
+
+\exercise{3.2.32}{Properties, proofs, and exact calculations}
+The matrix $rA$ is obtained by multiplying each of the $n$ rows by $r$. Repeated use of Theorem 3(c), one row at a time, gives $\det(rA)=r^n\det A$. If $r=0$ and $n\ge1$, the matrix is zero and both sides are zero, so that case is also covered.
+
+\exercise{3.2.33}{Properties, proofs, and exact calculations}
+Theorem 6 and commutativity of \emph{real-number} multiplication give $\det(AB)=(\det A)(\det B)=(\det B)(\det A)=\det(BA)$. This does not assert that the matrix products themselves commute.
+
+\exercise{3.2.34}{Properties, proofs, and exact calculations}
+By multiplicativity, $\det(PAP^{-1})=(\det P)(\det A)(\det P^{-1})$. Because $P$ is invertible, Exercise 31 gives $(\det P)(\det P^{-1})=1$. The product therefore reduces to $\det A$. Similar matrices have the same determinant.
+
+\exercise{3.2.35}{Properties, proofs, and exact calculations}
+Take determinants of $U^TU=I$. Theorems 5 and 6 give $(\det U)^2=(\det U^T)(\det U)=1$. Since $\det U$ is real, solving $d^2=1$ gives $d=1$ or $d=-1$. Both signs occur: $I$ gives $1$, and a single coordinate reflection gives $-1$.
+
+\exercise{3.2.36}{Properties, proofs, and exact calculations}
+Repeated multiplication gives $0=\det(A^4)=(\det A)^4$. A real number has fourth power zero only when it is zero. Thus $\det A=0$, so Theorem 4 rules out invertibility.
+
+\exercise{3.2.37}{Properties, proofs, and exact calculations}
+Multiply the matrices first:
+\[AB=\begin{bmatrix}6&0\\17&4\end{bmatrix}.\]
+Direct $2\times2$ calculations give $\det A=3$, $\det B=8$, and
+\[\det(AB)=(6)(4)-(0)(17)=24=(\det A)(\det B).\]
+This is a direct verification for these matrices, rather than an application of Theorem 6.
+
+\exercise{3.2.38}{Properties, proofs, and exact calculations}
+Multiply the matrices first:
+\[AB=\begin{bmatrix}6&0\\-2&0\end{bmatrix}.\]
+Direct $2\times2$ calculations give $\det A=0$, $\det B=-2$, and
+\[\det(AB)=(6)(0)-(0)(-2)=0=(\det A)(\det B).\]
+This is a direct verification for these matrices, rather than an application of Theorem 6.
+
+\exercise{3.2.39}{Properties, proofs, and exact calculations}
+Use the given $3\times3$ dimension when scaling every row:
+\begin{enumerate}[label=(\alph*)]
+\item $\det(AB)=4(-3)=-12$, by multiplicativity.
+\item $\det(5A)=5^3\cdot4=500$, since all three rows are scaled.
+\item $\det(B^T)=\det B=-3$, by transposition invariance.
+\item $\det(A^{-1})=1/4$, since $\det A\ne0$.
+\item $\det(A^3)=4^3=64$, by applying multiplicativity twice.
+\end{enumerate}
+
+\exercise{3.2.40}{Properties, proofs, and exact calculations}
+The matrices are now $4\times4$:
+\begin{enumerate}[label=(\alph*)]
+\item $\det(AB)=(-1)(2)=-2$.
+\item $\det(B^5)=2^5=32$.
+\item $\det(2A)=2^4(-1)=-16$.
+\item $\det(A^TA)=\det(A^T)\det A=(-1)^2=1$.
+\item $\det(B^{-1}AB)=(1/2)(-1)(2)=-1$; the inverse exists because $\det B=2\ne0$.
+\end{enumerate}
+
+\exercise{3.2.41}{Properties, proofs, and exact calculations}
+Expand each $2\times2$ determinant directly:
+\[
+\det A=(a+e)d-(b+f)c=(ad-bc)+(ed-fc)=\det B+\det C.
+\]
+Only the \emph{first row} was split, while the second row stayed fixed. This is compatible with failure of additivity in the whole matrix.
+
+\exercise{3.2.42}{Properties, proofs, and exact calculations}
+Here $A=I_2$. Direct calculation yields
+\[
+\det(I_2+B)=(1+a)(1+d)-bc=1+ad-bc+(a+d).
+\]
+But $\det I_2+\det B=1+ad-bc$. The two expressions are equal if and only if their difference $a+d$ is zero. This proves both implications of the claimed equivalence.
+
+\exercise{3.2.43}{Properties, proofs, and exact calculations}
+Expand each determinant down its third column. The cofactors $C_{13},C_{23},C_{33}$ depend only on the first two columns, so they are the same for all three matrices. Therefore
+\begin{align*}
+\det A&=\sum_{i=1}^3(u_i+v_i)C_{i3}\\
+&=\sum_{i=1}^3u_iC_{i3}+\sum_{i=1}^3v_iC_{i3}
+=\det B+\det C.
+\end{align*}
+The matrices do not satisfy $A=B+C$, because adding $B$ and $C$ would double their first two columns. The equality is linearity in one column with the other columns held fixed.
+
+\exercise{3.2.44}{Properties, proofs, and exact calculations}
+Transpose first: $(AE)^T=E^TA^T$. The transpose $E^T$ is an elementary matrix of the corresponding type. Theorem 3, applied to left multiplication by $E^T$, gives
+\[
+\det(E^TA^T)=(\det E^T)(\det A^T).
+\]
+By Theorem 5, the left side equals $\det(AE)$, and the right side equals $(\det E)(\det A)$. This argument uses row-operation rules and transpose invariance, not the general product theorem.
+
+\exercise{3.2.45}{Rectangular matrices and two Gram products}
+Run the following exact experiment, including two samples at each requested size.
+\begin{verbatim}
+from random import Random
+from sympy import Matrix
+r = Random(32045)
+for m,n in ((4,5),(4,5),(5,6),(5,6)):
+    A = Matrix(m,n,[r.randint(-5,5) for _ in range(m*n)])
+    print(m,n,(A.T*A).det(),(A*A.T).det())
+\end{verbatim}
+The computed outputs are
+\[\begin{array}{c|rr}\text{shape of }A&\det(A^TA)&\det(AA^T)\\\hline
+4\times5&0&22645\\4\times5&0&128772\\5\times6&0&33391308\\5\times6&0&1276024\end{array}\]
+\step{Explain what must hold for every such matrix.}
+If $A$ has $m<n$, its $n$ columns in $\R^m$ are dependent, so some nonzero $x$ satisfies $Ax=0$. Then $A^TAx=0$, proving that $A^TA$ is singular and its determinant is zero. In contrast, $AA^T$ is invertible exactly when the rows of $A$ are independent: for any $y$,
+\[
+y^TAA^Ty=\|A^Ty\|^2.
+\]
+This is zero exactly when $A^Ty=0$. Thus independent rows imply a zero null space for $AA^T$. A dependent-row sample would also give $\det(AA^T)=0$; its nonzero values in these four experiments are not a universal guarantee.
+
+\exercise{3.2.46}{Small determinant versus near singularity}
+\goal Compare scaling-sensitive determinants with a scaling-invariant condition number.
+The specified matrix from Section 2.3, Exercise 9 is
+\[A=\begin{bmatrix}4&0&-3&-7\\-6&9&9&9\\7&-5&10&19\\-1&2&4&-1\end{bmatrix}.\]
+Using the spectral (2-norm) condition number, the following double-precision calculation gives the table below.
+\begin{verbatim}
+import numpy as np
+A = np.array([[4,0,-3,-7],[-6,9,9,9],
+              [7,-5,10,19],[-1,2,4,-1]],float)
+for B in (A,np.eye(4)):
+    for c in (0.1,1.,10.):
+        print(c,np.linalg.det(c*B),np.linalg.cond(c*B,2))
+\end{verbatim}
+The determinants in the table were additionally checked in exact rational arithmetic, avoiding cancellation errors in their reported values.
+\[\begin{array}{c|rr}\text{matrix}&\det&\kappa_2\\\hline
+\frac{1}{10}A&- \frac{501}{1250}&11.3525\\1A&-4008&11.3525\\10A&-40080000&11.3525\\\frac{1}{10}I_4&\frac{1}{10000}&1\\1I_4&1&1\\10I_4&10000&1\end{array}\]
+\step{Interpret the comparison.}
+The supplied $A$ is less well-conditioned than the identity, with a moderate condition number about $11.35$. The exercise calls it nearly singular, but the actual supplied entries do not exhibit severe ill-conditioning. Its determinant changes by a factor $10^4$ when $A$ is multiplied by $10$, while its condition number does not change. In general, $\det(cA)=c^4\det A$ in this dimension. But for nonzero $c$,
+\[
+\kappa_2(cA)=\|cA\|_2\|(cA)^{-1}\|_2
+=|c|\|A\|_2\,|c|^{-1}\|A^{-1}\|_2=\kappa_2(A).
+\]
+Every nonzero scalar multiple of the identity has condition number $1$, even if its determinant is made arbitrarily small. Thus determinant size alone, without controlling matrix scale, does not measure relative nearness to singularity. Exact zero still characterizes singularity; ``small'' is the scale-dependent part.

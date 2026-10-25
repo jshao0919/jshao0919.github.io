@@ -1,0 +1,468 @@
+\section{The characteristic equation}
+We use the book's convention $p(\lambda)=\det(A-\lambda I)$.
+Some software instead reports $\det(\lambda I-A)$; they differ
+by $(-1)^n$ and have the same zeros. An eigenvalue is a zero of
+$p$, and its algebraic multiplicity is its multiplicity as a polynomial
+root. That multiplicity need not equal the dimension of its eigenspace.
+For a triangular matrix, the characteristic determinant is the product
+of the shifted diagonal entries. For a general matrix, use the full
+determinant rather than multiplying the original diagonal entries.
+
+\practice{5.2.P1}{A characteristic equation with no real roots}
+For the given matrix,
+\[
+ p(\lambda)=\det\begin{bmatrix}1-\lambda&-4\\4&2-\lambda\end{bmatrix}
+ =(1-\lambda)(2-\lambda)+16=\lambda^2-3\lambda+18.
+\]
+Its discriminant is $9-72=-63<0$, so the characteristic equation
+has no real root and $A$ has no real eigenvalue. If complex scalars
+are allowed, its eigenvalues are $(3\pm i\sqrt{63})/2$.
+
+\exercise{5.2.1}{Compute a two-by-two characteristic polynomial}
+For $A=\begin{bmatrix}2 & 7\\7 & 2\end{bmatrix}$, subtract $\lambda$ only from the diagonal entries. The determinant formula $ad-bc$ gives
+\[ p(\lambda)=(2 - \lambda)(2 - \lambda)-(7)(7)=\lambda^{2} - 4 \lambda - 45.\]
+
+Factoring gives $p(\lambda)=\left(\lambda - 9\right) \left(\lambda + 5\right)$. Its real roots, hence the eigenvalues, are $-5,\ 9$. Each listed root has multiplicity one.
+
+\exercise{5.2.2}{Compute a two-by-two characteristic polynomial}
+For $A=\begin{bmatrix}-4 & -1\\6 & 1\end{bmatrix}$, subtract $\lambda$ only from the diagonal entries. The determinant formula $ad-bc$ gives
+\[ p(\lambda)=(- \lambda - 4)(1 - \lambda)-(-1)(6)=\lambda^{2} + 3 \lambda + 2.\]
+
+Factoring gives $p(\lambda)=\left(\lambda + 1\right) \left(\lambda + 2\right)$. Its real roots, hence the eigenvalues, are $-2,\ -1$. Each listed root has multiplicity one.
+
+\exercise{5.2.3}{Compute a two-by-two characteristic polynomial}
+For $A=\begin{bmatrix}-4 & 2\\6 & 7\end{bmatrix}$, subtract $\lambda$ only from the diagonal entries. The determinant formula $ad-bc$ gives
+\[ p(\lambda)=(- \lambda - 4)(7 - \lambda)-(2)(6)=\lambda^{2} - 3 \lambda - 40.\]
+
+Factoring gives $p(\lambda)=\left(\lambda - 8\right) \left(\lambda + 5\right)$. Its real roots, hence the eigenvalues, are $-5,\ 8$. Each listed root has multiplicity one.
+
+\exercise{5.2.4}{Compute a two-by-two characteristic polynomial}
+For $A=\begin{bmatrix}8 & 2\\3 & 3\end{bmatrix}$, subtract $\lambda$ only from the diagonal entries. The determinant formula $ad-bc$ gives
+\[ p(\lambda)=(8 - \lambda)(3 - \lambda)-(2)(3)=\lambda^{2} - 11 \lambda + 18.\]
+
+Factoring gives $p(\lambda)=\left(\lambda - 9\right) \left(\lambda - 2\right)$. Its real roots, hence the eigenvalues, are $2,\ 9$. Each listed root has multiplicity one.
+
+\exercise{5.2.5}{Compute a two-by-two characteristic polynomial}
+For $A=\begin{bmatrix}8 & 4\\4 & 8\end{bmatrix}$, subtract $\lambda$ only from the diagonal entries. The determinant formula $ad-bc$ gives
+\[ p(\lambda)=(8 - \lambda)(8 - \lambda)-(4)(4)=\lambda^{2} - 16 \lambda + 48.\]
+
+Factoring gives $p(\lambda)=\left(\lambda - 12\right) \left(\lambda - 4\right)$. Its real roots, hence the eigenvalues, are $4,\ 12$. Each listed root has multiplicity one.
+
+\exercise{5.2.6}{Compute a two-by-two characteristic polynomial}
+For $A=\begin{bmatrix}9 & -2\\2 & 5\end{bmatrix}$, subtract $\lambda$ only from the diagonal entries. The determinant formula $ad-bc$ gives
+\[ p(\lambda)=(9 - \lambda)(5 - \lambda)-(-2)(2)=\lambda^{2} - 14 \lambda + 49.\]
+
+Factoring gives $p(\lambda)=\left(\lambda - 7\right)^{2}$. Its real roots, hence the eigenvalues, are $7$. The root $7$ has multiplicity two.
+
+\exercise{5.2.7}{Compute a two-by-two characteristic polynomial}
+For $A=\begin{bmatrix}5 & 3\\-4 & 4\end{bmatrix}$, subtract $\lambda$ only from the diagonal entries. The determinant formula $ad-bc$ gives
+\[ p(\lambda)=(5 - \lambda)(4 - \lambda)-(3)(-4)=\lambda^{2} - 9 \lambda + 32.\]
+
+The discriminant is $(-9)^2-4(32)=-47<0$. Consequently there are no real eigenvalues. The two complex roots, if desired, are $(9\pm i\sqrt{47})/2$.
+
+\exercise{5.2.8}{Compute a two-by-two characteristic polynomial}
+For $A=\begin{bmatrix}-4 & 3\\2 & 1\end{bmatrix}$, subtract $\lambda$ only from the diagonal entries. The determinant formula $ad-bc$ gives
+\[ p(\lambda)=(- \lambda - 4)(1 - \lambda)-(3)(2)=\lambda^{2} + 3 \lambda - 10.\]
+
+Factoring gives $p(\lambda)=\left(\lambda - 2\right) \left(\lambda + 5\right)$. Its real roots, hence the eigenvalues, are $-5,\ 2$. Each listed root has multiplicity one.
+
+\exercise{5.2.9}{Expand the shifted determinant using its zeros}
+The matrix whose determinant is required is
+\[ A-\lambda I=\begin{bmatrix}4 - \lambda & 0 & -1\\0 & 4 - \lambda & -1\\1 & 0 & 2 - \lambda\end{bmatrix}.\]
+
+Expand down column two; only its middle entry is nonzero. Thus
+\[ p(\lambda)=(4-\lambda)[(4-\lambda)(2-\lambda)+1].\]
+
+Multiplying the factors gives
+\[ \boxed{p(\lambda)=- \lambda^{3} + 10 \lambda^{2} - 33 \lambda + 36}.\]
+
+A useful factored check is $p(\lambda)=- \left(\lambda - 4\right) \left(\lambda - 3\right)^{2}$. Expanding this expression reproduces the same cubic and, at $\lambda=0$, the original determinant.
+
+\exercise{5.2.10}{Expand the shifted determinant using its zeros}
+The matrix whose determinant is required is
+\[ A-\lambda I=\begin{bmatrix}3 - \lambda & 1 & 1\\0 & 5 - \lambda & 0\\-2 & 0 & 7 - \lambda\end{bmatrix}.\]
+
+Expand across row two; only its middle entry is nonzero. Thus
+\[ p(\lambda)=(5-\lambda)[(3-\lambda)(7-\lambda)+2].\]
+
+Multiplying the factors gives
+\[ \boxed{p(\lambda)=- \lambda^{3} + 15 \lambda^{2} - 73 \lambda + 115}.\]
+
+A useful factored check is $p(\lambda)=- \left(\lambda - 5\right) \left(\lambda^{2} - 10 \lambda + 23\right)$. Expanding this expression reproduces the same cubic and, at $\lambda=0$, the original determinant.
+
+\exercise{5.2.11}{Expand the shifted determinant using its zeros}
+The matrix whose determinant is required is
+\[ A-\lambda I=\begin{bmatrix}3 - \lambda & 0 & 0\\2 & 1 - \lambda & 4\\1 & 0 & 4 - \lambda\end{bmatrix}.\]
+
+Expand down column two; only its middle entry is nonzero, and the remaining minor is triangular. Thus
+\[ p(\lambda)=(1-\lambda)(3-\lambda)(4-\lambda).\]
+
+Multiplying the factors gives
+\[ \boxed{p(\lambda)=- \lambda^{3} + 8 \lambda^{2} - 19 \lambda + 12}.\]
+
+A useful factored check is $p(\lambda)=- \left(\lambda - 4\right) \left(\lambda - 3\right) \left(\lambda - 1\right)$. Expanding this expression reproduces the same cubic and, at $\lambda=0$, the original determinant.
+
+\exercise{5.2.12}{Expand the shifted determinant using its zeros}
+The matrix whose determinant is required is
+\[ A-\lambda I=\begin{bmatrix}- \lambda - 1 & 0 & 2\\3 & 1 - \lambda & 0\\0 & 1 & 2 - \lambda\end{bmatrix}.\]
+
+Expand across row one. The middle term is zero; the last cofactor contributes $2(3)=6$. Thus
+\[ p(\lambda)=(-1-\lambda)(1-\lambda)(2-\lambda)+6.\]
+
+Multiplying the factors gives
+\[ \boxed{p(\lambda)=- \lambda^{3} + 2 \lambda^{2} + \lambda + 4}.\]
+
+Factoring is not required here. As checks, the leading term is $-\lambda^3$ under our convention, and substituting $\lambda=0$ gives $\det A=4$.
+
+\exercise{5.2.13}{Expand the shifted determinant using its zeros}
+The matrix whose determinant is required is
+\[ A-\lambda I=\begin{bmatrix}6 - \lambda & -2 & 0\\-2 & 9 - \lambda & 0\\5 & 8 & 3 - \lambda\end{bmatrix}.\]
+
+Expand down column three; only its last entry is nonzero. Thus
+\[ p(\lambda)=(3-\lambda)[(6-\lambda)(9-\lambda)-4].\]
+
+Multiplying the factors gives
+\[ \boxed{p(\lambda)=- \lambda^{3} + 18 \lambda^{2} - 95 \lambda + 150}.\]
+
+A useful factored check is $p(\lambda)=- \left(\lambda - 10\right) \left(\lambda - 5\right) \left(\lambda - 3\right)$. Expanding this expression reproduces the same cubic and, at $\lambda=0$, the original determinant.
+
+\exercise{5.2.14}{Expand the shifted determinant using its zeros}
+The matrix whose determinant is required is
+\[ A-\lambda I=\begin{bmatrix}4 - \lambda & 0 & -1\\-1 & - \lambda & 4\\0 & 2 & 3 - \lambda\end{bmatrix}.\]
+
+Expand across row one. The first minor gives $(-\lambda)(3-\lambda)-8$, and the last cofactor contributes $(-1)(-2)=2$. Thus
+\[ p(\lambda)=(4-\lambda)[(-\lambda)(3-\lambda)-8]+2.\]
+
+Multiplying the factors gives
+\[ \boxed{p(\lambda)=- \lambda^{3} + 7 \lambda^{2} - 4 \lambda - 30}.\]
+
+A useful factored check is $p(\lambda)=- \left(\lambda - 5\right) \left(\lambda^{2} - 2 \lambda - 6\right)$. Expanding this expression reproduces the same cubic and, at $\lambda=0$, the original determinant.
+
+\exercise{5.2.15}{Read triangular eigenvalues with repetition}
+This matrix is upper triangular. Therefore $p(\lambda)$ is the product of its diagonal entries minus $\lambda$:
+\[ p(\lambda)=\left(\lambda - 5\right)^{2} \left(\lambda - 3\right) \left(\lambda - 2\right).\]
+
+Listing the diagonal entries, with each occurrence retained, gives the requested eigenvalue list $2,\ 3,\ 5,\ 5$. Repeated entries are repeated eigenvalues in this list, not extra distinct values.
+
+\exercise{5.2.16}{Read triangular eigenvalues with repetition}
+This matrix is lower triangular. Therefore $p(\lambda)$ is the product of its diagonal entries minus $\lambda$:
+\[ p(\lambda)=\left(\lambda - 6\right) \left(\lambda - 3\right) \left(\lambda - 2\right) \left(\lambda + 5\right).\]
+
+Listing the diagonal entries, with each occurrence retained, gives the requested eigenvalue list $-5,\ 2,\ 3,\ 6$. Repeated entries are repeated eigenvalues in this list, not extra distinct values.
+
+\exercise{5.2.17}{Read triangular eigenvalues with repetition}
+This matrix is lower triangular. Therefore $p(\lambda)$ is the product of its diagonal entries minus $\lambda$:
+\[ p(\lambda)=- \lambda \left(\lambda - 3\right)^{2} \left(\lambda - 1\right)^{2}.\]
+
+Listing the diagonal entries, with each occurrence retained, gives the requested eigenvalue list $0,\ 1,\ 1,\ 3,\ 3$. Repeated entries are repeated eigenvalues in this list, not extra distinct values.
+
+
+\exercise{5.2.18}{Force a two-dimensional eigenspace for four}
+Subtract $4I$ to obtain
+\[
+ A-4I=\begin{bmatrix}0&2&3&3\\0&-2&h&3\\0&0&0&14\\0&0&0&-2\end{bmatrix}.
+\]
+The last row of $(A-4I)x=0$ forces $x_4=0$. The first row then
+gives $2x_2+3x_3=0$, so $x_2=-3x_3/2$. Substituting into
+the second gives $(h+3)x_3=0$. The coordinate $x_1$ is always free.
+For the eigenspace to have a second free coordinate, we need
+$h+3=0$. At $h=-3$ its basis can be chosen as
+\[
+ (1,0,0,0)^T,\qquad(0,-3,2,0)^T.
+\]
+For any other $h$, $x_3=x_2=x_4=0$, leaving only one free coordinate.
+\answer{$\boxed{h=-3}$.}
+
+\exercise{5.2.19}{The constant coefficient is the determinant}
+The supplied factorization is
+$p(\lambda)=\prod_{j=1}^n(\lambda_j-\lambda)$, with eigenvalues
+repeated according to multiplicity. Substitute $\lambda=0$:
+\[
+ \det A=\det(A-0I)=p(0)=\lambda_1\cdots\lambda_n.
+\]
+No sign change is needed under this convention; using
+$\det(\lambda I-A)$ would introduce the corresponding constant-term sign.
+The same evaluation works over complex numbers when nonreal roots are present.
+
+\exercise{5.2.20}{Transpose preserves the whole characteristic polynomial}
+Since $I^T=I$ and transposition commutes with subtraction,
+$A^T-\lambda I=(A-\lambda I)^T$.
+The determinant of a transpose equals the original determinant. Hence
+\[
+ \det(A^T-\lambda I)=\det((A-\lambda I)^T)=\det(A-\lambda I)
+\]
+for every $\lambda$. Thus the polynomials are identical, so the
+roots agree with their algebraic multiplicities, not merely as distinct sets.
+
+\exercise{5.2.21}{Determinants and the sign of a root}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} For $A=\begin{bmatrix}0&1\\1&0\end{bmatrix}$,
+$\det A=-1$, but the product of the diagonal entries is $0$.
+The diagonal-product rule is valid for triangular matrices.
+\item \textbf{False.} A row interchange negates the determinant;
+scaling a row by $c$ multiplies it by $c$. Only row replacement
+preserves it unchanged in general.
+\item \textbf{True.} This is the determinant product law for square matrices.
+\item \textbf{False.} A factor $\lambda+5$ vanishes at $\lambda=-5$,
+not $5$. For example $A=[-5]$ has that factor up to the harmless
+leading sign, but has only eigenvalue $-5$.
+\end{enumerate}
+
+\exercise{5.2.22}{Volume, transpose, multiplicity, and row operations}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False as stated.} The geometric volume is $|\det A|$.
+The determinant can be negative because it also records orientation.
+\item \textbf{False.} $\det A^T=\det A$, with no factor $-1$.
+The identity matrix gives $1$, not $-1$.
+\item \textbf{True.} This is the definition of algebraic multiplicity.
+\item \textbf{False.} Start with
+$\begin{bmatrix}1&1\\1&1\end{bmatrix}$, whose eigenvalues are
+$2,0$. Replacing row two by row two minus row one gives
+$\begin{bmatrix}1&1\\0&0\end{bmatrix}$, whose eigenvalues are
+$1,0$. Row replacement preserves the determinant, not every eigenvalue.
+\end{enumerate}
+
+\exercise{5.2.23}{Interchanging two factors gives a similar matrix}
+Assume $A=QR$ with $Q$ invertible. Then
+\[
+ Q^{-1}AQ=Q^{-1}(QR)Q=(Q^{-1}Q)RQ=RQ=A_1.
+\]
+Thus $A_1=Q^{-1}AQ$, precisely the definition of similarity.
+Only $Q$ needs to be invertible; $R$ need not be.
+This is why interchanging the factors in the QR iteration preserves eigenvalues.
+
+\exercise{5.2.24}{Similarity preserves determinants}
+If $B=P^{-1}AP$ with $P$ invertible, the product law gives
+\[
+ \det B=\det(P^{-1})\det A\det P.
+\]
+Since $\det(P^{-1})\det P=\det I=1$, the two outer factors
+cancel and $\det B=\det A$. This proof also covers singular $A$:
+only $P$, not $A$, is required to have an inverse.
+
+\exercise{5.2.25}{Resolve a probability vector into two eigenvectors}
+\step{(a) Find a second eigendirection.}
+The stated $v_1=(3/7,4/7)^T$ satisfies $Av_1=v_1$.
+For $v_2=(1,-1)^T$, multiplication gives
+$Av_2=(0.3,-0.3)^T=0.3v_2$. The vectors correspond to distinct
+eigenvalues $1$ and $0.3$, so they are independent and form a basis of $\R^2$.
+\step{(b) Expand the initial vector.}
+\[
+ x_0-v_1=(1/2-3/7,1/2-4/7)^T=(1/14,-1/14)^T=\tfrac1{14}v_2.
+\]
+Thus $x_0=v_1+(1/14)v_2$.
+\step{(c) Use the eigenvalue powers.}
+Direct multiplication gives $x_1=(0.45,0.55)^T$ and
+$x_2=(0.435,0.565)^T$. For every $k\ge0$,
+\[
+ x_k=A^kx_0=v_1+\frac1{14}(0.3)^kv_2.
+\]
+Because $|0.3|<1$, the scalar factor tends to zero, so $x_k\to v_1$.
+This proves convergence, rather than merely inferring it from two similar iterates.
+
+\exercise{5.2.26}{Derive the two-by-two determinant from elimination}
+\step{Case 1: $a\ne0$.}
+Replace row two by row two minus $(c/a)$ times row one. This operation
+does not change the determinant, and it produces
+$\begin{bmatrix}a&b\\0&d-cb/a\end{bmatrix}$.
+The triangular formula gives $a(d-cb/a)=ad-bc$.
+\step{Case 2: $a=0$.}
+If also $c=0$, the first column is zero, so the determinant is zero,
+agreeing with $ad-bc$. If $c\ne0$, interchange rows to produce
+$\begin{bmatrix}c&d\\0&b\end{bmatrix}$. Its determinant is $cb$,
+and one interchange reverses the sign, so the original determinant
+is $-cb=ad-bc$. These cases include all possible values of $a,c$.
+
+\exercise{5.2.27}{Three eigendirections determine a steady-state limit}
+\step{(a) Check the three given images.}
+With the matrix in the exercise, direct multiplication gives
+\[
+ Av_1=(0.3,0.6,0.1)^T=v_1,
+\]
+\[
+ Av_2=(0.5,-1.5,1)^T=\tfrac12v_2,\qquad
+ Av_3=(-0.2,0,0.2)^T=\tfrac15v_3.
+\]
+All three vectors are nonzero, so these really are eigenvector equations.
+\step{(b) Use both a basis and the coordinate sum.}
+The eigenvalues $1,1/2,1/5$ are distinct, so the three eigenvectors
+are independent and form a basis of $\R^3$. Thus any $x_0$ has
+unique coefficients $c_j$ in $x_0=c_1v_1+c_2v_2+c_3v_3$.
+For $w=(1,1,1)^T$, the probability hypothesis gives $w^Tx_0=1$.
+But $w^Tv_1=1$, $w^Tv_2=0$, and $w^Tv_3=0$. Applying
+$w^T$ to the expansion therefore yields $1=c_1$.
+\step{(c) Let the contracting components vanish.}
+\[
+ x_k=A^kx_0=v_1+c_2(1/2)^kv_2+c_3(1/5)^kv_3.
+\]
+The two powers tend to zero, so $x_k\to v_1$.
+The two coefficients may depend on the initial distribution, but the
+limit does not, because its coefficient was fixed by total probability one.
+
+\exercise{5.2.28}{Reproducible random examples and the transpose distinction}
+To make the experiment reproducible, draw upper-triangular entries
+uniformly from the integers $-3,\ldots,4$ with pseudorandom seed
+$52028$, setting entries below the diagonal to zero. Successive draws
+of sizes four and five give the following valid random integer examples.
+The triangular choice makes exact checks of every multiplicity transparent.
+
+
+\[ A_4=\begin{bmatrix}-1 & 0 & 0 & 2\\0 & 1 & -2 & 1\\0 & 0 & 1 & 4\\0 & 0 & 0 & 2\end{bmatrix}.\]
+
+Exact calculation gives the same polynomial for $A_4$ and $A_4^T$:
+\[ p(\lambda)=\left(\lambda - 2\right) \left(\lambda - 1\right)^{2} \left(\lambda + 1\right).\]
+
+Its eigenvalues, with multiplicity, are $-1,\ 1,\ 1,\ 2$. However $e_1$ is an eigenvector of $A_4$ with eigenvalue $-1$, whereas $A_4^Te_1=\begin{bmatrix}-1\\0\\0\\2\end{bmatrix}$ is not a multiple of $e_1$. Thus their eigenvectors are not the same.
+
+
+\[ A_5=\begin{bmatrix}1 & 3 & 2 & 3 & 0\\0 & -3 & -3 & 4 & -3\\0 & 0 & 4 & -3 & 4\\0 & 0 & 0 & 4 & 3\\0 & 0 & 0 & 0 & 0\end{bmatrix}.\]
+
+Exact calculation gives the same polynomial for $A_5$ and $A_5^T$:
+\[ p(\lambda)=- \lambda \left(\lambda - 4\right)^{2} \left(\lambda - 1\right) \left(\lambda + 3\right).\]
+
+Its eigenvalues, with multiplicity, are $-3,\ 0,\ 1,\ 4,\ 4$. However $e_1$ is an eigenvector of $A_5$ with eigenvalue $1$, whereas $A_5^Te_1=\begin{bmatrix}1\\3\\2\\3\\0\end{bmatrix}$ is not a multiple of $e_1$. Thus their eigenvectors are not the same.
+
+The equality of characteristic polynomials is guaranteed in general by Exercise 20; equal eigenspaces are not guaranteed. If a particular matrix is symmetric, its transpose is identical and its eigenspaces do agree, so one must not claim they always differ.
+
+
+\exercise{5.2.29}{Compare a determinant with pivot and eigenvalue products}
+One reproducible choice of a random integer matrix is
+\[
+ A=\begin{bmatrix}2&3&-3&-2\\5&-3&0&3\\-3&-4&0&2\\1&1&4&1\end{bmatrix}.
+\]
+It was selected from pseudorandom entries in $-4,\ldots,5$
+(seed $52029$) with nonzero pivots and real eigenvalues, so every
+requested quantity can be displayed in real decimal form.
+\step{(a) Eliminate without row scaling.}
+First use $R_2\leftarrow R_2-(5/2)R_1$,
+$R_3\leftarrow R_3+(3/2)R_1$, and
+$R_4\leftarrow R_4-(1/2)R_1$. Continue replacing rows to clear
+entries below the second and third pivots. No swaps or row scalings
+are needed. The resulting echelon matrix is
+\[
+ U=\begin{bmatrix}2&3&-3&-2\\0&-21/2&15/2&8\\0&0&-29/7&-13/21\\0&0&0&74/87\end{bmatrix}.
+\]
+Row replacement preserves the determinant, so
+\[
+ \det A=2(-21/2)(-29/7)(74/87)=74.
+\]
+\step{(b) Compute and multiply the eigenvalues.}
+Exact computation gives $p(\lambda)=\lambda^4-40\lambda^2-22\lambda+74$.
+Its four real roots, computed with guard digits, are approximately
+\[
+ -5.8358727568,\quad -1.7435586500,\quad
+ 1.1271321671,\quad6.4522992397.
+\]
+Their product using unrounded roots is $74$ to numerical precision,
+as also follows exactly from the polynomial's constant coefficient.
+\step{(c) Give the requested four-decimal report and comparison.}
+The pivots are $2.0000,-10.5000,-4.1429,0.8506$; the eigenvalues
+are $-5.8359,-1.7436,1.1271,6.4523$.
+The direct matrix determinant is exactly $74$, agreeing with both
+products before rounding. Products formed only from the four-place
+display may differ slightly because the displayed numbers have been rounded.
+
+\exercise{5.2.30}{A small entry change can destroy two real eigenvalues}
+For the stated matrix, expansion of the shifted determinant gives
+\[
+ p_a(t)=-t^3+4t^2+(379-12a)t+(12a-382)
+       =-(t-1)(t^2-3t+12a-382).
+\]
+Thus $1$ is always an eigenvalue, and the other two are
+$(3\pm\sqrt{1537-48a})/2$. Substituting each requested value gives
+\[
+\begin{array}{c|l|l}
+ a&p_a(t)&\text{eigenvalues (approximately)}\\\hline
+32&-t^3+4t^2-5t+2&1,1,2\\
+31.9&-t^3+4t^2-3.8t+0.8&0.295841,1,2.704159\\
+31.8&-t^3+4t^2-2.6t-0.4&-0.127882,1,3.127882\\
+32.1&-t^3+4t^2-6.2t+3.2&1,1.5\pm0.974679i\\
+32.2&-t^3+4t^2-7.4t+4.4&1,1.5\pm1.466288i
+\end{array}
+\]
+The complex entries in the last two rows are the two nonreal eigenvalues;
+the only real eigenvalue in those cases is $1$.
+Here are all five graphs on the requested common interval $0\le t\le3$.
+
+\begin{center}\setlength{\unitlength}{1mm}\begin{picture}(145,90)
+\put(15,50){\vector(1,0){118}}\put(20,10){\vector(0,1){70}}
+\put(135,47){$t$}\put(3,81){$p_a(t)$}
+
+\put(20,49){\line(0,1){2}}\put(20,45){\makebox(0,0){\scriptsize$0$}}
+
+\put(55,49){\line(0,1){2}}\put(55,45){\makebox(0,0){\scriptsize$1$}}
+
+\put(90,49){\line(0,1){2}}\put(90,45){\makebox(0,0){\scriptsize$2$}}
+
+\put(125,49){\line(0,1){2}}\put(125,45){\makebox(0,0){\scriptsize$3$}}
+
+\put(19,18){\line(1,0){2}}\put(14,18){\makebox(0,0){\scriptsize$-8$}}
+
+\put(19,34){\line(1,0){2}}\put(14,34){\makebox(0,0){\scriptsize$-4$}}
+
+\put(19,66){\line(1,0){2}}\put(14,66){\makebox(0,0){\scriptsize$4$}}
+
+{\color{blue}\linethickness{0.8pt}\polyline(20.000,58.000)(21.167,57.351)(22.333,56.737)(23.500,56.156)(24.667,55.608)(25.833,55.093)(27.000,54.608)(28.167,54.154)(29.333,53.729)(30.500,53.332)(31.667,52.963)(32.833,52.621)
+(34.000,52.304)(35.167,52.012)(36.333,51.745)(37.500,51.500)(38.667,51.278)(39.833,51.077)(41.000,50.896)(42.167,50.735)(43.333,50.593)(44.500,50.468)(45.667,50.360)(46.833,50.269)
+(48.000,50.192)(49.167,50.130)(50.333,50.081)(51.500,50.044)(52.667,50.019)(53.833,50.005)(55.000,50.000)(56.167,50.004)(57.333,50.017)(58.500,50.036)(59.667,50.062)(60.833,50.093)
+(62.000,50.128)(63.167,50.167)(64.333,50.209)(65.500,50.252)(66.667,50.296)(67.833,50.341)(69.000,50.384)(70.167,50.426)(71.333,50.465)(72.500,50.500)(73.667,50.531)(74.833,50.557)
+(76.000,50.576)(77.167,50.588)(78.333,50.593)(79.500,50.588)(80.667,50.574)(81.833,50.549)(83.000,50.512)(84.167,50.463)(85.333,50.401)(86.500,50.324)(87.667,50.232)(88.833,50.125)
+(90.000,50.000)(91.167,49.858)(92.333,49.697)(93.500,49.516)(94.667,49.315)(95.833,49.093)(97.000,48.848)(98.167,48.580)(99.333,48.289)(100.500,47.972)(101.667,47.630)(102.833,47.261)
+(104.000,46.864)(105.167,46.439)(106.333,45.985)(107.500,45.500)(108.667,44.984)(109.833,44.437)(111.000,43.856)(112.167,43.242)(113.333,42.593)(114.500,41.908)(115.667,41.187)(116.833,40.429)
+(118.000,39.632)(119.167,38.796)(120.333,37.921)(121.500,37.004)(122.667,36.046)(123.833,35.045)(125.000,34.000)}
+
+{\color{red}\linethickness{0.8pt}\polyline(20.000,53.200)(21.167,52.711)(22.333,52.257)(23.500,51.836)(24.667,51.448)(25.833,51.093)(27.000,50.768)(28.167,50.474)(29.333,50.209)(30.500,49.972)(31.667,49.763)(32.833,49.581)
+(34.000,49.424)(35.167,49.292)(36.333,49.185)(37.500,49.100)(38.667,49.038)(39.833,48.997)(41.000,48.976)(42.167,48.975)(43.333,48.993)(44.500,49.028)(45.667,49.080)(46.833,49.149)
+(48.000,49.232)(49.167,49.330)(50.333,49.441)(51.500,49.564)(52.667,49.699)(53.833,49.845)(55.000,50.000)(56.167,50.164)(57.333,50.337)(58.500,50.516)(59.667,50.702)(60.833,50.893)
+(62.000,51.088)(63.167,51.287)(64.333,51.489)(65.500,51.692)(66.667,51.896)(67.833,52.101)(69.000,52.304)(70.167,52.506)(71.333,52.705)(72.500,52.900)(73.667,53.091)(74.833,53.277)
+(76.000,53.456)(77.167,53.628)(78.333,53.793)(79.500,53.948)(80.667,54.094)(81.833,54.229)(83.000,54.352)(84.167,54.463)(85.333,54.561)(86.500,54.644)(87.667,54.712)(88.833,54.765)
+(90.000,54.800)(91.167,54.818)(92.333,54.817)(93.500,54.796)(94.667,54.755)(95.833,54.693)(97.000,54.608)(98.167,54.500)(99.333,54.369)(100.500,54.212)(101.667,54.030)(102.833,53.821)
+(104.000,53.584)(105.167,53.319)(106.333,53.025)(107.500,52.700)(108.667,52.344)(109.833,51.957)(111.000,51.536)(112.167,51.082)(113.333,50.593)(114.500,50.068)(115.667,49.507)(116.833,48.909)
+(118.000,48.272)(119.167,47.596)(120.333,46.881)(121.500,46.124)(122.667,45.326)(123.833,44.485)(125.000,43.600)}
+
+{\color{green!50!black}\linethickness{0.8pt}\polyline(20.000,48.400)(21.167,48.071)(22.333,47.777)(23.500,47.516)(24.667,47.288)(25.833,47.093)(27.000,46.928)(28.167,46.794)(29.333,46.689)(30.500,46.612)(31.667,46.563)(32.833,46.541)
+(34.000,46.544)(35.167,46.572)(36.333,46.625)(37.500,46.700)(38.667,46.798)(39.833,46.917)(41.000,47.056)(42.167,47.215)(43.333,47.393)(44.500,47.588)(45.667,47.800)(46.833,48.029)
+(48.000,48.272)(49.167,48.530)(50.333,48.801)(51.500,49.084)(52.667,49.379)(53.833,49.685)(55.000,50.000)(56.167,50.324)(57.333,50.657)(58.500,50.996)(59.667,51.342)(60.833,51.693)
+(62.000,52.048)(63.167,52.407)(64.333,52.769)(65.500,53.132)(66.667,53.496)(67.833,53.861)(69.000,54.224)(70.167,54.586)(71.333,54.945)(72.500,55.300)(73.667,55.651)(74.833,55.997)
+(76.000,56.336)(77.167,56.668)(78.333,56.993)(79.500,57.308)(80.667,57.614)(81.833,57.909)(83.000,58.192)(84.167,58.463)(85.333,58.721)(86.500,58.964)(87.667,59.192)(88.833,59.405)
+(90.000,59.600)(91.167,59.778)(92.333,59.937)(93.500,60.076)(94.667,60.195)(95.833,60.293)(97.000,60.368)(98.167,60.420)(99.333,60.449)(100.500,60.452)(101.667,60.430)(102.833,60.381)
+(104.000,60.304)(105.167,60.199)(106.333,60.065)(107.500,59.900)(108.667,59.704)(109.833,59.477)(111.000,59.216)(112.167,58.922)(113.333,58.593)(114.500,58.228)(115.667,57.827)(116.833,57.389)
+(118.000,56.912)(119.167,56.396)(120.333,55.841)(121.500,55.244)(122.667,54.606)(123.833,53.925)(125.000,53.200)}
+
+{\color{magenta}\linethickness{0.8pt}\polyline(20.000,62.800)(21.167,61.991)(22.333,61.217)(23.500,60.476)(24.667,59.768)(25.833,59.093)(27.000,58.448)(28.167,57.834)(29.333,57.249)(30.500,56.692)(31.667,56.163)(32.833,55.661)
+(34.000,55.184)(35.167,54.732)(36.333,54.305)(37.500,53.900)(38.667,53.518)(39.833,53.157)(41.000,52.816)(42.167,52.495)(43.333,52.193)(44.500,51.908)(45.667,51.640)(46.833,51.389)
+(48.000,51.152)(49.167,50.930)(50.333,50.721)(51.500,50.524)(52.667,50.339)(53.833,50.165)(55.000,50.000)(56.167,49.844)(57.333,49.697)(58.500,49.556)(59.667,49.422)(60.833,49.293)
+(62.000,49.168)(63.167,49.047)(64.333,48.929)(65.500,48.812)(66.667,48.696)(67.833,48.581)(69.000,48.464)(70.167,48.346)(71.333,48.225)(72.500,48.100)(73.667,47.971)(74.833,47.837)
+(76.000,47.696)(77.167,47.548)(78.333,47.393)(79.500,47.228)(80.667,47.054)(81.833,46.869)(83.000,46.672)(84.167,46.463)(85.333,46.241)(86.500,46.004)(87.667,45.752)(88.833,45.485)
+(90.000,45.200)(91.167,44.898)(92.333,44.577)(93.500,44.236)(94.667,43.875)(95.833,43.493)(97.000,43.088)(98.167,42.660)(99.333,42.209)(100.500,41.732)(101.667,41.230)(102.833,40.701)
+(104.000,40.144)(105.167,39.559)(106.333,38.945)(107.500,38.300)(108.667,37.624)(109.833,36.917)(111.000,36.176)(112.167,35.402)(113.333,34.593)(114.500,33.748)(115.667,32.867)(116.833,31.949)
+(118.000,30.992)(119.167,29.996)(120.333,28.961)(121.500,27.884)(122.667,26.766)(123.833,25.605)(125.000,24.400)}
+
+{\color{orange}\linethickness{0.8pt}\polyline(20.000,67.600)(21.167,66.631)(22.333,65.697)(23.500,64.796)(24.667,63.928)(25.833,63.093)(27.000,62.288)(28.167,61.514)(29.333,60.769)(30.500,60.052)(31.667,59.363)(32.833,58.701)
+(34.000,58.064)(35.167,57.452)(36.333,56.865)(37.500,56.300)(38.667,55.758)(39.833,55.237)(41.000,54.736)(42.167,54.255)(43.333,53.793)(44.500,53.348)(45.667,52.920)(46.833,52.509)
+(48.000,52.112)(49.167,51.730)(50.333,51.361)(51.500,51.004)(52.667,50.659)(53.833,50.325)(55.000,50.000)(56.167,49.684)(57.333,49.377)(58.500,49.076)(59.667,48.782)(60.833,48.493)
+(62.000,48.208)(63.167,47.927)(64.333,47.649)(65.500,47.372)(66.667,47.096)(67.833,46.821)(69.000,46.544)(70.167,46.266)(71.333,45.985)(72.500,45.700)(73.667,45.411)(74.833,45.117)
+(76.000,44.816)(77.167,44.508)(78.333,44.193)(79.500,43.868)(80.667,43.534)(81.833,43.189)(83.000,42.832)(84.167,42.463)(85.333,42.081)(86.500,41.684)(87.667,41.272)(88.833,40.845)
+(90.000,40.400)(91.167,39.938)(92.333,39.457)(93.500,38.956)(94.667,38.435)(95.833,37.893)(97.000,37.328)(98.167,36.740)(99.333,36.129)(100.500,35.492)(101.667,34.830)(102.833,34.141)
+(104.000,33.424)(105.167,32.679)(106.333,31.905)(107.500,31.100)(108.667,30.264)(109.833,29.397)(111.000,28.496)(112.167,27.562)(113.333,26.593)(114.500,25.588)(115.667,24.547)(116.833,23.469)
+(118.000,22.352)(119.167,21.196)(120.333,20.001)(121.500,18.764)(122.667,17.486)(123.833,16.165)(125.000,14.800)}
+
+\end{picture}
+\par\small
+\textcolor{blue}{$a=32$},\quad
+\textcolor{red}{$a=31.9$},\quad
+\textcolor{green!50!black}{$a=31.8$},\quad
+\textcolor{magenta}{$a=32.1$},\quad
+\textcolor{orange}{$a=32.2$}.
+\end{center}
+Every graph passes through $(1,0)$. At $a=32$, the root $1$ is
+double, so its graph touches the axis there and also crosses at $2$.
+For $a=31.9$, the three real crossings separate. For $a=31.8$,
+two real roots move outside the plotted window; the graph within
+$[0,3]$ shows only the crossing at $1$, even though all three roots
+remain real. For $a=32.1,32.2$, the quadratic discriminant is negative,
+so those two roots are genuinely nonreal, not merely off screen.
+The coalescence threshold for that pair is $a=1537/48\approx32.020833$.
+\answer{The exact factorization explains the changes. A graph on a
+limited window alone cannot distinguish a root outside the window from
+a nonreal root; the discriminant and computed values supply that distinction.}

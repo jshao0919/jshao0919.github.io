@@ -1,0 +1,581 @@
+\section{Eigenvectors and eigenvalues}
+An eigenvector of $A$ is a \emph{nonzero} vector $v$ for which
+$Av=\lambda v$ for some scalar $\lambda$. The scalar is the eigenvalue:
+the direction stays on the same line, while the vector is scaled,
+possibly reversed or sent to zero. Rearranging gives
+\[
+ (A-\lambda I)v=0.
+\]
+Thus the eigenspace $E_\lambda$ is $\Nul(A-\lambda I)$, and
+$\lambda$ is an eigenvalue exactly when this null space contains a
+nonzero vector. The eigenspace includes zero; zero itself is never an
+eigenvector. To find eigenvectors for a specified eigenvalue, reduce
+$A-\lambda I$, not $A$. Row reduction of $A$ itself generally changes
+its eigenvalues.
+
+\practice{5.1.P1}{Test five without guessing an eigenvector}
+The supplied matrix gives
+\[
+ A-5I=\begin{bmatrix}1&-3&1\\3&-5&5\\2&2&1\end{bmatrix}.
+\]
+Use $R_2\leftarrow R_2-3R_1$, $R_3\leftarrow R_3-2R_1$:
+\[
+ \begin{bmatrix}1&-3&1\\0&4&2\\0&8&-1\end{bmatrix}.
+\]
+Then $R_3\leftarrow R_3-2R_2$ gives last row $(0,0,-5)$.
+There are three pivots and no free variables, so $(A-5I)x=0$
+has only zero as a solution. Hence $5$ is not an eigenvalue.
+
+\practice{5.1.P2}{A power acting on an eigenvector}
+If $Ax=\lambda x$, then
+$A^2x=A(\lambda x)=\lambda Ax=\lambda^2x$.
+Applying $A$ once more gives $A^3x=\lambda^2Ax=\lambda^3x$.
+Each step uses linearity to pull out a scalar. Repeating the argument
+proves $A^kx=\lambda^kx$ for every nonnegative integer $k$.
+
+\practice{5.1.P3}{Several independent vectors within one eigenspace}
+Yes, all four vectors are independent. Suppose
+$c_1b_1+c_2b_2+c_3b_3+c_4b_4=0$. Apply $A-\lambda_3I$:
+\[
+ c_1(\lambda_1-\lambda_3)b_1+
+ c_2(\lambda_2-\lambda_3)b_2=0.
+\]
+The two vectors $b_1,b_2$ correspond to distinct eigenvalues and
+are independent by Theorem 2. Since the eigenvalue differences are
+nonzero, $c_1=c_2=0$. The original relation now reduces to
+$c_3b_3+c_4b_4=0$, and their assumed independence forces
+$c_3=c_4=0$. This proof also handles the possibility that
+$c_3b_3+c_4b_4$ is zero; zero must not be called an eigenvector.
+
+\exercise{5.1.1}{Test a proposed eigenvalue}
+\goal Decide whether $\lambda=2$ has a nonzero eigenvector. Reduce $A-\lambda I$, shown here as $B$:
+\[ B=\begin{bmatrix}1 & 2\\3 & 6\end{bmatrix}.\]
+Use $R_{2}\leftarrow R_{2}-(3)R_{1}$. Then
+\[ \begin{bmatrix}1 & 2\\0 & 0\end{bmatrix}.\]
+
+The reduced equation is $x_1+2x_2=0$, with $x_2$ free. Taking $x_2=1$ gives $v=\begin{bmatrix}-2\\1\end{bmatrix}\ne0$. Directly $Av=\begin{bmatrix}-4\\2\end{bmatrix}=2v$.
+\answer{Yes, $2$ is an eigenvalue; all nonzero multiples of $v$ are corresponding eigenvectors.}
+
+\exercise{5.1.2}{Test a proposed eigenvalue}
+\goal Decide whether $\lambda=-3$ has a nonzero eigenvector. Reduce $A-\lambda I$, shown here as $B$:
+\[ B=\begin{bmatrix}2 & 4\\6 & 12\end{bmatrix}.\]
+Use $R_{1}\leftarrow \frac{1}{2}R_{1},\quad R_{2}\leftarrow R_{2}-(6)R_{1}$. Then
+\[ \begin{bmatrix}1 & 2\\0 & 0\end{bmatrix}.\]
+
+The reduced equation is $x_1+2x_2=0$, with $x_2$ free. Taking $x_2=1$ gives $v=\begin{bmatrix}-2\\1\end{bmatrix}\ne0$. Directly $Av=\begin{bmatrix}6\\-3\end{bmatrix}=-3v$.
+\answer{Yes, $-3$ is an eigenvalue; all nonzero multiples of $v$ are corresponding eigenvectors.}
+
+\exercise{5.1.3}{Check a specified vector directly}
+The candidate is $v=\begin{bmatrix}1\\3\end{bmatrix}$, which is nonzero. Multiplying by the source matrix gives
+\[ Av=\begin{bmatrix}1 & -1\\6 & -4\end{bmatrix}\begin{bmatrix}1\\3\end{bmatrix}=\begin{bmatrix}-2\\-6\end{bmatrix}.\]
+
+This equals $-2v$ in every coordinate. Therefore $v$ is an eigenvector with eigenvalue $\boxed{-2}$.
+
+\exercise{5.1.4}{Check a specified vector directly}
+The candidate is $v=\begin{bmatrix}-1\\1\end{bmatrix}$, which is nonzero. Multiplying by the source matrix gives
+\[ Av=\begin{bmatrix}5 & 2\\3 & 6\end{bmatrix}\begin{bmatrix}-1\\1\end{bmatrix}=\begin{bmatrix}-3\\3\end{bmatrix}.\]
+
+This equals $3v$ in every coordinate. Therefore $v$ is an eigenvector with eigenvalue $\boxed{3}$.
+
+\exercise{5.1.5}{Check a specified vector directly}
+The candidate is $v=\begin{bmatrix}3\\-2\\1\end{bmatrix}$, which is nonzero. Multiplying by the source matrix gives
+\[ Av=\begin{bmatrix}-4 & 3 & 3\\2 & -3 & -2\\-1 & 0 & -2\end{bmatrix}\begin{bmatrix}3\\-2\\1\end{bmatrix}=\begin{bmatrix}-15\\10\\-5\end{bmatrix}.\]
+
+This equals $-5v$ in every coordinate. Therefore $v$ is an eigenvector with eigenvalue $\boxed{-5}$.
+
+\exercise{5.1.6}{Check a specified vector directly}
+The candidate is $v=\begin{bmatrix}1\\-2\\2\end{bmatrix}$, which is nonzero. Multiplying by the source matrix gives
+\[ Av=\begin{bmatrix}3 & 6 & 7\\3 & 2 & 7\\5 & 6 & 4\end{bmatrix}\begin{bmatrix}1\\-2\\2\end{bmatrix}=\begin{bmatrix}5\\13\\1\end{bmatrix}.\]
+
+The first coordinate would force $\lambda=5$, but the second would then have to be $-10$, not $13$. A single common multiplier must work in every coordinate, so $v$ is not an eigenvector.
+
+\exercise{5.1.7}{Produce a nonzero vector in the shifted null space}
+Solve $(A-4I)x=0$; the coefficient reduction is
+\[ A-4I=\begin{bmatrix}-1 & 0 & -1\\2 & -1 & 1\\-3 & 4 & 1\end{bmatrix}.\]
+Use $R_{1}\leftrightarrow R_{2},\quad R_{1}\leftarrow \frac{1}{2}R_{1},\quad R_{2}\leftarrow R_{2}-(-1)R_{1},\quad R_{3}\leftarrow R_{3}-(-3)R_{1}$. Then
+\[ \begin{bmatrix}1 & - \frac{1}{2} & \frac{1}{2}\\0 & - \frac{1}{2} & - \frac{1}{2}\\0 & \frac{5}{2} & \frac{5}{2}\end{bmatrix}.\]
+Use $R_{2}\leftrightarrow R_{3},\quad R_{2}\leftarrow \frac{2}{5}R_{2},\quad R_{1}\leftarrow R_{1}-(- \frac{1}{2})R_{2},\quad R_{3}\leftarrow R_{3}-(- \frac{1}{2})R_{2}$. Then
+\[ \begin{bmatrix}1 & 0 & 1\\0 & 1 & 1\\0 & 0 & 0\end{bmatrix}.\]
+
+The free variable gives, for example, $v=\begin{bmatrix}-1\\-1\\1\end{bmatrix}$. This is nonzero, and substitution gives $Av=\begin{bmatrix}-4\\-4\\4\end{bmatrix}=4v$.
+\answer{Yes. The specified scalar is an eigenvalue and $v$ is a corresponding eigenvector.}
+
+\exercise{5.1.8}{Produce a nonzero vector in the shifted null space}
+Solve $(A-1I)x=0$; the coefficient reduction is
+\[ A-1I=\begin{bmatrix}3 & -2 & 3\\0 & -2 & 3\\-1 & 2 & -3\end{bmatrix}.\]
+Use $R_{1}\leftarrow \frac{1}{3}R_{1},\quad R_{3}\leftarrow R_{3}-(-1)R_{1}$. Then
+\[ \begin{bmatrix}1 & - \frac{2}{3} & 1\\0 & -2 & 3\\0 & \frac{4}{3} & -2\end{bmatrix}.\]
+Use $R_{2}\leftrightarrow R_{3},\quad R_{2}\leftarrow \frac{3}{4}R_{2},\quad R_{1}\leftarrow R_{1}-(- \frac{2}{3})R_{2},\quad R_{3}\leftarrow R_{3}-(-2)R_{2}$. Then
+\[ \begin{bmatrix}1 & 0 & 0\\0 & 1 & - \frac{3}{2}\\0 & 0 & 0\end{bmatrix}.\]
+
+The free variable gives, for example, $v=\begin{bmatrix}0\\3\\2\end{bmatrix}$. This is nonzero, and substitution gives $Av=\begin{bmatrix}0\\3\\2\end{bmatrix}=1v$.
+\answer{Yes. The specified scalar is an eigenvalue and $v$ is a corresponding eigenvector.}
+
+\exercise{5.1.9}{Find a basis for each listed eigenspace}
+For the source matrix $A=\begin{bmatrix}3 & 0\\2 & 1\end{bmatrix}$, solve $(A-\lambda I)x=0$ separately for each listed scalar. An eigenspace basis must span every solution, not merely provide one example.
+
+\step{The value $\lambda=1$.}
+\[ A-1I=\begin{bmatrix}2 & 0\\2 & 0\end{bmatrix},\qquad\operatorname{rref}(A-\lambda I)=\begin{bmatrix}1 & 0\\0 & 0\end{bmatrix}.\]
+
+Reading the free variables gives
+\[ E_{1}=\Span\left\{\begin{bmatrix}0\\1\end{bmatrix}\right\}.\]
+
+The displayed vector is nonzero; the pivot equations show that they span all solutions. Each satisfies $Av=1v$ by direct substitution. Thus the displayed list is a basis, of dimension 1.
+
+\step{The value $\lambda=3$.}
+\[ A-3I=\begin{bmatrix}0 & 0\\2 & -2\end{bmatrix},\qquad\operatorname{rref}(A-\lambda I)=\begin{bmatrix}1 & -1\\0 & 0\end{bmatrix}.\]
+
+Reading the free variables gives
+\[ E_{3}=\Span\left\{\begin{bmatrix}1\\1\end{bmatrix}\right\}.\]
+
+The displayed vector is nonzero; the pivot equations show that they span all solutions. Each satisfies $Av=3v$ by direct substitution. Thus the displayed list is a basis, of dimension 1.
+
+\exercise{5.1.10}{Find a basis for each listed eigenspace}
+For the source matrix $A=\begin{bmatrix}-4 & 2\\3 & 1\end{bmatrix}$, solve $(A-\lambda I)x=0$ separately for each listed scalar. An eigenspace basis must span every solution, not merely provide one example.
+
+\step{The value $\lambda=-5$.}
+\[ A-(-5)I=\begin{bmatrix}1 & 2\\3 & 6\end{bmatrix},\qquad\operatorname{rref}(A-\lambda I)=\begin{bmatrix}1 & 2\\0 & 0\end{bmatrix}.\]
+
+Reading the free variables gives
+\[ E_{-5}=\Span\left\{\begin{bmatrix}-2\\1\end{bmatrix}\right\}.\]
+
+The displayed vector is nonzero; the pivot equations show that they span all solutions. Each satisfies $Av=-5v$ by direct substitution. Thus the displayed list is a basis, of dimension 1.
+
+\exercise{5.1.11}{Find a basis for each listed eigenspace}
+For the source matrix $A=\begin{bmatrix}1 & -3\\-4 & 5\end{bmatrix}$, solve $(A-\lambda I)x=0$ separately for each listed scalar. An eigenspace basis must span every solution, not merely provide one example.
+
+\step{The value $\lambda=-1$.}
+\[ A-(-1)I=\begin{bmatrix}2 & -3\\-4 & 6\end{bmatrix},\qquad\operatorname{rref}(A-\lambda I)=\begin{bmatrix}1 & - \frac{3}{2}\\0 & 0\end{bmatrix}.\]
+
+Reading the free variables gives
+\[ E_{-1}=\Span\left\{\begin{bmatrix}3\\2\end{bmatrix}\right\}.\]
+
+The displayed vector is nonzero; the pivot equations show that they span all solutions. Each satisfies $Av=-1v$ by direct substitution. Thus the displayed list is a basis, of dimension 1.
+
+\step{The value $\lambda=7$.}
+\[ A-7I=\begin{bmatrix}-6 & -3\\-4 & -2\end{bmatrix},\qquad\operatorname{rref}(A-\lambda I)=\begin{bmatrix}1 & \frac{1}{2}\\0 & 0\end{bmatrix}.\]
+
+Reading the free variables gives
+\[ E_{7}=\Span\left\{\begin{bmatrix}-1\\2\end{bmatrix}\right\}.\]
+
+The displayed vector is nonzero; the pivot equations show that they span all solutions. Each satisfies $Av=7v$ by direct substitution. Thus the displayed list is a basis, of dimension 1.
+
+\exercise{5.1.12}{Find a basis for each listed eigenspace}
+For the source matrix $A=\begin{bmatrix}4 & 1\\3 & 6\end{bmatrix}$, solve $(A-\lambda I)x=0$ separately for each listed scalar. An eigenspace basis must span every solution, not merely provide one example.
+
+\step{The value $\lambda=3$.}
+\[ A-3I=\begin{bmatrix}1 & 1\\3 & 3\end{bmatrix},\qquad\operatorname{rref}(A-\lambda I)=\begin{bmatrix}1 & 1\\0 & 0\end{bmatrix}.\]
+
+Reading the free variables gives
+\[ E_{3}=\Span\left\{\begin{bmatrix}-1\\1\end{bmatrix}\right\}.\]
+
+The displayed vector is nonzero; the pivot equations show that they span all solutions. Each satisfies $Av=3v$ by direct substitution. Thus the displayed list is a basis, of dimension 1.
+
+\step{The value $\lambda=7$.}
+\[ A-7I=\begin{bmatrix}-3 & 1\\3 & -1\end{bmatrix},\qquad\operatorname{rref}(A-\lambda I)=\begin{bmatrix}1 & - \frac{1}{3}\\0 & 0\end{bmatrix}.\]
+
+Reading the free variables gives
+\[ E_{7}=\Span\left\{\begin{bmatrix}1\\3\end{bmatrix}\right\}.\]
+
+The displayed vector is nonzero; the pivot equations show that they span all solutions. Each satisfies $Av=7v$ by direct substitution. Thus the displayed list is a basis, of dimension 1.
+
+\exercise{5.1.13}{Find a basis for each listed eigenspace}
+For the source matrix $A=\begin{bmatrix}4 & 0 & 1\\-2 & 1 & 0\\-2 & 0 & 1\end{bmatrix}$, solve $(A-\lambda I)x=0$ separately for each listed scalar. An eigenspace basis must span every solution, not merely provide one example.
+
+\step{The value $\lambda=1$.}
+\[ A-1I=\begin{bmatrix}3 & 0 & 1\\-2 & 0 & 0\\-2 & 0 & 0\end{bmatrix},\qquad\operatorname{rref}(A-\lambda I)=\begin{bmatrix}1 & 0 & 0\\0 & 0 & 1\\0 & 0 & 0\end{bmatrix}.\]
+
+Reading the free variables gives
+\[ E_{1}=\Span\left\{\begin{bmatrix}0\\1\\0\end{bmatrix}\right\}.\]
+
+The displayed vector is nonzero; the pivot equations show that they span all solutions. Each satisfies $Av=1v$ by direct substitution. Thus the displayed list is a basis, of dimension 1.
+
+\step{The value $\lambda=2$.}
+\[ A-2I=\begin{bmatrix}2 & 0 & 1\\-2 & -1 & 0\\-2 & 0 & -1\end{bmatrix},\qquad\operatorname{rref}(A-\lambda I)=\begin{bmatrix}1 & 0 & \frac{1}{2}\\0 & 1 & -1\\0 & 0 & 0\end{bmatrix}.\]
+
+Reading the free variables gives
+\[ E_{2}=\Span\left\{\begin{bmatrix}-1\\2\\2\end{bmatrix}\right\}.\]
+
+The displayed vector is nonzero; the pivot equations show that they span all solutions. Each satisfies $Av=2v$ by direct substitution. Thus the displayed list is a basis, of dimension 1.
+
+\step{The value $\lambda=3$.}
+\[ A-3I=\begin{bmatrix}1 & 0 & 1\\-2 & -2 & 0\\-2 & 0 & -2\end{bmatrix},\qquad\operatorname{rref}(A-\lambda I)=\begin{bmatrix}1 & 0 & 1\\0 & 1 & -1\\0 & 0 & 0\end{bmatrix}.\]
+
+Reading the free variables gives
+\[ E_{3}=\Span\left\{\begin{bmatrix}-1\\1\\1\end{bmatrix}\right\}.\]
+
+The displayed vector is nonzero; the pivot equations show that they span all solutions. Each satisfies $Av=3v$ by direct substitution. Thus the displayed list is a basis, of dimension 1.
+
+\exercise{5.1.14}{Find a basis for each listed eigenspace}
+For the source matrix $A=\begin{bmatrix}4 & 0 & -1\\3 & 0 & 3\\2 & -2 & 5\end{bmatrix}$, solve $(A-\lambda I)x=0$ separately for each listed scalar. An eigenspace basis must span every solution, not merely provide one example.
+
+\step{The value $\lambda=3$.}
+\[ A-3I=\begin{bmatrix}1 & 0 & -1\\3 & -3 & 3\\2 & -2 & 2\end{bmatrix},\qquad\operatorname{rref}(A-\lambda I)=\begin{bmatrix}1 & 0 & -1\\0 & 1 & -2\\0 & 0 & 0\end{bmatrix}.\]
+
+Reading the free variables gives
+\[ E_{3}=\Span\left\{\begin{bmatrix}1\\2\\1\end{bmatrix}\right\}.\]
+
+The displayed vector is nonzero; the pivot equations show that they span all solutions. Each satisfies $Av=3v$ by direct substitution. Thus the displayed list is a basis, of dimension 1.
+
+\exercise{5.1.15}{Find a basis for each listed eigenspace}
+For the source matrix $A=\begin{bmatrix}-4 & 1 & 1\\2 & -3 & 2\\3 & 3 & -2\end{bmatrix}$, solve $(A-\lambda I)x=0$ separately for each listed scalar. An eigenspace basis must span every solution, not merely provide one example.
+
+\step{The value $\lambda=-5$.}
+\[ A-(-5)I=\begin{bmatrix}1 & 1 & 1\\2 & 2 & 2\\3 & 3 & 3\end{bmatrix},\qquad\operatorname{rref}(A-\lambda I)=\begin{bmatrix}1 & 1 & 1\\0 & 0 & 0\\0 & 0 & 0\end{bmatrix}.\]
+
+Reading the free variables gives
+\[ E_{-5}=\Span\left\{\begin{bmatrix}-1\\1\\0\end{bmatrix},\ \begin{bmatrix}-1\\0\\1\end{bmatrix}\right\}.\]
+
+The displayed vectors are independent because they arise from distinct choices of a free coordinate; the pivot equations show that they span all solutions. Each satisfies $Av=-5v$ by direct substitution. Thus the displayed list is a basis, of dimension 2.
+
+\exercise{5.1.16}{Find a basis for each listed eigenspace}
+For the source matrix $A=\begin{bmatrix}5 & 0 & -1 & 0\\1 & 3 & 0 & 0\\2 & -1 & 3 & 0\\4 & -2 & -2 & 4\end{bmatrix}$, solve $(A-\lambda I)x=0$ separately for each listed scalar. An eigenspace basis must span every solution, not merely provide one example.
+
+\step{The value $\lambda=4$.}
+\[ A-4I=\begin{bmatrix}1 & 0 & -1 & 0\\1 & -1 & 0 & 0\\2 & -1 & -1 & 0\\4 & -2 & -2 & 0\end{bmatrix},\qquad\operatorname{rref}(A-\lambda I)=\begin{bmatrix}1 & 0 & -1 & 0\\0 & 1 & -1 & 0\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\end{bmatrix}.\]
+
+Reading the free variables gives
+\[ E_{4}=\Span\left\{\begin{bmatrix}1\\1\\1\\0\end{bmatrix},\ \begin{bmatrix}0\\0\\0\\1\end{bmatrix}\right\}.\]
+
+The displayed vectors are independent because they arise from distinct choices of a free coordinate; the pivot equations show that they span all solutions. Each satisfies $Av=4v$ by direct substitution. Thus the displayed list is a basis, of dimension 2.
+
+
+\exercise{5.1.17}{Read a triangular matrix's eigenvalues}
+The source matrix is upper triangular with diagonal entries $0,3,-2$.
+For an upper triangular matrix, the eigenvalues are precisely its diagonal
+entries: $A-\lambda I$ loses a pivot exactly when one of these
+entries minus $\lambda$ becomes zero.
+\answer{The eigenvalues are $0,3,-2$.}
+
+\exercise{5.1.18}{The lower-triangular case}
+The source matrix is lower triangular with diagonal entries $5,0,3$.
+The triangular-matrix theorem therefore gives the eigenvalues directly.
+\answer{The eigenvalues are $5,0,3$. Off-diagonal entries do not change
+this conclusion for a triangular matrix.}
+
+\exercise{5.1.19}{A singular matrix has eigenvalue zero}
+All three columns are multiples of $(1,1,1)^T$, so they are dependent.
+Thus $Ax=0$ has a nonzero solution and $0$ is an eigenvalue.
+For example $(-2,1,0)^T$ gives a zero column combination, without
+needing elimination. The problem asks for one eigenvalue, not the complete list.
+
+\exercise{5.1.20}{Two independent vectors with coordinate sum zero}
+Each column of $A$ is $(2,2,2)^T$. Therefore any input whose
+coordinates sum to zero is sent to zero. In particular
+\[
+ v_1=(1,-1,0)^T,\qquad v_2=(1,0,-1)^T
+\]
+are eigenvectors for $\lambda=0$. They are independent: in
+$av_1+bv_2=0$, coordinate two forces $a=0$ and coordinate three
+forces $b=0$.
+\answer{One eigenvalue is $0$, with the two independent eigenvectors above.}
+
+\exercise{5.1.21}{Do not omit the nonzero-vector requirement}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} Taking $x=0$ makes $Ax=\lambda x$ true for
+any scalar, even one that is not an eigenvalue. The definition requires $x\ne0$.
+\item \textbf{True.} Noninvertibility is equivalent to $Ax=0$ having
+a nonzero solution, precisely an eigenvector for eigenvalue zero.
+\item \textbf{True.} Rearranging $Ax=cx$ gives $(A-cI)x=0$,
+with the same nonzero $x$ required in both formulations.
+\item \textbf{True.} Compute $Ax$ and check whether it equals one
+scalar multiple of the specified nonzero $x$. Finding the vector from
+scratch is a different task.
+\item \textbf{False.} Row operations on $A$ need not preserve its
+eigenvalues. For example $\begin{bmatrix}1&1\\1&1\end{bmatrix}$ has
+eigenvalues $2,0$, but replacing row two by row two minus row one
+gives triangular $\begin{bmatrix}1&1\\0&0\end{bmatrix}$, with eigenvalues $1,0$.
+\end{enumerate}
+
+\exercise{5.1.22}{Eigenspaces and repeated eigenvalues}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} Zero solves the equality but is not an eigenvector.
+The condition $x\ne0$ is missing.
+\item \textbf{False.} The independent vectors $e_1,e_2$ are both
+eigenvectors of $I_2$ with the same eigenvalue $1$.
+\item \textbf{True.} A steady-state probability vector $q$ is nonzero
+and satisfies $Mq=q$, so it is an eigenvector for eigenvalue $1$.
+\item \textbf{False in general.} The matrix
+$\begin{bmatrix}0&1\\1&0\end{bmatrix}$ has eigenvalues $1,-1$,
+not the diagonal entry $0$. The diagonal rule applies to triangular matrices.
+\item \textbf{True.} $E_\lambda=\Nul(A-\lambda I)$ by rearranging
+the eigenvector equation; the null space also includes zero.
+\end{enumerate}
+
+\exercise{5.1.23}{Bound the number of distinct eigenvalues without a polynomial}
+If an $n\times n$ matrix had $p$ distinct eigenvalues, choose one
+nonzero eigenvector for each. Theorem 2 says those $p$ vectors are
+independent. A list of vectors in $\R^n$ cannot be independent when
+$p>n$. Hence $p\le n$. In particular a $2\times2$ matrix has at
+most two distinct eigenvalues. This bounds distinct values, not the
+number of different eigenvectors, which can be infinite.
+
+\exercise{5.1.24}{An example with one distinct eigenvalue}
+Take $A=\begin{bmatrix}2&0\\0&2\end{bmatrix}=2I_2$.
+Every nonzero vector satisfies $Ax=2x$. If $Ax=\lambda x$
+with $x\ne0$, then $(2-\lambda)x=0$ forces $\lambda=2$.
+Thus the only distinct eigenvalue is $2$, although there are infinitely
+many corresponding eigenvectors.
+
+\exercise{5.1.25}{Invert the eigenvalue as well as the matrix}
+Choose $x\ne0$ with $Ax=\lambda x$. Since $A$ is invertible,
+$\lambda\ne0$: otherwise $Ax=0$ would force $x=0$.
+Multiply the eigenvector equation by $A^{-1}$:
+$x=\lambda A^{-1}x$, so
+$A^{-1}x=\lambda^{-1}x$ after division by the nonzero scalar.
+The vector $x$ is still nonzero, proving that $\lambda^{-1}$ is an
+eigenvalue of $A^{-1}$ with the same eigenvector.
+
+\exercise{5.1.26}{A square-zero matrix can have only eigenvalue zero}
+If $Ax=\lambda x$ with $x\ne0$, applying $A$ again gives
+$0=A^2x=\lambda^2x$. A nonzero vector times a scalar is zero
+only when the scalar is zero, so $\lambda=0$.
+Zero really is an eigenvalue: if $A=0$, every nonzero vector works;
+if $A\ne0$, choose $y$ with $Ay\ne0$ and set $x=Ay$.
+Then $x\ne0$ but $Ax=A^2y=0$.
+\answer{The only eigenvalue is $0$.}
+
+\exercise{5.1.27}{Transpose preserves eigenvalues}
+The identity $A^T-\lambda I=(A-\lambda I)^T$ is the key.
+A matrix $B$ is invertible if and only if $B^T$ is invertible:
+if $B^{-1}$ exists, $(B^{-1})^T$ is an inverse of $B^T$,
+and applying the same argument to $B^T$ proves the converse.
+Therefore $A-\lambda I$ is singular exactly when
+$A^T-\lambda I$ is singular. Singularity of the shifted matrix
+is equivalent to the existence of a nonzero eigenvector.
+\answer{$A$ and $A^T$ have the same eigenvalues, though their
+eigenvectors need not agree.}
+
+\exercise{5.1.28}{Deduce the lower-triangular theorem by transposing}
+If $A$ is lower triangular, $A^T$ is upper triangular and has
+the same diagonal entries. The established upper-triangular case says
+that the eigenvalues of $A^T$ are precisely these entries.
+Exercise 27 says $A$ has exactly the same eigenvalues, completing
+the lower-triangular case without repeating an elimination argument.
+
+\exercise{5.1.29}{Equal row sums produce an obvious eigenvector}
+Let $\mathbf1=(1,\ldots,1)^T\ne0$. Entry $i$ of $A\mathbf1$
+is the sum of row $i$, which is $s$ by hypothesis. Thus
+$A\mathbf1=(s,\ldots,s)^T=s\mathbf1$.
+\answer{$s$ is an eigenvalue, with eigenvector $\mathbf1$.}
+
+\exercise{5.1.30}{Equal column sums use the transpose}
+The column sums of $A$ are the row sums of $A^T$.
+Exercise 29 therefore makes $s$ an eigenvalue of $A^T$.
+By Exercise 27 it is also an eigenvalue of $A$.
+The all-ones vector is an eigenvector of $A^T$ here; it need not
+itself be an eigenvector of $A$, so the transpose step is substantive.
+
+\exercise{5.1.31}{Read eigenvalues from a reflection}
+Every nonzero vector on the reflecting line $L$ is fixed, so
+$\lambda=1$ is an eigenvalue and $E_1=L$.
+A vector perpendicular to $L$ is reversed, so $-1$ is the other
+eigenvalue, with $E_{-1}=L^\perp$. No vector outside $L$ can
+be fixed: decompose it into its along-line and perpendicular parts;
+the reflection reverses the latter, so equality requires that part to be zero.
+
+\exercise{5.1.32}{Read a fixed eigenspace from a rotation}
+Every vector on the rotation axis $L$ is fixed, so $1$ is an
+eigenvalue. For a nontrivial rotation, the perpendicular-plane part
+of a nonzero vector is rotated and cannot remain unchanged, giving
+$E_1=L$. If the angle is a whole multiple of $2\pi$, the transformation
+is instead the identity and $E_1=\R^3$. This qualification handles
+the degenerate zero-angle rotation, which the wording does not exclude.
+
+\exercise{5.1.33}{Combine two eigenvector solutions of a recurrence}
+\step{(a) Shift the index in the definition.}
+The next term is $x_{k+1}=c_1\lambda^{k+1}u+c_2\mu^{k+1}v$.
+\step{(b) Apply $A$ to the stated expression.}
+Using $Au=\lambda u$, $Av=\mu v$, and linearity,
+\[
+ Ax_k=c_1\lambda^kAu+c_2\mu^kAv
+ =c_1\lambda^{k+1}u+c_2\mu^{k+1}v=x_{k+1}.
+\]
+Thus the sequence satisfies the difference equation at every nonnegative
+index. Zeroth powers are taken as $1$, including for a zero eigenvalue,
+as required by the initial term.
+
+\exercise{5.1.34}{Try expanding the initial state in eigenvectors}
+Find eigenvectors $v_j$ of $A$ and try solving
+$x_0=\sum_jc_jv_j$ for coefficients $c_j$. If this is possible,
+set $x_k=\sum_jc_j\lambda_j^kv_j$, using the corresponding
+eigenvalues. At $k=0$ it equals the prescribed state, and the
+calculation in Exercise 33 proves $Ax_k=x_{k+1}$ term by term.
+This method works whenever $x_0$ lies in the span of the available
+eigenvectors; in particular it works for every $x_0$ when there is
+an eigenvector basis. Not every matrix has such a basis, so this is
+a useful construction rather than an unconditional guarantee.
+
+\exercise{5.1.35}{Sketch the action on two eigendirections}
+The eigenvector equations give $T(u)=2u$ and $T(v)=3v$. Since $w=u+v$, linearity gives $T(w)=2u+3v$. Thus double the arrow along $u$, triple the arrow along $v$, and add those two new arrows head to tail.
+
+The black arrows reproduce the two source directions schematically; blue shows the separate images and red their sum. No numerical coordinates are assumed for the textbook's unlabeled vectors.
+
+\begin{center}\setlength{\unitlength}{1mm}
+\begin{picture}(145,100)
+\put(5,15){\vector(1,0){133}}
+\put(45,5){\vector(0,1){88}}
+\put(137,10){$x_1$}\put(47,92){$x_2$}
+\put(41,10){\scriptsize$0$}
+{\color{black}\linethickness{0.8pt}\put(45,15){\vector(4,1){18}}}
+\put(65,15.5){\makebox(0,0)[l]{\small$u$}}
+{\color{black}\linethickness{0.8pt}\put(45,15){\vector(1,4){4.5}}}
+\put(44.5,35){\makebox(0,0)[l]{\small$v$}}
+{\color{blue}\linethickness{0.8pt}\put(45,15){\vector(4,1){36}}}
+\put(83,20){\makebox(0,0)[l]{\small$T(u)$}}
+{\color{blue}\linethickness{0.8pt}\put(45,15){\vector(1,4){13.5}}}
+\put(60.5,71){\makebox(0,0)[l]{\small$T(v)$}}
+{\color{red}\linethickness{0.8pt}\put(45,15){\vector(11,14){49.5}}}
+\put(96.5,80){\makebox(0,0)[l]{\small$T(w)$}}
+\end{picture}\end{center}
+
+\exercise{5.1.36}{Sketch the action on two eigendirections}
+The eigenvector equations give $T(u)=-1u$ and $T(v)=3v$. Since $w=u+v$, linearity gives $T(w)=-1u+3v$. Reverse the arrow $u$ without changing its length, triple the arrow $v$, and add the resulting arrows head to tail.
+
+The black arrows reproduce the two source directions schematically; blue shows the separate images and red their sum. No numerical coordinates are assumed for the textbook's unlabeled vectors.
+
+\begin{center}\setlength{\unitlength}{1mm}
+\begin{picture}(145,100)
+\put(5,15){\vector(1,0){133}}
+\put(45,5){\vector(0,1){88}}
+\put(137,10){$x_1$}\put(47,92){$x_2$}
+\put(41,10){\scriptsize$0$}
+{\color{black}\linethickness{0.8pt}\put(45,15){\vector(4,1){18}}}
+\put(65,15.5){\makebox(0,0)[l]{\small$u$}}
+{\color{black}\linethickness{0.8pt}\put(45,15){\vector(1,4){4.5}}}
+\put(44.5,35){\makebox(0,0)[l]{\small$v$}}
+{\color{blue}\linethickness{0.8pt}\put(45,15){\vector(-4,-1){18}}}
+\put(29,6.5){\makebox(0,0)[l]{\small$T(u)$}}
+{\color{blue}\linethickness{0.8pt}\put(45,15){\vector(1,4){13.5}}}
+\put(60.5,71){\makebox(0,0)[l]{\small$T(v)$}}
+{\color{red}\linethickness{0.8pt}\put(45,15){\vector(-1,11){4.5}}}
+\put(42.5,66.5){\makebox(0,0)[l]{\small$T(w)$}}
+\end{picture}\end{center}
+
+\exercise{5.1.37}{Compute eigenvalues, then reduce each shifted matrix}
+For the supplied matrix
+\[ A=\begin{bmatrix}12 & 1 & 4\\2 & 11 & 4\\1 & 3 & 7\end{bmatrix},\]
+exact computation gives the factored characteristic polynomial
+\[ \det(A-\lambda I)=- \left(\lambda - 15\right) \left(\lambda - 10\right) \left(\lambda - 5\right).\]
+
+\step{Eigenvalue $5$.}
+\[ \operatorname{rref}(A-(5)I)=\begin{bmatrix}1 & 0 & \frac{1}{2}\\0 & 1 & \frac{1}{2}\\0 & 0 & 0\end{bmatrix}.\]
+
+Assigning the free coordinates in turn gives the eigenspace basis
+\[ \mathcal B_{5}=\left\{\begin{bmatrix}-1\\-1\\2\end{bmatrix}\right\}.\]
+
+Its 1 vectors are independent, span every solution of the reduced system, and satisfy the original $Av=5v$ by exact substitution. The eigenspace dimension is 1.
+
+\step{Eigenvalue $10$.}
+\[ \operatorname{rref}(A-(10)I)=\begin{bmatrix}1 & 0 & 3\\0 & 1 & -2\\0 & 0 & 0\end{bmatrix}.\]
+
+Assigning the free coordinates in turn gives the eigenspace basis
+\[ \mathcal B_{10}=\left\{\begin{bmatrix}-3\\2\\1\end{bmatrix}\right\}.\]
+
+Its 1 vectors are independent, span every solution of the reduced system, and satisfy the original $Av=10v$ by exact substitution. The eigenspace dimension is 1.
+
+\step{Eigenvalue $15$.}
+\[ \operatorname{rref}(A-(15)I)=\begin{bmatrix}1 & 0 & -2\\0 & 1 & -2\\0 & 0 & 0\end{bmatrix}.\]
+
+Assigning the free coordinates in turn gives the eigenspace basis
+\[ \mathcal B_{15}=\left\{\begin{bmatrix}2\\2\\1\end{bmatrix}\right\}.\]
+
+Its 1 vectors are independent, span every solution of the reduced system, and satisfy the original $Av=15v$ by exact substitution. The eigenspace dimension is 1.
+
+The listed roots exhaust the characteristic polynomial, so no eigenvalues are omitted. A repeated root need not supply the same number of independent eigenvectors as its multiplicity; the null-space calculation, not multiplicity alone, determines the basis.
+
+\exercise{5.1.38}{Compute eigenvalues, then reduce each shifted matrix}
+For the supplied matrix
+\[ A=\begin{bmatrix}5 & -2 & 2 & -4\\7 & -4 & 2 & -4\\4 & -4 & 2 & 0\\3 & -1 & 1 & -3\end{bmatrix},\]
+exact computation gives the factored characteristic polynomial
+\[ \det(A-\lambda I)=\left(\lambda - 2\right) \left(\lambda - 1\right) \left(\lambda + 1\right) \left(\lambda + 2\right).\]
+
+\step{Eigenvalue $-2$.}
+\[ \operatorname{rref}(A-(-2)I)=\begin{bmatrix}1 & 0 & 0 & 0\\0 & 1 & -1 & 0\\0 & 0 & 0 & 1\\0 & 0 & 0 & 0\end{bmatrix}.\]
+
+Assigning the free coordinates in turn gives the eigenspace basis
+\[ \mathcal B_{-2}=\left\{\begin{bmatrix}0\\1\\1\\0\end{bmatrix}\right\}.\]
+
+Its 1 vectors are independent, span every solution of the reduced system, and satisfy the original $Av=-2v$ by exact substitution. The eigenspace dimension is 1.
+
+\step{Eigenvalue $-1$.}
+\[ \operatorname{rref}(A-(-1)I)=\begin{bmatrix}1 & 0 & 0 & -1\\0 & 1 & 0 & -1\\0 & 0 & 1 & 0\\0 & 0 & 0 & 0\end{bmatrix}.\]
+
+Assigning the free coordinates in turn gives the eigenspace basis
+\[ \mathcal B_{-1}=\left\{\begin{bmatrix}1\\1\\0\\1\end{bmatrix}\right\}.\]
+
+Its 1 vectors are independent, span every solution of the reduced system, and satisfy the original $Av=-1v$ by exact substitution. The eigenspace dimension is 1.
+
+\step{Eigenvalue $1$.}
+\[ \operatorname{rref}(A-(1)I)=\begin{bmatrix}1 & 0 & 0 & -2\\0 & 1 & 0 & -2\\0 & 0 & 1 & 0\\0 & 0 & 0 & 0\end{bmatrix}.\]
+
+Assigning the free coordinates in turn gives the eigenspace basis
+\[ \mathcal B_{1}=\left\{\begin{bmatrix}2\\2\\0\\1\end{bmatrix}\right\}.\]
+
+Its 1 vectors are independent, span every solution of the reduced system, and satisfy the original $Av=1v$ by exact substitution. The eigenspace dimension is 1.
+
+\step{Eigenvalue $2$.}
+\[ \operatorname{rref}(A-(2)I)=\begin{bmatrix}1 & 0 & 0 & -2\\0 & 1 & 0 & -2\\0 & 0 & 1 & -1\\0 & 0 & 0 & 0\end{bmatrix}.\]
+
+Assigning the free coordinates in turn gives the eigenspace basis
+\[ \mathcal B_{2}=\left\{\begin{bmatrix}2\\2\\1\\1\end{bmatrix}\right\}.\]
+
+Its 1 vectors are independent, span every solution of the reduced system, and satisfy the original $Av=2v$ by exact substitution. The eigenspace dimension is 1.
+
+The listed roots exhaust the characteristic polynomial, so no eigenvalues are omitted. A repeated root need not supply the same number of independent eigenvectors as its multiplicity; the null-space calculation, not multiplicity alone, determines the basis.
+
+\exercise{5.1.39}{Compute eigenvalues, then reduce each shifted matrix}
+For the supplied matrix
+\[ A=\begin{bmatrix}12 & -90 & 30 & 30 & 30\\8 & -49 & 15 & 15 & 15\\16 & -52 & 12 & 0 & 20\\0 & -30 & 10 & 22 & 10\\8 & -41 & 15 & 15 & 7\end{bmatrix},\]
+exact computation gives the factored characteristic polynomial
+\[ \det(A-\lambda I)=- \left(\lambda - 12\right)^{2} \left(\lambda + 4\right) \left(\lambda + 8\right)^{2}.\]
+
+\step{Eigenvalue $-8$.}
+\[ \operatorname{rref}(A-(-8)I)=\begin{bmatrix}1 & 0 & 0 & -3 & 0\\0 & 1 & 0 & - \frac{3}{2} & 0\\0 & 0 & 1 & - \frac{3}{2} & 1\\0 & 0 & 0 & 0 & 0\\0 & 0 & 0 & 0 & 0\end{bmatrix}.\]
+
+Assigning the free coordinates in turn gives the eigenspace basis
+\[ \mathcal B_{-8}=\left\{\begin{bmatrix}6\\3\\3\\2\\0\end{bmatrix},\ \begin{bmatrix}0\\0\\-1\\0\\1\end{bmatrix}\right\}.\]
+
+Its 2 vectors are independent, span every solution of the reduced system, and satisfy the original $Av=-8v$ by exact substitution. The eigenspace dimension is 2.
+
+\step{Eigenvalue $-4$.}
+\[ \operatorname{rref}(A-(-4)I)=\begin{bmatrix}1 & 0 & 0 & 0 & 0\\0 & 1 & 0 & 0 & -1\\0 & 0 & 1 & 0 & -2\\0 & 0 & 0 & 1 & 0\\0 & 0 & 0 & 0 & 0\end{bmatrix}.\]
+
+Assigning the free coordinates in turn gives the eigenspace basis
+\[ \mathcal B_{-4}=\left\{\begin{bmatrix}0\\1\\2\\0\\1\end{bmatrix}\right\}.\]
+
+Its 1 vectors are independent, span every solution of the reduced system, and satisfy the original $Av=-4v$ by exact substitution. The eigenspace dimension is 1.
+
+\step{Eigenvalue $12$.}
+\[ \operatorname{rref}(A-(12)I)=\begin{bmatrix}1 & 0 & 0 & 0 & -2\\0 & 1 & 0 & 0 & -1\\0 & 0 & 1 & 1 & -2\\0 & 0 & 0 & 0 & 0\\0 & 0 & 0 & 0 & 0\end{bmatrix}.\]
+
+Assigning the free coordinates in turn gives the eigenspace basis
+\[ \mathcal B_{12}=\left\{\begin{bmatrix}0\\0\\-1\\1\\0\end{bmatrix},\ \begin{bmatrix}2\\1\\2\\0\\1\end{bmatrix}\right\}.\]
+
+Its 2 vectors are independent, span every solution of the reduced system, and satisfy the original $Av=12v$ by exact substitution. The eigenspace dimension is 2.
+
+The listed roots exhaust the characteristic polynomial, so no eigenvalues are omitted. A repeated root need not supply the same number of independent eigenvectors as its multiplicity; the null-space calculation, not multiplicity alone, determines the basis.
+
+\exercise{5.1.40}{Compute eigenvalues, then reduce each shifted matrix}
+For the supplied matrix
+\[ A=\begin{bmatrix}-23 & 57 & -9 & -15 & -59\\-10 & 12 & -10 & 2 & -22\\11 & 5 & -3 & -19 & -15\\-27 & 31 & -27 & 25 & -37\\-5 & -15 & -5 & 1 & 31\end{bmatrix},\]
+exact computation gives the factored characteristic polynomial
+\[ \det(A-\lambda I)=- \left(\lambda - 42\right)^{2} \left(\lambda + 14\right)^{3}.\]
+
+\step{Eigenvalue $-14$.}
+\[ \operatorname{rref}(A-(-14)I)=\begin{bmatrix}1 & 0 & 1 & 0 & - \frac{10}{3}\\0 & 1 & 0 & 0 & -2\\0 & 0 & 0 & 1 & - \frac{5}{3}\\0 & 0 & 0 & 0 & 0\\0 & 0 & 0 & 0 & 0\end{bmatrix}.\]
+
+Assigning the free coordinates in turn gives the eigenspace basis
+\[ \mathcal B_{-14}=\left\{\begin{bmatrix}-1\\0\\1\\0\\0\end{bmatrix},\ \begin{bmatrix}10\\6\\0\\5\\3\end{bmatrix}\right\}.\]
+
+Its 2 vectors are independent, span every solution of the reduced system, and satisfy the original $Av=-14v$ by exact substitution. The eigenspace dimension is 2.
+
+\step{Eigenvalue $42$.}
+\[ \operatorname{rref}(A-(42)I)=\begin{bmatrix}1 & 0 & 0 & 0 & 1\\0 & 1 & 0 & - \frac{1}{5} & \frac{1}{5}\\0 & 0 & 1 & \frac{2}{5} & \frac{3}{5}\\0 & 0 & 0 & 0 & 0\\0 & 0 & 0 & 0 & 0\end{bmatrix}.\]
+
+Assigning the free coordinates in turn gives the eigenspace basis
+\[ \mathcal B_{42}=\left\{\begin{bmatrix}0\\1\\-2\\5\\0\end{bmatrix},\ \begin{bmatrix}-5\\-1\\-3\\0\\5\end{bmatrix}\right\}.\]
+
+Its 2 vectors are independent, span every solution of the reduced system, and satisfy the original $Av=42v$ by exact substitution. The eigenspace dimension is 2.
+
+The listed roots exhaust the characteristic polynomial, so no eigenvalues are omitted. A repeated root need not supply the same number of independent eigenvectors as its multiplicity; the null-space calculation, not multiplicity alone, determines the basis.

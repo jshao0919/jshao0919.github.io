@@ -1,0 +1,361 @@
+\section{Chapter 1 supplementary exercises}
+These exercises combine consistency, parametrization, independence,
+and transformations. Keep existence and uniqueness separate: a missing
+variable pivot creates freedom only in a \emph{consistent} system.
+When a problem describes physical quantities such as floors, solve the
+real linear equations first, then impose the required integer and
+nonnegative restrictions.
+
+\exercise{1.S.1}{Twenty-six statements and their logical pitfalls}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} Reduced echelon form is unique; ordinary echelon
+form is not. The one-by-one matrices $[1]$ and $[2]$ are row equivalent
+and both in echelon form, but are different.
+\item \textbf{False.} For $n=1$, the equation $0x=0$ has infinitely
+many solutions, more than one. A square system can have zero, one,
+or infinitely many solutions.
+\item \textbf{True.} If $Ax=Ay=b$ and $x\ne y$, then
+$A(x+t(y-x))=b$ for every real $t$. Different $t$ give distinct
+solutions because $y-x\ne0$.
+\item \textbf{False.} No free variables guarantees at most one solution,
+not consistency. The equations $x=0$ and $x=1$ have no free variable
+and no solution.
+\item \textbf{True.} Elementary row operations are reversible, so each
+operation preserves the solution set in both directions.
+\item \textbf{True.} If $Ax=Ay=b$ with $x\ne y$, then
+$A(x-y)=0$ with $x-y\ne0$. Thus the homogeneous system has
+both zero and a distinct nonzero solution.
+\item \textbf{False.} Every $A$ has a consistent system for $b=0$.
+For the zero $2\times2$ matrix the columns span only $\{0\}$, not $\R^2$.
+\item \textbf{False.} Every matrix has a reduced echelon form, including
+inconsistent augmented matrices. The single equation $0x=1$ is already
+a counterexample.
+\item \textbf{True.} Each row-equivalence class has one reduced echelon
+form. Reducing either member therefore gives the same matrix.
+\item \textbf{False.} $Ax=0$ always has the trivial solution, including
+when free variables exist. Take $A=[0]$.
+\item \textbf{True.} Consistency for every $b\in\R^m$ means a pivot
+in every one of the $m$ rows. There are exactly $m$ pivots and thus
+$m$ pivot columns.
+\item \textbf{False.} Row pivots imply existence for every target,
+not uniqueness. The matrix $[1\ 0]$ has a pivot in every row, but
+$x_1=b$, with $x_2$ arbitrary, gives infinitely many solutions.
+\item \textbf{True.} In a square $n\times n$ matrix, $n$ pivots
+occupy every column and every row. Reduced pivots are ones with zeros
+elsewhere in their columns, so the reduced matrix is $I_n$.
+\item \textbf{True.} Both matrices reduce to $I_3$. Reduce $A$ to
+$I_3$, then reverse the operations reducing $B$ to $I_3$ to reach $B$.
+\item \textbf{True.} The first system supplies a nonzero $z$ with
+$Az=0$. If $Ay=c$, then $A(y+tz)=c$ for every real $t$,
+giving infinitely many distinct solutions of the second system.
+\item \textbf{True.} Row-equivalent matrices have the same number
+of pivots. If $A$ spans $\R^m$, its $m$ pivots fill all rows;
+the same is true of $B$, so its columns also span $\R^m$.
+This does not assert equality of their actual column vectors.
+\item \textbf{False.} The list $e_1,e_2,e_1+e_2$ in $\R^3$ has
+no proportional pair but has the nontrivial relation
+$e_1+e_2-(e_1+e_2)=0$.
+\item \textbf{True.} Three vectors in $\R^2$ cannot be independent:
+a $2\times3$ matrix has at most two pivots. Thus the assumed
+independence excludes that ambient space.
+\item \textbf{False.} Four columns supply at most four pivots, not
+the five row pivots required to span $\R^5$.
+\item \textbf{True.} $-u=(-1)u+0v$, a permitted linear combination.
+\item \textbf{False.} Let $u=e_1$, $v=2e_1$, $w=e_2$ in $\R^2$.
+All are nonzero, but the first two span only the horizontal axis,
+which does not contain $w$.
+\item \textbf{False.} Take $u=e_1$, $v=e_2$, and $w=e_2$.
+Then $w=0u+v$, but $u$ is outside $\Span\{v,w\}$.
+\item \textbf{False.} The hypothesis does not exclude $v_1=0$.
+Take $v_1=0$, $v_2=e_1$, $v_3=e_2$ in $\R^5$. The second
+is not a multiple of the first, and the third is outside their span,
+but the zero vector makes the list dependent.
+\item \textbf{True.} A linear transformation is a function with
+additional operation-preserving properties.
+\item \textbf{True.} A $6\times5$ matrix cannot have six pivots,
+so its columns cannot span $\R^6$.
+\item \textbf{False.} $m$ pivot columns mean onto $\R^m$.
+For one-to-one we need $n$ pivots. Again $[1\ 0]$ has $m=1$
+pivot but sends every $(0,t)^T$ to zero.
+\end{enumerate}
+
+\exercise{1.S.2}{Every possible solution set of one equation}
+If $a\ne0$, division gives the unique solution $x=b/a$.
+If $a=0$ but $b\ne0$, the equation says $0=b$ and has no solution.
+If $a=b=0$, the equation is true for every real $x$, so its solution
+set is all of $\R$. These three cases exhaust the values of $a,b$.
+
+\exercise{1.S.3}{Three configurations of planes}
+\begin{enumerate}[label=(\alph*)]
+\item Use $x=0$, $y=0$, $x+y=0$. The first two force $x=y=0$,
+while $z$ is arbitrary; the third adds no restriction. The intersection
+is the $z$-axis, a single line.
+\item Use $x=0$, $y=0$, $z=0$. Their only common point is the origin.
+\item Use $x=0$, $x=1$, $y=0$. No point can satisfy the first two
+simultaneously, so there is no common intersection.
+\end{enumerate}
+Every listed equation has at least one nonzero coefficient and therefore
+really does describe a plane, rather than the whole space or an empty set.
+
+\exercise{1.S.4}{Why the square size matters}
+Three pivot columns in a $3\times3$ coefficient matrix also mean
+three pivot rows. Thus appending any right-hand side gives a consistent
+system, because no zero-coefficient row remains to create a contradiction.
+There are no free variables, so the solution is unique. Both properties
+are needed: column pivots alone in a taller matrix would not ensure existence.
+
+\exercise{1.S.5}{Classify two parameter-dependent systems}
+\step{(a) Eliminate the first variable.}
+Subtract four times $x_1+3x_2=k$ from the second equation. The
+result is $(h-12)x_2=8-4k$. If $h\ne12$, this determines $x_2$
+uniquely, then the first equation determines $x_1$. If $h=12$,
+the result is $0=8-4k$, consistent exactly when $k=2$.
+\answer{(i) No solutions: $h=12,k\ne2$. (ii) One solution:
+$h\ne12$ with any $k$. (iii) Infinitely many: $h=12,k=2$.}
+\step{(b) Add three times the first equation to the second.}
+The eliminated equation is $(k+3h)x_2=1$.
+If $k+3h\ne0$, then $x_2=1/(k+3h)$ and
+$x_1=(hx_2-1)/2$ are uniquely determined. If $k+3h=0$,
+we obtain the contradiction $0=1$.
+\answer{(i) No solutions: $k=-3h$. (ii) One solution:
+$k\ne-3h$. (iii) No parameter values give infinitely many solutions.}
+
+\exercise{1.S.6}{Restate one consistency question three ways}
+Let $a_1=(4,8)^T$, $a_2=(-2,-3)^T$, $a_3=(7,10)^T$,
+and $b=(-5,-3)^T$.
+\step{(a) Use a linear combination.}
+Ask whether $b=x_1a_1+x_2a_2+x_3a_3$ for some real weights.
+Eliminating twice the first scalar equation from the second gives
+$x_2-4x_3=7$. Let $x_3=t$; then $x_2=7+4t$ and
+$4x_1=9+t$. Thus the full solution family is
+\[
+ x=(9/4+t/4,\ 7+4t,\ t)^T,\qquad t\in\R.
+\]
+In particular $(9/4,7,0)^T$ works, proving consistency.
+\step{(b) Use matrix columns.}
+For $A=\begin{bmatrix}4&-2&7\\8&-3&10\end{bmatrix}$, ask
+whether $b$ lies in the span of the columns of $A$. Part (a) answers yes.
+\step{(c) Use a transformation.}
+Define $T:\R^3\to\R^2$ by $T(x)=Ax$. Ask whether $b$ is
+in the range of $T$, or equivalently whether any input has image $b$.
+The displayed family supplies all such inputs.
+
+\exercise{1.S.7}{Restate consistency for every right-hand side}
+Set $v_1=(2,-5,7)^T$, $v_2=(-4,1,-5)^T$, and
+$v_3=(-2,1,-3)^T$, and put $A=[v_1\ v_2\ v_3]$.
+\step{(a) Ask whether the span is all of $\R^3$.}
+Row three of $A$ is row one minus row two. Hence every vector
+$b$ in the column span satisfies $b_3=b_1-b_2$. The first two
+rows have two independent leading columns: elimination of $x_1$
+from them leaves a nonzero coefficient $-9$ on $x_2$ after
+multiplying the first row by $5/2$ and adding it to row two.
+Thus the first two equations can be solved for any $b_1,b_2$,
+but the third requires exactly $b_3=b_1-b_2$.
+Consequently $\Span\{v_1,v_2,v_3\}$ is this plane, not $\R^3$.
+\step{(b) State the column version.}
+The question asks whether the columns of $A$ span $\R^3$.
+They do not; for example $(0,0,1)^T$ is outside their span.
+\step{(c) State the transformation version.}
+For $T:\R^3\to\R^3$, $T(x)=Ax$, the question is whether
+$T$ is onto. It is not, because its range is the proper plane above.
+\answer{The system is consistent precisely for $b_3=b_1-b_2$,
+so it is not consistent for all triples of right-hand sides.}
+
+\exercise{1.S.8}{Echelon patterns for spanning columns}
+Use $p,q,r$ for nonzero pivots and $*$ for arbitrary entries.
+\step{(a) Two rows and three columns.}
+Spanning $\R^2$ requires two row pivots, which can occur in columns
+$(1,2)$, $(1,3)$, or $(2,3)$:
+\[
+ \begin{bmatrix}p&*&*\\0&q&*\end{bmatrix},\quad
+ \begin{bmatrix}p&*&*\\0&0&q\end{bmatrix},\quad
+ \begin{bmatrix}0&p&*\\0&0&q\end{bmatrix}.
+\]
+\step{(b) Three rows and three columns.}
+All three columns must also be pivot columns, leaving the sole pattern
+$\begin{bmatrix}p&*&*\\0&q&*\\0&0&r\end{bmatrix}$.
+
+\exercise{1.S.9}{Decompose a vector along two different lines}
+A vector on $y=2x$ is $(s,2s)$; one on $y=x/2$ is $(t,t/2)$.
+Their sum equals $(5,6)$ when
+$s+t=5$ and $2s+t/2=6$. Substituting $t=5-s$ into the latter
+and multiplying by two gives $4s+5-s=12$, so $s=7/3$ and
+$t=8/3$. Therefore
+\[
+ (5,6)=(7/3,14/3)+(8/3,4/3).
+\]
+Each summand satisfies its respective line equation, and their
+coordinate sums check the requested result.
+
+\exercise{1.S.10}{Infer existence and uniqueness from the diagram}
+The two source arrows $a_1,a_2$ are nonzero and not parallel,
+so they are independent. Their two column directions span $\R^2$.
+Thus any $b$ shown in that plane is attained, and its two coefficients
+are unique. Negative coefficients are allowed; being outside the wedge
+of positive combinations does not prevent a solution of $Ax=b$.
+\answer{Yes, there is exactly one solution.}
+
+\exercise{1.S.11}{A nonechelon matrix with a line of zero-images}
+Choose
+\[
+ A=\begin{bmatrix}1&1&0\\1&0&0\end{bmatrix}.
+\]
+Both rows lead in column one, so it is not in echelon form.
+The second equation in $Ax=0$ gives $x_1=0$, then the first
+gives $x_2=0$, while $x_3$ is free. Thus the solution set is
+$\{(0,0,t)^T:t\in\R\}$, the required line in $\R^3$.
+
+\exercise{1.S.12}{A nonechelon matrix with a plane of zero-images}
+Choose $A=\begin{bmatrix}1&2&3\\2&4&6\end{bmatrix}$.
+The second row again leads under the first, so the matrix is not
+echelon. Its second equation is twice the first, leaving only
+$x_1+2x_2+3x_3=0$. Its solutions are
+\[
+ x=s(-2,1,0)^T+t(-3,0,1)^T,\qquad s,t\in\R.
+\]
+The two generators are independent, so this is a plane, not merely a line.
+
+\exercise{1.S.13}{A prescribed null vector determines the missing entries}
+The pivot information forces reduced echelon form
+$\begin{bmatrix}1&0&u\\0&1&v\\0&0&0\end{bmatrix}$.
+Applying it to $(3,-2,1)^T$ gives $(3+u,-2+v,0)^T$.
+For this to be zero, $u=-3$ and $v=2$. Hence the required form is
+\[
+ \begin{bmatrix}1&0&-3\\0&1&2\\0&0&0\end{bmatrix}.
+\]
+Row operations preserve the null space, so the prescribed vector must
+satisfy these reduced equations even if the original $A$ was different.
+
+\exercise{1.S.14}{Parameter values for two-vector independence}
+Put the two vectors into columns and replace $R_2$ by $R_2-aR_1$:
+\[
+ \begin{bmatrix}1&a\\a&a+2\end{bmatrix}
+ \sim\begin{bmatrix}1&a\\0&a+2-a^2\end{bmatrix}.
+\]
+There are two pivots precisely when $a+2-a^2\ne0$.
+Since $a+2-a^2=-(a-2)(a+1)$, independence holds for
+$\boxed{a\ne2,-1}$. At either excluded value there is one pivot,
+so a free coefficient supplies dependence.
+
+\exercise{1.S.15}{Parameters in triangular-looking vector lists}
+\step{(a) Three vectors in $\R^3$.}
+The column matrix is $\begin{bmatrix}a&b&d\\0&c&e\\0&0&f\end{bmatrix}$.
+Independence requires and is guaranteed by $a,c,f\ne0$; the other
+entries $b,d,e$ may be any real numbers. For sufficiency, read a
+homogeneous relation from bottom to top: $fz=0$ gives $z=0$,
+then $cy=0$ gives $y=0$, then $ax=0$ gives $x=0$.
+For necessity, if $a=0$ the first vector is zero; if $c=0$, the
+first two vectors are dependent; if $f=0$, all three vectors lie in
+the two-dimensional coordinate plane with third coordinate zero.
+\step{(b) Three vectors in $\R^4$.}
+There are \emph{no restrictions} on $a,b,c,d,e,f$.
+A relation among the columns, read from the last coordinate upward,
+first forces the third coefficient to zero because that coordinate
+is $1$ only in column three. The third coordinate then forces the
+second coefficient to zero, and the second coordinate forces the
+first to zero. Hence the list is independent for every choice of the six numbers.
+
+\exercise{1.S.16}{Use the preceding-column characterization}
+The supplied matrix has nonzero diagonal entries $1,5,8,10$
+and zeros above the diagonal. Column one is nonzero. For column
+$j>1$, suppose it were a combination of the preceding columns.
+Its first $j-1$ coordinates are zero. Reading those coordinates
+from top to bottom forces every coefficient of the preceding columns
+to be zero, because each relevant diagonal entry is nonzero.
+The proposed combination would then be zero, contradicting the nonzero
+$j$th coordinate of column $j$. Thus no later column is a combination
+of preceding ones. The characterization in Theorem 7 of Section 1.7
+now proves that all four columns are independent.
+
+\exercise{1.S.17}{Adjoin a vector outside the old span}
+Suppose $c_1v_1+c_2v_2+c_3v_3+c_4v_4=0$.
+If $c_4\ne0$, solving for $v_4$ would put it in
+$\Span\{v_1,v_2,v_3\}$, contrary to the hypothesis. So $c_4=0$.
+Independence of the first three then forces $c_1=c_2=c_3=0$.
+All coefficients vanish, proving independence of the four-vector list.
+
+\exercise{1.S.18}{Add one basis vector to another}
+A relation $av_1+b(v_1+v_2)=0$ can be collected as
+$(a+b)v_1+bv_2=0$. Independence of $v_1,v_2$ forces
+$b=0$ and $a+b=0$, hence $a=0$. Thus the new pair
+$v_1,v_1+v_2$ is also independent. The argument proves the result
+for all coefficients, not just a selected numerical example.
+
+\exercise{1.S.19}{Three collinear points give dependent position vectors}
+Because the points are distinct, $v_2-v_1\ne0$ gives a direction
+for their common line. Some real $t$ satisfies
+$v_3=v_1+t(v_2-v_1)=(1-t)v_1+tv_2$. Therefore
+\[
+ (1-t)v_1+tv_2-v_3=0.
+\]
+The coefficient of $v_3$ is $-1$, so this relation is nontrivial.
+It proves dependence even if the line does not pass through the origin:
+the line's position vectors still lie in the span of two of its points.
+
+\exercise{1.S.20}{Reverse an input using homogeneity}
+Since $-u=(-1)u$, linearity gives
+$T(-u)=(-1)T(u)=-v$. This uses the scaling rule with the scalar
+$-1$ and does not require $T$ to be invertible.
+
+\exercise{1.S.21}{A coordinate-plane reflection}
+The images of $e_1,e_2,e_3$ are $e_1,-e_2,e_3$.
+Put them into columns to get
+\[
+ A=\begin{bmatrix}1&0&0\\0&-1&0\\0&0&1\end{bmatrix}.
+\]
+It leaves the first and third coordinates fixed and reverses the second,
+exactly the specified reflection through $x_2=0$.
+
+\exercise{1.S.22}{Surjectivity forces injectivity for this square size}
+Onto $\R^3$ means a pivot in every row of the $3\times3$ matrix.
+These three pivots also occupy every column, so there is no free
+variable in $Ax=0$. Its only solution is zero, giving one-to-one.
+The equality of the input and output dimensions is crucial here.
+
+\exercise{1.S.23}{A Givens rotation in two coordinates}
+Multiplying the displayed matrix by $(4,3)^T$ gives
+$(4a-3b,4b+3a)^T$. The target requires
+$4a-3b=5$ and $3a+4b=0$. From the second equation,
+$b=-3a/4$; substituting in the first gives $25a/4=5$.
+Thus $\boxed{a=4/5,b=-3/5}$.
+The condition $a^2+b^2=16/25+9/25=1$ is satisfied, and the
+image is $(5,0)^T$, so both direction and length check.
+
+\exercise{1.S.24}{Zero one coordinate without changing the middle one}
+The first and third coordinates give
+$2a-4b=2\sqrt5$ and $2b+4a=0$. The latter says $b=-2a$,
+so $10a=2\sqrt5$. Therefore
+\[
+ a=1/\sqrt5,\qquad b=-2/\sqrt5.
+\]
+The middle coordinate remains $3$ automatically, and
+$a^2+b^2=1/5+4/5=1$. Substituting in the first and third
+coordinates gives $2\sqrt5$ and $0$, as required.
+
+\exercise{1.S.25}{A building design needs whole, nonnegative floor counts}
+\step{(a) Interpret a scalar multiple of the recipe column.}
+The vector $x_1(3,7,8)^T$ gives the numbers of three-, two-, and
+one-bedroom apartments on the $x_1$ floors using plan A.
+\step{(b) Add the contributions from all three plans.}
+The total apartment-count vector is
+\[
+ x_1\begin{bmatrix}3\\7\\8\end{bmatrix}
+ +x_2\begin{bmatrix}4\\4\\8\end{bmatrix}
+ +x_3\begin{bmatrix}5\\3\\9\end{bmatrix}.
+\]
+\step{(c) Solve the target equations, then impose the physical restrictions.}
+Appending $(66,74,136)^T$ and reducing gives
+\[
+ \left[\begin{array}{ccc|c}3&4&5&66\\7&4&3&74\\8&8&9&136\end{array}\right]
+ \sim
+ \left[\begin{array}{ccc|c}1&0&-1/2&2\\0&1&13/8&15\\0&0&0&0\end{array}\right].
+\]
+Thus the real solutions are $x_1=2+t/2$, $x_2=15-13t/8$,
+$x_3=t$. Floors must be nonnegative integers. Integer $t$ makes
+$x_2$ an integer only when $t$ is a multiple of $8$, since $13$
+and $8$ have no common factor. Nonnegativity requires
+$0\le t\le120/13<10$. Hence the only allowed values are $t=0,8$,
+giving $(x_1,x_2,x_3)=(2,15,0)$ or $(6,2,8)$.
+Substitution yields the requested apartment totals in both cases.
+\answer{Yes. There are exactly two designs with whole nonnegative
+floor counts, although the unrestricted real system has infinitely many solutions.}

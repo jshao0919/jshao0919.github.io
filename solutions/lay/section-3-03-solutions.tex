@@ -1,0 +1,471 @@
+\section{Cramer's rule, volume, and linear transformations}
+Cramer's rule solves $Ax=b$ when the square coefficient matrix satisfies $\det A\ne0$: replace column $i$ of $A$ by $b$ to form $A_i(b)$, then $x_i=\det A_i(b)/\det A$. Replacing a \emph{row} is not Cramer's rule. The adjugate is the transpose of the cofactor matrix, and $A^{-1}=\operatorname{adj}(A)/\det A$ for an invertible $A$.
+
+In geometry, determinants carry orientation signs. Ordinary areas and volumes do not: a parallelogram's area is $|\det[u\ v]|$, a parallelepiped's volume is $|\det[u\ v\ w]|$, and a linear transformation multiplies area or volume by the absolute value of its determinant. Translations do not change these measures.
+
+\practice{3.3.P1}{Transform a parallelogram}
+The edge matrix is $B=\left[\begin{smallmatrix}1&5\\3&1\end{smallmatrix}\right]$, whose determinant is $1-15=-14$. Thus the original area is $14$. The transformation matrix $A=\left[\begin{smallmatrix}1&-0.1\\0&2\end{smallmatrix}\right]$ has determinant $2$. Consequently the image area is $|\det A|\,|\det B|=2\cdot14=28$. As a check, $AB=\left[\begin{smallmatrix}0.7&4.9\\6&2\end{smallmatrix}\right]$ has determinant $1.4-29.4=-28$, whose absolute value is $28$.
+
+\exercise{3.3.1}{Cramer's rule with all column replacements}
+\goal Solve the system using column replacements. Its matrix form is
+\[A=\begin{bmatrix}5&7\\2&4\end{bmatrix},\qquad b=\begin{bmatrix}3\\1\end{bmatrix}.\]
+\step{Check the denominator first.}
+\[\det A=(5)(4)-(7)(2)=6.\]
+The denominator is nonzero, so there is exactly one solution.
+\step{Replace each column in turn, keeping the others fixed.}
+Column $1$ is replaced by $b$:
+\[A_1(b)=\begin{bmatrix}3&7\\1&4\end{bmatrix},\qquad\det A_1(b)=5.\]
+The latter determinant is $(3)(4)-(7)(1)=5$.
+Column $2$ is replaced by $b$:
+\[A_2(b)=\begin{bmatrix}5&3\\2&1\end{bmatrix},\qquad\det A_2(b)=-1.\]
+The latter determinant is $(5)(1)-(3)(2)=-1$.
+\step{Divide and verify.}
+\[x=\begin{bmatrix}\frac{5}{6}\\- \frac{1}{6}\end{bmatrix}.\]
+Each component is the corresponding replacement determinant divided by $6$. Substitution gives $Ax=\begin{bmatrix}3\\1\end{bmatrix}=b$, checking every original equation.
+
+
+\exercise{3.3.2}{Cramer's rule with all column replacements}
+\goal Solve the system using column replacements. Its matrix form is
+\[A=\begin{bmatrix}4&1\\5&2\end{bmatrix},\qquad b=\begin{bmatrix}6\\7\end{bmatrix}.\]
+\step{Check the denominator first.}
+\[\det A=(4)(2)-(1)(5)=3.\]
+The denominator is nonzero, so there is exactly one solution.
+\step{Replace each column in turn, keeping the others fixed.}
+Column $1$ is replaced by $b$:
+\[A_1(b)=\begin{bmatrix}6&1\\7&2\end{bmatrix},\qquad\det A_1(b)=5.\]
+The latter determinant is $(6)(2)-(1)(7)=5$.
+Column $2$ is replaced by $b$:
+\[A_2(b)=\begin{bmatrix}4&6\\5&7\end{bmatrix},\qquad\det A_2(b)=-2.\]
+The latter determinant is $(4)(7)-(6)(5)=-2$.
+\step{Divide and verify.}
+\[x=\begin{bmatrix}\frac{5}{3}\\- \frac{2}{3}\end{bmatrix}.\]
+Each component is the corresponding replacement determinant divided by $3$. Substitution gives $Ax=\begin{bmatrix}6\\7\end{bmatrix}=b$, checking every original equation.
+
+
+\exercise{3.3.3}{Cramer's rule with all column replacements}
+\goal Solve the system using column replacements. Its matrix form is
+\[A=\begin{bmatrix}3&-2\\-5&6\end{bmatrix},\qquad b=\begin{bmatrix}7\\-5\end{bmatrix}.\]
+\step{Check the denominator first.}
+\[\det A=(3)(6)-(-2)(-5)=8.\]
+The denominator is nonzero, so there is exactly one solution.
+\step{Replace each column in turn, keeping the others fixed.}
+Column $1$ is replaced by $b$:
+\[A_1(b)=\begin{bmatrix}7&-2\\-5&6\end{bmatrix},\qquad\det A_1(b)=32.\]
+The latter determinant is $(7)(6)-(-2)(-5)=32$.
+Column $2$ is replaced by $b$:
+\[A_2(b)=\begin{bmatrix}3&7\\-5&-5\end{bmatrix},\qquad\det A_2(b)=20.\]
+The latter determinant is $(3)(-5)-(7)(-5)=20$.
+\step{Divide and verify.}
+\[x=\begin{bmatrix}4\\\frac{5}{2}\end{bmatrix}.\]
+Each component is the corresponding replacement determinant divided by $8$. Substitution gives $Ax=\begin{bmatrix}7\\-5\end{bmatrix}=b$, checking every original equation.
+
+
+\exercise{3.3.4}{Cramer's rule with all column replacements}
+\goal Solve the system using column replacements. Its matrix form is
+\[A=\begin{bmatrix}-5&3\\3&-1\end{bmatrix},\qquad b=\begin{bmatrix}9\\-5\end{bmatrix}.\]
+\step{Check the denominator first.}
+\[\det A=(-5)(-1)-(3)(3)=-4.\]
+The denominator is nonzero, so there is exactly one solution.
+\step{Replace each column in turn, keeping the others fixed.}
+Column $1$ is replaced by $b$:
+\[A_1(b)=\begin{bmatrix}9&3\\-5&-1\end{bmatrix},\qquad\det A_1(b)=6.\]
+The latter determinant is $(9)(-1)-(3)(-5)=6$.
+Column $2$ is replaced by $b$:
+\[A_2(b)=\begin{bmatrix}-5&9\\3&-5\end{bmatrix},\qquad\det A_2(b)=-2.\]
+The latter determinant is $(-5)(-5)-(9)(3)=-2$.
+\step{Divide and verify.}
+\[x=\begin{bmatrix}- \frac{3}{2}\\\frac{1}{2}\end{bmatrix}.\]
+Each component is the corresponding replacement determinant divided by $-4$. Substitution gives $Ax=\begin{bmatrix}9\\-5\end{bmatrix}=b$, checking every original equation.
+
+
+\exercise{3.3.5}{Cramer's rule with all column replacements}
+\goal Solve the system using column replacements. Its matrix form is
+\[A=\begin{bmatrix}2&1&0\\-3&0&1\\0&1&2\end{bmatrix},\qquad b=\begin{bmatrix}7\\-8\\-3\end{bmatrix}.\]
+\step{Check the denominator first.}
+\[
+\det A=(2)(-1)^{1+1}\begin{vmatrix}0&1\\1&2\end{vmatrix} + (1)(-1)^{1+2}\begin{vmatrix}-3&1\\0&2\end{vmatrix}=4.
+\]
+The $2\times2$ determinants used above are
+\[
+\begin{gathered}\det A_{11}=(0)(2)-(1)(1)=-1\\\det A_{12}=(-3)(2)-(1)(0)=-6.\end{gathered}
+\]
+The denominator is nonzero, so there is exactly one solution.
+\step{Replace each column in turn, keeping the others fixed.}
+Column $1$ is replaced by $b$:
+\[A_1(b)=\begin{bmatrix}7&1&0\\-8&0&1\\-3&1&2\end{bmatrix},\qquad\det A_1(b)=6.\]
+Its first-row cofactor expansion evaluates to $(7)(-1) + (1)(13) + (0)(-8)=6$.
+Column $2$ is replaced by $b$:
+\[A_2(b)=\begin{bmatrix}2&7&0\\-3&-8&1\\0&-3&2\end{bmatrix},\qquad\det A_2(b)=16.\]
+Its first-row cofactor expansion evaluates to $(2)(-13) + (7)(6) + (0)(9)=16$.
+Column $3$ is replaced by $b$:
+\[A_3(b)=\begin{bmatrix}2&1&7\\-3&0&-8\\0&1&-3\end{bmatrix},\qquad\det A_3(b)=-14.\]
+Its first-row cofactor expansion evaluates to $(2)(8) + (1)(-9) + (7)(-3)=-14$.
+\step{Divide and verify.}
+\[x=\begin{bmatrix}\frac{3}{2}\\4\\- \frac{7}{2}\end{bmatrix}.\]
+Each component is the corresponding replacement determinant divided by $4$. Substitution gives $Ax=\begin{bmatrix}7\\-8\\-3\end{bmatrix}=b$, checking every original equation.
+
+
+\exercise{3.3.6}{Cramer's rule with all column replacements}
+\goal Solve the system using column replacements. Its matrix form is
+\[A=\begin{bmatrix}2&1&1\\-1&0&2\\3&1&3\end{bmatrix},\qquad b=\begin{bmatrix}4\\2\\-2\end{bmatrix}.\]
+\step{Check the denominator first.}
+\[
+\det A=(2)(-1)^{1+1}\begin{vmatrix}0&2\\1&3\end{vmatrix} + (1)(-1)^{1+2}\begin{vmatrix}-1&2\\3&3\end{vmatrix} + (1)(-1)^{1+3}\begin{vmatrix}-1&0\\3&1\end{vmatrix}=4.
+\]
+The $2\times2$ determinants used above are
+\[
+\begin{gathered}\det A_{11}=(0)(3)-(2)(1)=-2\\\det A_{12}=(-1)(3)-(2)(3)=-9\\\det A_{13}=(-1)(1)-(0)(3)=-1.\end{gathered}
+\]
+The denominator is nonzero, so there is exactly one solution.
+\step{Replace each column in turn, keeping the others fixed.}
+Column $1$ is replaced by $b$:
+\[A_1(b)=\begin{bmatrix}4&1&1\\2&0&2\\-2&1&3\end{bmatrix},\qquad\det A_1(b)=-16.\]
+Its first-row cofactor expansion evaluates to $(4)(-2) + (1)(-10) + (1)(2)=-16$.
+Column $2$ is replaced by $b$:
+\[A_2(b)=\begin{bmatrix}2&4&1\\-1&2&2\\3&-2&3\end{bmatrix},\qquad\det A_2(b)=52.\]
+Its first-row cofactor expansion evaluates to $(2)(10) + (4)(9) + (1)(-4)=52$.
+Column $3$ is replaced by $b$:
+\[A_3(b)=\begin{bmatrix}2&1&4\\-1&0&2\\3&1&-2\end{bmatrix},\qquad\det A_3(b)=-4.\]
+Its first-row cofactor expansion evaluates to $(2)(-2) + (1)(4) + (4)(-1)=-4$.
+\step{Divide and verify.}
+\[x=\begin{bmatrix}-4\\13\\-1\end{bmatrix}.\]
+Each component is the corresponding replacement determinant divided by $4$. Substitution gives $Ax=\begin{bmatrix}4\\2\\-2\end{bmatrix}=b$, checking every original equation.
+
+
+\exercise{3.3.7}{A parameter and the nonzero-denominator condition}
+\goal Determine exactly when the parameterized system has a unique solution.
+\[A=\begin{bmatrix}6 s&4\\9&2 s\end{bmatrix},\qquad b=\begin{bmatrix}5\\-2\end{bmatrix}.\]
+Its determinant is
+\[\det A=12 \left(s^{2} - 3\right).\]
+A square system has a unique solution precisely when its coefficient matrix is invertible, so the required parameter condition is $s\ne\sqrt3,-\sqrt3$. Under that condition the two replacement determinants are
+\[\det A_1(b)=10 s + 8,\qquad\det A_2(b)=- 12 s - 45.\]
+Cramer's rule therefore gives
+\[x_1=\frac{5 s + 4}{6 \left(s^{2} - 3\right)},\qquad x_2=- \frac{4 s + 15}{4 \left(s^{2} - 3\right)}.\]
+These formulas were checked by multiplying by $A$: the result is exactly $b$ wherever the denominator is nonzero. At an excluded parameter the matrix is singular, so the system cannot have a unique solution; division by its zero determinant is not allowed.
+
+\exercise{3.3.8}{A parameter and the nonzero-denominator condition}
+\goal Determine exactly when the parameterized system has a unique solution.
+\[A=\begin{bmatrix}3 s&-5\\9&5 s\end{bmatrix},\qquad b=\begin{bmatrix}3\\2\end{bmatrix}.\]
+Its determinant is
+\[\det A=15 \left(s^{2} + 3\right).\]
+A square system has a unique solution precisely when its coefficient matrix is invertible, so the required parameter condition is every real $s$. Under that condition the two replacement determinants are
+\[\det A_1(b)=15 s + 10,\qquad\det A_2(b)=6 s - 27.\]
+Cramer's rule therefore gives
+\[x_1=\frac{3 s + 2}{3 \left(s^{2} + 3\right)},\qquad x_2=\frac{2 s - 9}{5 \left(s^{2} + 3\right)}.\]
+These formulas were checked by multiplying by $A$: the result is exactly $b$ wherever the denominator is nonzero. At an excluded parameter the matrix is singular, so the system cannot have a unique solution; division by its zero determinant is not allowed.
+
+\exercise{3.3.9}{A parameter and the nonzero-denominator condition}
+\goal Determine exactly when the parameterized system has a unique solution.
+\[A=\begin{bmatrix}s&- 2 s\\3&6 s\end{bmatrix},\qquad b=\begin{bmatrix}-1\\4\end{bmatrix}.\]
+Its determinant is
+\[\det A=6 s \left(s + 1\right).\]
+A square system has a unique solution precisely when its coefficient matrix is invertible, so the required parameter condition is $s\ne0,-1$. Under that condition the two replacement determinants are
+\[\det A_1(b)=2 s,\qquad\det A_2(b)=4 s + 3.\]
+Cramer's rule therefore gives
+\[x_1=\frac{1}{3 \left(s + 1\right)},\qquad x_2=\frac{4 s + 3}{6 s \left(s + 1\right)}.\]
+These formulas were checked by multiplying by $A$: the result is exactly $b$ wherever the denominator is nonzero. At an excluded parameter the matrix is singular, so the system cannot have a unique solution; division by its zero determinant is not allowed.
+
+\exercise{3.3.10}{A parameter and the nonzero-denominator condition}
+\goal Determine exactly when the parameterized system has a unique solution.
+\[A=\begin{bmatrix}2 s&1\\3 s&6 s\end{bmatrix},\qquad b=\begin{bmatrix}1\\2\end{bmatrix}.\]
+Its determinant is
+\[\det A=3 s \left(4 s - 1\right).\]
+A square system has a unique solution precisely when its coefficient matrix is invertible, so the required parameter condition is $s\ne0,1/4$. Under that condition the two replacement determinants are
+\[\det A_1(b)=6 s - 2,\qquad\det A_2(b)=s.\]
+Cramer's rule therefore gives
+\[x_1=\frac{2 \left(3 s - 1\right)}{3 s \left(4 s - 1\right)},\qquad x_2=\frac{1}{3 \left(4 s - 1\right)}.\]
+These formulas were checked by multiplying by $A$: the result is exactly $b$ wherever the denominator is nonzero. At an excluded parameter the matrix is singular, so the system cannot have a unique solution; division by its zero determinant is not allowed.
+
+\exercise{3.3.11}{All cofactors, the adjugate, and the inverse}
+\goal Find the adjugate and inverse of
+\[A=\begin{bmatrix}0&-2&-1\\3&0&0\\-1&1&1\end{bmatrix}.\]
+\step{Compute all signed minors.}
+Deleting row $i$ and column $j$ and multiplying its $2\times2$ determinant by $(-1)^{i+j}$ gives:
+\[\begin{gathered}
+C_{11}=(-1)^{1+1}\big[(0)(1)-(0)(1)\big]=0\\C_{12}=(-1)^{1+2}\big[(3)(1)-(0)(-1)\big]=-3\\C_{13}=(-1)^{1+3}\big[(3)(1)-(0)(-1)\big]=3\\C_{21}=(-1)^{2+1}\big[(-2)(1)-(-1)(1)\big]=1\\C_{22}=(-1)^{2+2}\big[(0)(1)-(-1)(-1)\big]=-1\\C_{23}=(-1)^{2+3}\big[(0)(1)-(-2)(-1)\big]=2\\C_{31}=(-1)^{3+1}\big[(-2)(0)-(-1)(0)\big]=0\\C_{32}=(-1)^{3+2}\big[(0)(0)-(-1)(3)\big]=-3\\C_{33}=(-1)^{3+3}\big[(0)(0)-(-2)(3)\big]=6
+\end{gathered}\]
+\step{Transpose, rather than using the cofactor matrix directly.}
+\[C=\begin{bmatrix}0&-3&3\\1&-1&2\\0&-3&6\end{bmatrix},\qquad\operatorname{adj}A=C^T=\begin{bmatrix}0&1&0\\-3&-1&-3\\3&2&6\end{bmatrix}.\]
+The first-row expansion gives $\det A=(0)(0) + (-2)(-3) + (-1)(3)=3\ne0$. Thus
+\[A^{-1}=\frac{1}{3}\begin{bmatrix}0&1&0\\-3&-1&-3\\3&2&6\end{bmatrix}.\]
+As an exact check, multiplication gives $A\operatorname{adj}A=3I_3$. Dividing this identity by the nonzero determinant gives $AA^{-1}=I_3$.
+
+
+\exercise{3.3.12}{All cofactors, the adjugate, and the inverse}
+\goal Find the adjugate and inverse of
+\[A=\begin{bmatrix}1&1&3\\2&-2&1\\0&1&0\end{bmatrix}.\]
+\step{Compute all signed minors.}
+Deleting row $i$ and column $j$ and multiplying its $2\times2$ determinant by $(-1)^{i+j}$ gives:
+\[\begin{gathered}
+C_{11}=(-1)^{1+1}\big[(-2)(0)-(1)(1)\big]=-1\\C_{12}=(-1)^{1+2}\big[(2)(0)-(1)(0)\big]=0\\C_{13}=(-1)^{1+3}\big[(2)(1)-(-2)(0)\big]=2\\C_{21}=(-1)^{2+1}\big[(1)(0)-(3)(1)\big]=3\\C_{22}=(-1)^{2+2}\big[(1)(0)-(3)(0)\big]=0\\C_{23}=(-1)^{2+3}\big[(1)(1)-(1)(0)\big]=-1\\C_{31}=(-1)^{3+1}\big[(1)(1)-(3)(-2)\big]=7\\C_{32}=(-1)^{3+2}\big[(1)(1)-(3)(2)\big]=5\\C_{33}=(-1)^{3+3}\big[(1)(-2)-(1)(2)\big]=-4
+\end{gathered}\]
+\step{Transpose, rather than using the cofactor matrix directly.}
+\[C=\begin{bmatrix}-1&0&2\\3&0&-1\\7&5&-4\end{bmatrix},\qquad\operatorname{adj}A=C^T=\begin{bmatrix}-1&3&7\\0&0&5\\2&-1&-4\end{bmatrix}.\]
+The first-row expansion gives $\det A=(1)(-1) + (1)(0) + (3)(2)=5\ne0$. Thus
+\[A^{-1}=\frac{1}{5}\begin{bmatrix}-1&3&7\\0&0&5\\2&-1&-4\end{bmatrix}.\]
+As an exact check, multiplication gives $A\operatorname{adj}A=5I_3$. Dividing this identity by the nonzero determinant gives $AA^{-1}=I_3$.
+
+
+\exercise{3.3.13}{All cofactors, the adjugate, and the inverse}
+\goal Find the adjugate and inverse of
+\[A=\begin{bmatrix}3&5&4\\1&0&1\\2&1&1\end{bmatrix}.\]
+\step{Compute all signed minors.}
+Deleting row $i$ and column $j$ and multiplying its $2\times2$ determinant by $(-1)^{i+j}$ gives:
+\[\begin{gathered}
+C_{11}=(-1)^{1+1}\big[(0)(1)-(1)(1)\big]=-1\\C_{12}=(-1)^{1+2}\big[(1)(1)-(1)(2)\big]=1\\C_{13}=(-1)^{1+3}\big[(1)(1)-(0)(2)\big]=1\\C_{21}=(-1)^{2+1}\big[(5)(1)-(4)(1)\big]=-1\\C_{22}=(-1)^{2+2}\big[(3)(1)-(4)(2)\big]=-5\\C_{23}=(-1)^{2+3}\big[(3)(1)-(5)(2)\big]=7\\C_{31}=(-1)^{3+1}\big[(5)(1)-(4)(0)\big]=5\\C_{32}=(-1)^{3+2}\big[(3)(1)-(4)(1)\big]=1\\C_{33}=(-1)^{3+3}\big[(3)(0)-(5)(1)\big]=-5
+\end{gathered}\]
+\step{Transpose, rather than using the cofactor matrix directly.}
+\[C=\begin{bmatrix}-1&1&1\\-1&-5&7\\5&1&-5\end{bmatrix},\qquad\operatorname{adj}A=C^T=\begin{bmatrix}-1&-1&5\\1&-5&1\\1&7&-5\end{bmatrix}.\]
+The first-row expansion gives $\det A=(3)(-1) + (5)(1) + (4)(1)=6\ne0$. Thus
+\[A^{-1}=\frac{1}{6}\begin{bmatrix}-1&-1&5\\1&-5&1\\1&7&-5\end{bmatrix}.\]
+As an exact check, multiplication gives $A\operatorname{adj}A=6I_3$. Dividing this identity by the nonzero determinant gives $AA^{-1}=I_3$.
+
+
+\exercise{3.3.14}{All cofactors, the adjugate, and the inverse}
+\goal Find the adjugate and inverse of
+\[A=\begin{bmatrix}3&6&7\\0&2&1\\2&3&4\end{bmatrix}.\]
+\step{Compute all signed minors.}
+Deleting row $i$ and column $j$ and multiplying its $2\times2$ determinant by $(-1)^{i+j}$ gives:
+\[\begin{gathered}
+C_{11}=(-1)^{1+1}\big[(2)(4)-(1)(3)\big]=5\\C_{12}=(-1)^{1+2}\big[(0)(4)-(1)(2)\big]=2\\C_{13}=(-1)^{1+3}\big[(0)(3)-(2)(2)\big]=-4\\C_{21}=(-1)^{2+1}\big[(6)(4)-(7)(3)\big]=-3\\C_{22}=(-1)^{2+2}\big[(3)(4)-(7)(2)\big]=-2\\C_{23}=(-1)^{2+3}\big[(3)(3)-(6)(2)\big]=3\\C_{31}=(-1)^{3+1}\big[(6)(1)-(7)(2)\big]=-8\\C_{32}=(-1)^{3+2}\big[(3)(1)-(7)(0)\big]=-3\\C_{33}=(-1)^{3+3}\big[(3)(2)-(6)(0)\big]=6
+\end{gathered}\]
+\step{Transpose, rather than using the cofactor matrix directly.}
+\[C=\begin{bmatrix}5&2&-4\\-3&-2&3\\-8&-3&6\end{bmatrix},\qquad\operatorname{adj}A=C^T=\begin{bmatrix}5&-3&-8\\2&-2&-3\\-4&3&6\end{bmatrix}.\]
+The first-row expansion gives $\det A=(3)(5) + (6)(2) + (7)(-4)=-1\ne0$. Thus
+\[A^{-1}=\frac{1}{-1}\begin{bmatrix}5&-3&-8\\2&-2&-3\\-4&3&6\end{bmatrix}.\]
+As an exact check, multiplication gives $A\operatorname{adj}A=-1I_3$. Dividing this identity by the nonzero determinant gives $AA^{-1}=I_3$.
+
+
+\exercise{3.3.15}{All cofactors, the adjugate, and the inverse}
+\goal Find the adjugate and inverse of
+\[A=\begin{bmatrix}3&0&0\\-1&1&0\\-2&3&2\end{bmatrix}.\]
+\step{Compute all signed minors.}
+Deleting row $i$ and column $j$ and multiplying its $2\times2$ determinant by $(-1)^{i+j}$ gives:
+\[\begin{gathered}
+C_{11}=(-1)^{1+1}\big[(1)(2)-(0)(3)\big]=2\\C_{12}=(-1)^{1+2}\big[(-1)(2)-(0)(-2)\big]=2\\C_{13}=(-1)^{1+3}\big[(-1)(3)-(1)(-2)\big]=-1\\C_{21}=(-1)^{2+1}\big[(0)(2)-(0)(3)\big]=0\\C_{22}=(-1)^{2+2}\big[(3)(2)-(0)(-2)\big]=6\\C_{23}=(-1)^{2+3}\big[(3)(3)-(0)(-2)\big]=-9\\C_{31}=(-1)^{3+1}\big[(0)(0)-(0)(1)\big]=0\\C_{32}=(-1)^{3+2}\big[(3)(0)-(0)(-1)\big]=0\\C_{33}=(-1)^{3+3}\big[(3)(1)-(0)(-1)\big]=3
+\end{gathered}\]
+\step{Transpose, rather than using the cofactor matrix directly.}
+\[C=\begin{bmatrix}2&2&-1\\0&6&-9\\0&0&3\end{bmatrix},\qquad\operatorname{adj}A=C^T=\begin{bmatrix}2&0&0\\2&6&0\\-1&-9&3\end{bmatrix}.\]
+The first-row expansion gives $\det A=(3)(2) + (0)(2) + (0)(-1)=6\ne0$. Thus
+\[A^{-1}=\frac{1}{6}\begin{bmatrix}2&0&0\\2&6&0\\-1&-9&3\end{bmatrix}.\]
+As an exact check, multiplication gives $A\operatorname{adj}A=6I_3$. Dividing this identity by the nonzero determinant gives $AA^{-1}=I_3$.
+
+
+\exercise{3.3.16}{All cofactors, the adjugate, and the inverse}
+\goal Find the adjugate and inverse of
+\[A=\begin{bmatrix}1&2&4\\0&-3&1\\0&0&3\end{bmatrix}.\]
+\step{Compute all signed minors.}
+Deleting row $i$ and column $j$ and multiplying its $2\times2$ determinant by $(-1)^{i+j}$ gives:
+\[\begin{gathered}
+C_{11}=(-1)^{1+1}\big[(-3)(3)-(1)(0)\big]=-9\\C_{12}=(-1)^{1+2}\big[(0)(3)-(1)(0)\big]=0\\C_{13}=(-1)^{1+3}\big[(0)(0)-(-3)(0)\big]=0\\C_{21}=(-1)^{2+1}\big[(2)(3)-(4)(0)\big]=-6\\C_{22}=(-1)^{2+2}\big[(1)(3)-(4)(0)\big]=3\\C_{23}=(-1)^{2+3}\big[(1)(0)-(2)(0)\big]=0\\C_{31}=(-1)^{3+1}\big[(2)(1)-(4)(-3)\big]=14\\C_{32}=(-1)^{3+2}\big[(1)(1)-(4)(0)\big]=-1\\C_{33}=(-1)^{3+3}\big[(1)(-3)-(2)(0)\big]=-3
+\end{gathered}\]
+\step{Transpose, rather than using the cofactor matrix directly.}
+\[C=\begin{bmatrix}-9&0&0\\-6&3&0\\14&-1&-3\end{bmatrix},\qquad\operatorname{adj}A=C^T=\begin{bmatrix}-9&-6&14\\0&3&-1\\0&0&-3\end{bmatrix}.\]
+The first-row expansion gives $\det A=(1)(-9) + (2)(0) + (4)(0)=-9\ne0$. Thus
+\[A^{-1}=\frac{1}{-9}\begin{bmatrix}-9&-6&14\\0&3&-1\\0&0&-3\end{bmatrix}.\]
+As an exact check, multiplication gives $A\operatorname{adj}A=-9I_3$. Dividing this identity by the nonzero determinant gives $AA^{-1}=I_3$.
+
+
+\exercise{3.3.17}{The adjugate formula and its consequences}
+For $A=\left[\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right]$, the four cofactors are $d,-c,-b,a$, in row order. Transposing gives
+\[
+\operatorname{adj}A=\begin{bmatrix}d&-b\\-c&a\end{bmatrix}.
+\]
+Theorem 8 therefore gives $A^{-1}=(ad-bc)^{-1}\left[\begin{smallmatrix}d&-b\\-c&a\end{smallmatrix}\right]$ when $ad-bc\ne0$. This is exactly the earlier $2\times2$ inverse formula. The nonzero-denominator condition is part of both formulas.
+
+\exercise{3.3.18}{The adjugate formula and its consequences}
+Each minor matrix has integer entries. Its determinant is an integer because a determinant is a finite sum of signed products of its entries. Cofactors, and hence every entry of the adjugate, are therefore integers. Since $\det A=1$, Theorem 8 gives $A^{-1}=\operatorname{adj}A/1$, whose entries are all integers. The hypothesis $\det A=1$ is essential to this simple argument; division by a general nonzero integer need not leave integers.
+
+\exercise{3.3.19}{Area from translated adjacent edges}
+Translate the vertex $p=\left( 0, \  0\right)$ to the origin. The two adjacent edges are
+\[u=\begin{bmatrix}5\\2\end{bmatrix},\qquad v=\begin{bmatrix}6\\4\end{bmatrix}.\]
+The remaining listed vertex is $p+u+v=\left( 11, \  6\right)$, so these really are adjacent edges of the parallelogram, rather than a mistaken choice of diagonals. Translation preserves area, giving
+\[\text{area}=\left|\begin{vmatrix}5&6\\2&4\end{vmatrix}\right|=|8|=8.\]
+
+
+\exercise{3.3.20}{Area from translated adjacent edges}
+Translate the vertex $p=\left( 0, \  0\right)$ to the origin. The two adjacent edges are
+\[u=\begin{bmatrix}-1\\3\end{bmatrix},\qquad v=\begin{bmatrix}4\\-5\end{bmatrix}.\]
+The remaining listed vertex is $p+u+v=\left( 3, \  -2\right)$, so these really are adjacent edges of the parallelogram, rather than a mistaken choice of diagonals. Translation preserves area, giving
+\[\text{area}=\left|\begin{vmatrix}-1&4\\3&-5\end{vmatrix}\right|=|-7|=7.\]
+
+
+\exercise{3.3.21}{Area from translated adjacent edges}
+Translate the vertex $p=\left( -1, \  0\right)$ to the origin. The two adjacent edges are
+\[u=\begin{bmatrix}1\\5\end{bmatrix},\qquad v=\begin{bmatrix}2\\-4\end{bmatrix}.\]
+The remaining listed vertex is $p+u+v=\left( 2, \  1\right)$, so these really are adjacent edges of the parallelogram, rather than a mistaken choice of diagonals. Translation preserves area, giving
+\[\text{area}=\left|\begin{vmatrix}1&2\\5&-4\end{vmatrix}\right|=|-14|=14.\]
+
+
+\exercise{3.3.22}{Area from translated adjacent edges}
+Translate the vertex $p=\left( 0, \  -2\right)$ to the origin. The two adjacent edges are
+\[u=\begin{bmatrix}6\\1\end{bmatrix},\qquad v=\begin{bmatrix}-3\\3\end{bmatrix}.\]
+The remaining listed vertex is $p+u+v=\left( 3, \  2\right)$, so these really are adjacent edges of the parallelogram, rather than a mistaken choice of diagonals. Translation preserves area, giving
+\[\text{area}=\left|\begin{vmatrix}6&-3\\1&3\end{vmatrix}\right|=|21|=21.\]
+
+
+\exercise{3.3.23}{Volume of a parallelepiped}
+Place the three adjacent edge vectors in columns:
+\[A=\begin{bmatrix}1&1&7\\0&2&1\\-2&4&0\end{bmatrix}.\]
+\[
+\det A=(1)(-1)^{1+1}\begin{vmatrix}2&1\\4&0\end{vmatrix} + (1)(-1)^{1+2}\begin{vmatrix}0&1\\-2&0\end{vmatrix} + (7)(-1)^{1+3}\begin{vmatrix}0&2\\-2&4\end{vmatrix}=22.
+\]
+The $2\times2$ determinants used above are
+\[
+\begin{gathered}\det A_{11}=(2)(0)-(1)(4)=-4\\\det A_{12}=(0)(0)-(1)(-2)=2\\\det A_{13}=(0)(4)-(2)(-2)=4.\end{gathered}
+\]
+The determinant is signed, so the ordinary volume is $|22|=22$. If the columns are reordered, the signed determinant may change but this volume does not.
+
+
+\exercise{3.3.24}{Volume of a parallelepiped}
+Place the three adjacent edge vectors in columns:
+\[A=\begin{bmatrix}1&-2&-1\\4&-5&2\\0&2&-1\end{bmatrix}.\]
+\[
+\det A=(1)(-1)^{1+1}\begin{vmatrix}-5&2\\2&-1\end{vmatrix} + (-2)(-1)^{1+2}\begin{vmatrix}4&2\\0&-1\end{vmatrix} + (-1)(-1)^{1+3}\begin{vmatrix}4&-5\\0&2\end{vmatrix}=-15.
+\]
+The $2\times2$ determinants used above are
+\[
+\begin{gathered}\det A_{11}=(-5)(-1)-(2)(2)=1\\\det A_{12}=(4)(-1)-(2)(0)=-4\\\det A_{13}=(4)(2)-(-5)(0)=8.\end{gathered}
+\]
+The determinant is signed, so the ordinary volume is $|-15|=15$. If the columns are reordered, the signed determinant may change but this volume does not.
+
+
+\exercise{3.3.25}{Geometry and linearity}
+Let the columns be $a_1,a_2,a_3$. Their parallelepiped has volume $|\det A|$. If they are linearly dependent, all three vectors lie in a plane through the origin (or a smaller subspace), so the parallelepiped is flat and has zero volume. Conversely, three independent vectors form a genuinely three-dimensional parallelepiped: the first two span a base plane of positive area, and the third has positive distance from that plane, giving positive base-area times height. Thus volume is zero exactly when the columns are dependent. By the Invertible Matrix Theorem, dependence is exactly noninvertibility. This geometric proof does not invoke the determinant criterion in Section 3.2, Theorem 4.
+
+\exercise{3.3.26}{Geometry and linearity}
+\goal Prove equality of the two sets, which requires both inclusions.
+A point $y$ belongs to $T(p+S)$ exactly when $y=T(p+s)$ for some $s\in S$. Linearity changes this to $y=T(p)+T(s)$ for some $s\in S$, which is exactly membership in $T(p)+T(S)$. Every step can be reversed, so
+\[
+T(p+S)=T(p)+T(S).
+\]
+The argument also handles $S=\varnothing$, when both sets are empty. A linear map sends a translated set to the corresponding translated image.
+
+\exercise{3.3.27}{Area before and after a linear map}
+The original edge matrix and its image are
+\[B=\begin{bmatrix}-2&-2\\3&5\end{bmatrix},\qquad AB=\begin{bmatrix}-18&-22\\12&16\end{bmatrix}.\]
+The original area is $|\det B|=|-4|=4$. Since $\det A=6$, the image area is
+\[|\det A|\,|\det B|=6\cdot4=24.\]
+A direct determinant of the displayed image edge matrix gives $-24$, confirming the same absolute area.
+
+\exercise{3.3.28}{Area before and after a linear map}
+The original edge matrix and its image are
+\[B=\begin{bmatrix}4&0\\-7&1\end{bmatrix},\qquad AB=\begin{bmatrix}14&2\\-3&1\end{bmatrix}.\]
+The original area is $|\det B|=|4|=4$. Since $\det A=5$, the image area is
+\[|\det A|\,|\det B|=5\cdot4=20.\]
+A direct determinant of the displayed image edge matrix gives $20$, confirming the same absolute area.
+
+\exercise{3.3.29}{Area and volume formulas}
+The diagonal from $0$ to $v_1+v_2$ divides the parallelogram into two congruent triangles. Each has half the parallelogram's area, so the triangle with vertices $0,v_1,v_2$ has area
+\[
+\frac12\big|\det[v_1\ v_2]\big|.
+\]
+If the two edges are dependent, the parallelogram and triangle are both flat and the same formula gives zero.
+
+\exercise{3.3.30}{Area and volume formulas}
+\goal Derive an orientation-independent triangle-area formula.
+\step{Translate one vertex to the origin.}
+Subtract $(x_1,y_1)$ from all vertices. The new edge vectors are $u=(x_2-x_1,y_2-y_1)$ and $v=(x_3-x_1,y_3-y_1)$. Translation does not change area, so Exercise 29 gives $\tfrac12|\det[u\ v]|$.
+\step{Connect this to the displayed determinant.}
+In the $3\times3$ matrix in the exercise, subtract row 1 from rows 2 and 3. Expanding down column 3 then gives
+\[
+\begin{vmatrix}x_1&y_1&1\\x_2&y_2&1\\x_3&y_3&1\end{vmatrix}
+=\begin{vmatrix}x_2-x_1&y_2-y_1\\x_3-x_1&y_3-y_1\end{vmatrix}.
+\]
+This last matrix is $[u\ v]^T$, with the same determinant as $[u\ v]$.
+\answer{The ordinary area is one half the \emph{absolute value} of the displayed $3\times3$ determinant. The supplied print formula omits the absolute-value bars; without them it is a signed area and can be negative. For vertices $(0,0),(0,1),(1,0)$ the displayed determinant is $-1$, so the omission cannot be valid for ordinary area with arbitrary vertex order.}
+
+\exercise{3.3.31}{Area and volume formulas}
+\step{(a) Describe the image in both directions.}
+The map is $T(u_1,u_2,u_3)=(au_1,bu_2,cu_3)$. Because $a,b,c>0$, it has inverse $u=(x_1/a,x_2/b,x_3/c)$. Thus
+\[
+u_1^2+u_2^2+u_3^2\le1
+\quad\Longleftrightarrow\quad
+\frac{x_1^2}{a^2}+\frac{x_2^2}{b^2}+\frac{x_3^2}{c^2}\le1.
+\]
+So the ball maps exactly onto the solid ellipsoid, and equality describes its boundary.
+\step{(b) Multiply the original volume by the determinant factor.}
+The diagonal matrix has determinant $abc>0$. Hence the image volume is $abc(4\pi/3)=4\pi abc/3$.
+
+\exercise{3.3.32}{Area and volume formulas}
+\step{(a) Specify the map by its columns.}
+Take $A=[v_1\ v_2\ v_3]$ and $T(x)=Ax$. Then $T(e_i)=v_i$ and $T(0)=0$. More explicitly, the standard tetrahedron consists of the points $t_1e_1+t_2e_2+t_3e_3$ with $t_i\ge0$ and $t_1+t_2+t_3\le1$. Their images are exactly the same combinations of $v_1,v_2,v_3$, namely $S'$.
+\step{(b) Compute the scale factor from a unit reference volume.}
+The standard base triangle in the coordinate plane has area $1/2$, and the perpendicular height to $e_3$ is $1$. Thus $\operatorname{vol}(S)=(1/3)(1/2)(1)=1/6$. The linear map multiplies volume by $|\det A|$, giving
+\[
+\operatorname{vol}(S')=\frac16\big|\det[v_1\ v_2\ v_3]\big|.
+\]
+The same formula gives zero when the three vectors are dependent and the image tetrahedron is flat.
+
+\exercise{3.3.33}{A floating-point adjugate experiment}
+Use the reproducible random integer matrix
+\[A=\begin{bmatrix}-3&8&-2&4\\7&8&9&-1\\3&8&-9&-3\\0&4&-5&-1\end{bmatrix}.\]
+The following computation forms every cofactor independently in double precision, transposes, divides by the determinant, and compares with a numerical inverse.
+\begin{verbatim}
+import numpy as np
+A = np.array([[-3, 8, -2, 4],
+              [7, 8, 9, -1],
+              [3, 8, -9, -3],
+              [0, 4, -5, -1]],float)
+C = np.zeros((4,4))
+for i in range(4):
+    for j in range(4):
+        minor = np.delete(np.delete(A,i,0),j,1)
+        C[i,j] = (-1)**(i+j)*np.linalg.det(minor)
+B = C.T/np.linalg.det(A)
+print(np.max(np.abs(B-np.linalg.inv(A))))
+\end{verbatim}
+In this run the maximum absolute entry of $B-\operatorname{inv}(A)$ was approximately $1.55\times10^{-15}$. The exact determinant is $-640\ne0$, and exact rational arithmetic also gives $A\operatorname{adj}A=(\det A)I$.
+The floating discrepancy is roundoff, not a failure of the inverse identity; a different numerical library may change the last digits. Double precision stores about 16 decimal significant digits, not infinitely many, so we report a maximum error rather than an unjustified assertion of bit-for-bit equality.
+
+\exercise{3.3.34}{Cramer's rule and an inverse on the same random system}
+For one reproducible random system, take
+\[A=\begin{bmatrix}4&6&0&-7\\3&-6&9&-3\\-1&6&-5&-5\\-2&0&9&2\end{bmatrix},\qquad b=\begin{bmatrix}-7\\9\\-2\\-5\end{bmatrix}.\]
+The denominator and four column-replacement determinants are
+\[
+\det A=-2448,\qquad
+(\det A_1,\det A_2,\det A_3,\det A_4)=\left( 2616, \  5067, \  1188, \  3390\right).
+\]
+Hence Cramer's rule gives
+\[x=\begin{bmatrix}- \frac{109}{102}\\- \frac{563}{272}\\- \frac{33}{68}\\- \frac{565}{408}\end{bmatrix}.\]
+Direct exact multiplication gives $Ax=b$, and exact inversion gives the identical vector $A^{-1}b$. Here is a matrix-program command for the second component, with Python's zero-based column indexing:
+\begin{verbatim}
+from sympy import Matrix
+A = Matrix([[4, 6, 0, -7], [3, -6, 9, -3], [-1, 6, -5, -5], [-2, 0, 9, 2]])
+b = Matrix([-7, 9, -2, -5])
+A2 = A.copy()
+A2[:,1] = b
+x2 = A2.det()/A.det()
+assert x2 == (A.inv()*b)[1]
+\end{verbatim}
+In MATLAB the corresponding column-replacement command is
+\begin{verbatim}
+A2 = A; A2(:,2) = b; x2 = det(A2)/det(A);
+\end{verbatim}
+The determinant must be checked nonzero before division; a singular random draw would require a new nonsingular test matrix.
+
+\exercise{3.3.35}{Count arithmetic instead of confusing timing with flops}
+\goal Compare operation counts for a $30\times30$ inverse and an adjugate-based inverse.
+The question is conditional on having the historical MATLAB \texttt{flops} command. Modern MATLAB and NumPy do not provide that same counter, so a timing measurement must not be called a flop count. Instead we give an explicit arithmetic-count model that is reproducible and makes the comparison precise.
+
+Count each scalar addition, subtraction, multiplication, or division as one flop; exclude comparisons, indexing, and memory movement. Assume a dense nonsingular matrix with no zero shortcuts. For elimination at step $k$, with $r=n-k-1$ rows remaining, computing multipliers costs $r$ divisions and updating the trailing square costs $2r^2$ flops. Thus
+\[
+ L(n)=\sum_{r=1}^{n-1}(r+2r^2).
+\]
+After one LU factorization, solve $n$ right-hand sides to find the inverse. Unit-lower-triangular forward substitution costs $n(n-1)$ per right-hand side; back substitution costs $n(n-1)+n$. Hence the total is
+\[
+ L(n)+n(2n^2-n).
+\]
+For the cofactor method, form all $n^2$ determinants of size $n-1$, each with elimination cost $L(n-1)$ plus $n-2$ diagonal-product multiplications. Form the original determinant with cost $L(n)+n-1$, then divide $n^2$ adjugate entries by it. The cost is
+\[
+ n^2[L(n-1)+n-2]+L(n)+n-1+n^2.
+\]
+At $n=30$, these formulas give $70645$ flops for LU plus solves, versus $14294274$ for the independently evaluated adjugate formula, about $202.3$ times as many. They can be checked by
+\begin{verbatim}
+def L(n):
+    return sum(r+2*r*r for r in range(1,n))
+n = 30
+print(L(n)+n*(2*n*n-n))
+print(n*n*(L(n-1)+n-2)+L(n)+n-1+n*n)
+\end{verbatim}
+These are model counts, not measurements from an unavailable old MATLAB counter. Implementations that reuse subdeterminants or use different algorithms have different counts. The main conclusion is that forming all cofactors independently is an $O(n^5)$ method here, while factorization and solves are $O(n^3)$. Cofactor \emph{expansion} without elimination would be still more expensive.

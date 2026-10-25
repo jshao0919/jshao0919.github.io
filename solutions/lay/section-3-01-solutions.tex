@@ -1,0 +1,444 @@
+\section{Introduction to determinants}
+A determinant is a number attached to a square matrix. For a $2\times2$ matrix it is $ad-bc$. In a larger matrix, delete row $i$ and column $j$ to obtain the minor matrix $A_{ij}$; its cofactor is the \emph{number} $C_{ij}=(-1)^{i+j}\det A_{ij}$. The signs form a checkerboard, beginning with plus in position $(1,1)$.
+
+A cofactor expansion multiplies every entry of one chosen row or column by its cofactor, then adds. A zero entry contributes zero. Row or column positions in each new minor must be counted anew: they are not the original positions. For numerical checks below all arithmetic was also performed exactly with rational-number matrix computations.
+
+\practice{3.1.P1}{A sparse fourth-order determinant}
+\goal Compute the determinant without expanding sixteen terms.
+\idea Column 3 has just one nonzero entry, $2$ in row 1. Its sign is $(-1)^{1+3}=1$.
+\[
+ D=2\begin{vmatrix}0&3&-4\\-5&-8&3\\0&5&-6\end{vmatrix}.
+\]
+Expand that minor down its first column. The only nonzero entry is now $-5$ in position $(2,1)$, whose cofactor sign is negative. Hence
+\[
+ D=2[-(-5)]\begin{vmatrix}3&-4\\5&-6\end{vmatrix}
+ =10[3(-6)-(-4)5]=10(2)=20.
+\]
+\answer{The determinant is $20$. Keeping track of the sign and the negative entry separately prevents a common sign error.}
+
+\exercise{3.1.1}{Cofactor expansion}
+\goal Evaluate the determinant of
+\[A=\begin{bmatrix}3&0&4\\2&3&2\\0&5&-1\end{bmatrix}.\]
+\step{Expand across row 1.}
+\[
+\det A=(3)(-1)^{1+1}\begin{vmatrix}3&2\\5&-1\end{vmatrix} + (4)(-1)^{1+3}\begin{vmatrix}2&3\\0&5\end{vmatrix}=1.
+\]
+The $2\times2$ determinants used above are
+\[
+\begin{gathered}\det A_{11}=(3)(-1)-(2)(5)=-13\\\det A_{13}=(2)(5)-(3)(0)=10.\end{gathered}
+\]
+\step{Check by expanding down column 2, as requested.}
+\[
+\det A=(3)(-1)^{2+2}\begin{vmatrix}3&4\\0&-1\end{vmatrix} + (5)(-1)^{3+2}\begin{vmatrix}3&4\\2&2\end{vmatrix}=1.
+\]
+The $2\times2$ determinants used above are
+\[
+\begin{gathered}\det A_{22}=(3)(-1)-(4)(0)=-3\\\det A_{32}=(3)(2)-(4)(2)=-2.\end{gathered}
+\]
+The two expansions agree, as they must: the determinant does not depend on the chosen expansion.
+\answer{$\det A=1$.}
+
+\exercise{3.1.2}{Cofactor expansion}
+\goal Evaluate the determinant of
+\[A=\begin{bmatrix}0&5&1\\4&-3&0\\2&4&1\end{bmatrix}.\]
+\step{Expand across row 1.}
+\[
+\det A=(5)(-1)^{1+2}\begin{vmatrix}4&0\\2&1\end{vmatrix} + (1)(-1)^{1+3}\begin{vmatrix}4&-3\\2&4\end{vmatrix}=2.
+\]
+The $2\times2$ determinants used above are
+\[
+\begin{gathered}\det A_{12}=(4)(1)-(0)(2)=4\\\det A_{13}=(4)(4)-(-3)(2)=22.\end{gathered}
+\]
+\step{Check by expanding down column 2, as requested.}
+\[
+\det A=(5)(-1)^{1+2}\begin{vmatrix}4&0\\2&1\end{vmatrix} + (-3)(-1)^{2+2}\begin{vmatrix}0&1\\2&1\end{vmatrix} + (4)(-1)^{3+2}\begin{vmatrix}0&1\\4&0\end{vmatrix}=2.
+\]
+The $2\times2$ determinants used above are
+\[
+\begin{gathered}\det A_{12}=(4)(1)-(0)(2)=4\\\det A_{22}=(0)(1)-(1)(2)=-2\\\det A_{32}=(0)(0)-(1)(4)=-4.\end{gathered}
+\]
+The two expansions agree, as they must: the determinant does not depend on the chosen expansion.
+\answer{$\det A=2$.}
+
+\exercise{3.1.3}{Cofactor expansion}
+\goal Evaluate the determinant of
+\[A=\begin{bmatrix}2&-4&3\\3&1&2\\1&4&-1\end{bmatrix}.\]
+\step{Expand across row 1.}
+\[
+\det A=(2)(-1)^{1+1}\begin{vmatrix}1&2\\4&-1\end{vmatrix} + (-4)(-1)^{1+2}\begin{vmatrix}3&2\\1&-1\end{vmatrix} + (3)(-1)^{1+3}\begin{vmatrix}3&1\\1&4\end{vmatrix}=-5.
+\]
+The $2\times2$ determinants used above are
+\[
+\begin{gathered}\det A_{11}=(1)(-1)-(2)(4)=-9\\\det A_{12}=(3)(-1)-(2)(1)=-5\\\det A_{13}=(3)(4)-(1)(1)=11.\end{gathered}
+\]
+\step{Check by expanding down column 2, as requested.}
+\[
+\det A=(-4)(-1)^{1+2}\begin{vmatrix}3&2\\1&-1\end{vmatrix} + (1)(-1)^{2+2}\begin{vmatrix}2&3\\1&-1\end{vmatrix} + (4)(-1)^{3+2}\begin{vmatrix}2&3\\3&2\end{vmatrix}=-5.
+\]
+The $2\times2$ determinants used above are
+\[
+\begin{gathered}\det A_{12}=(3)(-1)-(2)(1)=-5\\\det A_{22}=(2)(-1)-(3)(1)=-5\\\det A_{32}=(2)(2)-(3)(3)=-5.\end{gathered}
+\]
+The two expansions agree, as they must: the determinant does not depend on the chosen expansion.
+\answer{$\det A=-5$.}
+
+\exercise{3.1.4}{Cofactor expansion}
+\goal Evaluate the determinant of
+\[A=\begin{bmatrix}1&3&5\\2&1&1\\3&4&2\end{bmatrix}.\]
+\step{Expand across row 1.}
+\[
+\det A=(1)(-1)^{1+1}\begin{vmatrix}1&1\\4&2\end{vmatrix} + (3)(-1)^{1+2}\begin{vmatrix}2&1\\3&2\end{vmatrix} + (5)(-1)^{1+3}\begin{vmatrix}2&1\\3&4\end{vmatrix}=20.
+\]
+The $2\times2$ determinants used above are
+\[
+\begin{gathered}\det A_{11}=(1)(2)-(1)(4)=-2\\\det A_{12}=(2)(2)-(1)(3)=1\\\det A_{13}=(2)(4)-(1)(3)=5.\end{gathered}
+\]
+\step{Check by expanding down column 2, as requested.}
+\[
+\det A=(3)(-1)^{1+2}\begin{vmatrix}2&1\\3&2\end{vmatrix} + (1)(-1)^{2+2}\begin{vmatrix}1&5\\3&2\end{vmatrix} + (4)(-1)^{3+2}\begin{vmatrix}1&5\\2&1\end{vmatrix}=20.
+\]
+The $2\times2$ determinants used above are
+\[
+\begin{gathered}\det A_{12}=(2)(2)-(1)(3)=1\\\det A_{22}=(1)(2)-(5)(3)=-13\\\det A_{32}=(1)(1)-(5)(2)=-9.\end{gathered}
+\]
+The two expansions agree, as they must: the determinant does not depend on the chosen expansion.
+\answer{$\det A=20$.}
+
+\exercise{3.1.5}{Cofactor expansion}
+\goal Evaluate the determinant of
+\[A=\begin{bmatrix}2&3&-4\\4&0&5\\5&1&6\end{bmatrix}.\]
+\step{Expand across row 1.}
+\[
+\det A=(2)(-1)^{1+1}\begin{vmatrix}0&5\\1&6\end{vmatrix} + (3)(-1)^{1+2}\begin{vmatrix}4&5\\5&6\end{vmatrix} + (-4)(-1)^{1+3}\begin{vmatrix}4&0\\5&1\end{vmatrix}=-23.
+\]
+The $2\times2$ determinants used above are
+\[
+\begin{gathered}\det A_{11}=(0)(6)-(5)(1)=-5\\\det A_{12}=(4)(6)-(5)(5)=-1\\\det A_{13}=(4)(1)-(0)(5)=4.\end{gathered}
+\]
+\answer{$\det A=-23$.}
+
+\exercise{3.1.6}{Cofactor expansion}
+\goal Evaluate the determinant of
+\[A=\begin{bmatrix}5&-2&4\\0&3&-5\\2&-4&7\end{bmatrix}.\]
+\step{Expand across row 1.}
+\[
+\det A=(5)(-1)^{1+1}\begin{vmatrix}3&-5\\-4&7\end{vmatrix} + (-2)(-1)^{1+2}\begin{vmatrix}0&-5\\2&7\end{vmatrix} + (4)(-1)^{1+3}\begin{vmatrix}0&3\\2&-4\end{vmatrix}=1.
+\]
+The $2\times2$ determinants used above are
+\[
+\begin{gathered}\det A_{11}=(3)(7)-(-5)(-4)=1\\\det A_{12}=(0)(7)-(-5)(2)=10\\\det A_{13}=(0)(-4)-(3)(2)=-6.\end{gathered}
+\]
+\answer{$\det A=1$.}
+
+\exercise{3.1.7}{Cofactor expansion}
+\goal Evaluate the determinant of
+\[A=\begin{bmatrix}4&3&0\\6&5&2\\9&7&3\end{bmatrix}.\]
+\step{Expand across row 1.}
+\[
+\det A=(4)(-1)^{1+1}\begin{vmatrix}5&2\\7&3\end{vmatrix} + (3)(-1)^{1+2}\begin{vmatrix}6&2\\9&3\end{vmatrix}=4.
+\]
+The $2\times2$ determinants used above are
+\[
+\begin{gathered}\det A_{11}=(5)(3)-(2)(7)=1\\\det A_{12}=(6)(3)-(2)(9)=0.\end{gathered}
+\]
+\answer{$\det A=4$.}
+
+\exercise{3.1.8}{Cofactor expansion}
+\goal Evaluate the determinant of
+\[A=\begin{bmatrix}8&1&6\\4&0&3\\3&-2&5\end{bmatrix}.\]
+\step{Expand across row 1.}
+\[
+\det A=(8)(-1)^{1+1}\begin{vmatrix}0&3\\-2&5\end{vmatrix} + (1)(-1)^{1+2}\begin{vmatrix}4&3\\3&5\end{vmatrix} + (6)(-1)^{1+3}\begin{vmatrix}4&0\\3&-2\end{vmatrix}=-11.
+\]
+The $2\times2$ determinants used above are
+\[
+\begin{gathered}\det A_{11}=(0)(5)-(3)(-2)=6\\\det A_{12}=(4)(5)-(3)(3)=11\\\det A_{13}=(4)(-2)-(0)(3)=-8.\end{gathered}
+\]
+\answer{$\det A=-11$.}
+
+\exercise{3.1.9}{Cofactor expansion}
+\goal Evaluate the determinant of
+\[A=\begin{bmatrix}6&0&0&5\\1&7&2&-5\\2&0&0&0\\8&3&1&8\end{bmatrix}.\]
+Choose a row or column with the most zeros at each stage. In the following calculation tree, $D_{1}$ is the required determinant; each other $D_j$ is a smaller determinant. The exponent of $-1$ records the deleted row and column in that particular matrix.
+\[
+D_{1}=\begin{vmatrix}6&0&0&5\\1&7&2&-5\\2&0&0&0\\8&3&1&8\end{vmatrix}=(2)(-1)^{3+1}D_{2}=10.
+\]
+\[
+D_{2}=\begin{vmatrix}0&0&5\\7&2&-5\\3&1&8\end{vmatrix}=(5)(-1)^{1+3}D_{3}=5.
+\]
+\[
+D_{3}=\begin{vmatrix}7&2\\3&1\end{vmatrix}=(7)(1)-(2)(3)=1.
+\]
+Thus the answer is $10$.
+
+\exercise{3.1.10}{Cofactor expansion}
+\goal Evaluate the determinant of
+\[A=\begin{bmatrix}1&-2&5&2\\0&0&3&0\\2&-6&-7&5\\5&0&4&4\end{bmatrix}.\]
+Choose a row or column with the most zeros at each stage. In the following calculation tree, $D_{1}$ is the required determinant; each other $D_j$ is a smaller determinant. The exponent of $-1$ records the deleted row and column in that particular matrix.
+\[
+D_{1}=\begin{vmatrix}1&-2&5&2\\0&0&3&0\\2&-6&-7&5\\5&0&4&4\end{vmatrix}=(3)(-1)^{2+3}D_{2}=-6.
+\]
+\[
+D_{2}=\begin{vmatrix}1&-2&2\\2&-6&5\\5&0&4\end{vmatrix}=(5)(-1)^{3+1}D_{3} + (4)(-1)^{3+3}D_{4}=2.
+\]
+\[
+D_{4}=\begin{vmatrix}1&-2\\2&-6\end{vmatrix}=(1)(-6)-(-2)(2)=-2.
+\]
+\[
+D_{3}=\begin{vmatrix}-2&2\\-6&5\end{vmatrix}=(-2)(5)-(2)(-6)=2.
+\]
+Thus the answer is $-6$.
+
+\exercise{3.1.11}{Cofactor expansion}
+\goal Evaluate the determinant of
+\[A=\begin{bmatrix}3&5&-8&4\\0&-2&3&-7\\0&0&1&5\\0&0&0&2\end{bmatrix}.\]
+Choose a row or column with the most zeros at each stage. In the following calculation tree, $D_{1}$ is the required determinant; each other $D_j$ is a smaller determinant. The exponent of $-1$ records the deleted row and column in that particular matrix.
+\[
+D_{1}=\begin{vmatrix}3&5&-8&4\\0&-2&3&-7\\0&0&1&5\\0&0&0&2\end{vmatrix}=(2)(-1)^{4+4}D_{2}=-12.
+\]
+\[
+D_{2}=\begin{vmatrix}3&5&-8\\0&-2&3\\0&0&1\end{vmatrix}=(1)(-1)^{3+3}D_{3}=-6.
+\]
+\[
+D_{3}=\begin{vmatrix}3&5\\0&-2\end{vmatrix}=(3)(-2)-(5)(0)=-6.
+\]
+Thus the answer is $-12$.
+
+\exercise{3.1.12}{Cofactor expansion}
+\goal Evaluate the determinant of
+\[A=\begin{bmatrix}4&0&0&0\\7&-1&0&0\\2&6&3&0\\5&-8&4&-3\end{bmatrix}.\]
+Choose a row or column with the most zeros at each stage. In the following calculation tree, $D_{1}$ is the required determinant; each other $D_j$ is a smaller determinant. The exponent of $-1$ records the deleted row and column in that particular matrix.
+\[
+D_{1}=\begin{vmatrix}4&0&0&0\\7&-1&0&0\\2&6&3&0\\5&-8&4&-3\end{vmatrix}=(4)(-1)^{1+1}D_{2}=36.
+\]
+\[
+D_{2}=\begin{vmatrix}-1&0&0\\6&3&0\\-8&4&-3\end{vmatrix}=(-1)(-1)^{1+1}D_{3}=9.
+\]
+\[
+D_{3}=\begin{vmatrix}3&0\\4&-3\end{vmatrix}=(3)(-3)-(0)(4)=-9.
+\]
+Thus the answer is $36$.
+
+\exercise{3.1.13}{Cofactor expansion}
+\goal Evaluate the determinant of
+\[A=\begin{bmatrix}4&0&-7&3&-5\\0&0&2&0&0\\7&3&-6&4&-8\\5&0&5&2&-3\\0&0&9&-1&2\end{bmatrix}.\]
+Choose a row or column with the most zeros at each stage. In the following calculation tree, $D_{1}$ is the required determinant; each other $D_j$ is a smaller determinant. The exponent of $-1$ records the deleted row and column in that particular matrix.
+\[
+D_{1}=\begin{vmatrix}4&0&-7&3&-5\\0&0&2&0&0\\7&3&-6&4&-8\\5&0&5&2&-3\\0&0&9&-1&2\end{vmatrix}=(2)(-1)^{2+3}D_{2}=6.
+\]
+\[
+D_{2}=\begin{vmatrix}4&0&3&-5\\7&3&4&-8\\5&0&2&-3\\0&0&-1&2\end{vmatrix}=(3)(-1)^{2+2}D_{3}=-3.
+\]
+\[
+D_{3}=\begin{vmatrix}4&3&-5\\5&2&-3\\0&-1&2\end{vmatrix}=(-1)(-1)^{3+2}D_{4} + (2)(-1)^{3+3}D_{5}=-1.
+\]
+\[
+D_{5}=\begin{vmatrix}4&3\\5&2\end{vmatrix}=(4)(2)-(3)(5)=-7.
+\]
+\[
+D_{4}=\begin{vmatrix}4&-5\\5&-3\end{vmatrix}=(4)(-3)-(-5)(5)=13.
+\]
+Thus the answer is $6$.
+
+\exercise{3.1.14}{Cofactor expansion}
+\goal Evaluate the determinant of
+\[A=\begin{bmatrix}6&3&2&4&0\\9&0&-4&1&0\\8&-5&6&7&1\\3&0&0&0&0\\4&2&3&2&0\end{bmatrix}.\]
+Choose a row or column with the most zeros at each stage. In the following calculation tree, $D_{1}$ is the required determinant; each other $D_j$ is a smaller determinant. The exponent of $-1$ records the deleted row and column in that particular matrix.
+\[
+D_{1}=\begin{vmatrix}6&3&2&4&0\\9&0&-4&1&0\\8&-5&6&7&1\\3&0&0&0&0\\4&2&3&2&0\end{vmatrix}=(3)(-1)^{4+1}D_{2}=9.
+\]
+\[
+D_{2}=\begin{vmatrix}3&2&4&0\\0&-4&1&0\\-5&6&7&1\\2&3&2&0\end{vmatrix}=(1)(-1)^{3+4}D_{3}=-3.
+\]
+\[
+D_{3}=\begin{vmatrix}3&2&4\\0&-4&1\\2&3&2\end{vmatrix}=(-4)(-1)^{2+2}D_{4} + (1)(-1)^{2+3}D_{5}=3.
+\]
+\[
+D_{5}=\begin{vmatrix}3&2\\2&3\end{vmatrix}=(3)(3)-(2)(2)=5.
+\]
+\[
+D_{4}=\begin{vmatrix}3&4\\2&2\end{vmatrix}=(3)(2)-(4)(2)=-2.
+\]
+Thus the answer is $9$.
+
+\exercise{3.1.15}{The six diagonal products}
+\goal Use the six-diagonal rule on $A=\begin{bmatrix}3&0&4\\2&3&2\\0&5&-1\end{bmatrix}$.
+The three downward products are $-9$, $0$, $40$, and the three upward products are $0$, $30$, $0$. Add the downward products and subtract the entire upward sum:
+\[\det A=(-9+0+40)-(0+30+0)=1.\]
+This shortcut is an arrangement of the six signed terms in a $3\times3$ determinant; it is not a rule for larger matrices.
+
+\exercise{3.1.16}{The six diagonal products}
+\goal Use the six-diagonal rule on $A=\begin{bmatrix}0&5&1\\4&-3&0\\2&4&1\end{bmatrix}$.
+The three downward products are $0$, $0$, $16$, and the three upward products are $-6$, $0$, $20$. Add the downward products and subtract the entire upward sum:
+\[\det A=(0+0+16)-(-6+0+20)=2.\]
+This shortcut is an arrangement of the six signed terms in a $3\times3$ determinant; it is not a rule for larger matrices.
+
+\exercise{3.1.17}{The six diagonal products}
+\goal Use the six-diagonal rule on $A=\begin{bmatrix}2&-4&3\\3&1&2\\1&4&-1\end{bmatrix}$.
+The three downward products are $-2$, $-8$, $36$, and the three upward products are $3$, $16$, $12$. Add the downward products and subtract the entire upward sum:
+\[\det A=(-2+-8+36)-(3+16+12)=-5.\]
+This shortcut is an arrangement of the six signed terms in a $3\times3$ determinant; it is not a rule for larger matrices.
+
+\exercise{3.1.18}{The six diagonal products}
+\goal Use the six-diagonal rule on $A=\begin{bmatrix}1&3&5\\2&1&1\\3&4&2\end{bmatrix}$.
+The three downward products are $2$, $9$, $40$, and the three upward products are $15$, $4$, $12$. Add the downward products and subtract the entire upward sum:
+\[\det A=(2+9+40)-(15+4+12)=20.\]
+This shortcut is an arrangement of the six signed terms in a $3\times3$ determinant; it is not a rule for larger matrices.
+
+\exercise{3.1.19}{A row operation and its determinant}
+The second matrix is obtained by $R_1\leftrightarrow R_2$. Its determinant is $cb-da=-(ad-bc)$. Thus a row interchange reverses the determinant's sign.
+
+\exercise{3.1.20}{A row operation and its determinant}
+The operation is $R_2\leftarrow kR_2$. Direct calculation gives $a(kd)-b(kc)=k(ad-bc)$. Multiplying one row by $k$ multiplies the determinant by $k$.
+
+\exercise{3.1.21}{A row operation and its determinant}
+The operation is $R_2\leftarrow R_2+kR_1$. The old determinant is $3\cdot6-4\cdot5=-2$; the new one is $3(6+4k)-4(5+3k)=18+12k-20-12k=-2$. The added terms cancel, so the determinant is unchanged.
+
+\exercise{3.1.22}{A row operation and its determinant}
+The operation is $R_1\leftarrow R_1+kR_2$. The new determinant is $(a+kc)d-(b+kd)c=ad+kcd-bc-kdc=ad-bc$. Thus row replacement preserves the determinant.
+
+\exercise{3.1.23}{A row operation and its determinant}
+The first row $(1,1,1)$ is replaced by $(k,k,k)=k(1,1,1)$. To see the factor directly, expand along row 1: every term in the expansion gains exactly one factor $k$. Thus the new determinant is $k$ times the old one (also when $k=0$).
+
+\exercise{3.1.24}{A row operation and its determinant}
+The operation interchanges rows 1 and 2. Interchanging these two rows reverses the sign of every signed product in the determinant, so the new determinant is the negative of the old determinant.
+
+\exercise{3.1.25}{An elementary-matrix determinant}
+This lower triangular matrix has diagonal $1,1,1$. Its determinant is their product, $1$. It performs $R_3\leftarrow R_3+kR_2$ on another matrix.
+
+\exercise{3.1.26}{An elementary-matrix determinant}
+The matrix is lower triangular with diagonal $1,1,1$, so its determinant is $1$. Its row operation is $R_3\leftarrow R_3+kR_1$.
+
+\exercise{3.1.27}{An elementary-matrix determinant}
+The diagonal matrix has diagonal $k,1,1$, so its determinant is $k$. It scales row 1 by $k$. For an elementary matrix this operation requires $k\ne0$; the displayed determinant formula is still valid at $k=0$.
+
+\exercise{3.1.28}{An elementary-matrix determinant}
+The diagonal entries are $1,k,1$, giving determinant $k$. The operation scales row 2 by $k$; an elementary scaling has $k\ne0$.
+
+\exercise{3.1.29}{An elementary-matrix determinant}
+The matrix is obtained from $I_3$ by interchanging rows 1 and 2, so its determinant is $-1$. Direct expansion along row 3 gives $1\det\left[\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right]=-1$.
+
+\exercise{3.1.30}{An elementary-matrix determinant}
+The matrix interchanges rows 1 and 3 of $I_3$. Its determinant is $-1$. Expansion across row 2 gives $1(-1)^{2+2}\det\left[\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right]=-1$.
+
+\exercise{3.1.31}{An elementary-matrix determinant}
+A row-replacement elementary matrix is obtained from $I_n$ by inserting a scalar $k$ into an off-diagonal position $(i,j)$. Expand by rows different from $i,j$ to reduce to the $2\times2$ block $\left[\begin{smallmatrix}1&k\\0&1\end{smallmatrix}\right]$ or its transpose. The determinant is $1$. Equivalently, adding $k$ times one identity row to another creates no new nonzero signed product. The examples in Exercises 25 and 26 illustrate this general result.
+
+\exercise{3.1.32}{An elementary-matrix determinant}
+A scaling elementary matrix is diagonal with one diagonal entry $k\ne0$ and all others $1$. The triangular-matrix theorem therefore gives determinant $k$. It is one row that is scaled, not all $n$ rows.
+
+\exercise{3.1.33}{Verify multiplication for one elementary matrix}
+Here $E=\left[\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right]$, so $EA=\left[\begin{smallmatrix}c&d\\a&b\end{smallmatrix}\right]$. Consequently $\det(EA)=cb-da=-(ad-bc)$, while $\det E=-1$. Thus $\det(EA)=(\det E)(\det A)$.
+
+\exercise{3.1.34}{Verify multiplication for one elementary matrix}
+For $E=\left[\begin{smallmatrix}1&0\\0&k\end{smallmatrix}\right]$, we have $EA=\left[\begin{smallmatrix}a&b\\kc&kd\end{smallmatrix}\right]$. Its determinant is $akd-bkc=k(ad-bc)$. Since $\det E=k$, the required equality follows.
+
+\exercise{3.1.35}{Verify multiplication for one elementary matrix}
+For $E=\left[\begin{smallmatrix}1&k\\0&1\end{smallmatrix}\right]$, multiplication gives $EA=\left[\begin{smallmatrix}a+kc&b+kd\\c&d\end{smallmatrix}\right]$. Its determinant is $ad+kcd-bc-kdc=ad-bc$. Also $\det E=1$, so the two sides agree.
+
+\exercise{3.1.36}{Verify multiplication for one elementary matrix}
+For $E=\left[\begin{smallmatrix}1&0\\k&1\end{smallmatrix}\right]$, multiplication gives $EA=\left[\begin{smallmatrix}a&b\\ka+c&kb+d\end{smallmatrix}\right]$. Its determinant is $a(kb+d)-b(ka+c)=ad-bc$. This equals $(\det E)(\det A)$ because $\det E=1$.
+
+\exercise{3.1.37}{Determinants and their interpretation}
+Scalar multiplication scales every entry, so $5A=\left[\begin{smallmatrix}15&5\\20&10\end{smallmatrix}\right]$. We find $\det A=3\cdot2-1\cdot4=2$, but $\det(5A)=15\cdot10-5\cdot20=50$, whereas $5\det A=10$. Thus the proposed equality is false. Both rows were multiplied by $5$, giving a factor $5^2$.
+
+\exercise{3.1.38}{Determinants and their interpretation}
+Write $kA=\left[\begin{smallmatrix}ka&kb\\kc&kd\end{smallmatrix}\right]$. Then $\det(kA)=(ka)(kd)-(kb)(kc)=k^2(ad-bc)=k^2\det A$. This calculation also covers $k=0$.
+
+\exercise{3.1.39}{Determinants and their interpretation}
+\step{(a) True, with the usual initial case.} For $n\ge2$, the recursive definition expands into determinants of $(n-1)\times(n-1)$ minor matrices. A $1\times1$ determinant is its sole entry, the base case.
+\step{(b) False: a cofactor is a scalar.} Deleting a row and column produces the matrix $A_{ij}$. The cofactor is $(-1)^{i+j}\det A_{ij}$, a signed number, not that submatrix.
+
+\exercise{3.1.40}{Determinants and their interpretation}
+\step{(a) False.} Row and column expansions compute the same number $\det A$, not negatives in general. For example, both expansions of $I_2$ give $1$.
+\step{(b) False.} For a triangular matrix the determinant is the \emph{product} of diagonal entries. For $I_2$ the determinant is $1$, whereas the sum of the diagonal is $2$.
+
+\exercise{3.1.41}{Determinants and their interpretation}
+\goal Compare unsigned area with a determinant, and then vary the shear.
+The two adjacent edges are $u=(3,0)$ and $v=(1,2)$. The horizontal base has length $3$ and perpendicular height $2$, so the area is $3\cdot2=6$. Also $\det[u\ v]=3\cdot2-0\cdot1=6$.
+Replacing $v$ by $(x,2)$ leaves its height above the horizontal base equal to $2$, hence leaves the area $6$; the determinant is still $3\cdot2-0x=6$.
+\begin{center}\setlength{\unitlength}{5mm}\begin{picture}(13,6)
+\put(1,1){\vector(1,0){10}}\put(1,1){\vector(0,1){4}}
+\put(1,1){\polyline(0,0)(6,0)(8,4)(2,4)(0,0)}
+\put(6.5,0){$u=(3,0)$}\put(3,5.4){\makebox(0,0)[b]{$v=(1,2)$}}\put(8.2,4.5){$u+v$}
+\end{picture}\end{center}
+The horizontal displacement changes the slant, not the height. This operation is a shear; the sketch uses $x=1$, and the argument works for every real $x$.
+
+\exercise{3.1.42}{Determinants and their interpretation}
+Take the horizontal base $v=(c,0)$ of length $c>0$. The other edge $u=(a,b)$ has height $b>0$, so the area is $bc$. On the other hand,
+\[
+\det[u\ v]=\begin{vmatrix}a&c\\b&0\end{vmatrix}=-bc,
+\qquad \det[v\ u]=\begin{vmatrix}c&a\\0&b\end{vmatrix}=bc.
+\]
+\begin{center}\setlength{\unitlength}{5mm}\begin{picture}(13,6)
+\put(1,1){\vector(1,0){10}}\put(1,1){\vector(0,1){4}}
+\put(1,1){\polyline(0,0)(6,0)(9,4)(3,4)(0,0)}
+\put(6,0){$(c,0)$}\put(4,5.4){\makebox(0,0)[b]{$(a,b)$}}\put(10,5.4){\makebox(0,0)[b]{$(a+c,b)$}}
+\end{picture}\end{center}
+The sketch is schematic. Interchanging the order of the columns changes orientation and the determinant's sign, but the ordinary area is nonnegative and equals either determinant's absolute value.
+
+\exercise{3.1.43}{A reproducible test of determinant additivity}
+\goal Test additivity with four reproducible randomly generated pairs.
+A computer experiment supplies evidence, not a proof of a universal identity. Here is an exact integer experiment; a fixed seed lets another reader repeat the same draws.
+\begin{verbatim}
+from random import Random
+from sympy import Matrix
+r = Random(31043)
+for n in (5,2,3,4):
+    A = Matrix(n,n,[r.randint(-9,9) for _ in range(n*n)])
+    B = Matrix(n,n,[r.randint(-9,9) for _ in range(n*n)])
+    print(n, A.det(), B.det(), (A+B).det(),
+          (A+B).det()-A.det()-B.det())
+\end{verbatim}
+\[\begin{array}{r|rrrr}n&\det A&\det B&\det(A+B)&\text{difference}\\\hline
+5&10070&136248&121574&-24744\\
+2&-34&1&-78&-45\\
+3&888&-55&1464&631\\
+4&176&748&-6819&-7743
+\end{array}\]
+The nonzero differences disprove additivity. A particularly short exact counterexample is $A=B=I_2$: $\det(A+B)=4$, but $\det A+\det B=2$. The determinant is linear in \emph{one row at a time with the other rows fixed}, not linear in the entire matrix.
+
+\exercise{3.1.44}{A reproducible test of multiplication}
+Use the same four random pairs and seed from Exercise 43. Replace the last line of that code by
+\begin{verbatim}
+    print(n, (A*B).det(), A.det()*B.det(),
+          (A*B).det()-A.det()*B.det())
+\end{verbatim}
+The exact outputs are
+\[\begin{array}{r|rrr}n&\det(AB)&(\det A)(\det B)&\text{difference}\\\hline
+5&1372017360&1372017360&0\\
+2&-34&-34&0\\
+3&-48840&-48840&0\\
+4&131648&131648&0\end{array}\]
+All four differences are zero. This suggests $\det(AB)=(\det A)(\det B)$. The next section proves it for all square matrices, so the experiment is not being substituted for a proof.
+
+\exercise{3.1.45}{Scaling and transposition in several dimensions}
+Generate three $4\times4$ samples and two each of sizes $5$ and $6$. The following code carries out all comparisons, including transpose, with exact arithmetic.
+\begin{verbatim}
+from random import Random
+from sympy import Matrix
+r = Random(31045)
+for n in (4,4,4,5,5,6,6):
+    A = Matrix(n,n,[r.randint(-9,9) for _ in range(n*n)])
+    d = A.det()
+    assert A.T.det() == d
+    print(n,d,(-A).det(),(2*A).det(),(10*A).det())
+\end{verbatim}
+The transpose check passed for every sample; the remaining outputs are
+\[\begin{array}{r|rrrr}n&\det A&\det(-A)&\det(2A)&\det(10A)\\\hline
+4&2446&2446&39136&24460000\\4&3572&3572&57152&35720000\\4&2144&2144&34304&21440000\\5&150900&-150900&4828800&15090000000\\5&29441&-29441&942112&2944100000\\6&-122640&-122640&-7848960&-122640000000\\6&-191568&-191568&-12260352&-191568000000\end{array}\]
+The conjectures are $\det A^T=\det A$ and $\det(kA)=k^n\det A$. In particular, negation preserves the determinant in even dimensions and reverses its sign in odd dimensions. Scaling the matrix scales \emph{every} row, so the scale factor occurs $n$ times. The integer calculations above check that description at every sampled size.
+
+\exercise{3.1.46}{A determinant of an inverse}
+Use seed $31046$ and the same integer generator as Exercise 45, now at sizes $4,5,6$. For each generated matrix, compute
+\begin{verbatim}
+d = A.det()
+if d != 0:
+    print(n,d,A.inv().det())
+else:
+    print(A.echelon_form())
+\end{verbatim}
+The three sampled matrices were nonsingular and gave
+\[\begin{array}{r|rr}n&\det A&\det(A^{-1})\\\hline
+4&-1586&- \frac{1}{1586}\\5&34641&\frac{1}{34641}\\6&-48084&- \frac{1}{48084}\end{array}\]
+Each last entry is the reciprocal of the preceding one. Thus the conjecture is $\det(A^{-1})=1/\det A$ when $A$ is invertible. A zero determinant would instead lead to a missing pivot in echelon form and no inverse; the reciprocal expression would then be undefined. Multiplicativity in the next section proves the conjecture by applying it to $AA^{-1}=I$.

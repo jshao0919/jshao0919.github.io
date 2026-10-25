@@ -1,0 +1,13 @@
+{
+  "chapter": 8,
+  "section": 2,
+  "title": "Affine independence",
+  "exercise_count": 24,
+  "practice_count": 2,
+  "source_pages": [
+    468,
+    469,
+    470
+  ],
+  "verification": "Exact SymPy numerical inputs/solutions verified, plus full-precision SVD/PCA orthogonality and reconstruction/eigen residual checks as applicable. Standalone latexmk clean; requested sketches included."
+}

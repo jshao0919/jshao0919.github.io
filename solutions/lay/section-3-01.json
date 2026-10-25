@@ -1,0 +1,13 @@
+{
+  "chapter": 3,
+  "section": 1,
+  "title": "Introduction to determinants",
+  "exercise_count": 46,
+  "practice_count": 1,
+  "source_pages": [
+    184,
+    185,
+    186
+  ],
+  "verification": "All numerical determinants, adjugates, inverses and solution substitutions checked with exact SymPy arithmetic; stated computer experiments executed; standalone PDF compiles without layout/reference warnings."
+}

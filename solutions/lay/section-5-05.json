@@ -1,0 +1,15 @@
+{
+  "chapter": 5,
+  "section": 5,
+  "title": "Complex eigenvalues",
+  "exercise_count": 28,
+  "practice_count": 1,
+  "source_pages": [
+    317,
+    318
+  ],
+  "source_notes": [
+    "Exercise24: the real part of a complex eigenvector may be zero; the printed assertion requires a nonzero qualification. The solution proves real eigenvalues and the existence of a nonzero real or imaginary eigenvector without invoking the later spectral theorem."
+  ],
+  "verification": "Exact SymPy characteristic polynomials, eigenspace nullspaces, AP=PD/AP=PC and basis coordinate products verified; standalone PDF compiles without layout/reference warnings."
+}

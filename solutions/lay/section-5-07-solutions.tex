@@ -1,0 +1,429 @@
+\section{Applications to differential equations}
+For continuous time the rule is $x'(t)=Ax(t)$. If $Av=\lambda v$,
+then $v e^{\lambda t}$ is a solution because its derivative is
+$\lambda v e^{\lambda t}=Av e^{\lambda t}$. For a real eigenbasis,
+expand the initial vector in that basis and replace each coefficient's
+evolution by $e^{\lambda t}$.
+
+\textbf{Complex eigenvalues.} If $\lambda=a+bi$ and $v=p+iq$ with
+$p,q$ real and $b>0$, a conjugate pair of complex eigenfunctions is
+$ve^{(a+bi)t}$ and $\overline v e^{(a-bi)t}$. A real basis for the same
+solution space is
+\[r_1(t)=e^{at}(p\cos bt-q\sin bt),\qquad
+r_2(t)=e^{at}(p\sin bt+q\cos bt).\]
+This follows by multiplying out Euler's identity
+$e^{ibt}=\cos bt+i\sin bt$ and taking real and imaginary parts.
+For real initial data use arbitrary real coefficients of $r_1,r_2$.
+The sign of the real part $a$, rather than $|\lambda|$, decides
+continuous-time decay or growth.
+
+\practice{5.7.P1}{Diagonalize over the complex numbers}
+The three given eigenvalues $-.5,.2+.3i,.2-.3i$ are distinct.
+Their eigenvectors are consequently linearly independent over $\C$.
+The matrix $P=[v_1\ v_2\ v_3]$ is invertible and
+$A=P\operatorname{diag}(-.5,.2+.3i,.2-.3i)P^{-1}$.
+
+\practice{5.7.P2}{Convert the complex general solution to a real one}
+The complex general solution is
+$x=c_1v_1e^{-.5t}+c_2v_2e^{(.2+.3i)t}+c_3v_3e^{(.2-.3i)t}$,
+with complex constants. For real solutions use $v_1=(1,-2,1)^T$,
+$p=(1,0,2)^T$, and $q=(2,4,0)^T$. The real general solution is
+\[x=d_1 e^{-.5t}(1,-2,1)^T+d_2r_1(t)+d_3r_2(t),\]
+where $r_1,r_2$ are the formulas above with $a=.2,b=.3$ and all
+$d_j$ real. This gives every real solution, since at zero the vectors
+$v_1,p,q$ are linearly independent.
+
+\practice{5.7.P3}{Describe the stable line and unstable spiral plane}
+On the line spanned by $v_1$ trajectories approach zero like $e^{-.5t}$.
+In the plane spanned by $p,q$, they spiral outward with exponential
+factor $e^{.2t}$. A typical three-dimensional trajectory has both
+components: its stable-line component decays while its rotating planar
+component expands. The origin is a spiral saddle, not an attractor.
+
+\exercise{5.7.1}{Determine the constants from the initial position}
+Write $x(0)=c_1v_1+c_2v_2$. In coordinates this is
+\[\left[\begin{matrix}-3 & -1\\1 & 1\end{matrix}\right]\begin{bmatrix}c_1\\c_2\end{bmatrix}=\left[\begin{matrix}-6\\1\end{matrix}\right].\]
+Solving the two scalar equations gives $c_1=\frac{5}{2}$,
+$c_2=- \frac{3}{2}$. Therefore
+\[x(t)=\frac{5}{2}e^{4t}\left[\begin{matrix}-3\\1\end{matrix}\right]
++\left(- \frac{3}{2}\right)e^{2t}\left[\begin{matrix}-1\\1\end{matrix}\right].\]
+At $t=0$ the coefficients reproduce the specified vector. Differentiating
+each term and using $Av_j=\lambda_jv_j$ verifies $x'=Ax$.
+
+\exercise{5.7.2}{Determine the constants from the initial position}
+Write $x(0)=c_1v_1+c_2v_2$. In coordinates this is
+\[\left[\begin{matrix}-1 & 1\\1 & 1\end{matrix}\right]\begin{bmatrix}c_1\\c_2\end{bmatrix}=\left[\begin{matrix}2\\3\end{matrix}\right].\]
+Solving the two scalar equations gives $c_1=\frac{1}{2}$,
+$c_2=\frac{5}{2}$. Therefore
+\[x(t)=\frac{1}{2}e^{-3t}\left[\begin{matrix}-1\\1\end{matrix}\right]
++\left(\frac{5}{2}\right)e^{-1t}\left[\begin{matrix}1\\1\end{matrix}\right].\]
+At $t=0$ the coefficients reproduce the specified vector. Differentiating
+each term and using $Av_j=\lambda_jv_j$ verifies $x'=Ax$.
+
+\exercise{5.7.3}{Solve, classify, and identify the principal directions}
+The coefficient matrix is $A=\left[\begin{matrix}2 & 3\\-1 & -2\end{matrix}\right]$.
+Factoring its characteristic polynomial gives
+\[\left(\lambda - 1\right) \left(\lambda + 1\right)=0.\]
+Its two eigenpairs are
+\[\lambda_1=-1,\ v_1=\left[\begin{matrix}-1\\1\end{matrix}\right];\quad
+\lambda_2=1,\ v_2=\left[\begin{matrix}-3\\1\end{matrix}\right].\]
+Solving $c_1v_1+c_2v_2=(3,2)^T$ gives
+$(c_1,c_2)=(\frac{9}{2},- \frac{5}{2})$.
+Hence the required initial-value solution is
+\[x(t)=\left(\frac{9}{2}\right)e^{-1t}\left[\begin{matrix}-1\\1\end{matrix}\right]+\left(- \frac{5}{2}\right)e^{1t}\left[\begin{matrix}-3\\1\end{matrix}\right].\]
+Both the initial value and $x'=Ax$ check by substitution.
+The origin is an \textbf{saddle point}.
+The negative eigenvalue's eigenvector $v_1$ gives the attracting
+direction; the positive eigenvalue's $v_2$ gives the repelling direction.
+The schematic sketch is in these eigen-coordinates: vertical is stable,
+horizontal unstable. Transforming it by $[v_2\ v_1]$ gives the
+corresponding picture in the original plane.
+\begin{center}\setlength{\unitlength}{1pt}
+\begin{picture}(200,145)
+\put(10,70){\vector(1,0){180}}\put(100,5){\vector(0,1){130}}
+\put(145,38){unstable}\put(105,130){stable}
+\put(100,70){\vector(1,0){50}}\put(100,70){\vector(-1,0){50}}
+\put(100,120){\vector(0,-1){30}}\put(100,20){\vector(0,1){30}}
+\qbezier(110,130)(112,84)(185,80)\qbezier(15,80)(88,84)(90,130)
+\qbezier(110,10)(112,56)(185,60)\qbezier(15,60)(88,56)(90,10)
+\put(156,82){\vector(4,-1){15}}\put(44,82){\vector(-4,-1){15}}
+\put(156,58){\vector(4,1){15}}\put(44,58){\vector(-4,1){15}}
+\end{picture}\end{center}
+
+\exercise{5.7.4}{Solve, classify, and identify the principal directions}
+The coefficient matrix is $A=\left[\begin{matrix}-2 & -5\\1 & 4\end{matrix}\right]$.
+Factoring its characteristic polynomial gives
+\[\left(\lambda - 3\right) \left(\lambda + 1\right)=0.\]
+Its two eigenpairs are
+\[\lambda_1=-1,\ v_1=\left[\begin{matrix}-5\\1\end{matrix}\right];\quad
+\lambda_2=3,\ v_2=\left[\begin{matrix}-1\\1\end{matrix}\right].\]
+Solving $c_1v_1+c_2v_2=(3,2)^T$ gives
+$(c_1,c_2)=(- \frac{5}{4},\frac{13}{4})$.
+Hence the required initial-value solution is
+\[x(t)=\left(- \frac{5}{4}\right)e^{-1t}\left[\begin{matrix}-5\\1\end{matrix}\right]+\left(\frac{13}{4}\right)e^{3t}\left[\begin{matrix}-1\\1\end{matrix}\right].\]
+Both the initial value and $x'=Ax$ check by substitution.
+The origin is an \textbf{saddle point}.
+The negative eigenvalue's eigenvector $v_1$ gives the attracting
+direction; the positive eigenvalue's $v_2$ gives the repelling direction.
+The schematic sketch is in these eigen-coordinates: vertical is stable,
+horizontal unstable. Transforming it by $[v_2\ v_1]$ gives the
+corresponding picture in the original plane.
+\begin{center}\setlength{\unitlength}{1pt}
+\begin{picture}(200,145)
+\put(10,70){\vector(1,0){180}}\put(100,5){\vector(0,1){130}}
+\put(145,38){unstable}\put(105,130){stable}
+\put(100,70){\vector(1,0){50}}\put(100,70){\vector(-1,0){50}}
+\put(100,120){\vector(0,-1){30}}\put(100,20){\vector(0,1){30}}
+\qbezier(110,130)(112,84)(185,80)\qbezier(15,80)(88,84)(90,130)
+\qbezier(110,10)(112,56)(185,60)\qbezier(15,60)(88,56)(90,10)
+\put(156,82){\vector(4,-1){15}}\put(44,82){\vector(-4,-1){15}}
+\put(156,58){\vector(4,1){15}}\put(44,58){\vector(-4,1){15}}
+\end{picture}\end{center}
+
+\exercise{5.7.5}{Solve, classify, and identify the principal directions}
+The coefficient matrix is $A=\left[\begin{matrix}7 & -1\\3 & 3\end{matrix}\right]$.
+Factoring its characteristic polynomial gives
+\[\left(\lambda - 6\right) \left(\lambda - 4\right)=0.\]
+Its two eigenpairs are
+\[\lambda_1=4,\ v_1=\left[\begin{matrix}1\\3\end{matrix}\right];\quad
+\lambda_2=6,\ v_2=\left[\begin{matrix}1\\1\end{matrix}\right].\]
+Solving $c_1v_1+c_2v_2=(3,2)^T$ gives
+$(c_1,c_2)=(- \frac{1}{2},\frac{7}{2})$.
+Hence the required initial-value solution is
+\[x(t)=\left(- \frac{1}{2}\right)e^{4t}\left[\begin{matrix}1\\3\end{matrix}\right]+\left(\frac{7}{2}\right)e^{6t}\left[\begin{matrix}1\\1\end{matrix}\right].\]
+Both the initial value and $x'=Ax$ check by substitution.
+The origin is an \textbf{repeller}.
+Both exponential factors grow; the greater eigenvalue $6$ gives
+the fastest repulsion, along $(1,1)^T$. There is no attracting
+eigendirection.
+
+\exercise{5.7.6}{Solve, classify, and identify the principal directions}
+The coefficient matrix is $A=\left[\begin{matrix}1 & -2\\3 & -4\end{matrix}\right]$.
+Factoring its characteristic polynomial gives
+\[\left(\lambda + 1\right) \left(\lambda + 2\right)=0.\]
+Its two eigenpairs are
+\[\lambda_1=-2,\ v_1=\left[\begin{matrix}2\\3\end{matrix}\right];\quad
+\lambda_2=-1,\ v_2=\left[\begin{matrix}1\\1\end{matrix}\right].\]
+Solving $c_1v_1+c_2v_2=(3,2)^T$ gives
+$(c_1,c_2)=(-1,5)$.
+Hence the required initial-value solution is
+\[x(t)=\left(-1\right)e^{-2t}\left[\begin{matrix}2\\3\end{matrix}\right]+\left(5\right)e^{-1t}\left[\begin{matrix}1\\1\end{matrix}\right].\]
+Both the initial value and $x'=Ax$ check by substitution.
+The origin is an \textbf{attractor}.
+Both exponents are negative. The fastest attraction is along
+$(2,3)^T$, for eigenvalue $-2$; the other mode decays more slowly
+like $e^{-t}$. There is no repelling eigendirection.
+
+\exercise{5.7.7}{A constant eigenbasis decouples the differential equations}
+Choose the eigenvectors from Exercise 5.7.5 as columns:
+\[P=\left[\begin{matrix}1 & 1\\3 & 1\end{matrix}\right],\qquad D=\left[\begin{matrix}4 & 0\\0 & 6\end{matrix}\right].\]
+Direct multiplication gives $AP=PD$, and $\det P=-2\ne0$.
+Put $x(t)=Py(t)$. Since $P$ is constant, $x'=Py'$, so
+\[Py'=APy=PDy,\qquad y'=Dy.\]
+The last equality uses multiplication by $P^{-1}$.
+Thus $y_1'=4y_1$ and
+$y_2'=6y_2$, with no cross-coupling.
+Their scalar solutions are exponentials, and $x=Py$ converts back.
+
+\exercise{5.7.8}{A constant eigenbasis decouples the differential equations}
+Choose the eigenvectors from Exercise 5.7.6 as columns:
+\[P=\left[\begin{matrix}2 & 1\\3 & 1\end{matrix}\right],\qquad D=\left[\begin{matrix}-2 & 0\\0 & -1\end{matrix}\right].\]
+Direct multiplication gives $AP=PD$, and $\det P=-1\ne0$.
+Put $x(t)=Py(t)$. Since $P$ is constant, $x'=Py'$, so
+\[Py'=APy=PDy,\qquad y'=Dy.\]
+The last equality uses multiplication by $P^{-1}$.
+Thus $y_1'=-2y_1$ and
+$y_2'=-1y_2$, with no cross-coupling.
+Their scalar solutions are exponentials, and $x=Py$ converts back.
+
+\exercise{5.7.9}{Complex eigenfunctions and a full real solution basis}
+For the given matrix $A=\left[\begin{matrix}-3 & 2\\-1 & -1\end{matrix}\right]$, exact calculation gives
+\[\det(\lambda I-A)=\lambda^{2} + 4 \lambda + 5.\]
+A positive-imaginary eigenpair is
+\[\lambda=-2 + i,\qquad v=\left[\begin{matrix}1 - i\\1\end{matrix}\right]=p+iq,\]
+where
+\[p=\left[\begin{matrix}1\\1\end{matrix}\right],\qquad q=\left[\begin{matrix}-1\\0\end{matrix}\right].\]
+Checking $Av=\lambda v$ verifies the pair; since $A$ is real,
+$\overline v,\overline\lambda$ give the conjugate pair.
+The corresponding complex solution is
+\[c_1ve^{(-2 + i)t}+c_2\overline v e^{(-2 - i)t}.
+\]
+Its real version is $d_1r_1(t)+d_2r_2(t)$, where explicitly
+\[r_1=e^{-2t}\bigl[p\cos(1t)-q\sin(1t)\bigr],\]
+\[r_2=e^{-2t}\bigl[p\sin(1t)+q\cos(1t)\bigr],\qquad d_1,d_2\in\R.\]
+The sine and cosine produce elliptical rotation in the original plane,
+and the negative real part produces decay. Every nonzero
+trajectory spirals inward to the origin.
+
+\exercise{5.7.10}{Complex eigenfunctions and a full real solution basis}
+For the given matrix $A=\left[\begin{matrix}3 & 1\\-2 & 1\end{matrix}\right]$, exact calculation gives
+\[\det(\lambda I-A)=\lambda^{2} - 4 \lambda + 5.\]
+A positive-imaginary eigenpair is
+\[\lambda=2 + i,\qquad v=\left[\begin{matrix}-1 - i\\2\end{matrix}\right]=p+iq,\]
+where
+\[p=\left[\begin{matrix}-1\\2\end{matrix}\right],\qquad q=\left[\begin{matrix}-1\\0\end{matrix}\right].\]
+Checking $Av=\lambda v$ verifies the pair; since $A$ is real,
+$\overline v,\overline\lambda$ give the conjugate pair.
+The corresponding complex solution is
+\[c_1ve^{(2 + i)t}+c_2\overline v e^{(2 - i)t}.
+\]
+Its real version is $d_1r_1(t)+d_2r_2(t)$, where explicitly
+\[r_1=e^{2t}\bigl[p\cos(1t)-q\sin(1t)\bigr],\]
+\[r_2=e^{2t}\bigl[p\sin(1t)+q\cos(1t)\bigr],\qquad d_1,d_2\in\R.\]
+The sine and cosine produce elliptical rotation, while the positive
+real part expands its size. Nonzero trajectories spiral outward from
+the origin.
+
+\exercise{5.7.11}{Complex eigenfunctions and a full real solution basis}
+For the given matrix $A=\left[\begin{matrix}-3 & -9\\2 & 3\end{matrix}\right]$, exact calculation gives
+\[\det(\lambda I-A)=\lambda^{2} + 9.\]
+A positive-imaginary eigenpair is
+\[\lambda=3 i,\qquad v=\left[\begin{matrix}-3 + 3 i\\2\end{matrix}\right]=p+iq,\]
+where
+\[p=\left[\begin{matrix}-3\\2\end{matrix}\right],\qquad q=\left[\begin{matrix}3\\0\end{matrix}\right].\]
+Checking $Av=\lambda v$ verifies the pair; since $A$ is real,
+$\overline v,\overline\lambda$ give the conjugate pair.
+The corresponding complex solution is
+\[c_1ve^{(3 i)t}+c_2\overline v e^{(- 3 i)t}.
+\]
+Its real version is $d_1r_1(t)+d_2r_2(t)$, where explicitly
+\[r_1=e^{0t}\bigl[p\cos(3t)-q\sin(3t)\bigr],\]
+\[r_2=e^{0t}\bigl[p\sin(3t)+q\cos(3t)\bigr],\qquad d_1,d_2\in\R.\]
+There is no exponential growth or decay. The real solutions trace
+closed ellipses around the origin, with period $2\pi/3$;
+the origin is a center.
+
+\exercise{5.7.12}{Complex eigenfunctions and a full real solution basis}
+For the given matrix $A=\left[\begin{matrix}-7 & 10\\-4 & 5\end{matrix}\right]$, exact calculation gives
+\[\det(\lambda I-A)=\lambda^{2} + 2 \lambda + 5.\]
+A positive-imaginary eigenpair is
+\[\lambda=-1 + 2 i,\qquad v=\left[\begin{matrix}3 - i\\2\end{matrix}\right]=p+iq,\]
+where
+\[p=\left[\begin{matrix}3\\2\end{matrix}\right],\qquad q=\left[\begin{matrix}-1\\0\end{matrix}\right].\]
+Checking $Av=\lambda v$ verifies the pair; since $A$ is real,
+$\overline v,\overline\lambda$ give the conjugate pair.
+The corresponding complex solution is
+\[c_1ve^{(-1 + 2 i)t}+c_2\overline v e^{(-1 - 2 i)t}.
+\]
+Its real version is $d_1r_1(t)+d_2r_2(t)$, where explicitly
+\[r_1=e^{-1t}\bigl[p\cos(2t)-q\sin(2t)\bigr],\]
+\[r_2=e^{-1t}\bigl[p\sin(2t)+q\cos(2t)\bigr],\qquad d_1,d_2\in\R.\]
+The sine and cosine produce elliptical rotation in the original plane,
+and the negative real part produces decay. Every nonzero
+trajectory spirals inward to the origin.
+
+\exercise{5.7.13}{Complex eigenfunctions and a full real solution basis}
+For the given matrix $A=\left[\begin{matrix}4 & -3\\6 & -2\end{matrix}\right]$, exact calculation gives
+\[\det(\lambda I-A)=\lambda^{2} - 2 \lambda + 10.\]
+A positive-imaginary eigenpair is
+\[\lambda=1 + 3 i,\qquad v=\left[\begin{matrix}1 + i\\2\end{matrix}\right]=p+iq,\]
+where
+\[p=\left[\begin{matrix}1\\2\end{matrix}\right],\qquad q=\left[\begin{matrix}1\\0\end{matrix}\right].\]
+Checking $Av=\lambda v$ verifies the pair; since $A$ is real,
+$\overline v,\overline\lambda$ give the conjugate pair.
+The corresponding complex solution is
+\[c_1ve^{(1 + 3 i)t}+c_2\overline v e^{(1 - 3 i)t}.
+\]
+Its real version is $d_1r_1(t)+d_2r_2(t)$, where explicitly
+\[r_1=e^{1t}\bigl[p\cos(3t)-q\sin(3t)\bigr],\]
+\[r_2=e^{1t}\bigl[p\sin(3t)+q\cos(3t)\bigr],\qquad d_1,d_2\in\R.\]
+The sine and cosine produce elliptical rotation, while the positive
+real part expands its size. Nonzero trajectories spiral outward from
+the origin.
+
+\exercise{5.7.14}{Complex eigenfunctions and a full real solution basis}
+For the given matrix $A=\left[\begin{matrix}-2 & 1\\-8 & 2\end{matrix}\right]$, exact calculation gives
+\[\det(\lambda I-A)=\lambda^{2} + 4.\]
+A positive-imaginary eigenpair is
+\[\lambda=2 i,\qquad v=\left[\begin{matrix}1 - i\\4\end{matrix}\right]=p+iq,\]
+where
+\[p=\left[\begin{matrix}1\\4\end{matrix}\right],\qquad q=\left[\begin{matrix}-1\\0\end{matrix}\right].\]
+Checking $Av=\lambda v$ verifies the pair; since $A$ is real,
+$\overline v,\overline\lambda$ give the conjugate pair.
+The corresponding complex solution is
+\[c_1ve^{(2 i)t}+c_2\overline v e^{(- 2 i)t}.
+\]
+Its real version is $d_1r_1(t)+d_2r_2(t)$, where explicitly
+\[r_1=e^{0t}\bigl[p\cos(2t)-q\sin(2t)\bigr],\]
+\[r_2=e^{0t}\bigl[p\sin(2t)+q\cos(2t)\bigr],\qquad d_1,d_2\in\R.\]
+There is no exponential growth or decay. The real solutions trace
+closed ellipses around the origin, with period $2\pi/2$;
+the origin is a center.
+
+\exercise{5.7.15}{Complex eigenfunctions and a full real solution basis}
+For the given matrix $A=\left[\begin{matrix}-8 & -12 & -6\\2 & 1 & 2\\7 & 12 & 5\end{matrix}\right]$, exact calculation gives
+\[\det(\lambda I-A)=\left(\lambda - 1\right) \left(\lambda + 1\right) \left(\lambda + 2\right).\]
+All eigenvalues in this particular computer exercise are real,
+which is a special case of the requested complex-eigenfunction method.
+A complete eigenbasis is
+\[\lambda_1=-2,\quad v_1=\left[\begin{matrix}-1\\0\\1\end{matrix}\right].\]
+\[\lambda_2=-1,\quad v_2=\left[\begin{matrix}-6\\1\\5\end{matrix}\right].\]
+\[\lambda_3=1,\quad v_3=\left[\begin{matrix}-4\\1\\4\end{matrix}\right].\]
+Thus the general complex solution is
+\[x(t)=\sum_{j=1}^3 c_j e^{\lambda_jt}v_j,\qquad c_j\in\C.\]
+The general real solution is the same formula with $c_j\in\R$,
+because this basis consists of real vectors. Each eigenpair checks by
+$Av_j=\lambda_jv_j$, and distinct eigenvalues give a full basis.
+There are two negative eigenvalues and one positive eigenvalue.
+The stable plane is $\Span\{v_1,v_2\}$ and the repelling line is
+$\Span\{v_3\}$. Typical trajectories first combine these modes
+and eventually move outward in the positive-eigenvalue direction:
+the origin is a saddle, with no oscillatory spiral in this example.
+
+\exercise{5.7.16}{Complex eigenfunctions and a full real solution basis}
+For the given matrix $A=\left[\begin{matrix}-6 & -11 & 16\\2 & 5 & -4\\-4 & -5 & 10\end{matrix}\right]$, exact calculation gives
+\[\det(\lambda I-A)=\left(\lambda - 4\right) \left(\lambda - 3\right) \left(\lambda - 2\right).\]
+All eigenvalues in this particular computer exercise are real,
+which is a special case of the requested complex-eigenfunction method.
+A complete eigenbasis is
+\[\lambda_1=2,\quad v_1=\left[\begin{matrix}2\\0\\1\end{matrix}\right].\]
+\[\lambda_2=3,\quad v_2=\left[\begin{matrix}3\\-1\\1\end{matrix}\right].\]
+\[\lambda_3=4,\quad v_3=\left[\begin{matrix}7\\-2\\3\end{matrix}\right].\]
+Thus the general complex solution is
+\[x(t)=\sum_{j=1}^3 c_j e^{\lambda_jt}v_j,\qquad c_j\in\C.\]
+The general real solution is the same formula with $c_j\in\R$,
+because this basis consists of real vectors. Each eigenpair checks by
+$Av_j=\lambda_jv_j$, and distinct eigenvalues give a full basis.
+All three eigenvalues are positive. The origin is a repeller;
+generic trajectories eventually align with the fastest growing
+$\lambda=4$ eigenvector, while exact invariant eigenspaces retain
+their own exponential behavior. There is no spiral because the
+spectrum is real.
+
+\exercise{5.7.17}{Complex eigenfunctions and a full real solution basis}
+For the given matrix $A=\left[\begin{matrix}30 & 64 & 23\\-11 & -23 & -9\\6 & 15 & 4\end{matrix}\right]$, exact calculation gives
+\[\det(\lambda I-A)=\left(\lambda - 1\right) \left(\lambda^{2} - 10 \lambda + 29\right).\]
+A positive-imaginary eigenpair is
+\[\lambda=5 + 2 i,\qquad v=\left[\begin{matrix}23 - 34 i\\-9 + 14 i\\3\end{matrix}\right]=p+iq,\]
+where
+\[p=\left[\begin{matrix}23\\-9\\3\end{matrix}\right],\qquad q=\left[\begin{matrix}-34\\14\\0\end{matrix}\right].\]
+Checking $Av=\lambda v$ verifies the pair; since $A$ is real,
+$\overline v,\overline\lambda$ give the conjugate pair.
+The corresponding complex solution is
+\[c_1ve^{(5 + 2 i)t}+c_2\overline v e^{(5 - 2 i)t}.
+\]
+Its real version is $d_1r_1(t)+d_2r_2(t)$, where explicitly
+\[r_1=e^{5t}\bigl[p\cos(2t)-q\sin(2t)\bigr],\]
+\[r_2=e^{5t}\bigl[p\sin(2t)+q\cos(2t)\bigr],\qquad d_1,d_2\in\R.\]
+There is also the real eigenpair $\lambda_0=1$,
+$w=\left[\begin{matrix}-3\\1\\1\end{matrix}\right]$. Add $c_0e^{1t}w$ to the
+complex solution and $d_0e^{1t}w$ to the real one.
+These three independent modes give the entire solution space.
+The real mode grows like $e^t$ and the spiral-plane modes grow
+like $e^{5t}$. Thus the origin is repelling: generic trajectories
+spiral outward increasingly close to the invariant plane $\Span\{p,q\}$;
+only the real eigendirection has a nonrotating trajectory.
+
+\exercise{5.7.18}{Complex eigenfunctions and a full real solution basis}
+For the given matrix $A=\left[\begin{matrix}53 & -30 & -2\\90 & -52 & -3\\20 & -10 & 2\end{matrix}\right]$, exact calculation gives
+\[\det(\lambda I-A)=\left(\lambda + 7\right) \left(\lambda^{2} - 10 \lambda + 26\right).\]
+A positive-imaginary eigenpair is
+\[\lambda=5 + i,\qquad v=\left[\begin{matrix}6 + 2 i\\9 + 3 i\\10\end{matrix}\right]=p+iq,\]
+where
+\[p=\left[\begin{matrix}6\\9\\10\end{matrix}\right],\qquad q=\left[\begin{matrix}2\\3\\0\end{matrix}\right].\]
+Checking $Av=\lambda v$ verifies the pair; since $A$ is real,
+$\overline v,\overline\lambda$ give the conjugate pair.
+The corresponding complex solution is
+\[c_1ve^{(5 + i)t}+c_2\overline v e^{(5 - i)t}.
+\]
+Its real version is $d_1r_1(t)+d_2r_2(t)$, where explicitly
+\[r_1=e^{5t}\bigl[p\cos(1t)-q\sin(1t)\bigr],\]
+\[r_2=e^{5t}\bigl[p\sin(1t)+q\cos(1t)\bigr],\qquad d_1,d_2\in\R.\]
+There is also the real eigenpair $\lambda_0=-7$,
+$w=\left[\begin{matrix}1\\2\\0\end{matrix}\right]$. Add $c_0e^{-7t}w$ to the
+complex solution and $d_0e^{-7t}w$ to the real one.
+These three independent modes give the entire solution space.
+The line $\Span\{w\}$ is stable, decaying like $e^{-7t}$.
+The plane $\Span\{p,q\}$ spirals outward like $e^{5t}$.
+Thus this is a spiral saddle: only points on the stable line approach
+zero, and other trajectories eventually spiral outward.
+
+\exercise{5.7.19}{Substitute the circuit constants before solving the voltage system}
+Example 1 gives
+\[A=\begin{bmatrix}-(1/R_1+1/R_2)/C_1&1/(R_2C_1)\\
+1/(R_2C_2)&-1/(R_2C_2)\end{bmatrix}=\left[\begin{matrix}-2 & \frac{3}{4}\\1 & -1\end{matrix}\right].\]
+Its eigenvalues are $- \frac{5}{2},- \frac{1}{2}$, with eigenvector
+matrix $P=\left[\begin{matrix}-3 & 1\\2 & 2\end{matrix}\right]$. Solving $Pc=(4,4)^T$
+gives $c=\left[\begin{matrix}- \frac{1}{2}\\\frac{5}{2}\end{matrix}\right]$. Therefore the requested voltage vector is
+\[\begin{bmatrix}v_1(t)\\v_2(t)\end{bmatrix}=\left(- \frac{1}{2}\right)e^{- \frac{5}{2}t}\left[\begin{matrix}-3\\2\end{matrix}\right]+\left(\frac{5}{2}\right)e^{- \frac{1}{2}t}\left[\begin{matrix}1\\2\end{matrix}\right].\]
+Each component at zero is the stipulated initial voltage, and differentiating
+verifies the given circuit equation. Both exponentials decay, consistent
+with a passive resistive circuit.
+
+\exercise{5.7.20}{Substitute the circuit constants before solving the voltage system}
+Example 1 gives
+\[A=\begin{bmatrix}-(1/R_1+1/R_2)/C_1&1/(R_2C_1)\\
+1/(R_2C_2)&-1/(R_2C_2)\end{bmatrix}=\left[\begin{matrix}-2 & \frac{1}{3}\\\frac{3}{2} & - \frac{3}{2}\end{matrix}\right].\]
+Its eigenvalues are $- \frac{5}{2},-1$, with eigenvector
+matrix $P=\left[\begin{matrix}-2 & 1\\3 & 3\end{matrix}\right]$. Solving $Pc=(3,3)^T$
+gives $c=\left[\begin{matrix}- \frac{2}{3}\\\frac{5}{3}\end{matrix}\right]$. Therefore the requested voltage vector is
+\[\begin{bmatrix}v_1(t)\\v_2(t)\end{bmatrix}=\left(- \frac{2}{3}\right)e^{- \frac{5}{2}t}\left[\begin{matrix}-2\\3\end{matrix}\right]+\left(\frac{5}{3}\right)e^{-1t}\left[\begin{matrix}1\\3\end{matrix}\right].\]
+Each component at zero is the stipulated initial voltage, and differentiating
+verifies the given circuit equation. Both exponentials decay, consistent
+with a passive resistive circuit.
+
+\exercise{5.7.21}{A damped oscillation in current and capacitor voltage}
+Using Example 3's circuit matrix with the specified constants gives
+\[A=\begin{bmatrix}-R_2/L&-1/L\\1/C&-1/(R_1C)\end{bmatrix}
+=\begin{bmatrix}-1&-8\\5&-5\end{bmatrix}.\]
+Its eigenvalues are $-3\pm6i$. Put $B=A+3I$; direct multiplication
+gives $B^2=-36I$. Consequently the solution for $x_0=(0,15)^T$ is
+\[x(t)=e^{-3t}\bigl[x_0\cos6t+(Bx_0/6)\sin6t\bigr].\]
+Here $Bx_0=(-120,-30)^T$, so
+\[i_L(t)=-20e^{-3t}\sin6t,\qquad
+v_C(t)=e^{-3t}(15\cos6t-5\sin6t).\]
+At zero these give $0$ amps and $15$ volts. Differentiating gives
+$x'=Ax$; the identity $B^2=-36I$ verifies the formula directly.
+
+\exercise{5.7.22}{Solve the second circuit with its stated sign convention}
+The problem supplies a different circuit matrix; with its constants,
+\[A=\begin{bmatrix}0&1/L\\-1/C&-1/(RC)\end{bmatrix}
+=\begin{bmatrix}0&2\\-2/5&-4/5\end{bmatrix}.\]
+Its eigenvalues are $-2/5\pm(4/5)i$. Set $a=-2/5,b=4/5$ and
+$B=A-aI$. Then $B^2=-b^2I$ and $Bx_0=(24,-24/5)^T$ for
+$x_0=(0,12)^T$. The same cosine--sine construction gives
+\[i_L(t)=30e^{-2t/5}\sin(4t/5),\]
+\[v_C(t)=e^{-2t/5}\bigl[12\cos(4t/5)-6\sin(4t/5)\bigr].\]
+The initial data and the differential equation both check directly.
+The signs differ from Exercise 21 because the supplied circuit
+and current-direction convention differ.

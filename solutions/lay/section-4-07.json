@@ -1,0 +1,16 @@
+{
+  "chapter": 4,
+  "section": 7,
+  "title": "Change of Basis",
+  "exercise_count": 20,
+  "practice_count": 2,
+  "source_pages": [
+    259,
+    260,
+    261
+  ],
+  "blocked_exercises": [],
+  "source_notes": [
+    "Exercise4.7.2 relations makeBdependent, incompatible withprintedbasisassumption; explained withformalconversion."
+  ]
+}

@@ -1,0 +1,375 @@
+\section{Chapter 5 supplementary exercises}
+These exercises connect eigenvectors, similarity, polynomial expressions
+in matrices, and diagonalization. Keep three distinctions in view:
+row equivalence does not preserve eigenvalues; similarity does.
+An eigenvalue may be zero, but an eigenvector must be nonzero.
+A repeated eigenvalue does not by itself decide diagonalizability:
+the total number of independent eigenvectors decides it.
+All matrices are real unless complex roots or complex diagonalization
+are explicitly being considered.
+
+\exercise{5.S.1}{Twenty-four statements with proofs or counterexamples}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} If $Ax=x$ and $x\ne0$, multiplication by
+$A^{-1}$ gives $A^{-1}x=x$.
+\item \textbf{False.} $\begin{bmatrix}1&1\\0&1\end{bmatrix}$ is
+invertible and row equivalent to $I$, but has only one independent
+eigenvector, since its $1$-eigenspace is $\Span\{(1,0)^T\}$.
+\item \textbf{True.} A zero column makes $Ae_j=0$ for some nonzero
+coordinate vector. A zero row makes the matrix singular as well;
+by the Invertible Matrix Theorem its kernel contains a nonzero vector.
+\item \textbf{False.} The scalar matrix $[2]$ has eigenvalue $2$,
+whereas its square $[4]$ has only eigenvalue $4$.
+\item \textbf{True.} $Ax=\lambda x$ implies
+$A^2x=\lambda^2x$, with the same nonzero $x$.
+\item \textbf{True.} An invertible $A$ has $\lambda\ne0$;
+$Ax=\lambda x$ gives $A^{-1}x=\lambda^{-1}x$.
+\item \textbf{False.} The zero matrix has eigenvalue zero.
+\item \textbf{True.} Nonzeroness is part of the eigenvector definition;
+otherwise $A0=\lambda0$ would make every scalar an eigenvalue.
+\item \textbf{False.} For $I_2$, the independent vectors $e_1,e_2$
+have the same eigenvalue $1$.
+\item \textbf{True.} Similarity gives
+$\det(P^{-1}(A-\lambda I)P)=\det(A-\lambda I)$, so the
+characteristic polynomials, including multiplicities, agree.
+\item \textbf{False.} For $A=\operatorname{diag}(1,2)$ and
+$B=\begin{bmatrix}1&1\\0&2\end{bmatrix}$ the eigenvalues agree
+and the matrices are similar (both have independent eigenbases),
+but $e_2$ is an eigenvector of $A$ and not of $B$.
+\item \textbf{False.} For $A=\operatorname{diag}(1,2)$,
+$e_1+e_2$ is not an eigenvector. Even within one eigenspace,
+the sum of $v$ and $-v$ is zero and hence not an eigenvector.
+\item \textbf{False.} All diagonal entries of an upper triangular
+matrix are eigenvalues, including zeros.
+\item \textbf{True.} $\det(A^T-\lambda I)=
+\det((A-\lambda I)^T)=\det(A-\lambda I)$.
+\item \textbf{False.} $I_5$ has only one distinct eigenvalue but is
+already diagonal; its five coordinate vectors form an eigenbasis.
+\item \textbf{True.} The real rotation matrix
+$\begin{bmatrix}0&-1\\1&0\end{bmatrix}$ has eigenvalues $\pm i$
+and no real eigenvectors.
+\item \textbf{False.} $\operatorname{diag}(0,1)$ is diagonalizable
+but its first column is zero, so its columns are dependent.
+\item \textbf{True.} If $Av=\lambda v=\mu v$ and $v\ne0$,
+then $(\lambda-\mu)v=0$ forces $\lambda=\mu$.
+\item \textbf{False.} Invertibility and diagonalizability are different.
+The non-diagonalizable invertible example in (b) refutes one direction;
+$\operatorname{diag}(0,1)$ refutes the reverse direction.
+\item \textbf{True.} If $Ae_j=\lambda_je_j$, column $j$ has
+only its diagonal entry possibly nonzero, so $A$ is diagonal.
+\item \textbf{True.} If $A=SBS^{-1}$ and $B=PDP^{-1}$,
+then $A=(SP)D(SP)^{-1}$, a diagonalization.
+\item \textbf{True.} $A^{-1}(AB)A=BA$, so the products are
+similar. In fact invertibility of $A$ alone suffices.
+\item \textbf{False.} The zero matrix has $n$ independent
+eigenvectors but is not invertible.
+\item \textbf{True.} Diagonalizability supplies an eigenvector basis,
+and the definition of a basis says every vector is a linear
+combination of its vectors (over $\R$ for real diagonalization here).
+\end{enumerate}
+
+\exercise{5.S.2}{Move an eigenvector through the right-hand factor}
+Suppose $(AB)x=\lambda x$ and $Bx\ne0$. Associativity gives
+\[(BA)(Bx)=B(ABx)=B(\lambda x)=\lambda(Bx).\]
+Because $Bx$ is nonzero by assumption, it is an eigenvector of
+$BA$ for the same eigenvalue. The condition $Bx\ne0$ is what
+prevents the zero vector from being incorrectly called an eigenvector.
+
+\exercise{5.S.3}{Apply two polynomials to an eigenvector}
+\begin{enumerate}[label=(\alph*)]
+\item $(5I-A)x=5x-Ax=(5-\lambda)x$. Thus $x$ remains a
+nonzero eigenvector, with eigenvalue $5-\lambda$.
+\item First $A^2x=A(\lambda x)=\lambda^2x$. Consequently
+$(5I-3A+A^2)x=(5-3\lambda+\lambda^2)x$.
+The new eigenvalue is $5-3\lambda+\lambda^2$.
+\end{enumerate}
+
+\exercise{5.S.4}{Induct on the matrix power}
+For $m=1$ the assertion is the assumed eigenvector equation.
+Suppose $A^mx=\lambda^mx$. Multiplying by $A$ gives
+$A^{m+1}x=A(\lambda^mx)=\lambda^mAx=\lambda^{m+1}x$.
+The same $x$ remains nonzero at every stage, so each displayed
+scalar is genuinely an eigenvalue of the corresponding power.
+This proves the claim for every positive integer $m$.
+
+\exercise{5.S.5}{Polynomial evaluation preserves eigenvectors}
+Exercise 5.S.4 gives $A^jx=\lambda^jx$ for every positive power;
+for $j=0$ the same equality is $Ix=x$. Therefore
+\[p(A)x=\sum_{j=0}^n c_jA^jx
+=\sum_{j=0}^n c_j\lambda^jx=p(\lambda)x.\]
+Since $x\ne0$, $p(\lambda)$ is an eigenvalue of $p(A)$.
+Different eigenvalues of $A$ can map to the same polynomial value;
+that does not invalidate the conclusion.
+
+\exercise{5.S.6}{Diagonalize polynomial expressions using the original basis}
+\begin{enumerate}[label=(\alph*)]
+\item With $A=PDP^{-1}$, neighboring factors $P^{-1}P$ cancel
+in $A^2$. Since $I=PIP^{-1}$,
+$5I-3A+A^2=P(5I-3D+D^2)P^{-1}$.
+At diagonal entries $2,7$, the polynomial has values $3,33$.
+Thus $B=P\operatorname{diag}(3,33)P^{-1}$ is a diagonalization.
+\item The same cancellation gives $A^j=PD^jP^{-1}$ for every
+power. Adding the finitely many terms gives
+$p(A)=Pp(D)P^{-1}$, with diagonal entries $p(2),p(7)$.
+This remains a diagonalization even if those two values coincide.
+\end{enumerate}
+
+\exercise{5.S.7}{Cayley--Hamilton for a diagonalizable matrix}
+Write $A=PDP^{-1}$. Every diagonal entry $\lambda_j$ of $D$
+is an eigenvalue of $A$ and hence a root of its characteristic
+polynomial $p$. By the polynomial identity in Exercise 5.S.6,
+\[p(A)=Pp(D)P^{-1}=P\operatorname{diag}(p(\lambda_1),\ldots,
+p(\lambda_n))P^{-1}=P0P^{-1}=0.\]
+This proves the theorem under the stated diagonalizability
+assumption; it does not pretend that every square matrix is
+already known to be diagonalizable.
+
+\exercise{5.S.8}{One eigenvalue plus diagonalizability forces a scalar matrix}
+\begin{enumerate}[label=(\alph*)]
+\item If the only eigenvalue is $\lambda$ with multiplicity $n$,
+a diagonalization has $D=\lambda I$. Therefore
+$A=P(\lambda I)P^{-1}=\lambda PP^{-1}=\lambda I$.
+\item The given $\begin{bmatrix}3&1\\0&3\end{bmatrix}$ has only
+eigenvalue $3$, twice, but is not $3I$. By (a), it cannot be
+diagonalizable. Directly, $(A-3I)x=0$ forces $x_2=0$,
+leaving only one independent eigenvector.
+\end{enumerate}
+
+\exercise{5.S.9}{An eigenvalue inside the unit disk cannot equal one}
+If $I-A$ were singular, a nonzero $v$ would satisfy $(I-A)v=0$.
+Then $Av=v$, so $1$ would be an eigenvalue of $A$.
+Its modulus is $1$, contradicting the strict bound on every
+eigenvalue. Hence $I-A$ is invertible. This argument requires no
+diagonalizability assumption.
+
+\exercise{5.S.10}{Every eigenmode decays and therefore the whole matrix does}
+Use $A=PDP^{-1}$. Its powers satisfy $A^k=PD^kP^{-1}$.
+Every diagonal entry of $D^k$ is $\lambda_j^k\to0$ because
+$|\lambda_j|<1$. Thus each entry of $PD^kP^{-1}$ is a finite
+sum of fixed constants times quantities tending to zero, so it also
+tends to zero. Equivalently, apply the mode decomposition to each
+coordinate vector $e_j$; then $A^ke_j\to0$, which says each
+column of $A^k$ tends to zero.
+\answer{$A^k\to0$ entry by entry.}
+
+\exercise{5.S.11}{Invariant lines and real eigenvectors}
+\begin{enumerate}[label=(\alph*)]
+\item Every $x\in H$ has the form $x=cu$. Then
+$Ax=cAu=c\lambda u\in H$. This is exactly invariance.
+\item Choose a nonzero $u$ spanning the one-dimensional invariant
+subspace $K$. Invariance gives $Au\in K$, so $Au=\lambda u$
+for some scalar $\lambda$. Since $u\ne0$, it is an eigenvector.
+\end{enumerate}
+
+\exercise{5.S.12}{Factor a block triangular characteristic polynomial}
+In the permutation expansion of
+$G=\begin{bmatrix}A&X\\0&B\end{bmatrix}$, a nonzero term must
+assign the bottom block rows to bottom block columns; otherwise it
+uses a zero from the lower-left block. The remaining top rows use
+top block columns. The products and signs therefore separate into
+the determinant sums for $A$ and $B$, giving $\det G=\det A\det B$.
+The same argument applied to
+$G-\lambda I=\begin{bmatrix}A-\lambda I&X\\0&B-\lambda I\end{bmatrix}$
+gives the product of the two characteristic polynomials. No inverse
+of either diagonal block is required.
+
+\exercise{5.S.13}{Read one eigenvalue and solve the remaining block}
+The upper-left block is $[3]$ and the lower-right block is
+$B=\begin{bmatrix}5&-2\\-4&3\end{bmatrix}$.
+Its characteristic polynomial is
+$(\lambda-5)(\lambda-3)-8=\lambda^2-8\lambda+7
+=(\lambda-1)(\lambda-7)$.
+By Exercise 5.S.12 the complete eigenvalue list is $3,1,7$,
+each with multiplicity one. The entries in the upper-right block
+have no effect on this list.
+
+\exercise{5.S.14}{Combine the spectra of two diagonal blocks}
+The blocks are $B=\begin{bmatrix}1&5\\2&4\end{bmatrix}$ and
+$C=\begin{bmatrix}-7&-4\\3&1\end{bmatrix}$.
+Their characteristic polynomials are
+\[\det(\lambda I-B)=\lambda^2-5\lambda-6=(\lambda-6)(\lambda+1),\]
+\[\det(\lambda I-C)=\lambda^2+6\lambda+5=(\lambda+1)(\lambda+5).\]
+Multiply them by the block result. The eigenvalues are $6,-5$,
+each once, and $-1$ twice. Algebraic multiplicity is counted even
+when an eigenvalue occurs in both blocks.
+
+\exercise{5.S.15}{Split into the constant vector and coordinate-sum-zero space}
+Let $\mathbf1=(1,\ldots,1)^T$. Then $J\mathbf1=n\mathbf1$,
+so $A\mathbf1=[a+(n-1)b]\mathbf1$.
+For $z$ with coordinate sum zero, $Jz=0$, and hence
+$Az=(a-b)z$. The coordinate-sum-zero subspace has dimension
+$n-1$; together with $\mathbf1$ it gives a basis of $\R^n$.
+Thus the characteristic polynomial is
+\[(\lambda-(a-b))^{n-1}(\lambda-(a+(n-1)b)).\]
+When $b\ne0$ and $n\ge2$, the two eigenvalues are distinct, with
+multiplicities $n-1$ and $1$. If $b=0$, they coincide at $a$ and
+the combined multiplicity is $n$; for $n=1$ only the value $a$
+is present. These qualifications prevent double-counting a coincident
+value.
+
+\exercise{5.S.16}{Apply the common-diagonal formula twice}
+For the $3\times3$ matrix, $a=1,b=2$. Thus $a-b=-1$ has
+multiplicity $2$, and $a+2b=5$ has multiplicity $1$.
+For the $5\times5$ matrix, $a=7,b=3$. Thus $a-b=4$ has
+multiplicity $4$, and $a+4b=19$ has multiplicity $1$.
+These multiplicities add to the dimension in each case.
+
+\exercise{5.S.17}{The trace and determinant decide reality in dimension two}
+For a real matrix $A=[a_{ij}]$, expand
+\[\det(\lambda I-A)
+=(\lambda-a_{11})(\lambda-a_{22})-a_{12}a_{21}
+=\lambda^2-(\operatorname{tr}A)\lambda+\det A.\]
+A real quadratic has both roots real exactly when its discriminant
+is nonnegative. Here that condition is
+$(\operatorname{tr}A)^2-4\det A\ge0$, equivalently
+\[\det A\le\left(\frac{\operatorname{tr}A}{2}\right)^2.\]
+Equality includes a repeated real eigenvalue; it does not by itself
+assert diagonalizability.
+
+\exercise{5.S.18}{Compute the limiting spectral projection}
+The matrix has eigenvalues $1$ and $3/5$, with eigenvectors
+$(-1,2)^T$ and $(-3,2)^T$. Distinct eigenvalues give a basis.
+The projection onto the $1$-eigenspace along the other eigenspace is
+\[E=\frac{A-(3/5)I}{1-3/5}
+=\begin{bmatrix}-1/2&-3/4\\1&3/2\end{bmatrix}.\]
+Indeed $E$ acts as identity on the first eigenvector and as zero
+on the second, so on the whole eigenbasis
+\[A^k=E+(3/5)^k(I-E).\]
+The second term tends to zero. Therefore $A^k$ tends to the
+stated matrix $E$, whose negative entries cause no contradiction:
+the original $A$ already has a negative off-diagonal entry.
+
+\exercise{5.S.19}{A quadratic companion matrix}
+For $p(t)=6-5t+t^2$, the companion matrix in the book's convention is
+\[C_p=\begin{bmatrix}0&1\\-6&5\end{bmatrix}.\]
+Its characteristic polynomial is
+$\det(\lambda I-C_p)=\det\begin{bmatrix}\lambda&-1\\6&\lambda-5\end{bmatrix}
+=\lambda^2-5\lambda+6=p(\lambda)$.
+If using $\det(C_p-\lambda I)$ instead, the sign is the same in
+even dimension.
+
+\exercise{5.S.20}{A cubic companion matrix and its determinant}
+The coefficients $(-24,26,-9,1)$ give
+\[C_p=\begin{bmatrix}0&1&0\\0&0&1\\24&-26&9\end{bmatrix}.\]
+Expand $\det(\lambda I-C_p)$ along the first row:
+\[\lambda\det\begin{bmatrix}\lambda&-1\\26&\lambda-9\end{bmatrix}
+-24=\lambda^3-9\lambda^2+26\lambda-24.
+\]
+This equals $(\lambda-2)(\lambda-3)(\lambda-4)=p(\lambda)$.
+For the book's $\det(C_p-\lambda I)$ convention the polynomial
+is its negative, as the dimension is odd.
+
+\exercise{5.S.21}{Inductively compute the companion characteristic polynomial}
+For $n=2$, direct expansion gives
+$\det\begin{bmatrix}-\lambda&1\\-a_0&-a_1-\lambda\end{bmatrix}
+=\lambda^2+a_1\lambda+a_0=(-1)^2p(\lambda)$.
+Suppose the identity holds in dimension $n-1$.
+Expand $C_p-\lambda I$ down its first column. Only the top and
+bottom entries can contribute. The top contribution is $-\lambda$
+times the determinant of the companion-form block associated with
+$q(t)=a_1+a_2t+\cdots+a_{n-1}t^{n-2}+t^{n-1}$.
+By induction this determinant is $(-1)^{n-1}q(\lambda)$.
+The bottom contribution is $(-a_0)(-1)^{n+1}$ times a determinant
+of $1$; the latter minor is triangular with diagonal ones.
+Thus the total is
+\[(-\lambda)(-1)^{n-1}q(\lambda)+(-1)^na_0
+=(-1)^n[\lambda q(\lambda)+a_0]=(-1)^np(\lambda).\]
+This completes the induction for all $n\ge2$.
+
+\exercise{5.S.22}{A polynomial root supplies an explicit companion eigenvector}
+\begin{enumerate}[label=(\alph*)]
+\item The companion matrix is
+$C_p=\begin{bmatrix}0&1&0\\0&0&1\\-a_0&-a_1&-a_2\end{bmatrix}$.
+\item Since $p(\lambda)=0$,
+$\lambda^3=-a_0-a_1\lambda-a_2\lambda^2$. Therefore
+\[C_p(1,\lambda,\lambda^2)^T
+=(\lambda,\lambda^2,-a_0-a_1\lambda-a_2\lambda^2)^T
+=(\lambda,\lambda^2,\lambda^3)^T
+=\lambda(1,\lambda,\lambda^2)^T.\]
+The first coordinate is $1$, so the vector is nonzero even if
+$\lambda=0$; it is genuinely an eigenvector.
+\end{enumerate}
+
+\exercise{5.S.23}{A Vandermonde matrix is an eigenvector matrix}
+Each column of $V$ is the eigenvector from Exercise 5.S.22 for
+one root $\lambda_j$. Distinct roots give distinct eigenvalues,
+so the corresponding eigenvectors are independent. Thus $V$ is
+invertible without needing to compute its inverse.
+The three eigenvector equations combine into
+$C_pV=V\operatorname{diag}(\lambda_1,\lambda_2,\lambda_3)$.
+Multiply on the left by $V^{-1}$ to obtain the requested diagonal
+matrix. Complex roots are allowed if matrices and independence are
+interpreted over $\C$.
+
+\exercise{5.S.24}{The companion-matrix idea behind a polynomial-root command}
+The basic method documented for MATLAB's \texttt{roots} is to
+construct a companion matrix and compute its eigenvalues. After
+removing leading zero coefficients and normalizing the leading
+nonzero coefficient, the polynomial is monic. Exercise 5.S.21
+shows that the companion matrix's eigenvalues are exactly its roots.
+Numerical eigenvalue algorithms, typically using QR-based methods,
+then approximate those values. The companion matrix used by a
+program may be transposed or written in a different convention;
+its characteristic polynomial still supplies the same roots.
+The MATLAB reference is
+\url{https://www.mathworks.com/help/matlab/ref/roots.html}.
+This explains the algorithmic idea, not an assertion that every
+computed root has exact arithmetic accuracy: companion matrices can
+be sensitive to coefficient rounding, especially near repeated roots.
+
+\exercise{5.S.25}{A repeated eigenvalue prevents an exact diagonalization}
+For the supplied matrix, exact symbolic computation gives
+\[\det(\lambda I-A)=(\lambda-1)(\lambda-2)^2.\]
+Its eigenspaces are
+\[E_1=\Span\{(1,-2,2)^T\},\qquad
+E_2=\Span\{(2,-5,3)^T\}.\]
+Each has dimension one, so there are only two independent eigenvectors
+for a three-dimensional matrix. Exact diagonalization is impossible.
+To see what happens to the requested checks, choose
+\[D=\operatorname{diag}(1,2,2),\quad
+P=\begin{bmatrix}1&2&2\\-2&-5&-5\\2&3&3\end{bmatrix}.\]
+Then $AP-PD=0$, but $\det P=0$ because columns 2 and 3 coincide.
+Thus $PDP^{-1}$ is undefined. A zero eigenvector-equation residual
+alone does not make $P$ an invertible change of basis.
+Floating-point eigenvalue commands may split the repeated root
+slightly and return nearly parallel eigenvectors. An attempted inverse
+then amplifies rounding errors; exact ranks resolve the issue.
+The following executed symbolic checks reproduce the conclusion:
+\begin{verbatim}
+from sympy import Matrix, eye, symbols, factor
+A = Matrix([[-3,-2,0],[14,7,-1],[-6,-3,1]])
+z = symbols('z')
+print(factor(A.charpoly(z).as_expr()))
+print((A-eye(3)).nullspace())
+print((A-2*eye(3)).nullspace())
+P = Matrix([[1,2,2],[-2,-5,-5],[2,3,3]])
+D = Matrix.diag(1,2,2)
+assert A*P-P*D == Matrix.zeros(3)
+assert P.det() == 0
+\end{verbatim}
+
+\exercise{5.S.26}{A nonzero nilpotent matrix cannot be diagonalized}
+For the given $4\times4$ matrix, exact calculation gives
+\[\det(\lambda I-A)=\lambda^4,\qquad
+\Nul A=\Span\{(1,2,1,0)^T\}.\]
+The only eigenvalue is zero, with algebraic multiplicity four but
+only one independent eigenvector. Thus the matrix is not diagonalizable.
+In fact $A^4=0$ and $A^3\ne0$, another exact check of its nonzero
+nilpotent structure.
+An eigenvector matrix for $D=0_4$ can only have columns proportional
+to $(1,2,1,0)^T$. Such a $P$ has rank at most one: $AP-PD=0$
+is possible, but $P^{-1}$ is impossible. Were an invertible $P$
+to exist, $PDP^{-1}=0$ would contradict the given nonzero $A$.
+A floating-point eigenvalue routine can again produce small nonzero
+numbers around the repeated zero root and unreliable eigenvectors.
+The exact calculation that settles the issue is:
+\begin{verbatim}
+A = Matrix([[-8,5,-2,0],[-5,2,1,-2],
+            [10,-8,6,-3],[3,-2,1,0]])
+assert A.charpoly().as_expr().expand() == A.charpoly().gen**4
+assert len(A.nullspace()) == 1
+assert A**4 == Matrix.zeros(4)
+assert A**3 != Matrix.zeros(4)
+\end{verbatim}
+No external data are needed, and the failure is a proved mathematical
+obstruction, not a software or setup failure.

@@ -1,0 +1,493 @@
+\section{Characterizations of invertible matrices}
+The Invertible Matrix Theorem (IMT) is a collection of equivalent tests for
+an $n\times n$ matrix. Invertibility, $n$ pivots, independent columns,
+columns spanning $\R^n$, a trivial null space, and a one-to-one and onto
+map $x\mapsto Ax$ all describe the same situation. The word
+\emph{square} is essential: a rectangular matrix can have independent
+columns without spanning its whole codomain.
+
+For implications, distinguish a proof from a plausible example. A true
+implication needs an argument for \emph{every} allowed matrix; a false
+implication needs just one counterexample with true premise and false
+conclusion. The zero matrix and identity matrix are useful tests, but their
+special properties should not be mistaken for universal properties.
+
+\practice{2.3.P1}{Repeated columns prevent invertibility}
+The three columns of the supplied matrix are $(2,2,2)^T$,
+$(3,3,3)^T$, and $(4,4,4)^T$. In particular column 2 is $3/2$ times
+column 1, so the columns are dependent. The IMT says an invertible square
+matrix has independent columns. Therefore this matrix is not invertible.
+
+\practice{2.3.P2}{Negate an existence statement correctly}
+Statement (g) says: for \emph{every} $b\in\R^n$ there exists a solution
+to $Ax=b$. Its negation is: there exists \emph{at least one} $b$ for which
+$Ax=b$ is inconsistent. It does not say every system is inconsistent;
+indeed $Ax=0$ always has $x=0$ as a solution. The IMT also implies that
+this $A$ is not invertible.
+
+\practice{2.3.P3}{Recognize a noninvertible product}
+The matrix $AB$ is square. A nontrivial solution of $(AB)x=0$ violates
+the trivial-null-space condition in the IMT, so $AB$ is not invertible.
+We cannot conclude that \emph{both} $A$ and $B$ are singular; one singular
+factor suffices to make a product singular. For instance $A=0$, $B=I$
+has exactly one singular factor.
+
+\exercise{2.3.1}{A two-by-two determinant test}
+For $A=\begin{bmatrix}5&7\\-3&-6\end{bmatrix}$,
+$ad-bc=-30+21=-9\ne0$. The two-by-two inverse criterion from Section 2.2
+therefore gives \textbf{invertible}. No complete inverse calculation is needed.
+
+\exercise{2.3.2}{A multiple row}
+The second row $(6,-3)$ is $-3/2$ times the first row $(-4,2)$.
+Eliminating it leaves only one pivot, fewer than two. Thus the matrix is
+\textbf{not invertible}. Equivalently the determinant is $12-12=0$.
+
+\exercise{2.3.3}{A triangular matrix with nonzero diagonal}
+The matrix is lower triangular with diagonal $3,-4,-3$.
+The first pivot $3$ removes the entries below it; the second pivot $-4$
+removes the next entry below it; the last pivot remains $-3$. None vanishes.
+There is a pivot in every row and column, so the IMT gives
+\textbf{invertible}. The triangular structure saves a full reduction.
+
+\exercise{2.3.4}{A zero row}
+The second row is all zeros. Thus there can be at most two pivot rows in
+this $3\times3$ matrix. Since invertibility would require three pivots,
+the matrix is \textbf{not invertible}.
+
+\exercise{2.3.5}{A zero column}
+Column 2 is zero, so $Ae_2=0$ with $e_2\ne0$. This is a nontrivial
+null vector. The IMT therefore gives \textbf{not invertible}; equivalently
+the columns are dependent because one of them is the zero vector.
+
+\exercise{2.3.6}{A short elimination gives the last pivot}
+Use $R_3\gets R_3+3R_1$ to obtain the last row $(0,-3,-18)$,
+then $R_3\gets R_3+(3/4)R_2$. The resulting echelon matrix is
+\[
+ \begin{bmatrix}1&-3&-6\\0&4&3\\0&0&-63/4\end{bmatrix}.
+\]
+Its three diagonal entries are nonzero pivots, so the original matrix is
+\textbf{invertible}. The operations preserve row equivalence.
+
+\exercise{2.3.7}{Four pivots from a few row replacements}
+Apply $R_2\gets R_2+3R_1$, $R_3\gets R_3-2R_1$, and then
+$R_4\gets R_4-(1/4)R_2$. This gives
+\[
+ \begin{bmatrix}-1&-3&0&1\\0&-4&8&0\\0&0&3&0\\0&0&0&1\end{bmatrix}.
+\]
+Every diagonal position is a pivot. Hence the original $4\times4$ matrix
+is \textbf{invertible}. There is no need to clear the entries above the pivots.
+
+\exercise{2.3.8}{Read pivots from an upper triangular matrix}
+The given matrix is already in echelon form with nonzero diagonal entries
+$3,1,2,1$. It has four pivots, so it is \textbf{invertible} by the IMT.
+The entries above the diagonal do not change this conclusion.
+
+\exercise{2.3.9}{A computer-assisted exact pivot test}
+Using rational row reduction on the supplied integer matrix gives an
+echelon matrix
+\[
+ \begin{bmatrix}
+ 4&0&-3&-7\\0&9&9/2&-3/2\\0&0&71/4&365/12\\0&0&0&-1336/213
+ \end{bmatrix}.
+\]
+For reproducibility, elimination here uses
+$R_i\gets R_i-(a_{ik}/a_{kk})R_k$ below each successive pivot.
+All four pivots are nonzero; therefore the matrix is \textbf{invertible}.
+An exact program check is \texttt{Matrix(A).rref()}, using SymPy, which
+returns $I_4$ and pivot columns $(0,1,2,3)$ (zero-based indices).
+These exact calculations avoid confusing a very small pivot with zero.
+
+\exercise{2.3.10}{Five pivots despite a small determinant}
+For the supplied $5\times5$ integer matrix, exact elimination, including
+one row interchange when a candidate pivot is zero, gives
+\[
+ \begin{bmatrix}
+ 5&3&1&7&9\\0&2/5&4/5&-2/5&-94/5\\
+ 0&0&1&-21&7\\0&0&0&1&34\\0&0&0&0&-1
+ \end{bmatrix}.
+\]
+There are five nonzero pivots, hence the matrix is \textbf{invertible}.
+Its inverse can nevertheless be numerically sensitive; invertibility is
+an exact yes/no statement, while conditioning measures sensitivity.
+Exercise 43 quantifies that distinction. Exact SymPy row reduction returns
+$I_5$ with all five pivot columns.
+
+\exercise{2.3.11}{Five implications, with the square hypothesis retained}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} A trivial null space means no free variables,
+so all $n$ columns have pivots. For a square matrix that forces the reduced
+form to be $I_n$; this is an IMT equivalence.
+\item \textbf{True.} Spanning $\R^n$ forces $n$ pivot rows. In an
+$n\times n$ matrix these are also $n$ pivot columns, giving independence.
+\item \textbf{False.} Merely being $n\times n$ does not guarantee
+consistency for every right side. Take $A=0$ and $b=e_1$; the equation
+$0x=e_1$ has no solution.
+\item \textbf{True.} A nontrivial homogeneous solution requires a free
+variable, so some column is not a pivot column. Thus there are fewer than
+$n$ pivots.
+\item \textbf{True.} If $A$ were invertible, then
+$(A^{-1})^T$ would be an inverse of $A^T$. The given noninvertibility of
+$A^T$ excludes that possibility, so $A$ is not invertible.
+\end{enumerate}
+
+\exercise{2.3.12}{Pay attention to onto versus into}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} $AD=I$ is the right-inverse condition in the IMT,
+so $A$ is invertible. Left multiplication by $A^{-1}$ gives $D=A^{-1}$,
+and therefore $DA=I$.
+\item \textbf{False.} Every $n\times n$ matrix maps $\R^n$ \emph{into}
+$\R^n$, including $A=0$, whose reduced form is not $I$.
+Mapping \emph{onto} would be a stronger premise and would imply the conclusion.
+\item \textbf{True.} For a square matrix, independent columns and
+columns spanning $\R^n$ are equivalent by the IMT.
+\item \textbf{False.} Consistency for every $b$ implies invertibility,
+hence the transformation \emph{is} one-to-one. The identity matrix is a
+concrete counterexample to the claimed negative conclusion.
+\item \textbf{False.} Consistency for just one right side says nothing
+about uniqueness. For $A=0$, $b=0$, every vector is a solution.
+\end{enumerate}
+
+\exercise{2.3.13}{When an upper triangular matrix is invertible}
+It is invertible \emph{if and only if every diagonal entry is nonzero}.
+If all are nonzero, eliminate above the diagonal from the last row upward,
+then scale the rows; this reduces the matrix to $I_n$.
+For the converse, suppose diagonal entry $k$ is zero. In an upper
+triangular matrix, each of the first $k-1$ columns has zero entries from
+row $k$ downward. Column $k$ also has zero entries from row $k$ downward:
+its diagonal is zero, and its lower entries vanish by triangularity.
+Thus the first $k$ columns live entirely in their first $k-1$ coordinates.
+A homogeneous system with $k$ variables but only $k-1$ potentially
+nonzero equations has a free variable, so these $k$ columns are dependent.
+Their dependence extends to all columns by assigning zero coefficients
+to the remaining columns. The IMT therefore excludes invertibility.
+
+\exercise{2.3.14}{The lower triangular case}
+Again the criterion is that every diagonal entry be nonzero.
+One way to avoid repeating the argument is to transpose: $A$ is lower
+triangular exactly when $A^T$ is upper triangular, with the same diagonal.
+The IMT says $A$ is invertible exactly when $A^T$ is invertible.
+Applying Exercise 13 to $A^T$ proves both directions of the claimed criterion.
+
+\exercise{2.3.15}{Nonspanning columns exclude an inverse}
+No. The IMT says an invertible $4\times4$ matrix has columns spanning
+$\R^4$. The proposed failure of spanning is the negation of one of its
+equivalent conditions, so it rules out invertibility.
+
+\exercise{2.3.16}{Independence of the transposed columns}
+If $A$ is invertible, then $A^T$ is invertible, with inverse $(A^{-1})^T$.
+Applying the independent-column condition of the IMT to $A^T$ shows that
+its columns are independent. Equivalently the rows of $A$ are independent.
+
+\exercise{2.3.17}{Identical columns produce an explicit dependence}
+No. If columns $i,j$ are equal with $i\ne j$, then
+$A(e_i-e_j)=a_i-a_j=0$. The vector $e_i-e_j$ is nonzero, so the null
+space is nontrivial and $A$ cannot be invertible.
+
+\exercise{2.3.18}{Identical rows also rule out invertibility}
+No. Equal rows of $A$ become equal columns of $A^T$.
+Exercise 17 makes $A^T$ singular, and the transpose equivalence in the
+IMT then makes $A$ singular too.
+
+\exercise{2.3.19}{Seven independent columns give every right side exactly once}
+Since $D$ is $7\times7$ and has independent columns, the IMT makes it
+invertible. For \emph{every} $b\in\R^7$, the system $Dx=b$ therefore
+has the unique solution $x=D^{-1}b$. Both existence and uniqueness are
+part of the conclusion; neither needs a special choice of $b$.
+
+\exercise{2.3.20}{Universal consistency for a square system implies uniqueness}
+It is not possible to have more than one solution for any $b$.
+Universal consistency gives a pivot in every one of the five rows.
+Because there are five columns too, all five variables are pivot variables,
+leaving no free variable. The matrix is invertible, and every system has
+exactly one solution.
+
+\exercise{2.3.21}{Multiple solutions exclude spanning}
+If $Cu=v$ has two different solutions $u_1,u_2$, then
+$C(u_1-u_2)=v-v=0$ with $u_1-u_2\ne0$. Thus $C$ is singular by the
+IMT. Its columns therefore cannot span $\R^n$. Notice that the original
+right side $v$ is still attained; the failure concerns some other right sides.
+
+\exercise{2.3.22}{A one-sided square inverse forces commutation}
+From $EF=I$, the IMT makes $E$ invertible. Multiplying on the left by
+$E^{-1}$ gives $F=E^{-1}$, so $FE=I$ as well.
+Hence $EF=FE$, which is exactly the definition of commuting matrices.
+This conclusion uses squareness; rectangular one-sided inverses need not reverse.
+
+\exercise{2.3.23}{A missed output implies a nontrivial null vector}
+If $Fx=y$ is inconsistent for some $y$, then $F$ is not onto.
+By the IMT this square matrix is singular, so $Fx=0$ has a nontrivial
+solution. In fact if $z\ne0$ is such a solution, every $tz$, $t\in\R$,
+is a solution; thus the homogeneous system has infinitely many solutions.
+
+\exercise{2.3.24}{A failure to reduce to the identity}
+If $G$ cannot be reduced to $I_n$, the IMT makes it singular.
+Consequently its columns are dependent and do not span $\R^n$.
+There are fewer than $n$ pivots. These are equivalent descriptions of the
+same failure, not alternative cases to choose between.
+
+\exercise{2.3.25}{Verify the boxed fact about a one-sided inverse}
+Assume square matrices $A,B$ satisfy $AB=I$. Then $A$ has a right
+inverse, so the IMT implies that $A$ is invertible. The equation gives
+$B=A^{-1}AB=A^{-1}$. Therefore $B$ is invertible too, with inverse $A$,
+and $BA=I$. This proves every assertion in the boxed statement preceding
+Example 1, rather than merely assuming a right inverse is automatically two-sided.
+
+\exercise{2.3.26}{Independent columns lead to a spanning square}
+Independence of the columns of square $A$ makes $A$ invertible.
+The product $A^2=AA$ is then invertible, with inverse $A^{-1}A^{-1}$.
+Applying the spanning condition of the IMT to $A^2$ proves that its columns
+span $\R^n$. Equivalently, $A$ maps onto $\R^n$ and doing so twice
+still reaches every vector.
+
+\exercise{2.3.27}{An invertible product forces the first factor invertible}
+Let $W=(AB)^{-1}$. Then $A(BW)=(AB)W=I$.
+Thus $A$ has a square right inverse $BW$, and the IMT makes $A$
+invertible. This proof does \emph{not} apply the inverse-of-a-product
+formula to unverified inverses of $A,B$; their existence is what must be proved.
+
+\exercise{2.3.28}{An invertible product forces the second factor invertible}
+Suppose $Bx=0$. Multiplying by $A$ gives $(AB)x=0$.
+Invertibility of $AB$ implies $x=0$. Hence $B$ has trivial null space,
+and since $B$ is square the IMT proves it is invertible.
+Alternatively, $(WA)B=I$ with $W=(AB)^{-1}$ gives a left-inverse test.
+
+\exercise{2.3.29}{One-to-one endomorphisms are also onto}
+The one-to-one condition says $Ax=0$ has only $x=0$, or equivalently the
+columns are independent. For $n\times n$ matrices the IMT makes $A$
+invertible and hence onto $\R^n$. Thus the transformation is a bijection
+with inverse $x\mapsto A^{-1}x$. The equal dimensions are crucial.
+
+\exercise{2.3.30}{Failure of injectivity also forces failure of surjectivity}
+Two solutions of $Ax=b$ give a nonzero homogeneous solution by subtraction.
+Therefore $A$ is singular. By the IMT the associated transformation is
+not onto $\R^n$ either: at least one right side has no preimage.
+It can still attain the particular $b$ mentioned in the premise.
+
+\exercise{2.3.31}{Prove uniqueness directly from pivot counting}
+\goal Use row reduction, without Theorems 5 or 8.
+Consistency for all $b$ forces a pivot in every row; otherwise an
+appropriate right side creates an inconsistent zero-coefficient row.
+The square matrix has $n$ rows and $n$ columns, so these $n$ pivots use
+all $n$ columns. There are no free variables. Thus, for any fixed $b$,
+back-substitution determines each variable uniquely. The hypothesis gives
+existence, and this pivot argument gives uniqueness, as requested.
+
+\exercise{2.3.32}{Prove existence directly from a trivial null space}
+\goal Avoid invoking the IMT.
+If a column were not a pivot column, its variable could be chosen freely
+in the homogeneous system, producing a nonzero solution. Thus all $n$
+columns have pivots. The $n$ pivots occupy different rows, and there are
+only $n$ rows, so every row has a pivot. Hence for every augmented right
+side the system is consistent: no zero coefficient row can create a
+contradiction. This gives a solution of $Ax=b$ for every $b$ directly.
+
+\exercise{2.3.33}{Invert a two-dimensional linear transformation}
+The standard matrix is
+$A=\begin{bmatrix}-5&9\\4&-7\end{bmatrix}$, whose determinant is
+$35-36=-1$. Thus
+$A^{-1}=\begin{bmatrix}7&9\\4&5\end{bmatrix}$.
+For an output $(y_1,y_2)$, its unique input is
+\[
+ \boxed{T^{-1}(y_1,y_2)=(7y_1+9y_2,\ 4y_1+5y_2)}.
+\]
+Multiplying either pair of matrices gives $I_2$, which verifies both
+compositions $T^{-1}\circ T$ and $T\circ T^{-1}$ are the identity.
+
+\exercise{2.3.34}{A second inverse transformation}
+Now $A=\begin{bmatrix}2&-8\\-2&7\end{bmatrix}$ has determinant
+$14-16=-2$, so
+$A^{-1}=\begin{bmatrix}-7/2&-4\\-1&-1\end{bmatrix}$.
+Consequently
+\[
+ \boxed{T^{-1}(y_1,y_2)=(-\tfrac72y_1-4y_2,\ -y_1-y_2)}.
+\]
+For example applying $T$ to this pair gives first coordinate
+$-7y_1-8y_2+8y_1+8y_2=y_1$ and second coordinate
+$7y_1+8y_2-7y_1-7y_2=y_2$. The reverse composition follows from the
+same inverse matrix calculation.
+
+\exercise{2.3.35}{Use both inverse identities directly}
+Let $S=T^{-1}$, so $S(T(x))=x$ and $T(S(y))=y$.
+If $T(u)=T(v)$, apply $S$ to get $u=v$; thus $T$ is one-to-one.
+For every desired output $y$, the input $S(y)$ satisfies $T(S(y))=y$;
+thus $T$ is onto. As a second proof, Theorem 9 identifies invertibility
+of $T$ with invertibility of its square standard matrix, and the IMT
+then gives both injectivity and surjectivity.
+
+\exercise{2.3.36}{Two inputs sharing an output rule out onto}
+The equality $T(u)=T(v)$ for $u\ne v$ means $T$ is not one-to-one.
+Its square standard matrix therefore fails one IMT condition, so it also
+fails the onto condition. Hence $T$ cannot map $\R^n$ onto $\R^n$.
+One can also subtract to see $T(u-v)=0$ with $u-v\ne0$.
+
+\exercise{2.3.37}{A one-sided linear inverse in equal dimensions}
+Let $A,B$ be the standard matrices of $T,U$. The hypothesis
+$T(U(x))=x$ for all $x$ implies $ABx=x$ for all $x$.
+Testing the standard basis vectors gives $AB=I$.
+The boxed result proved in Exercise 25 yields $BA=I$.
+Thus $U(T(x))=BAx=x$ for every $x$. The conclusion depends on both
+linearity and the common finite dimension.
+
+\exercise{2.3.38}{Why the inverse function is unique}
+Since $T$ is invertible, it is onto. Given arbitrary $v\in\R^n$,
+choose $x$ with $T(x)=v$. Then
+\[
+ S(v)=S(T(x))=x=U(T(x))=U(v).
+\]
+Every $v$ was allowed, so $S=U$ as functions. We did not need to assume
+that $S,U$ were linear; the surjectivity of $T$ ensured their arguments
+covered the entire domain.
+
+\exercise{2.3.39}{An onto linear map in equal dimensions has an onto inverse}
+By the IMT applied to its standard $n\times n$ matrix, an onto $T$
+is invertible. For any $x$, taking $y=T(x)$ gives $T^{-1}(y)=x$;
+therefore $T^{-1}$ is onto. If $T^{-1}(y_1)=T^{-1}(y_2)$,
+apply $T$ to obtain $y_1=y_2$; therefore it is one-to-one as well.
+So both $T$ and its inverse are bijections of $\R^n$.
+
+\exercise{2.3.40}{Prove linearity of the inverse without assuming it}
+Let $x=S(u)$ and $y=S(v)$. The identity $T\circ S=\mathrm{id}$ gives
+$T(x)=u$, $T(y)=v$. By linearity of $T$,
+$T(x+y)=u+v$. Applying $S$ and using $S\circ T=\mathrm{id}$ yields
+\[
+ S(u+v)=S(T(x+y))=x+y=S(u)+S(v).
+\]
+Likewise $T(cx)=cT(x)=cu$ gives
+$S(cu)=S(T(cx))=cx=cS(u)$. These are additivity and homogeneity,
+so $S$ is linear. Both inverse identities were used explicitly.
+
+\exercise{2.3.41}{Tiny data perturbations, large solution changes}
+\step{(a) Solve both systems exactly.}
+For either right side $(b_1,b_2)$, the inverse of the coefficient matrix is
+\[
+ A^{-1}=\frac1{4.5(1.1)-3.1(1.6)}
+ \begin{bmatrix}1.1&-3.1\\-1.6&4.5\end{bmatrix}
+ =\begin{bmatrix}-110&310\\160&-450\end{bmatrix},
+\]
+because $4.95-4.96=-.01$. For the unrounded right side,
+\[
+ x_1=-110(19.249)+310(6.843)=3.94,\qquad
+ x_2=160(19.249)-450(6.843)=.49.
+\]
+For the rounded right side, the same products give $(2.90,2.00)^T$.
+All these decimals are exact terminating decimals, not numerical approximations.
+\step{(b) Specify the meaning of percentage error.}
+Coordinatewise relative percentage errors are
+\[
+ 100\frac{|2.90-3.94|}{3.94}=\frac{5200}{197}\%\approx26.40\%,
+ \qquad
+ 100\frac{|2.00-.49|}{.49}=\frac{15100}{49}\%\approx308.16\%.
+\]
+If a single vector error is wanted instead, the Euclidean relative error is
+$100\|\widetilde x-x\|_2/\|x\|_2\approx46.18\%$.
+Stating the norm matters: these are different legitimate summaries.
+\step{(c) Compute and interpret conditioning.}
+Executing \texttt{np.linalg.cond(A)} in NumPy gives the spectral
+($2$-norm) condition number $\kappa_2(A)\approx3362.9997$.
+The $1$-norm and infinity-norm condition numbers both equal $4636$;
+software conventions therefore need to be identified.
+The large value explains why very small changes of the measured right
+side can cause large changes in the recovered solution.
+
+\exercise{2.3.42}{Measure roundoff for the matrix in Exercise 9}
+\goal Compare a known vector with a solution recovered from its computed output.
+The following is an executed NumPy experiment using binary64 arithmetic:
+\begin{verbatim}
+import numpy as np
+A = np.array([[4,0,-3,-7],[-6,9,9,9],
+              [7,-5,10,19],[-1,2,4,-1]],dtype=float)
+x = np.random.default_rng(23042).random(4)
+b = A@x
+x1 = np.linalg.solve(A,b)
+print(np.linalg.cond(A))
+print(np.max(np.abs(x1-x))/np.max(np.abs(x)))
+print(np.abs((x1-x)/x))
+\end{verbatim}
+The condition number is $11.3525089$, and the normwise relative error
+$\|x_1-x\|_\infty/\|x\|_\infty$ is approximately $4.52\cdot10^{-16}$.
+The chosen vector, rounded here for readability, is
+\[
+ x\approx(.98344656,.12402037,.75512517,.48561218)^T.
+\]
+The worst coordinatewise relative error is about $2.13\cdot10^{-15}$;
+one coordinate was recovered exactly in this run.
+
+Binary64 has $53$ binary significant bits, about $15$--$16$ decimal
+significant digits. Thus the observed normwise agreement is roughly
+$15$ digits, with roughly $14$--$15$ in the most sensitive coordinate.
+The expected worst-case loss suggested by $\log_{10}\kappa_2(A)$ is about
+$1.06$ digits. The measured error is an observation for this vector,
+not a promise that every possible right side has identical accuracy.
+Libraries and hardware may alter the last few floating-point bits.
+
+\exercise{2.3.43}{Repeat with a more sensitive matrix}
+Use the same procedure but with the matrix in Exercise 10 and the seed below:
+\begin{verbatim}
+A = np.array([[5,3,1,7,9],[6,4,2,8,-8],
+              [7,5,3,10,9],[9,6,4,-9,-5],
+              [8,5,2,11,4]],dtype=float)
+x = np.random.default_rng(23043).random(5)
+b = A@x
+x1 = np.linalg.solve(A,b)
+print(np.linalg.cond(A))
+print(np.max(np.abs(x1-x))/np.max(np.abs(x)))
+\end{verbatim}
+The executed condition number is $\kappa_2(A)\approx68622.4548$;
+the normwise relative error is approximately $6.01\cdot10^{-12}$.
+Thus this run retains about $11$ decimal digits normwise, losing about
+$4$--$5$ of the approximately $15$--$16$ available digits.
+The theoretical sensitivity indicator $\log_{10}\kappa_2(A)\approx4.84$
+is consistent with that behavior. The exact pivot calculation in Exercise 10
+proved invertibility, but it did not guarantee numerical robustness.
+
+\exercise{2.3.44}{The last inverse column of a fifth-order Hilbert matrix}
+To obtain column 5 of $H^{-1}$ without the other columns, solve
+$Hx=e_5$, where $H_{ij}=1/(i+j-1)$ for $1\le i,j\le5$.
+An exact rational solve gives
+\[
+ \boxed{x=(630,-12600,56700,-88200,44100)^T}.
+\]
+It can be verified by multiplying the five rows of $H$ by this column;
+the results are $0,0,0,0,1$ respectively. For example the first is
+$630-6300+18900-22050+8820=0$.
+A numerical version is
+\begin{verbatim}
+H = np.array([[1/(i+j+1) for j in range(5)]
+              for i in range(5)])
+x = np.linalg.solve(H,np.eye(5)[:,4])
+print(np.linalg.cond(H))
+\end{verbatim}
+Here $\kappa_2(H)\approx476607.25\approx10^{5.68}$.
+Starting with about $15$--$16$ decimal digits, the condition estimate
+allows a loss of about six digits, so about $9$--$10$ digits is a
+conservative expectation. Our executed solve has largest relative
+coordinate error about $1.93\cdot10^{-12}$ against the exact column,
+roughly $11$--$12$ digits of agreement. A bound on possible loss need
+not be reached for this particular right side.
+
+\exercise{2.3.45}{A twelfth-order Hilbert inverse can be numerically unreliable}
+Use a numerical inverse, rather than an exact rational one, for this experiment:
+\begin{verbatim}
+H = np.array([[1/(i+j+1) for j in range(12)]
+              for i in range(12)])
+B = np.linalg.inv(H)
+R = H@B-np.eye(12)
+print(np.linalg.cond(H))
+print(np.max(np.abs(R)))
+print(np.linalg.norm(R,np.inf))
+\end{verbatim}
+In the executed NumPy binary64 run, the outputs are approximately
+$1.64\cdot10^{16}$, $0.0892$, and $0.320$, respectively.
+Thus the largest entry of the computed product's error is nearly $0.09$:
+$HB$ is visibly different from the identity. The computed $B_{11}$ is
+approximately $142.655$, whereas the exact Hilbert inverse has
+$(H^{-1})_{11}=12^2=144$.
+
+The exact rational Hilbert matrix is invertible, but its condition number
+is comparable to the reciprocal of binary64 rounding precision. Ordinary
+floating-point arithmetic therefore has essentially no reliable significant
+digits guaranteed in an inverse computation of this size. Different
+numerical libraries may produce somewhat different inaccurate answers;
+none of that contradicts exact invertibility. Using higher precision and
+checking against exact rational arithmetic are ways to investigate further,
+not reasons to silently report the floating-point product as $I$.

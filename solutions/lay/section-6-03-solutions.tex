@@ -1,0 +1,329 @@
+\section{Orthogonal projections}
+For an orthogonal basis $u_1,\ldots,u_p$ of $W$, the orthogonal component
+of $y$ in $W$ is
+\[
+\widehat y=\operatorname{proj}_Wy
+=\sum_{j=1}^p\frac{y\cdot u_j}{u_j\cdot u_j}u_j.
+\]
+The residual $z=y-\widehat y$ lies in $W^\perp$. Thus $y=\widehat y+z$
+splits a vector into a part in the subspace and a perpendicular part.
+If the columns of $U$ are \emph{orthonormal}, this simplifies to
+$\widehat y=UU^Ty$. The formula without the denominators is generally
+wrong for merely orthogonal columns of nonunit length.
+
+For any $w\in W$, $\|y-w\|^2=\|z\|^2+\|\widehat y-w\|^2$.
+Therefore $\widehat y$ is the unique closest point and the distance
+is $\|z\|$. Each numerical calculation below checks the residual
+against every generator, not just against the projection.
+
+\practice{6.3.P1}{Recognize a vector already in the subspace}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{rr}66&0\\0&6\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{88}{66}=\frac{4}{3}.\]
+\[c_{2}=\frac{y\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{-2}{6}=- \frac{1}{3}.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{rr}-7&-1\\1&1\\4&-2\end{array}\right]\left[\begin{array}{r}\frac{4}{3}\\- \frac{1}{3}\end{array}\right]=\left[\begin{array}{r}-9\\1\\6\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}0\\0\\0\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+\answer{The projection equals $y=(-9,1,6)^T$ itself; the residual is zero.}
+
+\exercise{6.3.1}{Compute and check an orthogonal projection}
+Use the orthogonal basis formula for all four coefficients:
+\[c_j=\frac{x\cdot u_j}{u_j\cdot u_j},\qquad(c_1,c_2,c_3,c_4)=(- \frac{8}{9},- \frac{2}{9},\frac{2}{3},2).\]
+The fourth component and the sum of the first three components are
+\[q=c_4u_4=\left[\begin{array}{r}10\\-6\\-2\\2\end{array}\right],\qquad p=x-q=\left[\begin{array}{r}0\\-2\\4\\-2\end{array}\right].\]
+Here $p=c_1u_1+c_2u_2+c_3u_3$ is in the first requested span and $q$ is in the second. The basis orthogonality makes $p\cdot q=0$.
+\answer{$x=p+q$ with the two explicit columns above.}
+
+\exercise{6.3.2}{Compute and check an orthogonal projection}
+For the four orthogonal generators, compute $c_j=(v\cdot u_j)/(u_j\cdot u_j)$. The exact coefficients are
+\[(c_1,c_2,c_3,c_4)=(2,\frac{3}{7},\frac{12}{7},- \frac{8}{7}).\]
+Thus the requested split is
+\[p=c_1u_1=\left[\begin{array}{r}2\\4\\2\\2\end{array}\right],\qquad q=c_2u_2+c_3u_3+c_4u_4=\left[\begin{array}{r}2\\1\\-5\\1\end{array}\right].\]
+Adding the two columns gives the original $v$. The first is in $\Span\{u_1\}$ and the second in $\Span\{u_2,u_3,u_4\}$, and they are orthogonal.
+\answer{$v=p+q$ as displayed.}
+
+\exercise{6.3.3}{Decompose a vector and check each orthogonality condition}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{rr}2&0\\0&2\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{3}{2}=\frac{3}{2}.\]
+\[c_{2}=\frac{y\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{5}{2}=\frac{5}{2}.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{rr}1&-1\\1&1\\0&0\end{array}\right]\left[\begin{array}{r}\frac{3}{2}\\\frac{5}{2}\end{array}\right]=\left[\begin{array}{r}-1\\4\\0\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}0\\0\\3\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+
+
+\exercise{6.3.4}{Decompose a vector and check each orthogonality condition}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{rr}25&0\\0&25\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{30}{25}=\frac{6}{5}.\]
+\[c_{2}=\frac{y\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{-15}{25}=- \frac{3}{5}.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{rr}3&-4\\4&3\\0&0\end{array}\right]\left[\begin{array}{r}\frac{6}{5}\\- \frac{3}{5}\end{array}\right]=\left[\begin{array}{r}6\\3\\0\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}0\\0\\-2\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+
+
+\exercise{6.3.5}{Decompose a vector and check each orthogonality condition}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{rr}14&0\\0&6\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{7}{14}=\frac{1}{2}.\]
+\[c_{2}=\frac{y\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{-15}{6}=- \frac{5}{2}.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{rr}3&1\\-1&-1\\2&-2\end{array}\right]\left[\begin{array}{r}\frac{1}{2}\\- \frac{5}{2}\end{array}\right]=\left[\begin{array}{r}-1\\2\\6\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}0\\0\\0\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+
+
+\exercise{6.3.6}{Decompose a vector and check each orthogonality condition}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{rr}18&0\\0&2\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{-27}{18}=- \frac{3}{2}.\]
+\[c_{2}=\frac{y\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{5}{2}=\frac{5}{2}.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{rr}-4&0\\-1&1\\1&1\end{array}\right]\left[\begin{array}{r}- \frac{3}{2}\\\frac{5}{2}\end{array}\right]=\left[\begin{array}{r}6\\4\\1\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}0\\0\\0\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+
+
+\exercise{6.3.7}{Decompose a vector and check each orthogonality condition}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{rr}14&0\\0&42\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{0}{14}=0.\]
+\[c_{2}=\frac{y\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{28}{42}=\frac{2}{3}.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{rr}1&5\\3&1\\-2&4\end{array}\right]\left[\begin{array}{r}0\\\frac{2}{3}\end{array}\right]=\left[\begin{array}{r}\frac{10}{3}\\\frac{2}{3}\\\frac{8}{3}\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}- \frac{7}{3}\\\frac{7}{3}\\\frac{7}{3}\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+
+
+\exercise{6.3.8}{Decompose a vector and check each orthogonality condition}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{rr}3&0\\0&14\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{6}{3}=2.\]
+\[c_{2}=\frac{y\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{7}{14}=\frac{1}{2}.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{rr}1&-1\\1&3\\1&-2\end{array}\right]\left[\begin{array}{r}2\\\frac{1}{2}\end{array}\right]=\left[\begin{array}{r}\frac{3}{2}\\\frac{7}{2}\\1\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}- \frac{5}{2}\\\frac{1}{2}\\2\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+
+
+\exercise{6.3.9}{Decompose a vector and check each orthogonality condition}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{rrr}3&0&0\\0&15&0\\0&0&3\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{6}{3}=2.\]
+\[c_{2}=\frac{y\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{10}{15}=\frac{2}{3}.\]
+\[c_{3}=\frac{y\cdot u_{3}}{u_{3}\cdot u_{3}}=\frac{-2}{3}=- \frac{2}{3}.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{rrr}1&-1&-1\\1&3&0\\0&1&1\\1&-2&1\end{array}\right]\left[\begin{array}{r}2\\\frac{2}{3}\\- \frac{2}{3}\end{array}\right]=\left[\begin{array}{r}2\\4\\0\\0\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}2\\-1\\3\\-1\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+
+
+\exercise{6.3.10}{Decompose a vector and check each orthogonality condition}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{rrr}3&0&0\\0&3&0\\0&0&3\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{1}{3}=\frac{1}{3}.\]
+\[c_{2}=\frac{y\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{14}{3}=\frac{14}{3}.\]
+\[c_{3}=\frac{y\cdot u_{3}}{u_{3}\cdot u_{3}}=\frac{-5}{3}=- \frac{5}{3}.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{rrr}1&1&0\\1&0&-1\\0&1&1\\-1&1&-1\end{array}\right]\left[\begin{array}{r}\frac{1}{3}\\\frac{14}{3}\\- \frac{5}{3}\end{array}\right]=\left[\begin{array}{r}5\\2\\3\\6\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}-2\\2\\2\\0\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+
+
+\exercise{6.3.11}{Closest point and its perpendicular residual}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{rr}12&0\\0&4\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{6}{12}=\frac{1}{2}.\]
+\[c_{2}=\frac{y\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{6}{4}=\frac{3}{2}.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{rr}3&1\\1&-1\\-1&1\\1&-1\end{array}\right]\left[\begin{array}{r}\frac{1}{2}\\\frac{3}{2}\end{array}\right]=\left[\begin{array}{r}3\\-1\\1\\-1\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}0\\2\\4\\2\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+For any other $w$ in the subspace, $y-w=z+(\widehat y-w)$ is an orthogonal sum. Therefore $\|y-w\|^2=\|z\|^2+\|\widehat y-w\|^2\ge\|z\|^2$, with equality only when $w=\widehat y$. This proves that the displayed projection is the unique closest point.
+
+
+\exercise{6.3.12}{Closest point and its perpendicular residual}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{rr}10&0\\0&26\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{30}{10}=3.\]
+\[c_{2}=\frac{y\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{26}{26}=1.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{rr}1&-4\\-2&1\\-1&0\\2&3\end{array}\right]\left[\begin{array}{r}3\\1\end{array}\right]=\left[\begin{array}{r}-1\\-5\\-3\\9\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}4\\4\\4\\4\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+For any other $w$ in the subspace, $y-w=z+(\widehat y-w)$ is an orthogonal sum. Therefore $\|y-w\|^2=\|z\|^2+\|\widehat y-w\|^2\ge\|z\|^2$, with equality only when $w=\widehat y$. This proves that the displayed projection is the unique closest point.
+
+
+\exercise{6.3.13}{Closest point and its perpendicular residual}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{rr}15&0\\0&3\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{10}{15}=\frac{2}{3}.\]
+\[c_{2}=\frac{y\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{-7}{3}=- \frac{7}{3}.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{rr}2&1\\-1&1\\-3&0\\1&-1\end{array}\right]\left[\begin{array}{r}\frac{2}{3}\\- \frac{7}{3}\end{array}\right]=\left[\begin{array}{r}-1\\-3\\-2\\3\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}4\\-4\\4\\0\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+For any other $w$ in the subspace, $y-w=z+(\widehat y-w)$ is an orthogonal sum. Therefore $\|y-w\|^2=\|z\|^2+\|\widehat y-w\|^2\ge\|z\|^2$, with equality only when $w=\widehat y$. This proves that the displayed projection is the unique closest point.
+
+
+\exercise{6.3.14}{Closest point and its perpendicular residual}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{rr}14&0\\0&49\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{7}{14}=\frac{1}{2}.\]
+\[c_{2}=\frac{y\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{0}{49}=0.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{rr}2&5\\0&-2\\-1&4\\-3&2\end{array}\right]\left[\begin{array}{r}\frac{1}{2}\\0\end{array}\right]=\left[\begin{array}{r}1\\0\\- \frac{1}{2}\\- \frac{3}{2}\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}1\\4\\\frac{1}{2}\\\frac{1}{2}\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+For any other $w$ in the subspace, $y-w=z+(\widehat y-w)$ is an orthogonal sum. Therefore $\|y-w\|^2=\|z\|^2+\|\widehat y-w\|^2\ge\|z\|^2$, with equality only when $w=\widehat y$. This proves that the displayed projection is the unique closest point.
+
+
+\exercise{6.3.15}{Decompose a vector and check each orthogonality condition}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{rr}35&0\\0&14\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{35}{35}=1.\]
+\[c_{2}=\frac{y\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{-28}{14}=-2.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{rr}-3&-3\\-5&2\\1&1\end{array}\right]\left[\begin{array}{r}1\\-2\end{array}\right]=\left[\begin{array}{r}3\\-9\\-1\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}2\\0\\6\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+\answer{The distance is the residual length $\|z\|=\sqrt{40}=2 \sqrt{10}$, not the projection length.}
+
+\exercise{6.3.16}{Decompose a vector and check each orthogonality condition}
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{rr}10&0\\0&26\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{30}{10}=3.\]
+\[c_{2}=\frac{y\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{26}{26}=1.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{rr}1&-4\\-2&1\\-1&0\\2&3\end{array}\right]\left[\begin{array}{r}3\\1\end{array}\right]=\left[\begin{array}{r}-1\\-5\\-3\\9\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}4\\4\\4\\4\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+\answer{The distance is the residual length $\|z\|=\sqrt{64}=8$, not the projection length.}
+
+\exercise{6.3.17}{Compute and check an orthogonal projection}
+\step{(a) Compute the two distinct products.}
+\[U^TU=\left[\begin{array}{rr}1&0\\0&1\end{array}\right],\qquad UU^T=\left[\begin{array}{rrr}\frac{8}{9}&- \frac{2}{9}&\frac{2}{9}\\- \frac{2}{9}&\frac{5}{9}&\frac{4}{9}\\\frac{2}{9}&\frac{4}{9}&\frac{5}{9}\end{array}\right].\]
+The first product checks orthonormal columns. The second acts on the ambient space and projects onto their span.
+\step{(b) Compute by the orthonormal projection formula.}
+\[\operatorname{proj}_Wy=U(U^Ty)=(UU^T)y=\left[\begin{array}{r}2\\4\\5\end{array}\right].\]
+Both methods are the same matrix product by associativity. Directly $U^T(y-\operatorname{proj}_Wy)=0$, checking the residual.
+
+\exercise{6.3.18}{Compute and check an orthogonal projection}
+\step{(a) Compute the two distinct products.}
+\[U^TU=\left[\begin{array}{r}1\end{array}\right],\qquad UU^T=\left[\begin{array}{rr}\frac{1}{10}&- \frac{3}{10}\\- \frac{3}{10}&\frac{9}{10}\end{array}\right].\]
+The first product checks orthonormal columns. The second acts on the ambient space and projects onto their span.
+\step{(b) Compute by the orthonormal projection formula.}
+\[\operatorname{proj}_Wy=U(U^Ty)=(UU^T)y=\left[\begin{array}{r}-2\\6\end{array}\right].\]
+Both methods are the same matrix product by associativity. Directly $U^T(y-\operatorname{proj}_Wy)=0$, checking the residual.
+
+\exercise{6.3.19}{Compute and check an orthogonal projection}
+\idea Remove the component of the given outside vector that lies in $W$; what remains is perpendicular to $W$.
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{rr}6&0\\0&30\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{-2}{6}=- \frac{1}{3}.\]
+\[c_{2}=\frac{y\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{2}{30}=\frac{1}{15}.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{rr}1&5\\1&-1\\-2&2\end{array}\right]\left[\begin{array}{r}- \frac{1}{3}\\\frac{1}{15}\end{array}\right]=\left[\begin{array}{r}0\\- \frac{2}{5}\\\frac{4}{5}\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}0\\\frac{2}{5}\\\frac{1}{5}\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+\answer{Take $v=\left[\begin{array}{r}0\\\frac{2}{5}\\\frac{1}{5}\end{array}\right]$. It is nonzero (its displayed entries are not all zero) and has zero dot product with $u_1$ and $u_2$.}
+
+\exercise{6.3.20}{Compute and check an orthogonal projection}
+\idea Remove the component of the given outside vector that lies in $W$; what remains is perpendicular to $W$.
+\step{Check the orthogonal directions and compute projection weights.}
+\[U^TU=\left[\begin{array}{rr}6&0\\0&30\end{array}\right].\]
+The off-diagonal zeros verify pairwise orthogonality, and the positive diagonal entries are the squared lengths of the nonzero generators.
+\[c_{1}=\frac{y\cdot u_{1}}{u_{1}\cdot u_{1}}=\frac{1}{6}=\frac{1}{6}.\]
+\[c_{2}=\frac{y\cdot u_{2}}{u_{2}\cdot u_{2}}=\frac{-1}{30}=- \frac{1}{30}.\]
+\step{Assemble the projection and subtract its residual.}
+\[\widehat y=\left[\begin{array}{rr}1&5\\1&-1\\-2&2\end{array}\right]\left[\begin{array}{r}\frac{1}{6}\\- \frac{1}{30}\end{array}\right]=\left[\begin{array}{r}0\\\frac{1}{5}\\- \frac{2}{5}\end{array}\right],\qquad z=y-\widehat y=\left[\begin{array}{r}0\\\frac{4}{5}\\\frac{2}{5}\end{array}\right].\]
+The exact check $U^Tz=0$ means the residual is orthogonal to every generating column and hence to their entire span. Thus $y=\widehat y+z$ is the required orthogonal decomposition.
+\answer{Take $v=\left[\begin{array}{r}0\\\frac{4}{5}\\\frac{2}{5}\end{array}\right]$. It is nonzero (its displayed entries are not all zero) and has zero dot product with $u_1$ and $u_2$.}
+
+\exercise{6.3.21}{Compute and check an orthogonal projection}
+\begin{enumerate}[label=(\alph*)]
+\item True. For any $w=c_1u_1+c_2u_2$,
+$z\cdot w=c_1(z\cdot u_1)+c_2(z\cdot u_2)=0$.
+\item True. This is the residual conclusion of the Orthogonal
+Decomposition Theorem.
+\item False. Orthogonal decomposition into $W$ and $W^\perp$ is
+unique, so any orthogonal basis of the same $W$ gives the same projection.
+\item True. For $y\in W$, the decomposition $y=y+0$ already has
+its first part in $W$ and its second in $W^\perp$, so uniqueness applies.
+\item True. With orthonormal columns, each projection coefficient is
+$u_j\cdot y$; collecting the coefficients gives $U(U^Ty)$.
+\end{enumerate}
+
+\exercise{6.3.22}{Compute and check an orthogonal projection}
+\begin{enumerate}[label=(\alph*)]
+\item True. Such a vector is orthogonal to itself, so its squared length
+is zero and it must be zero.
+\item True. Each term $((y\cdot u_j)/(u_j\cdot u_j))u_j$ is the
+orthogonal projection onto the one-dimensional subspace $\Span\{u_j\}$.
+\item True. The assumed sum is an orthogonal decomposition into
+$W$ and $W^\perp$, and its uniqueness identifies the first part.
+\item False. The closest point is $\operatorname{proj}_Wy$; the stated
+vector is the residual. For a nonzero $y\in W$, the stated vector is
+zero while the unique best approximation is $y$.
+\item False. $UU^T$ fixes only the vectors in $\Col U$ in general.
+For $U=(1,0)^T$ and $x=(0,1)^T$, $UU^Tx=0\ne x$.
+\end{enumerate}
+
+\exercise{6.3.23}{Compute and check an orthogonal projection}
+\step{Apply orthogonal decomposition to the row space.}
+Theorem 3 identifies $(\operatorname{Row}A)^\perp=\Nul A$.
+Taking $W=\operatorname{Row}A$ in the decomposition theorem gives
+$x=p+u$ with $p\in\operatorname{Row}A$ and $u\in\Nul A$.
+\step{Existence of a row-space solution for a consistent equation.}
+If $Ax=b$ has a solution $x$, decompose that solution as above.
+Since $Au=0$, we obtain $Ap=A(x-u)=b$. Thus some row-space
+vector does solve the equation.
+\step{Uniqueness within the row space.}
+If $p,p'$ are row-space solutions, then $A(p-p')=0$.
+Their difference lies both in the row space and its perpendicular null
+space, so it is zero. Therefore $p=p'$.
+\answer{Every vector has the required split, and every consistent
+system has exactly one solution belonging to the row space.}
+
+\exercise{6.3.24}{Compute and check an orthogonal projection}
+\step{(a) Check every type of pair.}
+Two distinct $w_i$ are orthogonal by assumption, as are two distinct
+$v_j$. A mixed pair is orthogonal because $w_i\in W$ and
+$v_j\in W^\perp$. Thus the concatenated family is orthogonal.
+Its members are all nonzero because they belong to bases.
+\step{(b) Span an arbitrary ambient vector.}
+Every $x\in\R^n$ splits as $x=w+v$, where $w\in W$ and
+$v\in W^\perp$. Expand $w$ in the $w_i$ basis and $v$ in the $v_j$
+basis. Adding the expansions expresses $x$ using the concatenated family.
+\step{(c) Count the resulting basis.}
+A nonzero orthogonal family is independent, and (b) proves spanning.
+Hence this family is a basis of $\R^n$ with $p+q$ members.
+\answer{$\dim W+\dim W^\perp=p+q=n$. This includes the zero-space
+boundary cases, where one of the bases is empty.}
+
+\exercise{6.3.25}{Compute and check an orthogonal projection}
+\step{Use the normalized matrix from Exercise 6.2.36.}
+That matrix is $U=A/10$, with the explicitly supplied $8\times4$ integer matrix $A$ from Exercise 6.2.35. It satisfies $U^TU=I_4$.
+\[\widehat y=U(U^Ty)=\left[\begin{array}{r}\frac{6}{5}\\\frac{2}{5}\\\frac{6}{5}\\\frac{6}{5}\\\frac{2}{5}\\\frac{6}{5}\\\frac{2}{5}\\\frac{2}{5}\end{array}\right],\qquad y-\widehat y=\left[\begin{array}{r}- \frac{1}{5}\\\frac{3}{5}\\- \frac{1}{5}\\- \frac{1}{5}\\\frac{3}{5}\\- \frac{1}{5}\\\frac{3}{5}\\\frac{3}{5}\end{array}\right].\]
+\step{Commands reproducing the exact calculation.}
+\begin{verbatim}
+from sympy import Matrix, ones
+A = Matrix([[-6,-3,6,1],[-1,2,1,-6],[3,6,3,-2],
+            [6,-3,6,-1],[2,-1,2,3],[-3,6,3,2],
+            [-2,-1,2,-3],[1,2,1,6]])
+U = A/10
+y = ones(8,1)
+p = U*(U.T*y)
+print(p)
+assert U.T*(y-p) == Matrix.zeros(4,1)
+\end{verbatim}
+The zero dot-product column $U^T(y-p)=0$ checks that the residual is perpendicular to the subspace, proving that the displayed point is its projection and hence the unique closest point.
+
+\exercise{6.3.26}{Compute and check an orthogonal projection}
+\step{Use the normalized matrix from Exercise 6.2.36.}
+That matrix is $U=A/10$, with the explicitly supplied $8\times4$ integer matrix $A$ from Exercise 6.2.35. It satisfies $U^TU=I_4$.
+\[\widehat y=U(U^Ty)=\left[\begin{array}{r}\frac{1}{5}\\\frac{23}{25}\\\frac{11}{25}\\1\\- \frac{1}{5}\\- \frac{11}{25}\\\frac{3}{5}\\- \frac{23}{25}\end{array}\right],\qquad y-\widehat y=\left[\begin{array}{r}\frac{4}{5}\\\frac{2}{25}\\\frac{14}{25}\\0\\- \frac{4}{5}\\- \frac{14}{25}\\- \frac{8}{5}\\- \frac{2}{25}\end{array}\right].\]
+\answer{The distance is $\|y-\widehat y\|=\sqrt{\frac{112}{25}}=\frac{4 \sqrt{7}}{5}$. Here $y$ denotes the exercise target $b$.}

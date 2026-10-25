@@ -1,0 +1,324 @@
+\section{Chapter 2 supplementary exercises}
+These exercises combine matrix shapes, multiplication order, inverse identities,
+and the geometry of column and null spaces. Unless the statement explicitly
+says a matrix is square, do not add that hypothesis silently. A rectangular
+matrix can have a left inverse or a right inverse without having both.
+For a true--false question, a false statement is settled by one valid
+counterexample, while a true statement needs a general argument.
+
+\exercise{2.S.1}{Sixteen structural true--false statements}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} If $A,B$ are $m\times n$, then $AB^T$ has
+shape $(m\times n)(n\times m)$ and $A^TB$ has shape
+$(n\times m)(m\times n)$. Both inner dimensions agree.
+\item \textbf{False.} The product has as many columns as $B$, not $A$.
+For example a $1\times3$ matrix times a $3\times2$ matrix has two columns,
+even though the first factor has three columns.
+\item \textbf{True.} For $A=\operatorname{diag}(a_1,\ldots,a_m)$,
+entry $(i,j)$ of $AB$ is $a_i b_{ij}$. Thus row $i$ is scaled by $a_i$.
+\item \textbf{False.} Let $B=0$, $C=I$, $D=0$ of the same square size.
+Then $BC=BD=0$ but $C\ne D$. Cancellation needs an injective left factor.
+\item \textbf{False.} $A=\operatorname{diag}(1,0)$ and
+$C=\operatorname{diag}(0,1)$ are nonzero but $AC=0$.
+\item \textbf{False.} Expanding gives $A^2-B^2+BA-AB$.
+For $A=\begin{bmatrix}1&1\\0&1\end{bmatrix}$,
+$B=\operatorname{diag}(1,2)$, one has $AB\ne BA$, so the extra term does not vanish.
+\item \textbf{True.} A row swap or nonzero row scaling of $I_n$
+leaves exactly $n$ nonzero entries. Adding a nonzero multiple of a different
+row introduces one off-diagonal nonzero entry, giving $n+1$.
+A zero-multiple replacement leaves the identity with $n$ entries.
+\item \textbf{True.} A swap matrix and a scaling matrix are symmetric.
+The transpose of $I+r e_i e_j^T$ is $I+r e_j e_i^T$, which is the
+matrix for the corresponding row replacement with the indices exchanged.
+\item \textbf{True.} An elementary matrix is obtained by one row
+operation on a square identity matrix; its shape remains square.
+\item \textbf{False.} Every product of elementary matrices is invertible,
+whereas a square zero matrix is not. Only invertible square matrices admit
+such a factorization.
+\item \textbf{True.} Three pivots in a $3\times3$ matrix imply reduced
+form $I_3$. List the elementary row operations that carry out that reduction;
+their matrices $E_1,\ldots,E_p$ give $E_p\cdots E_1A=I$.
+\item \textbf{False without a square hypothesis.} Take
+$A=\begin{bmatrix}1&0&0\\0&1&0\end{bmatrix}$ and
+$B=\begin{bmatrix}1&0\\0&1\\0&0\end{bmatrix}$.
+Then $AB=I_2$ but $A$ is rectangular and has a nonzero null vector $e_3$,
+so it has no two-sided inverse. If $A,B$ were assumed square, the assertion
+would instead be true by the IMT.
+\item \textbf{False.} The inverse is $B^{-1}A^{-1}$, with reversed order.
+For the noncommuting invertible pair in part (f), the same-order product
+is not an inverse.
+\item \textbf{True.} From $AB=BA$, left-multiply by $A^{-1}$ and then
+right-multiply by $A^{-1}$: $BA^{-1}=A^{-1}B$.
+\item \textbf{False.} The correct scalar factor is $1/r$:
+$(rA)((1/r)A^{-1})=I$. Taking $A=I$, $r=2$ disproves the claimed factor $r$.
+\item \textbf{True.} Let $x_0$ be the unique solution to the stated
+right side. If $Az=0$, then $A(x_0+z)=Ax_0$, so uniqueness forces
+$z=0$. Thus the square matrix has trivial null space and is invertible.
+\end{enumerate}
+
+\exercise{2.S.2}{Invert a supplied inverse}
+Since $C^{-1}=\begin{bmatrix}4&5\\6&7\end{bmatrix}$ has determinant
+$28-30=-2$, invert this $2\times2$ matrix:
+\[
+ \boxed{C=\frac1{-2}\begin{bmatrix}7&-5\\-6&4\end{bmatrix}
+ =\begin{bmatrix}-7/2&5/2\\3&-2\end{bmatrix}}.
+\]
+The inverse of an inverse is the original matrix, which explains why this
+operation recovers $C$ rather than another new matrix.
+
+\exercise{2.S.3}{A nilpotent shift and a finite geometric sum}
+The given $A$ sends $(x_1,x_2,x_3)^T$ to $(0,x_1,x_2)^T$.
+Therefore $A^2x=(0,0,x_1)^T$ and $A^3x=0$ for every $x$, proving $A^3=0$.
+Distribute the requested product in its existing order:
+\[
+ (I-A)(I+A+A^2)=I+A+A^2-A-A^2-A^3=I.
+\]
+The cancellation works because all terms are powers of the same matrix.
+
+\exercise{2.S.4}{Invert identity minus a nilpotent matrix}
+Let $S=I+A+\cdots+A^{n-1}$. Then telescoping gives
+\[
+ (I-A)S=I-A^n=I.
+\]
+Multiplying in the other order gives the same telescoping sum,
+$S(I-A)=I-A^n=I$, since a matrix commutes with its own powers.
+Thus
+$\boxed{(I-A)^{-1}=I+A+\cdots+A^{n-1}}$.
+No inverse of $A$ was used; in fact a nilpotent matrix of positive size
+cannot itself be invertible.
+
+\exercise{2.S.5}{Reduce higher powers using a quadratic identity}
+The hypothesis says $A^2=2A-I$. Multiply by $A$ and substitute again:
+\[
+ A^3=2A^2-A=2(2A-I)-A=3A-2I.
+\]
+Next multiply this result by $A$:
+\[
+ A^4=3A^2-2A=3(2A-I)-2A=4A-3I.
+\]
+Every step uses multiplication and addition of already equal matrices;
+we did not divide by $A$ or assume it was diagonalizable.
+
+\exercise{2.S.6}{A pair of anticommuting matrices}
+Direct multiplication gives
+\[
+ A^2=\begin{bmatrix}1&0\\0&1\end{bmatrix},\qquad
+ B^2=\begin{bmatrix}1&0\\0&1\end{bmatrix},
+\]
+\[
+ AB=\begin{bmatrix}0&1\\-1&0\end{bmatrix},\qquad
+ BA=\begin{bmatrix}0&-1\\1&0\end{bmatrix}=-AB.
+\]
+Thus both are their own inverses, but they anticommute rather than commute.
+This is a concrete illustration of behavior unavailable for nonzero real
+scalars, since scalar multiplication commutes.
+
+\exercise{2.S.7}{Solve a two-column matrix equation efficiently}
+Compute $A^{-1}B$ by solving $AX=B$. Begin with $[A\mid B]$.
+Use $R_2\gets R_2-2R_1$, $R_3\gets R_3-R_1$, then
+$R_3\gets R_3-(1/2)R_2$:
+\[
+ \left[\begin{array}{rrr|rr}1&3&8&-3&5\\2&4&11&1&5\\1&2&5&3&4\end{array}\right]
+ \longrightarrow
+ \left[\begin{array}{rrr|rr}1&3&8&-3&5\\0&-2&-5&7&-5\\0&0&-1/2&5/2&3/2\end{array}\right].
+\]
+Back-substitution gives the last row of $X$ as $(-5,-3)$,
+then the second as $(9,10)$, and the first as $(10,-1)$.
+Therefore
+\[
+ \boxed{A^{-1}B=\begin{bmatrix}10&-1\\9&10\\-5&-3\end{bmatrix}}.
+\]
+The three nonzero pivots verify invertibility of $A$, and exact
+multiplication checks $AX=B$. No entire inverse was computed.
+
+\exercise{2.S.8}{Determine a map from two prescribed images}
+Place the input vectors into $X=\begin{bmatrix}1&2\\3&7\end{bmatrix}$
+and outputs into $Y=\begin{bmatrix}1&3\\1&1\end{bmatrix}$.
+The two prescribed equations are exactly $AX=Y$.
+Since $\det X=7-6=1$, $X^{-1}=\begin{bmatrix}7&-2\\-3&1\end{bmatrix}$.
+Thus
+\[
+ \boxed{A=YX^{-1}=\begin{bmatrix}-2&1\\4&-1\end{bmatrix}}.
+\]
+Indeed $A(1,3)^T=(1,1)^T$ and $A(2,7)^T=(3,1)^T$.
+The independent inputs ensure that this matrix is uniquely determined.
+
+\exercise{2.S.9}{Recover the left factor of a known product}
+The given $B$ has determinant $7-6=1$, so
+$B^{-1}=\begin{bmatrix}1&-3\\-2&7\end{bmatrix}$.
+Right multiplication by this inverse yields
+\[
+ A=(AB)B^{-1}
+ =\begin{bmatrix}5&4\\-2&3\end{bmatrix}
+  \begin{bmatrix}1&-3\\-2&7\end{bmatrix}
+ =\boxed{\begin{bmatrix}-3&13\\-8&27\end{bmatrix}}.
+\]
+For example the first output row checks as
+$[-3,13]B=[-21+26,-9+13]=[5,4]$.
+
+\exercise{2.S.10}{Another formula for an inverse}
+If $A$ is invertible, so is $A^T$. Therefore $A^TA$ is a product of
+invertible square matrices and is invertible.
+Set $X=(A^TA)^{-1}A^T$. Then
+$XA=(A^TA)^{-1}(A^TA)=I$.
+Since $A^{-1}$ already exists, right multiplication by it gives
+$X=XAA^{-1}=A^{-1}$, establishing
+\[
+ \boxed{A^{-1}=(A^TA)^{-1}A^T}.
+\]
+This is an algebraic identity, not a recommendation to compute the inverse
+by forming $A^TA$ in floating-point arithmetic.
+
+\exercise{2.S.11}{Vandermonde matrices and interpolation}
+\begin{enumerate}[label=(\alph*)]
+\item Row $i$ of $Vc$ is
+$c_0+c_1x_i+\cdots+c_{n-1}x_i^{n-1}=p(x_i)$.
+Thus $Vc=y$ states precisely $p(x_i)=y_i$ for every $i$.
+\item Suppose $Vc=0$. Then $p$ vanishes at the $n$ distinct numbers
+$x_1,\ldots,x_n$. A nonzero polynomial of degree at most $n-1$ can have
+at most $n-1$ distinct roots, so $p$ must be the zero polynomial.
+All its coefficients $c_j$ are therefore zero. Thus $Vc=0$ has only the
+trivial solution, proving that the columns of $V$ are independent.
+\item The square matrix $V$ is invertible by the IMT, using part (b).
+For every arbitrary data vector $y$, choose $c=V^{-1}y$ and form the
+polynomial with those coefficients. Part (a) shows it interpolates every
+data point, and its degree is at most $n-1$. The polynomial is also unique:
+any second coefficient vector would be another solution of $Vc=y$.
+\end{enumerate}
+
+\exercise{2.S.12}{Read the first two columns of an LU product}
+The first column of upper triangular $U$ is $(u_{11},0,\ldots,0)^T$,
+so $a_1=Lu_1=u_{11}l_1$.
+The second column of $U$ is $(u_{12},u_{22},0,\ldots,0)^T$, so
+$a_2=u_{12}l_1+u_{22}l_2$.
+Thus the first column of $A$ is a multiple of column 1 of $L$, and the
+second is a combination of columns 1 and 2 of $L$.
+Triangularity, not a mysterious cancellation, makes the later coefficients zero.
+
+\exercise{2.S.13}{Projection and reflection identities}
+Since $u^Tu=1$ is a scalar, associativity gives
+\[
+ \text{(a)}\quad P^2=(uu^T)(uu^T)=u(u^Tu)u^T=uu^T=P.
+\]
+For the transpose,
+\[
+ \text{(b)}\quad P^T=(uu^T)^T=(u^T)^Tu^T=uu^T=P.
+\]
+Finally distribute the product using $P^2=P$:
+\[
+ \text{(c)}\quad Q^2=(I-2P)^2=I-4P+4P^2=I.
+\]
+Thus $Q$ undoes itself: applying the same reflection twice returns
+every vector to its original position.
+
+\exercise{2.S.14}{A coordinate-plane reflection}
+With $u=e_3$,
+\[
+ P=uu^T=\begin{bmatrix}0&0&0\\0&0&0\\0&0&1\end{bmatrix},\qquad
+ Q=I-2P=\begin{bmatrix}1&0&0\\0&1&0\\0&0&-1\end{bmatrix}.
+\]
+For $x=(1,5,3)^T$ this gives
+$Px=(0,0,3)^T$ and $Qx=(1,5,-3)^T$.
+The vector $x-Px=(1,5,0)^T$ is the component in the coordinate plane;
+$Q$ preserves it and reverses the perpendicular component $Px$.
+
+\exercise{2.S.15}{A product of elementary operations gives row equivalence}
+Multiplication by $E_1$ performs one elementary row operation on $B$,
+then $E_2$ performs another and $E_3$ a third.
+Consequently $C=E_3E_2E_1B$ is obtained from $B$ by a finite sequence
+of row operations, which is the definition of row equivalence.
+The reverse sequence uses $E_3^{-1},E_2^{-1},E_1^{-1}$ in that temporal
+order, so the relationship works both ways.
+
+\exercise{2.S.16}{Construct a nonzero matrix with zero product}
+Because square $A$ is singular, $Av=0$ has a nonzero solution $v$.
+Choose one by row reduction, then set $B=[v\ 0\ \cdots\ 0]$.
+The first column makes $B\ne0$, whereas
+$AB=[Av\ A0\ \cdots\ A0]=0$.
+This construction works even if the null space is only one-dimensional.
+
+\exercise{2.S.17}{A product that factors through four dimensions}
+Every column of $AB$ is a combination of the four columns of the
+$6\times4$ matrix $A$. Therefore
+$\Col(AB)\subseteq\Col A$, whose dimension is at most four.
+It cannot equal $\R^6$, whose dimension is six. The $6\times6$ matrix
+$AB$ is thus not onto and cannot be invertible by the IMT.
+
+\exercise{2.S.18}{A left inverse gives uniqueness for attainable outputs}
+If $Ax=b$, then $x=CAx=Cb$. Thus every solution must equal $Cb$.
+The premise already says a solution exists, so it is unique.
+Equivalently, if $Ax_1=Ax_2$, multiplication by $C$ yields $x_1=x_2$.
+The $5\times3$ matrix need not attain every $b\in\R^5$; the proof
+establishes uniqueness when existence has separately been supplied.
+
+\exercise{2.S.19}{Observe and explain limits of stochastic powers}
+Both matrices have nonnegative entries and each column sums to one.
+Such a matrix is called column-stochastic: it preserves the sum of a
+vector's coordinates. Exact rational powers give
+\[
+ A^2=\begin{bmatrix}.31&.26&.30\\.39&.48&.39\\.30&.26&.31\end{bmatrix},\qquad
+ B^2=\begin{bmatrix}.29&.18&.18\\.33&.44&.33\\.38&.38&.49\end{bmatrix}.
+\]
+For $k=8$, the powers are approximately
+\[
+ A^8\approx\begin{bmatrix}.285728&.285696&.285728\\
+ .428543&.428609&.428543\\.285728&.285696&.285728\end{bmatrix},\quad
+ B^8\approx\begin{bmatrix}.202364&.202218&.202218\\
+ .370732&.370879&.370732\\.426904&.426904&.427050\end{bmatrix}.
+\]
+By $k=16$ their columns are close to the respective vectors
+\[
+ p_A=(2/7,3/7,2/7)^T,\qquad p_B=(18/89,33/89,38/89)^T.
+\]
+These are verified exactly by $Ap_A=p_A$, $Bp_B=p_B$, and coordinate sums one.
+The powers tend toward matrices having every column equal to the corresponding
+$p$. An optional explanation from later eigenvalue theory is that $A$'s
+other eigenvalues are $.3,.1$, and $B$'s are $\pm\sqrt{11}/10$;
+all have magnitude less than one, so their powers die out.
+
+Here is a further reproducible investigation with positive column-stochastic
+matrices:
+\begin{verbatim}
+import numpy as np
+rng = np.random.default_rng(22019)
+C = rng.integers(1,10,(3,3)).astype(float)
+C = C/C.sum(axis=0)
+print(np.linalg.matrix_power(C,16))
+\end{verbatim}
+The executed result has nearly identical columns
+$(.20882917,.35930902,.43186180)^T$.
+A precise conjecture supported by these examples is that positive stochastic
+matrices, and more generally stochastic matrices with some positive power,
+have powers converging to a matrix with identical columns.
+It would be false to remove that extra condition: the permutation matrix
+$\begin{bmatrix}0&1\\1&0\end{bmatrix}$ is stochastic but its powers alternate
+instead of converging. Thus the experiment suggests a qualified theorem,
+not a claim about every stochastic matrix.
+
+\exercise{2.S.20}{A closed formula for inverses of zero-diagonal ones matrices}
+Let $J_n$ have every entry equal to one. Then $A_n=J_n-I_n$ and
+$J_n^2=nJ_n$, since each entry of the square is a sum of $n$ ones.
+For $n\ge2$ propose
+\[
+ B_n=-I_n+\frac1{n-1}J_n.
+\]
+Its diagonal entries are $-(n-2)/(n-1)$ and off-diagonal entries are
+$1/(n-1)$. In particular the computed inverses for the three requested sizes are
+\[
+ B_4=\frac13\begin{bmatrix}-2&1&1&1\\1&-2&1&1\\1&1&-2&1\\1&1&1&-2\end{bmatrix},
+\]
+\[
+ B_5=\frac14\begin{bmatrix}-3&1&1&1&1\\1&-3&1&1&1\\1&1&-3&1&1\\1&1&1&-3&1\\1&1&1&1&-3\end{bmatrix},
+\]
+\[
+ B_6=\frac15\begin{bmatrix}-4&1&1&1&1&1\\1&-4&1&1&1&1\\1&1&-4&1&1&1\\1&1&1&-4&1&1\\1&1&1&1&-4&1\\1&1&1&1&1&-4\end{bmatrix}.
+\]
+To turn the conjecture into a proof, multiply symbolically:
+\[
+ (J_n-I_n)B_n
+ =I_n+\left(-1+\frac{n}{n-1}-\frac1{n-1}\right)J_n=I_n.
+\]
+The reverse product is identical because both factors are combinations of
+$I_n$ and $J_n$. Hence $B_n=A_n^{-1}$ for all $n\ge2$.
+For $n=1$, $A_1=[0]$ is singular and the denominator $n-1$ correctly
+signals the excluded case.

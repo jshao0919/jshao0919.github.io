@@ -1,0 +1,431 @@
+\section{The matrix equation $Ax=b$}
+A matrix--vector product is a weighted sum of the matrix's columns.
+If $A=[a_1\ \cdots\ a_n]$ and $x=(x_1,\ldots,x_n)^T$, then
+\[Ax=x_1a_1+\cdots+x_na_n.\]
+Thus $Ax$ is defined only when $x$ has one entry for each column of $A$.
+The row rule gives the same product: entry $i$ is
+$a_{i1}x_1+\cdots+a_{in}x_n$.
+A vector $b$ belongs to the span of the columns exactly when $Ax=b$ is
+consistent. Theorem 4 says the columns span the whole target $\R^m$
+exactly when $A$ has a pivot in every row. A pivot in an augmented
+column does not count as a pivot in $A$.
+
+\practice{1.4.P1}{Read coefficients from a known solution}
+The columns are $a_1=(1,-3,4)^T$, $a_2=(5,1,-8)^T$,
+$a_3=(-2,9,-1)^T$, and $a_4=(0,-5,7)^T$.
+The given solution has entries $(3,-2,0,-4)^T$, so the definition gives
+\[3a_1-2a_2+0a_3-4a_4
+=(3,-9,12)^T+(-10,-2,16)^T+(0,20,-28)^T
+=(-7,9,0)^T=b.\]
+The coefficients are the entries of the solution, not row entries of $A$.
+
+\practice{1.4.P2}{Check additivity by both calculations}
+Here $A=\begin{bmatrix}2&5\\3&1\end{bmatrix}$,
+$u=(4,-1)^T$, and $v=(-3,5)^T$. First $u+v=(1,4)^T$, so
+\[A(u+v)=(2+20,3+4)^T=(22,7)^T.\]
+Separately $Au=(8-5,12-1)^T=(3,11)^T$ and
+$Av=(-6+25,-9+5)^T=(19,-4)^T$. Their sum is again $(22,7)^T$.
+This checks $A(u+v)=Au+Av$ with the actual data.
+
+\exercise{1.4.1}{Check dimensions before multiplying}
+\goal Compute the indicated product, if possible, in both requested ways.
+The matrix $\begin{bmatrix}-4&2\\1&6\\0&1\end{bmatrix}$ has two columns,
+but $(3,-2,7)^T$ has three entries. In the column definition there are
+only two columns for three proposed weights. In the row rule a row has
+two entries and cannot be paired with a three-entry vector.
+\answer{The product is undefined; no numerical result can be assigned.}
+
+\exercise{1.4.2}{A column matrix is not a row matrix}
+The matrix $(1,3,1)^T$ has size $3\times1$, whereas $(5,-1)^T$ has
+size $2\times1$. The inner sizes $1$ and $2$ differ. The column
+definition would need one scalar, and each row contains only one entry.
+\answer{The product is undefined by either rule.}
+
+\exercise{1.4.3}{Compute one product in two ways}
+\step{(a) Weight the two columns.}
+\[-2\begin{bmatrix}1\\-3\\1\end{bmatrix}
++3\begin{bmatrix}2\\1\\6\end{bmatrix}
+=\begin{bmatrix}-2+6\\6+3\\-2+18\end{bmatrix}
+=\begin{bmatrix}4\\9\\16\end{bmatrix}.\]
+\step{(b) Use the rows.}
+The three dot products are $1(-2)+2(3)=4$,
+$(-3)(-2)+1(3)=9$, and $1(-2)+6(3)=16$.
+\answer{Both rules give $(4,9,16)^T$.}
+
+\exercise{1.4.4}{Two rows give two output entries}
+\step{(a) Use the column definition.}
+\[1\begin{bmatrix}1\\3\end{bmatrix}
++2\begin{bmatrix}3\\2\end{bmatrix}
++1\begin{bmatrix}-4\\1\end{bmatrix}
+=\begin{bmatrix}1+6-4\\3+4+1\end{bmatrix}
+=\begin{bmatrix}3\\8\end{bmatrix}.\]
+\step{(b) Use the row rule.}
+The first entry is $1(1)+3(2)-4(1)=3$; the second is
+$3(1)+2(2)+1(1)=8$. Both entries have now been checked independently.
+
+\exercise{1.4.5}{Expand the matrix equation into columns}
+Read each column vertically and use the corresponding entry of the
+multiplier vector as its weight:
+\[2\begin{bmatrix}1\\-2\end{bmatrix}
+-\begin{bmatrix}2\\-3\end{bmatrix}
++\begin{bmatrix}-3\\1\end{bmatrix}
+-\begin{bmatrix}1\\-1\end{bmatrix}
+=\begin{bmatrix}-4\\1\end{bmatrix}.\]
+For a direct check, the first coordinate is $2-2-3-1=-4$ and the
+second is $-4+3+1+1=1$.
+
+\exercise{1.4.6}{A four-entry output from two columns}
+The equivalent vector equation is
+\[-3\begin{bmatrix}2\\3\\8\\-2\end{bmatrix}
++5\begin{bmatrix}-3\\2\\-5\\1\end{bmatrix}
+=\begin{bmatrix}-21\\1\\-49\\11\end{bmatrix}.\]
+The coordinates are $-6-15=-21$, $-9+10=1$, $-24-25=-49$,
+and $6+5=11$.
+
+\exercise{1.4.7}{Assemble the coefficient vectors as columns}
+Place the coefficient of $x_1$ in column 1, that of $x_2$ in column 2,
+and that of $x_3$ in column 3. The result is
+\[\begin{bmatrix}4&-5&7\\-1&3&-8\\7&-5&0\\-4&1&2\end{bmatrix}
+\begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix}
+=\begin{bmatrix}6\\-8\\0\\-7\end{bmatrix}.\]
+The output has four entries because each original vector lies in $\R^4$.
+
+\exercise{1.4.8}{Four scalar weights and a two-dimensional target}
+The same column convention gives
+\[\begin{bmatrix}2&-1&-4&0\\-4&5&3&2\end{bmatrix}
+\begin{bmatrix}z_1\\z_2\\z_3\\z_4\end{bmatrix}
+=\begin{bmatrix}5\\12\end{bmatrix}.\]
+There are four columns, one for each weight, and two rows, one for each
+coordinate equation.
+
+\exercise{1.4.9}{Keep the missing coefficient equal to zero}
+The coefficient of $x_1$ in the second equation is zero. Therefore
+\[x_1\begin{bmatrix}5\\0\end{bmatrix}
++x_2\begin{bmatrix}1\\2\end{bmatrix}
++x_3\begin{bmatrix}-3\\4\end{bmatrix}
+=\begin{bmatrix}8\\0\end{bmatrix},\]
+and the matrix equation is
+\[\begin{bmatrix}5&1&-3\\0&2&4\end{bmatrix}
+\begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix}
+=\begin{bmatrix}8\\0\end{bmatrix}.\]
+
+\exercise{1.4.10}{Three equations become three coordinates}
+The vector equation is
+\[x_1\begin{bmatrix}4\\5\\3\end{bmatrix}
++x_2\begin{bmatrix}-1\\3\\-1\end{bmatrix}
+=\begin{bmatrix}8\\2\\1\end{bmatrix}.\]
+Equivalently,
+\[\begin{bmatrix}4&-1\\5&3\\3&-1\end{bmatrix}
+\begin{bmatrix}x_1\\x_2\end{bmatrix}
+=\begin{bmatrix}8\\2\\1\end{bmatrix}.\]
+No equation has been discarded in changing notation.
+
+\exercise{1.4.11}{Solve an augmented system and check its vector}
+\step{Form and reduce the augmented matrix.}
+\[\left[\begin{array}{rrr|r}1&3&-4&-2\\1&5&2&4\\-3&-7&6&12\end{array}\right]
+\xrightarrow{\substack{R_2\leftarrow R_2-R_1\\R_3\leftarrow R_3+3R_1}}
+\left[\begin{array}{rrr|r}1&3&-4&-2\\0&2&6&6\\0&2&-6&6\end{array}\right].\]
+Replace $R_3$ by $R_3-R_2$ to obtain $-12x_3=0$. Thus $x_3=0$.
+The second row gives $2x_2+6x_3=6$, hence $x_2=3$.
+The first gives $x_1+9=-2$, hence $x_1=-11$.
+\step{Substitute into the original rows.}
+They give $-11+9=-2$, $-11+15=4$, and $33-21=12$.
+\answer{The solution vector is $x=(-11,3,0)^T$.}
+
+\exercise{1.4.12}{A second exact augmented reduction}
+Start with
+\[\left[\begin{array}{rrr|r}1&2&-1&1\\-3&-4&2&2\\5&2&3&-3\end{array}\right]
+\xrightarrow{\substack{R_2\leftarrow R_2+3R_1\\R_3\leftarrow R_3-5R_1}}
+\left[\begin{array}{rrr|r}1&2&-1&1\\0&2&-1&5\\0&-8&8&-8\end{array}\right].\]
+Now $R_3\leftarrow R_3+4R_2$ gives $4x_3=12$, so $x_3=3$.
+Then $2x_2-3=5$ gives $x_2=4$, and $x_1+8-3=1$ gives $x_1=-4$.
+The original products are $-4+8-3=1$, $12-16+6=2$,
+and $-20+8+9=-3$.
+\answer{$x=(-4,4,3)^T$.}
+
+\exercise{1.4.13}{Membership in a plane means consistency}
+\goal Decide whether $u=(0,4,4)^T$ is a linear combination of
+$(3,-2,1)^T$ and $(-5,6,1)^T$.
+The equations for the two weights $s,t$ are
+$3s-5t=0$, $-2s+6t=4$, and $s+t=4$.
+The last equation gives $s=4-t$. Substitution into the first gives
+$12-8t=0$, so $t=3/2$ and $s=5/2$.
+The second equation checks: $-5+9=4$. Hence
+\[u=\tfrac52(3,-2,1)^T+\tfrac32(-5,6,1)^T.\]
+\answer{Yes: the explicit weights show that $u$ lies in the plane.}
+
+\exercise{1.4.14}{A contradictory coordinate rules out membership}
+The proposed equation $Ax=u$ gives
+\[2x_1+5x_2-x_3=4,\qquad x_2-x_3=-1,\qquad x_1+2x_2=4.\]
+From the last two equations $x_3=x_2+1$ and $x_1=4-2x_2$.
+The left side of the first would then be
+$2(4-2x_2)+5x_2-(x_2+1)=7$, not $4$.
+\answer{No. The system is inconsistent, so $u$ is outside the column span.}
+
+\exercise{1.4.15}{Describe every attainable right-hand side}
+For $A=\begin{bmatrix}3&-1\\-9&3\end{bmatrix}$,
+the second row is $-3$ times the first. Eliminating it in $[A\mid b]$
+gives the equation $0=b_2+3b_1$. Thus consistency is equivalent to
+$b_2=-3b_1$. This is also sufficient: the first column
+$(3,-9)^T$ alone reaches $(b_1,-3b_1)^T$ with weight $b_1/3$.
+\answer{The attainable vectors are exactly $t(1,-3)^T$, $t\in\R$;
+for example $(0,1)^T$ is not attainable, so not every $b$ works.}
+
+\exercise{1.4.16}{A condition on three coordinates of the right side}
+For the given matrix, reduce symbolically:
+\[\left[\begin{array}{rrr|r}1&-2&-1&b_1\\-2&2&0&b_2\\4&-1&3&b_3\end{array}\right]
+\longrightarrow
+\left[\begin{array}{rrr|r}1&-2&-1&b_1\\0&-2&-2&b_2+2b_1\\0&7&7&b_3-4b_1\end{array}\right].\]
+These steps use $R_2+2R_1$ and $R_3-4R_1$. Replacing the last row by
+$2R_3+7R_2$ gives $0=6b_1+7b_2+2b_3$.
+If this condition holds, the remaining two equations have pivots and
+can be solved, with one free variable. If it fails, the last row is a
+contradiction.
+\answer{The attainable right sides form the plane
+$\{b:6b_1+7b_2+2b_3=0\}$, not all of $\R^3$.}
+
+\exercise{1.4.17}{Count pivot rows of the specified matrix}
+For the matrix $A$ used in Exercises 17 and 19, exact elimination gives
+\[A=\left[\begin{matrix}1 & 3 & 0 & 3\\-1 & -1 & -1 & 1\\0 & -4 & 2 & -8\\2 & 0 & 3 & -1\end{matrix}\right]\sim\left[\begin{matrix}1 & 0 & \frac{3}{2} & 0\\0 & 1 & - \frac{1}{2} & 0\\0 & 0 & 0 & 1\\0 & 0 & 0 & 0\end{matrix}\right].\]
+There are three pivot rows, in columns 1, 2, and 4. The fourth row
+of the coefficient matrix has no pivot.
+By Theorem 4, $Ax=b$ is solvable for every $b\in\R^4$ if and only
+if $A$ has a pivot in every row.
+\answer{Three rows contain pivots; some right sides have no solution.}
+
+\exercise{1.4.18}{Distinguish the target space from the number of columns}
+For the matrix $B$ used here and in Exercise 20,
+\[B=\left[\begin{matrix}1 & 4 & 1 & 2\\0 & 1 & 3 & -4\\0 & 2 & 6 & 7\\2 & 9 & 5 & -7\end{matrix}\right]\sim\left[\begin{matrix}1 & 0 & -11 & 0\\0 & 1 & 3 & 0\\0 & 0 & 0 & 1\\0 & 0 & 0 & 0\end{matrix}\right].\]
+There are only three pivots and one zero row. Theorem 4 therefore
+shows that its columns do not span $\R^4$.
+They do not span $\R^3$ either: the columns themselves have four
+entries and belong to $\R^4$, so $\R^3$ is not their ambient space.
+\answer{Not every vector of $\R^4$ is a combination of the columns;
+the proposed $\R^3$ claim also fails.}
+
+\exercise{1.4.19}{Translate the pivot calculation into a span statement}
+The reduction displayed in Exercise 1.4.17 has a zero fourth row and
+only three pivots. Theorem 4 says this is equivalent to failure of the
+columns to span $\R^4$. A right side whose transformed fourth entry
+is nonzero gives an inconsistent augmented system.
+\answer{No to both questions: not every vector is a column combination,
+and the column span is a proper subset of $\R^4$.}
+
+\exercise{1.4.20}{The span and solvability questions are equivalent}
+Exercise 1.4.18 exhibits three pivot rows for $B$, not four.
+By Theorem 4, the following are equivalent: the columns span $\R^4$;
+$Bx=y$ is consistent for every $y\in\R^4$; and $B$ has a pivot in
+every row. The last condition fails.
+\answer{The columns do not span $\R^4$, and some $y$ give no solution.}
+
+\exercise{1.4.21}{Three columns cannot fill four target directions}
+A $4\times3$ matrix formed from these three vectors has at most
+three pivot positions, because each pivot requires a different column.
+It therefore cannot have a pivot in every one of its four rows.
+Theorem 4 excludes spanning $\R^4$. More concretely each vector's
+coordinate sum is zero; every linear combination also has coordinate
+sum zero, whereas $(1,0,0,0)^T$ does not.
+\answer{The three vectors do not span $\R^4$.}
+
+\exercise{1.4.22}{Three suitable vectors do span three-dimensional space}
+Put the vectors into columns:
+\[V=\begin{bmatrix}0&0&4\\0&-3&-2\\-3&9&-6\end{bmatrix}.\]
+Swap rows 1 and 3. The resulting matrix has pivots $-3,-3,4$
+in successively later columns, so it has three pivot rows. Theorem 4
+implies its columns span $\R^3$. One can also solve $Vc=b$ directly:
+$c_3=b_1/4$, then $c_2=-(b_2+2c_3)/3$, and finally
+$c_1=(9c_2-6c_3-b_3)/3$. These formulas work for every $b$.
+\answer{Yes, the vectors span $\R^3$.}
+
+\exercise{1.4.23}{Six true-or-false statements about the matrix equation}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} $Ax=b$ is called a matrix equation. Its equivalent
+column-sum expression is a vector equation.
+\item \textbf{True.} By definition, $Ax$ runs through precisely the linear
+combinations of the columns; existence of a suitable $x$ is the claim.
+\item \textbf{False.} A pivot in every row of $[A\mid b]$ can include a
+pivot in the last column. For instance $[0\mid1]$ has a pivot in its
+only row but represents $0x=1$, an inconsistent equation.
+\item \textbf{True.} The first entry is
+$a_{11}x_1+\cdots+a_{1n}x_n$, a sum of scalar products.
+\item \textbf{True.} This is the column-span equivalence in Theorem 4.
+\item \textbf{True.} If $A$ had a pivot in every row, Theorem 4 would
+make every right side attainable. The stated inconsistent right side
+contradicts that possibility.
+\end{enumerate}
+
+\exercise{1.4.24}{Six further equivalences and counterexamples}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} Expanding $Ax$ into columns changes notation,
+not the equations or their solutions.
+\item \textbf{True.} A solution gives $b=x_1a_1+\cdots+x_na_n$,
+which is exactly membership in the column span.
+\item \textbf{True.} Place the vectors being combined into the columns
+of $A$ and their weights into $x$.
+\item \textbf{False.} A pivot in every coefficient row guarantees
+\emph{consistency} for every right side, not inconsistency.
+\item \textbf{True.} Both descriptions use the coefficient matrix
+$A=[a_1\ a_2\ a_3]$ and the same right side $b$.
+\item \textbf{False.} Failure to span means that \emph{some} $b$ lies
+outside the span and gives an inconsistent equation. The right side
+$0$ is always consistent, since $x=0$ solves $Ax=0$.
+\end{enumerate}
+
+\exercise{1.4.25}{Read a supplied product without repeating elimination}
+The given multiplier vector is $(-3,-1,2)^T$. The definition of
+matrix multiplication therefore already states
+\[(-7,-3,10)^T=-3(4,5,-6)^T-(-3,-2,2)^T+2(1,5,-3)^T.\]
+\answer{$c_1=-3$, $c_2=-1$, and $c_3=2$.}
+
+\exercise{1.4.26}{Rearrange a known linear relation}
+The supplied equality $2u-3v-w=0$ rearranges to $w=2u-3v$.
+The displayed matrix has columns $u$ and $v$, so its product with
+$(2,-3)^T$ is $w$. Checking the entries gives
+$14-9=5$, $4-3=1$, and $10-9=1$.
+\answer{$x_1=2$ and $x_2=-3$; no row operations are needed.}
+
+\exercise{1.4.27}{Name every vector and every coefficient}
+Define
+\[v_1=(-3,5)^T,\quad v_2=(5,8)^T,\quad v_3=(-4,1)^T,
+\quad v_4=(9,-2)^T,\quad v_5=(7,-4)^T.\]
+Let $(c_1,c_2,c_3,c_4,c_5)=(-3,1,2,-1,2)$ and $b=(11,-11)^T$.
+The symbolic vector equation is
+\[c_1v_1+c_2v_2+c_3v_3+c_4v_4+c_5v_5=b.\]
+Its coordinate sums are $9+5-8-9+14=11$ and
+$-15+8+2+2-8=-11$, checking the interpretation.
+
+\exercise{1.4.28}{Package a symbolic vector equation}
+Set $Q=[q_1\ q_2\ q_3]$, a $5\times3$ matrix, and
+$x=(x_1,x_2,x_3)^T$. The required matrix equation is $Qx=v$.
+Its five coordinates reproduce those of
+$x_1q_1+x_2q_2+x_3q_3=v$, because a product is a weighted column sum.
+
+\exercise{1.4.29}{Construct a spanning matrix outside echelon form}
+Take
+\[A=\begin{bmatrix}0&1&0\\1&0&0\\0&0&1\end{bmatrix}.\]
+The leading entry in row 2 lies left of that in row 1, so $A$ is not
+in echelon form. Swapping rows 1 and 2 produces $I_3$, which has a
+pivot in every row. Theorem 4 therefore proves its columns span
+$\R^3$. Explicitly, $(b_1,b_2,b_3)^T$ is obtained with weights
+$(b_2,b_1,b_3)^T$.
+
+\exercise{1.4.30}{Construct a nonspanning matrix outside echelon form}
+Take
+\[A=\begin{bmatrix}0&1&0\\1&0&0\\0&1&0\end{bmatrix}.\]
+The first two leading entries move left, so it is not echelon.
+Every product is $(x_2,x_1,x_2)^T$; its first and third entries agree.
+The vector $(1,0,0)^T$ violates that condition and cannot be obtained.
+\answer{This matrix meets both requirements.}
+
+\exercise{1.4.31}{More rows than columns leave a missing pivot row}
+A $3\times2$ matrix has at most two pivots, since there are only two
+columns. It cannot have a pivot in each of three rows. Theorem 4
+then gives some $b\in\R^3$ for which $Ax=b$ is inconsistent.
+More generally, an $m\times n$ matrix with $m>n$ has at most $n<m$
+pivots and hence cannot reach every vector of $\R^m$.
+\answer{At least one target direction is missing whenever $m>n$.}
+
+\exercise{1.4.32}{Too few spanning vectors}
+Place the three proposed vectors in the columns of a $4\times3$
+matrix. At most three of its four rows can contain pivots, so Theorem 4
+rules out spanning $\R^4$. In general $n$ vectors in $\R^m$ with
+$n<m$ give an $m\times n$ matrix with too few columns to pivot in
+every row.
+\answer{Neither three vectors in $\R^4$ nor $n<m$ vectors in $\R^m$
+can span the whole target space.}
+
+\exercise{1.4.33}{A unique solution fixes the reduced form}
+Since the given equation is consistent and has only one solution,
+none of its three unknowns can be free. Each of the three coefficient
+columns therefore contains a pivot. In reduced echelon form the
+pivot columns are unit vectors, with pivots successively lower.
+Thus the reduced echelon form of $A$ is
+\[\begin{bmatrix}1&0&0\\0&1&0\\0&0&1\\0&0&0\end{bmatrix}.\]
+The fourth coefficient row must be zero because only three pivots
+are possible. Consistency ensures the corresponding transformed
+right-side entry is zero as well.
+
+\exercise{1.4.34}{Add solutions to reach the sum of their images}
+The additivity identity of Theorem 5 gives
+\[A(u_1+u_2)=Au_1+Au_2=v_1+v_2=w.\]
+The vector $u_1+u_2$ belongs to $\R^4$, the correct input space.
+It is an explicit solution to $Ax=w$, so the system is consistent.
+
+\exercise{1.4.35}{Scale a known input}
+The scalar-multiplication identity of Theorem 5 gives
+$A(5y)=5Ay=5z$. Thus $x=5y$ is a solution to the new system.
+The factor multiplies the entire input vector, not just one entry.
+
+\exercise{1.4.36}{A unique square-system solution forces spanning}
+The unique solution means no unknown is free. All four coefficient
+columns have pivots, so the $4\times4$ matrix has four pivot rows.
+By Theorem 4 its columns span $\R^4$. Consistency for one special
+$b$ alone would not be enough; uniqueness supplies the crucial four
+column pivots.
+
+\exercise{1.4.37}{Use exact row reduction to test four-dimensional spanning}
+\goal Decide whether the columns of the given matrix span $\R^4$.
+These exercises explicitly allow matrix computation. Ordinary
+Gauss--Jordan elimination (swap a nonzero entry into each pivot position,
+scale the pivot to 1, then clear its column) gives the exact result
+\[A=\left[\begin{matrix}7 & 2 & -5 & 8\\-5 & -3 & 4 & -9\\6 & 10 & -2 & 7\\-7 & 9 & 2 & 15\end{matrix}\right]\sim\left[\begin{matrix}1 & 0 & 0 & - \frac{93}{50}\\0 & 1 & 0 & \frac{53}{50}\\0 & 0 & 1 & - \frac{189}{50}\\0 & 0 & 0 & 0\end{matrix}\right].\]
+The pivot columns are 1, 2, 3; there are 3 pivot rows.
+Theorem 4 requires a pivot in every one of the four rows, not merely
+in every nonzero row. The last row has no pivot, so some
+right sides are unattainable.
+\answer{The columns do not span $\R^4$.}
+
+\exercise{1.4.38}{Use exact row reduction to test four-dimensional spanning}
+\goal Decide whether the columns of the given matrix span $\R^4$.
+These exercises explicitly allow matrix computation. Ordinary
+Gauss--Jordan elimination (swap a nonzero entry into each pivot position,
+scale the pivot to 1, then clear its column) gives the exact result
+\[A=\left[\begin{matrix}4 & -5 & -1 & 8\\3 & -7 & -4 & 2\\5 & -6 & -1 & 4\\9 & 1 & 10 & 7\end{matrix}\right]\sim\left[\begin{matrix}1 & 0 & 1 & 0\\0 & 1 & 1 & 0\\0 & 0 & 0 & 1\\0 & 0 & 0 & 0\end{matrix}\right].\]
+The pivot columns are 1, 2, 4; there are 3 pivot rows.
+Theorem 4 requires a pivot in every one of the four rows, not merely
+in every nonzero row. The last row has no pivot, so some
+right sides are unattainable.
+\answer{The columns do not span $\R^4$.}
+
+\exercise{1.4.39}{Use exact row reduction to test four-dimensional spanning}
+\goal Decide whether the columns of the given matrix span $\R^4$.
+These exercises explicitly allow matrix computation. Ordinary
+Gauss--Jordan elimination (swap a nonzero entry into each pivot position,
+scale the pivot to 1, then clear its column) gives the exact result
+\[A=\left[\begin{matrix}10 & -7 & 1 & 4 & 6\\-8 & 4 & -6 & -10 & -3\\-7 & 11 & -5 & -1 & -8\\3 & -1 & 10 & 12 & 12\end{matrix}\right]\sim\left[\begin{matrix}1 & 0 & 0 & 1 & 0\\0 & 1 & 0 & 1 & 0\\0 & 0 & 1 & 1 & 0\\0 & 0 & 0 & 0 & 1\end{matrix}\right].\]
+The pivot columns are 1, 2, 3, 5; there are 4 pivot rows.
+Theorem 4 requires a pivot in every one of the four rows, not merely
+in every nonzero row. That condition holds, so every right side
+in $\R^4$ is attainable.
+\answer{The columns do span $\R^4$.}
+
+\exercise{1.4.40}{Use exact row reduction to test four-dimensional spanning}
+\goal Decide whether the columns of the given matrix span $\R^4$.
+These exercises explicitly allow matrix computation. Ordinary
+Gauss--Jordan elimination (swap a nonzero entry into each pivot position,
+scale the pivot to 1, then clear its column) gives the exact result
+\[A=\left[\begin{matrix}5 & 11 & -6 & -7 & 12\\-7 & -3 & -4 & 6 & -9\\11 & 5 & 6 & -9 & -3\\-3 & 4 & -7 & 2 & 7\end{matrix}\right]\sim\left[\begin{matrix}1 & 0 & 1 & 0 & 0\\0 & 1 & -1 & 0 & 0\\0 & 0 & 0 & 1 & 0\\0 & 0 & 0 & 0 & 1\end{matrix}\right].\]
+The pivot columns are 1, 2, 4, 5; there are 4 pivot rows.
+Theorem 4 requires a pivot in every one of the four rows, not merely
+in every nonzero row. That condition holds, so every right side
+in $\R^4$ is attainable.
+\answer{The columns do span $\R^4$.}
+
+\exercise{1.4.41}{Delete a redundant column while retaining the span}
+The pivot columns in the reduction of Exercise 1.4.39 are 1, 2, 3,
+and 5. These four original columns remain spanning after column 4
+is deleted. The reduced form also displays the relation
+$a_4=a_1+a_2+a_3$; row operations preserve a relation among columns
+because they multiply every column by the same invertible operation.
+Thus the deleted column adds no new span.
+\answer{Delete column 4. The remaining four pivot columns span $\R^4$.}
+
+\exercise{1.4.42}{One deletion is possible but two are not}
+Exercise 1.4.40 has pivot columns 1, 2, 4, and 5. Delete column 3;
+the remaining four original pivot columns still span $\R^4$.
+Indeed the reduced matrix shows $a_3=a_1-a_2$, so this column was
+redundant. Deleting two columns from the original five would leave
+only three vectors. Exercise 1.4.32 proves that three vectors cannot
+span $\R^4$.
+\answer{Column 3 can be deleted; no pair of columns can be deleted
+while preserving the span.}

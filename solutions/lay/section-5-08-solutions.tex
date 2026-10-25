@@ -1,0 +1,359 @@
+\section{Iterative estimates for eigenvalues}
+Follow the book's indexing carefully. Starting with $x_0$, compute
+$y_k=Ax_k$, choose an entry $\mu_k$ of $y_k$ with largest absolute
+value (retain its sign), and set $x_{k+1}=y_k/\mu_k$.
+Thus $\mu_1$ comes from $Ax_1$, not $Ax_0$. A negative dominant
+eigenvalue need not cause the normalized vectors to alternate, because
+the signed normalization removes the reversal.
+
+For inverse iteration with a shift $\alpha$, solve
+$(A-\alpha I)y_k=x_k$ instead. Normalize by its largest-magnitude
+entry $\mu_k$, and estimate the original eigenvalue by
+$\theta_k=\alpha+1/\mu_k$. Reuse a factorization of $A-\alpha I$;
+do not explicitly form its inverse at every step.
+A small residual $\|Av-\theta v\|$ checks a proposed eigenpair.
+Agreement of two consecutive estimates alone can be misleading.
+
+\practice{5.8.P1}{Test proportionality and inspect the residual}
+The given vector $x=(1,-4.3,8.1)^T$ gives $Ax=(3,-13,24.5)^T$.
+The entrywise ratios are $3$, $130/43\approx3.023256$, and
+$245/81\approx3.024691$. Their close agreement suggests an eigenvalue
+near $3.024$. The Rayleigh estimate is
+\[R(x)=\frac{x^TAx}{x^Tx}=\frac{25735}{8510}
+\approx3.024089.\]
+For $\theta=R(x)$, inspect $Ax-\theta x$ relative to the size of
+$Ax$ or $x$. A residual near zero, rather than the raw size of $x$,
+is the meaningful approximation test. Exact proportionality would give
+zero residual and an exact eigenvector.
+
+\exercise{5.8.1}{Read the limiting direction and retain the scaling sign}
+The final supplied normalized vector is approximately $\left[\begin{matrix}1\\\frac{1663}{5000}\end{matrix}\right]$.
+Multiplication by the stated matrix gives
+\[Ax\approx\left[\begin{matrix}\frac{24989}{5000}\\\frac{4163}{2500}\end{matrix}\right].\]
+The largest-magnitude component is $\mu\approx4.997800$.
+The trend in the vectors suggests the sharper limiting direction
+$v=\left[\begin{matrix}1\\\frac{1}{3}\end{matrix}\right]$, and direct multiplication checks
+$Av=5v$ exactly.
+\answer{The dominant eigenvalue is $5$, with eigenvector
+$\left[\begin{matrix}1\\\frac{1}{3}\end{matrix}\right]$.}
+
+\exercise{5.8.2}{Read the limiting direction and retain the scaling sign}
+The final supplied normalized vector is approximately $\left[\begin{matrix}- \frac{63}{250}\\1\end{matrix}\right]$.
+Multiplication by the stated matrix gives
+\[Ax\approx\left[\begin{matrix}- \frac{1567}{1250}\\\frac{3129}{625}\end{matrix}\right].\]
+The largest-magnitude component is $\mu\approx5.006400$.
+The trend in the vectors suggests the sharper limiting direction
+$v=\left[\begin{matrix}- \frac{1}{4}\\1\end{matrix}\right]$, and direct multiplication checks
+$Av=5v$ exactly.
+\answer{The dominant eigenvalue is $5$, with eigenvector
+$\left[\begin{matrix}- \frac{1}{4}\\1\end{matrix}\right]$.}
+
+\exercise{5.8.3}{Read the limiting direction and retain the scaling sign}
+The final supplied normalized vector is approximately $\left[\begin{matrix}\frac{1297}{2500}\\1\end{matrix}\right]$.
+Multiplication by the stated matrix gives
+\[Ax\approx\left[\begin{matrix}\frac{2297}{5000}\\\frac{2836}{3125}\end{matrix}\right].\]
+The largest-magnitude component is $\mu\approx0.907520$.
+The trend in the vectors suggests the sharper limiting direction
+$v=\left[\begin{matrix}\frac{1}{2}\\1\end{matrix}\right]$, and direct multiplication checks
+$Av=\frac{9}{10}v$ exactly.
+\answer{The dominant eigenvalue is $\frac{9}{10}$, with eigenvector
+$\left[\begin{matrix}\frac{1}{2}\\1\end{matrix}\right]$.}
+
+\exercise{5.8.4}{Read the limiting direction and retain the scaling sign}
+The final supplied normalized vector is approximately $\left[\begin{matrix}1\\\frac{3751}{5000}\end{matrix}\right]$.
+Multiplication by the stated matrix gives
+\[Ax\approx\left[\begin{matrix}- \frac{1003}{2500}\\- \frac{3761}{12500}\end{matrix}\right].\]
+The largest-magnitude component is $\mu\approx-0.401200$.
+The trend in the vectors suggests the sharper limiting direction
+$v=\left[\begin{matrix}1\\\frac{3}{4}\end{matrix}\right]$, and direct multiplication checks
+$Av=- \frac{2}{5}v$ exactly.
+\answer{The dominant eigenvalue is $- \frac{2}{5}$, with eigenvector
+$\left[\begin{matrix}1\\\frac{3}{4}\end{matrix}\right]$.} Here ``largest'' in the exercise means
+largest in \emph{absolute value}: the other eigenvalue is $.1$, which
+is algebraically larger but not dominant.
+
+\exercise{5.8.5}{Normalize by the second component of the supplied iterate}
+Dividing the last vector by its second entry gives
+\[x=\left[\begin{matrix}- \frac{24991}{31241}\\1\end{matrix}\right]\approx\left[\begin{matrix}- \frac{7999}{10000}\\1\end{matrix}\right].\]
+Use the requested four-decimal vector for a check:
+\[A\left[\begin{matrix}- \frac{7999}{10000}\\1\end{matrix}\right]=\left[\begin{matrix}\frac{8003}{2000}\\- \frac{2501}{500}\end{matrix}\right].\]
+The second entry estimates the eigenvalue by $- \frac{2501}{500}$,
+since the corresponding input entry is $1$.
+The nearby exact eigenpair is $\lambda=-5$,
+$v=\left[\begin{matrix}- \frac{4}{5}\\1\end{matrix}\right]$, verified by direct multiplication.
+The rounded estimate is approximate, so exact equality $Ax=\lambda x$
+is not expected until using the exact vector.
+
+\exercise{5.8.6}{Normalize by the second component of the supplied iterate}
+Dividing the last vector by its second entry gives
+\[x=\left[\begin{matrix}- \frac{2045}{4093}\\1\end{matrix}\right]\approx\left[\begin{matrix}- \frac{1249}{2500}\\1\end{matrix}\right].\]
+Use the requested four-decimal vector for a check:
+\[A\left[\begin{matrix}- \frac{1249}{2500}\\1\end{matrix}\right]=\left[\begin{matrix}- \frac{2501}{1250}\\\frac{5003}{1250}\end{matrix}\right].\]
+The second entry estimates the eigenvalue by $\frac{5003}{1250}$,
+since the corresponding input entry is $1$.
+The nearby exact eigenpair is $\lambda=4$,
+$v=\left[\begin{matrix}- \frac{1}{2}\\1\end{matrix}\right]$, verified by direct multiplication.
+The rounded estimate is approximate, so exact equality $Ax=\lambda x$
+is not expected until using the exact vector.
+
+\exercise{5.8.7}{Compute the requested five indexed power-method rows}
+Use the signed largest-magnitude entry for normalization and do not
+round intermediate vectors. For $A=\left[\begin{matrix}6 & 7\\8 & 5\end{matrix}\right]$ and $x_0=(1,0)^T$,
+the results are
+\[\begin{array}{c|rr|r}k&(x_k)_1&(x_k)_2&\mu_k\\\hline
+1&0.750000000&1.000000000&11.500000000\\
+2&1.000000000&0.956521739&12.782608696\\
+3&0.993197279&1.000000000&12.959183673\\
+4&1.000000000&0.998950131&12.994750656\\
+5&0.999838416&1.000000000&12.999030499\end{array}.\]
+For an indexing check, the first multiplication gives
+$Ax_0=\left[\begin{matrix}6\\8\end{matrix}\right]$ and
+$\mu_0=8$. Dividing by this scalar produces
+$x_1$, after which $\mu_1$ is computed from $Ax_1$.
+The values converge toward the dominant eigenvalue $13$,
+with eigenvector direction $(1,1)^T$.
+
+\exercise{5.8.8}{Compute the requested five indexed power-method rows}
+Use the signed largest-magnitude entry for normalization and do not
+round intermediate vectors. For $A=\left[\begin{matrix}2 & 1\\4 & 5\end{matrix}\right]$ and $x_0=(1,0)^T$,
+the results are
+\[\begin{array}{c|rr|r}k&(x_k)_1&(x_k)_2&\mu_k\\\hline
+1&0.500000000&1.000000000&7.000000000\\
+2&0.285714286&1.000000000&6.142857143\\
+3&0.255813953&1.000000000&6.023255814\\
+4&0.250965251&1.000000000&6.003861004\\
+5&0.250160772&1.000000000&6.000643087\end{array}.\]
+For an indexing check, the first multiplication gives
+$Ax_0=\left[\begin{matrix}2\\4\end{matrix}\right]$ and
+$\mu_0=4$. Dividing by this scalar produces
+$x_1$, after which $\mu_1$ is computed from $Ax_1$.
+The values converge toward the dominant eigenvalue $6$,
+with eigenvector direction $(1/4,1)^T$.
+
+\exercise{5.8.9}{Continue the same indexed algorithm to the sixth estimate}
+For the given matrix
+\[A=\left[\begin{matrix}8 & 0 & 12\\1 & -2 & 1\\0 & 3 & 0\end{matrix}\right],\qquad x_0=(1,0,0)^T,\]
+repeatedly compute $Ax_k$, retain its signed largest-magnitude entry,
+and divide to form $x_{k+1}$. This gives
+\[\mu_5\approx8.4233109850,\qquad
+\mu_6\approx8.4246301920.\]
+The accompanying current vectors, which make these estimates reproducible,
+are
+\[x_5\approx\left[\begin{matrix}1.0\\0.0993553378\\0.0352759154\end{matrix}\right],\qquad
+x_6\approx\left[\begin{matrix}1.0\\0.0993154879\\0.0353858493\end{matrix}\right].\]
+Multiplying each vector by $A$ and selecting its largest-magnitude
+entry checks the listed scalars. The vectors have been rounded only
+for display, so the check agrees to the displayed precision.
+
+\exercise{5.8.10}{Continue the same indexed algorithm to the sixth estimate}
+For the given matrix
+\[A=\left[\begin{matrix}1 & 2 & -2\\1 & 1 & 9\\0 & 1 & 9\end{matrix}\right],\qquad x_0=(1,0,0)^T,\]
+repeatedly compute $Ax_k$, retain its signed largest-magnitude entry,
+and divide to form $x_{k+1}$. This gives
+\[\mu_5\approx9.9319371728,\qquad
+\mu_6\approx9.9871727289.\]
+The accompanying current vectors, which make these estimates reproducible,
+are
+\[x_5\approx\left[\begin{matrix}0.0183246073\\1.0\\0.9904013962\end{matrix}\right],\qquad
+x_6\approx\left[\begin{matrix}0.0037778949\\1.0\\0.9981549815\end{matrix}\right].\]
+Multiplying each vector by $A$ and selecting its largest-magnitude
+entry checks the listed scalars. The vectors have been rounded only
+for display, so the check agrees to the displayed precision.
+
+\exercise{5.8.11}{Compare the scaling estimate with the Rayleigh quotient}
+The exact dominant eigenvalue, checked from the characteristic
+polynomial, is $6$. Compute each Rayleigh quotient
+from the current $x_k$ using $R(x_k)=x_k^TAx_k/(x_k^Tx_k)$:
+\[\begin{array}{c|rr|rr}
+k&\mu_k&R(x_k)&|\mu_k-\lambda|&|R(x_k)-\lambda|\\\hline
+1&5.800000000000&5.965517241379&2.000e-01&3.448e-02\\
+2&5.965517241379&5.999035679846&3.448e-02&9.643e-04\\
+3&5.994219653179&5.999973208305&5.780e-03&2.679e-05\\
+4&5.999035679846&5.999999255782&9.643e-04&7.442e-07\end{array}.\]
+The quotient's error is substantially smaller at the same iterate.
+Both matrices are symmetric, so this demonstrates the improved
+accuracy claimed in the exercise. Signed normalization is especially
+important for the negative dominant eigenvalue in Exercise 12.
+
+\exercise{5.8.12}{Compare the scaling estimate with the Rayleigh quotient}
+The exact dominant eigenvalue, checked from the characteristic
+polynomial, is $-4$. Compute each Rayleigh quotient
+from the current $x_k$ using $R(x_k)=x_k^TAx_k/(x_k^Tx_k)$:
+\[\begin{array}{c|rr|rr}
+k&\mu_k&R(x_k)&|\mu_k-\lambda|&|R(x_k)-\lambda|\\\hline
+1&-4.333333333333&-3.923076923077&3.333e-01&7.692e-02\\
+2&-3.923076923077&-3.995121951220&7.692e-02&4.878e-03\\
+3&-4.019607843137&-3.999694842844&1.961e-02&3.052e-04\\
+4&-3.995121951220&-3.999980926586&4.878e-03&1.907e-05\end{array}.\]
+The quotient's error is substantially smaller at the same iterate.
+Both matrices are symmetric, so this demonstrates the improved
+accuracy claimed in the exercise. Signed normalization is especially
+important for the negative dominant eigenvalue in Exercise 12.
+
+\exercise{5.8.13}{A theoretically convergent method can be impractically slow}
+If the two leading eigenvalues have different moduli, there is a
+strictly dominant one, so the power method converges for an initial
+vector with a nonzero component in that eigendirection (under the
+section's eigenbasis hypotheses). But the ratio of the other large
+modulus to the dominant modulus is near $4/4=1$. The unwanted
+mode therefore decays slowly relative to the desired one.
+\answer{It can work, but may require many iterations and be less
+useful than shifted inverse iteration. An initial vector with no
+dominant component is an exception to the usual convergence claim.}
+
+\exercise{5.8.14}{Break the tie by shifting toward the positive eigenvalue}
+If the leading eigenvalues are exactly $\lambda$ and $-\lambda$,
+their powers have equal moduli; ordinary power iteration need not
+select a single direction. Choose a shift $\alpha$ near the positive
+eigenvalue (for example $4.1$, if suitably close) but not exactly an
+eigenvalue. Inverse iteration applies to $(A-\alpha I)^{-1}$.
+Its eigenvalues are $1/(\lambda_j-\alpha)$, so the desired positive
+eigenvalue is dominant when its distance from the shift is uniquely
+smallest. Solving shifted systems and normalizing then gives a
+sequence for that positive eigenpair.
+Alternatively, adding a suitable positive multiple of $I$ can create
+a unique positive dominant modulus; subtract that shift from the
+resulting eigenvalue estimate. The inverse method is usually faster
+when an accurate initial estimate is available.
+
+\exercise{5.8.15}{Transform an eigenvalue under a shifted inverse}
+From $Ax=\lambda x$ subtract $\alpha x$ to get
+$(A-\alpha I)x=(\lambda-\alpha)x$.
+Since $\alpha$ is not an eigenvalue, the matrix is invertible and
+$\lambda-\alpha\ne0$. Multiply by $(A-\alpha I)^{-1}$:
+\[x=(\lambda-\alpha)(A-\alpha I)^{-1}x,
+\qquad (A-\alpha I)^{-1}x=\frac1{\lambda-\alpha}x.\]
+Because $x\ne0$, this is exactly the claimed eigenpair.
+
+\exercise{5.8.16}{Recover the original eigenvalue from the inverse one}
+Multiply $(A-\alpha I)^{-1}x=\mu x$ by $A-\alpha I$:
+$x=\mu(A-\alpha I)x$.
+The inverse is invertible, so its eigenvalue $\mu$ is nonzero.
+Dividing by $\mu$ and rearranging gives
+\[Ax=\left(\alpha+\frac1\mu\right)x.\]
+Thus $\alpha+1/\mu$ is an eigenvalue of $A$, with the same
+nonzero eigenvector. This proves the scalar update in inverse iteration.
+
+\exercise{5.8.17}{Run shifted inverse iteration and verify its residual}
+Use
+\[A=\left[\begin{matrix}10 & -8 & -4\\-8 & 13 & 4\\-4 & 5 & 4\end{matrix}\right],\quad \alpha=3.3,\quad x_0=(1,0,0)^T.\]
+At each step solve $(A-\alpha I)y_k=x_k$, choose a signed
+largest-magnitude component $\mu_k$, and set
+$x_{k+1}=y_k/\mu_k$, $\theta_k=\alpha+1/\mu_k$.
+Using high-precision arithmetic, iteration index $k=7$ gives
+\[\theta_k\approx3.3212201246571,\qquad
+x_{k+1}\approx\left[\begin{matrix}1.0\\0.787012129501\\0.0956707098337\end{matrix}\right].\]
+Before rounding, $\|Ax_{k+1}-\theta_kx_{k+1}\|_\infty<10^{-10}$
+and the last two scalar estimates differ by less than $10^{-12}$.
+The eigenvalue to four decimal places is $\boxed{3.3212}$.
+Independent roots of the exact characteristic polynomial confirm this
+choice. The shift makes this eigenvalue uniquely closest, so inverse
+iteration selects it rather than the dominant eigenvalue of $A$.
+
+\exercise{5.8.18}{Run shifted inverse iteration and verify its residual}
+Use
+\[A=\left[\begin{matrix}8 & 0 & 12\\1 & -2 & 1\\0 & 3 & 0\end{matrix}\right],\quad \alpha=-1.4,\quad x_0=(1,0,0)^T.\]
+At each step solve $(A-\alpha I)y_k=x_k$, choose a signed
+largest-magnitude component $\mu_k$, and set
+$x_{k+1}=y_k/\mu_k$, $\theta_k=\alpha+1/\mu_k$.
+Using high-precision arithmetic, iteration index $k=10$ gives
+\[\theta_k\approx-1.424428900898,\qquad
+x_{k+1}\approx\left[\begin{matrix}1.0\\0.372900802803\\-0.785369075075\end{matrix}\right].\]
+Before rounding, $\|Ax_{k+1}-\theta_kx_{k+1}\|_\infty<10^{-10}$
+and the last two scalar estimates differ by less than $10^{-12}$.
+The eigenvalue to four decimal places is $\boxed{-1.4244}$.
+Independent roots of the exact characteristic polynomial confirm this
+choice. The shift makes this eigenvalue uniquely closest, so inverse
+iteration selects it rather than the dominant eigenvalue of $A$.
+
+\exercise{5.8.19}{Compute both extreme-modulus eigenpairs from the required start}
+Use $x_0=(1,0,0,0)^T$ for both computations.
+\step{(a) Ordinary power iteration.}
+With signed largest-component normalization, the scalar estimate
+converges to
+\[\lambda_{\max}\approx30.288685345802,\quad
+v_{\max}\approx\left[\begin{matrix}0.95762878047\\0.68893692056\\1.0\\0.94378150874\end{matrix}\right].\]
+The four-decimal eigenvalue is $\boxed{30.2887}$.
+\step{(b) Inverse iteration with shift zero.}
+Repeatedly solve $Ay_k=x_k$ instead of explicitly multiplying by
+$A^{-1}$. The smallest-modulus eigenpair is
+\[\lambda_{\mathrm{near}\,0}\approx0.010150048397894,\quad
+v_{\mathrm{near}\,0}\approx\left[\begin{matrix}-0.60397234234\\1.0\\-0.25113513051\\0.14895344556\end{matrix}\right].\]
+The four-decimal eigenvalue is $\boxed{0.0102}$.
+The stopping tests were both a scalar-estimate change below $10^{-12}$
+and an unrounded residual below $10^{-10}$. They hold at indices
+$k=16$ and $k=6$, respectively, with $k=0$
+representing the first multiplication or solve.
+Independent characteristic-polynomial roots verify which eigenvalues
+are largest and nearest zero. The displayed eigenvectors are scaled
+to make their largest-magnitude component equal to $1$.
+
+\exercise{5.8.20}{Compute both extreme-modulus eigenpairs from the required start}
+Use $x_0=(1,0,0,0)^T$ for both computations.
+\step{(a) Ordinary power iteration.}
+With signed largest-component normalization, the scalar estimate
+converges to
+\[\lambda_{\max}\approx19.182036763332,\quad
+v_{\max}\approx\left[\begin{matrix}0.1844163575\\1.0\\0.17961525893\\0.40710960748\end{matrix}\right].\]
+The four-decimal eigenvalue is $\boxed{19.1820}$.
+\step{(b) Inverse iteration with shift zero.}
+Repeatedly solve $Ay_k=x_k$ instead of explicitly multiplying by
+$A^{-1}$. The smallest-modulus eigenpair is
+\[\lambda_{\mathrm{near}\,0}\approx0.012205562828844,\quad
+v_{\mathrm{near}\,0}\approx\left[\begin{matrix}1.0\\0.22260978915\\-0.91799334087\\0.66048300357\end{matrix}\right].\]
+The four-decimal eigenvalue is $\boxed{0.0122}$.
+The stopping tests were both a scalar-estimate change below $10^{-12}$
+and an unrounded residual below $10^{-10}$. They hold at indices
+$k=18$ and $k=6$, respectively, with $k=0$
+representing the first multiplication or solve.
+Independent characteristic-polynomial roots verify which eigenvalues
+are largest and nearest zero. The displayed eigenvectors are scaled
+to make their largest-magnitude component equal to $1$.
+
+\exercise{5.8.21}{Separate vector size from convergence of direction}
+For $x=(.5,.5)^T$, diagonal multiplication is explicit:
+\begin{enumerate}[label=(\alph*)]
+\item $A^kx=(.5(.8)^k,.5(.2)^k)^T\to0$.
+The zero vector is not an eigenvector. Yet the second coordinate
+relative to the first is $(1/4)^k\to0$, so the direction tends to
+the first coordinate axis.
+\item $A^kx=(.5,.5(.8)^k)^T\to(.5,0)^T$, a nonzero eigenvector.
+Here the dominant eigenvalue is exactly $1$, so its scale is preserved.
+\item $A^kx=(.5(8)^k,.5(2)^k)^T$ grows without bound.
+Its direction again tends to the first coordinate axis, but it does
+not converge to a finite vector.
+\end{enumerate}
+The common conclusion is about normalized direction, not convergence
+of $A^kx$ itself. Moreover, a vector exactly missing the dominant mode
+cannot reveal that eigendirection. Appropriate normalization is therefore
+an essential part of the power method, not an optional cosmetic step.
+
+\textbf{Reproducing the iterative computations.}
+The following complete functions implement the signed indexing used
+in the tables. Enter the matrix printed in the chosen exercise and its
+stated initial vector as NumPy arrays. For 19--20 and inverse iteration,
+continue until both the estimate change and eigenpair residual are small.
+\begin{verbatim}
+import numpy as np
+def power_rows(A, x, count):
+    for k in range(count+1):
+        y = A @ x
+        mu = y[np.argmax(np.abs(y))]
+        rayleigh = (x @ A @ x)/(x @ x)
+        yield k, x.copy(), mu, rayleigh
+        x = y/mu
+
+def inverse_rows(A, alpha, x, count):
+    H = A-alpha*np.eye(len(x))
+    for k in range(count+1):
+        y = np.linalg.solve(H, x)
+        mu = y[np.argmax(np.abs(y))]
+        xnew = y/mu
+        theta = alpha+1/mu
+        residual = np.max(np.abs(A@xnew-theta*xnew))
+        yield k, xnew.copy(), theta, residual
+        x = xnew
+\end{verbatim}
+All numerical results above were actually computed from the supplied
+matrices; the code is provided to reproduce them. Extra working precision
+was used for the final residual checks in Exercises 17--20.

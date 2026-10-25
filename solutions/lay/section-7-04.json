@@ -1,0 +1,12 @@
+{
+  "chapter": 7,
+  "section": 4,
+  "title": "The singular value decomposition",
+  "exercise_count": 29,
+  "practice_count": 1,
+  "source_pages": [
+    440,
+    441
+  ],
+  "verification": "Exact SymPy numerical inputs/solutions verified, plus full-precision SVD/PCA orthogonality and reconstruction/eigen residual checks as applicable. Standalone latexmk clean; requested sketches included."
+}

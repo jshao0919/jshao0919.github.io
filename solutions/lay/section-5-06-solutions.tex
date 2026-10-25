@@ -1,0 +1,388 @@
+\section{Discrete dynamical systems}
+For $x_{k+1}=Ax_k$, start by expanding $x_0$ in an eigenbasis:
+$x_0=\sum_j c_jv_j$, $Av_j=\lambda_jv_j$. Then
+\[x_k=\sum_j c_j\lambda_j^kv_j.\]
+This follows by induction: multiplication by $A$ adds one power of
+each eigenvalue. A mode with $|\lambda|<1$ decays; one with
+$|\lambda|>1$ grows. A negative eigenvalue also reverses its
+mode's sign at each step. The direction of fastest decay corresponds
+to the smallest modulus, whereas fastest growth corresponds to the
+largest modulus. These discrete-time tests concern modulus, not merely
+the sign of an eigenvalue.
+
+\practice{5.6.P1}{Determine the three initial coefficients}
+The given eigenvectors are $v_1=(-2,2,1)^T$, $v_2=(2,1,2)^T$,
+$v_3=(1,2,-2)^T$. Solve $c_1v_1+c_2v_2+c_3v_3=(1,11,-2)^T$:
+\[-2c_1+2c_2+c_3=1,\quad2c_1+c_2+2c_3=11,
+\quad c_1+2c_2-2c_3=-2.\]
+Elimination gives $(c_1,c_2,c_3)=(2,1,3)$; substitution checks
+all three coordinates. Therefore
+$x_k=2v_1+(2/3)^kv_2+3(1/3)^kv_3$.
+
+\practice{5.6.P2}{Retain only the nondecaying mode}
+The powers $(2/3)^k$ and $(1/3)^k$ tend to zero. Thus the preceding
+solution tends to $2v_1=(-4,4,2)^T$, rather than zero. The eigenvalue
+$1$ preserves its component indefinitely.
+
+\exercise{5.6.1}{Use the given eigenvectors without reconstructing the matrix}
+Solve $c_1(1,1)^T+c_2(-1,1)^T=(9,1)^T$.
+The coordinate equations $c_1-c_2=9$, $c_1+c_2=1$ give
+$c_1=5,c_2=-4$.
+\step{(a) Apply $A$ once to the decomposition.}
+$x_1=5(3)(1,1)^T-4(1/3)(-1,1)^T=(49/3,41/3)^T$.
+\step{(b) Apply the same rule $k$ times.}
+\[x_k=5\,3^k(1,1)^T-4\,(1/3)^k(-1,1)^T.\]
+At $k=0$ this gives the specified initial vector; multiplication by
+$A$ verifies the recurrence at every subsequent step.
+
+\exercise{5.6.2}{Separate the growing mode from two decaying modes}
+The coefficient system $[v_1\ v_2\ v_3]c=x_0$ is
+\[c_1+2c_2-3c_3=-2,\quad c_2-3c_3=-5,
+\quad-3c_1-5c_2+7c_3=3.\]
+It gives $c=\left[\begin{matrix}2\\1\\2\end{matrix}\right]$. Hence
+\[x_k=2\cdot3^kv_1+(4/5)^kv_2+2(3/5)^kv_3.\]
+The last two modes decay, whereas the first grows. More precisely,
+$x_k/3^k\to2v_1=(2,0,-6)^T$. Thus the sequence is unbounded and
+its direction approaches the line through $v_1$; its second coordinate
+tends to zero while its first and third grow in opposite signs.
+
+\exercise{5.6.3}{Increase predation in the owl--wood-rat model}
+For $p=.2$ the matrix is
+$A=\begin{bmatrix}.5&.4\\-.2&1.1\end{bmatrix}$.
+The characteristic polynomial is $\lambda^2-1.6\lambda+.63$
+with roots $.9,.7$. Eigenvectors are $(1,1)^T$ and $(2,1)^T$,
+as direct multiplication verifies. Thus
+\[x_k=c_1(.9)^k(1,1)^T+c_2(.7)^k(2,1)^T.\]
+Both modes decay. Under the exercise's $c_1>0$ assumption, the
+long-term positive populations both decline with factor approaching
+$.9$ per month. The first component counts owls; the second is the
+number of wood rats in thousands, as in Example 1.
+
+\exercise{5.6.4}{The borderline between eventual decline and growth}
+With $p=.125$, the matrix has eigenvalues $1,.6$ and eigenvectors
+$(4,5)^T,(4,1)^T$. For instance
+$A(4,5)^T=(4,5)^T$ and $A(4,1)^T=.6(4,1)^T$.
+Consequently
+\[x_k=c_1(4,5)^T+c_2(.6)^k(4,1)^T\longrightarrow c_1(4,5)^T.\]
+The populations approach constant levels rather than tending to zero
+or growing indefinitely. Small parameter changes can move the
+largest eigenvalue below or above $1$, changing the prediction to
+decline or growth. This explains the sensitivity called an unstable
+equilibrium in the exercise; the equilibrium line is not a robust
+attracting equilibrium under model changes. Coordinate ratio $4:5$
+means 4 owls per 5 thousand rats under the model's units.
+
+\exercise{5.6.5}{Long-term growth and the dominant population ratio}
+For $p=.325$, $A=\begin{bmatrix}.4&.3\\-.325&1.2\end{bmatrix}$.
+Its eigenvalues solve $\lambda^2-1.6\lambda+.5775=0$, giving
+$1.05,.55$. A dominant eigenvector is $(6,13)^T$, because
+$A(6,13)^T=(6.3,13.65)^T=1.05(6,13)^T$.
+Under the stated positive dominant-coefficient assumption,
+$x_k$ is asymptotic to $c_1(1.05)^k(6,13)^T$.
+\answer{Both populations eventually grow about $5\%$ per step,
+and their coordinate ratio tends to $6:13$. If the prey coordinate
+uses the thousands convention of Example 1, this is 6 owls per
+13 thousand squirrels; coordinate scaling must be retained when
+interpreting a physical ratio.}
+
+\exercise{5.6.6}{Choose the predation rate that preserves population levels}
+At $p=.5$, the characteristic polynomial is
+$\lambda^2-1.6\lambda+.63$, whose roots are $.9,.7$.
+Both powers tend to zero, so both populations perish in this model.
+For constant limiting levels, require an eigenvalue $1$:
+\[\det(A-I)=(-.6)(.2)-(.3)(-p)=-.12+.3p=0.\]
+Thus $p=.4$. The other eigenvalue is $.6$, and a $1$-eigenvector
+is $(1,2)^T$. Therefore the solutions tend to $c_1(1,2)^T$.
+\answer{The preserving parameter is $p=.4$, and the limiting
+coordinate ratio is $1:2$, with prey-unit scaling interpreted as
+in the preceding exercise.}
+
+\exercise{5.6.7}{A saddle with one attracting and one repelling direction}
+\begin{enumerate}[label=(\alph*)]
+\item Since $3>1$ but $1/3<1$, the origin is a saddle point.
+\item The line spanned by $v_1=(1,1)^T$ is repelling, with factor
+$3$ each step. The line spanned by $v_2=(-1,1)^T$ is attracting,
+with factor $1/3$. These are also the greatest repulsion and attraction
+directions, respectively.
+\item In eigen-coordinates $x=av_1+bv_2$, the update is
+$(a,b)\mapsto(3a,b/3)$. The sketch uses those coordinates:
+horizontal arrows point away from zero and vertical arrows toward
+zero. Off-axis trajectories approach the repelling axis while moving
+outward. The curves are schematic connections of discrete points,
+not continuous-time trajectories; $ab$ remains constant here.
+\end{enumerate}
+\begin{center}\setlength{\unitlength}{1pt}
+\begin{picture}(220,165)
+\put(15,80){\vector(1,0){190}}\put(110,5){\vector(0,1){150}}
+\put(197,66){$a$ ($v_1$)}\put(118,147){$b$ ($v_2$)}
+\put(110,80){\vector(1,0){60}}\put(110,80){\vector(-1,0){60}}
+\put(110,140){\vector(0,-1){35}}\put(110,20){\vector(0,1){35}}
+\qbezier(122,150)(124,100)(200,92)
+\qbezier(20,92)(96,100)(98,150)
+\qbezier(122,10)(124,60)(200,68)
+\qbezier(20,68)(96,60)(98,10)
+\put(166,98){\vector(4,-1){15}}\put(54,98){\vector(-4,-1){15}}
+\put(166,62){\vector(4,1){15}}\put(54,62){\vector(-4,1){15}}
+\put(102,66){$0$}
+\end{picture}\end{center}
+
+\exercise{5.6.8}{Two stable modes and one unstable mode}
+The eigenvalues from Exercise 5.6.2 are $3,4/5,3/5$.
+A mode expands along $(1,0,-3)^T$, while the two-dimensional span
+of the other eigenvectors is attracted to zero.
+The fastest contraction has the smaller modulus $3/5$, along
+$(-3,-3,7)^T$; the greatest repulsion has modulus $3$, along
+$(1,0,-3)^T$.
+\answer{The origin is a saddle. The initial vector in Exercise 2 has coefficient $c_1=2$, so its
+trajectory is repelled. Only initial vectors in the stable plane
+($c_1=0$) tend to zero.}
+
+\exercise{5.6.9}{Classify the origin by the two eigenvalue moduli}
+For $A=\left[\begin{matrix}\frac{17}{10} & - \frac{3}{10}\\- \frac{6}{5} & \frac{4}{5}\end{matrix}\right]$, the characteristic polynomial factors as
+\[\frac{\left(\lambda - 2\right) \left(2 \lambda - 1\right)}{2}=0.\]
+The eigenpairs, checked by $Av=\lambda v$, are
+\[\lambda=\frac{1}{2},\ v=\left[\begin{matrix}1\\4\end{matrix}\right];\qquad
+\lambda=2,\ v=\left[\begin{matrix}-1\\1\end{matrix}\right].\]
+A decomposition in these two independent directions evolves by
+multiplying their coefficients by the corresponding eigenvalues at
+each step. Comparing their moduli with $1$ makes the origin an
+\textbf{saddle point}. The attracting direction is $\left[\begin{matrix}1\\4\end{matrix}\right]$ (factor $\frac{1}{2}$), and the repelling direction is $\left[\begin{matrix}-1\\1\end{matrix}\right]$ (factor $2$).
+
+\exercise{5.6.10}{Classify the origin by the two eigenvalue moduli}
+For $A=\left[\begin{matrix}\frac{3}{10} & \frac{2}{5}\\- \frac{3}{10} & \frac{11}{10}\end{matrix}\right]$, the characteristic polynomial factors as
+\[\frac{\left(2 \lambda - 1\right) \left(10 \lambda - 9\right)}{20}=0.\]
+The eigenpairs, checked by $Av=\lambda v$, are
+\[\lambda=\frac{1}{2},\ v=\left[\begin{matrix}2\\1\end{matrix}\right];\qquad
+\lambda=\frac{9}{10},\ v=\left[\begin{matrix}2\\3\end{matrix}\right].\]
+A decomposition in these two independent directions evolves by
+multiplying their coefficients by the corresponding eigenvalues at
+each step. Comparing their moduli with $1$ makes the origin an
+\textbf{attractor}. The greatest attraction is along $\left[\begin{matrix}2\\1\end{matrix}\right]$, for the smaller eigenvalue $\frac{1}{2}$. There is no repelling eigendirection.
+
+\exercise{5.6.11}{Classify the origin by the two eigenvalue moduli}
+For $A=\left[\begin{matrix}\frac{2}{5} & \frac{1}{2}\\- \frac{2}{5} & \frac{13}{10}\end{matrix}\right]$, the characteristic polynomial factors as
+\[\frac{\left(5 \lambda - 4\right) \left(10 \lambda - 9\right)}{50}=0.\]
+The eigenpairs, checked by $Av=\lambda v$, are
+\[\lambda=\frac{4}{5},\ v=\left[\begin{matrix}5\\4\end{matrix}\right];\qquad
+\lambda=\frac{9}{10},\ v=\left[\begin{matrix}1\\1\end{matrix}\right].\]
+A decomposition in these two independent directions evolves by
+multiplying their coefficients by the corresponding eigenvalues at
+each step. Comparing their moduli with $1$ makes the origin an
+\textbf{attractor}. The greatest attraction is along $\left[\begin{matrix}5\\4\end{matrix}\right]$, for the smaller eigenvalue $\frac{4}{5}$. There is no repelling eigendirection.
+
+\exercise{5.6.12}{Classify the origin by the two eigenvalue moduli}
+For $A=\left[\begin{matrix}\frac{1}{2} & \frac{3}{5}\\- \frac{3}{10} & \frac{7}{5}\end{matrix}\right]$, the characteristic polynomial factors as
+\[\frac{\left(5 \lambda - 4\right) \left(10 \lambda - 11\right)}{50}=0.\]
+The eigenpairs, checked by $Av=\lambda v$, are
+\[\lambda=\frac{4}{5},\ v=\left[\begin{matrix}2\\1\end{matrix}\right];\qquad
+\lambda=\frac{11}{10},\ v=\left[\begin{matrix}1\\1\end{matrix}\right].\]
+A decomposition in these two independent directions evolves by
+multiplying their coefficients by the corresponding eigenvalues at
+each step. Comparing their moduli with $1$ makes the origin an
+\textbf{saddle point}. The attracting direction is $\left[\begin{matrix}2\\1\end{matrix}\right]$ (factor $\frac{4}{5}$), and the repelling direction is $\left[\begin{matrix}1\\1\end{matrix}\right]$ (factor $\frac{11}{10}$).
+
+\exercise{5.6.13}{Classify the origin by the two eigenvalue moduli}
+For $A=\left[\begin{matrix}\frac{4}{5} & \frac{3}{10}\\- \frac{2}{5} & \frac{3}{2}\end{matrix}\right]$, the characteristic polynomial factors as
+\[\frac{\left(5 \lambda - 6\right) \left(10 \lambda - 11\right)}{50}=0.\]
+The eigenpairs, checked by $Av=\lambda v$, are
+\[\lambda=\frac{11}{10},\ v=\left[\begin{matrix}1\\1\end{matrix}\right];\qquad
+\lambda=\frac{6}{5},\ v=\left[\begin{matrix}3\\4\end{matrix}\right].\]
+A decomposition in these two independent directions evolves by
+multiplying their coefficients by the corresponding eigenvalues at
+each step. Comparing their moduli with $1$ makes the origin an
+\textbf{repeller}. The greatest repulsion is along $\left[\begin{matrix}3\\4\end{matrix}\right]$, for the larger eigenvalue $\frac{6}{5}$. There is no attracting eigendirection.
+
+\exercise{5.6.14}{Classify the origin by the two eigenvalue moduli}
+For $A=\left[\begin{matrix}\frac{17}{10} & \frac{3}{5}\\- \frac{2}{5} & \frac{7}{10}\end{matrix}\right]$, the characteristic polynomial factors as
+\[\frac{\left(10 \lambda - 13\right) \left(10 \lambda - 11\right)}{100}=0.\]
+The eigenpairs, checked by $Av=\lambda v$, are
+\[\lambda=\frac{11}{10},\ v=\left[\begin{matrix}-1\\1\end{matrix}\right];\qquad
+\lambda=\frac{13}{10},\ v=\left[\begin{matrix}-3\\2\end{matrix}\right].\]
+A decomposition in these two independent directions evolves by
+multiplying their coefficients by the corresponding eigenvalues at
+each step. Comparing their moduli with $1$ makes the origin an
+\textbf{repeller}. The greatest repulsion is along $\left[\begin{matrix}-3\\2\end{matrix}\right]$, for the larger eigenvalue $\frac{13}{10}$. There is no attracting eigendirection.
+
+\exercise{5.6.15}{A stochastic model with a nonzero limiting vector}
+The columns of $A$ sum to $1$. The given $v_1=(.1,.6,.3)^T$
+has $Av_1=v_1$. Eigenvectors for $.5,.2$ are
+$v_2=(2,-3,1)^T$ and $v_3=(-1,0,1)^T$.
+Solving $c_1v_1+c_2v_2+c_3v_3=(0,.3,.7)^T$ gives
+$c_1=1,c_2=1/10,c_3=3/10$. Thus
+\[x_k=v_1+\tfrac1{10}(.5)^kv_2+\tfrac3{10}(.2)^kv_3.\]
+At zero the coordinates are $(.1+.2-.3,.6-.3,.3+.1+.3)$,
+as required. The last two modes tend to zero, so $x_k\to v_1$.
+The limiting proportions are $10\%,60\%,30\%$.
+
+\exercise{5.6.16}{The full Hertz three-location solution}
+In City Airport, Downtown, Metro Airport order, the matrix from
+Section 4.9 is
+\[A=\frac1{100}\begin{bmatrix}90&1&9\\1&90&1\\9&9&90\end{bmatrix}.\]
+Exact calculation gives three eigenpairs:
+\[1,\ (91,19,99)^T;\qquad .89,\ (-1,1,0)^T;
+\qquad .81,\ (-1,0,1)^T.\]
+The eigenvalues are distinct, so their eigenvectors form a basis.
+Therefore the general solution is
+\[x_k=c_1(91,19,99)^T+c_2(.89)^k(-1,1,0)^T
++c_3(.81)^k(-1,0,1)^T.\]
+The constants are determined by the initial fleet distribution.
+For total fleet size $N$, adding the coordinates gives $N=209c_1$,
+so the limit is $(N/209)(91,19,99)^T$. At $N=2000$ the downtown
+limit is $2000(19)/209\approx181.818$ cars. This recovers the
+steady-state interpretation while providing the requested general dynamics.
+
+\exercise{5.6.17}{A two-stage growing population with all four requested graphs}
+\step{(a) Translate births and survival into matrix entries.}
+Juveniles next year are born to this year's adults, while next year's
+adults are surviving juveniles plus surviving adults. Hence
+\[A=\begin{bmatrix}0&1.6\\.3&.8\end{bmatrix}.\]
+\step{(b) Find growth and the eventual ratio.}
+The characteristic polynomial is $\lambda^2-.8\lambda-.48$,
+with roots $1.2,-.4$. A dominant eigenvector is $(4,3)^T$;
+a second is $(-4,1)^T$. The growing mode therefore has factor
+$1.2$, a $20\%$ annual growth rate, and limiting juvenile/adult
+ratio $4/3$. For a nonzero nonnegative initial population the growing
+coefficient is positive: solving $x_0=c_1(4,3)^T+c_2(-4,1)^T$
+gives $c_1=(j_0+4a_0)/16>0$.
+\step{(c) Calculate the eight-year trajectory and plot it.}
+Beginning at $(15,10)^T$, the actual iterates are
+\[\begin{array}{c|rrr}
+k&j_k&a_k&j_k/a_k\\\hline
+0&15.000000&10.000000&1.500000\\
+1&16.000000&12.500000&1.280000\\
+2&20.000000&14.800000&1.351351\\
+3&23.680000&17.840000&1.327354\\
+4&28.544000&21.376000&1.335329\\
+5&34.201600&25.664000&1.332668\\
+6&41.062400&30.791680&1.333555\\
+7&49.266688&36.952064&1.333259\\
+8&59.123302&44.341658&1.333358
+\end{array}.\]
+The four graphs use these points; line segments simply guide the eye
+between successive integer years.
+\begin{minipage}{.48\linewidth}\centering
+\textbf{Juveniles}\par
+\setlength{\unitlength}{1pt}\begin{picture}(175,120)
+\put(25,18){\vector(1,0){140}}\put(25,18){\vector(0,1){85}}
+\put(160,4){$k$}\put(25,6){\makebox(0,0){\scriptsize0}}
+\put(153,6){\makebox(0,0){\scriptsize8}}
+\put(19,18){\makebox(0,0)[r]{\scriptsize0.00}}
+\put(19,93){\makebox(0,0)[r]{\scriptsize63.85}}
+\polyline(25.000,35.619)(41.000,36.793)(57.000,41.491)(73.000,45.814)(89.000,51.527)(105.000,58.172)(121.000,66.231)(137.000,75.867)(153.000,87.444)
+\put(25.000,35.619){\circle*{2}}\put(41.000,36.793){\circle*{2}}\put(57.000,41.491){\circle*{2}}\put(73.000,45.814){\circle*{2}}\put(89.000,51.527){\circle*{2}}\put(105.000,58.172){\circle*{2}}\put(121.000,66.231){\circle*{2}}\put(137.000,75.867){\circle*{2}}\put(153.000,87.444){\circle*{2}}
+\end{picture}\end{minipage}\begin{minipage}{.48\linewidth}\centering
+\textbf{Adults}\par
+\setlength{\unitlength}{1pt}\begin{picture}(175,120)
+\put(25,18){\vector(1,0){140}}\put(25,18){\vector(0,1){85}}
+\put(160,4){$k$}\put(25,6){\makebox(0,0){\scriptsize0}}
+\put(153,6){\makebox(0,0){\scriptsize8}}
+\put(19,18){\makebox(0,0)[r]{\scriptsize0.00}}
+\put(19,93){\makebox(0,0)[r]{\scriptsize47.89}}
+\polyline(25.000,33.661)(41.000,37.577)(57.000,41.179)(73.000,45.940)(89.000,51.477)(105.000,58.193)(121.000,66.224)(137.000,75.871)(153.000,87.444)
+\put(25.000,33.661){\circle*{2}}\put(41.000,37.577){\circle*{2}}\put(57.000,41.179){\circle*{2}}\put(73.000,45.940){\circle*{2}}\put(89.000,51.477){\circle*{2}}\put(105.000,58.193){\circle*{2}}\put(121.000,66.224){\circle*{2}}\put(137.000,75.871){\circle*{2}}\put(153.000,87.444){\circle*{2}}
+\end{picture}\end{minipage}\par\begin{minipage}{.48\linewidth}\centering
+\textbf{Total population}\par
+\setlength{\unitlength}{1pt}\begin{picture}(175,120)
+\put(25,18){\vector(1,0){140}}\put(25,18){\vector(0,1){85}}
+\put(160,4){$k$}\put(25,6){\makebox(0,0){\scriptsize0}}
+\put(153,6){\makebox(0,0){\scriptsize8}}
+\put(19,18){\makebox(0,0)[r]{\scriptsize0.00}}
+\put(19,93){\makebox(0,0)[r]{\scriptsize111.74}}
+\polyline(25.000,34.780)(41.000,37.129)(57.000,41.357)(73.000,45.868)(89.000,51.506)(105.000,58.181)(121.000,66.228)(137.000,75.869)(153.000,87.444)
+\put(25.000,34.780){\circle*{2}}\put(41.000,37.129){\circle*{2}}\put(57.000,41.357){\circle*{2}}\put(73.000,45.868){\circle*{2}}\put(89.000,51.506){\circle*{2}}\put(105.000,58.181){\circle*{2}}\put(121.000,66.228){\circle*{2}}\put(137.000,75.869){\circle*{2}}\put(153.000,87.444){\circle*{2}}
+\end{picture}\end{minipage}\begin{minipage}{.48\linewidth}\centering
+\textbf{Juvenile/adult ratio}\par
+\setlength{\unitlength}{1pt}\begin{picture}(175,120)
+\put(25,18){\vector(1,0){140}}\put(25,18){\vector(0,1){85}}
+\put(160,4){$k$}\put(25,6){\makebox(0,0){\scriptsize0}}
+\put(153,6){\makebox(0,0){\scriptsize8}}
+\put(19,18){\makebox(0,0)[r]{\scriptsize1.26}}
+\put(19,93){\makebox(0,0)[r]{\scriptsize1.52}}
+\polyline(25.000,87.231)(41.000,23.769)(57.000,44.351)(73.000,37.429)(89.000,39.730)(105.000,38.962)(121.000,39.218)(137.000,39.133)(153.000,39.161)
+\put(25.000,87.231){\circle*{2}}\put(41.000,23.769){\circle*{2}}\put(57.000,44.351){\circle*{2}}\put(73.000,37.429){\circle*{2}}\put(89.000,39.730){\circle*{2}}\put(105.000,38.962){\circle*{2}}\put(121.000,39.218){\circle*{2}}\put(137.000,39.133){\circle*{2}}\put(153.000,39.161){\circle*{2}}
+\end{picture}\end{minipage}
+The ratio oscillates toward $4/3$ because the secondary eigenvalue
+is negative. It is already close by years 3--4 and differs by less
+than $.001$ from $4/3$ by year 5. The underlying relative mode
+shrinks by $|-.4/1.2|=1/3$ each year.
+A complete plotting program, including the requested total and ratio
+panels, is:
+\begin{verbatim}
+import numpy as np
+import matplotlib.pyplot as plt
+A = np.array([[0.,1.6],[.3,.8]])
+x = np.array([15.,10.])
+values = [x.copy()]
+for k in range(8):
+    x = A @ x
+    values.append(x.copy())
+v = np.array(values)
+series = [v[:,0],v[:,1],v.sum(axis=1),v[:,0]/v[:,1]]
+labels = ['Juveniles','Adults','Total','Juveniles/adults']
+fig, axes = plt.subplots(2,2)
+for ax, y, label in zip(axes.flat, series, labels):
+    ax.plot(range(9), y, 'o-')
+    ax.set(xlabel='Year', ylabel=label)
+fig.tight_layout()
+plt.show()
+\end{verbatim}
+
+\exercise{5.6.18}{A three-stage buffalo model}
+\step{(a) Construct the stage matrix.}
+Only adults give birth. Calves survive into the yearling stage and
+yearlings into adulthood. Thus
+\[A=\begin{bmatrix}0&0&.42\\.60&0&0\\0&.75&.95\end{bmatrix}.\]
+\step{(b) Compute the dominant mode and its composition.}
+The characteristic polynomial is
+$\lambda^3-.95\lambda^2-.189$. Its real positive root is
+$\lambda_1\approx1.104834392$; the other two roots are complex
+conjugates of modulus less than $1$. Since $\lambda_1>1$, the
+nonzero nonnegative population grows asymptotically by factor
+$1.104834392$, about $10.483439\%$ per year.
+Normalize the dominant eigenvector to 100 adults. The first row of
+$Av=\lambda_1v$ gives $c=42/\lambda_1$, and the second gives
+$y=.6c/\lambda_1$. Therefore the eventual composition per 100
+adults is approximately
+\[(c,y,a)=(38.014747,20.644586,100).\]
+Substituting these formulas into the third row reproduces the
+characteristic equation; this checks the eigenvector normalization.
+\step{Show that every nonzero nonnegative initial population has a growing mode.}
+An initial state could in principle have zero coefficient in a particular
+eigenvector direction, so we must verify that the dominant coefficient
+is positive here. A useful row multiplier is the positive left eigenvector
+\[
+w=\begin{bmatrix}.45/\lambda_1^2\\.75/\lambda_1\\1\end{bmatrix}.
+\]
+Indeed direct multiplication gives
+\[
+w^TA=\begin{bmatrix}.45/\lambda_1&.75&.189/\lambda_1^2+.95\end{bmatrix}
+=\lambda_1w^T.
+\]
+The last equality uses the characteristic equation, divided by
+$\lambda_1^2$: $\lambda_1=.95+.189/\lambda_1^2$.
+All three entries of $w$ are strictly positive because $\lambda_1>0$.
+
+The three distinct eigenvalues give an eigenvector expansion
+$x_0=c_1v_1+c_2v_2+c_3v_3$, allowing complex coefficients for the
+conjugate pair. For $j=2,3$, calculate the same scalar in two ways:
+\[
+w^TAv_j=\lambda_1w^Tv_j=\lambda_jw^Tv_j.
+\]
+Since $\lambda_j\ne\lambda_1$, this forces $w^Tv_j=0$.
+Multiplying the expansion of $x_0$ by $w^T$ therefore isolates
+\[
+c_1=\frac{w^Tx_0}{w^Tv_1}>0.
+\]
+The numerator is positive whenever $x_0$ has nonnegative entries and at
+least one positive entry; the denominator is positive because $v_1$
+has the positive components computed above. Consequently
+\[
+\frac{x_k}{\lambda_1^k}
+=c_1v_1+c_2\left(\frac{\lambda_2}{\lambda_1}\right)^kv_2
+       +c_3\left(\frac{\lambda_3}{\lambda_1}\right)^kv_3
+\longrightarrow c_1v_1.
+\]
+Both remaining ratios have modulus less than $1$, so their powers tend
+to zero. Thus the dominant mode really is present for every nonzero
+nonnegative initial population, justifying both the growth rate and the
+eventual stage proportions claimed above.

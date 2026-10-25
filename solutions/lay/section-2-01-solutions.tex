@@ -1,0 +1,511 @@
+\section{Matrix operations}
+A matrix has a \emph{shape}: an $m\times n$ matrix has $m$ rows and $n$
+columns. Addition requires identical shapes. In $AB$, the number of columns
+of $A$ must equal the number of rows of $B$; the answer then has the outside
+shape. If $A$ is $m\times n$ and $B$ is $n\times p$, then
+\[
+ (AB)_{ij}=\sum_{k=1}^n a_{ik}b_{kj},\qquad
+ AB=[Ab_1\ \cdots\ Ab_p].
+\]
+The first formula takes a row against a column; the second says that one
+column of the answer can be computed without the others. The transpose
+interchanges rows and columns. In particular $(AB)^T=B^TA^T$: its reversal
+of order is essential. Matrix multiplication generally does not commute.
+
+\practice{2.1.P1}{A vector and its transpose}
+With $A=\begin{bmatrix}1&-3\\-2&4\end{bmatrix}$ and
+$x=\begin{bmatrix}5\\3\end{bmatrix}$, first compute
+$Ax=(5-9,-10+12)^T=(-4,2)^T$. Thus
+\[
+ (Ax)^T=[-4\ \ 2],\qquad
+ x^TA^T=[5\ \ 3]\begin{bmatrix}1&-2\\-3&4\end{bmatrix}=[-4\ \ 2].
+\]
+The outer product multiplies each entry in the column by the whole row:
+\[
+ xx^T=\begin{bmatrix}25&15\\15&9\end{bmatrix},\qquad
+ x^Tx=5^2+3^2=34.
+\]
+Finally $A^T$ is $2\times2$ and $x^T$ is $1\times2$. The inner sizes $2,1$
+do not agree, so $A^Tx^T$ is undefined. An outer product and an inner product
+are different operations, even when they use the same entries.
+
+\practice{2.1.P2}{Choose the order of a computation}
+\goal Compute $A^2x$ efficiently for $A$ of shape $4\times4$.
+Associativity permits $A(Ax)$. A matrix--vector product uses four
+multiplications for each of four entries, or $16$ total. Computing $Ax$
+then $A(Ax)$ uses $16+16=32$. In contrast, $A^2$ has $16$ entries, each
+requiring four multiplications: $64$; the final multiplication by $x$ uses
+$16$ more. The second route uses $80$. Both routes give the same vector,
+but the first avoids computing matrix entries that are not needed.
+
+\exercise{2.1.1}{Check shapes before calculating}
+For the matrices supplied in the exercise, $A,B$ are $2\times3$ and
+$C,D$ are $2\times2$. Scalar multiplication and subtraction act entrywise:
+\[
+ -2A=\begin{bmatrix}-4&0&2\\-8&10&-4\end{bmatrix},\qquad
+ B-2A=\begin{bmatrix}7-4&-5-0&1+2\\1-8&-4+10&-3-4\end{bmatrix}
+ =\begin{bmatrix}3&-5&3\\-7&6&-7\end{bmatrix}.
+\]
+The product $AC$ is undefined: the inner sizes are $3$ and $2$.
+For $CD$, the inner sizes match, and taking rows against columns gives
+\[
+ CD=\begin{bmatrix}1\cdot3+2(-1)&1\cdot5+2\cdot4\\
+ -2\cdot3+1(-1)&-2\cdot5+1\cdot4\end{bmatrix}
+ =\begin{bmatrix}1&13\\-7&-6\end{bmatrix}.
+\]
+
+\exercise{2.1.2}{Two defined expressions and two shape failures}
+Entrywise addition gives
+\[
+ A+3B=\begin{bmatrix}2+21&0-15&-1+3\\4+3&-5-12&2-9\end{bmatrix}
+ =\begin{bmatrix}23&-15&2\\7&-17&-7\end{bmatrix}.
+\]
+The vector $E$ is $2\times1$, so $2C-3E$ is undefined: subtraction cannot
+combine a $2\times2$ matrix with a $2\times1$ matrix. For the defined product,
+\[
+ DB=\begin{bmatrix}
+ 3\cdot7+5\cdot1&3(-5)+5(-4)&3\cdot1+5(-3)\\
+ -7+4&5-16&-1-12
+ \end{bmatrix}
+ =\begin{bmatrix}26&-35&-12\\-3&-11&-13\end{bmatrix}.
+\]
+Finally $EC$ would have inner sizes $1$ and $2$, so it is undefined.
+
+\exercise{2.1.3}{A scalar identity matrix in a sum and a product}
+For $A=\begin{bmatrix}2&-5\\3&-2\end{bmatrix}$,
+\[
+ 3I_2-A=\begin{bmatrix}3-2&0-(-5)\\0-3&3-(-2)\end{bmatrix}
+ =\begin{bmatrix}1&5\\-3&5\end{bmatrix},\qquad
+ (3I_2)A=3A=\begin{bmatrix}6&-15\\9&-6\end{bmatrix}.
+\]
+Subtracting a scalar multiple of $I$ changes diagonal entries only;
+multiplying by that matrix scales \emph{every} entry.
+
+\exercise{2.1.4}{The same distinction in three dimensions}
+Subtract $5$ from each diagonal entry of the supplied $A$:
+\[
+ A-5I_3=\begin{bmatrix}0&-1&3\\-4&-2&-6\\-3&1&-3\end{bmatrix}.
+\]
+Multiplication instead scales each row, giving
+\[
+ (5I_3)A=5A=\begin{bmatrix}25&-5&15\\-20&15&-30\\-15&5&10\end{bmatrix}.
+\]
+
+\exercise{2.1.5}{Compute a product by columns and by entries}
+\step{(a) Use the two columns of $B$.}
+For $A=\begin{bmatrix}-1&3\\2&4\\5&-3\end{bmatrix}$,
+\[
+ Ab_1=4\begin{bmatrix}-1\\2\\5\end{bmatrix}
+       -2\begin{bmatrix}3\\4\\-3\end{bmatrix}
+       =\begin{bmatrix}-10\\0\\26\end{bmatrix},\qquad
+ Ab_2=-2\begin{bmatrix}-1\\2\\5\end{bmatrix}
+       +3\begin{bmatrix}3\\4\\-3\end{bmatrix}
+       =\begin{bmatrix}11\\8\\-19\end{bmatrix}.
+\]
+Place them in order: $AB=\begin{bmatrix}-10&11\\0&8\\26&-19\end{bmatrix}$.
+\step{(b) Check by the row--column rule.}
+The six dot products are
+$-1(4)+3(-2)=-10$, $-1(-2)+3(3)=11$,
+$2(4)+4(-2)=0$, $2(-2)+4(3)=8$,
+$5(4)-3(-2)=26$, and $5(-2)-3(3)=-19$.
+They give exactly the same matrix, as the two definitions require.
+
+\exercise{2.1.6}{A second product, with zeros included}
+\step{(a) Compute the columns separately.}
+The columns of $A$ are $(4,-3,0)^T$ and $(-3,5,1)^T$. Hence
+\[
+ Ab_1=\begin{bmatrix}4\\-3\\0\end{bmatrix}
+       +3\begin{bmatrix}-3\\5\\1\end{bmatrix}
+       =\begin{bmatrix}-5\\12\\3\end{bmatrix},\qquad
+ Ab_2=4\begin{bmatrix}4\\-3\\0\end{bmatrix}
+       -2\begin{bmatrix}-3\\5\\1\end{bmatrix}
+       =\begin{bmatrix}22\\-22\\-2\end{bmatrix}.
+\]
+\step{(b) Verify the entries.}
+The row--column products are $4-9=-5$, $16+6=22$,
+$-3+15=12$, $-12-10=-22$, $0+3=3$, and $0-2=-2$.
+Thus $AB=\begin{bmatrix}-5&22\\12&-22\\3&-2\end{bmatrix}$.
+
+\exercise{2.1.7}{Recover an unknown shape}
+A $5\times3$ matrix can multiply $B$ only if $B$ has $3$ rows.
+The product has as many columns as $B$; since $AB$ has $7$ columns,
+$B$ has shape $\boxed{3\times7}$.
+
+\exercise{2.1.8}{Rows of a product}
+The number of rows of $BC$ is the number of rows of $B$.
+Therefore $B$ has $\boxed{5}$ rows. The given product does not determine
+how many columns $B$ has; that number only has to match the rows of $C$.
+
+\exercise{2.1.9}{A parameter making two products equal}
+Multiplying in the two orders gives
+\[
+ AB=\begin{bmatrix}-7&3k+18\\-4&k-9\end{bmatrix},\qquad
+ BA=\begin{bmatrix}-7&12\\-k-6&k-9\end{bmatrix}.
+\]
+Equality requires equality in \emph{every} position. The upper-right
+position gives $3k+18=12$, or $k=-2$; the lower-left gives
+$-4=-k-6$, also $k=-2$. The diagonal entries already match.
+Thus $\boxed{k=-2}$ is both necessary and sufficient.
+
+\exercise{2.1.10}{Why cancellation can fail}
+Direct row--column multiplication gives
+\[
+ AB=\begin{bmatrix}-21&-21\\7&7\end{bmatrix}
+ =AC,
+\]
+although, for example, $B_{11}=-1\ne-3=C_{11}$.
+Indeed $B-C=\begin{bmatrix}2&6\\1&3\end{bmatrix}$ and each column is a
+multiple of $(2,1)^T$, which $A$ sends to zero. Thus $A(B-C)=0$ need
+not imply $B-C=0$. Cancelling a matrix requires additional hypotheses.
+
+\exercise{2.1.11}{Diagonal multiplication and a commuting example}
+\[
+ AD=\begin{bmatrix}5&6&6\\10&12&10\\15&15&12\end{bmatrix},\qquad
+ DA=\begin{bmatrix}5&10&15\\6&12&15\\6&10&12\end{bmatrix}.
+\]
+The $j$th column of $AD$ is the $j$th column of $A$ multiplied by $d_{jj}$;
+only the $j$th entry of the $j$th column of $D$ is nonzero. Similarly,
+left multiplication scales row $i$ by $d_{ii}$. For the last request,
+choose $B=2I_3$. This is neither zero nor the identity, and
+$AB=2A=BA$ by the identity and scalar-multiplication rules.
+
+\exercise{2.1.12}{Build a nonzero matrix annihilated by another}
+For $A=\begin{bmatrix}3&-6\\-2&4\end{bmatrix}$, the equation $Ax=0$
+reduces to $x_1=2x_2$. Choose two different nonzero solutions,
+$(2,1)^T$ and $(4,2)^T$, and make them columns:
+\[
+ B=\begin{bmatrix}2&4\\1&2\end{bmatrix},\qquad
+ AB=[A(2,1)^T\ \ A(4,2)^T]=[0\ \ 0].
+\]
+Having nonzero columns does not prevent their images from being zero.
+
+\exercise{2.1.13}{Pack several matrix--vector products together}
+Set $R=[r_1\ \cdots\ r_p]$, an $n\times p$ matrix. The column
+definition of multiplication gives
+\[
+ [Qr_1\ \cdots\ Qr_p]=QR.
+\]
+The factors are the supplied matrix $Q$ and the matrix of input columns,
+not auxiliary identity matrices. The sizes are $(m\times n)(n\times p)$.
+If one of these supplied factors happens itself to be an identity matrix,
+the literal requirement that neither factor be an identity can still be met:
+write the product as $(\lambda Q)(\lambda^{-1}R)$. Choose a nonzero
+scalar $\lambda$ avoiding any value for which either factor is an identity.
+Each factor excludes at most one scalar, so at least one of $2,3,4$ works.
+
+\exercise{2.1.14}{Read the units in a cost product}
+Column $j$ of $Q$ gives dollars of output of the two products in quarter $j$.
+Multiplication by $U$ converts that output vector into three dollar costs:
+materials, labor, and overhead. Thus $UQ$ is $3\times4$; its entry $(i,j)$
+is the total dollar cost in category $i$ during quarter $j$. The sum over
+products is exactly the row--column rule: cost per output dollar times
+output dollars, added over the two products.
+
+\exercise{2.1.15}{Five true--false statements about products and transposes}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} Two column vectors $a_1,b_1$ of shape $2\times1$
+cannot be multiplied as $a_1b_1$. The correct column formula is
+$AB=[Ab_1\ \ Ab_2]$.
+\item \textbf{False.} Columns of $AB$ are combinations of columns of
+$A$, with weights from columns of $B$. The roles in the statement are reversed.
+For example, take $A=\begin{bmatrix}1&0\\0&2\end{bmatrix}$ and
+$B=\begin{bmatrix}1&1\\1&0\end{bmatrix}$. The actual first column of
+$AB$ is $(1,2)^T$, whereas the proposed combination using the first
+column of $A$ as weights gives $b_1=(1,1)^T$.
+\item \textbf{True.} The left distributive law says $A(B+C)=AB+AC$.
+\item \textbf{True.} Entry $(i,j)$ of both $A^T+B^T$ and $(A+B)^T$
+is $a_{ji}+b_{ji}$.
+\item \textbf{False.} Transposing a product reverses order:
+$(AB)^T=B^TA^T$. For example,
+$A=\begin{bmatrix}1&1\\0&1\end{bmatrix}$ and
+$B=\begin{bmatrix}1&0\\0&2\end{bmatrix}$ give different $B^TA^T$ and $A^TB^T$.
+\end{enumerate}
+
+\exercise{2.1.16}{Five more structural statements}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} Entry $j$ of the first row of $AB$ is
+$\sum_k a_{1k}b_{kj}$, exactly entry $j$ of $(\operatorname{row}_1A)B$.
+\item \textbf{False.} The proposed expression has one column, whereas
+$AB$ has three. Its correct form is $[Ab_1\ \ Ab_2\ \ Ab_3]$.
+\item \textbf{True.} $(A^2)^T=(AA)^T=A^TA^T=(A^T)^2$.
+\item \textbf{False.} Two reversals give $(ABC)^T=C^TB^TA^T$.
+The stated middle order is incorrect; taking $C=I$ reduces the claim
+to the false same-order product rule in the preceding exercise.
+\item \textbf{True.} Transpose distributes over sums, entry by entry.
+\end{enumerate}
+
+\exercise{2.1.17}{Find two unknown input columns}
+Write $B=[b_1\ b_2]$. Since $AB=[Ab_1\ Ab_2]$, solve the two systems
+with right sides $(-3,1)^T$ and $(-11,17)^T$.
+For a right side $(c,d)^T$, the equations are
+$x_1-3x_2=c$ and $-3x_1+5x_2=d$.
+Replacing the second equation by itself plus three times the first gives
+$-4x_2=d+3c$. For $(c,d)=(-3,1)$, this gives $x_2=2$, $x_1=3$;
+for $(-11,17)$, it gives $x_2=4$, $x_1=1$. Thus
+\[
+ b_1=(3,2)^T,\qquad b_2=(1,4)^T,\qquad
+ B=\begin{bmatrix}3&1\\2&4\end{bmatrix}.
+\]
+Substitution into both original systems checks the two columns.
+
+\exercise{2.1.18}{A zero input column}
+The third column is $Ab_3$. If $b_3=0$, then $Ab_3=A0=0$.
+Thus the third column of $AB$ is zero, regardless of the other columns.
+
+\exercise{2.1.19}{A sum relation survives multiplication}
+If $b_3=b_1+b_2$, then
+$Ab_3=A(b_1+b_2)=Ab_1+Ab_2$ by distributivity.
+Therefore column $3$ of $AB$ is the sum of columns $1$ and $2$.
+
+\exercise{2.1.20}{Equal columns have equal images}
+If $b_1=b_2$, multiplying the equality by $A$ gives $Ab_1=Ab_2$.
+These are precisely the first two columns of $AB$; they are equal.
+No conclusion is forced about any later column.
+
+\exercise{2.1.21}{A nonzero vector sent to zero}
+Let $b$ be the last column of $B$. By hypothesis $b\ne0$, but the
+last column of $AB$ is $Ab=0$. Writing this as a linear combination of
+the columns of $A$, the coefficients are the entries of $b$, not all zero.
+That is a nontrivial dependence relation. Thus the columns of $A$ are
+linearly dependent.
+
+\exercise{2.1.22}{A dependence relation cannot be destroyed by a linear map}
+If $b_1,\ldots,b_p$ are dependent, there are scalars $c_j$, not all zero,
+with $\sum_j c_jb_j=0$. Multiply by $A$ and distribute:
+\[
+ \sum_j c_j(Ab_j)=A\left(\sum_j c_jb_j\right)=A0=0.
+\]
+The \emph{same} nonzero coefficient vector witnesses dependence of the
+columns $Ab_j$ of $AB$. Some images may even be zero; that only makes
+dependence easier, not harder.
+
+\exercise{2.1.23}{A left inverse forbids free variables}
+Suppose $Ax=0$ and $CA=I_n$. Multiplying by $C$ yields
+$x=I_nx=(CA)x=C(Ax)=C0=0$.
+Thus the homogeneous system has no free variables: all $n$ columns of $A$
+must be pivot columns. Since there is at most one pivot in each row,
+$A$ must have at least $n$ rows. Therefore it cannot have more columns
+than rows.
+
+\exercise{2.1.24}{Construct a right inverse one column at a time}
+Since the columns of $A$ span $\R^3$, each equation $Ad_j=e_j$ is
+consistent for $j=1,2,3$. Choose one solution of each, for example by row
+reduction, and set $D=[d_1\ d_2\ d_3]$. Each $d_j$ has $n$ entries,
+so $D$ is $n\times3$. Then
+$AD=[Ad_1\ Ad_2\ Ad_3]=[e_1\ e_2\ e_3]=I_3$.
+If solutions are nonunique, any choices work; uniqueness was not assumed.
+
+\exercise{2.1.25}{A left and right inverse force a square matrix}
+From $CA=I_n$, the argument of Exercise 23 gives $n\le m$.
+From $AD=I_m$, every $b\in\R^m$ has solution $x=Db$, so $A$ has a pivot
+in every row and $m\le n$. Thus $m=n$.
+Associativity then gives
+\[
+ C=C I_m=C(AD)=(CA)D=I_nD=D.
+\]
+One must first respect the sizes; the two inequalities explain why both
+sorts of inverse can occur together only in the square case.
+
+\exercise{2.1.26}{A right inverse guarantees all outputs}
+For arbitrary $b\in\R^m$, choose $x=Db$. Then
+$Ax=A(Db)=(AD)b=I_mb=b$. This proves consistency for every right side.
+Hence $A$ has a pivot in each of its $m$ rows. There cannot be more pivots
+than columns, so $m\le n$: no more rows than columns.
+
+\exercise{2.1.27}{Inner and outer products in coordinates}
+For $u=(-3,2,-5)^T$ and $v=(a,b,c)^T$, multiplication gives
+\[
+ u^Tv=v^Tu=-3a+2b-5c,
+\]
+\[
+ uv^T=\begin{bmatrix}-3a&-3b&-3c\\2a&2b&2c\\-5a&-5b&-5c\end{bmatrix},\qquad
+ vu^T=\begin{bmatrix}-3a&2a&-5a\\-3b&2b&-5b\\-3c&2c&-5c\end{bmatrix}.
+\]
+The scalar product pairs corresponding coordinates and adds; the outer
+product keeps all pairwise products, which explains its different shape.
+
+\exercise{2.1.28}{Relationships between the two orders}
+For real vectors, $u^Tv=\sum_i u_iv_i=\sum_i v_iu_i=v^Tu$.
+The outer products need not be equal, but
+$(uv^T)^T=(v^T)^Tu^T=vu^T$. Their $(i,j)$ and $(j,i)$ entries are
+both $u_iv_j$. The real-scalar assumption matters: complex inner products
+usually use a conjugate transpose instead.
+
+\exercise{2.1.29}{Prove both distributive laws entrywise}
+\goal Establish Theorem 2(b) and 2(c), with all products of matching sizes.
+For left distributivity, take an arbitrary entry and expand a finite sum:
+\[
+ [A(B+C)]_{ij}=\sum_k a_{ik}(b_{kj}+c_{kj})
+ =\sum_k a_{ik}b_{kj}+\sum_k a_{ik}c_{kj}
+ =[AB+AC]_{ij}.
+\]
+For right distributivity the same scalar rule gives
+\[
+ [(B+C)A]_{ij}=\sum_k(b_{ik}+c_{ik})a_{kj}
+ =[BA+CA]_{ij}.
+\]
+The index $k$ runs over the common inner dimension in each formula.
+Because every entry agrees, the matrices agree.
+
+\exercise{2.1.30}{Move a scalar through a product}
+For an arbitrary position $(i,j)$,
+\[
+ [(rA)B]_{ij}=\sum_k(ra_{ik})b_{kj}
+ =r\sum_k a_{ik}b_{kj}
+ =\sum_k a_{ik}(rb_{kj})=[A(rB)]_{ij}.
+\]
+The middle quantity is also $[r(AB)]_{ij}$.
+We used only distributivity of finite sums and associativity of real
+multiplication. Thus $r(AB)=(rA)B=A(rB)$.
+
+\exercise{2.1.31}{The identity on the left}
+Write $A=[a_1\ \cdots\ a_n]$, where every $a_j\in\R^m$.
+By the column definition,
+$I_mA=[I_ma_1\ \cdots\ I_ma_n]=[a_1\ \cdots\ a_n]=A$,
+using the supplied fact that $I_mx=x$ for each vector in $\R^m$.
+
+\exercise{2.1.32}{The identity on the right}
+The $j$th column of $I_n$ is $e_j$, whose only nonzero entry is a $1$
+in position $j$. Thus $Ae_j=0a_1+\cdots+1a_j+\cdots+0a_n=a_j$.
+Consequently $AI_n=[Ae_1\ \cdots\ Ae_n]=A$.
+
+\exercise{2.1.33}{Prove the reversal rule for transposes}
+Let $A$ be $m\times n$ and $B$ be $n\times p$. Both $(AB)^T$ and
+$B^TA^T$ have size $p\times m$. At position $(i,j)$,
+\[
+ [(AB)^T]_{ij}=(AB)_{ji}
+ =\sum_{k=1}^n a_{jk}b_{ki}
+ =\sum_{k=1}^n (B^T)_{ik}(A^T)_{kj}
+ =[B^TA^T]_{ij}.
+\]
+The middle reordering uses commutativity of scalar entries, not
+commutativity of matrix multiplication. Equality of all entries proves
+the rule.
+
+\exercise{2.1.34}{Transpose a product with a vector}
+Treat $x$ as a one-column matrix and reverse the order of all three factors:
+\[
+ (ABx)^T=x^T(AB)^T=\boxed{x^TB^TA^T}.
+\]
+If $A$ is $m\times n$, $B$ is $n\times p$, and $x$ is $p\times1$,
+the final shape is $1\times m$, as a transposed output vector should have.
+
+\exercise{2.1.35}{Create standard matrices in a matrix program}
+One concrete choice of software is Python with NumPy. These commands create
+the four requested arrays without entering every entry:
+\begin{verbatim}
+import numpy as np
+np.zeros((4,5))
+np.ones((5,3))
+np.eye(5)
+np.diag([3,4,2,5])
+\end{verbatim}
+A tuple such as $(4,5)$ specifies rows first, columns second.
+The diagonal constructor places the listed numbers on the diagonal and
+zeros elsewhere. These commands were executed to verify their shapes.
+
+\exercise{2.1.36}{Generate reproducible random arrays}
+The following uses a fixed seed so another reader can repeat the experiment:
+\begin{verbatim}
+rng = np.random.default_rng(21036)
+R = rng.random((5,6))
+Z = rng.integers(-9,10,size=(4,4))
+\end{verbatim}
+Entries of $R$ lie in $[0,1)$; the endpoint convention differs slightly from
+the idealized $0<x<1$ in the hint and does not affect the task.
+Entries of $Z$ are integers in $\{-9,-8,\ldots,9\}$: the upper limit
+$10$ is excluded. The dedicated integer generator avoids having to round
+scaled real numbers. A seed controls reproducibility, not a mathematical
+claim that all resulting matrices have a special property.
+
+\exercise{2.1.37}{Test commutativity with four random pairs}
+\begin{verbatim}
+rng = np.random.default_rng(21037)
+for j in range(4):
+    A = rng.integers(-9,10,(4,4))
+    B = rng.integers(-9,10,(4,4))
+    print(np.max(np.abs(A@B-B@A)))
+\end{verbatim}
+The executed outputs are $163,136,158,156$. Here $\max|M|$ means the
+largest absolute entry, not a determinant. Each positive result proves that
+that particular commutator $AB-BA$ is nonzero, so $AB\ne BA$ in all four
+trials. One counterexample already disproves a universal commutativity
+claim. The trials do not prove that matrices \emph{never} commute: $I$
+commutes with every square matrix.
+
+\exercise{2.1.38}{A valid and an invalid difference-of-squares identity}
+Use integer arrays to avoid roundoff in testing these polynomial expressions:
+\begin{verbatim}
+rng = np.random.default_rng(21038)
+for j in range(3):
+    A = rng.integers(-9,10,(5,5)); I = np.eye(5,dtype=int)
+    print(np.max(np.abs((A+I)@(A-I)-(A@A-I))))
+for j in range(3):
+    A = rng.integers(-9,10,(4,4))
+    B = rng.integers(-9,10,(4,4))
+    print(np.max(np.abs((A+B)@(A-B)-(A@A-B@B))))
+\end{verbatim}
+The first three outputs are $0,0,0$; the next three are $182,188,189$.
+Algebra explains the difference:
+\[
+ (A+I)(A-I)=A^2-A+A-I=A^2-I,
+\]
+whereas
+\[
+ (A+B)(A-B)=A^2-B^2+BA-AB.
+\]
+Thus the latter proposed identity holds precisely when $AB=BA$; the
+experiments found three pairs for which this extra condition fails.
+
+\exercise{2.1.39}{Test three transpose rules}
+For three random pairs, execute
+\begin{verbatim}
+rng = np.random.default_rng(21039)
+for j in range(3):
+    A = rng.integers(-9,10,(4,4)); B = rng.integers(-9,10,(4,4))
+    errors = [(A+B).T-A.T-B.T, (A@B).T-B.T@A.T,
+              (A@B).T-A.T@B.T]
+    print([np.max(np.abs(E)) for E in errors])
+\end{verbatim}
+The outputs are $(0,0,173)$, $(0,0,141)$, and $(0,0,223)$.
+Thus the sum rule and reversed-product rule pass all three exact-integer
+checks, while the same-order product rule fails all three. The proofs in
+the preceding exercises establish the first two rules for every matching
+pair; random tests by themselves would not do that.
+
+\exercise{2.1.40}{Powers of a shift matrix}
+The given $S$ satisfies $S(x_1,x_2,x_3,x_4,x_5)^T=(x_2,x_3,x_4,x_5,0)^T$.
+Each multiplication shifts entries one more place and inserts another zero.
+Consequently
+\[
+ S^2=\begin{bmatrix}0&0&1&0&0\\0&0&0&1&0\\0&0&0&0&1\\0&0&0&0&0\\0&0&0&0&0\end{bmatrix},\quad
+ S^3=\begin{bmatrix}0&0&0&1&0\\0&0&0&0&1\\0&0&0&0&0\\0&0&0&0&0\\0&0&0&0&0\end{bmatrix},
+\]
+\[
+ S^4=\begin{bmatrix}0&0&0&0&1\\0&0&0&0&0\\0&0&0&0&0\\0&0&0&0&0\\0&0&0&0&0\end{bmatrix},\qquad
+ S^5=S^6=0_{5\times5}.
+\]
+Equivalently $(S^k)_{ij}=1$ exactly when $j=i+k$ is a valid column index.
+Once $k\ge5$ there is no such position; the matrix is nilpotent.
+
+\exercise{2.1.41}{Powers that settle toward an averaging matrix}
+For the supplied symmetric matrix $A$, exact rational powers followed by
+decimal conversion give, for example,
+\[
+ A^5\approx\begin{bmatrix}
+ .333912&.334877&.331211\\.334877&.335134&.329990\\
+ .331211&.329990&.338799\end{bmatrix},\quad
+ A^{10}\approx\begin{bmatrix}
+ .333341&.333344&.333315\\.333344&.333350&.333306\\
+ .333315&.333306&.333379\end{bmatrix}.
+\]
+By $A^{20}$ and $A^{30}$ every entry rounds to $0.333333$ at six decimal
+places. The observed behavior is convergence toward the matrix with every
+entry $1/3$: repeated multiplication increasingly averages the coordinates.
+For a reproducible numerical calculation, enter the fractions rather than
+rounded initial entries and use \texttt{np.linalg.matrix\_power(A,k)}.
+As an optional explanation using later eigenvalue theory, $A$ has eigenvalues
+$1,(1+\sqrt{13})/12,(1-\sqrt{13})/12$. The last two have magnitude less
+than $1$ and their powers tend to zero; the surviving eigenspace is the line
+spanned by $(1,1,1)^T$. Its orthogonal projection is exactly the averaging
+matrix. This explains the trend rather than extrapolating from a few powers.

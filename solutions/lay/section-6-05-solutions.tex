@@ -1,0 +1,359 @@
+\section{Least-squares problems}
+A least-squares solution $\widehat x$ minimizes the \emph{output error}
+$\|b-Ax\|$, not $\|b-x\|$. The minimizing output
+$\widehat b=A\widehat x$ is the orthogonal projection of $b$
+onto $\Col A$. The residual $r=b-A\widehat x$ is orthogonal
+to every column, so
+\[
+ A^Tr=0\quad\Longleftrightarrow\quad A^TA\widehat x=A^Tb.
+\]
+These are the normal equations. They always have solutions, but the
+coefficient vector need not be unique when $A$ has dependent columns.
+The projection is still unique. With full column rank and a QR
+factorization $A=QR$, solve $R\widehat x=Q^Tb$ by back substitution;
+do not explicitly form an inverse for numerical work.
+
+\practice{6.5.P1}{A least-squares problem can have zero error}
+For the given matrix, direct multiplication gives
+\[
+ A(2,-1,0)^T=(5,-3,-5)^T=b.
+\]
+Thus $\widehat x=(2,-1,0)^T$ is already an exact solution and
+therefore a least-squares solution: its residual is zero, and no norm
+can be smaller than zero. Its associated least-squares error is $0$.
+For a normal-equation check,
+\[
+ A^TA=\begin{bmatrix}3&9&0\\9&83&28\\0&28&14\end{bmatrix},\quad
+ A^Tb=(-3,-65,-28)^T,
+\]
+and the chosen vector satisfies that system as well.
+
+\practice{6.5.P2}{An orthogonal target has zero as its projection}
+If $b$ is orthogonal to all columns, $A^Tb=0$. The projection
+of $b$ onto $\Col A$ is zero, so $x=0$ is a least-squares
+solution and the minimum error is $\|b\|$.
+More precisely all least-squares solutions satisfy $Ax=0$; thus
+they form $\Nul A$. The coefficient vector is unique only when
+that null space is $\{0\}$.
+
+\exercise{6.5.1}{Construct and solve the normal equations}
+\step{(a) Compute the two sides from the original data.}
+\[ A=\begin{bmatrix}-1 & 2\\2 & -3\\-1 & 3\end{bmatrix},\qquad b=\begin{bmatrix}4\\1\\2\end{bmatrix}.\]
+
+Taking column dot products gives
+\[ A^TA=\begin{bmatrix}6 & -11\\-11 & 22\end{bmatrix},\qquad A^Tb=\begin{bmatrix}-4\\11\end{bmatrix}.\]
+The normal equation is $A^TA\widehat x=A^Tb$ with these entries.
+
+\step{(b) Solve that smaller system.}
+\[ [A^TA\mid A^Tb]\sim \begin{bmatrix}1 & 0 & 3\\0 & 1 & 2\end{bmatrix},\qquad \widehat x=\begin{bmatrix}3\\2\end{bmatrix}.\]
+
+There is a pivot in both unknown columns, so the least-squares coefficient vector is unique. Its residual is
+\[ r=b-A\widehat x=\begin{bmatrix}3\\1\\-1\end{bmatrix}.\]
+Substituting into $A^Tr$ gives zero, verifying the orthogonality condition independently. This certifies that the solution minimizes the error, even when $A\widehat x$ does not equal $b$.
+
+\exercise{6.5.2}{Construct and solve the normal equations}
+\step{(a) Compute the two sides from the original data.}
+\[ A=\begin{bmatrix}2 & 1\\-2 & 0\\2 & 3\end{bmatrix},\qquad b=\begin{bmatrix}-5\\8\\1\end{bmatrix}.\]
+
+Taking column dot products gives
+\[ A^TA=\begin{bmatrix}12 & 8\\8 & 10\end{bmatrix},\qquad A^Tb=\begin{bmatrix}-24\\-2\end{bmatrix}.\]
+The normal equation is $A^TA\widehat x=A^Tb$ with these entries.
+
+\step{(b) Solve that smaller system.}
+\[ [A^TA\mid A^Tb]\sim \begin{bmatrix}1 & 0 & -4\\0 & 1 & 3\end{bmatrix},\qquad \widehat x=\begin{bmatrix}-4\\3\end{bmatrix}.\]
+
+There is a pivot in both unknown columns, so the least-squares coefficient vector is unique. Its residual is
+\[ r=b-A\widehat x=\begin{bmatrix}0\\0\\0\end{bmatrix}.\]
+Substituting into $A^Tr$ gives zero, verifying the orthogonality condition independently. This certifies that the solution minimizes the error, even when $A\widehat x$ does not equal $b$.
+
+\exercise{6.5.3}{Construct and solve the normal equations}
+\step{(a) Compute the two sides from the original data.}
+\[ A=\begin{bmatrix}1 & -2\\-1 & 2\\0 & 3\\2 & 5\end{bmatrix},\qquad b=\begin{bmatrix}3\\1\\-4\\2\end{bmatrix}.\]
+
+Taking column dot products gives
+\[ A^TA=\begin{bmatrix}6 & 6\\6 & 42\end{bmatrix},\qquad A^Tb=\begin{bmatrix}6\\-6\end{bmatrix}.\]
+The normal equation is $A^TA\widehat x=A^Tb$ with these entries.
+
+\step{(b) Solve that smaller system.}
+\[ [A^TA\mid A^Tb]\sim \begin{bmatrix}1 & 0 & \frac{4}{3}\\0 & 1 & - \frac{1}{3}\end{bmatrix},\qquad \widehat x=\begin{bmatrix}\frac{4}{3}\\- \frac{1}{3}\end{bmatrix}.\]
+
+There is a pivot in both unknown columns, so the least-squares coefficient vector is unique. Its residual is
+\[ r=b-A\widehat x=\begin{bmatrix}1\\3\\-3\\1\end{bmatrix}.\]
+Substituting into $A^Tr$ gives zero, verifying the orthogonality condition independently. This certifies that the solution minimizes the error, even when $A\widehat x$ does not equal $b$.
+
+\exercise{6.5.4}{Construct and solve the normal equations}
+\step{(a) Compute the two sides from the original data.}
+\[ A=\begin{bmatrix}1 & 3\\1 & -1\\1 & 1\end{bmatrix},\qquad b=\begin{bmatrix}5\\1\\0\end{bmatrix}.\]
+
+Taking column dot products gives
+\[ A^TA=\begin{bmatrix}3 & 3\\3 & 11\end{bmatrix},\qquad A^Tb=\begin{bmatrix}6\\14\end{bmatrix}.\]
+The normal equation is $A^TA\widehat x=A^Tb$ with these entries.
+
+\step{(b) Solve that smaller system.}
+\[ [A^TA\mid A^Tb]\sim \begin{bmatrix}1 & 0 & 1\\0 & 1 & 1\end{bmatrix},\qquad \widehat x=\begin{bmatrix}1\\1\end{bmatrix}.\]
+
+There is a pivot in both unknown columns, so the least-squares coefficient vector is unique. Its residual is
+\[ r=b-A\widehat x=\begin{bmatrix}1\\1\\-2\end{bmatrix}.\]
+Substituting into $A^Tr$ gives zero, verifying the orthogonality condition independently. This certifies that the solution minimizes the error, even when $A\widehat x$ does not equal $b$.
+
+\exercise{6.5.5}{Find every minimizing coefficient vector}
+The original data give
+\[ A^TA=\begin{bmatrix}4 & 2 & 2\\2 & 2 & 0\\2 & 0 & 2\end{bmatrix},\qquad A^Tb=\begin{bmatrix}14\\4\\10\end{bmatrix}.\]
+
+The reduced augmented normal matrix is
+\[ \begin{bmatrix}1 & 0 & 1 & 5\\0 & 1 & -1 & -3\\0 & 0 & 0 & 0\end{bmatrix}.\]
+
+Set the free variable $x_3=t$. Reading the first two equations gives
+\[ \widehat x=\begin{bmatrix}5 - t\\t - 3\\t\end{bmatrix},\qquad t\in\R.\]
+
+All these coefficient vectors produce the same fitted output $A\widehat x=\begin{bmatrix}2\\2\\5\\5\end{bmatrix}$. The residual $\begin{bmatrix}-1\\1\\3\\-3\end{bmatrix}$ is orthogonal to all columns of $A$. Conversely every minimizer solves the normal equations, so this family contains all least-squares solutions, not just selected ones.
+
+\exercise{6.5.6}{Find every minimizing coefficient vector}
+The original data give
+\[ A^TA=\begin{bmatrix}6 & 3 & 3\\3 & 3 & 0\\3 & 0 & 3\end{bmatrix},\qquad A^Tb=\begin{bmatrix}27\\12\\15\end{bmatrix}.\]
+
+The reduced augmented normal matrix is
+\[ \begin{bmatrix}1 & 0 & 1 & 5\\0 & 1 & -1 & -1\\0 & 0 & 0 & 0\end{bmatrix}.\]
+
+Set the free variable $x_3=t$. Reading the first two equations gives
+\[ \widehat x=\begin{bmatrix}5 - t\\t - 1\\t\end{bmatrix},\qquad t\in\R.\]
+
+All these coefficient vectors produce the same fitted output $A\widehat x=\begin{bmatrix}4\\4\\4\\5\\5\\5\end{bmatrix}$. The residual $\begin{bmatrix}3\\-2\\-1\\1\\0\\-1\end{bmatrix}$ is orthogonal to all columns of $A$. Conversely every minimizer solves the normal equations, so this family contains all least-squares solutions, not just selected ones.
+
+\exercise{6.5.7}{Compute the minimum error as a residual norm}
+Using the least-squares solution in Exercise 3, the residual is $r=\begin{bmatrix}1\\3\\-3\\1\end{bmatrix}$. Therefore
+\[ \|b-A\widehat x\|=\sqrt{(1)^2+(3)^2+(-3)^2+(1)^2}=\boxed{2 \sqrt{5}}.\]
+The error is the norm, rather than its square. The sum of squared residuals is $20$.
+
+\exercise{6.5.8}{Compute the minimum error as a residual norm}
+Using the least-squares solution in Exercise 4, the residual is $r=\begin{bmatrix}1\\1\\-2\end{bmatrix}$. Therefore
+\[ \|b-A\widehat x\|=\sqrt{(1)^2+(1)^2+(-2)^2}=\boxed{\sqrt{6}}.\]
+The error is the norm, rather than its square. The sum of squared residuals is $6$.
+
+\exercise{6.5.9}{Find a projection and its coefficient vector}
+The columns happen to be orthogonal, as shown by the diagonal Gram matrix:
+\[ A^TA=\begin{bmatrix}14 & 0\\0 & 42\end{bmatrix},\qquad A^Tb=\begin{bmatrix}4\\6\end{bmatrix}.\]
+
+\step{(a) Form the orthogonal projection.}
+For an orthogonal column list, $\widehat b=\sum_j(a_j^Tb)/(a_j^Ta_j)\,a_j$. Here those coefficients give
+\[ \widehat b=\begin{bmatrix}1\\1\\0\end{bmatrix}.\]
+
+\step{(b) Record a least-squares input.}
+The same coefficients solve the diagonal normal equations:
+\[ \widehat x=\begin{bmatrix}\frac{2}{7}\\\frac{1}{7}\end{bmatrix}.\]
+
+Indeed $A\widehat x=\widehat b$, and the residual $b-\widehat b=\begin{bmatrix}3\\-3\\-3\end{bmatrix}$ has zero dot product with every column. The nonzero diagonal entries also make this input unique.
+
+\exercise{6.5.10}{Find a projection and its coefficient vector}
+The columns happen to be orthogonal, as shown by the diagonal Gram matrix:
+\[ A^TA=\begin{bmatrix}3 & 0\\0 & 24\end{bmatrix},\qquad A^Tb=\begin{bmatrix}9\\12\end{bmatrix}.\]
+
+\step{(a) Form the orthogonal projection.}
+For an orthogonal column list, $\widehat b=\sum_j(a_j^Tb)/(a_j^Ta_j)\,a_j$. Here those coefficients give
+\[ \widehat b=\begin{bmatrix}4\\-1\\4\end{bmatrix}.\]
+
+\step{(b) Record a least-squares input.}
+The same coefficients solve the diagonal normal equations:
+\[ \widehat x=\begin{bmatrix}3\\\frac{1}{2}\end{bmatrix}.\]
+
+Indeed $A\widehat x=\widehat b$, and the residual $b-\widehat b=\begin{bmatrix}-1\\0\\1\end{bmatrix}$ has zero dot product with every column. The nonzero diagonal entries also make this input unique.
+
+\exercise{6.5.11}{Find a projection and its coefficient vector}
+The columns happen to be orthogonal, as shown by the diagonal Gram matrix:
+\[ A^TA=\begin{bmatrix}54 & 0 & 0\\0 & 27 & 0\\0 & 0 & 27\end{bmatrix},\qquad A^Tb=\begin{bmatrix}36\\0\\9\end{bmatrix}.\]
+
+\step{(a) Form the orthogonal projection.}
+For an orthogonal column list, $\widehat b=\sum_j(a_j^Tb)/(a_j^Ta_j)\,a_j$. Here those coefficients give
+\[ \widehat b=\begin{bmatrix}3\\1\\4\\-1\end{bmatrix}.\]
+
+\step{(b) Record a least-squares input.}
+The same coefficients solve the diagonal normal equations:
+\[ \widehat x=\begin{bmatrix}\frac{2}{3}\\0\\\frac{1}{3}\end{bmatrix}.\]
+
+Indeed $A\widehat x=\widehat b$, and the residual $b-\widehat b=\begin{bmatrix}6\\-1\\-4\\1\end{bmatrix}$ has zero dot product with every column. The nonzero diagonal entries also make this input unique.
+
+\exercise{6.5.12}{Find a projection and its coefficient vector}
+The columns happen to be orthogonal, as shown by the diagonal Gram matrix:
+\[ A^TA=\begin{bmatrix}3 & 0 & 0\\0 & 3 & 0\\0 & 0 & 3\end{bmatrix},\qquad A^Tb=\begin{bmatrix}1\\14\\-5\end{bmatrix}.\]
+
+\step{(a) Form the orthogonal projection.}
+For an orthogonal column list, $\widehat b=\sum_j(a_j^Tb)/(a_j^Ta_j)\,a_j$. Here those coefficients give
+\[ \widehat b=\begin{bmatrix}5\\2\\3\\6\end{bmatrix}.\]
+
+\step{(b) Record a least-squares input.}
+The same coefficients solve the diagonal normal equations:
+\[ \widehat x=\begin{bmatrix}\frac{1}{3}\\\frac{14}{3}\\- \frac{5}{3}\end{bmatrix}.\]
+
+Indeed $A\widehat x=\widehat b$, and the residual $b-\widehat b=\begin{bmatrix}-3\\3\\3\\0\end{bmatrix}$ has zero dot product with every column. The nonzero diagonal entries also make this input unique.
+
+
+\exercise{6.5.13}{Disqualify one candidate by finding a better one}
+Direct multiplication gives $Au=(11,-11,11)^T$ and
+$Av=(7,-12,7)^T$. With $b=(11,-9,5)^T$, the residuals
+are $(0,2,-6)^T$ and $(4,3,-2)^T$, respectively. Their squared
+norms are $40$ and $29$. Since the candidate $v$ has strictly
+smaller error than $u$, the vector $u$ cannot minimize the error.
+This proves $u$ is not a least-squares solution without solving the
+least-squares problem. It does not assert that $v$ is a minimizer.
+
+\exercise{6.5.14}{Equal candidate errors do not prove minimality}
+Multiplication gives $Au=(3,8,2)^T$, $Av=(7,2,8)^T$.
+The two residuals from $b=(5,4,4)^T$ are $(2,-4,2)^T$ and
+$(-2,2,-4)^T$, both with squared norm $24$.
+Now take the midpoint $z=(u+v)/2=(5,-5)^T$. Linearity gives
+$Az=(5,5,5)^T$, whose residual is $(0,-1,-1)^T$, with squared
+norm $2<24$. Thus \emph{neither} $u$ nor $v$ can be a least-squares
+solution. Exhibiting this one better candidate suffices; we have not
+computed the actual minimizer.
+
+\exercise{6.5.15}{Use the supplied QR factorization}
+The columns of $Q$ are orthonormal, so solve $R\widehat x=Q^Tb$.
+Here
+\[
+ Q^Tb=\begin{bmatrix}(14+6+1)/3\\(-7+6-2)/3\end{bmatrix}
+ =\begin{bmatrix}7\\-1\end{bmatrix},\qquad
+ R=\begin{bmatrix}3&5\\0&1\end{bmatrix}.
+\]
+Back substitution first gives $\widehat x_2=-1$, then
+$3\widehat x_1+5(-1)=7$, so $\widehat x_1=4$.
+\answer{$\widehat x=(4,-1)^T$. No explicit inverse of $R$ is needed.}
+
+\exercise{6.5.16}{Back substitute in another triangular system}
+The given columns of $Q$ give
+\[
+ Q^Tb=\begin{bmatrix}(-1+6+5+7)/2\\(1+6-5+7)/2\end{bmatrix}
+ =\begin{bmatrix}17/2\\9/2\end{bmatrix}.
+\]
+Thus $5\widehat x_2=9/2$ and
+$2\widehat x_1+3\widehat x_2=17/2$. These yield
+$\widehat x_2=9/10$, $\widehat x_1=29/10$.
+\answer{$\widehat x=(2.9,0.9)^T$, the unique least-squares solution.}
+
+\exercise{6.5.17}{Five least-squares assertions}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} This is the defining minimization problem in the
+Euclidean output norm.
+\item \textbf{True.} The nearest output in $\Col A$ is precisely
+$\widehat b=\operatorname{proj}_{\Col A}b$.
+\item \textbf{False.} The displayed inequality is reversed. A minimizer
+satisfies $\|b-A\widehat x\|\le\|b-Ax\|$ for every $x$,
+not the other way around.
+\item \textbf{True.} The normal equations are equivalent to
+$A^T(b-A\widehat x)=0$, the orthogonal-projection condition.
+\item \textbf{True.} Independent columns make $A^TA$ invertible,
+so the always-consistent normal equations have exactly one solution.
+\end{enumerate}
+
+\exercise{6.5.18}{Distinguish input coefficients from fitted outputs}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} An exact solution has zero error, the smallest possible.
+\item \textbf{False.} The point in $\Col A$ closest to $b$ is
+$A\widehat x$, not generally $\widehat x$, which has $n$ input
+coordinates rather than $m$ output coordinates.
+\item \textbf{True.} The entries of $\widehat x$ are the weights
+whose column combination produces the projected output.
+\item \textbf{False without a rank assumption.} $A^TA$ may be singular,
+so the displayed inverse may not exist. For the zero matrix every
+input is a minimizer, but $A^TA$ is not invertible in positive dimension.
+\item \textbf{False as a numerical claim.} In exact arithmetic they
+characterize minimizers, but forming $A^TA$ can magnify conditioning
+problems and roundoff. QR methods are often more reliable.
+\item \textbf{False as stated about the best computation.} With full
+column rank, the formula is algebraically valid, but solving
+$R\widehat x=Q^Tb$ by back substitution is preferable to explicitly
+forming $R^{-1}$. If full column rank is absent, the stated inverse
+may not exist at all.
+\end{enumerate}
+
+\exercise{6.5.19}{Prove equality of two null spaces}
+\step{(a) Start with $Ax=0$.}
+Multiplying by $A^T$ gives $A^TAx=A^T0=0$.
+\step{(b) Start with $A^TAx=0$.}
+Multiplying on the left by $x^T$ gives
+$0=x^TA^TAx=(Ax)^T(Ax)=\|Ax\|^2$.
+A sum of squares is zero only when every entry is zero, so $Ax=0$.
+\answer{Both inclusions hold, hence $\Nul A=\Nul(A^TA)$.}
+
+\exercise{6.5.20}{Invertibility of the Gram matrix forces independent columns}
+If $Ax=0$, Exercise 19 gives $A^TAx=0$. Invertibility of
+$A^TA$ forces $x=0$, so the columns of $A$ are independent.
+There is no step requiring $A$ itself to be square or invertible.
+
+\exercise{6.5.21}{The converse and its rank consequences}
+\begin{enumerate}[label=(\alph*)]
+\item Independent columns give $\Nul A=\{0\}$. Exercise 19 makes
+$\Nul(A^TA)=\{0\}$ too. Since $A^TA$ is square $n\times n$,
+the Invertible Matrix Theorem makes it invertible.
+\item There are $n$ independent columns in $\R^m$, so $n\le m$.
+Equivalently, $n$ pivot columns require at least $n$ rows.
+\item All $n$ columns are pivot columns, so $\rank A=n$.
+\end{enumerate}
+
+\exercise{6.5.22}{The Gram matrix has the same rank}
+Both $A$ and $A^TA$ have $n$ columns, so rank-nullity gives
+$\rank A=n-\dim\Nul A$ and
+$\rank(A^TA)=n-\dim\Nul(A^TA)$.
+The null spaces are equal by Exercise 19, so the subtracted dimensions
+are equal. Thus $\rank(A^TA)=\rank A$, even when the columns are dependent.
+
+\exercise{6.5.23}{Projection without an orthogonal column basis}
+Independent columns make $A^TA$ invertible. Solving the normal
+equations gives $\widehat x=(A^TA)^{-1}A^Tb$. Multiply by $A$
+to get the fitted output:
+\[
+ \boxed{\widehat b=A(A^TA)^{-1}A^Tb}.
+\]
+This is a formula for the projection in $\R^m$, not just its
+coefficient vector in $\R^n$. Orthogonality follows by computing
+$A^T(b-\widehat b)=A^Tb-A^TA(A^TA)^{-1}A^Tb=0$.
+
+\exercise{6.5.24}{Orthonormal columns simplify the normal equations}
+If the columns are orthonormal, their Gram matrix is $A^TA=I_n$.
+Thus the normal equations reduce immediately to
+$\boxed{\widehat x=A^Tb}$. The corresponding projection is
+$AA^Tb$. Full column rank is automatic because no nontrivial
+combination of orthonormal columns can be zero.
+
+\exercise{6.5.25}{Fit two incompatible equations with a common left side}
+Let $s=x+y$. The squared error is
+\[
+ (2-s)^2+(4-s)^2=2(s-3)^2+2.
+\]
+This is minimized exactly when $s=3$. Hence all least-squares
+solutions are $(x,y)=(t,3-t)$, $t\in\R$.
+They all produce the projected output $(3,3)^T$ and error $\sqrt2$.
+The fitted output is unique, while the two input weights are not.
+
+\exercise{6.5.26}{Design the approximate low-pass filter from the actual table}
+Use the table's rounded value $q=0.7$, and define the periodic lists
+\[
+ y=(1,q,0,-q,-1,-q,0,q),\qquad
+ w=(1,-q,0,q,-1,q,0,-q).
+\]
+Indices are reduced modulo $8$. Form an eight-row block
+$Y_k=(y_{k+2},y_{k+1},y_k)$ and another block
+$Z_k=(w_{k+2},w_{k+1},w_k)$ for $k=0,\ldots,7$.
+Then the requested $16\times3$ system is explicitly
+\[
+ A=\begin{bmatrix}Y\\Z\end{bmatrix},\quad
+ x=(a_0,a_1,a_2)^T,\quad
+ b=(q,0,-q,-1,-q,0,q,1,0,0,0,0,0,0,0,0)^T.
+\]
+For clarity the two blocks are
+\[
+ Y=\begin{bmatrix}0&q&1\\-q&0&q\\-1&-q&0\\-q&-1&-q\\0&-q&-1\\q&0&-q\\1&q&0\\q&1&q\end{bmatrix},\quad
+ Z=\begin{bmatrix}0&-q&1\\q&0&-q\\-1&q&0\\q&-1&q\\0&q&-1\\-q&0&q\\1&-q&0\\-q&1&-q\end{bmatrix}.
+\]
+Column dot products give $A^TA=(198/25)I_3$ and
+$A^Tb=(14/5,99/25,14/5)^T$. The diagonal normal equations
+therefore yield
+\[
+ \boxed{a_0=a_2=35/99\approx0.35353535,\qquad a_1=1/2}.
+\]
+The normal-equation residual is exactly zero with these coefficients
+and the rational table entry $q=7/10$.
+More generally the same computation for a table value $q$ gives
+$a_0=a_2=q/(1+2q^2)$ and $a_1=1/2$.
+Putting $q=\sqrt2/2$ gives $a_0=a_2=\sqrt2/4$; using $q=0.707$
+gives a very close approximation. The rounded-table answer should
+not be silently replaced by the exact-trigonometric answer.

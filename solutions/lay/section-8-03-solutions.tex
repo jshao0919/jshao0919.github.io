@@ -1,0 +1,373 @@
+\section{Convex combinations}
+A linear combination allows arbitrary coefficients. An affine combination
+requires that their sum be $1$. A convex combination requires both sum $1$
+and \emph{nonnegative} coefficients. Thus
+$\operatorname{conv}S\subseteq\operatorname{aff}S\subseteq\Span S$.
+For an affinely independent list, its affine coordinates are unique: a
+negative coordinate rules out convex membership, all positive coordinates
+put the point in the relative interior of its simplex, and zero coordinates
+locate it on a face. A convex hull consists of finite convex combinations;
+it need not include limit points not obtained by those combinations.
+
+\practice{8.3.P1}{Test a triangle in three-dimensional space}
+Use the supplied vertices $v_1=(6,2,2)$, $v_2=(7,1,5)$, $v_3=(-2,4,-1)$.
+To find affine coordinates solve
+$p-v_1=a(v_2-v_1)+b(v_3-v_1)$, then use coefficients $(1-a-b,a,b)$.
+For $p_1=(1,3,1)$ the solution is $a=1/3,b=2/3$; checking gives
+$p_1=0v_1+(1/3)v_2+(2/3)v_3$. All coefficients are nonnegative, so
+$p_1\in\operatorname{conv}S$.
+For $p_2=(3,2,1)$ the first two coordinate equations give $a=1,b=1/2$,
+but the third would require $3a-3b=-1$, whereas it equals $3/2$.
+Thus $p_2$ is not even in the affine hull and cannot be in the convex hull.
+
+\practice{8.3.P2}{The hull of the positive reciprocal curve}
+\goal Describe the hull of $S=\{(x,1/x):x>0\}$ exactly.
+No convex combination has $x\le0$. Moreover convexity of $1/x$ on positive
+inputs gives $\sum_i\lambda_i/x_i\ge1/(\sum_i\lambda_ix_i)$.
+For example this follows directly from Cauchy--Schwarz applied to
+$\sqrt{\lambda_ix_i}$ and $\sqrt{\lambda_i/x_i}$.
+Hence the hull lies in $\{(x,y):x>0,y\ge1/x\}$.
+Conversely, for a point $(x,y)$ in that set draw the line of slope $-1$
+through it, $u+v=x+y$. Its intersections with $uv=1$ have positive
+$x$-coordinates given by roots of $u^2-(x+y)u+1=0$.
+The polynomial at $u=x$ is $1-xy\le0$, so $x$ lies between the two
+roots. Thus $(x,y)$ lies on the line segment joining these two curve
+points, or is itself the single tangency point. It is a convex combination
+of them. Therefore the hull is exactly the region on and above the curve.
+
+\exercise{8.3.1}{A triangle with a missing upper edge}
+Every convex combination of vertical-segment points and $(2,0)$ can be
+written $(1-\lambda)(0,a)+\lambda(2,0)$ with
+$0\le\lambda\le1$ and $0\le a<1$. (Combine all the vertical points
+into their weighted average first.) Thus the hull is
+\[
+ \{(x,y):0\le x<2,\ 0\le y<1-x/2\}\ \cup\ \{(2,0)\}.
+\]
+Conversely any point in the first set uses $\lambda=x/2$ and
+$a=y/(1-x/2)$, which satisfy the required inequalities.
+The lower edge and right vertex are included, but the sloping upper edge
+and the point $(0,1)$ are excluded. Replacing the strict inequality by a
+weak one would add points not actually in the convex hull.
+
+\exercise{8.3.2}{Three convex hulls of graphs}
+\step{(a) The reciprocal graph starting at $x=1/2$.}
+The exact hull is
+\[
+ \{(1/2,2)\}\ \cup\ \{(x,y):x>1/2,\ 1/x\le y<2\}.
+\]
+Every combination has $x\ge1/2$, lies on or above the reciprocal curve by
+convexity, and has $y\le2$. Equality $y=2$ forces every positive-weight
+input to be the endpoint $(1/2,2)$, so it occurs only there.
+For the converse fix $x>1/2$ and $1/x\le y<2$. Put
+$b=(2x-1)/(2-y)$. The lower bound on $y$ gives $b\ge x$.
+The chord joining $(1/2,2)$ and $(b,1/b)$ has height
+$2-(2x-1)/b=y$ at horizontal coordinate $x$.
+Because $1/2<x\le b$, the point lies on that segment and is in the hull.
+\step{(b) The sine graph on the whole real line.}
+The hull is the closed strip $\{(x,y):-1\le y\le1\}$.
+The range of sine bounds every combination within the strip.
+Conversely its maximum points $(\pi/2+2j\pi,1)$ extend in both horizontal
+directions. For any fixed real $x$, two such points bracket $x$, so their
+segment contains $(x,1)$. The minimum points similarly give $(x,-1)$.
+The segment between these two hull points contains every $(x,y)$ in the strip.
+\step{(c) The square-root graph.}
+The hull is
+\[
+ \{(0,0)\}\ \cup\ \{(x,y):x>0,\ 0<y\le\sqrt{x}\}.
+\]
+Concavity of square root bounds the height of a convex combination by
+$\sqrt{x}$; nonnegativity is automatic. If $x>0$, some positive-weight
+input has positive $x$ and therefore positive height, so height cannot be zero.
+Conversely, for $x>0$ and $0<y\le\sqrt{x}$, take
+$a=(x/y)^2$ and $\lambda=y^2/x\in(0,1]$.
+Then $\lambda(a,\sqrt a)+(1-\lambda)(0,0)=(x,y)$.
+This proves the formula and explains why the positive horizontal axis is not included.
+
+\exercise{8.3.3}{Use the unique coordinates from Section 8.1, Exercise 5}
+The three orthogonal generators are
+$b_1=(2,1,1)$, $b_2=(1,0,-2)$, $b_3=(2,-5,1)$.
+Their squared lengths are $6,5,30$, so the unique linear coefficients of
+$p$ are $c_j=(p\cdot b_j)/(b_j\cdot b_j)$.
+For the three supplied points the results are
+\[
+ \begin{array}{c|c|c}
+ p& (c_1,c_2,c_3)&\text{sum}\\\hline
+ (3,8,4)&(3,-1,-1)&1\\
+ (6,-3,3)&(2,0,1)&3\\
+ (0,-1,-5)&(-1,2,0)&1
+ \end{array}
+\]
+The first and third have negative coordinates; the second does not even
+have coefficient sum one. Since the linear representation in a basis is
+unique, no alternative nonnegative sum-one representation exists.
+\answer{None of the three points is in $\operatorname{conv}S$.}
+
+\exercise{8.3.4}{A second list with the same orthogonal generators}
+The same dot-product calculation gives
+\[
+ \begin{array}{c|c|c}
+ p&(c_1,c_2,c_3)&\text{sum}\\\hline
+ (0,-19,-5)&(-4,2,3)&1\\
+ (3/2,-13/10,-1/2)&(1/5,1/2,3/10)&1\\
+ (5,-4,0)&(1,1,1)&3
+ \end{array}
+\]
+Only the middle row has all coefficients nonnegative and sum one.
+Thus $p_2\in\operatorname{conv}S$, while $p_1,p_3$ are not.
+
+\exercise{8.3.5}{Convex coordinates in a tetrahedron}
+Append a final coordinate $1$ to each of the four supplied $v$-vectors.
+Solving the resulting $4\times4$ systems for the two points gives
+\[
+ [p_1]_S=(-1/6,1/3,2/3,1/6),\qquad
+ [p_2]_S=(1/3,1/3,1/6,1/6).
+\]
+Here coordinates refer to affine/barycentric coordinates. The appended
+matrix is invertible, so these representations are unique.
+For instance $(1/3)v_1+(1/3)v_2+(1/6)v_3+(1/6)v_4=(0,-2,2)=p_2$.
+The first representation has a negative coefficient and therefore is not
+convex; the second has all coefficients positive and sum one.
+\answer{$p_1$ is outside the convex hull; $p_2$ is in it.}
+
+\exercise{8.3.6}{Distinguish the linear, affine, and convex hulls}
+The supplied orthogonal vectors are
+$v_1=(2,0,-1,2)$, $v_2=(0,-2,2,1)$, $v_3=(-2,1,0,2)$;
+each has squared length $9$.
+For a proposed $p$, first compute $c_j=(p\cdot v_j)/9$ and check whether
+$\sum c_jv_j=p$. Only after this check do sum-one and sign tests apply.
+\begin{enumerate}[label=(\alph*)]
+\item For $p_1=(-1,2,-3/2,5/2)$, the coefficients are $(1/2,-1/2,1)$
+and reconstruct $p_1$. They sum to one but include a negative coefficient.
+Thus $p_1$ is in the span and affine hull, but not the convex hull.
+\item For $p_2=(-1/2,0,1/4,7/4)$, the coefficients are $(1/4,1/4,1/2)$.
+They reconstruct $p_2$, sum to one, and are nonnegative. Thus $p_2$ is in
+all three hulls.
+\item For $p_3=(6,-4,1,-1)$, the coefficients are $(1,1,-2)$ and
+reconstruct $p_3$, but their sum is zero. Hence $p_3$ is in the span only,
+not the affine or convex hull.
+\item For $p_4=(-1,-2,0,4)$, the dot-product coefficients are
+$(2/3,8/9,8/9)$, but the reconstruction error is
+$p_4-\sum c_jv_j=(-5/9,-10/9,-10/9,0)\ne0$.
+Thus $p_4$ is not in the span and consequently in neither smaller hull.
+\end{enumerate}
+
+\exercise{8.3.7}{Barycentric coordinates locate four planar points}
+\step{(a) Solve the affine-coordinate systems.}
+With $T=\{(-1,0),(2,3),(4,1)\}$, solve
+\[
+ \begin{pmatrix}-1&2&4\\0&3&1\\1&1&1\end{pmatrix}c
+ =\begin{pmatrix}x\\y\\1\end{pmatrix}.
+\]
+The four answers, in the listed order, are
+\[
+ (1/3,1/6,1/2),\quad(0,1/2,1/2),\quad
+ (1/2,-1/4,3/4),\quad(1/2,3/4,-1/4).
+\]
+\step{(b) Use signs and zero entries.}
+$p_1$ has all positive entries and is inside the triangle.
+$p_2$ has one zero and the other entries positive, so it is on the edge
+joining vertices two and three. $p_3,p_4$ have negative entries and are outside.
+
+\exercise{8.3.8}{Another barycentric-coordinate table}
+For $T=\{(2,0),(0,5),(-1,1)\}$, use the appended-coordinate system
+\[
+ \begin{pmatrix}2&0&-1\\0&5&1\\1&1&1\end{pmatrix}c=(x,y,1)^T.
+\]
+For $p_1,p_2,p_3,p_4$ its solutions are respectively
+\[
+ (12/13,3/13,-2/13),\quad(8/13,2/13,3/13),\quad
+ (2/3,0,1/3),\quad(9/13,-1/13,5/13).
+\]
+Thus $p_1$ is outside, $p_2$ inside, $p_3$ on the edge joining vertices
+one and three, and $p_4$ outside. The $p_3$ supplied in the exercise is
+$(1,1/3)$, not $(1,1)$; preserving this fraction is essential.
+
+\exercise{8.3.9}{Read positions from tetrahedral coordinates}
+A point is inside precisely when all four barycentric coordinates are
+positive. Nonnegative coordinates with a zero put it on a surface; two
+zeros put it on an edge. A negative coordinate puts it outside.
+Therefore $p_1=(2,0,0,-1)$ is outside;
+$p_2=(0,1/2,1/4,1/4)$ is on the face opposite vertex one, but not an edge;
+$p_3=(1/2,0,3/2,-1)$ is outside;
+$p_4=(1/3,1/4,1/4,1/6)$ is inside; and
+$p_5=(1/3,0,2/3,0)$ is on the edge joining vertices one and three.
+
+\exercise{8.3.10}{A second tetrahedral list}
+Using the same criteria, $q_1=(1/8,1/4,1/8,1/2)$ is inside;
+$q_2=(3/4,-1/4,0,1/2)$ is outside;
+$q_3=(0,3/4,1/4,0)$ is on the edge joining vertices two and three;
+$q_4=(0,-2,0,3)$ is outside; and
+$q_5=(1/3,1/3,1/3,0)$ is on the face opposite vertex four, not an edge.
+
+\exercise{8.3.11}{Three statements about convexity}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} Sum one makes a combination affine, but negative
+coefficients are still possible. Convexity also requires each coefficient nonnegative.
+\item \textbf{False.} A singleton $S=\{v\}$ has $\operatorname{conv}S=S$.
+More generally this equality holds for any convex $S$.
+\item \textbf{False.} Two singleton sets are convex but their union
+$\{(0,0),(2,0)\}$ misses the midpoint $(1,0)$.
+\end{enumerate}
+
+\exercise{8.3.12}{Three more statements about hulls}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} Containing every segment between two of its points
+is exactly the definition of convexity.
+\item \textbf{True.} If two points belong to both convex sets, their
+whole joining segment belongs to both, hence to the intersection. The empty
+intersection is also convex under the usual vacuous definition.
+\item \textbf{False.} Carath\'eodory's theorem says \emph{at most} six
+points in $\R^5$, not necessarily six distinct available points.
+A singleton $S$ is an immediate counterexample to the stated requirement.
+\end{enumerate}
+
+\exercise{8.3.13}{A linear image preserves convexity}
+For $u=f(x),v=f(y)$ in $f(S)$ and $0\le t\le1$, linearity gives
+$(1-t)u+tv=f((1-t)x+ty)$.
+Convexity of $S$ puts the input $(1-t)x+ty$ in $S$, so this output is in
+$f(S)$. Hence $f(S)$ is convex. Empty sets cause no exception.
+
+\exercise{8.3.14}{A linear preimage preserves convexity}
+For $x,y\in S$, the images $f(x),f(y)$ lie in $T$.
+Their combination $(1-t)f(x)+tf(y)$ lies in $T$ for $0\le t\le1$ by
+convexity. This equals $f((1-t)x+ty)$ by linearity, so the input
+$(1-t)x+ty$ lies in $S$. Thus the whole segment is in $S$.
+
+\exercise{8.3.15}{Eliminate a vertex in two different ways}
+Direct coordinate addition checks both supplied identities:
+$p=(1/3)v_1+(1/3)v_2+(1/6)v_3+(1/6)v_4=(2,1)$ and
+$v_1-v_2+v_3-v_4=0$.
+Add $s$ times the zero relation to the coefficients. They become
+\[
+ (1/3+s,\ 1/3-s,\ 1/6+s,\ 1/6-s).
+\]
+Their sum stays one and their combination stays $p$. For $s=1/6$ and
+$s=-1/6$ all entries are nonnegative and one is zero, giving respectively
+\[
+ p=\tfrac12v_1+\tfrac16v_2+\tfrac13v_3,
+ \qquad p=\tfrac16v_1+\tfrac12v_2+\tfrac13v_4.
+\]
+This is the coefficient-elimination step in the proof of Carath\'eodory's theorem.
+
+\exercise{8.3.16}{A second coefficient-elimination example}
+The printed instruction says ``Repeat Exercise 9,'' but the supplied
+convex combination and zero relation clearly call for the procedure of
+Exercise 15. We carry out that intended task explicitly.
+The given coefficients are $(1,72,37,11)/121$, whose sum is one;
+coordinate substitution gives $p=(1,2)$. The relation
+$10v_1-6v_2+7v_3-11v_4=0$ also has coefficient sum zero.
+Add $s(10,-6,7,-11)$ to the original coefficients.
+For $s=1/121$, the last coefficient becomes zero and we obtain
+\[
+ p=\tfrac1{11}v_1+\tfrac6{11}v_2+\tfrac4{11}v_3.
+\]
+For $s=-1/1210$, the first becomes zero and the result is
+\[
+ p=\tfrac35v_2+\tfrac3{10}v_3+\tfrac1{10}v_4.
+\]
+Each list is nonnegative, sums to one, and reconstructs $p$.
+
+\exercise{8.3.17}{A containing convex set contains the hull}
+If $A\subseteq B$ and $B$ is convex, then any finite convex combination
+of points in $A$ is a convex combination of points in $B$ and therefore
+belongs to $B$. Every point of $\operatorname{conv}A$ is such a combination,
+so $\operatorname{conv}A\subseteq B$.
+
+\exercise{8.3.18}{Convex hull is monotone under inclusion}
+If $A\subseteq B$, every convex combination of points in $A$ is also one
+of points in $B$. Therefore $\operatorname{conv}A\subseteq\operatorname{conv}B$.
+This also follows from the preceding exercise because $\operatorname{conv}B$
+is convex and contains $A$.
+
+\exercise{8.3.19}{Union of hulls need not fill the combined hull}
+\step{(a) Prove the inclusion.}
+Since $A\subseteq A\cup B$ and $B\subseteq A\cup B$, monotonicity gives
+both $\operatorname{conv}A\subseteq\operatorname{conv}(A\cup B)$ and
+the corresponding inclusion for $B$. Taking their union proves the claim.
+\step{(b) Show strict inclusion can occur.}
+Let $A=\{(0,0)\}$ and $B=\{(2,0)\}$.
+The union of their hulls has just two points, whereas the combined hull is
+the whole segment and includes $(1,0)$.
+
+\exercise{8.3.20}{Intersection of hulls can be larger}
+\step{(a) Apply monotonicity twice.}
+Since $A\cap B\subseteq A$ and $A\cap B\subseteq B$, its hull is
+contained in each hull, hence in their intersection.
+\step{(b) Give an example with a new intersection point.}
+Take $A=\{(-1,0),(1,0)\}$ and $B=\{(0,-1),(0,1)\}$.
+The sets have empty intersection, so its hull is empty. But their two
+segments intersect at zero, showing that the claimed inclusion can be strict.
+
+\exercise{8.3.21}{The midpoint construction for a quadratic curve}
+At $t=1/2$,
+\[
+ f_0=\tfrac12(p_0+p_1),\quad f_1=\tfrac12(p_1+p_2),\quad
+ g=\tfrac12(f_0+f_1)=\tfrac14p_0+\tfrac12p_1+\tfrac14p_2.
+\]
+Thus first mark the midpoints of $p_0p_1$ and $p_1p_2$, join them,
+and mark the midpoint of that new segment. The original diagram below
+uses the same right-angle configuration as the source, with convenient
+schematic coordinates $p_0=(0,0),p_1=(0,2),p_2=(4,2)$.
+\begin{center}\setlength{\unitlength}{1mm}\begin{picture}(92,49)
+\put(14,7){\polyline(0,0)(0,30)(60,30)}
+\put(14,7){\color{gray}\polyline(0.000,15.000)(30.000,30.000)}
+\put(14.000,7.000){\circle*{1.4}}
+\put(5.000,5.000){$p_0$}
+\put(14.000,37.000){\circle*{1.4}}
+\put(5.000,39.000){$p_1$}
+\put(74.000,37.000){\circle*{1.4}}
+\put(76.000,39.000){$p_2$}
+\put(14.000,22.000){\circle*{1.4}}
+\put(3.000,21.000){$f_0$}
+\put(44.000,37.000){\circle*{1.4}}
+\put(46.000,39.000){$f_1$}
+\put(29.000,29.500){\circle*{1.4}}
+\put(30.000,22.500){$g$}
+\end{picture}\end{center}
+
+\exercise{8.3.22}{A three-quarter construction}
+Now $f_0=(1/4)p_0+(3/4)p_1$ and $f_1=(1/4)p_1+(3/4)p_2$.
+Place each point three quarters of the way along its directed segment.
+Then place $g$ three quarters of the way from $f_0$ to $f_1$:
+\[
+ g=\tfrac1{16}p_0+\tfrac38p_1+\tfrac9{16}p_2.
+\]
+The same schematic coordinates give $f_0=(0,3/2)$, $f_1=(3,2)$,
+and $g=(9/4,15/8)$, as shown.
+\begin{center}\setlength{\unitlength}{1mm}\begin{picture}(92,49)
+\put(14,7){\polyline(0,0)(0,30)(60,30)}
+\put(14,7){\color{gray}\polyline(0.000,22.500)(45.000,30.000)}
+\put(14.000,7.000){\circle*{1.4}}
+\put(5.000,5.000){$p_0$}
+\put(14.000,37.000){\circle*{1.4}}
+\put(5.000,39.000){$p_1$}
+\put(74.000,37.000){\circle*{1.4}}
+\put(76.000,39.000){$p_2$}
+\put(14.000,29.500){\circle*{1.4}}
+\put(3.000,28.500){$f_0$}
+\put(59.000,37.000){\circle*{1.4}}
+\put(61.000,39.000){$f_1$}
+\put(47.750,35.125){\circle*{1.4}}
+\put(48.750,28.125){$g$}
+\end{picture}\end{center}
+
+\exercise{8.3.23}{Expand the quadratic B\'ezier formula}
+Substitute both definitions into $g=(1-t)f_0+tf_1$ and distribute:
+\[
+ g(t)=(1-t)^2p_0+2t(1-t)p_1+t^2p_2.
+\]
+For $0\le t\le1$, the three coefficients are nonnegative and their sum
+is $(1-t)^2+2t(1-t)+t^2=((1-t)+t)^2=1$.
+Thus this formula is a convex combination of the control points and lies
+in their convex hull for the entire parameter interval.
+
+\exercise{8.3.24}{The cubic curve also stays inside its controls}
+Apply the preceding formula to the two quadratic curves and collect terms:
+\[
+ h(t)=(1-t)^3p_0+3t(1-t)^2p_1+3t^2(1-t)p_2+t^3p_3.
+\]
+The four coefficients are nonnegative on $[0,1]$ and add to
+$((1-t)+t)^3=1$ by the binomial theorem.
+Hence every point of the cubic curve is a convex combination of the four
+controls and lies in their convex hull. Equivalently, both quadratic
+points already lie in that convex hull, which is itself convex.

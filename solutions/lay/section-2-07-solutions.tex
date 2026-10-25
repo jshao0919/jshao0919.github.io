@@ -1,0 +1,313 @@
+\section{Applications to computer graphics}
+For two-dimensional graphics, write a point as $(x,y,1)^T$. An affine
+transformation is then represented by
+\[
+ H=\begin{bmatrix}a&b&h\\c&d&k\\0&0&1\end{bmatrix},\qquad
+ H\begin{bmatrix}x\\y\\1\end{bmatrix}
+ =\begin{bmatrix}ax+by+h\\cx+dy+k\\1\end{bmatrix}.
+\]
+The upper-left block controls the linear part and the last column controls
+translation. A positive angle denotes counterclockwise rotation in the
+usual oriented plane. To perform transformation $F$ first and $G$ second,
+multiply their matrices as $GF$: the first action is the rightmost factor.
+We use $R_\theta=\begin{bmatrix}\cos\theta&-\sin\theta\\
+\sin\theta&\cos\theta\end{bmatrix}$ and write
+$T_p=\begin{bmatrix}I_2&p\\0^T&1\end{bmatrix}$ for translation.
+
+\practice{2.7.P1}{Rotate about a point other than the origin}
+Let $p=(-2,6)^T$ and $\theta=-30^\circ$. Subtract $p$ to move the center
+to zero, rotate, then add $p$ back. Algebraically this is
+$x\mapsto R_\theta(x-p)+p=R_\theta x+(p-R_\theta p)$.
+With $c=\sqrt3/2$, $s=-1/2$, the matrix is
+\[
+ T_p\begin{bmatrix}c&-s&0\\s&c&0\\0&0&1\end{bmatrix}T_{-p}
+ =\boxed{\begin{bmatrix}
+ \sqrt3/2&1/2&\sqrt3-5\\-1/2&\sqrt3/2&5-3\sqrt3\\0&0&1
+ \end{bmatrix}}.
+\]
+For example $R_\theta p=(-\sqrt3+3,1+3\sqrt3)^T$, which explains the
+translation column. Substituting $x=p$ gives $p$ again, as a rotation center
+must be fixed.
+
+\exercise{2.7.1}{Embed the shear into homogeneous coordinates}
+Example 2 uses $(x,y)\mapsto(x+y/4,y)$. Preserve the final coordinate $1$:
+\[
+ \boxed{\begin{bmatrix}1&1/4&0\\0&1&0\\0&0&1\end{bmatrix}}.
+\]
+Multiplication by $(x,y,1)^T$ gives $(x+y/4,y,1)^T$, so the extra
+coordinate introduces no translation and does not change the original shear.
+
+\exercise{2.7.2}{Reflect and sketch a triangle}
+Reflection through the $y$-axis negates $x$ and preserves $y$. Thus
+\[
+ \begin{bmatrix}-1&0\\0&1\end{bmatrix}
+ \begin{bmatrix}4&2&5\\0&2&3\end{bmatrix}
+ =\begin{bmatrix}-4&-2&-5\\0&2&3\end{bmatrix}.
+\]
+The original vertices $(4,0),(2,2),(5,3)$ therefore become
+$(-4,0),(-2,2),(-5,3)$. Connect corresponding triples of vertices;
+reflection preserves straight segments and lengths.
+\begin{center}
+\setlength{\unitlength}{5mm}
+\begin{picture}(13,5)
+\put(0,1){\vector(1,0){12}}\put(6,0){\vector(0,1){4.7}}
+\put(6,1){\polyline(4,0)(2,2)(5,3)(4,0)}
+\put(6,1){\polyline(-4,0)(-2,2)(-5,3)(-4,0)}
+\put(10,0.3){\small$(4,0)$}\put(0.5,0.3){\small$(-4,0)$}
+\put(8,3.2){\small$(2,2)$}\put(2.3,3.2){\small$(-2,2)$}
+\put(10,4.3){\small$(5,3)$}\put(0,4.3){\small$(-5,3)$}
+\put(12,0.5){$x$}\put(6.2,4.5){$y$}
+\end{picture}
+\end{center}
+
+\exercise{2.7.3}{Translate first, rotate second}
+Translation by $(2,1)$ takes $(x,y)$ to $(x+2,y+1)$.
+A $90^\circ$ rotation then gives $(-(y+1),x+2)$.
+Reading off coefficients yields
+\[
+ R_{90^\circ}T_{(2,1)}
+ =\boxed{\begin{bmatrix}0&-1&-1\\1&0&2\\0&0&1\end{bmatrix}},
+\]
+where the rotation matrix is understood in its homogeneous $3\times3$ form.
+The translated origin goes to $(-1,2)$, checking the last column.
+
+\exercise{2.7.4}{Translate before unequal scaling}
+The first action gives $(x-1,y+4)$, and the second gives
+$((x-1)/2,3(y+4)/2)$. Therefore the matrix is
+\[
+ \boxed{\begin{bmatrix}1/2&0&-1/2\\0&3/2&6\\0&0&1\end{bmatrix}}.
+\]
+The translation column is scaled too, because the scaling is performed
+\emph{after} translation.
+
+\exercise{2.7.5}{Reflect, then rotate}
+Reflection in the $x$-axis sends $(x,y)$ to $(x,-y)$.
+Put $a=\sqrt2/2$. Rotation by $45^\circ$ gives
+$(ax+ay,ax-ay)$, so
+\[
+ \boxed{\begin{bmatrix}a&a&0\\a&-a&0\\0&0&1\end{bmatrix}}.
+\]
+Equivalently its upper-left block is $R_{45^\circ}\operatorname{diag}(1,-1)$.
+
+\exercise{2.7.6}{Reverse the preceding order}
+First rotation gives $(ax-ay,ax+ay)$. Reflecting through the $x$-axis
+now gives $(ax-ay,-ax-ay)$. Thus the matrix is
+\[
+ \boxed{\begin{bmatrix}a&-a&0\\-a&-a&0\\0&0&1\end{bmatrix}},\qquad a=\sqrt2/2.
+\]
+It differs from Exercise 5, illustrating why the order cannot be ignored.
+
+\exercise{2.7.7}{Rotate sixty degrees around a fixed point}
+Use the general formula $x\mapsto R_\theta x+p-R_\theta p$ with
+$p=(6,8)^T$, $\theta=60^\circ$. Since
+$R_\theta p=(3-4\sqrt3,3\sqrt3+4)^T$, the result is
+\[
+ \boxed{\begin{bmatrix}
+ 1/2&-\sqrt3/2&3+4\sqrt3\\
+ \sqrt3/2&1/2&4-3\sqrt3\\0&0&1
+ \end{bmatrix}}.
+\]
+Its action fixes $(6,8)$, which independently checks the translation terms.
+
+\exercise{2.7.8}{Rotate forty-five degrees around another point}
+Now $p=(3,7)^T$, and $R_{45^\circ}p=(-2\sqrt2,5\sqrt2)^T$.
+Therefore
+\[
+ \boxed{\begin{bmatrix}
+ \sqrt2/2&-\sqrt2/2&3+2\sqrt2\\
+ \sqrt2/2&\sqrt2/2&7-5\sqrt2\\0&0&1
+ \end{bmatrix}}.
+\]
+This is $T_pR_{45^\circ}T_{-p}$, not $R_{45^\circ}T_p$.
+
+\exercise{2.7.9}{Precompute a composite transformation}
+For $A(BD)$, the $2\times100$ product $BD$ has $200$ entries,
+each requiring two multiplications: $400$ multiplications. Multiplication
+by $A$ costs another $400$, for $800$ total.
+For $(AB)D$, forming the four entries of $AB$ costs $4\cdot2=8$,
+and multiplying its result by $D$ costs $400$, for $408$ total.
+Thus precomputing the $2\times2$ composite saves $392$ multiplications.
+The advantage grows when the same transformations are applied to more
+vertices: combine the small transformation matrices once, then transform
+all data points with their product.
+
+\exercise{2.7.10}{Which geometric transformations commute?}
+Let $D(x)=\lambda x$, $R(x)=Rx$, and $T(x)=x+p$.
+Then $D(Rx)=\lambda Rx=R(\lambda x)$, so a uniform dilation and an
+origin-centered rotation always commute.
+By contrast,
+\[
+ D(Tx)=\lambda x+\lambda p,\qquad T(Dx)=\lambda x+p.
+\]
+They commute exactly when $(\lambda-1)p=0$, and generally do not.
+Likewise $R(Tx)=Rx+Rp$ and $T(Rx)=Rx+p$, so rotation and translation
+commute exactly when $Rp=p$. A nontrivial planar rotation fixes only the
+zero vector, making a nonzero translation fail this test.
+For concrete failures take $p=(1,0)$, $\lambda=2$, and a $90^\circ$
+rotation, and evaluate the two orders at $x=0$.
+
+\exercise{2.7.11}{Two shear-and-scale factors produce a rotation}
+The first action is $A_1$, the second is $A_2$, so calculate $A_2A_1$.
+Its upper-left block is
+\[
+ \begin{bmatrix}\sec\varphi&-\tan\varphi\\0&1\end{bmatrix}
+ \begin{bmatrix}1&0\\\sin\varphi&\cos\varphi\end{bmatrix}
+ =\begin{bmatrix}
+ \sec\varphi-\tan\varphi\sin\varphi&-\tan\varphi\cos\varphi\\
+ \sin\varphi&\cos\varphi
+ \end{bmatrix}
+ =\begin{bmatrix}\cos\varphi&-\sin\varphi\\\sin\varphi&\cos\varphi\end{bmatrix}.
+\]
+The first simplification uses
+$(1-\sin^2\varphi)/\cos\varphi=\cos\varphi$.
+The last homogeneous row and column remain $(0,0,1)$, so this is rotation
+by $\varphi$. The stated factors require $\cos\varphi\ne0$; the rotation
+itself still exists at other angles, but these particular factors do not.
+
+\exercise{2.7.12}{Three shears can also implement rotation}
+Write $t=\tan(\varphi/2)$, $s=\sin\varphi$. Ignoring the unchanged
+homogeneous coordinate for a moment, multiply the three $2\times2$ blocks:
+\[
+ \begin{bmatrix}1&-t\\0&1\end{bmatrix}
+ \begin{bmatrix}1&0\\s&1\end{bmatrix}
+ \begin{bmatrix}1&-t\\0&1\end{bmatrix}
+ =\begin{bmatrix}1-ts&-2t+t^2s\\s&1-st\end{bmatrix}.
+\]
+Half-angle identities give $st=1-\cos\varphi$ and
+$-2t+t^2s=-\sin\varphi$, so the result is $R_\varphi$.
+For instance $\sin\varphi=2t/(1+t^2)$ makes the second identity
+$-2t+2t^3/(1+t^2)=-2t/(1+t^2)$.
+Appending the homogeneous row and column yields precisely the claimed
+$3\times3$ rotation matrix. Each shear needs one nontrivial multiplication
+per point, whereas the usual rotation needs four. The factorization requires
+$\tan(\varphi/2)$ to be defined, excluding odd multiples of $180^\circ$.
+
+\exercise{2.7.13}{Factor a general affine transformation}
+Block multiplication gives
+\[
+ \begin{bmatrix}A&p\\0^T&1\end{bmatrix}
+ =\begin{bmatrix}I_2&p\\0^T&1\end{bmatrix}
+  \begin{bmatrix}A&0\\0^T&1\end{bmatrix}.
+\]
+The right factor acts first and sends $(x,1)$ to $(Ax,1)$.
+The left then adds $p$, giving $(Ax+p,1)$. Thus the transformation is
+a linear transformation of the plane followed by a translation, as requested.
+No inverse or invertibility of $A$ is needed.
+
+\exercise{2.7.14}{Separate the linear rotation from its final translation}
+The transformation from Exercise 7 is
+$x\mapsto R_{60^\circ}x+(3+4\sqrt3,4-3\sqrt3)^T$.
+Hence it is rotation about zero followed by translation by
+\[
+ \boxed{p=(3+4\sqrt3,\ 4-3\sqrt3)^T}.
+\]
+The translation is the original center minus its rotated image; it is
+not simply the center $(6,8)$ itself.
+
+\exercise{2.7.15}{Normalize a homogeneous four-vector}
+A homogeneous point $(X,Y,Z,w)$ with $w\ne0$ represents
+$(X/w,Y/w,Z/w)$. Dividing by $1/24$ multiplies the first three entries
+by $24$, so the represented vector is
+$\boxed{(12,-6,-3)^T}$ in $\R^3$.
+
+\exercise{2.7.16}{Different representatives of one point}
+Yes: $(10,-20,-30,40)=10(1,-2,-3,4)$.
+Dividing either representative by its final coordinate gives
+$(1/4,-1/2,-3/4)$. A common nonzero scale changes the homogeneous
+representative but not the point it represents.
+
+\exercise{2.7.17}{A three-dimensional rotation about the x-axis}
+The $x$-coordinate is unchanged, while the $(y,z)$ coordinates undergo
+the usual $60^\circ$ planar rotation in the orientation shown. The
+homogeneous matrix is
+\[
+ \boxed{\begin{bmatrix}
+ 1&0&0&0\\0&1/2&-\sqrt3/2&0\\
+ 0&\sqrt3/2&1/2&0\\0&0&0&1
+ \end{bmatrix}}.
+\]
+It sends $e_2$ toward $e_3$, confirming the positive orientation about
+$e_1$ by the right-hand convention.
+
+\exercise{2.7.18}{Rotate about z, then translate}
+The rotation leaves $z$ fixed and has planar angle $-30^\circ$.
+Translation after rotation appends $(5,-2,1)^T$ as the last column:
+\[
+ \boxed{\begin{bmatrix}
+ \sqrt3/2&1/2&0&5\\-1/2&\sqrt3/2&0&-2\\0&0&1&1\\0&0&0&1
+ \end{bmatrix}}.
+\]
+For example the origin is sent to $(5,-2,1)$, checking the order of actions.
+
+\exercise{2.7.19}{Project a triangle from a finite viewing point}
+A line from $c=(0,0,10)$ through $v=(x,y,z)$ is
+$c+t(v-c)=(tx,ty,10+t(z-10))$.
+Its intersection with the image plane $z=0$ has $t=10/(10-z)$.
+Consequently the projection formula is
+\[
+ (x,y,z)\longmapsto\left(\frac{10x}{10-z},\frac{10y}{10-z},0\right).
+\]
+For the three given vertices the scale factors are $5/3,5/4,5/2$,
+so their images are
+\[
+ \boxed{(7,2,0),\quad(15/2,5,0),\quad(5,5,0)}.
+\]
+All original points have $z<10$, so each line meets the image plane,
+and the triangular region projects to the triangle with these vertices.
+
+\exercise{2.7.20}{A second perspective triangle}
+Apply the same formula. At $(7,3,-5)$ the scale factor is $2/3$;
+at $(12,8,2)$ it is $5/4$; at $(1,2,1)$ it is $10/9$.
+Thus the image triangle has vertices
+\[
+ \boxed{(14/3,2,0),\quad(15,10,0),\quad(10/9,20/9,0)}.
+\]
+Perspective projection is not a single ordinary $3\times3$ linear map
+on the original three coordinates: the required division depends on $z$.
+Homogeneous coordinates encode that division by a final normalization.
+
+\exercise{2.7.21}{Convert standard color data into screen data}
+Let $M$ denote the stated CIE conversion matrix, so
+$M(R,G,B)^T=(X,Y,Z)^T$. To recover the gun data solve this system:
+\[
+ \boxed{\begin{bmatrix}R\\G\\B\end{bmatrix}
+ =M^{-1}\begin{bmatrix}X\\Y\\Z\end{bmatrix}},\qquad
+ M^{-1}=\frac1{20224}
+ \begin{bmatrix}45677&-21023&-7023\\-27293&47407&1407\\1840&-6160&25840\end{bmatrix}.
+\]
+This exact rational inverse treats the printed decimals as exact input.
+Its decimal approximation is
+\[
+ \begin{bmatrix}2.258554&-1.039508&-.347261\\
+ -1.349535&2.344096&.069571\\.090981&-.304589&1.277690\end{bmatrix}.
+\]
+Exact matrix multiplication checks $MM^{-1}=I$; in particular the
+conversion is uniquely reversible. A matrix program can reproduce it with
+SymPy rational decimal entries and \texttt{M.inv()}; do not reverse the
+conversion by multiplying by $M$ a second time.
+
+\exercise{2.7.22}{Recover RGB from a television signal}
+Write the supplied matrix as $N$, so the transmitted vector is
+$(Y,I,Q)^T=N(R,G,B)^T$. Solving for RGB gives
+\[
+ \boxed{\begin{bmatrix}R\\G\\B\end{bmatrix}
+ =N^{-1}\begin{bmatrix}Y\\I\\Q\end{bmatrix}},
+\]
+\[
+ N^{-1}=\frac1{50845523}
+ \begin{bmatrix}
+ 51002600&48549800&31415400\\
+ 50681600&-13764200&-32784600\\
+ 51277600&-56463200&86415400
+ \end{bmatrix}
+ \approx\begin{bmatrix}
+ 1.003089&.954849&.617860\\
+ .996776&-.270706&-.644788\\
+ 1.008498&-1.110485&1.699568
+ \end{bmatrix}.
+\]
+The exact form was calculated and verified by rational matrix multiplication.
+It uses the coefficients as printed, including $.212,-.528,.311$ in the
+last row. Different engineering conventions or more accurate calibration
+coefficients would produce a different numerical inverse; no such change
+has been silently substituted here.

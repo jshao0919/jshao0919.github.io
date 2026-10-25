@@ -1,0 +1,302 @@
+\section{Chapter 7 supplementary exercises}
+These exercises connect symmetric spectral decompositions, quadratic-form
+positivity, Gram matrices, singular value decompositions, and minimum-length
+solutions. A symmetric matrix is positive definite when $x^TAx>0$ for every
+$x\ne0$, not merely for one vector. A pseudoinverse provides a
+least-squares solution even when an exact solution does not exist; that
+distinction is important in the final two printed exercises.
+
+\exercise{7.S.1}{Seventeen true--false statements}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} If $A=PDP^T$ with $P$ orthogonal and $D$
+diagonal, then $A^T=PD^TP^T=A$.
+\item \textbf{False.} The $90^\circ$ rotation
+$\begin{bmatrix}0&-1\\1&0\end{bmatrix}$ is orthogonal but is not symmetric.
+\item \textbf{True.} $\|Ax\|^2=x^TA^TAx=x^Tx$ for orthogonal $A$.
+Taking nonnegative square roots gives the length equality.
+\item \textbf{False.} Principal axes require mutually perpendicular
+eigenvector directions. For $A=I_2$, every invertible $P$ diagonalizes $A$,
+but $P=\begin{bmatrix}1&1\\0&1\end{bmatrix}$ has nonorthogonal columns,
+so its columns do not give orthogonal principal axes.
+\item \textbf{False.} Orthogonal columns need not be unit columns.
+For $P=2I$, $P^T=2I\ne I/2=P^{-1}$.
+\item \textbf{False.} All coefficients of $x_1^2+x_2^2+4x_1x_2$
+are positive, but its value at $(1,-1)$ is $-2$.
+\item \textbf{False.} $x_1^2-x_2^2$ is positive at $e_1$ and
+negative at $e_2$, so positivity at one input does not give definiteness.
+\item \textbf{True.} The symmetric coefficient matrix admits an
+orthonormal eigenbasis, and its orthogonal change of variables removes
+all mixed terms by the Principal Axes Theorem.
+\item \textbf{False.} For $A=\begin{bmatrix}1&1\\1&1\end{bmatrix}$,
+the largest diagonal entry is $1$, but the unit vector $(1,1)^T/\sqrt2$
+gives $x^TAx=2$, the largest eigenvalue.
+\item \textbf{False without a constraint.} A positive definite form
+is unbounded above: $Q(tx)=t^2Q(x)\to\infty$ for fixed $x\ne0$.
+The greatest eigenvalue is the maximum only when $\|x\|=1$ is imposed.
+\item \textbf{False.} If $P$ is orthogonal, nonzero $u$ gives
+$x=Pu\ne0$, so $(Pu)^TA(Pu)>0$. An invertible variable change preserves
+positive definiteness rather than turning it negative.
+\item \textbf{False.} An indefinite form has a symmetric coefficient
+matrix with both positive and negative eigenvalues. ``Not definite
+ eigenvalues'' is not a mathematical alternative definition; semidefinite
+forms are not indefinite merely because an eigenvalue is zero.
+\item \textbf{True.} Substitution gives
+$(Pu)^TA(Pu)=u^TP^TAPu=u^T(P^{-1}AP)u$.
+\item \textbf{False.} Orthonormal columns are required for $UU^T$ to
+be the projection formula. For $U=2e_1$ and $x=e_1$, $UU^Tx=4e_1$,
+whereas the projection onto its column line is $e_1$.
+\item \textbf{True.} An SVD gives
+$\|Bx\|^2=\sum_i\sigma_i^2y_i^2\le\sigma_1^2\sum_i y_i^2=\sigma_1^2$
+for $y=V^Tx$ and $\|x\|=1$.
+\item \textbf{True as an existence statement.} From an ordinary SVD
+$B=U\Sigma V^T$, take $P=U$ and $Q=V^T$. The transpose of an orthogonal
+matrix is orthogonal, so $B=P\Sigma Q$ has exactly the asserted form.
+This does not mean one can omit a transpose while keeping the same right
+singular-vector matrix $V$; the new symbol $Q$ denotes its transpose.
+\item \textbf{False.} The singular values of $A^TA$ are the squares
+of those of $A$. For $A=2I$, they are $4$ versus $2$, so the lists differ.
+\end{enumerate}
+
+\exercise{7.S.2}{Build a symmetric matrix with prescribed eigenvectors}
+\begin{enumerate}[label=(\alph*)]
+\item Each outer product satisfies $(u_iu_i^T)^T=u_iu_i^T$.
+A real linear combination of symmetric matrices is symmetric, so $A^T=A$.
+\item For each $j$, orthonormality gives
+\[
+ Au_j=\sum_i\lambda_i u_i(u_i^Tu_j)=\lambda_j u_j.
+\]
+Every $u_j$ is nonzero, so it is an eigenvector with eigenvalue $\lambda_j$.
+Because these $n$ vectors are a basis, the list contains all eigenvalues,
+including their multiplicities.
+\end{enumerate}
+
+\exercise{7.S.3}{Rank counts the nonzero spectral summands}
+Write $A=PDP^T$ with orthogonal $P$.
+Multiplication by invertible matrices preserves rank, so
+$\rank A=\rank D$, the number of nonzero diagonal eigenvalues.
+Thus exactly $r$ terms in $A=\sum_i\lambda_i u_iu_i^T$ are nonzero.
+For each such term, every column is a multiple of $u_i$, and at least
+one column is nonzero because $u_i\ne0$ and $\lambda_i\ne0$.
+Each nonzero term therefore has rank one. Discarding zero terms represents
+$A$ as a sum of $r$ rank-one matrices, as claimed. When $r=0$, this is the
+empty sum representing zero.
+
+\exercise{7.S.4}{An orthogonal column/null decomposition for a symmetric matrix}
+\begin{enumerate}[label=(\alph*)]
+\item A vector $z$ is perpendicular to every column of $A$ precisely
+when $A^Tz=0$. Since $A^T=A$, this says $z\in\Nul A$.
+Therefore $(\Col A)^\perp=\Nul A$.
+\item Orthogonally decompose $y$ relative to $W=\Col A$:
+$y=\widehat y+z$, where $\widehat y\in\Col A$ and
+$z\in(\Col A)^\perp=\Nul A$. Such a decomposition exists by the
+Orthogonal Decomposition Theorem and is unique.
+\end{enumerate}
+
+\exercise{7.S.5}{A nonzero-eigenvalue eigenvector lies in the column space}
+If $Av=\lambda v$ with $\lambda\ne0$, then
+$v=A(v/\lambda)$. This explicitly writes $v$ as an output of $A$,
+so $v\in\Col A$. The nonzero-eigenvalue condition permits division;
+a zero-eigenvalue eigenvector need not belong to the column space.
+
+\exercise{7.S.6}{Construct the decomposition using an eigenbasis}
+Choose an orthonormal eigenbasis $u_i$ and write $y=\sum_i c_iu_i$.
+Separate the sum into
+\[
+ \widehat y=\sum_{\lambda_i\ne0}c_iu_i,\qquad
+ z=\sum_{\lambda_i=0}c_iu_i.
+\]
+Every summand of $\widehat y$ belongs to $\Col A$ by Exercise 5,
+so $\widehat y\in\Col A$.
+Every summand of $z$ is annihilated by $A$, so $z\in\Nul A$.
+Their sum is $y$, giving the requested second proof. The two sums are
+perpendicular because they use disjoint parts of an orthonormal basis.
+
+\exercise{7.S.7}{Prove the Cholesky characterization}
+\step{A Cholesky factorization implies positive definiteness.}
+If $A=R^TR$ with invertible real $R$, it is symmetric and
+$x^TAx=\|Rx\|^2>0$ whenever $x\ne0$. Thus $A$ is positive definite.
+\step{A positive definite matrix supplies such a factorization.}
+Exercise 7.2.26 gives an invertible positive definite square root $B$
+with $A=B^TB$. Take a QR factorization $B=QR$, choosing the signs of
+columns of $Q$ and rows of $R$ so the nonzero diagonal entries of $R$
+are positive. Here $Q$ is square orthogonal and $R$ is upper triangular.
+Then
+$A=B^TB=R^TQ^TQR=R^TR$.
+The full rank of $B$ makes $R$ invertible, and the sign choices give the
+required positive diagonal. This proves both directions of the equivalence.
+
+\exercise{7.S.8}{Convert Cholesky into an LU factorization}
+From Exercise 7, $A=R^TR$ with upper triangular $R$ and positive
+$r_{ii}$. Let $D=\operatorname{diag}(r_{11},\ldots,r_{nn})$.
+Define $L=R^TD^{-1}$, which is lower triangular with diagonal entries one,
+and $U=DR$, which is upper triangular with diagonal entries $r_{ii}^2>0$.
+Then $LU=R^TD^{-1}DR=R^TR=A$, as required.
+The parenthetical converse in the text is understood for symmetric matrices
+and the usual unit-lower-triangular LU convention. Without symmetry, an
+arbitrary upper triangular matrix with positive diagonal need not be a
+positive definite \emph{symmetric} matrix.
+
+\exercise{7.S.9}{A Gram matrix has the same rank as its original matrix}
+$G=A^TA$ is symmetric and $x^TGx=\|Ax\|^2\ge0$, so it is positive
+semidefinite. Moreover,
+$Gx=0$ implies $0=x^TGx=\|Ax\|^2$, hence $Ax=0$.
+Conversely $Ax=0$ immediately implies $Gx=A^T0=0$.
+Thus $\Nul G=\Nul A$.
+Both matrices have the same number $n$ of columns, so rank--nullity gives
+$\rank G=n-\dim\Nul G=n-\dim\Nul A=\rank A$.
+This also proves why forming a Gram matrix does not create new independent
+column directions in exact arithmetic.
+
+\exercise{7.S.10}{Construct a rank-revealing Gram factor}
+A symmetric positive semidefinite $G$ has $r$ positive eigenvalues
+$\lambda_1,\ldots,\lambda_r$ and the rest zero.
+Let $U_r$ contain corresponding orthonormal eigenvectors, and
+$D_r=\operatorname{diag}(\lambda_1,\ldots,\lambda_r)$.
+Then $G=U_rD_rU_r^T$. Choose the $r\times n$ matrix
+\[
+ \boxed{A=D_r^{1/2}U_r^T}.
+\]
+Its Gram matrix is $A^TA=U_rD_rU_r^T=G$.
+Equivalently the hinted factor $B=U_rD_r^{1/2}$ satisfies $G=BB^T$
+and $A=B^T$. When $r=0$, $G=0$ and the $0\times n$ empty matrix
+has zero Gram matrix under the empty-sum convention.
+
+\exercise{7.S.11}{A polar decomposition, including singular matrices}
+Take a square SVD $A=U\Sigma V^T$, with $U,V$ orthogonal and
+$\Sigma$ diagonal with nonnegative entries. Set
+\[
+ P=U\Sigma U^T,\qquad Q=UV^T.
+\]
+Then $P$ is symmetric positive semidefinite by its orthogonal diagonalization,
+and $\rank P=\rank\Sigma=\rank A$.
+Also $Q^TQ=VU^TUV^T=I$, so $Q$ is orthogonal. Finally
+$PQ=U\Sigma U^TUV^T=U\Sigma V^T=A$.
+No inverse singular values were used, so the construction works for singular
+$A$ as well. The orthogonal factor need not be unique in that case.
+
+\exercise{7.S.12}{The pseudoinverse produces two orthogonal projections}
+Use the reduced SVD $A=U_rDV_r^T$ and
+$A^+=V_rD^{-1}U_r^T$, where the $r$ singular values in $D$ are positive.
+\begin{enumerate}[label=(\alph*)]
+\item Since $V_r^TV_r=I_r$,
+$AA^+=U_rDD^{-1}U_r^T=U_rU_r^T$.
+The columns of $U_r$ are an orthonormal basis of $\Col A$;
+therefore $AA^+y$ is the orthogonal projection of $y$ onto that space.
+\item Similarly $A^+A=V_rV_r^T$, the projection onto
+$\Col V_r=\operatorname{Row}A$.
+\item Multiplying the formulas and using orthonormality gives
+\[
+ AA^+A=U_rU_r^TU_rDV_r^T=A,
+ \qquad A^+AA^+=V_rV_r^TV_rD^{-1}U_r^T=A^+.
+\]
+Thus both requested triple-product identities hold.
+\end{enumerate}
+
+\exercise{7.S.13}{A consistent system's unique minimum-length solution}
+\begin{enumerate}[label=(\alph*)]
+\item Since $b=Ax$ for some $x$ by consistency,
+$x^+=A^+b=A^+Ax$ is the projection of $x$ onto $\operatorname{Row}A$
+by Exercise 12(b). Hence $x^+\in\operatorname{Row}A$.
+\item Since $b\in\Col A$, its projection there is itself, so
+$Ax^+=AA^+b=b$ by Exercise 12(a). Thus $x^+$ is indeed a solution.
+\item For any other solution $u$, $A(u-x^+)=b-b=0$.
+Thus $u-x^+\in\Nul A$, perpendicular to
+$x^+\in\operatorname{Row}A=(\Nul A)^\perp$.
+Pythagoras yields
+$\|u\|^2=\|x^+\|^2+\|u-x^+\|^2\ge\|x^+\|^2$.
+Equality holds only when $u=x^+$. Taking square roots proves the minimum
+length and its uniqueness.
+\end{enumerate}
+
+\exercise{7.S.14}{The minimum-length least-squares solution for arbitrary data}
+Let $\widehat b=AA^+b$, the projection of $b$ onto $\Col A$.
+A vector $x$ is a least-squares solution of $Ax=b$ exactly when
+$Ax=\widehat b$, since $\widehat b$ is the unique closest output.
+This new equation is consistent.
+By Exercise 13 its unique minimum-length solution is $A^+\widehat b$.
+The triple-product identity from Exercise 12 gives
+$A^+\widehat b=A^+AA^+b=A^+b$.
+Thus $\boxed{A^+b}$ is the unique minimum-length least-squares solution,
+even when the original equation itself has no solution.
+
+\exercise{7.S.15}{A pseudoinverse and an inconsistent printed right side}
+\step{Check consistency before claiming to solve the original system.}
+Rows 3 and 4 of the printed $A$ are identical, but the prescribed
+$b=(6,-1,-4,6)^T$ has unequal entries 3 and 4.
+Hence $Ax=b$ has \emph{no exact solution}.
+The requested pseudoinverse calculation is nevertheless well defined:
+it returns the minimum-length least-squares solution from Exercise 14,
+not an exact solution from Exercise 13. We retain the printed data and make
+that distinction explicit.
+\step{Compute from an SVD, then verify the exact rational matrix.}
+An executed numerical SVD has nonzero singular values approximately
+$9.84443449$, $2.62465501$, and $1.09466692$. Its fourth singular value
+is at roundoff level, representing an exact zero.
+In NumPy the construction can be reproduced by
+\begin{verbatim}
+U,d,Vt = np.linalg.svd(A,full_matrices=False)
+r = np.count_nonzero(d > 1e-12)
+Ap = (Vt[:r,:].T/d[:r])@U[:,:r].T
+\end{verbatim}
+The exact rational result, verified by the four pseudoinverse identities, is
+\[
+ A^+=\frac1{40}\begin{bmatrix}
+ -2&-14&13&13\\-2&-14&13&13\\-2&6&-7&-7\\
+ 2&-6&7&7\\4&-12&-6&-6
+ \end{bmatrix}.
+\]
+Here the verification is $AA^+A=A$, $A^+AA^+=A^+$, and symmetry
+of $AA^+$ and $A^+A$; all products were checked with exact rational arithmetic.
+Multiplying by the printed right side gives
+\[
+ \widehat x=A^+b=(7/10,7/10,-4/5,4/5,3/5)^T,
+ \qquad A\widehat x=(6,-1,1,1)^T.
+\]
+The residual is $(0,0,-5,5)^T$ and is perpendicular to every column of
+$A$, since its two nonzero components multiply identical rows with opposite
+weights. Thus $A^T(b-A\widehat x)=0$, independently checking the least-squares claim.
+\step{Check row-space membership and the strict norm inequality.}
+An explicit witness is
+$\widehat x=A^T(7/100,-91/100,129/100,0)^T$,
+so $\widehat x\in\operatorname{Row}A$.
+Choose $u=(-1,1,0,0,0)^T$. Its first two columns cancel, so $Au=0$;
+also $\widehat x\cdot u=0$.
+Finally $\|\widehat x\|^2=131/50$ and
+$\|\widehat x+u\|^2=231/50$, proving
+$\|\widehat x\|<\|\widehat x+u\|$.
+
+\exercise{7.S.16}{A second minimum-length least-squares computation}
+\step{Again distinguish least squares from exact consistency.}
+Here row 4 is three times row 3, whereas the prescribed right side has
+$6\ne3(-4)$. Thus the printed system is also inconsistent.
+Its pseudoinverse solution must be interpreted via Exercise 14.
+\step{Construct and verify the pseudoinverse.}
+The executed SVD's nonzero singular values are approximately
+$12.9536237,1.44552724,.337763285$.
+Using the SVD formula in Exercise 15 and verifying exact products gives
+\[
+ A^+=\frac1{20}\begin{bmatrix}
+ 10&0&-1&-3\\0&0&0&0\\0&40&10&30\\
+ 10&-20&-7&-21\\0&0&0&0
+ \end{bmatrix}.
+\]
+All four pseudoinverse identities hold exactly.
+The resulting input and fitted output are
+\[
+ \widehat x=(23/10,0,5,-9/10,0)^T,
+ \qquad A\widehat x=(6,-1,7/5,21/5)^T.
+\]
+The residual is $(0,0,-27/5,9/5)^T$.
+Its row-weight combination vanishes because row 4 equals three times row 3:
+$(-27/5)\operatorname{row}_3A+(9/5)\operatorname{row}_4A=0$.
+Hence the normal equations hold and this is a least-squares solution.
+\step{Verify the two geometric checks.}
+The identity
+$\widehat x=A^T(7/10,109/10,27,0)^T$
+places it in the row space.
+Take the nonzero null vector $u=e_2=(0,1,0,0,0)^T$, since column 2 is zero.
+It is perpendicular to $\widehat x$, whose second coordinate is zero.
+The squared norms are $\|\widehat x\|^2=311/10$ and
+$\|\widehat x+u\|^2=321/10$, giving the requested strict inequality.
+These checks establish the minimum-length property without falsely claiming
+that the inconsistent original equation has been solved exactly.

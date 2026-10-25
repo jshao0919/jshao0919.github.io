@@ -1,0 +1,16 @@
+{
+  "chapter": 8,
+  "section": 6,
+  "title": "Curves and Surfaces",
+  "exercise_count": 18,
+  "practice_count": 2,
+  "source_pages": [
+    507,
+    508,
+    509
+  ],
+  "blocked_exercises": [],
+  "source_notes": [
+    "Exercise8.6.2 missing square explicitly diagnosed by weight sum1+t\u00b2(1\u2212t)/2; correctedusingPracticeEquations14\u201315 for later B-spline references."
+  ]
+}

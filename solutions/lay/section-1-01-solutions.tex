@@ -1,0 +1,540 @@
+\section{Systems of linear equations}
+A solution is one ordered list of values satisfying \emph{every} equation.
+The solution set is the set of all such lists. A consistent system has at
+least one solution; an inconsistent system has none. Two systems are
+equivalent when their solution sets are equal.
+
+The three permitted operations are swapping two equations, multiplying an
+equation by a nonzero scalar, and adding a multiple of one equation to another.
+In matrix notation $R_i\leftarrow R_i+cR_j$ means to replace the \emph{whole}
+row, including its last entry. We use a vertical bar to separate the
+coefficient columns from the constant column. A zero row means $0=0$;
+a row $[0\ \cdots\ 0\mid d]$ with $d\ne0$ means an impossible equation.
+
+\practice{1.1.P1}{Choose the next elimination step}
+\step{(a) Use the simpler coefficient to make the next pivot.}
+Swap equations 3 and 4, so the coefficient of $x_3$ in the third equation
+is $1$ instead of $5$. Next one would replace equation 4 by equation 4
+minus five times equation 3. This eliminates $x_3$ from the last equation.
+Do not restart elimination on $x_2$: the forward phase first establishes
+successive pivots below the previous ones.
+\step{(b) Begin the backward phase at the last pivot.}
+The fourth equation is $x_4=1$. Add twice equation 4 to equation 1 to
+remove its term $-2x_4$. The other two equations already have no $x_4$
+term. After that, divide equation 3 by $2$ and use it to clear the $x_3$
+terms above it. Each operation preserves all solutions.
+
+\practice{1.1.P2}{Consistency of a triangular system}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}1&5&2&-6\\0&4&-7&2\\0&0&5&0\end{array}\right].\]
+Use $R_{2}\leftarrow(\frac{1}{4})R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&5&2&-6\\0&1&- \frac{7}{4}&\frac{1}{2}\\0&0&5&0\end{array}\right].\]
+Use $R_{3}\leftarrow(\frac{1}{5})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&5&2&-6\\0&1&- \frac{7}{4}&\frac{1}{2}\\0&0&1&0\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(2)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&5&0&-6\\0&1&- \frac{7}{4}&\frac{1}{2}\\0&0&1&0\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(- \frac{7}{4})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&5&0&-6\\0&1&0&\frac{1}{2}\\0&0&1&0\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(5)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&0&- \frac{17}{2}\\0&1&0&\frac{1}{2}\\0&0&1&0\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}x_{1}=- \frac{17}{2}\\x_{2}=\frac{1}{2}\\x_{3}=0\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}
+
+\practice{1.1.P3}{Test a proposed solution in every equation}
+Substitute $(x_1,x_2,x_3)=(3,4,-2)$ into the three left sides:
+\[
+5(3)-4+2(-2)=7,\qquad -2(3)+6(4)+9(-2)=0,
+\]
+\[
+-7(3)+5(4)-3(-2)=5.
+\]
+The first two constants match, but the third required constant is $-7$,
+not $5$. One failed equation is enough to reject the proposed solution.
+\answer{$(3,4,-2)$ is not a solution.}
+
+\practice{1.1.P4}{A consistency condition on two constants}
+The second left side is $-3$ times the first. Replace equation 2 by
+equation 2 plus three times equation 1. The resulting last equation is
+$0=k+3h$. It can hold precisely when $k=-3h$. In that case choose any
+$x_2=t$ and put $x_1=(h+t)/2$; these values satisfy both equations.
+\answer{Consistency holds if and only if $k=-3h$.}
+
+\exercise{1.1.1}{A two-equation elimination}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rr|r}1&5&7\\-2&-7&-5\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(-2)R_{1}$ to obtain
+\[ \left[\begin{array}{rr|r}1&5&7\\0&3&9\end{array}\right].\]
+Use $R_{2}\leftarrow(\frac{1}{3})R_{2}$ to obtain
+\[ \left[\begin{array}{rr|r}1&5&7\\0&1&3\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(5)R_{2}$ to obtain
+\[ \left[\begin{array}{rr|r}1&0&-8\\0&1&3\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}x_{1}=-8\\x_{2}=3\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}
+
+\exercise{1.1.2}{A second two-equation elimination}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rr|r}3&6&-3\\5&7&10\end{array}\right].\]
+Use $R_{1}\leftarrow(\frac{1}{3})R_{1}$ to obtain
+\[ \left[\begin{array}{rr|r}1&2&-1\\5&7&10\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(5)R_{1}$ to obtain
+\[ \left[\begin{array}{rr|r}1&2&-1\\0&-3&15\end{array}\right].\]
+Use $R_{2}\leftarrow(- \frac{1}{3})R_{2}$ to obtain
+\[ \left[\begin{array}{rr|r}1&2&-1\\0&1&-5\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(2)R_{2}$ to obtain
+\[ \left[\begin{array}{rr|r}1&0&9\\0&1&-5\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}x_{1}=9\\x_{2}=-5\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}
+
+\exercise{1.1.3}{The intersection of two lines}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rr|r}1&2&4\\1&-1&1\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(1)R_{1}$ to obtain
+\[ \left[\begin{array}{rr|r}1&2&4\\0&-3&-3\end{array}\right].\]
+Use $R_{2}\leftarrow(- \frac{1}{3})R_{2}$ to obtain
+\[ \left[\begin{array}{rr|r}1&2&4\\0&1&1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(2)R_{2}$ to obtain
+\[ \left[\begin{array}{rr|r}1&0&2\\0&1&1\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}x_{1}=2\\x_{2}=1\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}
+
+\exercise{1.1.4}{A second line intersection}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rr|r}1&2&-13\\3&-2&1\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(3)R_{1}$ to obtain
+\[ \left[\begin{array}{rr|r}1&2&-13\\0&-8&40\end{array}\right].\]
+Use $R_{2}\leftarrow(- \frac{1}{8})R_{2}$ to obtain
+\[ \left[\begin{array}{rr|r}1&2&-13\\0&1&-5\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(2)R_{2}$ to obtain
+\[ \left[\begin{array}{rr|r}1&0&-3\\0&1&-5\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}x_{1}=-3\\x_{2}=-5\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}
+
+\exercise{1.1.5}{Begin backward elimination}
+The last two equations already give $x_3=2$ and $x_4=-5$.
+To begin clearing above the $x_3$ pivot, subtract four times row 3 from
+row 2, then add three times row 3 to row 1:
+\[
+ R_2\leftarrow R_2-4R_3,\qquad R_1\leftarrow R_1+3R_3.
+\]
+The two changed equations become $x_2=-2$ and $x_1-4x_2=13$.
+Both operations act on all entries, including the constants.
+\answer{Subtract four times row 3 from row 2; add three times row 3 to row 1.}
+
+\exercise{1.1.6}{Create the last pivot}
+Use the coefficient $1$ in row 3 to remove the coefficient $4$ below it:
+\[
+ R_4\leftarrow R_4-4R_3\quad\Longrightarrow\quad
+ [0\ 0\ 0\ {-7}\mid14].
+\]
+Now multiply the last row by $-1/7$, giving $[0\ 0\ 0\ 1\mid-2]$.
+These steps create the next pivot without disturbing the earlier zeros.
+\answer{Subtract four times row 3 from row 4, then divide row 4 by $-7$.}
+
+\exercise{1.1.7}{A contradiction row cannot be repaired}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}1&7&3&-4\\0&1&-1&3\\0&0&0&1\\0&0&1&-2\end{array}\right].\]
+Use $R_{3}\leftrightarrow R_{4}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&7&3&-4\\0&1&-1&3\\0&0&1&-2\\0&0&0&1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-4)R_{4}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&7&3&0\\0&1&-1&3\\0&0&1&-2\\0&0&0&1\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(3)R_{4}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&7&3&0\\0&1&-1&0\\0&0&1&-2\\0&0&0&1\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(-2)R_{4}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&7&3&0\\0&1&-1&0\\0&0&1&0\\0&0&0&1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(3)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&7&0&0\\0&1&-1&0\\0&0&1&0\\0&0&0&1\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(-1)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&7&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(7)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1\end{array}\right].\]
+\answer{A row with all variable coefficients zero and a nonzero constant asserts $0=1$ after scaling. This is impossible, so the system is inconsistent and its solution set is empty.}
+
+\exercise{1.1.8}{Four variables fixed at zero}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrrr|r}1&-5&4&0&0\\0&1&0&1&0\\0&0&3&0&0\\0&0&0&2&0\end{array}\right].\]
+Use $R_{3}\leftarrow(\frac{1}{3})R_{3}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&-5&4&0&0\\0&1&0&1&0\\0&0&1&0&0\\0&0&0&2&0\end{array}\right].\]
+Use $R_{4}\leftarrow(\frac{1}{2})R_{4}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&-5&4&0&0\\0&1&0&1&0\\0&0&1&0&0\\0&0&0&1&0\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(1)R_{4}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&-5&4&0&0\\0&1&0&0&0\\0&0&1&0&0\\0&0&0&1&0\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(4)R_{3}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&-5&0&0&0\\0&1&0&0&0\\0&0&1&0&0\\0&0&0&1&0\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-5)R_{2}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&0&0&0&0\\0&1&0&0&0\\0&0&1&0&0\\0&0&0&1&0\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}x_{1}=0\\x_{2}=0\\x_{3}=0\\x_{4}=0\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}
+
+\exercise{1.1.9}{Back substitution through four pivots}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrrr|r}1&-1&0&0&-5\\0&1&-2&0&-7\\0&0&1&-3&2\\0&0&0&1&4\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(-3)R_{4}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&-1&0&0&-5\\0&1&-2&0&-7\\0&0&1&0&14\\0&0&0&1&4\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(-2)R_{3}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&-1&0&0&-5\\0&1&0&0&21\\0&0&1&0&14\\0&0&0&1&4\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-1)R_{2}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&0&0&0&16\\0&1&0&0&21\\0&0&1&0&14\\0&0&0&1&4\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}x_{1}=16\\x_{2}=21\\x_{3}=14\\x_{4}=4\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}
+
+\exercise{1.1.10}{A triangular four-variable system}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrrr|r}1&3&0&-2&-7\\0&1&0&3&6\\0&0&1&0&2\\0&0&0&1&-2\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-2)R_{4}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&3&0&0&-11\\0&1&0&3&6\\0&0&1&0&2\\0&0&0&1&-2\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(3)R_{4}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&3&0&0&-11\\0&1&0&0&12\\0&0&1&0&2\\0&0&0&1&-2\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(3)R_{2}$ to obtain
+\[ \left[\begin{array}{rrrr|r}1&0&0&0&-47\\0&1&0&0&12\\0&0&1&0&2\\0&0&0&1&-2\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}x_{1}=-47\\x_{2}=12\\x_{3}=2\\x_{4}=-2\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}
+
+\exercise{1.1.11}{A system with a zero leading coefficient}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}0&1&5&-4\\1&4&3&-2\\2&7&1&-2\end{array}\right].\]
+Use $R_{1}\leftrightarrow R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&4&3&-2\\0&1&5&-4\\2&7&1&-2\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(2)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&4&3&-2\\0&1&5&-4\\0&-1&-5&2\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(-1)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&4&3&-2\\0&1&5&-4\\0&0&0&-2\end{array}\right].\]
+Use $R_{3}\leftarrow(- \frac{1}{2})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&4&3&-2\\0&1&5&-4\\0&0&0&1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-2)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&4&3&0\\0&1&5&-4\\0&0&0&1\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(-4)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&4&3&0\\0&1&5&0\\0&0&0&1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(4)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&-17&0\\0&1&5&0\\0&0&0&1\end{array}\right].\]
+\answer{A row with all variable coefficients zero and a nonzero constant asserts $0=1$ after scaling. This is impossible, so the system is inconsistent and its solution set is empty.}
+
+\exercise{1.1.12}{A three-variable contradiction}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}1&-5&4&-3\\2&-7&3&-2\\-2&1&7&-1\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(2)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-5&4&-3\\0&3&-5&4\\-2&1&7&-1\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(-2)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-5&4&-3\\0&3&-5&4\\0&-9&15&-7\end{array}\right].\]
+Use $R_{2}\leftarrow(\frac{1}{3})R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-5&4&-3\\0&1&- \frac{5}{3}&\frac{4}{3}\\0&-9&15&-7\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(-9)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-5&4&-3\\0&1&- \frac{5}{3}&\frac{4}{3}\\0&0&0&5\end{array}\right].\]
+Use $R_{3}\leftarrow(\frac{1}{5})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-5&4&-3\\0&1&- \frac{5}{3}&\frac{4}{3}\\0&0&0&1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-3)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-5&4&0\\0&1&- \frac{5}{3}&\frac{4}{3}\\0&0&0&1\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(\frac{4}{3})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-5&4&0\\0&1&- \frac{5}{3}&0\\0&0&0&1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-5)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&- \frac{13}{3}&0\\0&1&- \frac{5}{3}&0\\0&0&0&1\end{array}\right].\]
+\answer{A row with all variable coefficients zero and a nonzero constant asserts $0=1$ after scaling. This is impossible, so the system is inconsistent and its solution set is empty.}
+
+\exercise{1.1.13}{A unique three-variable solution}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}1&0&-3&8\\2&2&9&7\\0&1&5&-2\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(2)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&-3&8\\0&2&15&-9\\0&1&5&-2\end{array}\right].\]
+Use $R_{2}\leftarrow(\frac{1}{2})R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&-3&8\\0&1&\frac{15}{2}&- \frac{9}{2}\\0&1&5&-2\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(1)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&-3&8\\0&1&\frac{15}{2}&- \frac{9}{2}\\0&0&- \frac{5}{2}&\frac{5}{2}\end{array}\right].\]
+Use $R_{3}\leftarrow(- \frac{2}{5})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&-3&8\\0&1&\frac{15}{2}&- \frac{9}{2}\\0&0&1&-1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-3)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&0&5\\0&1&\frac{15}{2}&- \frac{9}{2}\\0&0&1&-1\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(\frac{15}{2})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&0&5\\0&1&0&3\\0&0&1&-1\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}x_{1}=5\\x_{2}=3\\x_{3}=-1\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}
+
+\exercise{1.1.14}{Solve after scaling a leading row}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}2&0&-6&-8\\0&1&2&3\\3&6&-2&-4\end{array}\right].\]
+Use $R_{1}\leftarrow(\frac{1}{2})R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&-3&-4\\0&1&2&3\\3&6&-2&-4\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(3)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&-3&-4\\0&1&2&3\\0&6&7&8\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(6)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&-3&-4\\0&1&2&3\\0&0&-5&-10\end{array}\right].\]
+Use $R_{3}\leftarrow(- \frac{1}{5})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&-3&-4\\0&1&2&3\\0&0&1&2\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-3)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&0&2\\0&1&2&3\\0&0&1&2\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(2)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&0&2\\0&1&0&-1\\0&0&1&2\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}x_{1}=2\\x_{2}=-1\\x_{3}=2\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}
+
+\exercise{1.1.15}{Detect inconsistency without solving}
+The augmented rows are
+\[
+\begin{bmatrix}1&-6&0&0&5\\0&1&-4&1&0\\-1&6&1&5&3\\0&-1&5&4&0\end{bmatrix}.
+\]
+Use $R_3\leftarrow R_3+R_1$ and $R_4\leftarrow R_4+R_2$.
+Rows 3 and 4 become $[0\ 0\ 1\ 5\mid8]$ and
+$[0\ 0\ 1\ 5\mid0]$. Then $R_4\leftarrow R_4-R_3$
+gives $[0\ 0\ 0\ 0\mid-8]$. Its equation $0=-8$ is impossible.
+\answer{The system is inconsistent. No further solving is needed.}
+
+\exercise{1.1.16}{Detect consistency without solving}
+Divide row 1 by $2$, then use $R_4\leftarrow R_4+3R_1$:
+\[
+\begin{bmatrix}1&0&0&-2&-5\\0&3&3&0&0\\0&0&1&4&-1\\0&2&3&-5&-10\end{bmatrix}.
+\]
+Now $R_4\leftarrow R_4-\frac23R_2$ gives
+$[0\ 0\ 1\ {-5}\mid-10]$, and $R_4\leftarrow R_4-R_3$
+gives $[0\ 0\ 0\ {-9}\mid-9]$. There is a nonzero pivot in
+each variable column and no contradiction row. Back substitution is
+therefore possible from the last equation upward.
+\answer{The system is consistent. The exercise does not require its values.}
+
+\exercise{1.1.17}{Do three lines meet at one point?}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rr|r}2&3&-1\\6&5&0\\2&-5&7\end{array}\right].\]
+Use $R_{1}\leftarrow(\frac{1}{2})R_{1}$ to obtain
+\[ \left[\begin{array}{rr|r}1&\frac{3}{2}&- \frac{1}{2}\\6&5&0\\2&-5&7\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(6)R_{1}$ to obtain
+\[ \left[\begin{array}{rr|r}1&\frac{3}{2}&- \frac{1}{2}\\0&-4&3\\2&-5&7\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(2)R_{1}$ to obtain
+\[ \left[\begin{array}{rr|r}1&\frac{3}{2}&- \frac{1}{2}\\0&-4&3\\0&-8&8\end{array}\right].\]
+Use $R_{2}\leftarrow(- \frac{1}{4})R_{2}$ to obtain
+\[ \left[\begin{array}{rr|r}1&\frac{3}{2}&- \frac{1}{2}\\0&1&- \frac{3}{4}\\0&-8&8\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(-8)R_{2}$ to obtain
+\[ \left[\begin{array}{rr|r}1&\frac{3}{2}&- \frac{1}{2}\\0&1&- \frac{3}{4}\\0&0&2\end{array}\right].\]
+Use $R_{3}\leftarrow(\frac{1}{2})R_{3}$ to obtain
+\[ \left[\begin{array}{rr|r}1&\frac{3}{2}&- \frac{1}{2}\\0&1&- \frac{3}{4}\\0&0&1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(- \frac{1}{2})R_{3}$ to obtain
+\[ \left[\begin{array}{rr|r}1&\frac{3}{2}&0\\0&1&- \frac{3}{4}\\0&0&1\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(- \frac{3}{4})R_{3}$ to obtain
+\[ \left[\begin{array}{rr|r}1&\frac{3}{2}&0\\0&1&0\\0&0&1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(\frac{3}{2})R_{2}$ to obtain
+\[ \left[\begin{array}{rr|r}1&0&0\\0&1&0\\0&0&1\end{array}\right].\]
+\answer{A row with all variable coefficients zero and a nonzero constant asserts $0=1$ after scaling. This is impossible, so the system is inconsistent and its solution set is empty.}
+
+\exercise{1.1.18}{Do three planes have a common point?}
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}2&4&4&4\\0&1&-2&-2\\2&3&0&0\end{array}\right].\]
+Use $R_{1}\leftarrow(\frac{1}{2})R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&2&2&2\\0&1&-2&-2\\2&3&0&0\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(2)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&2&2&2\\0&1&-2&-2\\0&-1&-4&-4\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(-1)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&2&2&2\\0&1&-2&-2\\0&0&-6&-6\end{array}\right].\]
+Use $R_{3}\leftarrow(- \frac{1}{6})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&2&2&2\\0&1&-2&-2\\0&0&1&1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(2)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&2&0&0\\0&1&-2&-2\\0&0&1&1\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(-2)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&2&0&0\\0&1&0&0\\0&0&1&1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(2)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&0&0\\0&1&0&0\\0&0&1&1\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}x_{1}=0\\x_{2}=0\\x_{3}=1\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}
+
+\exercise{1.1.19}{A forbidden value of the parameter}
+Replace row 2 by row 2 minus three times row 1:
+\[
+ \begin{bmatrix}1&h&4\\0&6-3h&-4\end{bmatrix}.
+\]
+If $h=2$, the last equation is $0=-4$, so there is no solution.
+If $h\ne2$, the second variable is $-4/(6-3h)$ and the first
+is then determined by row 1. Thus a solution does exist in every other case.
+\answer{$h\ne2$.}
+
+\exercise{1.1.20}{A second forbidden parameter value}
+Use $R_2\leftarrow R_2-2R_1$ to obtain
+$[0\ {-8-2h}\mid16]$. If $h=-4$, this asserts $0=16$.
+For $h\ne-4$ the nonzero coefficient determines $x_2$, then row 1
+determines $x_1$.
+\answer{Consistency holds precisely for $h\ne-4$.}
+
+\exercise{1.1.21}{A parameter that never destroys consistency}
+After $R_2\leftarrow R_2-3R_1$, the last row is
+$[0\ h-12\mid0]$. If $h\ne12$ it says $x_2=0$ and then
+$x_1=-2$. If $h=12$ it says $0=0$, leaving $x_2$ free and
+$x_1=-2-4x_2$. Neither case produces a contradiction.
+\answer{Every real $h$ gives a consistent system.}
+
+\exercise{1.1.22}{Match a multiple equation}
+Use $R_1\leftarrow R_1+2R_2$. Its result is
+$[0\ 0\mid h-6]$. Thus consistency requires $h=6$.
+Conversely, if $h=6$, the first equation is $-2$ times the second,
+so solving $2x_1-6x_2=-3$ supplies solutions of both.
+\answer{$h=6$.}
+
+\exercise{1.1.23}{Definitions and reversible operations}
+\begin{enumerate}[label=(\alph*)]
+\item True. Swapping twice restores the original rows. Scaling by $c\ne0$
+is reversed by scaling by $1/c$. Adding $cR_j$ to $R_i$ is reversed by
+adding $-cR_j$ to $R_i$.
+\item False. In an $m\times n$ matrix, $m$ counts rows and $n$ counts
+columns. A $5\times6$ matrix has five rows and six columns.
+\item False. The described list is \emph{one solution}. The solution
+\emph{set} contains all lists satisfying the system, and may be empty,
+a singleton, or infinite.
+\item True. Existence asks whether at least one solution exists;
+uniqueness asks whether exactly one exists. These are separate questions.
+\end{enumerate}
+
+\exercise{1.1.24}{Row equivalence and consistency}
+\begin{enumerate}[label=(\alph*)]
+\item False. Equal row counts do not imply row equivalence. For example,
+$[0\ 0]$ cannot be row reduced to $[1\ 0]$: all allowed operations
+keep a zero row zero.
+\item True. Each row operation replaces equations by reversible
+consequences, so it preserves the common solution set.
+\item False. Having identical solution sets is the definition of equivalent
+systems; different sets would contradict that definition.
+\item True. ``Consistent'' means that at least one solution exists.
+\end{enumerate}
+
+\exercise{1.1.25}{Compatibility of dependent rows}
+The coefficient rows satisfy $r_3=-2r_1-r_2$.
+Make this relation explicit by $R_3\leftarrow R_3+2R_1$ and then
+$R_3\leftarrow R_3+R_2$. The augmented last row becomes
+$[0\ 0\ 0\mid k+2g+h]$. Therefore consistency requires
+$k+2g+h=0$. If it holds, the remaining first two rows have nonzero
+pivots in columns 1 and 2, so they can be solved with $x_3$ free.
+\answer{$2g+h+k=0$ is necessary and sufficient.}
+
+\exercise{1.1.26}{Consistency for every right side}
+Replace row 2 by row 2 minus $c/2$ times row 1. This gives
+\[
+ [0\ d-2c\mid g-cf/2].
+\]
+If $d=2c$, choose $f=0,g=1$. The resulting row asserts $0=1$,
+contradicting the assumption of consistency for \emph{every} right side.
+Thus $d\ne2c$. Conversely, that inequality supplies a second pivot
+for any $f,g$, so it also suffices.
+\answer{$d\ne2c$.}
+
+\exercise{1.1.27}{The condition on a general two-by-two system}
+Because $a\ne0$, use $R_2\leftarrow R_2-(c/a)R_1$.
+The new row is
+\[
+ [0\ d-cb/a\mid g-cf/a].
+\]
+Its coefficient cannot be zero: otherwise $f=0,g=1$ would make the
+system inconsistent. Multiplying $d-cb/a\ne0$ by the nonzero $a$
+gives $ad-bc\ne0$. Conversely, this condition makes the second pivot
+nonzero for every right side.
+\answer{$ad-bc\ne0$. The condition states exactly that the two equations
+have independent left sides.}
+
+\exercise{1.1.28}{Construct three equivalent augmented matrices}
+Start with the equations $x_1=3$, $x_2=-2$, $x_3=-1$.
+Three possible augmented matrices are
+\[
+\left[\begin{array}{rrr|r}1&0&0&3\\0&1&0&-2\\0&0&1&-1\end{array}\right],\qquad
+\left[\begin{array}{rrr|r}2&0&0&6\\0&3&0&-6\\0&0&4&-4\end{array}\right],
+\]
+\[
+\left[\begin{array}{rrr|r}1&1&0&1\\0&1&1&-3\\0&0&1&-1\end{array}\right].
+\]
+The second merely rescales equations by nonzero numbers. The third
+comes from adding row 2 to row 1 and then the original row 3 to row 2.
+Alternatively back substitution in the third gives $x_3=-1$, $x_2=-2$,
+$x_1=3$. Thus all three have exactly the requested single solution.
+
+\exercise{1.1.29}{Reverse a row interchange}
+The first and third rows exchange places; the middle row stays fixed.
+\[\text{Forward: }R_1\leftrightarrow R_3,\qquad\text{reverse: }R_1\leftrightarrow R_3.\]
+The reverse operation cancels exactly the change made by the forward one; unchanged rows supply the same entries in both directions.
+
+\exercise{1.1.30}{Reverse a row scaling}
+Each entry in $[0,-5,10]$ is multiplied by $-1/5$, giving $[0,1,-2]$.
+\[\text{Forward: }R_3\leftarrow-\tfrac15R_3,\qquad\text{reverse: }R_3\leftarrow-5R_3.\]
+The reverse operation cancels exactly the change made by the forward one; unchanged rows supply the same entries in both directions.
+
+\exercise{1.1.31}{Reverse a multiple-row subtraction}
+The subtraction is $[4,-1,3,-6]-4[1,-2,1,0]=[0,7,-1,-6]$.
+\[\text{Forward: }R_3\leftarrow R_3-4R_1,\qquad\text{reverse: }R_3\leftarrow R_3+4R_1.\]
+The reverse operation cancels exactly the change made by the forward one; unchanged rows supply the same entries in both directions.
+
+\exercise{1.1.32}{Reverse a second multiple-row subtraction}
+The subtraction is $[0,4,-12,7]-4[0,1,-3,-2]=[0,0,0,15]$.
+\[\text{Forward: }R_3\leftarrow R_3-4R_2,\qquad\text{reverse: }R_3\leftarrow R_3+4R_2.\]
+The reverse operation cancels exactly the change made by the forward one; unchanged rows supply the same entries in both directions.
+
+\exercise{1.1.33}{Set up the four-node temperature model}
+At each node, multiply ``temperature equals the average of its four
+neighbors'' by $4$. The two fixed neighboring boundary values contribute
+to the constant; the two interior neighbors stay as unknowns. Reading the
+labels in the figure gives
+\[
+\begin{aligned}
+4T_1-T_2-T_4&=10+20=30,\\
+-T_1+4T_2-T_3&=20+40=60,\\
+-T_2+4T_3-T_4&=40+30=70,\\
+-T_1-T_3+4T_4&=10+30=40.
+\end{aligned}
+\]
+\answer{These four equations are the required equilibrium model. The
+order of nodes around the square is $1,2,3,4$, not a row-wise ordering.}
+
+\exercise{1.1.34}{Solve the temperature model}
+Use the equations from Exercise 33. Adding the first and third gives
+$4(T_1+T_3)-2(T_2+T_4)=100$. Adding the second and fourth gives
+$-2(T_1+T_3)+4(T_2+T_4)=100$.
+Let $S=T_1+T_3$ and $U=T_2+T_4$. Dividing both equations by $2$
+gives $2S-U=50$ and $-S+2U=50$. Thus $S=U=50$.
+Now substitute these pair sums into the original equations:
+\[
+T_1=(30+U)/4=20,\quad T_2=(60+S)/4=55/2,
+\]
+\[
+T_3=(70+U)/4=30,\quad T_4=(40+S)/4=45/2.
+\]
+For example, the first average is $(10+20+55/2+45/2)/4=20$;
+the other three check in the same way by the four displayed equations.
+Every solution must have these pair sums and hence these values, so
+uniqueness is also established.
+\answer{$T_1=20$, $T_2=27.5$, $T_3=30$, $T_4=22.5$ degrees.}

@@ -1,0 +1,334 @@
+\section{Complex eigenvalues}
+A real matrix can have nonreal eigenvalues when it acts on complex coordinate vectors. Complex arithmetic uses $i^2=-1$ and conjugation $\overline{a+bi}=a-bi$. For a real matrix, conjugating $Av=\lambda v$ gives $A\overline v=\overline\lambda\,\overline v$, so nonreal eigenvalues occur in conjugate pairs.
+
+The real matrix $C=\left[\begin{smallmatrix}a&-b\\b&a\end{smallmatrix}\right]$ is a scaling followed by a rotation: $C=r\left[\begin{smallmatrix}\cos\varphi&-\sin\varphi\\\sin\varphi&\cos\varphi\end{smallmatrix}\right]$, where $r=\sqrt{a^2+b^2}$, $\cos\varphi=a/r$, and $\sin\varphi=b/r$. The sign of $b$ matters for clockwise versus counterclockwise rotation. We use angles in $(-\pi,\pi]$.
+
+\practice{5.5.P1}{Verify the two complex eigenpairs directly}
+Multiplication gives
+\[
+\begin{bmatrix}a&-b\\b&a\end{bmatrix}\begin{bmatrix}1\\-i\end{bmatrix}
+=\begin{bmatrix}a+bi\\b-ai\end{bmatrix}
+=(a+bi)\begin{bmatrix}1\\-i\end{bmatrix}.
+\]
+Likewise $A(1,i)^T=(a-bi)(1,i)^T$. Both vectors are nonzero, so these are genuine eigenpairs. They are conjugate to one another. If $b=0$, the eigenvalues coincide at $a$; the verified equations still hold, and in fact every nonzero vector is an eigenvector of $aI_2$.
+
+\exercise{5.5.1}{Complex roots and their one-dimensional eigenspaces}
+\goal Find the eigenspaces over $\C$, where
+\[A=\begin{bmatrix}1&-2\\1&3\end{bmatrix}.\]
+The characteristic equation is $t^{2} - 4 t + 5=0$, whose two roots are $2 - i,\ 2 + i$. These roots are distinct because their imaginary parts are nonzero.
+For $\lambda=2 - i$, the first equation of $(A-\lambda I)x=0$ is
+\[(-1 + i)x_1+(-2)x_2=0.\]
+The second equation is dependent on this one because the coefficient determinant is zero. Set $x_1=-2s$ and $x_2=(1 - i)s$, where $s\in\C$. Every solution has that form, since the coefficient of $x_2$ in the first equation is nonzero. Thus
+\[E_{2 - i}=\Span_{\C}\left\{\begin{bmatrix}-2\\1 - i\end{bmatrix}\right\}.\]
+Substitution gives $Av=\lambda v$ exactly, and $v\ne0$, so this is a one-vector basis of the one-dimensional complex eigenspace.
+For $\lambda=2 + i$, the first equation of $(A-\lambda I)x=0$ is
+\[(-1 - i)x_1+(-2)x_2=0.\]
+The second equation is dependent on this one because the coefficient determinant is zero. Set $x_1=-2s$ and $x_2=(1 + i)s$, where $s\in\C$. Every solution has that form, since the coefficient of $x_2$ in the first equation is nonzero. Thus
+\[E_{2 + i}=\Span_{\C}\left\{\begin{bmatrix}-2\\1 + i\end{bmatrix}\right\}.\]
+Substitution gives $Av=\lambda v$ exactly, and $v\ne0$, so this is a one-vector basis of the one-dimensional complex eigenspace.
+
+
+\exercise{5.5.2}{Complex roots and their one-dimensional eigenspaces}
+\goal Find the eigenspaces over $\C$, where
+\[A=\begin{bmatrix}3&-3\\3&3\end{bmatrix}.\]
+The characteristic equation is $t^{2} - 6 t + 18=0$, whose two roots are $3 - 3 i,\ 3 + 3 i$. These roots are distinct because their imaginary parts are nonzero.
+For $\lambda=3 - 3 i$, the first equation of $(A-\lambda I)x=0$ is
+\[(3 i)x_1+(-3)x_2=0.\]
+The second equation is dependent on this one because the coefficient determinant is zero. Set $x_1=-3s$ and $x_2=(- 3 i)s$, where $s\in\C$. Every solution has that form, since the coefficient of $x_2$ in the first equation is nonzero. Thus
+\[E_{3 - 3 i}=\Span_{\C}\left\{\begin{bmatrix}-3\\- 3 i\end{bmatrix}\right\}.\]
+Substitution gives $Av=\lambda v$ exactly, and $v\ne0$, so this is a one-vector basis of the one-dimensional complex eigenspace.
+For $\lambda=3 + 3 i$, the first equation of $(A-\lambda I)x=0$ is
+\[(- 3 i)x_1+(-3)x_2=0.\]
+The second equation is dependent on this one because the coefficient determinant is zero. Set $x_1=-3s$ and $x_2=(3 i)s$, where $s\in\C$. Every solution has that form, since the coefficient of $x_2$ in the first equation is nonzero. Thus
+\[E_{3 + 3 i}=\Span_{\C}\left\{\begin{bmatrix}-3\\3 i\end{bmatrix}\right\}.\]
+Substitution gives $Av=\lambda v$ exactly, and $v\ne0$, so this is a one-vector basis of the one-dimensional complex eigenspace.
+
+
+\exercise{5.5.3}{Complex roots and their one-dimensional eigenspaces}
+\goal Find the eigenspaces over $\C$, where
+\[A=\begin{bmatrix}5&1\\-8&1\end{bmatrix}.\]
+The characteristic equation is $t^{2} - 6 t + 13=0$, whose two roots are $3 - 2 i,\ 3 + 2 i$. These roots are distinct because their imaginary parts are nonzero.
+For $\lambda=3 - 2 i$, the first equation of $(A-\lambda I)x=0$ is
+\[(2 + 2 i)x_1+(1)x_2=0.\]
+The second equation is dependent on this one because the coefficient determinant is zero. Set $x_1=1s$ and $x_2=(-2 - 2 i)s$, where $s\in\C$. Every solution has that form, since the coefficient of $x_2$ in the first equation is nonzero. Thus
+\[E_{3 - 2 i}=\Span_{\C}\left\{\begin{bmatrix}1\\-2 - 2 i\end{bmatrix}\right\}.\]
+Substitution gives $Av=\lambda v$ exactly, and $v\ne0$, so this is a one-vector basis of the one-dimensional complex eigenspace.
+For $\lambda=3 + 2 i$, the first equation of $(A-\lambda I)x=0$ is
+\[(2 - 2 i)x_1+(1)x_2=0.\]
+The second equation is dependent on this one because the coefficient determinant is zero. Set $x_1=1s$ and $x_2=(-2 + 2 i)s$, where $s\in\C$. Every solution has that form, since the coefficient of $x_2$ in the first equation is nonzero. Thus
+\[E_{3 + 2 i}=\Span_{\C}\left\{\begin{bmatrix}1\\-2 + 2 i\end{bmatrix}\right\}.\]
+Substitution gives $Av=\lambda v$ exactly, and $v\ne0$, so this is a one-vector basis of the one-dimensional complex eigenspace.
+
+
+\exercise{5.5.4}{Complex roots and their one-dimensional eigenspaces}
+\goal Find the eigenspaces over $\C$, where
+\[A=\begin{bmatrix}1&-2\\1&3\end{bmatrix}.\]
+The characteristic equation is $t^{2} - 4 t + 5=0$, whose two roots are $2 - i,\ 2 + i$. These roots are distinct because their imaginary parts are nonzero.
+For $\lambda=2 - i$, the first equation of $(A-\lambda I)x=0$ is
+\[(-1 + i)x_1+(-2)x_2=0.\]
+The second equation is dependent on this one because the coefficient determinant is zero. Set $x_1=-2s$ and $x_2=(1 - i)s$, where $s\in\C$. Every solution has that form, since the coefficient of $x_2$ in the first equation is nonzero. Thus
+\[E_{2 - i}=\Span_{\C}\left\{\begin{bmatrix}-2\\1 - i\end{bmatrix}\right\}.\]
+Substitution gives $Av=\lambda v$ exactly, and $v\ne0$, so this is a one-vector basis of the one-dimensional complex eigenspace.
+For $\lambda=2 + i$, the first equation of $(A-\lambda I)x=0$ is
+\[(-1 - i)x_1+(-2)x_2=0.\]
+The second equation is dependent on this one because the coefficient determinant is zero. Set $x_1=-2s$ and $x_2=(1 + i)s$, where $s\in\C$. Every solution has that form, since the coefficient of $x_2$ in the first equation is nonzero. Thus
+\[E_{2 + i}=\Span_{\C}\left\{\begin{bmatrix}-2\\1 + i\end{bmatrix}\right\}.\]
+Substitution gives $Av=\lambda v$ exactly, and $v\ne0$, so this is a one-vector basis of the one-dimensional complex eigenspace.
+The printed matrix in Exercise 4 is identical to that in Exercise 1; the repeated answer reflects the actual supplied edition, rather than an altered matrix.
+
+\exercise{5.5.5}{Complex roots and their one-dimensional eigenspaces}
+\goal Find the eigenspaces over $\C$, where
+\[A=\begin{bmatrix}3&1\\-2&5\end{bmatrix}.\]
+The characteristic equation is $t^{2} - 8 t + 17=0$, whose two roots are $4 - i,\ 4 + i$. These roots are distinct because their imaginary parts are nonzero.
+For $\lambda=4 - i$, the first equation of $(A-\lambda I)x=0$ is
+\[(-1 + i)x_1+(1)x_2=0.\]
+The second equation is dependent on this one because the coefficient determinant is zero. Set $x_1=1s$ and $x_2=(1 - i)s$, where $s\in\C$. Every solution has that form, since the coefficient of $x_2$ in the first equation is nonzero. Thus
+\[E_{4 - i}=\Span_{\C}\left\{\begin{bmatrix}1\\1 - i\end{bmatrix}\right\}.\]
+Substitution gives $Av=\lambda v$ exactly, and $v\ne0$, so this is a one-vector basis of the one-dimensional complex eigenspace.
+For $\lambda=4 + i$, the first equation of $(A-\lambda I)x=0$ is
+\[(-1 - i)x_1+(1)x_2=0.\]
+The second equation is dependent on this one because the coefficient determinant is zero. Set $x_1=1s$ and $x_2=(1 + i)s$, where $s\in\C$. Every solution has that form, since the coefficient of $x_2$ in the first equation is nonzero. Thus
+\[E_{4 + i}=\Span_{\C}\left\{\begin{bmatrix}1\\1 + i\end{bmatrix}\right\}.\]
+Substitution gives $Av=\lambda v$ exactly, and $v\ne0$, so this is a one-vector basis of the one-dimensional complex eigenspace.
+
+
+\exercise{5.5.6}{Complex roots and their one-dimensional eigenspaces}
+\goal Find the eigenspaces over $\C$, where
+\[A=\begin{bmatrix}7&-5\\1&3\end{bmatrix}.\]
+The characteristic equation is $t^{2} - 10 t + 26=0$, whose two roots are $5 - i,\ 5 + i$. These roots are distinct because their imaginary parts are nonzero.
+For $\lambda=5 - i$, the first equation of $(A-\lambda I)x=0$ is
+\[(2 + i)x_1+(-5)x_2=0.\]
+The second equation is dependent on this one because the coefficient determinant is zero. Set $x_1=-5s$ and $x_2=(-2 - i)s$, where $s\in\C$. Every solution has that form, since the coefficient of $x_2$ in the first equation is nonzero. Thus
+\[E_{5 - i}=\Span_{\C}\left\{\begin{bmatrix}-5\\-2 - i\end{bmatrix}\right\}.\]
+Substitution gives $Av=\lambda v$ exactly, and $v\ne0$, so this is a one-vector basis of the one-dimensional complex eigenspace.
+For $\lambda=5 + i$, the first equation of $(A-\lambda I)x=0$ is
+\[(2 - i)x_1+(-5)x_2=0.\]
+The second equation is dependent on this one because the coefficient determinant is zero. Set $x_1=-5s$ and $x_2=(-2 + i)s$, where $s\in\C$. Every solution has that form, since the coefficient of $x_2$ in the first equation is nonzero. Thus
+\[E_{5 + i}=\Span_{\C}\left\{\begin{bmatrix}-5\\-2 + i\end{bmatrix}\right\}.\]
+Substitution gives $Av=\lambda v$ exactly, and $v\ne0$, so this is a one-vector basis of the one-dimensional complex eigenspace.
+
+
+\exercise{5.5.7}{Rotation angle and positive scale}
+The matrix has the canonical entries $a=\sqrt{3}$ and $b=1$ in the real rotation-scaling form. Hence the eigenvalues are
+\[\lambda=a\pm bi=\sqrt{3}\pm(1)i.\]
+The positive scale factor is
+\[r=\sqrt{a^2+b^2}=2.\]
+To determine the angle without a quadrant error, require both $\cos\varphi=a/r=\frac{\sqrt{3}}{2}$ and $\sin\varphi=b/r=\frac{1}{2}$. In the requested interval these give
+\[\varphi=\frac{\pi}{6}.\]
+The sign of this angle gives the direction of rotation. Substitution in the rotation matrix recovers all four original entries, checking both its quadrant and scale.
+
+\exercise{5.5.8}{Rotation angle and positive scale}
+The matrix has the canonical entries $a=3$ and $b=- 3 \sqrt{3}$ in the real rotation-scaling form. Hence the eigenvalues are
+\[\lambda=a\pm bi=3\pm(- 3 \sqrt{3})i.\]
+The positive scale factor is
+\[r=\sqrt{a^2+b^2}=6.\]
+To determine the angle without a quadrant error, require both $\cos\varphi=a/r=\frac{1}{2}$ and $\sin\varphi=b/r=- \frac{\sqrt{3}}{2}$. In the requested interval these give
+\[\varphi=- \frac{\pi}{3}.\]
+The sign of this angle gives the direction of rotation. Substitution in the rotation matrix recovers all four original entries, checking both its quadrant and scale.
+
+\exercise{5.5.9}{Rotation angle and positive scale}
+The matrix has the canonical entries $a=0$ and $b=-2$ in the real rotation-scaling form. Hence the eigenvalues are
+\[\lambda=a\pm bi=0\pm(-2)i.\]
+The positive scale factor is
+\[r=\sqrt{a^2+b^2}=2.\]
+To determine the angle without a quadrant error, require both $\cos\varphi=a/r=0$ and $\sin\varphi=b/r=-1$. In the requested interval these give
+\[\varphi=- \frac{\pi}{2}.\]
+The sign of this angle gives the direction of rotation. Substitution in the rotation matrix recovers all four original entries, checking both its quadrant and scale.
+
+\exercise{5.5.10}{Rotation angle and positive scale}
+The matrix has the canonical entries $a=0$ and $b=- \frac{1}{2}$ in the real rotation-scaling form. Hence the eigenvalues are
+\[\lambda=a\pm bi=0\pm(- \frac{1}{2})i.\]
+The positive scale factor is
+\[r=\sqrt{a^2+b^2}=\frac{1}{2}.\]
+To determine the angle without a quadrant error, require both $\cos\varphi=a/r=0$ and $\sin\varphi=b/r=-1$. In the requested interval these give
+\[\varphi=- \frac{\pi}{2}.\]
+The sign of this angle gives the direction of rotation. Substitution in the rotation matrix recovers all four original entries, checking both its quadrant and scale.
+
+\exercise{5.5.11}{Rotation angle and positive scale}
+The matrix has the canonical entries $a=- \sqrt{3}$ and $b=-1$ in the real rotation-scaling form. Hence the eigenvalues are
+\[\lambda=a\pm bi=- \sqrt{3}\pm(-1)i.\]
+The positive scale factor is
+\[r=\sqrt{a^2+b^2}=2.\]
+To determine the angle without a quadrant error, require both $\cos\varphi=a/r=- \frac{\sqrt{3}}{2}$ and $\sin\varphi=b/r=- \frac{1}{2}$. In the requested interval these give
+\[\varphi=- \frac{5 \pi}{6}.\]
+The sign of this angle gives the direction of rotation. Substitution in the rotation matrix recovers all four original entries, checking both its quadrant and scale.
+
+\exercise{5.5.12}{Rotation angle and positive scale}
+The matrix has the canonical entries $a=3$ and $b=\sqrt{3}$ in the real rotation-scaling form. Hence the eigenvalues are
+\[\lambda=a\pm bi=3\pm(\sqrt{3})i.\]
+The positive scale factor is
+\[r=\sqrt{a^2+b^2}=2 \sqrt{3}.\]
+To determine the angle without a quadrant error, require both $\cos\varphi=a/r=\frac{\sqrt{3}}{2}$ and $\sin\varphi=b/r=\frac{1}{2}$. In the requested interval these give
+\[\varphi=\frac{\pi}{6}.\]
+The sign of this angle gives the direction of rotation. Substitution in the rotation matrix recovers all four original entries, checking both its quadrant and scale.
+
+\exercise{5.5.13}{A real rotation-scaling block in a new basis}
+\goal Find a real change of basis for
+\[A=\begin{bmatrix}1&-2\\1&3\end{bmatrix}.\]
+The characteristic roots are $2\pm(1)i$. Choose the root $\lambda=a-bi=2 - i$ with $b=1>0$. Solving its first homogeneous equation as above gives the eigenvector
+\[v=\begin{bmatrix}-2\\1 - i\end{bmatrix}=u+iw,\qquad u=\begin{bmatrix}-2\\1\end{bmatrix},\quad w=\begin{bmatrix}0\\-1\end{bmatrix}.\]
+Equate real and imaginary parts in $A(u+iw)=(a-bi)(u+iw)$. This yields $Au=au+bw$ and $Aw=-bu+aw$, so in the ordered real basis $(u,w)$ the matrix is $C$. Consequently take
+\[P=\begin{bmatrix}-2&0\\1&-1\end{bmatrix},\qquad C=\begin{bmatrix}2&-1\\1&2\end{bmatrix}.\]
+Here $\det P=2\ne0$. Direct exact multiplication verifies $AP=PC$, which, after multiplying by $P^{-1}$, gives the required $A=PCP^{-1}$.
+
+
+\exercise{5.5.14}{A real rotation-scaling block in a new basis}
+\goal Find a real change of basis for
+\[A=\begin{bmatrix}3&-3\\1&1\end{bmatrix}.\]
+The characteristic roots are $2\pm(\sqrt{2})i$. Choose the root $\lambda=a-bi=2 - \sqrt{2} i$ with $b=\sqrt{2}>0$. Solving its first homogeneous equation as above gives the eigenvector
+\[v=\begin{bmatrix}-3\\-1 - \sqrt{2} i\end{bmatrix}=u+iw,\qquad u=\begin{bmatrix}-3\\-1\end{bmatrix},\quad w=\begin{bmatrix}0\\- \sqrt{2}\end{bmatrix}.\]
+Equate real and imaginary parts in $A(u+iw)=(a-bi)(u+iw)$. This yields $Au=au+bw$ and $Aw=-bu+aw$, so in the ordered real basis $(u,w)$ the matrix is $C$. Consequently take
+\[P=\begin{bmatrix}-3&0\\-1&- \sqrt{2}\end{bmatrix},\qquad C=\begin{bmatrix}2&- \sqrt{2}\\\sqrt{2}&2\end{bmatrix}.\]
+Here $\det P=3 \sqrt{2}\ne0$. Direct exact multiplication verifies $AP=PC$, which, after multiplying by $P^{-1}$, gives the required $A=PCP^{-1}$.
+
+
+\exercise{5.5.15}{A real rotation-scaling block in a new basis}
+\goal Find a real change of basis for
+\[A=\begin{bmatrix}0&5\\-2&2\end{bmatrix}.\]
+The characteristic roots are $1\pm(3)i$. Choose the root $\lambda=a-bi=1 - 3 i$ with $b=3>0$. Solving its first homogeneous equation as above gives the eigenvector
+\[v=\begin{bmatrix}5\\1 - 3 i\end{bmatrix}=u+iw,\qquad u=\begin{bmatrix}5\\1\end{bmatrix},\quad w=\begin{bmatrix}0\\-3\end{bmatrix}.\]
+Equate real and imaginary parts in $A(u+iw)=(a-bi)(u+iw)$. This yields $Au=au+bw$ and $Aw=-bu+aw$, so in the ordered real basis $(u,w)$ the matrix is $C$. Consequently take
+\[P=\begin{bmatrix}5&0\\1&-3\end{bmatrix},\qquad C=\begin{bmatrix}1&-3\\3&1\end{bmatrix}.\]
+Here $\det P=-15\ne0$. Direct exact multiplication verifies $AP=PC$, which, after multiplying by $P^{-1}$, gives the required $A=PCP^{-1}$.
+
+
+\exercise{5.5.16}{A real rotation-scaling block in a new basis}
+\goal Find a real change of basis for
+\[A=\begin{bmatrix}4&-2\\1&6\end{bmatrix}.\]
+The characteristic roots are $5\pm(1)i$. Choose the root $\lambda=a-bi=5 - i$ with $b=1>0$. Solving its first homogeneous equation as above gives the eigenvector
+\[v=\begin{bmatrix}-2\\1 - i\end{bmatrix}=u+iw,\qquad u=\begin{bmatrix}-2\\1\end{bmatrix},\quad w=\begin{bmatrix}0\\-1\end{bmatrix}.\]
+Equate real and imaginary parts in $A(u+iw)=(a-bi)(u+iw)$. This yields $Au=au+bw$ and $Aw=-bu+aw$, so in the ordered real basis $(u,w)$ the matrix is $C$. Consequently take
+\[P=\begin{bmatrix}-2&0\\1&-1\end{bmatrix},\qquad C=\begin{bmatrix}5&-1\\1&5\end{bmatrix}.\]
+Here $\det P=2\ne0$. Direct exact multiplication verifies $AP=PC$, which, after multiplying by $P^{-1}$, gives the required $A=PCP^{-1}$.
+
+
+\exercise{5.5.17}{A real rotation-scaling block in a new basis}
+\goal Find a real change of basis for
+\[A=\begin{bmatrix}-11&-4\\20&5\end{bmatrix}.\]
+The characteristic roots are $-3\pm(4)i$. Choose the root $\lambda=a-bi=-3 - 4 i$ with $b=4>0$. Solving its first homogeneous equation as above gives the eigenvector
+\[v=\begin{bmatrix}-4\\8 - 4 i\end{bmatrix}=u+iw,\qquad u=\begin{bmatrix}-4\\8\end{bmatrix},\quad w=\begin{bmatrix}0\\-4\end{bmatrix}.\]
+Equate real and imaginary parts in $A(u+iw)=(a-bi)(u+iw)$. This yields $Au=au+bw$ and $Aw=-bu+aw$, so in the ordered real basis $(u,w)$ the matrix is $C$. Consequently take
+\[P=\begin{bmatrix}-4&0\\8&-4\end{bmatrix},\qquad C=\begin{bmatrix}-3&-4\\4&-3\end{bmatrix}.\]
+Here $\det P=16\ne0$. Direct exact multiplication verifies $AP=PC$, which, after multiplying by $P^{-1}$, gives the required $A=PCP^{-1}$.
+
+
+\exercise{5.5.18}{A real rotation-scaling block in a new basis}
+\goal Find a real change of basis for
+\[A=\begin{bmatrix}3&-5\\2&5\end{bmatrix}.\]
+The characteristic roots are $4\pm(3)i$. Choose the root $\lambda=a-bi=4 - 3 i$ with $b=3>0$. Solving its first homogeneous equation as above gives the eigenvector
+\[v=\begin{bmatrix}-5\\1 - 3 i\end{bmatrix}=u+iw,\qquad u=\begin{bmatrix}-5\\1\end{bmatrix},\quad w=\begin{bmatrix}0\\-3\end{bmatrix}.\]
+Equate real and imaginary parts in $A(u+iw)=(a-bi)(u+iw)$. This yields $Au=au+bw$ and $Aw=-bu+aw$, so in the ordered real basis $(u,w)$ the matrix is $C$. Consequently take
+\[P=\begin{bmatrix}-5&0\\1&-3\end{bmatrix},\qquad C=\begin{bmatrix}4&-3\\3&4\end{bmatrix}.\]
+Here $\det P=15\ne0$. Direct exact multiplication verifies $AP=PC$, which, after multiplying by $P^{-1}$, gives the required $A=PCP^{-1}$.
+
+
+\exercise{5.5.19}{A real rotation-scaling block in a new basis}
+\goal Find a real change of basis for
+\[A=\begin{bmatrix}\frac{38}{25}&- \frac{7}{10}\\\frac{14}{25}&\frac{2}{5}\end{bmatrix}.\]
+The characteristic roots are $\frac{24}{25}\pm(\frac{7}{25})i$. Choose the root $\lambda=a-bi=\frac{24}{25} - \frac{7 i}{25}$ with $b=\frac{7}{25}>0$. Solving its first homogeneous equation as above gives the eigenvector
+\[v=\begin{bmatrix}- \frac{7}{10}\\- \frac{14}{25} - \frac{7 i}{25}\end{bmatrix}=u+iw,\qquad u=\begin{bmatrix}- \frac{7}{10}\\- \frac{14}{25}\end{bmatrix},\quad w=\begin{bmatrix}0\\- \frac{7}{25}\end{bmatrix}.\]
+Equate real and imaginary parts in $A(u+iw)=(a-bi)(u+iw)$. This yields $Au=au+bw$ and $Aw=-bu+aw$, so in the ordered real basis $(u,w)$ the matrix is $C$. Consequently take
+\[P=\begin{bmatrix}- \frac{7}{10}&0\\- \frac{14}{25}&- \frac{7}{25}\end{bmatrix},\qquad C=\begin{bmatrix}\frac{24}{25}&- \frac{7}{25}\\\frac{7}{25}&\frac{24}{25}\end{bmatrix}.\]
+Here $\det P=\frac{49}{250}\ne0$. Direct exact multiplication verifies $AP=PC$, which, after multiplying by $P^{-1}$, gives the required $A=PCP^{-1}$.
+All decimals in the question were treated as exact terminating rationals, so these entries are exact, not rounded numerical eigenpairs.
+
+\exercise{5.5.20}{A real rotation-scaling block in a new basis}
+\goal Find a real change of basis for
+\[A=\begin{bmatrix}-3&-8\\4&5\end{bmatrix}.\]
+The characteristic roots are $1\pm(4)i$. Choose the root $\lambda=a-bi=1 - 4 i$ with $b=4>0$. Solving its first homogeneous equation as above gives the eigenvector
+\[v=\begin{bmatrix}-8\\4 - 4 i\end{bmatrix}=u+iw,\qquad u=\begin{bmatrix}-8\\4\end{bmatrix},\quad w=\begin{bmatrix}0\\-4\end{bmatrix}.\]
+Equate real and imaginary parts in $A(u+iw)=(a-bi)(u+iw)$. This yields $Au=au+bw$ and $Aw=-bu+aw$, so in the ordered real basis $(u,w)$ the matrix is $C$. Consequently take
+\[P=\begin{bmatrix}-8&0\\4&-4\end{bmatrix},\qquad C=\begin{bmatrix}1&-4\\4&1\end{bmatrix}.\]
+Here $\det P=32\ne0$. Direct exact multiplication verifies $AP=PC$, which, after multiplying by $P^{-1}$, gives the required $A=PCP^{-1}$.
+
+
+\exercise{5.5.21}{Conjugation and real invariant directions}
+The first equation in Example 2 is $(-0.3+0.6i)x_1-0.6x_2=0$. Solve it for the second component:
+\[
+x_2=\frac{-0.3+0.6i}{0.6}x_1=(-1/2+i)x_1.
+\]
+Taking $x_1=2$ gives $y=(2,-1+2i)^T$, as claimed. The original vector was $v_1=(-2-4i,5)^T$. With $c=(-1+2i)/5$, direct multiplication gives
+\[
+c(-2-4i)=2,\qquad c\cdot5=-1+2i.
+\]
+Thus $y=cv_1$, with $c\ne0$. They span the same complex eigenspace; different choices of a free parameter do not produce different eigenspace directions.
+
+\exercise{5.5.22}{Conjugation and real invariant directions}
+Suppose $Ax=\lambda x$ with $x\ne0$ and choose a nonzero complex scalar $\mu$. Complex linearity gives $A(\mu x)=\mu Ax=\mu\lambda x=\lambda(\mu x)$. Also $\mu x\ne0$, because multiplying a zero result by $1/\mu$ would imply $x=0$. Thus $\mu x$ is an eigenvector for the same eigenvalue. Both its eigenvector equation and nonzero status are required.
+
+\exercise{5.5.23}{Conjugation and real invariant directions}
+Write $x^*=\overline{x}^{T}$ and $q=x^*Ax$, a $1\times1$ scalar. Here is the complete chain with the reasons for all five transitions:
+\begin{align*}
+\overline q
+&=\overline{\overline{x}^{T}Ax}\\
+&=x^T\overline A\,\overline x
+&&\text{(a): conjugation distributes over products;}\\
+&=x^TA\overline x
+&&\text{(b): $A$ has real entries;}\\
+&=(x^TA\overline x)^T
+&&\text{(c): a scalar equals its transpose;}\\
+&=\overline{x}^{T}A^Tx
+&&\text{(d): transpose reverses product order;}\\
+&=\overline{x}^{T}Ax=q
+&&\text{(e): $A^T=A$.}
+\end{align*}
+A complex number equals its conjugate exactly when its imaginary part is zero, so $q$ is real. Conjugation does not reverse product order in (a); transposition does in (d).
+
+\exercise{5.5.24}{Conjugation and real invariant directions}
+\step{Prove the eigenvalue is real without assuming a spectral theorem.}
+Let $x\ne0$ and $Ax=\lambda x$. Multiply on the left by $x^*=\overline{x}^{T}$:
+\[
+x^*Ax=\lambda x^*x,\qquad
+x^*x=\sum_{j=1}^n|x_j|^2>0.
+\]
+The numerator is real by Exercise 23, so
+$\lambda=(x^*Ax)/(x^*x)$ is a real number.
+\step{Separate the real and imaginary components, checking nonzero status.}
+Write $x=u+iv$ with real $u,v$. Since $A$ and $\lambda$ are real, equating parts gives $Au=\lambda u$ and $Av=\lambda v$. At least one of $u,v$ is nonzero because $x\ne0$; every nonzero one is therefore a real eigenvector.
+\answer{The eigenvalue is real, and $\operatorname{Re}x$ is an eigenvector \emph{if it is nonzero}. The printed unconditional claim about the real part needs this qualification: for $A=I_2$ and $x=(i,0)^T$, the real part is zero and is not an eigenvector. If the real part vanishes, the nonzero imaginary part supplies a real eigenvector instead; multiplying $x$ by $-i$ makes that vector its real part.}
+
+\exercise{5.5.25}{Conjugation and real invariant directions}
+Write $x=u+iv$ with $u=\operatorname{Re}x$ and $v=\operatorname{Im}x$. A real matrix times a real vector is real, and linearity gives $Ax=A(u+iv)=Au+iAv$. Uniqueness of the real and imaginary parts of each component therefore yields
+\[
+\operatorname{Re}(Ax)=A\operatorname{Re}x,
+\qquad \operatorname{Im}(Ax)=A\operatorname{Im}x.
+\]
+The real-entry hypothesis matters: a matrix containing $i$ could mix the real and imaginary parts.
+
+\exercise{5.5.26}{Conjugation and real invariant directions}
+\step{(a) Expand the eigenvector equation before separating parts.}
+Let $v=u+iw$, with $u,w$ real, and use the given $\lambda=a-bi$:
+\[
+A(u+iw)=(a-bi)(u+iw)=(au+bw)+i(aw-bu).
+\]
+Since $A$ is real, comparison gives $Au=au+bw$ and $Aw=-bu+aw$, the required identities.
+\step{(b) Match the two columns of the matrix products.}
+With $P=[u\ w]$ and $C=\left[\begin{smallmatrix}a&-b\\b&a\end{smallmatrix}\right]$,
+\[
+AP=[Au\ Aw]=[au+bw\ -bu+aw]=PC.
+\]
+For completeness, $u,w$ are independent when $b\ne0$: if $v$ were a complex scalar multiple of one real vector, the eigenvector equation would force that nonzero real vector to be mapped by the real matrix to a nonreal scalar multiple of itself, impossible. Thus $P$ is invertible, which is the additional fact needed to pass from $AP=PC$ to $A=PCP^{-1}$.
+
+\exercise{5.5.27}{Two real invariant planes from complex eigenpairs}
+\goal Produce an exact real block factorization of
+\[A=\begin{bmatrix}26&33&23&20\\-6&-8&-1&-13\\-14&-19&-16&3\\-20&-20&-20&-14\end{bmatrix}.\]
+The characteristic polynomial factors as $\left(t^{2} + 4 t + 29\right) \left(t^{2} + 8 t + 116\right)$. An exact eigenspace computation gives the following eigenvectors for one root in each conjugate pair:
+\[\lambda=-2 - 5 i,\qquad v=\begin{bmatrix}-1 - i\\i\\1\\0\end{bmatrix}.\]
+\[\lambda=-4 - 10 i,\qquad v=\begin{bmatrix}-1 + i\\- 2 i\\2 i\\2\end{bmatrix}.\]
+For each pair choose the root with negative imaginary part. Write its eigenvector as $u+iw$, then put $u,w$ into two adjacent columns of $P$. The identities in Exercise 26 supply the corresponding $2\times2$ block of $C$. This gives
+\[P=\begin{bmatrix}-1&-1&-1&1\\0&1&0&-2\\1&0&0&2\\0&0&2&0\end{bmatrix}.\]
+\[C=\begin{bmatrix}-2&-5&0&0\\5&-2&0&0\\0&0&-4&-10\\0&0&10&-4\end{bmatrix}.\]
+The exact determinant is $\det P=2\ne0$, and multiplying the displayed matrices gives $AP=PC$ with zero residual in every entry. Therefore $A=PCP^{-1}$.
+The calculation can be reproduced with exact SymPy arithmetic: factor \texttt{A.charpoly().as\_expr()}, then for each selected root \texttt{lam} compute \texttt{(A-lam*eye(4)).nullspace()}. Extract componentwise real and imaginary parts for the two columns. Multiplying those columns by a common nonzero real scalar does not alter the block identity, which is why fractional vectors may be cleared to integers.
+
+\exercise{5.5.28}{Two real invariant planes from complex eigenpairs}
+\goal Produce an exact real block factorization of
+\[A=\begin{bmatrix}7&11&20&17\\-20&-40&-86&-74\\0&-5&-10&-10\\10&28&60&53\end{bmatrix}.\]
+The characteristic polynomial factors as $\left(t^{2} - 6 t + 10\right) \left(t^{2} - 4 t + 29\right)$. An exact eigenspace computation gives the following eigenvectors for one root in each conjugate pair:
+\[\lambda=3 - i,\qquad v=\begin{bmatrix}-2\\2 i\\-3 - i\\4\end{bmatrix}.\]
+\[\lambda=2 - 5 i,\qquad v=\begin{bmatrix}1 - i\\-4\\0\\2\end{bmatrix}.\]
+For each pair choose the root with negative imaginary part. Write its eigenvector as $u+iw$, then put $u,w$ into two adjacent columns of $P$. The identities in Exercise 26 supply the corresponding $2\times2$ block of $C$. This gives
+\[P=\begin{bmatrix}-2&0&1&-1\\0&2&-4&0\\-3&-1&0&0\\4&0&2&0\end{bmatrix}.\]
+\[C=\begin{bmatrix}3&-1&0&0\\1&3&0&0\\0&0&2&-5\\0&0&5&2\end{bmatrix}.\]
+The exact determinant is $\det P=-4\ne0$, and multiplying the displayed matrices gives $AP=PC$ with zero residual in every entry. Therefore $A=PCP^{-1}$.
+The calculation can be reproduced with exact SymPy arithmetic: factor \texttt{A.charpoly().as\_expr()}, then for each selected root \texttt{lam} compute \texttt{(A-lam*eye(4)).nullspace()}. Extract componentwise real and imaginary parts for the two columns. Multiplying those columns by a common nonzero real scalar does not alter the block identity, which is why fractional vectors may be cleared to integers.

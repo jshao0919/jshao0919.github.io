@@ -1,0 +1,457 @@
+\section{Linearly independent sets; bases}
+A basis for $H$ must consist of vectors \emph{in} $H$, span exactly $H$,
+and be linearly independent. Spanning a larger space is not enough.
+Independence means that the only zero combination has every coefficient
+zero. Removing a generator already in the span of the others does not
+change the span.
+
+For a matrix, row operations preserve the solutions of its homogeneous
+system and all linear relations between columns. Consequently the pivot
+indices in RREF identify which \emph{original} columns form a basis for
+the column space. Reduced columns themselves need not belong to the original
+column space. In the numerical work below, columns are denoted $v_j$ in
+their printed order; a displayed RREF and the explicit column relations
+provide checkable elimination and spanning certificates.
+
+\practice{4.3.P1}{A basis must have the right ambient space}
+The two vectors are not scalar multiples: the first would require
+multiplier $-2$, but then its second entry would be $4$, not $7$.
+They are independent, but two vectors cannot span $\R^3$ because a
+$3\times2$ coefficient matrix cannot have a pivot in every row.
+Nor can they be a basis of $\R^2$: they have three coordinates and
+are not elements of that space.
+\answer{They are a basis for their two-dimensional span in $\R^3$,
+not for $\R^3$ or $\R^2$.}
+
+\practice{4.3.P2}{Remove redundant spanning vectors}
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rrrr}1&6&2&-4\\-3&2&-2&-8\\4&-1&3&9\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrr}1&0&\frac{4}{5}&2\\0&1&\frac{1}{5}&-1\\0&0&0&0\end{array}\right].\]
+The pivot columns are 1, 2. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}1\\-3\\4\end{array}\right],\left[\begin{array}{r}6\\2\\-1\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. To see explicitly why they span all the original generators, read each nonpivot column from the reduced matrix:
+\[\begin{aligned}v_{3}&=(\frac{4}{5})v_{1}+(\frac{1}{5})v_{2}\\v_{4}&=(2)v_{1}+(-1)v_{2}\end{aligned}\]
+Row operations preserve these linear relations, so the displayed relations hold for the original columns too. The column span consequently has dimension $2$.
+
+
+\practice{4.3.P3}{Spanning every vector of a line is not enough}
+Neither $e_1=(1,0,0)^T$ nor $e_2=(0,1,0)^T$ lies in
+$H=\{(s,s,0)^T:s\in\R\}$, since their first two coordinates differ.
+Their span is the entire $xy$-plane, which is larger than $H$.
+Thus they cannot be a basis of $H$, despite the valid expression
+$(s,s,0)^T=se_1+se_2$. A basis of $H$ is instead
+$\{(1,1,0)^T\}$: it is nonzero and its multiples are exactly $H$.
+\answer{No. Membership in $H$ and equality of the span with $H$ are missing.}
+
+\exercise{4.3.1}{Identify a basis using original pivot columns}
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rrr}1&1&1\\0&1&1\\0&0&1\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrr}1&0&0\\0&1&0\\0&0&1\end{array}\right].\]
+The pivot columns are 1, 2, 3. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}1\\0\\0\end{array}\right],\left[\begin{array}{r}1\\1\\0\end{array}\right],\left[\begin{array}{r}1\\1\\1\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. There are no remaining generators to express: every original column is included. The column span consequently has dimension $3$.
+\answer{The set is a basis for $\R^3$: it is independent and spans.}
+
+\exercise{4.3.2}{Identify a basis using original pivot columns}
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rrr}1&0&0\\1&0&1\\0&0&1\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrr}1&0&0\\0&0&1\\0&0&0\end{array}\right].\]
+The pivot columns are 1, 3. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}1\\1\\0\end{array}\right],\left[\begin{array}{r}0\\1\\1\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. To see explicitly why they span all the original generators, read each nonpivot column from the reduced matrix:
+\[\begin{aligned}v_{2}&=0\end{aligned}\]
+Row operations preserve these linear relations, so the displayed relations hold for the original columns too. The column span consequently has dimension $2$.
+\answer{The set is not a basis for $\R^3$. It is dependent and does not span $\R^3$.}
+
+\exercise{4.3.3}{Identify a basis using original pivot columns}
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rrr}1&3&-2\\0&1&-1\\-3&-4&1\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrr}1&0&1\\0&1&-1\\0&0&0\end{array}\right].\]
+The pivot columns are 1, 2. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}1\\0\\-3\end{array}\right],\left[\begin{array}{r}3\\1\\-4\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. To see explicitly why they span all the original generators, read each nonpivot column from the reduced matrix:
+\[\begin{aligned}v_{3}&=(1)v_{1}+(-1)v_{2}\end{aligned}\]
+Row operations preserve these linear relations, so the displayed relations hold for the original columns too. The column span consequently has dimension $2$.
+\answer{The set is not a basis for $\R^3$. It is dependent and does not span $\R^3$.}
+
+\exercise{4.3.4}{Identify a basis using original pivot columns}
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rrr}2&2&-8\\-1&-3&5\\1&2&4\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrr}1&0&0\\0&1&0\\0&0&1\end{array}\right].\]
+The pivot columns are 1, 2, 3. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}2\\-1\\1\end{array}\right],\left[\begin{array}{r}2\\-3\\2\end{array}\right],\left[\begin{array}{r}-8\\5\\4\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. There are no remaining generators to express: every original column is included. The column span consequently has dimension $3$.
+\answer{The set is a basis for $\R^3$: it is independent and spans.}
+
+\exercise{4.3.5}{Identify a basis using original pivot columns}
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rrrr}3&-3&0&0\\-3&7&0&-3\\0&0&0&5\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrr}1&0&0&0\\0&1&0&0\\0&0&0&1\end{array}\right].\]
+The pivot columns are 1, 2, 4. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}3\\-3\\0\end{array}\right],\left[\begin{array}{r}-3\\7\\0\end{array}\right],\left[\begin{array}{r}0\\-3\\5\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. To see explicitly why they span all the original generators, read each nonpivot column from the reduced matrix:
+\[\begin{aligned}v_{3}&=0\end{aligned}\]
+Row operations preserve these linear relations, so the displayed relations hold for the original columns too. The column span consequently has dimension $3$.
+\answer{The set is not a basis for $\R^3$. It is dependent and spans $\R^3$.}
+
+\exercise{4.3.6}{Identify a basis using original pivot columns}
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rr}1&-4\\2&3\\-4&6\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rr}1&0\\0&1\\0&0\end{array}\right].\]
+The pivot columns are 1, 2. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}1\\2\\-4\end{array}\right],\left[\begin{array}{r}-4\\3\\6\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. There are no remaining generators to express: every original column is included. The column span consequently has dimension $2$.
+\answer{The set is not a basis for $\R^3$. It is independent and does not span $\R^3$.}
+
+\exercise{4.3.7}{Identify a basis using original pivot columns}
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rr}-2&6\\3&-1\\0&5\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rr}1&0\\0&1\\0&0\end{array}\right].\]
+The pivot columns are 1, 2. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}-2\\3\\0\end{array}\right],\left[\begin{array}{r}6\\-1\\5\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. There are no remaining generators to express: every original column is included. The column span consequently has dimension $2$.
+\answer{The set is not a basis for $\R^3$. It is independent and does not span $\R^3$.}
+
+\exercise{4.3.8}{Identify a basis using original pivot columns}
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rrrr}1&0&2&0\\-2&3&-1&0\\3&-1&5&-1\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrr}1&0&2&0\\0&1&1&0\\0&0&0&1\end{array}\right].\]
+The pivot columns are 1, 2, 4. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}1\\-2\\3\end{array}\right],\left[\begin{array}{r}0\\3\\-1\end{array}\right],\left[\begin{array}{r}0\\0\\-1\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. To see explicitly why they span all the original generators, read each nonpivot column from the reduced matrix:
+\[\begin{aligned}v_{3}&=(2)v_{1}+(1)v_{2}\end{aligned}\]
+Row operations preserve these linear relations, so the displayed relations hold for the original columns too. The column span consequently has dimension $3$.
+\answer{The set is not a basis for $\R^3$. It is dependent and spans $\R^3$.}
+
+\exercise{4.3.9}{A null-space basis from one free variable}
+\goal Solve the homogeneous system and turn its free-variable parameters into basis vectors.
+\[A=\left[\begin{array}{rrrr}1&0&-2&-2\\0&1&1&4\\3&-1&-7&3\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrr}1&0&-2&0\\0&1&1&0\\0&0&0&1\end{array}\right].\]
+The free variable columns are 3. The pivot equations are
+\[\begin{aligned}x_{1}&=2 x_{3}\\x_{2}&=- x_{3}\\x_{4}&=0\end{aligned}\]
+Set one free variable to $1$ and the other free variables to $0$, in turn. This gives
+\[\mathcal B=\left\{\left[\begin{array}{r}2\\-1\\1\\0\end{array}\right]\right\}.\]
+Every homogeneous solution is a linear combination of these vectors, with its free-variable values as coefficients. Conversely substituting each displayed vector into $Ax$ gives zero. They are independent because each has a different free coordinate equal to $1$, with the other free coordinates zero. Thus they satisfy both parts of the basis definition.
+
+\exercise{4.3.10}{A null-space basis in five coordinates}
+\goal Solve the homogeneous system and turn its free-variable parameters into basis vectors.
+\[A=\left[\begin{array}{rrrrr}1&1&-2&1&5\\0&1&0&-1&-2\\0&0&-8&0&16\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrrr}1&0&0&2&3\\0&1&0&-1&-2\\0&0&1&0&-2\end{array}\right].\]
+The free variable columns are 4, 5. The pivot equations are
+\[\begin{aligned}x_{1}&=- 2 x_{4} - 3 x_{5}\\x_{2}&=x_{4} + 2 x_{5}\\x_{3}&=2 x_{5}\end{aligned}\]
+Set one free variable to $1$ and the other free variables to $0$, in turn. This gives
+\[\mathcal B=\left\{\left[\begin{array}{r}-2\\1\\0\\1\\0\end{array}\right],\left[\begin{array}{r}-3\\2\\2\\0\\1\end{array}\right]\right\}.\]
+Every homogeneous solution is a linear combination of these vectors, with its free-variable values as coefficients. Conversely substituting each displayed vector into $Ax$ gives zero. They are independent because each has a different free coordinate equal to $1$, with the other free coordinates zero. Thus they satisfy both parts of the basis definition.
+
+\exercise{4.3.11}{A basis for a plane}
+Solve the single homogeneous equation for $x$: $x=3y-2z$.
+Then
+\[
+(x,y,z)^T=y(3,1,0)^T+z(-2,0,1)^T.
+\]
+Every vector in the plane has this form. The displayed vectors lie in
+the plane, and a zero combination has second coordinate $y=0$ and third
+coordinate $z=0$. Thus they are independent and span precisely the plane.
+\answer{$\{(3,1,0)^T,(-2,0,1)^T\}$ is a basis.}
+
+\exercise{4.3.12}{A basis for a line}
+The line equation $y=-3x$ means that every vector is
+$(x,-3x)^T=x(1,-3)^T$. The vector $(1,-3)^T$ is nonzero, so the
+one-element set containing it is independent. Its multiples are exactly
+the line, so it spans the required space.
+\answer{$\{(1,-3)^T\}$ is a basis.}
+
+\exercise{4.3.13}{Null space and original column space}
+\step{Null space: use the row-equivalent matrix.}
+\goal Solve the homogeneous system and turn its free-variable parameters into basis vectors.
+\[A=\left[\begin{array}{rrrr}-2&4&-2&-4\\2&-6&-3&1\\-3&8&2&-3\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrr}1&0&6&5\\0&1&\frac{5}{2}&\frac{3}{2}\\0&0&0&0\end{array}\right].\]
+The free variable columns are 3, 4. The pivot equations are
+\[\begin{aligned}x_{1}&=- 6 x_{3} - 5 x_{4}\\x_{2}&=- \frac{5 x_{3}}{2} - \frac{3 x_{4}}{2}\end{aligned}\]
+Set one free variable to $1$ and the other free variables to $0$, in turn. This gives
+\[\mathcal B=\left\{\left[\begin{array}{r}-6\\- \frac{5}{2}\\1\\0\end{array}\right],\left[\begin{array}{r}-5\\- \frac{3}{2}\\0\\1\end{array}\right]\right\}.\]
+Every homogeneous solution is a linear combination of these vectors, with its free-variable values as coefficients. Conversely substituting each displayed vector into $Ax$ gives zero. They are independent because each has a different free coordinate equal to $1$, with the other free coordinates zero. Thus they satisfy both parts of the basis definition.\step{Column space: return to the original matrix.}
+The pivot indices are 1 and 2, so a column-space basis is $\{(-2,2,-3)^T,(4,-6,8)^T\}$. Do not take columns of the echelon matrix instead: row operations need not preserve the actual column space.
+
+\exercise{4.3.14}{Two different spaces from one reduction}
+\step{Null space: solve the homogeneous equations.}
+\goal Solve the homogeneous system and turn its free-variable parameters into basis vectors.
+\[A=\left[\begin{array}{rrrrr}1&2&3&-4&8\\1&2&0&2&8\\2&4&-3&10&9\\3&6&0&6&9\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrrr}1&2&0&2&0\\0&0&1&-2&0\\0&0&0&0&1\\0&0&0&0&0\end{array}\right].\]
+The free variable columns are 2, 4. The pivot equations are
+\[\begin{aligned}x_{1}&=- 2 x_{2} - 2 x_{4}\\x_{3}&=2 x_{4}\\x_{5}&=0\end{aligned}\]
+Set one free variable to $1$ and the other free variables to $0$, in turn. This gives
+\[\mathcal B=\left\{\left[\begin{array}{r}-2\\1\\0\\0\\0\end{array}\right],\left[\begin{array}{r}-2\\0\\2\\1\\0\end{array}\right]\right\}.\]
+Every homogeneous solution is a linear combination of these vectors, with its free-variable values as coefficients. Conversely substituting each displayed vector into $Ax$ gives zero. They are independent because each has a different free coordinate equal to $1$, with the other free coordinates zero. Thus they satisfy both parts of the basis definition.\step{Column space: retain the original pivot columns.}
+The pivot indices are 1,3,5. Thus a basis for $\Col A$ is\[\left\{\left[\begin{array}{r}1\\1\\2\\3\end{array}\right],\left[\begin{array}{r}3\\0\\-3\\0\end{array}\right],\left[\begin{array}{r}8\\8\\9\\9\end{array}\right]\right\}.\]
+
+\exercise{4.3.15}{Identify a basis using original pivot columns}
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rrrrr}1&0&2&2&3\\0&1&-2&-1&-1\\-2&2&-8&10&-6\\3&3&0&3&9\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrrr}1&0&2&0&0\\0&1&-2&0&0\\0&0&0&1&0\\0&0&0&0&1\end{array}\right].\]
+The pivot columns are 1, 2, 4, 5. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}1\\0\\-2\\3\end{array}\right],\left[\begin{array}{r}0\\1\\2\\3\end{array}\right],\left[\begin{array}{r}2\\-1\\10\\3\end{array}\right],\left[\begin{array}{r}3\\-1\\-6\\9\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. To see explicitly why they span all the original generators, read each nonpivot column from the reduced matrix:
+\[\begin{aligned}v_{3}&=(2)v_{1}+(-2)v_{2}\end{aligned}\]
+Row operations preserve these linear relations, so the displayed relations hold for the original columns too. The column span consequently has dimension $4$.
+
+
+\exercise{4.3.16}{Identify a basis using original pivot columns}
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rrrrr}1&-2&3&5&2\\0&0&-1&-3&-1\\0&0&1&3&1\\1&2&-1&-4&0\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrrr}1&0&0&- \frac{5}{2}&0\\0&1&0&\frac{3}{4}&\frac{1}{2}\\0&0&1&3&1\\0&0&0&0&0\end{array}\right].\]
+The pivot columns are 1, 2, 3. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}1\\0\\0\\1\end{array}\right],\left[\begin{array}{r}-2\\0\\0\\2\end{array}\right],\left[\begin{array}{r}3\\-1\\1\\-1\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. To see explicitly why they span all the original generators, read each nonpivot column from the reduced matrix:
+\[\begin{aligned}v_{4}&=(- \frac{5}{2})v_{1}+(\frac{3}{4})v_{2}+(3)v_{3}\\v_{5}&=(\frac{1}{2})v_{2}+(1)v_{3}\end{aligned}\]
+Row operations preserve these linear relations, so the displayed relations hold for the original columns too. The column span consequently has dimension $3$.
+
+
+\exercise{4.3.17}{Identify a basis using original pivot columns}
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rrrrr}2&4&-2&8&-8\\0&0&-4&4&4\\-4&2&0&8&0\\-6&-4&1&-3&0\\0&4&-7&15&1\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrrr}1&0&0&-1&0\\0&1&0&2&0\\0&0&1&-1&0\\0&0&0&0&1\\0&0&0&0&0\end{array}\right].\]
+The pivot columns are 1, 2, 3, 5. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}2\\0\\-4\\-6\\0\end{array}\right],\left[\begin{array}{r}4\\0\\2\\-4\\4\end{array}\right],\left[\begin{array}{r}-2\\-4\\0\\1\\-7\end{array}\right],\left[\begin{array}{r}-8\\4\\0\\0\\1\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. To see explicitly why they span all the original generators, read each nonpivot column from the reduced matrix:
+\[\begin{aligned}v_{4}&=(-1)v_{1}+(2)v_{2}+(-1)v_{3}\end{aligned}\]
+Row operations preserve these linear relations, so the displayed relations hold for the original columns too. The column span consequently has dimension $4$.
+
+
+\exercise{4.3.18}{Identify a basis using original pivot columns}
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rrrrr}-3&3&0&6&-6\\2&0&2&-2&3\\6&-9&-4&-14&0\\0&0&0&0&-1\\-7&6&-1&13&0\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrrr}1&0&0&0&0\\0&1&0&2&0\\0&0&1&-1&0\\0&0&0&0&1\\0&0&0&0&0\end{array}\right].\]
+The pivot columns are 1, 2, 3, 5. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}-3\\2\\6\\0\\-7\end{array}\right],\left[\begin{array}{r}3\\0\\-9\\0\\6\end{array}\right],\left[\begin{array}{r}0\\2\\-4\\0\\-1\end{array}\right],\left[\begin{array}{r}-6\\3\\0\\-1\\0\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. To see explicitly why they span all the original generators, read each nonpivot column from the reduced matrix:
+\[\begin{aligned}v_{4}&=(2)v_{2}+(-1)v_{3}\end{aligned}\]
+Row operations preserve these linear relations, so the displayed relations hold for the original columns too. The column span consequently has dimension $4$.
+
+
+\exercise{4.3.19}{Delete a generator using a known relation}
+The supplied relation gives $v_3=(4/3)v_1+(5/3)v_2$.
+Therefore every combination of all three vectors is a combination of
+$v_1,v_2$, so those two still span $H$. They are not scalar multiples:
+if $v_2=cv_1$, the first coordinate gives $c=1/4$, but the second
+would be $-3/4$ rather than $9$. Thus they are independent.
+\answer{$\{(4,-3,7)^T,(1,9,-2)^T\}$ is a basis for $H$.}
+
+\exercise{4.3.20}{Another known dependence relation}
+Rearrange $2v_1-v_2-v_3=0$ as $v_3=2v_1-v_2$.
+The third generator is redundant, so $H=\Span\{v_1,v_2\}$.
+If $v_2=cv_1$, the first coordinate gives $c=4/3$, while the
+second coordinate would require $3=(4/3)4=16/3$, a contradiction.
+Hence the two retained vectors are independent.
+\answer{$\{(3,4,-2,-5)^T,(4,3,2,4)^T\}$ is a basis for $H$.}
+
+\exercise{4.3.21}{Basis definitions and row operations}
+\begin{enumerate}[label=(\alph*)]
+\item False. A singleton $\{v\}$ is independent whenever $v\ne0$,
+because $cv=0$ then forces $c=0$; only the zero singleton is dependent.
+\item False. Spanning is only one requirement. The set $\{e_1,2e_1\}$
+spans a line but is dependent and hence is not a basis.
+\item True. An invertible square matrix has a pivot in every row and
+column, so its columns both span $\R^n$ and are independent.
+\item False. One can append redundant vectors to a spanning set.
+A basis is a \emph{minimal} spanning set, equivalently a maximal
+independent set, not a largest spanning set.
+\item False. If $A$ is replaced by an elementary row-equivalent matrix
+$EA$, the relations $Ac=0$ and $EAc=0$ are equivalent because $E$ is
+invertible. Thus precisely the same coefficient relations remain.
+\end{enumerate}
+
+\exercise{4.3.22}{Minimal spanning and maximal independence}
+\begin{enumerate}[label=(\alph*)]
+\item False. $\{e_1\}$ is independent in $\R^2$ but does not span it.
+\item True. Repeatedly delete a vector expressible in terms of the
+others. Each deletion preserves the span, and finiteness ensures the
+process stops at an independent spanning subset, hence a basis.
+\item True, with ``as large as possible'' meaning that no further vector
+of the space can be added while preserving independence. If an independent
+set did not span, a vector outside its span could be adjoined without
+creating dependence. Thus a maximal independent set spans and is a basis.
+\item False. The usual free-variable construction always gives independent
+vectors: in their free-coordinate positions they have distinct unit entries.
+\item False. Use pivot columns of $A$, not of its row-reduced matrix.
+For example $A=(1,1)^T$ reduces to $B=(1,0)^T$; their column spaces
+are different lines.
+\end{enumerate}
+
+\exercise{4.3.23}{Four spanning vectors in four dimensions}
+Put the four spanning vectors into a $4\times4$ matrix $A$.
+Because they span $\R^4$, its echelon form has a pivot in every row.
+There are four rows, hence four pivots; all four columns are pivot
+columns. Therefore $Ac=0$ has no free variable and only the zero
+solution. The columns are independent as well as spanning.
+\answer{The four vectors form a basis for $\R^4$.}
+
+\exercise{4.3.24}{An independent square family}
+The $n$ independent columns of their $n\times n$ matrix give a pivot
+in every column. Hence there are $n$ pivots, one in each row too.
+A pivot in every row means the columns span $\R^n$. They were already
+independent, so they satisfy both basis requirements.
+\answer{$\{v_1,\ldots,v_n\}$ is a basis for $\R^n$.}
+
+\exercise{4.3.25}{A proposed basis outside the subspace}
+A basis of $H$ must be a subset of $H$. Here $v_1=(1,0,1)^T$
+and $v_3=(0,1,0)^T$ have unequal second and third coordinates,
+so neither belongs to $H$. The supplied expansion does indeed express
+every $(s,t,t)^T$ using the three vectors, but it does not show that
+their span is contained in $H$. Their span is larger: the three vectors
+are actually independent and span $\R^3$.
+A correct basis of $H$ is $\{(1,0,0)^T,(0,1,1)^T\}$, since
+$(s,t,t)^T=s(1,0,0)^T+t(0,1,1)^T$ uniquely.
+\answer{No. Unique representation of the vectors of $H$ does not repair
+the failure of the proposed basis vectors to lie in $H$.}
+
+\exercise{4.3.26}{A trigonometric spanning set}
+Use the identity $\sin2t=2\sin t\cos t$. It shows the third function
+is half the second, so $\sin t$ and $\sin2t$ span the same subspace
+as all three. If $a\sin t+b\sin2t=0$ for every $t$, evaluate at
+$t=\pi/2$ to obtain $a=0$, then at $t=\pi/4$ to obtain $b=0$.
+Thus the two retained functions are independent.
+\answer{$\{\sin t,\sin2t\}$ is a basis of the specified function space.}
+
+\exercise{4.3.27}{The mass--spring vibration space}
+Exercise 4.1.19 gives all displacements as
+$y(t)=c_1\cos(\omega t)+c_2\sin(\omega t)$, with fixed physical
+frequency $\omega>0$. This already proves spanning by the two displayed
+functions. If $a\cos(\omega t)+b\sin(\omega t)=0$ identically,
+$t=0$ gives $a=0$, and $t=\pi/(2\omega)$ gives $b=0$.
+\answer{$\{\cos(\omega t),\sin(\omega t)\}$ is a basis for the
+vibration space. If a nonphysical zero frequency were allowed, the
+sine function would vanish and the space would instead have basis $\{1\}$.}
+
+\exercise{4.3.28}{A critically damped circuit space}
+The given description $v(t)=e^{-bt}(c_1+c_2t)$ means
+$H=\Span\{e^{-bt},te^{-bt}\}$. To check independence, suppose
+$a e^{-bt}+c t e^{-bt}=0$ for every $t$. Since $e^{-bt}>0$,
+division gives $a+ct=0$ identically. At $t=0$ we get $a=0$;
+at $t=1$ we then get $c=0$.
+\answer{$\{e^{-bt},te^{-bt}\}$ is a basis for the critically damped
+circuit's solution space $H$.}
+
+\exercise{4.3.29}{Too few vectors to span}
+Place the $k<n$ vectors into an $n\times k$ matrix. At most $k$
+pivots are possible, so at least one of the $n$ rows has no pivot.
+By the spanning criterion of Section 1.4, the columns cannot span
+$\R^n$. A basis must span the whole space.
+\answer{A set with fewer than $n$ vectors cannot be a basis of $\R^n$.}
+
+\exercise{4.3.30}{Too many vectors to be independent}
+There are $k>n$ columns but only $n$ rows. The homogeneous system
+with these columns therefore has at least one free variable, so it has
+a nonzero coefficient solution. This is a nontrivial dependence relation
+among the $k$ vectors. A basis must be independent.
+\answer{A set with more than $n$ vectors cannot be a basis of $\R^n$.}
+
+\exercise{4.3.31}{Dependence survives a linear map}
+Dependence provides scalars $c_1,\ldots,c_p$, not all zero, such that
+$\sum_j c_jv_j=0$. Apply the linear map $T$:
+\[
+\sum_j c_jT(v_j)=T\left(\sum_j c_jv_j\right)=T(0)=0.
+\]
+The coefficients have not changed, so they are still not all zero.
+This is a nontrivial dependence relation for the image vectors.
+Taking the contrapositive, independent images force the original vectors
+to be independent.
+\answer{Linear maps preserve dependence, although they can turn an
+independent family into a dependent one.}
+
+\exercise{4.3.32}{Injectivity reflects dependence}
+A dependence relation among the images has the form
+$\sum_j c_jT(v_j)=0$ with not all $c_j$ zero. By linearity,
+\[
+T\left(\sum_jc_jv_j\right)=0=T(0).
+\]
+Injectivity says equal images have equal inputs, so
+$\sum_jc_jv_j=0$. The same nonzero coefficient list proves original
+dependence. The contrapositive states that an injective linear map
+carries an independent family to an independent image family.
+\answer{Injectivity prevents a nonzero input combination from being
+collapsed to zero.}
+
+\exercise{4.3.33}{Independence of two quadratic polynomials}
+Suppose $a(1+t^2)+b(1-t^2)=0$ as a polynomial identity.
+Its constant coefficient is $a+b$, and its $t^2$ coefficient is $a-b$.
+Both must be zero, so addition and subtraction give $a=b=0$.
+The polynomials belong to $\mathcal P_3$ because their degrees are at
+most three, even though their actual degree is only two.
+\answer{Yes, the two polynomials are linearly independent in $\mathcal P_3$;
+they do not form a basis of that larger space.}
+
+\exercise{4.3.34}{A polynomial dependence by inspection}
+The identity $(1+t)+(1-t)-2=0$ gives $p_1+p_2-p_3=0$.
+Thus $p_3$ is redundant. To check the remaining pair, a zero
+combination $a(1+t)+b(1-t)=0$ has constant coefficient $a+b=0$
+and linear coefficient $a-b=0$, so $a=b=0$.
+\answer{$\{1+t,1-t\}$ is a basis of the specified span, and the
+displayed relation proves the original three-function set dependent.}
+
+\exercise{4.3.35}{Construct a four-vector family with a two-vector basis}
+Set $v_1=u_1$, $v_2=u_1+u_2$, $v_3=u_2$, and
+$v_4=u_1-u_2$. Every $v_j$ lies in $\Span\{u_1,u_2\}$, and
+$v_1=u_1,v_3=u_2$ already generate that space. Since a subset of
+an independent set is independent, $\{u_1,u_2\}$ is independent.
+\answer{These four choices give $\{v_1,v_3\}=\{u_1,u_2\}$ as a basis
+of their common span. The additional $u_3,u_4$ need not be used.}
+
+\exercise{4.3.36}{Bases of two spaces and their sum}
+\step{Find a basis for $H$.}
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rrr}1&0&3\\2&2&4\\0&-1&1\\-1&1&-4\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrr}1&0&3\\0&1&-1\\0&0&0\\0&0&0\end{array}\right].\]
+The pivot columns are 1, 2. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}1\\2\\0\\-1\end{array}\right],\left[\begin{array}{r}0\\2\\-1\\1\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. To see explicitly why they span all the original generators, read each nonpivot column from the reduced matrix:
+\[\begin{aligned}v_{3}&=(3)v_{1}+(-1)v_{2}\end{aligned}\]
+Row operations preserve these linear relations, so the displayed relations hold for the original columns too. The column span consequently has dimension $2$.
+\step{Find a basis for $K$.}
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rrr}-2&2&-1\\-2&3&4\\-1&2&6\\3&-6&-2\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrr}1&0&0\\0&1&0\\0&0&1\\0&0&0\end{array}\right].\]
+The pivot columns are 1, 2, 3. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}-2\\-2\\-1\\3\end{array}\right],\left[\begin{array}{r}2\\3\\2\\-6\end{array}\right],\left[\begin{array}{r}-1\\4\\6\\-2\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. There are no remaining generators to express: every original column is included. The column span consequently has dimension $3$.
+\step{Find a basis for their sum.}
+The sum $H+K$ consists exactly of combinations of all six generators. Use the concatenated matrix, numbering its columns $1,\ldots,6$ in the order $u_1,u_2,u_3,v_1,v_2,v_3$.
+\step{Put the generators in columns and locate the pivots.}
+\[A=\left[\begin{array}{rrrrrr}1&0&3&-2&2&-1\\2&2&4&-2&3&4\\0&-1&1&-1&2&6\\-1&1&-4&3&-6&-2\end{array}\right]\ \longrightarrow\ \left[\begin{array}{rrrrrr}1&0&3&-2&0&0\\0&1&-1&1&0&0\\0&0&0&0&1&0\\0&0&0&0&0&1\end{array}\right].\]
+The pivot columns are 1, 2, 5, 6. Thus a basis for the column span consists of the corresponding \emph{original} columns:
+\[\mathcal B=\left\{\left[\begin{array}{r}1\\2\\0\\-1\end{array}\right],\left[\begin{array}{r}0\\2\\-1\\1\end{array}\right],\left[\begin{array}{r}2\\3\\2\\-6\end{array}\right],\left[\begin{array}{r}-1\\4\\6\\-2\end{array}\right]\right\}.\]
+\step{Check both properties required of a basis.}
+If a combination of these pivot columns is zero, applying the row operations produces a combination of distinct standard coordinate columns equal to zero. Each coefficient must therefore vanish. This proves independence. To see explicitly why they span all the original generators, read each nonpivot column from the reduced matrix:
+\[\begin{aligned}v_{3}&=(3)v_{1}+(-1)v_{2}\\v_{4}&=(-2)v_{1}+(1)v_{2}\end{aligned}\]
+Row operations preserve these linear relations, so the displayed relations hold for the original columns too. The column span consequently has dimension $4$.
+
+
+\exercise{4.3.37}{Four independent functions by exact evaluations}
+Assume $c_1t+c_2\sin t+c_3\cos2t+c_4\sin t\cos t=0$
+for every real $t$. Evaluating at the exact inputs $0,\pi,\pi/2,\pi/4$
+gives, successively,
+\[
+\begin{aligned}
+c_3&=0,\\
+\pi c_1+c_3&=0,\\
+(\pi/2)c_1+c_2-c_3&=0,\\
+(\pi/4)c_1+(\sqrt2/2)c_2+(1/2)c_4&=0.
+\end{aligned}
+\]
+The first equation gives $c_3=0$, the second $c_1=0$, the third
+$c_2=0$, and the last $c_4=0$. All divisions are by nonzero
+constants. Thus the only identical zero combination is trivial.
+\answer{The four functions are linearly independent. Exact evaluation
+points avoid confusing small numerical roundoff with an actual zero.}
+
+\exercise{4.3.38}{Seven cosine powers are independent}
+Suppose $c_0+c_1\cos t+\cdots+c_6\cos^6t=0$ for every real $t$.
+Choose seven exact inputs $t_j=\arccos r_j$, where
+\[
+(r_1,\ldots,r_7)=(-1,-2/3,-1/3,0,1/3,2/3,1).
+\]
+Each is allowed since $r_j\in[-1,1]$. Their evaluation equations are
+$\sum_{k=0}^6 c_kr_j^k=0$ for $j=1,\ldots,7$.
+This is the $7\times7$ system whose $j$th row is
+$[1,r_j,r_j^2,\ldots,r_j^6]$. Its RREF is $I_7$; equivalently,
+the polynomial $q(r)=\sum_{k=0}^6c_kr^k$ has seven distinct roots
+but degree at most six, so it must be identically zero. All $c_k$
+therefore vanish.
+\answer{$\{1,\cos t,\ldots,\cos^6t\}$ is an independent family. The
+seven evaluations are a finite exact certificate, as requested.}

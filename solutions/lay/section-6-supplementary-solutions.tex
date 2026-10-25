@@ -1,0 +1,320 @@
+\section{Chapter 6 supplementary exercises}
+For real vectors, $u\cdot v=u^Tv$ and $\|u\|=\sqrt{u^Tu}$.
+Orthogonal means perpendicular; orthonormal additionally requires unit length.
+The orthogonal decomposition $x=p+z$, with $p\in W$ and $z\in W^\perp$,
+has $p=\operatorname{proj}_W x$. It yields the Pythagorean identity
+$\|x\|^2=\|p\|^2+\|z\|^2$.
+A least-squares solution is an \emph{input} $\widehat x$ minimizing
+$\|b-Ax\|$; the corresponding closest \emph{output} is $A\widehat x$.
+These two vectors can even have different numbers of coordinates.
+
+\exercise{6.S.1}{Nineteen true--false statements about orthogonality}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} The zero vector has length zero. All lengths
+are nonnegative; only nonzero vectors have strictly positive length.
+\item \textbf{True.} $\|-v\|=|-1|\|v\|=\|v\|$.
+\item \textbf{True.} This is the Euclidean distance definition.
+\item \textbf{False.} The rule is $\|rv\|=|r|\|v\|$.
+A negative $r$ and nonzero $v$ disprove the stated formula.
+\item \textbf{False.} The zero vector is orthogonal to every vector,
+but a set containing zero is dependent. Two \emph{nonzero} orthogonal
+vectors are independent.
+\item \textbf{True.} $x\cdot(u-v)=x\cdot u-x\cdot v=0-0=0$.
+\item \textbf{True.} Expanding gives
+$\|u+v\|^2=\|u\|^2+2u\cdot v+\|v\|^2$; comparison forces $u\cdot v=0$.
+\item \textbf{True.} The analogous expansion with a minus sign gives
+$\|u-v\|^2=\|u\|^2-2u\cdot v+\|v\|^2$, again forcing zero dot product.
+\item \textbf{False.} The projection onto nonzero $u$ is
+$((y\cdot u)/(u\cdot u))u$, a multiple of $u$, not generally of $y$.
+For $y=(1,1)$, $u=(1,0)$ the projection $(1,0)$ is not a multiple of $y$.
+\item \textbf{True.} A projection onto $W$ belongs to $W$ by its
+construction; equality with that projection places $y$ in $W$.
+\item \textbf{True.} The set is the null space of the one-row matrix
+$v^T$ for the fixed vector $v$, so is a subspace. This includes $v=0$,
+when the set is all of $\R^n$.
+\item \textbf{False.} Their intersection is $\{0\}$, not empty.
+If $x$ belongs to both, $x\cdot x=0$, hence $x=0$.
+\item \textbf{True.} For $i\ne j$,
+$(c_iv_i)\cdot(c_jv_j)=c_ic_j(v_i\cdot v_j)=0$.
+Zero coefficients may introduce zero vectors, but pairwise orthogonality still holds.
+\item \textbf{False.} Orthonormal columns give $U^TU=I$.
+For $U=(1,0)^T$, $UU^T=\operatorname{diag}(1,0)\ne I_2$.
+Squareness is needed to infer the reverse identity.
+\item \textbf{False.} Orthogonal columns need not have length one.
+The matrix $2I$ has orthogonal columns but $U^TU=4I\ne I$.
+\item \textbf{True.} Square orthonormal-column $U$ satisfies
+$U^TU=I$, hence $U^{-1}=U^T$ and $UU^T=I$. The latter identity
+says its rows are orthonormal.
+\item \textbf{True.} The projection and its residual are perpendicular,
+so the displayed identity is precisely Pythagoras.
+\item \textbf{False.} The minimizing input is $\widehat x$;
+$A\widehat x$ is the closest vector in $\Col A$. The inequality is valid,
+but it describes the output, not the least-squares solution itself.
+\item \textbf{False.} The normal equations are
+$A^TA\widehat x=A^Tb$. The inverse formula
+$\widehat x=(A^TA)^{-1}A^Tb$ requires independent columns.
+For $A=0$, least-squares solutions exist but $A^TA$ is not invertible.
+\end{enumerate}
+
+\exercise{6.S.2}{Inductively extend Pythagoras}
+For $p=2$, orthonormality makes $c_1v_1$ perpendicular to $c_2v_2$;
+therefore
+$\|c_1v_1+c_2v_2\|^2=c_1^2\|v_1\|^2+c_2^2\|v_2\|^2=c_1^2+c_2^2$.
+Assume the formula holds for $p-1$ terms. Let
+$w=\sum_{i=1}^{p-1}c_iv_i$. Since
+$w\cdot v_p=\sum_{i<p}c_i(v_i\cdot v_p)=0$, Pythagoras gives
+\[
+ \|w+c_pv_p\|^2=\|w\|^2+c_p^2\|v_p\|^2
+ =\sum_{i=1}^{p-1}c_i^2+c_p^2.
+\]
+This completes induction. For real coefficients $c_i^2=|c_i|^2$,
+so the result has exactly the form in the exercise.
+
+\exercise{6.S.3}{Bessel's inequality}
+Let $p=\sum_i(x\cdot v_i)v_i$, the projection of $x$ onto the span
+of the orthonormal vectors. The residual $z=x-p$ is orthogonal to every
+$v_i$, because $z\cdot v_j=x\cdot v_j-(x\cdot v_j)=0$.
+Thus $p\perp z$, and Exercise 2 yields
+\[
+ \|x\|^2=\|p\|^2+\|z\|^2
+ =\sum_i|x\cdot v_i|^2+\|z\|^2
+ \ge\sum_i|x\cdot v_i|^2.
+\]
+Nonnegativity of the residual's squared length is the entire source of the
+inequality. Equality holds precisely when $x$ lies in the given span.
+
+\exercise{6.S.4}{An orthogonal map preserves an orthonormal basis}
+For each pair $i,j$,
+\[
+ (Uv_i)\cdot(Uv_j)=v_i^TU^TUv_j=v_i^Tv_j
+ =\begin{cases}1&i=j,\\0&i\ne j.\end{cases}
+\]
+Thus the $n$ transformed vectors are orthonormal. They are independent:
+a zero combination, dotted with each transformed vector, forces each
+coefficient to vanish. An independent set of $n$ vectors in $\R^n$
+is a basis, proving the full claim.
+
+\exercise{6.S.5}{Preserving all inner products characterizes orthogonality}
+Apply the given identity to $x=e_i$, $y=e_j$.
+The vectors $Ue_i,Ue_j$ are columns $i,j$ of $U$, so their dot product
+is $e_i\cdot e_j$, equal to $1$ for $i=j$ and zero otherwise.
+Hence the columns of $U$ are orthonormal: $U^TU=I$.
+Since $U$ is square, this is exactly the condition that $U$ is orthogonal.
+
+\exercise{6.S.6}{Real eigenvalues of an orthogonal matrix}
+Suppose $Uv=\lambda v$ with $v\ne0$ and real $\lambda$.
+Orthogonal matrices preserve length, giving
+$\|v\|=\|Uv\|=\|\lambda v\|=|\lambda|\|v\|$.
+Divide by $\|v\|>0$ to obtain $|\lambda|=1$.
+For a real number this says $\lambda=1$ or $-1$.
+It does not claim every eigenvalue is real: planar rotations can have
+nonreal eigenvalues of modulus one.
+
+\exercise{6.S.7}{A Householder matrix is orthogonal}
+Put $P=uu^T$ with $u^Tu=1$. Then
+$P^T=P$ and $P^2=u(u^Tu)u^T=P$.
+For $Q=I-2P$, symmetry gives $Q^T=Q$ and multiplication gives
+$Q^2=I-4P+4P^2=I$.
+Consequently $Q^TQ=Q^2=I$, so $Q$ is orthogonal.
+This proves length preservation as well as its being its own inverse.
+
+\exercise{6.S.8}{A length-preserving linear map is orthogonal}
+\step{(a) Recover dot products from lengths.}
+By expansion,
+$2a\cdot b=\|a+b\|^2-\|a\|^2-\|b\|^2$.
+For $a=T(x)$, $b=T(y)$, linearity and length preservation give
+\[
+ 2T(x)\cdot T(y)
+ =\|T(x+y)\|^2-\|T(x)\|^2-\|T(y)\|^2
+ =\|x+y\|^2-\|x\|^2-\|y\|^2=2x\cdot y.
+\]
+In particular perpendicular inputs have perpendicular outputs.
+\step{(b) Apply this to the standard basis.}
+Each $T(e_i)$ has length one, and distinct $T(e_i),T(e_j)$ are
+perpendicular by part (a). These vectors are the columns of the square
+standard matrix, so that matrix has orthonormal columns and is orthogonal.
+
+\exercise{6.S.9}{Best approximation without orthogonalizing the generators}
+Set $A=[u\ v]$. The problem is to minimize $\|z-Ac\|$ for
+$c=(x_1,x_2)^T$. Solve the two normal equations
+\[
+ \begin{bmatrix}u\cdot u&u\cdot v\\u\cdot v&v\cdot v\end{bmatrix}
+ \begin{bmatrix}x_1\\x_2\end{bmatrix}
+ =\begin{bmatrix}u\cdot z\\v\cdot z\end{bmatrix}.
+\]
+Their coefficient matrix is invertible because $u,v$ are independent:
+for nonzero $c$, $c^TA^TAc=\|Ac\|^2>0$.
+The desired closest vector is $x_1u+x_2v$.
+These equations explicitly account for the nonzero cross term $u\cdot v$;
+using the separate orthogonal-projection coefficients would be wrong when
+the generators are not perpendicular.
+
+\exercise{6.S.10}{Scale the data, scale the least-squares solution}
+Independent columns imply $A^TA$ is invertible and the solution is unique.
+Thus replacing $b$ by $cb$ changes the solution to
+\[
+ (A^TA)^{-1}A^T(cb)=c(A^TA)^{-1}A^Tb=c\widehat x.
+\]
+One can also multiply the original normal equations by $c$ and use
+uniqueness. The assertion even holds for $c=0$, though the question only
+requests nonzero scalars.
+
+\exercise{6.S.11}{Fit three parallel inconsistent planes}
+Write $t=x-2y+5z$ and $\mu=(a+b+c)/3$.
+The squared residual is
+\[
+ (t-a)^2+(t-b)^2+(t-c)^2
+ =3(t-\mu)^2+(a-\mu)^2+(b-\mu)^2+(c-\mu)^2.
+\]
+The equality follows by expanding; the mixed terms cancel because
+$(a-\mu)+(b-\mu)+(c-\mu)=0$.
+The last three terms are constant, so the minimum occurs exactly at
+$t=\mu$. Every such $t$ is attainable, for instance by taking $x=t,y=z=0$.
+Therefore all least-squares solutions, and only those, form the plane
+\[
+ \boxed{x-2y+5z=(a+b+c)/3}.
+\]
+The least-squares input is nonunique because this equation leaves two free
+variables, even though the best fitted output is unique.
+
+\exercise{6.S.12}{A Rayleigh quotient as a one-variable least-squares fit}
+Assume the proposed approximate eigenvector $v$ is nonzero.
+Treat $v\lambda=Av$ as a least-squares system with one unknown.
+Its normal equation is
+$(v^Tv)\lambda=v^TAv$.
+Since $v^Tv=\|v\|^2>0$, its unique solution is
+\[
+ \boxed{\widehat\lambda=\frac{v^TAv}{v^Tv}}.
+\]
+This is the Rayleigh quotient. If $Av=\lambda_0v$ exactly, the quotient
+returns $\lambda_0$. For $v=0$ every scalar gives the same zero residual,
+so there would be no meaningful eigenvalue estimate; nonzeroness is essential.
+
+\exercise{6.S.13}{Identify the four fundamental subspaces}
+\begin{enumerate}[label=(\alph*)]
+\item If $u\in\Nul A$, each row $r_i^T$ of $A$ satisfies
+$r_i^Tu=0$. A linear combination of those rows is still perpendicular
+to $u$. Thus every member of $\operatorname{Row}A$ is perpendicular
+to every member of $\Nul A$, proving the stated containment.
+\item If $\rank A=r$, rank--nullity gives $\dim\Nul A=n-r$.
+A subspace of $\R^n$ and its orthogonal complement have dimensions
+adding to $n$, so $\dim(\Nul A)^\perp=r$.
+The row space also has dimension $r$. A contained subspace with the same
+finite dimension must be the whole space, so
+$\operatorname{Row}A=(\Nul A)^\perp$.
+\item Apply this result to $A^T$. Since
+$\operatorname{Row}(A^T)=\Col A$, it gives
+$\Col A=(\Nul A^T)^\perp$, now inside the ambient space $\R^m$.
+\end{enumerate}
+
+\exercise{6.S.14}{The consistency alternative in orthogonal-complement language}
+The system $Ax=b$ is consistent if and only if $b\in\Col A$.
+By Exercise 13(c), this is equivalent to $b\in(\Nul A^T)^\perp$,
+which says $b$ is orthogonal to every solution of $A^Ty=0$.
+This proves both directions of the equivalence. Orthogonality to just
+one selected null vector would not in general be sufficient.
+
+\exercise{6.S.15}{A real triangular Schur factorization gives real eigenvalues}
+The factorization $A=URU^T$ with orthogonal $U$ makes $A$ similar to $R$.
+Similar matrices have the same characteristic polynomial. Since $R$ is
+upper triangular,
+$\det(R-tI)=\prod_{i=1}^n(r_{ii}-t)$.
+Its $n$ roots, counted with multiplicity, are the real diagonal entries
+$r_{ii}$. Hence $A$ has $n$ real eigenvalues counting multiplicities.
+The restriction to a real, genuinely triangular $R$ matters; real Schur
+forms for matrices with nonreal eigenvalues use $2\times2$ blocks instead.
+
+\exercise{6.S.16}{The first step in constructing a real Schur factorization}
+\begin{enumerate}[label=(\alph*)]
+\item Since $Ue_1=u_1$ and $Au_1=\lambda_1u_1$,
+\[
+ (U^TAU)e_1=U^TAu_1=\lambda_1U^Tu_1=\lambda_1e_1.
+\]
+This is precisely the assertion about the first column. Here
+$U^Tu_1=e_1$ follows from the orthonormality of the columns.
+\item The block upper triangular form gives
+\[
+ \det(U^TAU-tI)=(\lambda_1-t)\det(A_1-tI).
+\]
+Similarity makes this equal to $\det(A-tI)$, whose roots, with
+multiplicity, are the listed $\lambda_1,\ldots,\lambda_n$.
+Cancelling the polynomial factor $\lambda_1-t$ leaves the roots
+$\lambda_2,\ldots,\lambda_n$ for $A_1$.
+This argument also handles repeated values of $\lambda_1$: only one copy
+is removed from the multiplicity list.
+\end{enumerate}
+
+\exercise{6.S.17}{Check a condition-number bound for perturbed data}
+Use the Euclidean norm throughout and $\kappa_2(A)$ as the condition number.
+Exact rational solution of the two systems gives
+\[
+ x=(3.94,.49)^T,\qquad \Delta x=(-1.04,1.51)^T.
+\]
+For example $A^{-1}=\begin{bmatrix}-110&310\\160&-450\end{bmatrix}$,
+so multiplying by $b$ and $\Delta b$ verifies both vectors.
+The measured ratios and bound are
+\[
+ \frac{\|\Delta x\|_2}{\|x\|_2}\approx .461796,
+ \quad\frac{\|\Delta b\|_2}{\|b\|_2}\approx .000154792,
+ \quad\kappa_2(A)\approx3362.9997.
+\]
+Their product on the right is about $.520567$, which exceeds $.461796$.
+Thus the asserted inequality holds for this example, despite the large
+relative solution change.
+
+\exercise{6.S.18}{The same perturbation with a different original solution}
+The same inverse and the new right side give
+\[
+ x=(-491.17,713.15)^T,\qquad\Delta x=(-1.04,1.51)^T.
+\]
+The perturbation is unchanged because $A$ and $\Delta b$ are unchanged.
+However the relative ratios use the new original vector:
+\[
+ \frac{\|\Delta x\|_2}{\|x\|_2}\approx .00211738,
+ \qquad\frac{\|\Delta b\|_2}{\|b\|_2}\approx .00211778.
+\]
+Multiplying the latter by $3362.9997$ gives about $7.12211$, much
+larger than $.00211738$. The bound is valid but far from attained.
+A condition number describes worst-case amplification, not the amplification
+of every particular perturbation.
+
+\exercise{6.S.19}{A small change along a relatively harmless direction}
+Exact solution of the two printed systems gives
+\[
+ x=(-8.642,-1730.054,2368.716,-844.866)^T,
+\]
+\[
+ \Delta x=(.000030,.000140,-.000155,.000059)^T.
+\]
+These terminating decimals are exact for the printed decimal data.
+Direct multiplication by the given integer $A$ yields the stated $b$
+and $\Delta b$, respectively, providing an independent check.
+Numerically,
+\[
+ \kappa_2(A)\approx23682.9279,\quad
+ \frac{\|\Delta x\|_2}{\|x\|_2}\approx7.17780\cdot10^{-8},\quad
+ \frac{\|\Delta b\|_2}{\|b\|_2}\approx .000283204.
+\]
+The right-hand bound is approximately $6.70710$, far larger than the
+observed $7.18\cdot10^{-8}$. Therefore the inequality holds.
+The original solution is large, while the particular change in it is tiny.
+
+\exercise{6.S.20}{A perturbation close to worst-case amplification}
+With the new right side and perturbation, exact rational arithmetic gives
+\[
+ x=(2.541,1.460,1.174,-.101)^T,
+ \qquad\Delta x=(-.002322,-.464848,.636450,-.227007)^T.
+\]
+Multiplication checks $Ax=b$ and $A\Delta x=\Delta b$.
+The condition number is the same as in Exercise 19, since $A$ is unchanged.
+The ratios are
+\[
+ \frac{\|\Delta x\|_2}{\|x\|_2}\approx .259665,\qquad
+ \frac{\|\Delta b\|_2}{\|b\|_2}\approx1.09702\cdot10^{-5}.
+\]
+The right-hand bound is $.259806$, slightly larger than $.259665$.
+Thus the inequality holds and is nearly sharp for this choice.
+All four experiments can be reproduced using exact SymPy solves for $x$
+and $\Delta x$, then NumPy's \texttt{linalg.cond(A)} and Euclidean
+vector norms. Matching the norm used for the condition number and the
+relative changes is essential.

@@ -1,0 +1,326 @@
+\section{Applications of linear systems}
+Three modeling ideas organize this section.
+\begin{itemize}
+\item In an exchange economy, column $j$ of the exchange table records
+where sector $j$'s output goes. Each column sums to $1$.
+If $E$ is this table and $p$ lists the values of total outputs,
+equilibrium means $Ep=p$, or $(E-I)p=0$.
+\item In a chemical reaction, conserve each type of atom separately.
+Assign positive unknown coefficients to all compounds; write
+reactant atom counts minus product atom counts equal to zero.
+Choose the smallest positive integer solution.
+\item In a flow network, write incoming flow equals outgoing flow
+at every node. After solving the linear equations, apply the required
+nonnegativity inequalities. A free flow parameter is not automatically
+allowed to take negative values.
+\end{itemize}
+
+\practice{1.6.P1}{Build the exchange table in the stated order}
+Use the order Agriculture, Mining, Manufacturing for both rows and
+columns. The three columns are respectively
+$(.65,.05,.30)^T$, $(.20,.10,.70)^T$, and $(.20,.30,.50)^T$:
+\[E=\begin{bmatrix}.65&.20&.20\\.05&.10&.30\\.30&.70&.50\end{bmatrix}.\]
+For example Agriculture retains $1-.05-.30=.65$, so that value belongs
+in the first entry of the first column. Each displayed column sums to $1$;
+this checks that all output was allocated exactly once.
+
+\practice{1.6.P2}{Use flow inequalities after solving the equations}
+Example 2 gives $x_1=600-x_5$, $x_2=200+x_5$,
+$x_3=400$, $x_4=500-x_5$. Nonnegative $x_5$ and $x_4$ imply
+$0\le x_5\le500$. The remaining two inequalities are then automatic.
+Consequently $100\le x_1\le600$ and $200\le x_2\le700$.
+Both endpoints occur, at $x_5=500$ and $x_5=0$, respectively.
+The two flows vary together: as $x_1$ decreases, $x_2$ increases.
+
+\exercise{1.6.1}{Two-sector equilibrium is a ratio, not a unique price list}
+Use the order Goods, Services. The exchange matrix and equations are
+\[E=\begin{bmatrix}.20&.70\\.80&.30\end{bmatrix},\qquad
+.20p_G+.70p_S=p_G,\quad .80p_G+.30p_S=p_S.\]
+Both equations simplify to $8p_G=7p_S$. Thus
+\[p=t(7,8)^T,\qquad t>0.\]
+For example output values $7$ and $8$ work: Goods spends
+$.20(7)+.70(8)=7$, while Services spends $.80(7)+.30(8)=8$.
+\answer{Any common positive multiple of $(7,8)^T$ is an equilibrium.}
+
+\exercise{1.6.2}{A currency change rescales every output value}
+In the Coal--Electric--Steel order of Example 1, the exact equations are
+\[p_C=.4p_E+.6p_S,\qquad .9p_E=.6p_C+.2p_S.\]
+Insert the first into the second:
+$.9p_E=.24p_E+.56p_S$, so $.66p_E=.56p_S$ and
+$p_E=(28/33)p_S$. Then $p_C=(31/33)p_S$.
+Thus an exact alternative is $(p_C,p_E,p_S)=(62,56,66)$.
+Checking the third row gives $.4(62)+.5(56)+.2(66)=66$.
+The example rounds its decimal answer; these rational ratios avoid that
+rounding error.
+If one dollar is $k>0$ yen, every component is multiplied by $k$.
+Because $E(kp)=kEp=kp$, the exchange proportions and equilibrium
+relations do not change, only the numerical currency units do.
+
+\exercise{1.6.3}{A three-sector exchange economy}
+\step{(a) Place each sector's sales in its column.}
+In the order Fuels and Power, Manufacturing, Services,
+\[E=\begin{bmatrix}.10&.10&.20\\.80&.10&.40\\.10&.80&.40\end{bmatrix}.\]
+The retained amounts are $.10,.10,.40$, respectively. Each column sums to $1$.
+\step{(b) Set the output value equal to the cost of purchased inputs.}
+Writing the values as $f,m,s$, the equations $Ep=p$ are
+\[.10f+.10m+.20s=f,\quad .80f+.10m+.40s=m,
+\quad .10f+.80m+.40s=s.\]
+Multiplying $(I-E)p=0$ by $10$ gives the augmented matrix
+\[\left[\begin{array}{rrr|r}9&-1&-2&0\\-8&9&-4&0\\-1&-8&6&0\end{array}\right].\]
+\step{(c) Set the Services value to 100 and solve exactly.}
+The first equation gives $m=9f-2s$. Insert this in the second:
+$-8f+9(9f-2s)-4s=0$, hence $73f=22s$.
+Thus $f=22s/73$ and $m=52s/73$.
+For $s=100$,
+\[p=(2200/73,5200/73,100)^T
+\approx(30.136986,71.232877,100)^T.\]
+The third equation checks because $-22-8(52)+6(73)=0$ after
+factoring out $s/73$.
+
+\exercise{1.6.4}{An exact four-sector equilibrium}
+\step{(a) Construct the exchange matrix.}
+Use Mining, Lumber, Energy, Transportation in that order:
+\[E=\begin{bmatrix}
+.30&.15&.20&.20\\.10&.15&.15&.10\\
+.60&.50&.45&.50\\0&.20&.20&.20
+\end{bmatrix}.\]
+For instance Mining retains $1-.10-.60=.30$, and the Energy column
+retains $1-.20-.15-.20=.45$.
+\step{(b) Solve $(I-E)p=0$.}
+Multiplying by $20$ avoids decimals. The coefficient matrix is
+\[20(I-E)=\begin{bmatrix}14&-3&-4&-4\\-2&17&-3&-2\\
+-12&-10&11&-10\\0&-4&-4&16\end{bmatrix}.\]
+Its reduced equations are
+\[p_M=\frac{193}{141}p_T,\qquad
+p_L=\frac{118}{141}p_T,\qquad
+p_E=\frac{446}{141}p_T.\]
+For clarity one can obtain these ratios without decimal arithmetic:
+the last equation gives $p_L+p_E=4p_T$. Substituting
+$p_E=4p_T-p_L$ in the second gives $20p_L=2p_M+14p_T$;
+the first gives $14p_M+p_L=20p_T$. Solving these two equations
+gives the displayed ratios.
+Choose $p_T=141$. Then $p=(193,118,446,141)^T$ is positive.
+The rows of $20(I-E)p$ are
+$2702-354-1784-564=0$,
+$-386+2006-1338-282=0$,
+$-2316-1180+4906-1410=0$, and $-472-1784+2256=0$.
+\answer{One exact equilibrium is $(193,118,446,141)^T$; every positive
+common multiple also works.}
+
+\exercise{1.6.5}{Compare the equilibrium before and after a change in trade}
+\step{(a) Build the original table.}
+Use Agriculture, Manufacturing, Services, Transportation:
+\[E=\begin{bmatrix}.20&.35&.10&.20\\.20&.10&.20&.30\\
+.30&.35&.50&.20\\.30&.20&.20&.30\end{bmatrix}.\]
+Each column is the allocation of the sector at its top, including its
+retained share on the diagonal.
+\step{(b) Normalize Transportation to 10.}
+Writing $a,m,s,t$ for the four output values, multiply $(I-E)p=0$
+by $20$. The equations are
+\begin{align*}
+16a-7m-2s-4t&=0,&-4a+18m-4s-6t&=0,\\
+-6a-7m+10s-4t&=0,&-6a-4m-4s+14t&=0.
+\end{align*}
+The second and fourth give $2m+2s=7t-3a$ and
+$-2a+9m-2s=3t$, so $11m=10t-a$.
+The first equation together with $2m+2s=7t-3a$ gives
+$19a-5m=11t$. Substitute $11m=10t-a$ to obtain
+$209a-5(10t-a)=121t$, or $214a=171t$. Therefore
+$a=(171/214)t$, $m=(179/214)t$, and $s=(627/428)t$.
+For $t=10$,
+\[p=(855/107,895/107,3135/214,10)^T
+\approx(7.990654,8.364486,14.649533,10)^T.\]
+\step{(c) Change just the Agriculture column.}
+The new shares from Agriculture are $.20,.10,.40,.30$;
+the other columns stay the same. Thus
+\[\widetilde E=\begin{bmatrix}.20&.35&.10&.20\\.10&.10&.20&.30\\
+.40&.35&.50&.20\\.30&.20&.20&.30\end{bmatrix}.\]
+\step{(d) Solve and compare with the same normalization.}
+The new coefficient matrix is
+\[20(I-\widetilde E)=\begin{bmatrix}
+16&-7&-2&-4\\-2&18&-4&-6\\-8&-7&10&-4\\-6&-4&-4&14
+\end{bmatrix}.\]
+Its reduced equations give $a=(57/73)t$, $m=(56/73)t$,
+and $s=(114/73)t$. For example the last row again gives
+$2m+2s=7t-3a$, and the second becomes $11m=10t-2a$;
+the first still gives $19a-5m=11t$. Substitution now yields
+$209a-5(10t-2a)=121t$, hence $219a=171t$ and
+$a=(57/73)t$, from which the other two ratios follow.
+At $t=10$ the exact solution is
+\[\widetilde p=(570/73,560/73,1140/73,10)^T
+\approx(7.808219,7.671233,15.616438,10)^T.\]
+Direct multiplication verifies both $Ep=p$ and
+$\widetilde E\widetilde p=\widetilde p$.
+With Transportation fixed, Agriculture and Manufacturing decrease
+by about $0.182435$ and $0.693253$, while Services increases by
+about $0.966905$. These are changes in the values of total sector
+outputs under the model's convention, not independently determined
+retail prices of individual products.
+
+\exercise{1.6.6}{Balance aluminum oxide and carbon}
+Let the four coefficients, in the printed order, be $a,b,c,d$.
+Using atom order Al, O, C gives the vector equation
+\[a(2,3,0)^T+b(0,0,1)^T=c(1,0,0)^T+d(0,2,1)^T.\]
+Thus $2a=c$, $3a=2d$, and $b=d$. Choose the smallest positive
+$a$ making all coefficients integral: $a=2$ gives $d=3,b=3,c=4$.
+\answer{$2\mathrm{Al}_2\mathrm O_3+3\mathrm C
+\longrightarrow4\mathrm{Al}+3\mathrm{CO}_2$. The atom totals are
+Al: $4=4$, O: $6=6$, C: $3=3$.}
+
+\exercise{1.6.7}{Count every hydrogen in citric acid}
+Let the coefficients of
+$\mathrm{NaHCO}_3,\mathrm H_3\mathrm C_6\mathrm H_5\mathrm O_7,
+\mathrm{Na}_3\mathrm C_6\mathrm H_5\mathrm O_7,\mathrm H_2\mathrm O,
+\mathrm{CO}_2$ be $a,b,c,d,e$.
+The citric acid molecule has $3+5=8$ hydrogen atoms.
+In atom order Na, H, C, O, the conservation equations are
+\[a=3c,\quad a+8b=5c+2d,\quad a+6b=6c+e,
+\quad3a+7b=7c+d+2e.\]
+This is the coordinate form of the vector equation obtained by
+listing those four atom counts for each compound.
+Set $c=1$, so $a=3$. The hydrogen equation gives $d=4b-1$;
+the carbon equation gives $e=6b-3$. The oxygen equation becomes
+$9+7b=7+(4b-1)+2(6b-3)=16b$, hence $b=1$.
+Thus $d=e=3$.
+\answer{$3\mathrm{NaHCO}_3+\mathrm H_3\mathrm C_6\mathrm H_5\mathrm O_7
+\longrightarrow\mathrm{Na}_3\mathrm C_6\mathrm H_5\mathrm O_7
++3\mathrm H_2\mathrm O+3\mathrm{CO}_2$. Atom totals on both sides
+are Na: $3$, H: $11$, C: $9$, O: $16$.}
+
+\exercise{1.6.8}{Balance limestone neutralization}
+Use coefficients $a,b,c,d,e$ in the printed order, and atom order
+H, O, Ca, C. The vector equation gives
+\[3a=2c,\quad a+3b=c+2e,\quad b=d,\quad b=e.\]
+Substitute $d=e=b$ in the oxygen equation to get $c=a+b$.
+Then $3a=2(a+b)$ gives $a=2b$. The smallest choice $b=1$
+therefore gives $(a,b,c,d,e)=(2,1,3,1,1)$.
+\answer{$2\mathrm H_3\mathrm O+\mathrm{CaCO}_3
+\longrightarrow3\mathrm H_2\mathrm O+\mathrm{Ca}+\mathrm{CO}_2$.
+The H, O, Ca, C totals are respectively $6,5,1,1$ on each side.}
+
+\exercise{1.6.9}{Conserve boron, sulfur, hydrogen, and oxygen}
+With coefficients $a,b,c,d$, the atom-count vector equation yields
+\[2a=c,\qquad3a=d,\qquad2b=3c+2d,\qquad b=3c.\]
+The first, second, and fourth give $c=2a,d=3a,b=6a$.
+The hydrogen equation checks: $2(6a)=3(2a)+2(3a)$.
+Taking $a=1$ gives the primitive integer coefficients.
+\answer{$\mathrm B_2\mathrm S_3+6\mathrm H_2\mathrm O
+\longrightarrow2\mathrm H_3\mathrm{BO}_3+3\mathrm H_2\mathrm S$.
+The atom totals B, S, H, O are $2,3,12,6$.}
+
+\exercise{1.6.10}{Use exact fractions in a six-compound reaction}
+Let the coefficients of the six compounds, in printed order, be
+$a,b,c,d,e,f$. The vector equation in atom order Pb, N, Cr, Mn, O
+has coefficient matrix
+\[\begin{bmatrix}
+1&0&-3&0&0&0\\6&0&0&0&0&-1\\0&1&0&-2&0&0\\
+0&2&0&0&-1&0\\0&8&-4&-3&-2&-1
+\end{bmatrix}\begin{bmatrix}a\\b\\c\\d\\e\\f\end{bmatrix}=0.\]
+The first four rows give $a=3c$, $f=6a=18c$, $b=2d$,
+and $e=2b=4d$. The last row says
+\[8b=4c+3d+2e+f\quad\Longrightarrow\quad16d=22c+11d,
+\quad5d=22c.\]
+To get positive integers choose $c=5$, so $d=22$,
+$a=15,b=44,e=88,f=90$. The entries have common divisor $1$.
+\answer{$15\mathrm{PbN}_6+44\mathrm{CrMn}_2\mathrm O_8
+\longrightarrow5\mathrm{Pb}_3\mathrm O_4+22\mathrm{Cr}_2\mathrm O_3
++88\mathrm{MnO}_2+90\mathrm{NO}$. The oxygen check is
+$44(8)=5(4)+22(3)+88(2)+90=352$. The other rows already check
+each remaining element.}
+
+\exercise{1.6.11}{Balance seven compounds without decimal rounding}
+Use coefficients $a,b,c,d,e,f,g$ for the seven printed compounds.
+Conserve Mn, S, As, Cr, H, O, respectively:
+\begin{align*}
+a&=d,&a+c&=3f,&2b&=e,\\
+10b&=f,&2c&=d+3e+2g,&35b+4c&=4d+12f+g.
+\end{align*}
+These are the coordinates of a single atom-count vector equation.
+The first four give $d=a$, $e=2b$, $f=10b$, $c=30b-a$.
+The hydrogen equation becomes
+$2g=54b-3a$. The oxygen equation becomes
+$g=35b-8a$. Equating the two formulas gives
+\[54b-3a=70b-16a,\qquad13a=16b.\]
+Choose $b=13,a=16$. Then
+$c=374,d=16,e=26,f=130,g=327$.
+\begin{multline*}
+16\mathrm{MnS}+13\mathrm{As}_2\mathrm{Cr}_{10}\mathrm O_{35}
++374\mathrm H_2\mathrm{SO}_4\\
+\longrightarrow16\mathrm{HMnO}_4+26\mathrm{AsH}_3
++130\mathrm{CrS}_3\mathrm O_{12}+327\mathrm H_2\mathrm O.
+\end{multline*}
+Check sulfur: $16+374=390=3(130)$; hydrogen:
+$2(374)=748=16+3(26)+2(327)$; oxygen:
+$35(13)+4(374)=1951=4(16)+12(130)+327$.
+Mn, As, and Cr match by the first equations.
+\answer{The displayed positive integer coefficients balance every atom;
+their common divisor is $1$.}
+
+\exercise{1.6.12}{Use junction equations before imposing nonnegative flow}
+Read the arrows at the three nodes. Node A receives $x_1+x_4$
+and sends $x_2$; node B receives $x_2$ and sends $x_3+100$;
+node C receives $x_3+80$ and sends $x_4$. Thus
+\[x_1+x_4=x_2,\qquad x_2=x_3+100,\qquad x_4=x_3+80.\]
+The last two inserted in the first give $x_1=20$.
+Set $x_3=t$. The general algebraic flow is
+\[(x_1,x_2,x_3,x_4)=(20,100+t,t,80+t).\]
+Nonnegative flows require $t\ge0$; that condition makes every
+other component nonnegative too. Hence $x_4=80+t\ge80$, and
+$t=0$ attains the lower bound.
+\answer{The smallest possible $x_4$ is $80$.}
+
+\exercise{1.6.13}{A five-node network with two independent free flows}
+\step{(a) Record all node balances.}
+Following the arrows in the supplied figure gives
+\begin{align*}
+A:&\quad30+x_2=80+x_1,&E:&\quad60+x_1=20+x_3,\\
+B:&\quad x_3+x_5=x_2+x_4,&C:&\quad100+x_6=40+x_5,\\
+D:&\quad40+x_4=90+x_6.
+\end{align*}
+Let $s=x_1$ and $t=x_6$. The first, second, fourth, and fifth
+balances give
+\[(x_1,x_2,x_3,x_4,x_5,x_6)
+=(s,s+50,s+40,t+50,t+60,t).\]
+The balance at B checks identically:
+$(s+40)+(t+60)=(s+50)+(t+50)$.
+\step{(b) Apply the arrow-direction restrictions.}
+Nonnegative $x_1$ and $x_6$ require $s,t\ge0$, and these inequalities
+make all other flows nonnegative. Their individual minima are therefore
+\[\min x_2=50,\quad\min x_3=40,\quad
+\min x_4=50,\quad\min x_5=60.\]
+They can all be attained at once by taking $s=t=0$.
+
+\exercise{1.6.14}{A road closure specializes a two-parameter traffic pattern}
+\step{(a) Write flow in equals flow out at each intersection.}
+The four balances read
+\[80=x_1+x_5,\quad100+x_1+x_2=x_4,\quad
+x_3=x_2+90,\quad x_4+x_5=x_3+90.\]
+The last is dependent on the first three; total external inflow
+$80+100$ equals total external outflow $90+90$.
+Put $s=x_2$ and $t=x_5$. Then
+\[(x_1,x_2,x_3,x_4,x_5)=(80-t,s,90+s,180+s-t,t).\]
+For the indicated traffic directions require $s\ge0$ and
+$0\le t\le80$; the remaining inequalities then follow.
+\step{(b) Close the road carrying $x_5$.}
+Setting $t=0$ gives
+\[(x_1,x_2,x_3,x_4,x_5)=(80,s,90+s,180+s,0),\qquad s\ge0.\]
+This is the entire feasible family with the road closed, rather than
+one arbitrarily selected flow pattern.
+\step{(c) Minimize $x_4$.}
+The formula $x_4=180+s$ with $s\ge0$ gives the lower bound $180$.
+It is attained when $s=0$.
+\answer{With $x_5=0$, the minimum flow in branch 4 is $180$ cars/minute.}
+
+\exercise{1.6.15}{Circulating flow around a one-way roundabout}
+Read the successive balances around A, B, C, D, E, F:
+\[x_6+60=x_1,\quad x_1=x_2+70,\quad x_2+100=x_3,\]
+\[x_3=x_4+90,\quad x_4+80=x_5,\quad x_5=x_6+80.\]
+Choose $t=x_6$. Working around the circle yields
+\[(x_1,x_2,x_3,x_4,x_5,x_6)
+=(t+60,t-10,t+90,t,t+80,t).\]
+The final equation checks because $(t+80)-t=80$.
+To respect every arrow all six flows must be nonnegative. The
+strongest restriction is $x_2=t-10\ge0$, namely $t\ge10$;
+this also ensures each other component is nonnegative.
+\answer{All feasible flows are the displayed family with $t\ge10$,
+and the smallest possible $x_6$ is $10$.}

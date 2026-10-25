@@ -1,0 +1,531 @@
+\section{Vector equations}
+A vector is an ordered list; its coordinates are added and multiplied by
+scalars coordinate by coordinate. We display vectors as columns unless
+explicitly discussing points. A linear combination $c_1v_1+\cdots+c_kv_k$
+uses scalar weights $c_i$. The span is the \emph{set of all} combinations,
+not merely the finite list of generating vectors.
+
+To test whether $b$ is in a span, put the generators into the columns of
+a matrix and put $b$ in the augmented column. Consistency of that system
+means the needed weights exist. An inconsistent system means $b$ is
+outside the span. Neither the weights nor a solution should be guessed
+from a picture when exact coordinates are supplied.
+
+\practice{1.3.P1}{Commutativity from the coordinate definition}
+Take arbitrary $u=(u_1,\ldots,u_n)$ and $v=(v_1,\ldots,v_n)$.
+Their $i$th sum coordinate is $u_i+v_i$. Real-number commutativity gives
+$u_i+v_i=v_i+u_i$ for each $i$. Thus
+\[
+u+v=(u_1+v_1,\ldots,u_n+v_n)
+=(v_1+u_1,\ldots,v_n+u_n)=v+u.
+\]
+\answer{The vector identity holds because all corresponding coordinates
+are equal, not because the vector symbols can be rearranged without reason.}
+
+\practice{1.3.P2}{Find the height that lies in a span}
+Seek weights $x_1,x_2,x_3$ and reduce
+\[
+\left[\begin{array}{rrr|r}1&5&-3&-4\\-1&-4&1&3\\-2&-7&0&h\end{array}\right].
+\]
+Use $R_2\leftarrow R_2+R_1$ and $R_3\leftarrow R_3+2R_1$:
+\[
+\left[\begin{array}{rrr|r}1&5&-3&-4\\0&1&-2&-1\\0&3&-6&h-8\end{array}\right].
+\]
+Now $R_3\leftarrow R_3-3R_2$ gives $[0\ 0\ 0\mid h-5]$.
+Consequently consistency requires $h=5$. If $h=5$, choose $x_3=0$;
+row 2 gives $x_2=-1$, and row 1 gives $x_1=1$. Indeed
+$v_1-v_2=(-4,3,5)^T$.
+\answer{Exactly $h=5$ works.}
+
+\exercise{1.3.1}{Add vectors and subtract twice a vector}
+Add coordinates in the same positions, and first double $v$ for the
+second expression:
+\[
+u+v=\begin{bmatrix}-1+(-3)\\2+(-1)\end{bmatrix}
+=\begin{bmatrix}-4\\1\end{bmatrix},\qquad
+u-2v=\begin{bmatrix}-1-2(-3)\\2-2(-1)\end{bmatrix}
+=\begin{bmatrix}5\\4\end{bmatrix}.
+\]
+\answer{$u+v=(-4,1)^T$ and $u-2v=(5,4)^T$.}
+
+\exercise{1.3.2}{A second coordinate calculation}
+Coordinatewise addition and scalar multiplication give
+\[
+u+v=\begin{bmatrix}3+2\\2-1\end{bmatrix}
+=\begin{bmatrix}5\\1\end{bmatrix},\qquad
+u-2v=\begin{bmatrix}3-4\\2-2(-1)\end{bmatrix}
+=\begin{bmatrix}-1\\4\end{bmatrix}.
+\]
+\answer{$u+v=(5,1)^T$ and $u-2v=(-1,4)^T$.}
+
+\exercise{1.3.3}{Seven vectors and their parallelogram}
+Compute the coordinates before drawing. Every arrow below begins at the origin and ends at its vector coordinates.
+\[\begin{array}{c|rr}\text{vector}&x&y\\\hline u&-1&2\\v&-3&-1\\-v&3&1\\-2v&6&2\\u+v&-4&1\\u-v&2&3\\u-2v&5&4\end{array}\]
+\begin{center}\setlength{\unitlength}{1mm}\begin{picture}(115,75)%
+\put(3,20){\vector(1,0){105}}\put(40,4){\vector(0,1){61}}\put(107,16){$x$}\put(42,65){$y$}\put(35,15){$0$}%
+{\color{blue}\put(40,20){\vector(-1,2){8}}\put(32,38){\makebox(0,0){\scriptsize$u$}}}%
+{\color{red}\put(40,20){\vector(-3,-1){24}}\put(16,8){\makebox(0,0){\scriptsize$v$}}}%
+{\color{teal}\put(40,20){\vector(3,1){24}}\put(64,24){\makebox(0,0){\scriptsize$-v$}}}%
+{\color{violet}\put(40,20){\vector(6,2){48}}\put(88,38){\makebox(0,0){\scriptsize$-2v$}}}%
+{\color{orange}\put(40,20){\vector(-4,1){32}}\put(6,30){\makebox(0,0){\scriptsize$u+v$}}}%
+{\color{black}\put(40,20){\vector(2,3){16}}\put(56,46){\makebox(0,0){\scriptsize$u-v$}}}%
+{\color{magenta}\put(40,20){\vector(5,4){40}}\put(80,54){\makebox(0,0){\scriptsize$u-2v$}}}%
+\linethickness{0.3pt}\put(32,36){\line(3,1){24}}\put(64,28){\line(-1,2){8}}%
+\end{picture}\end{center}%
+The thin extra sides join $u$ to $u-v$ and $-v$ to $u-v$. They complete the parallelogram with vertices $0,u,u-v,-v$. The coordinate table fixes the exact endpoints even where arrows cross.
+
+\exercise{1.3.4}{A second arrow diagram}
+Compute the coordinates before drawing. Every arrow below begins at the origin and ends at its vector coordinates.
+\[\begin{array}{c|rr}\text{vector}&x&y\\\hline u&3&2\\v&2&-1\\-v&-2&1\\-2v&-4&2\\u+v&5&1\\u-v&1&3\\u-2v&-1&4\end{array}\]
+\begin{center}\setlength{\unitlength}{1mm}\begin{picture}(115,75)%
+\put(3,20){\vector(1,0){105}}\put(40,4){\vector(0,1){61}}\put(107,16){$x$}\put(42,65){$y$}\put(35,15){$0$}%
+{\color{blue}\put(40,20){\vector(3,2){24}}\put(64,38){\makebox(0,0){\scriptsize$u$}}}%
+{\color{red}\put(40,20){\vector(2,-1){16}}\put(56,8){\makebox(0,0){\scriptsize$v$}}}%
+{\color{teal}\put(40,20){\vector(-2,1){16}}\put(24,24){\makebox(0,0){\scriptsize$-v$}}}%
+{\color{violet}\put(40,20){\vector(-4,2){32}}\put(8,38){\makebox(0,0){\scriptsize$-2v$}}}%
+{\color{orange}\put(40,20){\vector(5,1){40}}\put(78,30){\makebox(0,0){\scriptsize$u+v$}}}%
+{\color{black}\put(40,20){\vector(1,3){8}}\put(48,46){\makebox(0,0){\scriptsize$u-v$}}}%
+{\color{magenta}\put(40,20){\vector(-1,4){8}}\put(32,54){\makebox(0,0){\scriptsize$u-2v$}}}%
+\linethickness{0.3pt}\put(64,36){\line(-2,1){16}}\put(24,28){\line(3,2){24}}%
+\end{picture}\end{center}%
+The thin extra sides join $u$ to $u-v$ and $-v$ to $u-v$. They complete the parallelogram with vertices $0,u,u-v,-v$. The coordinate table fixes the exact endpoints even where arrows cross.
+
+\exercise{1.3.5}{Read a vector equation coordinate by coordinate}
+The left side has coordinates $(3x_1+5x_2,-2x_1,8x_1-9x_2)$.
+Two vectors are equal exactly when each corresponding coordinate is equal.
+Thus the equivalent system is
+\[
+3x_1+5x_2=2,\qquad -2x_1=-3,\qquad 8x_1-9x_2=8.
+\]
+\answer{These three scalar equations express precisely the given vector equation.}
+
+\exercise{1.3.6}{Three weights but two coordinate equations}
+Multiply each column by its weight, add the two coordinates separately,
+and compare with the zero vector:
+\[
+3x_1+7x_2-2x_3=0,\qquad -2x_1+3x_2+x_3=0.
+\]
+\answer{The two scalar equations are equivalent to the vector equation;
+there are two equations even though there are three unknown weights.}
+
+\exercise{1.3.7}{Read four vectors on an oblique grid}
+The grid consists of lines parallel to $u$ and lines parallel to $v$.
+Following a line parallel to $u$ changes only the $u$ coefficient;
+following a line parallel to $v$ changes only the $v$ coefficient.
+Use the marked $u,v,-u,-v,-2v,2v$ to fix unit steps. Counting those
+steps, including the halfway position of $c$, gives
+\[
+a=u-2v,\qquad b=2u-2v,\qquad
+c=2u-\frac72v,\qquad d=3u-4v.
+\]
+For example, the line through $a$ parallel to $u$ meets the $v$-axis
+at $-2v$, and moving one $u$ step from there reaches $a$.
+The vectors $u,v$ point in distinct directions, so their two axes are not
+parallel. Through any plane point draw the corresponding two grid lines;
+they give one coefficient along each axis.
+\answer{The displayed combinations describe $a,b,c,d$. Yes, every vector
+in $\R^2$ is a linear combination of these two nonparallel vectors.}
+
+\exercise{1.3.8}{Read four more vectors on the grid}
+Count displacements on the same two oblique axes as in Exercise 7.
+The marked points give
+\[
+w=-u+2v,\qquad x=-2u+2v,\qquad
+y=-2u+\frac72v,\qquad z=-3u+4v.
+\]
+For instance, starting at $2v$ and moving one step in the $-u$
+direction reaches $w$; moving one more step reaches $x$. The halfway
+placement of $y$ in the $v$ direction gives coefficient $7/2$, not $3$
+or $4$. As the two generating directions are nonparallel, their grid
+extends across the whole plane.
+\answer{The four combinations are as displayed, and the span is all of $\R^2$.}
+
+\exercise{1.3.9}{Collect coefficients into three columns}
+Read down the coefficients of each variable, including its zero entry:
+\[
+x_1\begin{bmatrix}0\\4\\-1\end{bmatrix}
++x_2\begin{bmatrix}1\\6\\3\end{bmatrix}
++x_3\begin{bmatrix}5\\-1\\-8\end{bmatrix}
+=\begin{bmatrix}0\\0\\0\end{bmatrix}.
+\]
+The first coordinate reproduces $x_2+5x_3=0$, the second reproduces
+$4x_1+6x_2-x_3=0$, and the third reproduces the last equation.
+Thus no equation or coefficient has been omitted.
+
+\exercise{1.3.10}{Encode a nonhomogeneous system as a vector equation}
+Collect the coefficients down the three equations:
+\[
+x_1\begin{bmatrix}3\\-2\\5\end{bmatrix}
++x_2\begin{bmatrix}-2\\-7\\4\end{bmatrix}
++x_3\begin{bmatrix}4\\5\\-3\end{bmatrix}
+=\begin{bmatrix}3\\1\\2\end{bmatrix}.
+\]
+Equality of each coordinate is exactly the corresponding original scalar
+equation, so the vector equation is equivalent to the system.
+
+\exercise{1.3.11}{A span test with a selected-answer discrepancy}
+\goal Decide whether weights exist, rather than whether $b$ equals one of the columns. Form $[a_1\ a_2\ a_3\mid b]$.
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}1&0&5&2\\-2&1&-6&-1\\0&2&8&6\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(-2)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&5&2\\0&1&4&3\\0&2&8&6\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(2)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&5&2\\0&1&4&3\\0&0&0&0\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+The nonpivot variable is $x_{3}$. Set $x_{3}=t_{1}$, where the parameters range independently over $\R$.
+\[ \begin{cases}x_{1}=2 - 5 t_{1}\\x_{2}=3 - 4 t_{1}\\x_{3}=t_{1}\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{Infinitely many solutions, exactly as parametrized above.}For a concrete combination take $x_3=0$, giving $b=2a_1+3a_2$. Therefore $b$ belongs to the span. The selected-answer entry for Exercise 11 in the supplied PDF says ``No, but the explicit coordinate check $2(1,-2,0)^T+3(0,1,2)^T=(2,-1,6)^T$ shows that entry is inconsistent with the printed data.
+
+\exercise{1.3.12}{A span test with unique weights}
+\goal Decide whether weights exist, rather than whether $b$ equals one of the columns. Form $[a_1\ a_2\ a_3\mid b]$.
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}1&-2&-6&11\\0&3&7&-5\\1&-2&5&9\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(1)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-2&-6&11\\0&3&7&-5\\0&0&11&-2\end{array}\right].\]
+Use $R_{2}\leftarrow(\frac{1}{3})R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-2&-6&11\\0&1&\frac{7}{3}&- \frac{5}{3}\\0&0&11&-2\end{array}\right].\]
+Use $R_{3}\leftarrow(\frac{1}{11})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-2&-6&11\\0&1&\frac{7}{3}&- \frac{5}{3}\\0&0&1&- \frac{2}{11}\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-6)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-2&0&\frac{109}{11}\\0&1&\frac{7}{3}&- \frac{5}{3}\\0&0&1&- \frac{2}{11}\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(\frac{7}{3})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-2&0&\frac{109}{11}\\0&1&0&- \frac{41}{33}\\0&0&1&- \frac{2}{11}\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-2)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&0&\frac{245}{33}\\0&1&0&- \frac{41}{33}\\0&0&1&- \frac{2}{11}\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+Every variable column has a pivot. Thus there are no free variables, and the solution is unique.
+\[ \begin{cases}x_{1}=\frac{245}{33}\\x_{2}=- \frac{41}{33}\\x_{3}=- \frac{2}{11}\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{The displayed values give the unique solution.}Thus $b=(245/33)a_1-(41/33)a_2-(2/11)a_3$, so it is a linear combination.
+
+\exercise{1.3.13}{An inconsistent column-span test}
+\goal Decide whether weights exist, rather than whether $b$ equals one of the columns. Form $[a_1\ a_2\ a_3\mid b]$.
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}1&-4&2&3\\0&3&5&-7\\-2&8&-4&-3\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(-2)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-4&2&3\\0&3&5&-7\\0&0&0&3\end{array}\right].\]
+Use $R_{2}\leftarrow(\frac{1}{3})R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-4&2&3\\0&1&\frac{5}{3}&- \frac{7}{3}\\0&0&0&3\end{array}\right].\]
+Use $R_{3}\leftarrow(\frac{1}{3})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-4&2&3\\0&1&\frac{5}{3}&- \frac{7}{3}\\0&0&0&1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(3)R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-4&2&0\\0&1&\frac{5}{3}&- \frac{7}{3}\\0&0&0&1\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(- \frac{7}{3})R_{3}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&-4&2&0\\0&1&\frac{5}{3}&0\\0&0&0&1\end{array}\right].\]
+Use $R_{1}\leftarrow R_{1}-(-4)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&\frac{26}{3}&0\\0&1&\frac{5}{3}&0\\0&0&0&1\end{array}\right].\]
+\answer{A row with all variable coefficients zero and a nonzero constant asserts $0=1$ after scaling. This is impossible, so the system is inconsistent and its solution set is empty.}There are no weights producing $b$, so it is not a linear combination of the columns.
+
+\exercise{1.3.14}{An explicit combination with one free weight}
+\goal Decide whether weights exist, rather than whether $b$ equals one of the columns. Form $[a_1\ a_2\ a_3\mid b]$.
+\goal Analyze the system encoded by the displayed augmented matrix. The last column contains the constants; all preceding columns contain variable coefficients.
+\idea Move from left to right to make pivots and clear the entries below them. Then clear entries above the pivots. Each operation is reversible, so the equations keep exactly the same solutions.
+\[ \left[\begin{array}{rrr|r}1&0&5&2\\-2&1&-6&-1\\0&2&8&6\end{array}\right].\]
+Use $R_{2}\leftarrow R_{2}-(-2)R_{1}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&5&2\\0&1&4&3\\0&2&8&6\end{array}\right].\]
+Use $R_{3}\leftarrow R_{3}-(2)R_{2}$ to obtain
+\[ \left[\begin{array}{rrr|r}1&0&5&2\\0&1&4&3\\0&0&0&0\end{array}\right].\]
+\step{Read the equations, keeping every free variable.}
+The nonpivot variable is $x_{3}$. Set $x_{3}=t_{1}$, where the parameters range independently over $\R$.
+\[ \begin{cases}x_{1}=2 - 5 t_{1}\\x_{2}=3 - 4 t_{1}\\x_{3}=t_{1}\end{cases}\]
+Substituting these expressions in the original equations makes each left side equal its given constant. This also checks that the parameters are unrestricted.
+\answer{Infinitely many solutions, exactly as parametrized above.}For a concrete combination take $x_3=0$, giving $b=2a_1+3a_2$. Therefore $b$ belongs to the span.
+
+\exercise{1.3.15}{Find the height in a generated plane}
+Write $x_1a_1+x_2a_2=b$ and reduce the augmented matrix:
+\[
+\left[\begin{array}{rr|r}1&-5&3\\3&-8&-5\\-1&2&h\end{array}\right].
+\]
+Use $R_2\leftarrow R_2-3R_1$ and $R_3\leftarrow R_3+R_1$.
+The last two rows become $[0\ 7\mid-14]$ and $[0\ {-3}\mid h+3]$.
+The former gives $x_2=-2$, then the first row gives $x_1=-7$.
+The last row requires $6=h+3$, or $h=3$. Conversely these weights
+then give $-7a_1-2a_2=(3,-5,3)^T$ exactly.
+\answer{$h=3$, and only that height lies in the plane.}
+
+\exercise{1.3.16}{Find a first coordinate in a generated plane}
+From the second coordinate of $x_1v_1+x_2v_2=y$, we immediately get
+$x_2=-3$. The third coordinate is $-2x_1+7x_2=-5$, so
+$-2x_1-21=-5$ and $x_1=-8$. The first coordinate then requires
+$h=x_1-2x_2=-8+6=-2$. Substitution verifies all three coordinates.
+\answer{Exactly $h=-2$ works, with $y=-8v_1-3v_2$.}
+
+\exercise{1.3.17}{Five combinations and their weights}
+Choose five different pairs of weights and compute their coordinates. The choice of weights itself proves membership in the span.
+\[\begin{array}{rr|rrr}c_1&c_2&\multicolumn{3}{c}{c_1v_1+c_2v_2}\\\hline0&0&0&0&0\\1&0&3&1&2\\0&1&-4&0&1\\1&1&-1&1&3\\2&-1&10&2&3\end{array}\]
+\answer{These are five explicit vectors with their generating weights. A sketch is not needed or requested.}
+
+\exercise{1.3.18}{Five combinations of a second generating pair}
+Choose five different pairs of weights and compute their coordinates. The choice of weights itself proves membership in the span.
+\[\begin{array}{rr|rrr}c_1&c_2&\multicolumn{3}{c}{c_1v_1+c_2v_2}\\\hline0&0&0&0&0\\1&0&1&1&-2\\0&1&-2&3&0\\1&1&-1&4&-2\\2&-1&4&-1&-4\end{array}\]
+\answer{These are five explicit vectors with their generating weights. A sketch is not needed or requested.}
+
+\exercise{1.3.19}{Dependent directions generate a line}
+We have $v_2=(3/2)v_1$, since multiplying each coordinate of
+$(8,2,-6)^T$ by $3/2$ gives $(12,3,-9)^T$. Therefore
+$c_1v_1+c_2v_2=(c_1+(3/2)c_2)v_1$. Every combination lies on the
+line through the origin in direction $v_1$, and every point on that
+line occurs by taking $c_2=0$.
+\answer{The span is the line $\{t(8,2,-6)^T:t\in\R\}$, not a plane.}
+
+\exercise{1.3.20}{Two nonparallel vectors generate a plane}
+The vectors $(1,1,-2)^T$ and $(-2,3,0)^T$ are not scalar multiples:
+a multiple of the first with third coordinate zero would have multiplier
+zero and hence be the zero vector. Two nonparallel directions through
+the origin generate a plane. To identify it algebraically, observe that
+$n=(6,4,5)^T$ satisfies $n\cdot v_1=6+4-10=0$ and
+$n\cdot v_2=-12+12=0$. Thus every combination obeys
+$6x+4y+5z=0$.
+Conversely, given a point on this plane, choose $c_1=-z/2$ and
+$c_2=(y-c_1)/3$. Its second and third coordinates match, and the
+plane equation forces the first coordinate to match as well.
+\answer{The span is the plane through the origin with equation
+$6x+4y+5z=0$.}
+
+\exercise{1.3.21}{Express every plane vector using two generators}
+Seek scalars $a,b$ with $a(2,-1)^T+b(2,1)^T=(h,k)^T$.
+The two equations are $2a+2b=h$ and $-a+b=k$.
+The second gives $b=a+k$; substitute this into the first to get
+$4a+2k=h$. Thus
+\[
+a=\frac{h-2k}{4},\qquad b=\frac{h+2k}{4}.
+\]
+These real numbers are defined for every real $h,k$. Their substitution
+gives the desired coordinates exactly.
+\answer{Every $(h,k)^T$ lies in the span, with the displayed weights.}
+
+\exercise{1.3.22}{A nonzero-entry matrix with a proper span}
+Take
+\[
+A=\begin{bmatrix}1&1&1\\1&1&1\\1&1&1\end{bmatrix},\qquad
+b=\begin{bmatrix}1\\0\\0\end{bmatrix}.
+\]
+All entries of $A$ are nonzero. Each linear combination of its columns
+has form $(t,t,t)^T$, where $t$ is the sum of the three weights.
+But $b$ does not have three equal coordinates. Therefore no combination
+can produce $b$.
+\answer{The displayed $A,b$ meet both requirements.}
+
+\exercise{1.3.23}{Vector notation and span definitions}
+\begin{enumerate}[label=(\alph*)]
+\item False. A column vector has shape $2\times1$, whereas the displayed
+row has shape $1\times2$. Changing the orientation requires a transpose;
+the two matrix shapes are not interchangeable.
+\item False. If $(-5,2)$ were a scalar multiple of $(-2,5)$, the first
+coordinate would require multiplier $5/2$, but the second would then be
+$25/2$, not $2$. Thus the two points do not lie on one line through zero.
+\item True. The expression $(1/2)v_1$ is $(1/2)v_1+0v_2$;
+a coefficient may be zero.
+\item True. Coordinatewise expansion of the vector equation gives
+exactly the equations encoded by $[a_1\ a_2\ a_3\mid b]$.
+\item False. If $u=v\ne0$ the span is a line, and if $u=v=0$ it
+is just the origin. A plane requires two independent directions.
+\end{enumerate}
+
+\exercise{1.3.24}{What linear combinations do and do not require}
+\begin{enumerate}[label=(\alph*)]
+\item False. With $u=(1,0)^T,v=(0,1)^T$, the combination
+$u+v=(1,1)^T$ lies on neither generating axis. The span contains
+combinations involving both directions.
+\item True. $\R^5$ is the set of ordered lists of five real coordinates.
+\item True. By definition, $b$ is in the span exactly when suitable
+weights exist, which is the same as consistency of the augmented system.
+\item False. Adding $u-v$ to $v$ yields $u-v+v=u$, not generally $v$.
+For example $u=0$, $v\ne0$ gives zero as the result.
+\item False. All zero weights are allowed and produce the zero vector.
+Consequently every span contains zero.
+\end{enumerate}
+
+\exercise{1.3.25}{A generating set is different from its span}
+\step{(a) Distinguish the generating set from its span.}
+The three columns are $(1,0,-2)^T$, $(0,3,6)^T$, and $(-4,-2,3)^T$.
+None equals $b=(4,1,-4)^T$. Thus $b$ is not in the three-element set
+$\{a_1,a_2,a_3\}$, which contains exactly three distinct vectors.
+\step{(b) Produce actual weights.}
+Direct calculation gives
+\[
+-4a_1-a_2-2a_3=(-4,0,8)^T+(0,-3,-6)^T+(8,4,-6)^T
+=(4,1,-4)^T=b.
+\]
+So $b\in W$. Also $W$ contains all multiples of the nonzero vector
+$a_1$; different real multiples give different vectors, so $W$ is infinite.
+\step{(c) Use the definition without reducing a matrix.}
+We have $a_1=1a_1+0a_2+0a_3$, which explicitly represents $a_1$
+as a combination of the generators.
+\answer{The finite generating set does not contain $b$, but its infinite
+span does contain $b$ and all three generating columns.}
+
+\exercise{1.3.26}{A target outside the span but a column inside}
+\step{(a) Check the three coordinate equations for compatible weights.}
+Writing the weights as $c_1,c_2,c_3$, the first coordinate gives
+$2c_1+6c_3=10$, or $c_1=5-3c_3$.
+The second is $-c_1+8c_2+5c_3=3$, so after substitution
+$c_2+c_3=1$. The third would require
+\[
+c_1-2c_2+c_3=7.
+\]
+Its left side, using the first two equations, is instead
+$(5-3c_3)-2(1-c_3)+c_3=3$, independent of $c_3$.
+Thus it cannot equal $7$; no weights exist, and $b\notin W$.
+\step{(b) Exhibit the trivial combination for a generator.}
+The second column is $0a_1+1a_2+0a_3$, so it is certainly in $W$.
+\answer{$b$ is outside the column span, although each generating column
+itself is automatically inside it.}
+
+\exercise{1.3.27}{Translate mine outputs into a vector equation}
+\step{(a) Interpret the scale factor together with the units.}
+Five days of mine 1 produce $5v_1=(150,3000)^T$: 150 metric tons
+of copper and 3000 kilograms of silver.
+\step{(b) Express the target as the sum of the two outputs.}
+The vector equation is
+\[
+x_1\begin{bmatrix}30\\600\end{bmatrix}
++x_2\begin{bmatrix}40\\380\end{bmatrix}
+=\begin{bmatrix}240\\2824\end{bmatrix}.
+\]
+The unknowns count days, so physically they must be nonnegative.
+\step{(c) Solve and check.}
+Divide the copper equation by $10$: $3x_1+4x_2=24$.
+Multiply it by $200$ and subtract the silver equation to get
+$420x_2=4800-2824=1976$. Therefore
+\[
+x_2=\frac{494}{105},\qquad
+x_1=\frac{24-4(494/105)}3=\frac{544}{315}.
+\]
+Both are positive. In the copper equation their contributions sum to
+$30(544/315)+40(494/105)=240$; in the silver equation they sum
+to $600(544/315)+380(494/105)=2824$.
+\answer{Mine 1 runs $544/315\approx1.727$ days and mine 2 runs
+$494/105\approx4.705$ days.}
+
+\exercise{1.3.28}{Check three coal-plant output coordinates}
+\step{(a) Track just the heat coordinate.}
+Burning $x_1$ tons of A and $x_2$ tons of B gives
+$27.6x_1+30.2x_2$ million Btu of heat.
+\step{(b) Keep the three output types in a fixed order.}
+With coordinates heat (million Btu), sulfur dioxide (g), and particulates
+(g), the output vector is
+\[
+x_1\begin{bmatrix}27.6\\3100\\250\end{bmatrix}
++x_2\begin{bmatrix}30.2\\6400\\360\end{bmatrix}.
+\]
+\step{(c) Set this vector equal to the observed output.}
+Use right side $(162,23610,1623)^T$. The heat and particulate
+equations, clearing the heat decimal, are
+\[
+276x_1+302x_2=1620,\qquad250x_1+360x_2=1623.
+\]
+Subtracting $250$ times the first from $276$ times the second gives
+$23860x_2=42948$, so $x_2=9/5=1.8$.
+Substitution in either equation gives $x_1=39/10=3.9$.
+Now check the remaining equation rather than ignoring the extra datum:
+\[
+3100(3.9)+6400(1.8)=12090+11520=23610.
+\]
+The other outputs are $107.64+54.36=162$ and $975+648=1623$.
+\answer{The plant burned $3.9$ tons of anthracite and $1.8$ tons of
+bituminous coal, satisfying all three measurements.}
+
+\exercise{1.3.29}{Compute a mass-weighted average}
+The total mass is $4+2+3+5=14$ grams. Form the weighted sum one
+coordinate at a time:
+\[
+\begin{aligned}
+4v_1+2v_2+3v_3+5v_4
+&=(8,-8,16)+(-8,4,6)\\
+&\quad +(12,0,-6)+(5,-30,0)\\
+&=(17,-34,16).
+\end{aligned}
+\]
+Dividing by the total mass gives
+\[
+\overline v=\left(\frac{17}{14},-\frac{17}{7},\frac87\right).
+\]
+The division is by total \emph{mass}, not by the number of points.
+\answer{The center of mass is $(17/14,-17/7,8/7)$.}
+
+\exercise{1.3.30}{A center of mass is a linear combination}
+Assume the total mass $m$ is nonzero, as required to define the
+center of mass. Rewrite its formula as
+\[
+\overline v=\frac{m_1}{m}v_1+\cdots+\frac{m_k}{m}v_k.
+\]
+The coefficients $m_j/m$ are real scalars. This is precisely a linear
+combination of the given points viewed as vectors, so it belongs to
+their span. For positive physical masses the coefficients also sum to
+one and are nonnegative, although those extra facts are not needed
+for span membership.
+\answer{Yes; the displayed normalized masses are the required weights.}
+
+\exercise{1.3.31}{Move the center of a triangular plate}
+\step{(a) Average the three equal point masses.}
+The uniform triangular plate has the same center as three 1-gram masses
+at the vertices, so
+\[
+\overline v=\frac{(0,1)+(8,1)+(2,4)}3
+=\left(\frac{10}3,2\right).
+\]
+\step{(b) Include the plate's existing mass in the new balance.}
+The total mass after adding 6 grams will be 9 grams. The plate already
+has first moment $3\overline v=(10,6)$.
+Let $w_i$ be the added grams at vertex $v_i$. The new center $(2,2)$
+requires total first moment $(18,18)$, so
+\[
+w_1+w_2+w_3=6,\qquad8w_2+2w_3=18-10=8,
+\]
+\[
+w_1+w_2+4w_3=18-6=12.
+\]
+Subtract the mass equation from the last equation to obtain $3w_3=6$,
+so $w_3=2$. The horizontal equation then gives $8w_2=4$ and
+$w_2=1/2$. Finally $w_1=6-2-1/2=7/2$.
+All added masses are nonnegative, as the physical request requires.
+\answer{Add $3.5$ g at $(0,1)$, $0.5$ g at $(8,1)$, and $2$ g at
+$(2,4)$. Their contribution is $(8,12)$, making the final first moment
+$(18,18)$ and the desired center $(2,2)$.}
+
+\exercise{1.3.32}{A plane-spanning diagram with nonunique weights}
+The figure shows $v_1,v_2$ pointing in nonparallel directions. Their
+span is therefore the whole plane, so in particular there are weights
+$a,b$ with $av_1+bv_2=b_{\mathrm{target}}$. Taking the third weight
+to be zero already gives a solution.
+The same plane contains $v_3$, so write $v_3=pv_1+qv_2$.
+For every $t\in\R$,
+\[
+(a-pt)v_1+(b-qt)v_2+tv_3
+=av_1+bv_2=b_{\mathrm{target}}.
+\]
+These are distinct coefficient triples because their third entries are
+distinct. Negative weights are allowed; the target need not lie between
+the positive arrows.
+\answer{A solution exists, and it is not unique: there are infinitely
+many coefficient triples.}
+
+\exercise{1.3.33}{Associativity and distributivity coordinatewise}
+\step{(a) Associativity.}
+For each coordinate $i$, real-number associativity gives
+$(u_i+v_i)+w_i=u_i+(v_i+w_i)$.
+The $i$th coordinates of $(u+v)+w$ and $u+(v+w)$ are therefore equal
+for every $i$, which proves equality of the vectors.
+\step{(b) Distributivity over vector addition.}
+For each $i$, $c(u_i+v_i)=cu_i+cv_i$ by real-number distributivity.
+The left side is the $i$th coordinate of $c(u+v)$; the right side is
+the $i$th coordinate of $cu+cv$. Equality coordinate by coordinate gives
+$c(u+v)=cu+cv$.
+\answer{Both vector laws follow from the corresponding real-number laws.}
+
+\exercise{1.3.34}{Additive inverses and scalar associativity}
+\step{(a) The additive inverse.}
+The $i$th coordinate of $u+(-u)$ is $u_i+(-u_i)=0$.
+Similarly the $i$th coordinate of $(-u)+u$ is $-u_i+u_i=0$.
+Both sums are therefore the vector $(0,\ldots,0)$.
+\step{(b) Two successive scalar multiplications.}
+The $i$th coordinate of $c(du)$ is $c(du_i)$. Real multiplication is
+associative, so $c(du_i)=(cd)u_i$, which is the $i$th coordinate of
+$(cd)u$. This holds for every coordinate and for all real $c,d$,
+including zero and negative values.
+\answer{$u+(-u)=(-u)+u=0$ and $c(du)=(cd)u$.}

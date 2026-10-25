@@ -1,0 +1,533 @@
+\section{The Gram--Schmidt process}
+Gram--Schmidt replaces an independent ordered list by orthogonal directions
+with the same successive spans. At stage $k$, subtract the projections of
+$x_k$ onto every earlier orthogonal direction. Independence guarantees the
+residual is nonzero; normalizing it gives the next unit direction.
+
+For a full-column-rank matrix $A$, the normalized columns form $Q$ with
+$Q^TQ=I$. The factor $R=Q^TA$ is square upper triangular and satisfies
+$A=QR$. Its diagonal can be made positive by using positive lengths in the
+normalizations. In the calculations below we verify both $Q^TQ=I$ and
+$QR=A$, not merely the shape of the proposed factors.
+
+\practice{6.4.P1}{Normalize a pair that is already orthogonal}
+The two given vectors satisfy
+$(1,1,1)\cdot(1/3,1/3,-2/3)=0$. Their lengths are $\sqrt3$
+and $\sqrt6/3$, respectively. Hence an orthonormal basis is
+\[
+q_1=\frac1{\sqrt3}(1,1,1)^T,\qquad
+q_2=\frac1{\sqrt6}(1,1,-2)^T.
+\]
+Each has squared length one, their dot product is zero, and their
+nonzero rescalings span the same space as the original pair.
+\answer{The displayed $q_1,q_2$ are the desired orthonormal basis.}
+
+\exercise{6.4.1}{Gram--Schmidt with every component removed}
+\step{Process the original columns in their given order.}
+\[A=[x_1\ \cdots\ x_p]=\left[\begin{array}{rr}3&8\\0&5\\-1&-6\end{array}\right].\]
+To keep the arithmetic readable, a nonzero intermediate vector may be multiplied by a positive scalar to clear fractions or common factors. This does not change its direction or any later projection onto it. Denote these convenient orthogonal vectors by $w_j$.
+\step{Column 1.}
+Start with $v_1=x_1=\left[\begin{array}{r}3\\0\\-1\end{array}\right]$.
+Choose $w_{1}=v_{1}=\left[\begin{array}{r}3\\0\\-1\end{array}\right]$.
+\step{Column 2.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{2}\cdot w_j}{w_j\cdot w_j}:\quad(3).\]
+Subtract all of those components:
+\[v_{2}=x_{2}-(3)w_{1}=\left[\begin{array}{r}-1\\5\\-3\end{array}\right].\]
+Choose $w_{2}=v_{2}=\left[\begin{array}{r}-1\\5\\-3\end{array}\right]$.
+\step{Verify orthogonality and equality of spans.}
+Set $V=[w_1\ \cdots\ w_p]$. Then
+\[V^TV=\left[\begin{array}{rr}10&0\\0&35\end{array}\right].\]
+The diagonal is positive and all off-diagonal entries are zero, so the $w_j$ are nonzero and orthogonal, hence independent. Each new $w_k$ is a nonzero multiple of $x_k$ minus a combination of earlier vectors. Conversely, that equation expresses $x_k$ using $w_k$ and the earlier vectors. Induction gives equal spans at every stage.
+\answer{The vectors $w_1,\ldots,w_p$ are an orthogonal basis for the original column span.}
+
+\exercise{6.4.2}{Gram--Schmidt with every component removed}
+\step{Process the original columns in their given order.}
+\[A=[x_1\ \cdots\ x_p]=\left[\begin{array}{rr}0&5\\4&6\\2&-7\end{array}\right].\]
+To keep the arithmetic readable, a nonzero intermediate vector may be multiplied by a positive scalar to clear fractions or common factors. This does not change its direction or any later projection onto it. Denote these convenient orthogonal vectors by $w_j$.
+\step{Column 1.}
+Start with $v_1=x_1=\left[\begin{array}{r}0\\4\\2\end{array}\right]$.
+Choose $w_{1}=(\frac{1}{2})v_{1}=\left[\begin{array}{r}0\\2\\1\end{array}\right]$.
+\step{Column 2.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{2}\cdot w_j}{w_j\cdot w_j}:\quad(1).\]
+Subtract all of those components:
+\[v_{2}=x_{2}-(1)w_{1}=\left[\begin{array}{r}5\\4\\-8\end{array}\right].\]
+Choose $w_{2}=v_{2}=\left[\begin{array}{r}5\\4\\-8\end{array}\right]$.
+\step{Verify orthogonality and equality of spans.}
+Set $V=[w_1\ \cdots\ w_p]$. Then
+\[V^TV=\left[\begin{array}{rr}5&0\\0&105\end{array}\right].\]
+The diagonal is positive and all off-diagonal entries are zero, so the $w_j$ are nonzero and orthogonal, hence independent. Each new $w_k$ is a nonzero multiple of $x_k$ minus a combination of earlier vectors. Conversely, that equation expresses $x_k$ using $w_k$ and the earlier vectors. Induction gives equal spans at every stage.
+\answer{The vectors $w_1,\ldots,w_p$ are an orthogonal basis for the original column span.}
+
+\exercise{6.4.3}{Gram--Schmidt with every component removed}
+\step{Process the original columns in their given order.}
+\[A=[x_1\ \cdots\ x_p]=\left[\begin{array}{rr}2&4\\-5&-1\\1&2\end{array}\right].\]
+To keep the arithmetic readable, a nonzero intermediate vector may be multiplied by a positive scalar to clear fractions or common factors. This does not change its direction or any later projection onto it. Denote these convenient orthogonal vectors by $w_j$.
+\step{Column 1.}
+Start with $v_1=x_1=\left[\begin{array}{r}2\\-5\\1\end{array}\right]$.
+Choose $w_{1}=v_{1}=\left[\begin{array}{r}2\\-5\\1\end{array}\right]$.
+\step{Column 2.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{2}\cdot w_j}{w_j\cdot w_j}:\quad(\frac{1}{2}).\]
+Subtract all of those components:
+\[v_{2}=x_{2}-(\frac{1}{2})w_{1}=\left[\begin{array}{r}3\\\frac{3}{2}\\\frac{3}{2}\end{array}\right].\]
+Choose $w_{2}=(\frac{2}{3})v_{2}=\left[\begin{array}{r}2\\1\\1\end{array}\right]$.
+\step{Verify orthogonality and equality of spans.}
+Set $V=[w_1\ \cdots\ w_p]$. Then
+\[V^TV=\left[\begin{array}{rr}30&0\\0&6\end{array}\right].\]
+The diagonal is positive and all off-diagonal entries are zero, so the $w_j$ are nonzero and orthogonal, hence independent. Each new $w_k$ is a nonzero multiple of $x_k$ minus a combination of earlier vectors. Conversely, that equation expresses $x_k$ using $w_k$ and the earlier vectors. Induction gives equal spans at every stage.
+\answer{The vectors $w_1,\ldots,w_p$ are an orthogonal basis for the original column span.}
+
+\exercise{6.4.4}{Gram--Schmidt with every component removed}
+\step{Process the original columns in their given order.}
+\[A=[x_1\ \cdots\ x_p]=\left[\begin{array}{rr}3&-3\\-4&14\\5&-7\end{array}\right].\]
+To keep the arithmetic readable, a nonzero intermediate vector may be multiplied by a positive scalar to clear fractions or common factors. This does not change its direction or any later projection onto it. Denote these convenient orthogonal vectors by $w_j$.
+\step{Column 1.}
+Start with $v_1=x_1=\left[\begin{array}{r}3\\-4\\5\end{array}\right]$.
+Choose $w_{1}=v_{1}=\left[\begin{array}{r}3\\-4\\5\end{array}\right]$.
+\step{Column 2.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{2}\cdot w_j}{w_j\cdot w_j}:\quad(-2).\]
+Subtract all of those components:
+\[v_{2}=x_{2}-(-2)w_{1}=\left[\begin{array}{r}3\\6\\3\end{array}\right].\]
+Choose $w_{2}=(\frac{1}{3})v_{2}=\left[\begin{array}{r}1\\2\\1\end{array}\right]$.
+\step{Verify orthogonality and equality of spans.}
+Set $V=[w_1\ \cdots\ w_p]$. Then
+\[V^TV=\left[\begin{array}{rr}50&0\\0&6\end{array}\right].\]
+The diagonal is positive and all off-diagonal entries are zero, so the $w_j$ are nonzero and orthogonal, hence independent. Each new $w_k$ is a nonzero multiple of $x_k$ minus a combination of earlier vectors. Conversely, that equation expresses $x_k$ using $w_k$ and the earlier vectors. Induction gives equal spans at every stage.
+\answer{The vectors $w_1,\ldots,w_p$ are an orthogonal basis for the original column span.}
+
+\exercise{6.4.5}{Gram--Schmidt with every component removed}
+\step{Process the original columns in their given order.}
+\[A=[x_1\ \cdots\ x_p]=\left[\begin{array}{rr}1&7\\-4&-7\\0&-4\\1&1\end{array}\right].\]
+To keep the arithmetic readable, a nonzero intermediate vector may be multiplied by a positive scalar to clear fractions or common factors. This does not change its direction or any later projection onto it. Denote these convenient orthogonal vectors by $w_j$.
+\step{Column 1.}
+Start with $v_1=x_1=\left[\begin{array}{r}1\\-4\\0\\1\end{array}\right]$.
+Choose $w_{1}=v_{1}=\left[\begin{array}{r}1\\-4\\0\\1\end{array}\right]$.
+\step{Column 2.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{2}\cdot w_j}{w_j\cdot w_j}:\quad(2).\]
+Subtract all of those components:
+\[v_{2}=x_{2}-(2)w_{1}=\left[\begin{array}{r}5\\1\\-4\\-1\end{array}\right].\]
+Choose $w_{2}=v_{2}=\left[\begin{array}{r}5\\1\\-4\\-1\end{array}\right]$.
+\step{Verify orthogonality and equality of spans.}
+Set $V=[w_1\ \cdots\ w_p]$. Then
+\[V^TV=\left[\begin{array}{rr}18&0\\0&43\end{array}\right].\]
+The diagonal is positive and all off-diagonal entries are zero, so the $w_j$ are nonzero and orthogonal, hence independent. Each new $w_k$ is a nonzero multiple of $x_k$ minus a combination of earlier vectors. Conversely, that equation expresses $x_k$ using $w_k$ and the earlier vectors. Induction gives equal spans at every stage.
+\answer{The vectors $w_1,\ldots,w_p$ are an orthogonal basis for the original column span.}
+
+\exercise{6.4.6}{Gram--Schmidt with every component removed}
+\step{Process the original columns in their given order.}
+\[A=[x_1\ \cdots\ x_p]=\left[\begin{array}{rr}3&-5\\-1&9\\2&-9\\-1&3\end{array}\right].\]
+To keep the arithmetic readable, a nonzero intermediate vector may be multiplied by a positive scalar to clear fractions or common factors. This does not change its direction or any later projection onto it. Denote these convenient orthogonal vectors by $w_j$.
+\step{Column 1.}
+Start with $v_1=x_1=\left[\begin{array}{r}3\\-1\\2\\-1\end{array}\right]$.
+Choose $w_{1}=v_{1}=\left[\begin{array}{r}3\\-1\\2\\-1\end{array}\right]$.
+\step{Column 2.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{2}\cdot w_j}{w_j\cdot w_j}:\quad(-3).\]
+Subtract all of those components:
+\[v_{2}=x_{2}-(-3)w_{1}=\left[\begin{array}{r}4\\6\\-3\\0\end{array}\right].\]
+Choose $w_{2}=v_{2}=\left[\begin{array}{r}4\\6\\-3\\0\end{array}\right]$.
+\step{Verify orthogonality and equality of spans.}
+Set $V=[w_1\ \cdots\ w_p]$. Then
+\[V^TV=\left[\begin{array}{rr}15&0\\0&61\end{array}\right].\]
+The diagonal is positive and all off-diagonal entries are zero, so the $w_j$ are nonzero and orthogonal, hence independent. Each new $w_k$ is a nonzero multiple of $x_k$ minus a combination of earlier vectors. Conversely, that equation expresses $x_k$ using $w_k$ and the earlier vectors. Induction gives equal spans at every stage.
+\answer{The vectors $w_1,\ldots,w_p$ are an orthogonal basis for the original column span.}
+
+\exercise{6.4.7}{Gram--Schmidt with every component removed}
+\step{Process the original columns in their given order.}
+\[A=[x_1\ \cdots\ x_p]=\left[\begin{array}{rr}2&4\\-5&-1\\1&2\end{array}\right].\]
+To keep the arithmetic readable, a nonzero intermediate vector may be multiplied by a positive scalar to clear fractions or common factors. This does not change its direction or any later projection onto it. Denote these convenient orthogonal vectors by $w_j$.
+\step{Column 1.}
+Start with $v_1=x_1=\left[\begin{array}{r}2\\-5\\1\end{array}\right]$.
+Choose $w_{1}=v_{1}=\left[\begin{array}{r}2\\-5\\1\end{array}\right]$.
+\step{Column 2.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{2}\cdot w_j}{w_j\cdot w_j}:\quad(\frac{1}{2}).\]
+Subtract all of those components:
+\[v_{2}=x_{2}-(\frac{1}{2})w_{1}=\left[\begin{array}{r}3\\\frac{3}{2}\\\frac{3}{2}\end{array}\right].\]
+Choose $w_{2}=(\frac{2}{3})v_{2}=\left[\begin{array}{r}2\\1\\1\end{array}\right]$.
+\step{Verify orthogonality and equality of spans.}
+Set $V=[w_1\ \cdots\ w_p]$. Then
+\[V^TV=\left[\begin{array}{rr}30&0\\0&6\end{array}\right].\]
+The diagonal is positive and all off-diagonal entries are zero, so the $w_j$ are nonzero and orthogonal, hence independent. Each new $w_k$ is a nonzero multiple of $x_k$ minus a combination of earlier vectors. Conversely, that equation expresses $x_k$ using $w_k$ and the earlier vectors. Induction gives equal spans at every stage.
+\step{Normalize each column by its own positive length.}
+\[Q=\left[\frac{w_1}{\|w_1\|}\ \cdots\ \frac{w_p}{\|w_p\|}\right]=\left[\begin{array}{rr}\frac{\sqrt{30}}{15}&\frac{\sqrt{6}}{3}\\- \frac{\sqrt{30}}{6}&\frac{\sqrt{6}}{6}\\\frac{\sqrt{30}}{30}&\frac{\sqrt{6}}{6}\end{array}\right].\]
+The exact check $Q^TQ=I$ verifies all unit lengths and mutual orthogonality.
+\answer{The columns of $Q$ are an orthonormal basis for the original column span.}
+
+\exercise{6.4.8}{Gram--Schmidt with every component removed}
+\step{Process the original columns in their given order.}
+\[A=[x_1\ \cdots\ x_p]=\left[\begin{array}{rr}3&-3\\-4&14\\5&-7\end{array}\right].\]
+To keep the arithmetic readable, a nonzero intermediate vector may be multiplied by a positive scalar to clear fractions or common factors. This does not change its direction or any later projection onto it. Denote these convenient orthogonal vectors by $w_j$.
+\step{Column 1.}
+Start with $v_1=x_1=\left[\begin{array}{r}3\\-4\\5\end{array}\right]$.
+Choose $w_{1}=v_{1}=\left[\begin{array}{r}3\\-4\\5\end{array}\right]$.
+\step{Column 2.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{2}\cdot w_j}{w_j\cdot w_j}:\quad(-2).\]
+Subtract all of those components:
+\[v_{2}=x_{2}-(-2)w_{1}=\left[\begin{array}{r}3\\6\\3\end{array}\right].\]
+Choose $w_{2}=(\frac{1}{3})v_{2}=\left[\begin{array}{r}1\\2\\1\end{array}\right]$.
+\step{Verify orthogonality and equality of spans.}
+Set $V=[w_1\ \cdots\ w_p]$. Then
+\[V^TV=\left[\begin{array}{rr}50&0\\0&6\end{array}\right].\]
+The diagonal is positive and all off-diagonal entries are zero, so the $w_j$ are nonzero and orthogonal, hence independent. Each new $w_k$ is a nonzero multiple of $x_k$ minus a combination of earlier vectors. Conversely, that equation expresses $x_k$ using $w_k$ and the earlier vectors. Induction gives equal spans at every stage.
+\step{Normalize each column by its own positive length.}
+\[Q=\left[\frac{w_1}{\|w_1\|}\ \cdots\ \frac{w_p}{\|w_p\|}\right]=\left[\begin{array}{rr}\frac{3 \sqrt{2}}{10}&\frac{\sqrt{6}}{6}\\- \frac{2 \sqrt{2}}{5}&\frac{\sqrt{6}}{3}\\\frac{\sqrt{2}}{2}&\frac{\sqrt{6}}{6}\end{array}\right].\]
+The exact check $Q^TQ=I$ verifies all unit lengths and mutual orthogonality.
+\answer{The columns of $Q$ are an orthonormal basis for the original column span.}
+
+\exercise{6.4.9}{Gram--Schmidt with every component removed}
+\step{Process the original columns in their given order.}
+\[A=[x_1\ \cdots\ x_p]=\left[\begin{array}{rrr}3&-5&1\\1&1&1\\-1&5&-2\\3&-7&8\end{array}\right].\]
+To keep the arithmetic readable, a nonzero intermediate vector may be multiplied by a positive scalar to clear fractions or common factors. This does not change its direction or any later projection onto it. Denote these convenient orthogonal vectors by $w_j$.
+\step{Column 1.}
+Start with $v_1=x_1=\left[\begin{array}{r}3\\1\\-1\\3\end{array}\right]$.
+Choose $w_{1}=v_{1}=\left[\begin{array}{r}3\\1\\-1\\3\end{array}\right]$.
+\step{Column 2.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{2}\cdot w_j}{w_j\cdot w_j}:\quad(-2).\]
+Subtract all of those components:
+\[v_{2}=x_{2}-(-2)w_{1}=\left[\begin{array}{r}1\\3\\3\\-1\end{array}\right].\]
+Choose $w_{2}=v_{2}=\left[\begin{array}{r}1\\3\\3\\-1\end{array}\right]$.
+\step{Column 3.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{3}\cdot w_j}{w_j\cdot w_j}:\quad(\frac{3}{2},- \frac{1}{2}).\]
+Subtract all of those components:
+\[v_{3}=x_{3}-(\frac{3}{2})w_{1}-(- \frac{1}{2})w_{2}=\left[\begin{array}{r}-3\\1\\1\\3\end{array}\right].\]
+Choose $w_{3}=v_{3}=\left[\begin{array}{r}-3\\1\\1\\3\end{array}\right]$.
+\step{Verify orthogonality and equality of spans.}
+Set $V=[w_1\ \cdots\ w_p]$. Then
+\[V^TV=\left[\begin{array}{rrr}20&0&0\\0&20&0\\0&0&20\end{array}\right].\]
+The diagonal is positive and all off-diagonal entries are zero, so the $w_j$ are nonzero and orthogonal, hence independent. Each new $w_k$ is a nonzero multiple of $x_k$ minus a combination of earlier vectors. Conversely, that equation expresses $x_k$ using $w_k$ and the earlier vectors. Induction gives equal spans at every stage.
+\answer{The vectors $w_1,\ldots,w_p$ are an orthogonal basis for the original column span.}
+
+\exercise{6.4.10}{Gram--Schmidt with every component removed}
+\step{Process the original columns in their given order.}
+\[A=[x_1\ \cdots\ x_p]=\left[\begin{array}{rrr}-1&6&6\\3&-8&3\\1&-2&6\\1&-4&-3\end{array}\right].\]
+To keep the arithmetic readable, a nonzero intermediate vector may be multiplied by a positive scalar to clear fractions or common factors. This does not change its direction or any later projection onto it. Denote these convenient orthogonal vectors by $w_j$.
+\step{Column 1.}
+Start with $v_1=x_1=\left[\begin{array}{r}-1\\3\\1\\1\end{array}\right]$.
+Choose $w_{1}=v_{1}=\left[\begin{array}{r}-1\\3\\1\\1\end{array}\right]$.
+\step{Column 2.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{2}\cdot w_j}{w_j\cdot w_j}:\quad(-3).\]
+Subtract all of those components:
+\[v_{2}=x_{2}-(-3)w_{1}=\left[\begin{array}{r}3\\1\\1\\-1\end{array}\right].\]
+Choose $w_{2}=v_{2}=\left[\begin{array}{r}3\\1\\1\\-1\end{array}\right]$.
+\step{Column 3.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{3}\cdot w_j}{w_j\cdot w_j}:\quad(\frac{1}{2},\frac{5}{2}).\]
+Subtract all of those components:
+\[v_{3}=x_{3}-(\frac{1}{2})w_{1}-(\frac{5}{2})w_{2}=\left[\begin{array}{r}-1\\-1\\3\\-1\end{array}\right].\]
+Choose $w_{3}=v_{3}=\left[\begin{array}{r}-1\\-1\\3\\-1\end{array}\right]$.
+\step{Verify orthogonality and equality of spans.}
+Set $V=[w_1\ \cdots\ w_p]$. Then
+\[V^TV=\left[\begin{array}{rrr}12&0&0\\0&12&0\\0&0&12\end{array}\right].\]
+The diagonal is positive and all off-diagonal entries are zero, so the $w_j$ are nonzero and orthogonal, hence independent. Each new $w_k$ is a nonzero multiple of $x_k$ minus a combination of earlier vectors. Conversely, that equation expresses $x_k$ using $w_k$ and the earlier vectors. Induction gives equal spans at every stage.
+\answer{The vectors $w_1,\ldots,w_p$ are an orthogonal basis for the original column span.}
+
+\exercise{6.4.11}{Gram--Schmidt with every component removed}
+\step{Process the original columns in their given order.}
+\[A=[x_1\ \cdots\ x_p]=\left[\begin{array}{rrr}1&2&5\\-1&1&-4\\-1&4&-3\\1&-4&7\\1&2&1\end{array}\right].\]
+To keep the arithmetic readable, a nonzero intermediate vector may be multiplied by a positive scalar to clear fractions or common factors. This does not change its direction or any later projection onto it. Denote these convenient orthogonal vectors by $w_j$.
+\step{Column 1.}
+Start with $v_1=x_1=\left[\begin{array}{r}1\\-1\\-1\\1\\1\end{array}\right]$.
+Choose $w_{1}=v_{1}=\left[\begin{array}{r}1\\-1\\-1\\1\\1\end{array}\right]$.
+\step{Column 2.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{2}\cdot w_j}{w_j\cdot w_j}:\quad(-1).\]
+Subtract all of those components:
+\[v_{2}=x_{2}-(-1)w_{1}=\left[\begin{array}{r}3\\0\\3\\-3\\3\end{array}\right].\]
+Choose $w_{2}=(\frac{1}{3})v_{2}=\left[\begin{array}{r}1\\0\\1\\-1\\1\end{array}\right]$.
+\step{Column 3.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{3}\cdot w_j}{w_j\cdot w_j}:\quad(4,-1).\]
+Subtract all of those components:
+\[v_{3}=x_{3}-(4)w_{1}-(-1)w_{2}=\left[\begin{array}{r}2\\0\\2\\2\\-2\end{array}\right].\]
+Choose $w_{3}=(\frac{1}{2})v_{3}=\left[\begin{array}{r}1\\0\\1\\1\\-1\end{array}\right]$.
+\step{Verify orthogonality and equality of spans.}
+Set $V=[w_1\ \cdots\ w_p]$. Then
+\[V^TV=\left[\begin{array}{rrr}5&0&0\\0&4&0\\0&0&4\end{array}\right].\]
+The diagonal is positive and all off-diagonal entries are zero, so the $w_j$ are nonzero and orthogonal, hence independent. Each new $w_k$ is a nonzero multiple of $x_k$ minus a combination of earlier vectors. Conversely, that equation expresses $x_k$ using $w_k$ and the earlier vectors. Induction gives equal spans at every stage.
+\answer{The vectors $w_1,\ldots,w_p$ are an orthogonal basis for the original column span.}
+
+\exercise{6.4.12}{Gram--Schmidt with every component removed}
+\step{Process the original columns in their given order.}
+\[A=[x_1\ \cdots\ x_p]=\left[\begin{array}{rrr}1&3&5\\-1&-3&1\\0&2&3\\1&5&2\\1&5&8\end{array}\right].\]
+To keep the arithmetic readable, a nonzero intermediate vector may be multiplied by a positive scalar to clear fractions or common factors. This does not change its direction or any later projection onto it. Denote these convenient orthogonal vectors by $w_j$.
+\step{Column 1.}
+Start with $v_1=x_1=\left[\begin{array}{r}1\\-1\\0\\1\\1\end{array}\right]$.
+Choose $w_{1}=v_{1}=\left[\begin{array}{r}1\\-1\\0\\1\\1\end{array}\right]$.
+\step{Column 2.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{2}\cdot w_j}{w_j\cdot w_j}:\quad(4).\]
+Subtract all of those components:
+\[v_{2}=x_{2}-(4)w_{1}=\left[\begin{array}{r}-1\\1\\2\\1\\1\end{array}\right].\]
+Choose $w_{2}=v_{2}=\left[\begin{array}{r}-1\\1\\2\\1\\1\end{array}\right]$.
+\step{Column 3.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{3}\cdot w_j}{w_j\cdot w_j}:\quad(\frac{7}{2},\frac{3}{2}).\]
+Subtract all of those components:
+\[v_{3}=x_{3}-(\frac{7}{2})w_{1}-(\frac{3}{2})w_{2}=\left[\begin{array}{r}3\\3\\0\\-3\\3\end{array}\right].\]
+Choose $w_{3}=(\frac{1}{3})v_{3}=\left[\begin{array}{r}1\\1\\0\\-1\\1\end{array}\right]$.
+\step{Verify orthogonality and equality of spans.}
+Set $V=[w_1\ \cdots\ w_p]$. Then
+\[V^TV=\left[\begin{array}{rrr}4&0&0\\0&8&0\\0&0&4\end{array}\right].\]
+The diagonal is positive and all off-diagonal entries are zero, so the $w_j$ are nonzero and orthogonal, hence independent. Each new $w_k$ is a nonzero multiple of $x_k$ minus a combination of earlier vectors. Conversely, that equation expresses $x_k$ using $w_k$ and the earlier vectors. Induction gives equal spans at every stage.
+\answer{The vectors $w_1,\ldots,w_p$ are an orthogonal basis for the original column span.}
+
+\exercise{6.4.13}{Gram--Schmidt with every component removed}
+\step{Use the known orthonormal factor to isolate $R$.}
+The supplied $Q$ satisfies $Q^TQ=I_2$. Left multiplication of $A=QR$ by $Q^T$ gives $R=Q^TA$, so
+\[R=\left[\begin{array}{rr}6&12\\0&6\end{array}\right].\]
+\step{Verify the matrix product, not just triangularity.}
+\[Q=\left[\begin{array}{rr}\frac{5}{6}&- \frac{1}{6}\\\frac{1}{6}&\frac{5}{6}\\- \frac{1}{2}&\frac{1}{6}\\\frac{1}{6}&\frac{1}{2}\end{array}\right],\qquad QR=\left[\begin{array}{rr}5&9\\1&7\\-3&-5\\1&5\end{array}\right]=A.\]
+\answer{The displayed upper triangular $R$ is the required factor.}
+
+\exercise{6.4.14}{Gram--Schmidt with every component removed}
+\step{Use the known orthonormal factor to isolate $R$.}
+The supplied $Q$ satisfies $Q^TQ=I_2$. Left multiplication of $A=QR$ by $Q^T$ gives $R=Q^TA$, so
+\[R=\left[\begin{array}{rr}7&7\\0&7\end{array}\right].\]
+\step{Verify the matrix product, not just triangularity.}
+\[Q=\left[\begin{array}{rr}- \frac{2}{7}&\frac{5}{7}\\\frac{5}{7}&\frac{2}{7}\\\frac{2}{7}&- \frac{4}{7}\\\frac{4}{7}&\frac{2}{7}\end{array}\right],\qquad QR=\left[\begin{array}{rr}-2&3\\5&7\\2&-2\\4&6\end{array}\right]=A.\]
+\answer{The displayed upper triangular $R$ is the required factor.}
+
+\exercise{6.4.15}{An exact QR factorization and its checks}
+\step{Process the original columns in their given order.}
+\[A=[x_1\ \cdots\ x_p]=\left[\begin{array}{rrr}1&2&5\\-1&1&-4\\-1&4&-3\\1&-4&7\\1&2&1\end{array}\right].\]
+To keep the arithmetic readable, a nonzero intermediate vector may be multiplied by a positive scalar to clear fractions or common factors. This does not change its direction or any later projection onto it. Denote these convenient orthogonal vectors by $w_j$.
+\step{Column 1.}
+Start with $v_1=x_1=\left[\begin{array}{r}1\\-1\\-1\\1\\1\end{array}\right]$.
+Choose $w_{1}=v_{1}=\left[\begin{array}{r}1\\-1\\-1\\1\\1\end{array}\right]$.
+\step{Column 2.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{2}\cdot w_j}{w_j\cdot w_j}:\quad(-1).\]
+Subtract all of those components:
+\[v_{2}=x_{2}-(-1)w_{1}=\left[\begin{array}{r}3\\0\\3\\-3\\3\end{array}\right].\]
+Choose $w_{2}=(\frac{1}{3})v_{2}=\left[\begin{array}{r}1\\0\\1\\-1\\1\end{array}\right]$.
+\step{Column 3.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{3}\cdot w_j}{w_j\cdot w_j}:\quad(4,-1).\]
+Subtract all of those components:
+\[v_{3}=x_{3}-(4)w_{1}-(-1)w_{2}=\left[\begin{array}{r}2\\0\\2\\2\\-2\end{array}\right].\]
+Choose $w_{3}=(\frac{1}{2})v_{3}=\left[\begin{array}{r}1\\0\\1\\1\\-1\end{array}\right]$.
+\step{Verify orthogonality and equality of spans.}
+Set $V=[w_1\ \cdots\ w_p]$. Then
+\[V^TV=\left[\begin{array}{rrr}5&0&0\\0&4&0\\0&0&4\end{array}\right].\]
+The diagonal is positive and all off-diagonal entries are zero, so the $w_j$ are nonzero and orthogonal, hence independent. Each new $w_k$ is a nonzero multiple of $x_k$ minus a combination of earlier vectors. Conversely, that equation expresses $x_k$ using $w_k$ and the earlier vectors. Induction gives equal spans at every stage.
+\step{Normalize each column by its own positive length.}
+\[Q=\left[\frac{w_1}{\|w_1\|}\ \cdots\ \frac{w_p}{\|w_p\|}\right]=\left[\begin{array}{rrr}\frac{\sqrt{5}}{5}&\frac{1}{2}&\frac{1}{2}\\- \frac{\sqrt{5}}{5}&0&0\\- \frac{\sqrt{5}}{5}&\frac{1}{2}&\frac{1}{2}\\\frac{\sqrt{5}}{5}&- \frac{1}{2}&\frac{1}{2}\\\frac{\sqrt{5}}{5}&\frac{1}{2}&- \frac{1}{2}\end{array}\right].\]
+The exact check $Q^TQ=I$ verifies all unit lengths and mutual orthogonality.
+\step{Compute the upper triangular factor from inner products.}
+\[R=Q^TA=\left[\begin{array}{rrr}\sqrt{5}&- \sqrt{5}&4 \sqrt{5}\\0&6&-2\\0&0&4\end{array}\right].\]
+Its entry $r_{ij}$ is $q_i\cdot x_j$. For $i>j$, $q_i$ is perpendicular to the earlier-column span containing $x_j$, so these entries are zero. Direct multiplication gives $QR=A$, verifying the full factorization.
+\answer{The displayed $Q,R$ give a QR factorization with positive diagonal entries of $R$.}
+
+\exercise{6.4.16}{An exact QR factorization and its checks}
+\step{Process the original columns in their given order.}
+\[A=[x_1\ \cdots\ x_p]=\left[\begin{array}{rrr}1&3&5\\-1&-3&1\\0&2&3\\1&5&2\\1&5&8\end{array}\right].\]
+To keep the arithmetic readable, a nonzero intermediate vector may be multiplied by a positive scalar to clear fractions or common factors. This does not change its direction or any later projection onto it. Denote these convenient orthogonal vectors by $w_j$.
+\step{Column 1.}
+Start with $v_1=x_1=\left[\begin{array}{r}1\\-1\\0\\1\\1\end{array}\right]$.
+Choose $w_{1}=v_{1}=\left[\begin{array}{r}1\\-1\\0\\1\\1\end{array}\right]$.
+\step{Column 2.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{2}\cdot w_j}{w_j\cdot w_j}:\quad(4).\]
+Subtract all of those components:
+\[v_{2}=x_{2}-(4)w_{1}=\left[\begin{array}{r}-1\\1\\2\\1\\1\end{array}\right].\]
+Choose $w_{2}=v_{2}=\left[\begin{array}{r}-1\\1\\2\\1\\1\end{array}\right]$.
+\step{Column 3.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{3}\cdot w_j}{w_j\cdot w_j}:\quad(\frac{7}{2},\frac{3}{2}).\]
+Subtract all of those components:
+\[v_{3}=x_{3}-(\frac{7}{2})w_{1}-(\frac{3}{2})w_{2}=\left[\begin{array}{r}3\\3\\0\\-3\\3\end{array}\right].\]
+Choose $w_{3}=(\frac{1}{3})v_{3}=\left[\begin{array}{r}1\\1\\0\\-1\\1\end{array}\right]$.
+\step{Verify orthogonality and equality of spans.}
+Set $V=[w_1\ \cdots\ w_p]$. Then
+\[V^TV=\left[\begin{array}{rrr}4&0&0\\0&8&0\\0&0&4\end{array}\right].\]
+The diagonal is positive and all off-diagonal entries are zero, so the $w_j$ are nonzero and orthogonal, hence independent. Each new $w_k$ is a nonzero multiple of $x_k$ minus a combination of earlier vectors. Conversely, that equation expresses $x_k$ using $w_k$ and the earlier vectors. Induction gives equal spans at every stage.
+\step{Normalize each column by its own positive length.}
+\[Q=\left[\frac{w_1}{\|w_1\|}\ \cdots\ \frac{w_p}{\|w_p\|}\right]=\left[\begin{array}{rrr}\frac{1}{2}&- \frac{\sqrt{2}}{4}&\frac{1}{2}\\- \frac{1}{2}&\frac{\sqrt{2}}{4}&\frac{1}{2}\\0&\frac{\sqrt{2}}{2}&0\\\frac{1}{2}&\frac{\sqrt{2}}{4}&- \frac{1}{2}\\\frac{1}{2}&\frac{\sqrt{2}}{4}&\frac{1}{2}\end{array}\right].\]
+The exact check $Q^TQ=I$ verifies all unit lengths and mutual orthogonality.
+\step{Compute the upper triangular factor from inner products.}
+\[R=Q^TA=\left[\begin{array}{rrr}2&8&7\\0&2 \sqrt{2}&3 \sqrt{2}\\0&0&6\end{array}\right].\]
+Its entry $r_{ij}$ is $q_i\cdot x_j$. For $i>j$, $q_i$ is perpendicular to the earlier-column span containing $x_j$, so these entries are zero. Direct multiplication gives $QR=A$, verifying the full factorization.
+\answer{The displayed $Q,R$ give a QR factorization with positive diagonal entries of $R$.}
+
+\exercise{6.4.17}{Gram--Schmidt with every component removed}
+\begin{enumerate}[label=(\alph*)]
+\item False as stated: $c=0$ replaces a nonzero basis vector by zero,
+which makes the family dependent and unable to retain its old span.
+For $c\ne0$ it would remain an orthogonal basis.
+\item True. Each residual is obtained by subtracting a combination of
+earlier directions, and the reverse equation reconstructs the new input.
+Induction proves equality of each pair of successive spans.
+\item True. Since $Q^TQ=I$, left multiplication of $A=QR$ gives
+$Q^TA=Q^TQR=R$.
+\end{enumerate}
+
+\exercise{6.4.18}{Gram--Schmidt with every component removed}
+\begin{enumerate}[label=(\alph*)]
+\item False without the requirement that all $v_i$ are nonzero.
+In a three-dimensional $W$, the set $\{e_1,e_2,0\}$ is orthogonal
+but is not a basis. If the three orthogonal vectors were all nonzero,
+they would be independent and would form a basis.
+\item True. If $x-\operatorname{proj}_Wx=0$, then
+$x=\operatorname{proj}_Wx\in W$, contradicting $x\notin W$.
+\item True. Gram--Schmidt produces orthonormal columns of $Q$ with
+exactly the same column span as $A$; they therefore form a basis of
+that column space.
+\end{enumerate}
+
+\exercise{6.4.19}{Gram--Schmidt with every component removed}
+Suppose $Rx=0$. Multiply by $Q$ to get $Ax=QRx=0$.
+Independence of the columns of $A$ means its homogeneous system has
+only the zero solution, so $x=0$. Thus the square $n\times n$ matrix
+$R$ has trivial null space. By the Invertible Matrix Theorem, it is
+invertible.
+\answer{The conclusion requires neither guessing a determinant nor
+assuming $R$ is already invertible; it follows from independence of $A$.}
+
+\exercise{6.4.20}{Gram--Schmidt with every component removed}
+If $y\in\Col A$, write $y=Ax=Q(Rx)$. This represents $y$ as
+a combination of columns of $Q$, proving $\Col A\subseteq\Col Q$.
+Conversely, if $y\in\Col Q$, write $y=Qz$ and set $x=R^{-1}z$.
+Then $Ax=QR(R^{-1}z)=Qz=y$, so $y\in\Col A$.
+\answer{The two inclusions give $\Col A=\Col Q$. Invertibility of
+$R$ is needed for the reverse inclusion.}
+
+\exercise{6.4.21}{Gram--Schmidt with every component removed}
+Start with the thin factorization $A=QR$, where $Q$ has $n$
+orthonormal columns in $\R^m$ and $R$ is invertible upper triangular.
+Extend those columns to an orthonormal basis of $\R^m$ by taking an
+orthonormal basis $Q_\perp$ of $(\Col Q)^\perp$; for example append
+independent standard coordinate directions and continue Gram--Schmidt.
+Set $Q_1=[Q\ Q_\perp]$. Its $m$ columns are orthonormal, so it is
+an orthogonal $m\times m$ matrix. Then
+\[
+Q_1\begin{bmatrix}R\\0_{(m-n)\times n}\end{bmatrix}
+=QR+Q_\perp0=A.
+\]
+\answer{Adjoining the orthonormal complement produces the full QR
+factorization. The triangular factor in the top block remains the same $R$.}
+
+\exercise{6.4.22}{Gram--Schmidt with every component removed}
+Using the orthogonal projection formula and nonzero basis vectors,
+\[
+T(x)=\sum_{j=1}^p\frac{x\cdot u_j}{u_j\cdot u_j}u_j.
+\]
+For any $x,y$ and scalars $a,b$, substitute $ax+by$ and distribute
+each numerator. The fixed denominators give
+\[
+T(ax+by)=\sum_j\frac{a(x\cdot u_j)+b(y\cdot u_j)}{u_j\cdot u_j}u_j
+=aT(x)+bT(y).
+\]
+\answer{Projection onto a fixed subspace is linear.}
+
+\exercise{6.4.23}{Gram--Schmidt with every component removed}
+Partition $Q=[Q_1\ Q_2]$ after its first $p$ columns and partition
+the upper triangular matrix $R$ compatibly:
+\[
+R=\begin{bmatrix}R_{11}&R_{12}\\0&R_{22}\end{bmatrix}.
+\]
+The first $p$ columns of $QR$ are therefore $Q_1R_{11}$, so
+$A_1=Q_1R_{11}$. A subset of the orthonormal columns of $Q$ remains
+orthonormal, and $R_{11}$ is upper triangular. Its diagonal entries
+are the first $p$ nonzero diagonal entries of $R$, so it is invertible.
+\answer{Retain the first $p$ columns of $Q$ and the leading
+$p\times p$ block of $R$ to obtain a QR factorization of $A_1$.}
+
+\exercise{6.4.24}{Four checked orthogonal directions in five coordinates}
+\step{Process the original columns in their given order.}
+\[A=[x_1\ \cdots\ x_p]=\left[\begin{array}{rrrr}-10&13&7&-11\\2&1&-5&3\\-6&3&13&-3\\16&-16&-2&5\\2&1&-5&-7\end{array}\right].\]
+To keep the arithmetic readable, a nonzero intermediate vector may be multiplied by a positive scalar to clear fractions or common factors. This does not change its direction or any later projection onto it. Denote these convenient orthogonal vectors by $w_j$.
+\step{Column 1.}
+Start with $v_1=x_1=\left[\begin{array}{r}-10\\2\\-6\\16\\2\end{array}\right]$.
+Choose $w_{1}=(\frac{1}{2})v_{1}=\left[\begin{array}{r}-5\\1\\-3\\8\\1\end{array}\right]$.
+\step{Column 2.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{2}\cdot w_j}{w_j\cdot w_j}:\quad(-2).\]
+Subtract all of those components:
+\[v_{2}=x_{2}-(-2)w_{1}=\left[\begin{array}{r}3\\3\\-3\\0\\3\end{array}\right].\]
+Choose $w_{2}=(\frac{1}{3})v_{2}=\left[\begin{array}{r}1\\1\\-1\\0\\1\end{array}\right]$.
+\step{Column 3.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{3}\cdot w_j}{w_j\cdot w_j}:\quad(-1,-4).\]
+Subtract all of those components:
+\[v_{3}=x_{3}-(-1)w_{1}-(-4)w_{2}=\left[\begin{array}{r}6\\0\\6\\6\\0\end{array}\right].\]
+Choose $w_{3}=(\frac{1}{6})v_{3}=\left[\begin{array}{r}1\\0\\1\\1\\0\end{array}\right]$.
+\step{Column 4.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{4}\cdot w_j}{w_j\cdot w_j}:\quad(1,-3,-3).\]
+Subtract all of those components:
+\[v_{4}=x_{4}-(1)w_{1}-(-3)w_{2}-(-3)w_{3}=\left[\begin{array}{r}0\\5\\0\\0\\-5\end{array}\right].\]
+Choose $w_{4}=(\frac{1}{5})v_{4}=\left[\begin{array}{r}0\\1\\0\\0\\-1\end{array}\right]$.
+\step{Verify orthogonality and equality of spans.}
+Set $V=[w_1\ \cdots\ w_p]$. Then
+\[V^TV=\left[\begin{array}{rrrr}100&0&0&0\\0&4&0&0\\0&0&3&0\\0&0&0&2\end{array}\right].\]
+The diagonal is positive and all off-diagonal entries are zero, so the $w_j$ are nonzero and orthogonal, hence independent. Each new $w_k$ is a nonzero multiple of $x_k$ minus a combination of earlier vectors. Conversely, that equation expresses $x_k$ using $w_k$ and the earlier vectors. Induction gives equal spans at every stage.
+\answer{The vectors $w_1,\ldots,w_p$ are an orthogonal basis for the original column span.}
+
+\exercise{6.4.25}{QR factors for the five-by-four matrix}
+\step{Process the original columns in their given order.}
+\[A=[x_1\ \cdots\ x_p]=\left[\begin{array}{rrrr}-10&13&7&-11\\2&1&-5&3\\-6&3&13&-3\\16&-16&-2&5\\2&1&-5&-7\end{array}\right].\]
+To keep the arithmetic readable, a nonzero intermediate vector may be multiplied by a positive scalar to clear fractions or common factors. This does not change its direction or any later projection onto it. Denote these convenient orthogonal vectors by $w_j$.
+\step{Column 1.}
+Start with $v_1=x_1=\left[\begin{array}{r}-10\\2\\-6\\16\\2\end{array}\right]$.
+Choose $w_{1}=(\frac{1}{2})v_{1}=\left[\begin{array}{r}-5\\1\\-3\\8\\1\end{array}\right]$.
+\step{Column 2.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{2}\cdot w_j}{w_j\cdot w_j}:\quad(-2).\]
+Subtract all of those components:
+\[v_{2}=x_{2}-(-2)w_{1}=\left[\begin{array}{r}3\\3\\-3\\0\\3\end{array}\right].\]
+Choose $w_{2}=(\frac{1}{3})v_{2}=\left[\begin{array}{r}1\\1\\-1\\0\\1\end{array}\right]$.
+\step{Column 3.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{3}\cdot w_j}{w_j\cdot w_j}:\quad(-1,-4).\]
+Subtract all of those components:
+\[v_{3}=x_{3}-(-1)w_{1}-(-4)w_{2}=\left[\begin{array}{r}6\\0\\6\\6\\0\end{array}\right].\]
+Choose $w_{3}=(\frac{1}{6})v_{3}=\left[\begin{array}{r}1\\0\\1\\1\\0\end{array}\right]$.
+\step{Column 4.}
+The component coefficients along the previous $w_j$ are
+\[\frac{x_{4}\cdot w_j}{w_j\cdot w_j}:\quad(1,-3,-3).\]
+Subtract all of those components:
+\[v_{4}=x_{4}-(1)w_{1}-(-3)w_{2}-(-3)w_{3}=\left[\begin{array}{r}0\\5\\0\\0\\-5\end{array}\right].\]
+Choose $w_{4}=(\frac{1}{5})v_{4}=\left[\begin{array}{r}0\\1\\0\\0\\-1\end{array}\right]$.
+\step{Verify orthogonality and equality of spans.}
+Set $V=[w_1\ \cdots\ w_p]$. Then
+\[V^TV=\left[\begin{array}{rrrr}100&0&0&0\\0&4&0&0\\0&0&3&0\\0&0&0&2\end{array}\right].\]
+The diagonal is positive and all off-diagonal entries are zero, so the $w_j$ are nonzero and orthogonal, hence independent. Each new $w_k$ is a nonzero multiple of $x_k$ minus a combination of earlier vectors. Conversely, that equation expresses $x_k$ using $w_k$ and the earlier vectors. Induction gives equal spans at every stage.
+\step{Normalize each column by its own positive length.}
+\[Q=\left[\frac{w_1}{\|w_1\|}\ \cdots\ \frac{w_p}{\|w_p\|}\right]=\left[\begin{array}{rrrr}- \frac{1}{2}&\frac{1}{2}&\frac{\sqrt{3}}{3}&0\\\frac{1}{10}&\frac{1}{2}&0&\frac{\sqrt{2}}{2}\\- \frac{3}{10}&- \frac{1}{2}&\frac{\sqrt{3}}{3}&0\\\frac{4}{5}&0&\frac{\sqrt{3}}{3}&0\\\frac{1}{10}&\frac{1}{2}&0&- \frac{\sqrt{2}}{2}\end{array}\right].\]
+The exact check $Q^TQ=I$ verifies all unit lengths and mutual orthogonality.
+\step{Compute the upper triangular factor from inner products.}
+\[R=Q^TA=\left[\begin{array}{rrrr}20&-20&-10&10\\0&6&-8&-6\\0&0&6 \sqrt{3}&- 3 \sqrt{3}\\0&0&0&5 \sqrt{2}\end{array}\right].\]
+Its entry $r_{ij}$ is $q_i\cdot x_j$. For $i>j$, $q_i$ is perpendicular to the earlier-column span containing $x_j$, so these entries are zero. Direct multiplication gives $QR=A$, verifying the full factorization.
+\answer{The displayed $Q,R$ give a QR factorization with positive diagonal entries of $R$.}
+
+\exercise{6.4.26}{Gram--Schmidt with every component removed}
+\step{Implement the specified orthonormal update in exact arithmetic.}
+\begin{verbatim}
+from sympy import Matrix, zeros, sqrt, simplify
+A = Matrix([[-10,13,7,-11],[2,1,-5,3],[-6,3,13,-3],
+            [16,-16,-2,5],[2,1,-5,-7]])
+Q = zeros(A.rows,0)
+for k in range(A.cols):
+    x = A[:,k]
+    v = simplify(x-Q*(Q.T*x))
+    q = simplify(v/sqrt(v.dot(v)))
+    Q = Q.row_join(q)
+R = simplify(Q.T*A)
+assert simplify(Q.T*Q) == Matrix.eye(4)
+assert simplify(Q*R) == A
+print(Q)
+print(R)
+\end{verbatim}
+\step{Record the actual computed factors.}
+\[Q=\left[\begin{array}{rrrr}- \frac{1}{2}&\frac{1}{2}&\frac{\sqrt{3}}{3}&0\\\frac{1}{10}&\frac{1}{2}&0&\frac{\sqrt{2}}{2}\\- \frac{3}{10}&- \frac{1}{2}&\frac{\sqrt{3}}{3}&0\\\frac{4}{5}&0&\frac{\sqrt{3}}{3}&0\\\frac{1}{10}&\frac{1}{2}&0&- \frac{\sqrt{2}}{2}\end{array}\right],\qquad R=\left[\begin{array}{rrrr}20&-20&-10&10\\0&6&-8&-6\\0&0&6 \sqrt{3}&- 3 \sqrt{3}\\0&0&0&5 \sqrt{2}\end{array}\right].\]
+The update subtracts all previous components at once through $Q(Q^Tx)$. Nonzero residuals follow from independent input columns. These exact factors agree with Exercise 25; the two displayed assertions verify unit orthogonality and reconstruction.
+\answer{The commands implement the requested recurrence and produce the explicit checked QR factorization above.}

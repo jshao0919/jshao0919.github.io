@@ -1,0 +1,340 @@
+\section{Applications to Markov chains}
+We use column probability vectors. Entry $p_{ij}$ is the probability of
+moving \emph{from state $j$ to state $i$}, so each column of the transition
+matrix sums to $1$ and its entries are nonnegative. The distribution evolves
+by $x_{k+1}=Px_k$. A steady-state vector is a probability vector $q$ with
+$Pq=q$; solve $(P-I)q=0$ together with $\sum_iq_i=1$.
+A stochastic matrix is regular if some positive integer power has every entry
+strictly positive. For a regular matrix, Theorem 18 guarantees a unique
+steady-state vector and convergence $P^kx_0\to q$ for every initial probability vector.
+
+\practice{4.9.P1}{A city resident's next two locations}
+The migration matrix from Example 1 is
+$M=\left(\begin{smallmatrix}.95&.03\\.05&.97\end{smallmatrix}\right)$,
+with city first and suburbs second. Starting from $x_0=(1,0)$,
+$x_1=Mx_0=(.95,.05)$. Thus (a) the probability of living in the suburbs
+next year is $5\%$. A second multiplication gives
+$x_2=(.95^2+.03(.05),.05(.95)+.97(.05))=(.904,.096)$.
+Thus (b) the probability after two years is $9.6\%$.
+
+\practice{4.9.P2}{Test the steady-state equation rather than its appearance}
+For the given $P,q$, direct multiplication gives
+\[
+ \begin{pmatrix}.6&.2\\.4&.8\end{pmatrix}
+ \begin{pmatrix}.3\\.7\end{pmatrix}
+ =\begin{pmatrix}.18+.14\\.12+.56\end{pmatrix}
+ =\begin{pmatrix}.32\\.68\end{pmatrix}\ne q.
+\]
+Although $q$ is a probability vector, it is not a steady-state vector.
+
+\practice{4.9.P3}{A long-run migration percentage}
+Solve $Mq=q$: the first equation reduces to $.05q_1=.03q_2$.
+Together with $q_1+q_2=1$, this gives $q=(3/8,5/8)$.
+Every entry of $M$ is positive, so it is regular; Theorem 18 makes this
+the limiting distribution. Thus $62.5\%$ will live in the suburbs after many years.
+
+\exercise{4.9.1}{Radio listeners at two station breaks}
+\step{(a) Build columns from current stations.}
+Order the states as news, music for both rows (next station) and columns
+(current station). The probabilities give
+\[
+ P=\begin{pmatrix}.7&.6\\.3&.4\end{pmatrix}.
+\]
+Column one describes a news listener; column two describes a music listener.
+Each column sums to $1$.
+\step{(b) Use the stated initial audience.}
+Everyone initially listens to news, so $x_0=(1,0)$.
+\step{(c) Count the breaks, not the elapsed minutes.}
+At 9:25 there have been two breaks, at 8:30 and 9:00.
+Then $x_1=(.7,.3)$ and
+$x_2=(.7(.7)+.6(.3),.3(.7)+.4(.3))=(.67,.33)$.
+Thus $33\%$ will be listening to music.
+
+\exercise{4.9.2}{Three equally treated food choices}
+\step{(a) Use foods 1, 2, 3 in both state lists.}
+The probability of retaining the current food is $.6$; the other two
+possibilities each have probability $.2$. Thus
+\[
+ P=\begin{pmatrix}.6&.2&.2\\.2&.6&.2\\.2&.2&.6\end{pmatrix}.
+\]
+\step{(b) Apply two transitions after the initial trial.}
+Starting at food 1 gives $x_0=(1,0,0)$ and $x_1=(.6,.2,.2)$.
+The second component of $x_2$ is
+$.2(.6)+.6(.2)+.2(.2)=.12+.12+.04=.28$.
+The requested probability is $28\%$; a single multiplication would answer
+the first trial after the initial trial, not the second.
+
+\exercise{4.9.3}{Healthy and ill students}
+\step{(a) Define the state order and fill the columns.}
+Use healthy, ill. A healthy student becomes ill with probability $.05$;
+an ill student becomes healthy with probability $1-.55=.45$. Therefore
+\[
+ P=\begin{pmatrix}.95&.45\\.05&.55\end{pmatrix}.
+\]
+\step{(b) Advance Monday's probability vector twice.}
+Monday's $x_0=(.8,.2)$ gives Tuesday
+$x_1=(.95(.8)+.45(.2),.05(.8)+.55(.2))=(.85,.15)$.
+Wednesday gives $x_2=(.875,.125)$. The ill percentages are $15\%$ and $12.5\%$.
+\step{(c) Use a different initial condition for a currently healthy student.}
+From $(1,0)$, after one day the vector is $(.95,.05)$, and after two days
+the healthy probability is $.95^2+.45(.05)=.925$.
+Thus the requested probability is $92.5\%$.
+
+\exercise{4.9.4}{Good, indifferent, and bad weather}
+\step{(a) Supply probabilities missing from the wording.}
+Use good, indifferent, bad. Each column sums to one, so the remaining
+indifferent-to-bad probability is $.3$ and bad-to-bad is $.3$.
+The matrix is
+\[
+ P=\begin{pmatrix}.4&.5&.3\\.3&.2&.4\\.3&.3&.3\end{pmatrix}.
+\]
+\step{(b) Tomorrow's bad-weather probability.}
+Starting from $(.5,.5,0)$, its bad component after one transition is
+$.3(.5)+.3(.5)+.3(0)=.3$, or $30\%$.
+\step{(c) Wednesday is two transitions from Monday.}
+From Monday $(0,.6,.4)$, Tuesday is $(.42,.28,.30)$.
+Wednesday's good component is $.4(.42)+.5(.28)+.3(.30)=.398$,
+so the answer is $39.8\%$.
+
+\exercise{4.9.5}{Normalize a two-state balance equation}
+For $P=\left(\begin{smallmatrix}.1&.5\\.9&.5\end{smallmatrix}\right)$,
+$Pq=q$ reduces to $.9q_1=.5q_2$, or $q_2=(9/5)q_1$.
+Impose $q_1+q_2=1$ to get $(14/5)q_1=1$.
+\answer{$q=(5/14,9/14)$. Both entries are nonnegative and sum to one.}
+
+\exercise{4.9.6}{A second two-state equilibrium}
+Here the balance equation is $.6q_1=.8q_2$, so $3q_1=4q_2$.
+Together with normalization this gives
+\[
+ q=(4/7,3/7).
+\]
+Substitution gives $Pq=q$, confirming the calculation.
+
+\exercise{4.9.7}{Three-state balance with two useful equations}
+From the first row, $.3q_1=.1q_2+.1q_3=.1(1-q_1)$,
+so $.4q_1=.1$ and $q_1=1/4$.
+From the second, $.2q_2=.2q_1+.2q_3=.2(1-q_2)$,
+so $q_2=1/2$. Normalization then gives $q_3=1/4$.
+\answer{$q=(1/4,1/2,1/4)$. The remaining row equation is satisfied as well.}
+
+\exercise{4.9.8}{A steady state despite zero transition entries}
+The second and third row equations give $.5q_2=.1q_3$ and
+$.9q_3=.6q_1$. Thus $q_2=q_3/5$ and $q_3=2q_1/3$.
+Normalizing gives
+\[
+ q_1(1+2/15+2/3)=1,
+ \qquad q=(5/9,2/27,10/27).
+\]
+Substituting these fractions into the first row gives $5/9$; their sum is
+one, so they form the required probability vector.
+
+\exercise{4.9.9}{One zero can disappear under squaring}
+The given matrix is stochastic, since it has nonnegative entries and unit
+column sums. Its square is
+\[
+ P^2=\begin{pmatrix}.2&1\\.8&0\end{pmatrix}^2
+ =\begin{pmatrix}.84&.2\\.16&.8\end{pmatrix}.
+\]
+Every entry of this power is strictly positive. Therefore $P$ is regular,
+even though $P$ itself has a zero entry.
+
+\exercise{4.9.10}{An absorbing state prevents regularity}
+For $P=\left(\begin{smallmatrix}1&.3\\0&.7\end{smallmatrix}\right)$,
+the first column is $(1,0)$, and $P(1,0)=(1,0)$.
+Inductively the first column of every positive power remains $(1,0)$.
+Thus each power has a zero entry, so $P$ is not regular.
+
+\exercise{4.9.11}{Long-run radio preferences}
+For the matrix in Exercise 4.9.1, the balance equation is $.3q_N=.6q_M$.
+Thus $q_N=2q_M$, and normalization gives (a) $q=(2/3,1/3)$.
+All entries of $P$ are positive, so it is regular. Theorem 18 implies
+(b) that the long-run fraction listening to the news is $2/3$, regardless
+of the initial audience. The finite two-break answer need not equal this limit.
+
+\exercise{4.9.12}{No long-run preference between symmetric foods}
+The matrix of Exercise 4.9.2 sends $(1/3,1/3,1/3)$ to itself; every row
+also sums to one. All entries are positive, so Theorem 18 makes this the
+unique limiting probability vector. Hence none of the three foods is preferred
+in the long run: each is chosen with probability $1/3$.
+
+\exercise{4.9.13}{The long-run illness rate}
+For the healthy/ill matrix, $.05q_H=.45q_I$ implies $q_H=9q_I$.
+Normalization gives (a) $q=(.9,.1)$.
+Since this matrix has all positive entries, it is regular; thus (b) the
+long-run probability that a specific student is ill is $.1$, or $10\%$.
+Theorem 18 applies to every initial probability vector, including certainty
+of being healthy or ill today, so today's state does not change that limit.
+
+\exercise{4.9.14}{Long-run good weather}
+The third row of the weather matrix gives $q_B=.3$ immediately because
+$q_G+q_I+q_B=1$. Then $q_G+q_I=.7$ and
+$q_I=.3q_G+.2q_I+.4(.3)$.
+Substitute $q_I=.7-q_G$ to obtain
+$.8(.7-q_G)=.3q_G+.12$, whence $q_G=.4$ and $q_I=.3$.
+The matrix is strictly positive, so the long-run good-weather probability
+is $40\%$.
+
+\exercise{4.9.15}{A migration percentage in the long run}
+With states California and rest of the United States, use
+\[
+ P=\begin{pmatrix}.9821&.0029\\.0179&.9971\end{pmatrix}.
+\]
+The steady-state equation gives $.0179q_{CA}=.0029q_{rest}$.
+Since $q_{rest}=1-q_{CA}$,
+\[
+ q_{CA}=\frac{.0029}{.0179+.0029}=\frac{29}{208}\approx .13942308.
+\]
+All entries are positive, hence the matrix is regular. The eventual share
+is approximately $13.9423\%$. The initial $11.7\%$ affects the transient
+distributions, but not this limit, under the stipulated constant migration model.
+
+\exercise{4.9.16}{Allocate a car fleet across three locations}
+Order states as City Airport, Downtown, Metro Airport, using the printed
+\emph{columns} as rental locations and rows as return locations:
+\[
+ P=\begin{pmatrix}.90&.01&.09\\.01&.90&.01\\.09&.09&.90\end{pmatrix}.
+\]
+The downtown balance gives $.10q_D=.01q_C+.01q_M=.01(1-q_D)$,
+so $.11q_D=.01$ and $q_D=1/11$.
+The full steady state is $(91/209,1/11,9/19)$; its entries sum to one and
+satisfy $Pq=q$. Because the matrix is positive, it is regular and this
+steady distribution describes a typical long-run day under the model.
+For about $2000$ cars, downtown gets $2000/11\approx181.82$ cars,
+or approximately \textbf{182 cars} rented or ready to rent there.
+
+\exercise{4.9.17}{A stochastic matrix has eigenvalue one}
+\begin{enumerate}[label=(\alph*)]
+\item Every column of $P$ sums to one, while every column of $I$ sums
+to one. Thus every column of $P-I$ sums to zero. Adding all other rows
+to the bottom row produces that column-sum row, which is zero.
+\item The sum of all original rows of $P-I$ is zero. The coefficients
+of this relation are all $1$, not all zero, so the rows are dependent.
+\item A dependent list of $n$ rows spans a space of dimension less than $n$.
+Equivalently $\rank(P-I)<n$.
+\item By rank--nullity, $\dim\Nul(P-I)=n-\rank(P-I)>0$.
+Thus there is a nonzero $x$ satisfying $(P-I)x=0$, or $Px=x$.
+\end{enumerate}
+This proves existence of a nonzero fixed vector; by itself it does not
+prove its entries can be chosen nonnegative and normalized, which is the
+additional point mentioned in the exercise.
+
+\exercise{4.9.18}{An explicit steady state for every two-state matrix}
+For $P=\left(\begin{smallmatrix}1-\alpha&\beta\\\alpha&1-\beta\end{smallmatrix}\right)$,
+the equation $Pq=q$ is $\alpha q_1=\beta q_2$.
+If $\alpha+\beta>0$, choose
+\[
+ q=\left(\frac{\beta}{\alpha+\beta},
+          \frac{\alpha}{\alpha+\beta}\right).
+\]
+Both entries are nonnegative and sum to one, and the balance equation
+holds, so this is a steady-state vector. It is the unique normalized
+solution because the balance and sum equations determine both entries.
+If $\alpha=\beta=0$, then $P=I_2$. Every vector $(t,1-t)$ with
+$0\le t\le1$ is a steady state; in particular $(1,0),(0,1)$ are two
+independent ones. Thus the parenthetical claim means two independent
+steady-state directions, not only two probability vectors in this case.
+
+\exercise{4.9.19}{A row of ones records total probability}
+\step{(a) Interpret the scalar $Sx$.}
+For $S=[\,1\ \cdots\ 1\,]$, $Sx=\sum_i x_i$.
+Therefore $x$ is a probability vector exactly when its entries are
+nonnegative and $Sx=1$.
+\step{(b) Interpret the entries of $SP$.}
+Entry $j$ is the sum of column $j$ of $P$, which equals $1$.
+Hence $SP=S$.
+\step{(c) Preserve nonnegativity and the total separately.}
+Every entry of $Px$ is a sum of products of nonnegative entries, so it
+is nonnegative. Also $S(Px)=(SP)x=Sx=1$.
+By part (a), $Px$ is a probability vector.
+
+\exercise{4.9.20}{The square is stochastic}
+Every column $p_j$ of $P$ is a probability vector. Column $j$ of $P^2$
+is $Pp_j$, which is a probability vector by Exercise 4.9.19(c).
+Thus each column of $P^2$ has nonnegative entries and sums to one,
+which is exactly the definition of a stochastic matrix.
+
+\exercise{4.9.21}{Observe convergence of all columns of powers}
+\step{(a) Four powers of the supplied positive $4\times4$ matrix.}
+Keep full internal precision in the products and round only the displayed
+entries to four decimal places. The results are
+\[ P^{2}=\begin{pmatrix}0.2779&0.2780&0.2803&0.2941\\0.3368&0.3355&0.3357&0.3335\\0.1847&0.1861&0.1833&0.1697\\0.2005&0.2004&0.2007&0.2027\end{pmatrix}.\]
+\[ P^{3}=\begin{pmatrix}0.2817&0.2817&0.2817&0.2814\\0.3356&0.3356&0.3355&0.3352\\0.1817&0.1817&0.1819&0.1825\\0.2010&0.2010&0.2010&0.2009\end{pmatrix}.\]
+\[ P^{4}=\begin{pmatrix}0.2816&0.2816&0.2816&0.2816\\0.3355&0.3355&0.3355&0.3355\\0.1819&0.1819&0.1819&0.1819\\0.2009&0.2009&0.2009&0.2009\end{pmatrix}.\]
+\[ P^{5}=\begin{pmatrix}0.2816&0.2816&0.2816&0.2816\\0.3355&0.3355&0.3355&0.3355\\0.1819&0.1819&0.1819&0.1819\\0.2009&0.2009&0.2009&0.2009\end{pmatrix}.\]
+Solving $(P-I)q=0$ together with $q_1+q_2+q_3+q_4=1$ gives
+\[ q\approx\begin{pmatrix}0.2816326912\\0.3355052569\\0.181921411\\0.2009406409\end{pmatrix}.\]
+The columns are rapidly becoming nearly equal to this fixed probability vector.
+\step{(b) Powers of the more slowly mixing $3\times3$ matrix.}
+\[ Q^{10}=\begin{pmatrix}0.8222&0.4044&0.5385\\0.0324&0.3966&0.1666\\0.1453&0.1990&0.2949\end{pmatrix}.\]
+\[ Q^{20}=\begin{pmatrix}0.7674&0.6000&0.6690\\0.0637&0.2036&0.1326\\0.1688&0.1964&0.1984\end{pmatrix}.\]
+\[ Q^{30}=\begin{pmatrix}0.7477&0.6815&0.7105\\0.0783&0.1329&0.1074\\0.1740&0.1856&0.1821\end{pmatrix}.\]
+\[ Q^{40}=\begin{pmatrix}0.7401&0.7140&0.7257\\0.0843&0.1057&0.0960\\0.1756&0.1802&0.1783\end{pmatrix}.\]
+\[ Q^{50}=\begin{pmatrix}0.7372&0.7269&0.7315\\0.0867&0.0951&0.0913\\0.1761&0.1780&0.1772\end{pmatrix}.\]
+\[ Q^{60}=\begin{pmatrix}0.7360&0.7320&0.7338\\0.0876&0.0909&0.0894\\0.1763&0.1771&0.1767\end{pmatrix}.\]
+\[ Q^{70}=\begin{pmatrix}0.7356&0.7340&0.7347\\0.0880&0.0893&0.0887\\0.1764&0.1767&0.1766\end{pmatrix}.\]
+\[ Q^{80}=\begin{pmatrix}0.7354&0.7348&0.7351\\0.0881&0.0887&0.0884\\0.1764&0.1766&0.1765\end{pmatrix}.\]
+Its second equilibrium equation gives $q_2=q_3/2$, and its first gives
+$.03q_1=.05q_2+.10q_3$. Normalization then yields
+\[
+ q=(25/34,3/34,3/17)\approx(.73529412,.08823529,.17647059).
+\]
+The columns approach this vector more slowly, so an arbitrary fixed power
+such as $100$ is not a universal certificate of four-place accuracy.
+\step{(c) Explain the observation with Theorem 18.}
+$P$ is positive, hence regular. $Q^2$ has all entries positive (the only
+zero in $Q$ acquires a positive two-step route), so $Q$ is regular too.
+Column $j$ of $P^k$ is $P^ke_j$, the evolving probability vector from the
+initial state $e_j$. Theorem 18 says each such vector tends to the same
+unique steady state. The same reasoning applies to $Q^k$ and explains the
+observed column limits for any regular stochastic matrix.
+
+\exercise{4.9.22}{A reproducible comparison of two numerical methods}
+\goal Run both methods, report measured times, and distinguish numerical
+approximation from a mathematical convergence guarantee.
+A matrix program such as NumPy has no fixed largest permitted order;
+the practical limit depends on memory and desired runtime. The following
+experiment uses positive random matrices through order $1024$, the largest
+order tested here, rather than claiming an intrinsic software size limit.
+Normalize each random positive column to obtain a regular stochastic matrix.
+For method 1 solve $(P-I)q=0$ with its final equation replaced by
+$\sum_iq_i=1$. For method 2 use column one of $P^{100}$.
+
+The following table records actual execution times in seconds on this
+workspace, with one BLAS thread; input generation is outside the timing.
+Each method is invoked by one matrix-program call after the shared setup.
+Human typing time is user dependent and is not fabricated as an execution measurement.
+\begin{center}\begin{tabular}{rrrr}\toprule
+Order&Direct solve&Power $100$&Maximum difference\\\midrule
+64&0.000149&0.000120&$6.09e-16$\\
+128&0.000173&0.000829&$3.93e-16$\\
+256&0.000788&0.005619&$5.89e-16$\\
+512&0.004078&0.043638&$7.01e-16$\\
+1024&0.028829&0.329893&$7.84e-16$\\
+\bottomrule\end{tabular}\end{center}
+Here is the complete experimental core; start Python with
+\texttt{OPENBLAS\_NUM\_THREADS=1} for the stated thread setting.
+\begin{verbatim}
+import numpy as np
+from time import perf_counter
+rng = np.random.default_rng(4922)
+for n in [64, 128, 256, 512, 1024]:
+    P = rng.uniform(.1, 1, (n, n)); P /= P.sum(axis=0)
+    A = P - np.eye(n); A[-1, :] = 1
+    b = np.zeros(n); b[-1] = 1
+    start = perf_counter()
+    q = np.linalg.solve(A, b)
+    direct = perf_counter() - start
+    start = perf_counter()
+    v = np.linalg.matrix_power(P, 100)[:, 0]
+    power = perf_counter() - start
+    print(n, direct, power, np.max(abs(q-v)))
+\end{verbatim}
+For these well-mixed positive samples, the two vectors agree to less than
+$8\times10^{-16}$ in maximum coordinate error. This empirical accuracy
+is not guaranteed for every regular stochastic matrix: a slowly mixing
+matrix can require far more than $100$ steps, as Exercise 4.9.21 illustrates.
+Solving the normalized linear system avoids choosing a mixing time and was
+faster for the larger tested orders. Computing a power is easy to request
+and can reveal transients, but a large power performs more matrix products
+and still needs a convergence check. For finding only the steady state,
+the direct normalized solve is preferable in this experiment.

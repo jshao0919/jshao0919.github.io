@@ -1,0 +1,525 @@
+\section{Matrix factorizations}
+An $LU$ factorization writes $A=LU$, where $L$ is unit lower
+triangular and $U$ is in echelon form. ``Unit'' means the diagonal
+entries of $L$ are $1$. In elimination, if we replace row $i$ by
+$R_i-mR_j$ to clear an entry below the current pivot, record $m$
+in the corresponding lower column of $L$. The same row replacements
+change $A$ to $U$ and $L$ to $I$; reversing them proves $A=LU$.
+No row interchanges are needed for the matrices factored below.
+
+To solve $Ax=b$, first solve $Ly=b$ from top to bottom, and then
+$Ux=y$ from bottom to top. Reuse $L,U$ when the right side changes;
+do not compute an inverse merely to solve one system.
+
+\practice{2.5.P1}{A rectangular matrix with only three pivot columns}
+The given matrix has five rows and four columns. Its first-column
+multipliers are $3,1,2,-3$. After that elimination, the second-column
+multipliers are $-1,2,-3$. Column 3 then has no new pivot; the next
+pivot is the entry $5$ in column 4 of row 3. Its multipliers are $-1,2$.
+The resulting factors are
+
+\[L=\left[\begin{matrix}1 & 0 & 0 & 0 & 0\\3 & 1 & 0 & 0 & 0\\1 & -1 & 1 & 0 & 0\\2 & 2 & -1 & 1 & 0\\-3 & -3 & 2 & 0 & 1\end{matrix}\right].\]
+\[U=\left[\begin{matrix}2 & -4 & -2 & 3\\0 & 3 & 1 & -1\\0 & 0 & 0 & 5\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\end{matrix}\right].\]
+
+The unused fourth and fifth columns of $L$ are those of $I_5$.
+Multiplying these displayed factors gives the original $5\times4$
+matrix exactly. In particular, $L$ is $5\times5$, not $5\times4$;
+$U$ carries the rectangular dimensions and its last two rows are zero.
+
+\exercise{2.5.1}{Forward substitution followed by backward substitution}
+\goal Solve $Ax=b$ using the given factors.
+\[A=\left[\begin{matrix}3 & -7 & -2\\-3 & 5 & 1\\6 & -4 & 0\end{matrix}\right],\qquad b=\left[\begin{matrix}-7\\5\\2\end{matrix}\right].\]
+The supplied factors are
+\[L=\left[\begin{matrix}1 & 0 & 0\\-1 & 1 & 0\\2 & -5 & 1\end{matrix}\right].\]
+\[U=\left[\begin{matrix}3 & -7 & -2\\0 & -2 & -1\\0 & 0 & -1\end{matrix}\right].\]
+\step{First solve $Ly=b$ by forward substitution.}
+\begin{align*}y_{1}&=-7\\
+y_{2}&=5-\bigl[(-1)(-7)\bigr]=-2\\
+y_{3}&=2-\bigl[(2)(-7)+(-5)(-2)\bigr]=6\end{align*}\step{Then solve $Ux=y$ by backward substitution.}
+\begin{align*}x_{3}&=\frac{6}{-1}=-6\\
+x_{2}&=\frac{-2-\bigl[(-1)(-6)\bigr]}{-2}=4\\
+x_{1}&=\frac{-7-\bigl[(-7)(4)+(-2)(-6)\bigr]}{3}=3\end{align*}\step{Also carry out ordinary elimination.}
+Apply these row replacements to the augmented matrix $[A\mid b]$:
+\begin{align*}R_{2}&\leftarrow R_{2}+R_{1}\\
+R_{3}&\leftarrow R_{3}-(2)R_{1}\\
+R_{3}&\leftarrow R_{3}+(5)R_{2}\end{align*}They produce $[U\mid y]$, with the same $U,y$ displayed above.
+The backward substitution therefore gives the same vector as the
+factorization method. This explicitly performs the requested second method.
+\answer{$x=\left[\begin{matrix}3\\4\\-6\end{matrix}\right]$. Multiplying by the original $A$
+returns the displayed $b$, an independent check of the solution.}
+
+\exercise{2.5.2}{Forward substitution followed by backward substitution}
+\goal Solve $Ax=b$ using the given factors.
+\[A=\left[\begin{matrix}2 & -6 & 4\\-4 & 8 & 0\\0 & -4 & 6\end{matrix}\right],\qquad b=\left[\begin{matrix}2\\-4\\6\end{matrix}\right].\]
+The supplied factors are
+\[L=\left[\begin{matrix}1 & 0 & 0\\-2 & 1 & 0\\0 & 1 & 1\end{matrix}\right].\]
+\[U=\left[\begin{matrix}2 & -6 & 4\\0 & -4 & 8\\0 & 0 & -2\end{matrix}\right].\]
+\step{First solve $Ly=b$ by forward substitution.}
+\begin{align*}y_{1}&=2\\
+y_{2}&=-4-\bigl[(-2)(2)\bigr]=0\\
+y_{3}&=6-\bigl[(1)(0)\bigr]=6\end{align*}\step{Then solve $Ux=y$ by backward substitution.}
+\begin{align*}x_{3}&=\frac{6}{-2}=-3\\
+x_{2}&=\frac{0-\bigl[(8)(-3)\bigr]}{-4}=-6\\
+x_{1}&=\frac{2-\bigl[(-6)(-6)+(4)(-3)\bigr]}{2}=-11\end{align*}\step{Also carry out ordinary elimination.}
+Apply these row replacements to the augmented matrix $[A\mid b]$:
+\begin{align*}R_{2}&\leftarrow R_{2}+(2)R_{1}\\
+R_{3}&\leftarrow R_{3}-R_{2}\end{align*}They produce $[U\mid y]$, with the same $U,y$ displayed above.
+The backward substitution therefore gives the same vector as the
+factorization method. This explicitly performs the requested second method.
+\answer{$x=\left[\begin{matrix}-11\\-6\\-3\end{matrix}\right]$. Multiplying by the original $A$
+returns the displayed $b$, an independent check of the solution.}
+
+\exercise{2.5.3}{Forward substitution followed by backward substitution}
+\goal Solve $Ax=b$ using the given factors.
+\[A=\left[\begin{matrix}2 & -4 & 2\\-4 & 5 & 2\\6 & -9 & 1\end{matrix}\right],\qquad b=\left[\begin{matrix}6\\0\\6\end{matrix}\right].\]
+The supplied factors are
+\[L=\left[\begin{matrix}1 & 0 & 0\\-2 & 1 & 0\\3 & -1 & 1\end{matrix}\right].\]
+\[U=\left[\begin{matrix}2 & -4 & 2\\0 & -3 & 6\\0 & 0 & 1\end{matrix}\right].\]
+\step{First solve $Ly=b$ by forward substitution.}
+\begin{align*}y_{1}&=6\\
+y_{2}&=0-\bigl[(-2)(6)\bigr]=12\\
+y_{3}&=6-\bigl[(3)(6)+(-1)(12)\bigr]=0\end{align*}\step{Then solve $Ux=y$ by backward substitution.}
+\begin{align*}x_{3}&=0=0\\
+x_{2}&=\frac{12-\bigl[(6)(0)\bigr]}{-3}=-4\\
+x_{1}&=\frac{6-\bigl[(-4)(-4)+(2)(0)\bigr]}{2}=-5\end{align*}\answer{$x=\left[\begin{matrix}-5\\-4\\0\end{matrix}\right]$. Multiplying by the original $A$
+returns the displayed $b$, an independent check of the solution.}
+
+\exercise{2.5.4}{Forward substitution followed by backward substitution}
+\goal Solve $Ax=b$ using the given factors.
+\[A=\left[\begin{matrix}1 & -1 & 2\\1 & -3 & 1\\3 & 7 & 5\end{matrix}\right],\qquad b=\left[\begin{matrix}0\\-5\\7\end{matrix}\right].\]
+The supplied factors are
+\[L=\left[\begin{matrix}1 & 0 & 0\\1 & 1 & 0\\3 & -5 & 1\end{matrix}\right].\]
+\[U=\left[\begin{matrix}1 & -1 & 2\\0 & -2 & -1\\0 & 0 & -6\end{matrix}\right].\]
+\step{First solve $Ly=b$ by forward substitution.}
+\begin{align*}y_{1}&=0\\
+y_{2}&=-5-\bigl[(1)(0)\bigr]=-5\\
+y_{3}&=7-\bigl[(3)(0)+(-5)(-5)\bigr]=-18\end{align*}\step{Then solve $Ux=y$ by backward substitution.}
+\begin{align*}x_{3}&=\frac{-18}{-6}=3\\
+x_{2}&=\frac{-5-\bigl[(-1)(3)\bigr]}{-2}=1\\
+x_{1}&=0-\bigl[(-1)(1)+(2)(3)\bigr]=-5\end{align*}\answer{$x=\left[\begin{matrix}-5\\1\\3\end{matrix}\right]$. Multiplying by the original $A$
+returns the displayed $b$, an independent check of the solution.}
+
+\exercise{2.5.5}{Forward substitution followed by backward substitution}
+\goal Solve $Ax=b$ using the given factors.
+\[A=\left[\begin{matrix}1 & -2 & -2 & -3\\3 & -9 & 0 & -9\\-1 & 2 & 4 & 7\\-3 & -6 & 26 & 2\end{matrix}\right],\qquad b=\left[\begin{matrix}1\\6\\0\\3\end{matrix}\right].\]
+The supplied factors are
+\[L=\left[\begin{matrix}1 & 0 & 0 & 0\\3 & 1 & 0 & 0\\-1 & 0 & 1 & 0\\-3 & 4 & -2 & 1\end{matrix}\right].\]
+\[U=\left[\begin{matrix}1 & -2 & -2 & -3\\0 & -3 & 6 & 0\\0 & 0 & 2 & 4\\0 & 0 & 0 & 1\end{matrix}\right].\]
+\step{First solve $Ly=b$ by forward substitution.}
+\begin{align*}y_{1}&=1\\
+y_{2}&=6-\bigl[(3)(1)\bigr]=3\\
+y_{3}&=0-\bigl[(-1)(1)\bigr]=1\\
+y_{4}&=3-\bigl[(-3)(1)+(4)(3)+(-2)(1)\bigr]=-4\end{align*}\step{Then solve $Ux=y$ by backward substitution.}
+\begin{align*}x_{4}&=-4=-4\\
+x_{3}&=\frac{1-\bigl[(4)(-4)\bigr]}{2}=\frac{17}{2}\\
+x_{2}&=\frac{3-\bigl[(6)(\frac{17}{2})\bigr]}{-3}=16\\
+x_{1}&=1-\bigl[(-2)(16)+(-2)(\frac{17}{2})+(-3)(-4)\bigr]=38\end{align*}\answer{$x=\left[\begin{matrix}38\\16\\\frac{17}{2}\\-4\end{matrix}\right]$. Multiplying by the original $A$
+returns the displayed $b$, an independent check of the solution.}
+
+\exercise{2.5.6}{Forward substitution followed by backward substitution}
+\goal Solve $Ax=b$ using the given factors.
+\[A=\left[\begin{matrix}1 & 3 & 2 & 0\\-2 & -3 & -4 & 12\\3 & 0 & 4 & -36\\-5 & -3 & -8 & 49\end{matrix}\right],\qquad b=\left[\begin{matrix}1\\-2\\-1\\2\end{matrix}\right].\]
+The supplied factors are
+\[L=\left[\begin{matrix}1 & 0 & 0 & 0\\-2 & 1 & 0 & 0\\3 & -3 & 1 & 0\\-5 & 4 & -1 & 1\end{matrix}\right].\]
+\[U=\left[\begin{matrix}1 & 3 & 2 & 0\\0 & 3 & 0 & 12\\0 & 0 & -2 & 0\\0 & 0 & 0 & 1\end{matrix}\right].\]
+\step{First solve $Ly=b$ by forward substitution.}
+\begin{align*}y_{1}&=1\\
+y_{2}&=-2-\bigl[(-2)(1)\bigr]=0\\
+y_{3}&=-1-\bigl[(3)(1)+(-3)(0)\bigr]=-4\\
+y_{4}&=2-\bigl[(-5)(1)+(4)(0)+(-1)(-4)\bigr]=3\end{align*}\step{Then solve $Ux=y$ by backward substitution.}
+\begin{align*}x_{4}&=3=3\\
+x_{3}&=\frac{-4}{-2}=2\\
+x_{2}&=\frac{0-\bigl[(12)(3)\bigr]}{3}=-12\\
+x_{1}&=1-\bigl[(3)(-12)+(2)(2)\bigr]=33\end{align*}\answer{$x=\left[\begin{matrix}33\\-12\\2\\3\end{matrix}\right]$. Multiplying by the original $A$
+returns the displayed $b$, an independent check of the solution.}
+
+\exercise{2.5.7}{Record the elimination multipliers to construct $L$}
+Start with the given matrix
+\[A=\left[\begin{matrix}2 & 5\\-3 & -4\end{matrix}\right].\]
+Use the following row replacements, in the order listed. The multiplier
+subtracted in each replacement is recorded below the relevant diagonal
+entry of $L$:
+\begin{align*}R_{2}&\leftarrow R_{2}+(\frac{3}{2})R_{1}\end{align*}The resulting factors are
+\[L=\left[\begin{matrix}1 & 0\\- \frac{3}{2} & 1\end{matrix}\right].\]
+\[U=\left[\begin{matrix}2 & 5\\0 & \frac{7}{2}\end{matrix}\right].\]Here the diagonal of $L$ consists of ones and all its entries above
+the diagonal are zero. The displayed $U$ is in echelon form.
+Direct multiplication verifies $LU=A$ exactly.
+
+\exercise{2.5.8}{Record the elimination multipliers to construct $L$}
+Start with the given matrix
+\[A=\left[\begin{matrix}6 & 4\\12 & 5\end{matrix}\right].\]
+Use the following row replacements, in the order listed. The multiplier
+subtracted in each replacement is recorded below the relevant diagonal
+entry of $L$:
+\begin{align*}R_{2}&\leftarrow R_{2}-(2)R_{1}\end{align*}The resulting factors are
+\[L=\left[\begin{matrix}1 & 0\\2 & 1\end{matrix}\right].\]
+\[U=\left[\begin{matrix}6 & 4\\0 & -3\end{matrix}\right].\]Here the diagonal of $L$ consists of ones and all its entries above
+the diagonal are zero. The displayed $U$ is in echelon form.
+Direct multiplication verifies $LU=A$ exactly.
+
+\exercise{2.5.9}{Record the elimination multipliers to construct $L$}
+Start with the given matrix
+\[A=\left[\begin{matrix}3 & 1 & 2\\-9 & 0 & -4\\9 & 9 & 14\end{matrix}\right].\]
+Use the following row replacements, in the order listed. The multiplier
+subtracted in each replacement is recorded below the relevant diagonal
+entry of $L$:
+\begin{align*}R_{2}&\leftarrow R_{2}+(3)R_{1}\\
+R_{3}&\leftarrow R_{3}-(3)R_{1}\\
+R_{3}&\leftarrow R_{3}-(2)R_{2}\end{align*}The resulting factors are
+\[L=\left[\begin{matrix}1 & 0 & 0\\-3 & 1 & 0\\3 & 2 & 1\end{matrix}\right].\]
+\[U=\left[\begin{matrix}3 & 1 & 2\\0 & 3 & 2\\0 & 0 & 4\end{matrix}\right].\]Here the diagonal of $L$ consists of ones and all its entries above
+the diagonal are zero. The displayed $U$ is in echelon form.
+Direct multiplication verifies $LU=A$ exactly.
+
+\exercise{2.5.10}{Record the elimination multipliers to construct $L$}
+Start with the given matrix
+\[A=\left[\begin{matrix}-5 & 0 & 4\\10 & 2 & -5\\10 & 10 & 16\end{matrix}\right].\]
+Use the following row replacements, in the order listed. The multiplier
+subtracted in each replacement is recorded below the relevant diagonal
+entry of $L$:
+\begin{align*}R_{2}&\leftarrow R_{2}+(2)R_{1}\\
+R_{3}&\leftarrow R_{3}+(2)R_{1}\\
+R_{3}&\leftarrow R_{3}-(5)R_{2}\end{align*}The resulting factors are
+\[L=\left[\begin{matrix}1 & 0 & 0\\-2 & 1 & 0\\-2 & 5 & 1\end{matrix}\right].\]
+\[U=\left[\begin{matrix}-5 & 0 & 4\\0 & 2 & 3\\0 & 0 & 9\end{matrix}\right].\]Here the diagonal of $L$ consists of ones and all its entries above
+the diagonal are zero. The displayed $U$ is in echelon form.
+Direct multiplication verifies $LU=A$ exactly.
+
+\exercise{2.5.11}{Record the elimination multipliers to construct $L$}
+Start with the given matrix
+\[A=\left[\begin{matrix}3 & 7 & 2\\6 & 19 & 4\\-3 & -2 & 3\end{matrix}\right].\]
+Use the following row replacements, in the order listed. The multiplier
+subtracted in each replacement is recorded below the relevant diagonal
+entry of $L$:
+\begin{align*}R_{2}&\leftarrow R_{2}-(2)R_{1}\\
+R_{3}&\leftarrow R_{3}+R_{1}\\
+R_{3}&\leftarrow R_{3}-R_{2}\end{align*}The resulting factors are
+\[L=\left[\begin{matrix}1 & 0 & 0\\2 & 1 & 0\\-1 & 1 & 1\end{matrix}\right].\]
+\[U=\left[\begin{matrix}3 & 7 & 2\\0 & 5 & 0\\0 & 0 & 5\end{matrix}\right].\]Here the diagonal of $L$ consists of ones and all its entries above
+the diagonal are zero. The displayed $U$ is in echelon form.
+Direct multiplication verifies $LU=A$ exactly.
+
+\exercise{2.5.12}{Record the elimination multipliers to construct $L$}
+Start with the given matrix
+\[A=\left[\begin{matrix}2 & 3 & 2\\4 & 13 & 9\\-6 & 5 & 4\end{matrix}\right].\]
+Use the following row replacements, in the order listed. The multiplier
+subtracted in each replacement is recorded below the relevant diagonal
+entry of $L$:
+\begin{align*}R_{2}&\leftarrow R_{2}-(2)R_{1}\\
+R_{3}&\leftarrow R_{3}+(3)R_{1}\\
+R_{3}&\leftarrow R_{3}-(2)R_{2}\end{align*}The resulting factors are
+\[L=\left[\begin{matrix}1 & 0 & 0\\2 & 1 & 0\\-3 & 2 & 1\end{matrix}\right].\]
+\[U=\left[\begin{matrix}2 & 3 & 2\\0 & 7 & 5\\0 & 0 & 0\end{matrix}\right].\]Here the diagonal of $L$ consists of ones and all its entries above
+the diagonal are zero. The displayed $U$ is in echelon form.
+Direct multiplication verifies $LU=A$ exactly. A zero final row does not
+invalidate an $LU$ factorization; the matrix need not be invertible.
+
+\exercise{2.5.13}{Record the elimination multipliers to construct $L$}
+Start with the given matrix
+\[A=\left[\begin{matrix}1 & 3 & -5 & -3\\-1 & -5 & 8 & 4\\4 & 2 & -5 & -7\\-2 & -4 & 7 & 5\end{matrix}\right].\]
+Use the following row replacements, in the order listed. The multiplier
+subtracted in each replacement is recorded below the relevant diagonal
+entry of $L$:
+\begin{align*}R_{2}&\leftarrow R_{2}+R_{1}\\
+R_{3}&\leftarrow R_{3}-(4)R_{1}\\
+R_{4}&\leftarrow R_{4}+(2)R_{1}\\
+R_{3}&\leftarrow R_{3}-(5)R_{2}\\
+R_{4}&\leftarrow R_{4}+R_{2}\end{align*}The resulting factors are
+\[L=\left[\begin{matrix}1 & 0 & 0 & 0\\-1 & 1 & 0 & 0\\4 & 5 & 1 & 0\\-2 & -1 & 0 & 1\end{matrix}\right].\]
+\[U=\left[\begin{matrix}1 & 3 & -5 & -3\\0 & -2 & 3 & 1\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\end{matrix}\right].\]Here the diagonal of $L$ consists of ones and all its entries above
+the diagonal are zero. The displayed $U$ is in echelon form.
+Direct multiplication verifies $LU=A$ exactly. A zero final row does not
+invalidate an $LU$ factorization; the matrix need not be invertible.
+
+\exercise{2.5.14}{Record the elimination multipliers to construct $L$}
+Start with the given matrix
+\[A=\left[\begin{matrix}1 & 3 & 1 & 5\\5 & 20 & 6 & 31\\-2 & -1 & -1 & -4\\-1 & 7 & 1 & 7\end{matrix}\right].\]
+Use the following row replacements, in the order listed. The multiplier
+subtracted in each replacement is recorded below the relevant diagonal
+entry of $L$:
+\begin{align*}R_{2}&\leftarrow R_{2}-(5)R_{1}\\
+R_{3}&\leftarrow R_{3}+(2)R_{1}\\
+R_{4}&\leftarrow R_{4}+R_{1}\\
+R_{3}&\leftarrow R_{3}-R_{2}\\
+R_{4}&\leftarrow R_{4}-(2)R_{2}\end{align*}The resulting factors are
+\[L=\left[\begin{matrix}1 & 0 & 0 & 0\\5 & 1 & 0 & 0\\-2 & 1 & 1 & 0\\-1 & 2 & 0 & 1\end{matrix}\right].\]
+\[U=\left[\begin{matrix}1 & 3 & 1 & 5\\0 & 5 & 1 & 6\\0 & 0 & 0 & 0\\0 & 0 & 0 & 0\end{matrix}\right].\]Here the diagonal of $L$ consists of ones and all its entries above
+the diagonal are zero. The displayed $U$ is in echelon form.
+Direct multiplication verifies $LU=A$ exactly. A zero final row does not
+invalidate an $LU$ factorization; the matrix need not be invertible.
+
+\exercise{2.5.15}{Record the elimination multipliers to construct $L$}
+Start with the given matrix
+\[A=\left[\begin{matrix}2 & 0 & 5 & 2\\-6 & 3 & -13 & -3\\4 & 9 & 16 & 17\end{matrix}\right].\]
+Use the following row replacements, in the order listed. The multiplier
+subtracted in each replacement is recorded below the relevant diagonal
+entry of $L$:
+\begin{align*}R_{2}&\leftarrow R_{2}+(3)R_{1}\\
+R_{3}&\leftarrow R_{3}-(2)R_{1}\\
+R_{3}&\leftarrow R_{3}-(3)R_{2}\end{align*}The resulting factors are
+\[L=\left[\begin{matrix}1 & 0 & 0\\-3 & 1 & 0\\2 & 3 & 1\end{matrix}\right].\]
+\[U=\left[\begin{matrix}2 & 0 & 5 & 2\\0 & 3 & 2 & 3\\0 & 0 & 0 & 4\end{matrix}\right].\]Here the diagonal of $L$ consists of ones and all its entries above
+the diagonal are zero. The displayed $U$ is in echelon form.
+Direct multiplication verifies $LU=A$ exactly. Because $A$ is rectangular, $L$ is
+$3\times3$ and $U$ has the same
+$3\times4$ size as $A$.
+
+\exercise{2.5.16}{Record the elimination multipliers to construct $L$}
+Start with the given matrix
+\[A=\left[\begin{matrix}2 & -3 & 4\\-4 & 8 & -7\\6 & -5 & 14\\-6 & 9 & -12\\8 & -6 & 19\end{matrix}\right].\]
+Use the following row replacements, in the order listed. The multiplier
+subtracted in each replacement is recorded below the relevant diagonal
+entry of $L$:
+\begin{align*}R_{2}&\leftarrow R_{2}+(2)R_{1}\\
+R_{3}&\leftarrow R_{3}-(3)R_{1}\\
+R_{4}&\leftarrow R_{4}+(3)R_{1}\\
+R_{5}&\leftarrow R_{5}-(4)R_{1}\\
+R_{3}&\leftarrow R_{3}-(2)R_{2}\\
+R_{5}&\leftarrow R_{5}-(3)R_{2}\end{align*}The resulting factors are
+\[L=\left[\begin{matrix}1 & 0 & 0 & 0 & 0\\-2 & 1 & 0 & 0 & 0\\3 & 2 & 1 & 0 & 0\\-3 & 0 & 0 & 1 & 0\\4 & 3 & 0 & 0 & 1\end{matrix}\right].\]
+\[U=\left[\begin{matrix}2 & -3 & 4\\0 & 2 & 1\\0 & 0 & 0\\0 & 0 & 0\\0 & 0 & 0\end{matrix}\right].\]Here the diagonal of $L$ consists of ones and all its entries above
+the diagonal are zero. The displayed $U$ is in echelon form.
+Direct multiplication verifies $LU=A$ exactly. A zero final row does not
+invalidate an $LU$ factorization; the matrix need not be invertible. Because $A$ is rectangular, $L$ is
+$5\times5$ and $U$ has the same
+$5\times3$ size as $A$.
+
+\exercise{2.5.17}{Invert the two triangular factors in reverse order}
+Use the factors from Exercise 2.5.2. Solving $Lz=e_j$
+column by column (forward substitution), and $Uw=e_j$ column by
+column (backward substitution), gives
+\[L^{-1}=\left[\begin{matrix}1 & 0 & 0\\2 & 1 & 0\\-2 & -1 & 1\end{matrix}\right],\qquad U^{-1}=\left[\begin{matrix}\frac{1}{2} & - \frac{3}{4} & -2\\0 & - \frac{1}{4} & -1\\0 & 0 & - \frac{1}{2}\end{matrix}\right].\]
+This is the augmented-inverse algorithm: reduce $[L\mid I]$ and
+$[U\mid I]$ to $[I\mid L^{-1}]$ and $[I\mid U^{-1}]$ using their
+triangular equations. Each column is checked by multiplying it by its
+original factor and obtaining the corresponding coordinate vector.
+Since $(LU)^{-1}=U^{-1}L^{-1}$, the required inverse is
+\[A^{-1}=U^{-1}L^{-1}=\left[\begin{matrix}3 & \frac{5}{4} & -2\\\frac{3}{2} & \frac{3}{4} & -1\\1 & \frac{1}{2} & - \frac{1}{2}\end{matrix}\right].\]
+Both $AA^{-1}$ and $A^{-1}A$ equal the identity. The order of the
+two inverse factors matters.
+
+\exercise{2.5.18}{Invert the two triangular factors in reverse order}
+Use the factors from Exercise 2.5.3. Solving $Lz=e_j$
+column by column (forward substitution), and $Uw=e_j$ column by
+column (backward substitution), gives
+\[L^{-1}=\left[\begin{matrix}1 & 0 & 0\\2 & 1 & 0\\-1 & 1 & 1\end{matrix}\right],\qquad U^{-1}=\left[\begin{matrix}\frac{1}{2} & - \frac{2}{3} & 3\\0 & - \frac{1}{3} & 2\\0 & 0 & 1\end{matrix}\right].\]
+This is the augmented-inverse algorithm: reduce $[L\mid I]$ and
+$[U\mid I]$ to $[I\mid L^{-1}]$ and $[I\mid U^{-1}]$ using their
+triangular equations. Each column is checked by multiplying it by its
+original factor and obtaining the corresponding coordinate vector.
+Since $(LU)^{-1}=U^{-1}L^{-1}$, the required inverse is
+\[A^{-1}=U^{-1}L^{-1}=\left[\begin{matrix}- \frac{23}{6} & \frac{7}{3} & 3\\- \frac{8}{3} & \frac{5}{3} & 2\\-1 & 1 & 1\end{matrix}\right].\]
+Both $AA^{-1}$ and $A^{-1}A$ equal the identity. The order of the
+two inverse factors matters.
+
+\exercise{2.5.19}{Invert a triangular matrix without losing triangular form}
+Every diagonal entry is nonzero, so forward substitution solves
+$Ax=b$ uniquely for every $b$. Hence $A$ is invertible by the
+Invertible Matrix Theorem.
+To follow the suggested row-operation argument, clear entries below
+the successive diagonal pivots using replacements by earlier rows,
+then scale the diagonal pivots to $1$. No swaps or additions of later
+rows into earlier rows are needed. Applying these same operations to
+$I$ keeps it lower triangular: an earlier lower triangular row has
+zeros in every column beyond its own index, hence also beyond the
+index of the later row it is added to. Scaling preserves these zeros.
+Thus reduction of $[A\mid I]$ to $[I\mid A^{-1}]$ leaves the right
+block lower triangular. This proves the requested structure as well
+as invertibility.
+
+\exercise{2.5.20}{Reduce the unit lower factor to the identity}
+Because $L$ is unit lower triangular, its diagonal entries are already
+$1$. Clear below each diagonal using only replacements of a later row
+by itself minus a multiple of an earlier row. Let $E$ be the product
+of these elementary row-operation matrices. Then $EL=I$.
+Applying the same replacements to $A=LU$ gives
+\[EA=ELU=IU=U.\]
+Thus only row replacements are needed, even if $A$ or $U$ is
+rectangular or singular.
+
+\exercise{2.5.21}{One sequence of row operations acts on every factorization}
+Let $E$ be the product of all elementary matrices for the stated
+operations. Since they reduce $B$ to $I$, $EB=I$; therefore
+\[EA=E(BC)=(EB)C=IC=C.\]
+This proves the claim for any such sequence, not merely a particular
+algorithm. The converse can fail: take $A=0$, any invertible $B\ne I$,
+and $C=0$. The empty sequence already leaves $A=C$, but does not
+change $B$ into $I$.
+
+\exercise{2.5.22}{Discard the zero rows and their unused multiplier columns}
+For the Practice Problem factors, take the first three columns of
+$L$ and the first three rows of $U$:
+\[B=\left[\begin{matrix}1 & 0 & 0\\3 & 1 & 0\\1 & -1 & 1\\2 & 2 & -1\\-3 & -3 & 2\end{matrix}\right],\qquad C=\left[\begin{matrix}2 & -4 & -2 & 3\\0 & 3 & 1 & -1\\0 & 0 & 0 & 5\end{matrix}\right].\]
+They have the required sizes $5\times3$ and $3\times4$, and their
+product is $A$. To see why, write
+$L=[L_1\ L_2]$ and $U=\begin{bmatrix}U_1\\0\end{bmatrix}$.
+Block multiplication gives $LU=L_1U_1+L_2(0)=L_1U_1$.
+The same argument works for any $m\times n$ matrix whose $U$ has
+exactly three nonzero rows: use an $m\times3$ factor and a
+$3\times n$ factor. Those rows are first because $U$ is echelon.
+
+\exercise{2.5.23}{A compact representation by four outer products}
+\begin{enumerate}[label=(\alph*)]
+\item Write $C=[c_1\ c_2\ c_3\ c_4]$ and let the rows of $D$ be
+$d_1^T,\ldots,d_4^T$. The column--row rule gives
+$A=c_1d_1^T+c_2d_2^T+c_3d_3^T+c_4d_4^T$.
+Each term is an $m\times n$ outer product.
+\item A $400\times100$ array stores $40{,}000$ numbers.
+The factors require $400(4)+4(100)=2{,}000$ numbers, a factor
+of $20$ less storage, ignoring small bookkeeping costs.
+For a product $Ax$, first compute $Dx$ (four entries) and then
+$C(Dx)$; storing the full matrix is unnecessary for that use.
+\end{enumerate}
+
+\exercise{2.5.24}{Solve a QR-factored system by an orthogonal multiplication}
+From $Q^TQ=I$ and the fact that $Q$ is square, $Q$ is invertible
+with inverse $Q^T$. Thus $QRx=b$ is equivalent to
+$Rx=Q^Tb$. Compute $c=Q^Tb$, then solve the upper triangular
+system $Rx=c$ by backward substitution. Invertibility of $R$
+guarantees a nonzero diagonal and a unique solution.
+\answer{For every $b$, this process yields the unique $x$. It requires
+no explicit inverse of $R$.}
+
+\exercise{2.5.25}{Invert a singular-value factorization with positive diagonal}
+The square matrices $U,V$ are invertible because $U^TU=V^TV=I$;
+their inverses are $U^T,V^T$. Each $\sigma_j>0$, so
+$D^{-1}=\operatorname{diag}(1/\sigma_1,\ldots,1/\sigma_n)$ exists.
+Reverse the factor order:
+\[A^{-1}=(V^T)^{-1}D^{-1}U^{-1}=VD^{-1}U^T.\]
+The product check is
+$AA^{-1}=UDV^TVD^{-1}U^T=UU^T=I$, and the reverse order
+similarly gives $VV^T=I$. Strict positivity is stronger than the
+nonzero condition needed for the inverse, but supplies it here.
+
+\exercise{2.5.26}{Cancel neighboring change-of-basis factors in powers}
+Associativity and $P^{-1}P=I$ give
+\[A^2=(PDP^{-1})(PDP^{-1})=PD^2P^{-1},\]
+\[A^3=PD^3P^{-1},\qquad A^k=PD^kP^{-1}.\]
+The general formula follows inductively by multiplying the formula
+for $A^k$ by $PDP^{-1}$. Since $D=\operatorname{diag}(2,3,1)$,
+\[A^2=P\operatorname{diag}(4,9,1)P^{-1},\quad
+A^3=P\operatorname{diag}(8,27,1)P^{-1},\]
+\[A^k=P\operatorname{diag}(2^k,3^k,1)P^{-1}.\]
+Only scalar powers of three diagonal entries need repeated powering.
+
+\textbf{Circuit convention for the next four exercises.}
+A series resistor of resistance $R$ has transfer matrix
+$S(R)=\begin{bmatrix}1&-R\\0&1\end{bmatrix}$; a shunt resistor has
+$T(R)=\begin{bmatrix}1&0\\-1/R&1\end{bmatrix}$.
+The state is $(v,i)^T$ and is mapped from input to output.
+If the signal passes through circuit 1 and then circuit 2, the total
+matrix is $A_2A_1$, so physical order is reversed in the matrix product.
+
+\exercise{2.5.27}{Two different networks with the specified input and output}
+\step{First design: a series resistor followed by a shunt.}
+A series resistance $R=1/2$ changes $(12,6)^T$ to
+$(12-(1/2)6,6)^T=(9,6)^T$. A shunt resistance $9/2$ then
+changes this to $(9,6-9/(9/2))^T=(9,4)^T$.
+Its matrix is $T(9/2)S(1/2)$.
+\step{Second design: a shunt followed by a series resistor.}
+A shunt resistance $6$ changes the input to $(12,6-12/6)^T=(12,4)^T$.
+A series resistance $3/4$ then gives $(12-(3/4)4,4)^T=(9,4)^T$.
+Its matrix is $S(3/4)T(6)$. All four resistances are positive and
+both calculations verify the required output, despite the different
+physical orders and resistance values.
+
+\exercise{2.5.28}{Add conductances for three successive shunt circuits}
+Multiplying two shunt matrices adds their lower-left entries.
+Thus three of them give
+\[T(R_3)T(R_2)T(R_1)
+=\begin{bmatrix}1&0\\-(1/R_1+1/R_2+1/R_3)&1\end{bmatrix}.\]
+This is $T(R)$ with
+\[R=\frac1{1/R_1+1/R_2+1/R_3}.
+\]
+The positive-resistance assumption makes the denominator positive.
+One may also write $R=R_1R_2R_3/(R_1R_2+R_1R_3+R_2R_3)$.
+
+\exercise{2.5.29}{Factor the given series--shunt--series network}
+\step{(a) Multiply in the physical order's reverse.}
+The signal passes through $R_1$ in series, $R_2$ as a shunt,
+and $R_3$ in series. Hence
+\[S(R_3)T(R_2)S(R_1)
+=\begin{bmatrix}
+1+R_3/R_2&-R_1-R_3-R_1R_3/R_2\\
+-1/R_2&1+R_1/R_2
+\end{bmatrix}.\]
+For example, multiplying the right two factors first gives
+$\begin{bmatrix}1&-R_1\\-1/R_2&1+R_1/R_2\end{bmatrix}$;
+the final left multiplication gives the displayed first row.
+\step{(b) Match entries of the target matrix.}
+The lower-left entry $-1/3$ forces $R_2=3$.
+The lower-right entry $5/3$ then gives $R_1=2$.
+The upper-left entry $3$ gives $R_3=6$.
+The remaining entry checks: $-2-6-2(6)/3=-12$.
+\answer{Use a $2$-ohm series resistor, a $3$-ohm shunt, then a
+$6$-ohm series resistor. Their product is exactly the specified matrix.}
+
+\exercise{2.5.30}{A shunt--series--shunt realization of the same matrix}
+Try a shunt of resistance $a$, then a series resistance $b$, then
+a shunt of resistance $c$. Multiplying gives
+\[T(c)S(b)T(a)=\begin{bmatrix}
+1+b/a&-b\\-1/a-(1+b/a)/c&1+b/c
+\end{bmatrix}.\]
+Match the target's upper-right entry to obtain $b=12$.
+Then $1+12/a=3$ gives $a=6$, and $1+12/c=5/3$ gives $c=18$.
+The lower-left entry checks as $-1/6-3/18=-1/3$.
+\answer{The distinct physical design is a $6$-ohm shunt, a
+$12$-ohm series resistor, and an $18$-ohm shunt, with exactly the
+same overall transfer matrix as in Exercise 2.5.29.}
+
+\exercise{2.5.31}{Factor and solve the supplied eight-node heat plate}
+All omitted entries in the printed matrix are zero; the actual
+coefficient matrix used here is
+\[A=\left[\begin{matrix}4 & -1 & -1 & 0 & 0 & 0 & 0 & 0\\-1 & 4 & 0 & -1 & 0 & 0 & 0 & 0\\-1 & 0 & 4 & -1 & -1 & 0 & 0 & 0\\0 & -1 & -1 & 4 & 0 & -1 & 0 & 0\\0 & 0 & -1 & 0 & 4 & -1 & -1 & 0\\0 & 0 & 0 & -1 & -1 & 4 & 0 & -1\\0 & 0 & 0 & 0 & -1 & 0 & 4 & -1\\0 & 0 & 0 & 0 & 0 & -1 & -1 & 4\end{matrix}\right].\]
+\step{(a) Perform elimination without row swaps.}
+The successive pivots are the diagonal entries of the following $U$.
+At pivot row $j$, subtract $l_{ij}$ times that row from row $i$;
+the multipliers $l_{ij}$ are precisely the displayed entries of $L$.
+\[L=\left[\begin{matrix}1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\- \frac{1}{4} & 1 & 0 & 0 & 0 & 0 & 0 & 0\\- \frac{1}{4} & - \frac{1}{15} & 1 & 0 & 0 & 0 & 0 & 0\\0 & - \frac{4}{15} & - \frac{2}{7} & 1 & 0 & 0 & 0 & 0\\0 & 0 & - \frac{15}{56} & - \frac{1}{12} & 1 & 0 & 0 & 0\\0 & 0 & 0 & - \frac{7}{24} & - \frac{26}{89} & 1 & 0 & 0\\0 & 0 & 0 & 0 & - \frac{24}{89} & - \frac{208}{2415} & 1 & 0\\0 & 0 & 0 & 0 & 0 & - \frac{712}{2415} & - \frac{2623}{8948} & 1\end{matrix}\right].\]
+\[U=\left[\begin{matrix}4 & -1 & -1 & 0 & 0 & 0 & 0 & 0\\0 & \frac{15}{4} & - \frac{1}{4} & -1 & 0 & 0 & 0 & 0\\0 & 0 & \frac{56}{15} & - \frac{16}{15} & -1 & 0 & 0 & 0\\0 & 0 & 0 & \frac{24}{7} & - \frac{2}{7} & -1 & 0 & 0\\0 & 0 & 0 & 0 & \frac{89}{24} & - \frac{13}{12} & -1 & 0\\0 & 0 & 0 & 0 & 0 & \frac{2415}{712} & - \frac{26}{89} & -1\\0 & 0 & 0 & 0 & 0 & 0 & \frac{8948}{2415} & - \frac{2623}{2415}\\0 & 0 & 0 & 0 & 0 & 0 & 0 & \frac{30305}{8948}\end{matrix}\right].\]
+Both factors have zeros more than two positions below or above their
+main diagonals. Exact multiplication gives $LU-A=0_{8\times8}$,
+checking every entry rather than just the diagonals.
+\step{(b) Solve using the factors.}
+For $b=(5,15,0,10,0,10,20,30)^T$, forward substitution gives
+\[y=\left[\begin{matrix}5\\\frac{65}{4}\\\frac{7}{3}\\15\\\frac{15}{8}\\\frac{10625}{712}\\\frac{10525}{483}\\\frac{364965}{8948}\end{matrix}\right].\]
+The rule is $y_i=b_i-\sum_{j<i}l_{ij}y_j$, starting at row 1.
+Backward substitution uses
+$x_i=(y_i-\sum_{j>i}u_{ij}x_j)/u_{ii}$, starting at row 8.
+It gives
+\[x=\frac1{209}\begin{bmatrix}827\\1377\\886\\1546\\1171\\1831\\1967\\2517\end{bmatrix}.
+\]
+Substitution verifies $Ax=b$ exactly. For instance row 1 gives
+$(4(827)-1377-886)/209=1045/209=5$.
+\step{(c) Compare the inverse with the banded factors.}
+The exact inverse is
+\[A^{-1}=\frac1{30305}\left[\begin{matrix}8948 & 2623 & 2864 & 1544 & 964 & 689 & 303 & 248\\2623 & 8948 & 1544 & 2864 & 689 & 964 & 248 & 303\\2864 & 1544 & 9912 & 3312 & 3167 & 1792 & 964 & 689\\1544 & 2864 & 3312 & 9912 & 1792 & 3167 & 689 & 964\\964 & 689 & 3167 & 1792 & 9912 & 3312 & 2864 & 1544\\689 & 964 & 1792 & 3167 & 3312 & 9912 & 1544 & 2864\\303 & 248 & 964 & 689 & 2864 & 1544 & 8948 & 2623\\248 & 303 & 689 & 964 & 1544 & 2864 & 2623 & 8948\end{matrix}\right].\]
+Every entry is nonzero. Unlike $L,U$, it has no empty outer bands.
+For an $n\times n$ matrix with fixed band width, storing its factors
+requires a number of entries proportional to $n$, whereas a dense
+inverse requires $n^2$. This example verifies the stated storage
+advantage with actual factors and an actual inverse.
+
+\exercise{2.5.32}{Reuse one bidiagonal factorization for four time steps}
+\step{(a) Set $C=1$ before factoring.}
+Then $A$ has diagonal $3$ and adjacent off-diagonal entries $-1$.
+Its factors are
+\[L=\left[\begin{matrix}1 & 0 & 0 & 0\\- \frac{1}{3} & 1 & 0 & 0\\0 & - \frac{3}{8} & 1 & 0\\0 & 0 & - \frac{8}{21} & 1\end{matrix}\right].\]
+\[U=\left[\begin{matrix}3 & -1 & 0 & 0\\0 & \frac{8}{3} & -1 & 0\\0 & 0 & \frac{21}{8} & -1\\0 & 0 & 0 & \frac{55}{21}\end{matrix}\right].\]
+Their off-diagonal nonzero entries lie on just one neighboring diagonal,
+so both factors are bidiagonal. Multiplication checks $LU=A$.
+\step{(b) Solve the same two triangular systems at each step.}
+Starting with $t_0=(10,15,15,10)^T$, repeatedly solve
+$Ly=t_k$ and $Ut_{k+1}=y$. The results are
+\[\begin{array}{c|rrrr}
+k&(t_k)_1&(t_k)_2&(t_k)_3&(t_k)_4\\\hline
+1&7&11&11&7\\2&5&8&8&5\\
+3&18/5&29/5&29/5&18/5\\4&13/5&21/5&21/5&13/5
+\end{array}.\]
+A short independent check uses symmetry. For a vector $(a,b,b,a)^T$,
+$A(a,b,b,a)^T=(3a-b,2b-a,2b-a,3a-b)^T$.
+Thus if $(a_0,b_0)$ is the preceding pair, the next pair is
+$a=(2a_0+b_0)/5$, $b=(a_0+3b_0)/5$.
+These formulas reproduce all four rows and verify
+$At_{k+1}=t_k$ at each step. The factorization is computed once,
+not recomputed for each new temperature distribution.

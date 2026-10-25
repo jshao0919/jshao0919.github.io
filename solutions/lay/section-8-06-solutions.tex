@@ -1,0 +1,396 @@
+\section{Curves and surfaces}
+A cubic B\'ezier curve has four controls and formula
+\[
+ B(t)=(1-t)^3p_0+3t(1-t)^2p_1+3t^2(1-t)p_2+t^3p_3,\qquad0\le t\le1.
+\]
+The coefficients are nonnegative and sum to one, so the curve lies in
+the convex hull of its controls. A uniform cubic B-spline segment is a
+\emph{different} curve, with weights
+\[
+ S(t)=\tfrac16\big[(1-t)^3p_0+(3t^3-6t^2+4)p_1
+ +(-3t^3+3t^2+3t+1)p_2+t^3p_3\big].
+\]
+We use this formula, identical to the Practice Problems' equations (14)--(15),
+for the B-spline calculations below. Exercise 2 prints an inconsistent
+coefficient; its solution explicitly diagnoses the discrepancy before correcting it.
+The numbered exercises here concern curve segments and subdivision; the
+section's surface discussion uses these same one-variable operations in
+both parameter directions.
+
+\practice{8.6.P1}{The initial endpoint of a B-spline segment}
+Substitute $t=0$ into $S(t)$ to obtain
+\[
+ S(0)=\tfrac16p_0+\tfrac23p_1+\tfrac16p_2.
+\]
+The coefficients are nonnegative and sum to one, so this point is in
+$\operatorname{conv}\{p_0,p_1,p_2\}$.
+Under the stated affine-independence assumption its unique affine
+coordinates are $(1/6,2/3,1/6)$. They differ from $(1,0,0)$, the
+coordinates of $p_0$, so it is not $p_0$ under that assumption.
+Without independence the formula still holds, but a degenerate choice such
+as all controls equal can make the endpoint coincide with a control.
+
+\practice{8.6.P2}{The final endpoint}
+At $t=1$ the coefficients give
+\[
+ S(1)=\tfrac16p_1+\tfrac23p_2+\tfrac16p_3.
+\]
+Hence it is in $\operatorname{conv}\{p_1,p_2,p_3\}$.
+When those points are affinely independent, its affine coordinates are
+$(1/6,2/3,1/6)$, not $(0,0,1)$, so it differs from $p_3$.
+This proves the claimed endpoint behavior with its required nondegeneracy condition.
+
+\exercise{8.6.1}{Translate every control by the same vector}
+Write the four B\'ezier weights as $b_j(t)$. Their sum is
+$((1-t)+t)^3=1$. Therefore
+\[
+ B(t)+b=\sum_{j=0}^3 b_j(t)p_j+\left(\sum_{j=0}^3b_j(t)\right)b
+       =\sum_{j=0}^3b_j(t)(p_j+b).
+\]
+This is a cubic B\'ezier curve with translated controls $p_j+b$.
+Translation is affine rather than linear, and the sum-one identity is
+exactly what makes the same control transformation work.
+
+\exercise{8.6.2}{Diagnose the printed coefficient before proving the B-spline properties}
+The exercise prints $3t(1-t)-3t+4$ as the coefficient of $p_1$ before the
+factor $1/6$, whereas the preceding Practice Problem equation (15) has
+$3t(1-t)^2-3t+4$. The missing square changes the mathematics.
+With the printed unsquared expression, the four weights sum to
+\[
+ 1+\tfrac12t^2(1-t),
+\]
+not one. At $t=1/2$ they sum to $17/16$. For example, if all four controls
+are one fixed nonzero vector $p$, the printed curve gives $(17/16)p$,
+which is outside their singleton convex hull. Thus part (a) is false
+literally as printed. We now use the consistent B-spline formula (14)--(15),
+with that square restored, for this exercise and later references to it.
+\step{(a) Prove convex-hull containment for the intended formula.}
+The first and fourth weights are $(1-t)^3/6$ and $t^3/6$, hence nonnegative.
+For the second use $3t(1-t)^2-3t+4\ge4-3t\ge1$ on $[0,1]$.
+For the third use $3t^2(1-t)+3t+1\ge1$.
+Expanding the four numerators makes their sum $6$, so their weights sum
+to one. Thus $S(t)$ is a convex combination of the controls.
+\step{(b) Translate using the same sum-one property.}
+If the four weights are $s_j(t)$, then
+$S(t)+b=\sum_j s_j(t)(p_j+b)$.
+This is a B-spline with controls translated by $b$.
+The literal unsquared formula would not have this affine-invariance property:
+its translated-control expression adds $[1+\tfrac12t^2(1-t)]b$, not $b$.
+
+\exercise{8.6.3}{First and second derivatives of a cubic B\'ezier curve}
+\step{(a) Differentiate the polynomial weights and regroup by differences.}
+\[
+ B'(t)=3\big[(1-t)^2(p_1-p_0)+2t(1-t)(p_2-p_1)+t^2(p_3-p_2)\big].
+\]
+In particular $B'(0)=3(p_1-p_0)$ and $B'(1)=3(p_3-p_2)$.
+The initial tangent direction goes from $p_0$ toward $p_1$; the final
+one goes from $p_2$ toward $p_3$, provided those differences are nonzero.
+Yes, $B'(1)=0$ is possible: it occurs exactly when $p_3=p_2$.
+At such an endpoint the zero tangent vector does not specify a direction.
+\step{(b) Differentiate once more.}
+\[
+ B''(t)=6\big[(1-t)(p_0-2p_1+p_2)+t(p_1-2p_2+p_3)\big].
+\]
+Thus $B''(0)=6(p_0-2p_1+p_2)$ and
+$B''(1)=6(p_1-2p_2+p_3)$.
+With $p_1$ as origin, let $a=p_0-p_1$, $c=p_2-p_1$.
+Their vector sum $a+c=p_0-2p_1+p_2$ has the direction of $B''(0)$.
+Construct the parallelogram on these two vectors; its diagonal gives the
+requested direction (unless the vector is zero). The schematic plot below
+uses controls $(0,0),(1,2),(5,2),(4,0)$ and shows that diagonal starting at $p_1$.
+\begin{center}\setlength{\unitlength}{1mm}\begin{picture}(120,67)
+\put(12,14){\color{gray}\polyline(0,0)(18,36)(90,36)(72,0)}
+\put(12,14){\linethickness{1pt}\polyline(0.000,0.000)(0.344,0.671)(0.700,1.333)(1.069,1.987)(1.449,2.633)(1.841,3.270)(2.245,3.898)(2.661,4.518)(3.087,5.130)(3.524,5.733)(3.973,6.328)(4.431,6.915)(4.901,7.492)(5.380,8.062)(5.869,8.623)(6.368,9.176)(6.876,9.720)(7.394,10.256)(7.920,10.783)(8.456,11.302)(9.000,11.812)(9.553,12.315)(10.113,12.808)(10.682,13.293)(11.259,13.770)(11.843,14.238)(12.435,14.698)(13.034,15.150)(13.639,15.592)(14.252,16.027)(14.871,16.453)(15.496,16.871)(16.128,17.280)(16.765,17.681)(17.409,18.073)(18.057,18.457)(18.711,18.833)(19.370,19.200)(20.034,19.558)(20.702,19.908)(21.375,20.250)(22.052,20.583)(22.733,20.908)(23.418,21.225)(24.107,21.533)(24.798,21.832)(25.493,22.123)(26.191,22.406)(26.892,22.680)(27.595,22.946)(28.301,23.203)(29.008,23.452)(29.718,23.693)(30.429,23.925)(31.142,24.148)(31.856,24.363)(32.571,24.570)(33.287,24.768)(34.003,24.958)(34.720,25.140)(35.438,25.312)(36.155,25.477)(36.872,25.633)(37.588,25.781)(38.304,25.920)(39.019,26.051)(39.733,26.173)(40.446,26.287)(41.157,26.392)(41.867,26.490)(42.574,26.578)(43.280,26.658)(43.983,26.730)(44.684,26.793)(45.382,26.848)(46.077,26.895)(46.768,26.932)(47.457,26.962)(48.142,26.983)(48.823,26.996)(49.500,27.000)(50.173,26.996)(50.841,26.983)(51.505,26.962)(52.164,26.933)(52.818,26.895)(53.466,26.848)(54.110,26.793)(54.747,26.730)(55.379,26.658)(56.004,26.578)(56.623,26.490)(57.235,26.393)(57.841,26.287)(58.440,26.173)(59.032,26.051)(59.616,25.920)(60.193,25.781)(60.762,25.633)(61.322,25.477)(61.875,25.312)(62.419,25.140)(62.955,24.958)(63.481,24.768)(63.999,24.570)(64.507,24.363)(65.006,24.148)(65.495,23.925)(65.975,23.692)(66.444,23.452)(66.902,23.203)(67.351,22.946)(67.788,22.680)(68.214,22.406)(68.630,22.123)(69.034,21.832)(69.426,21.532)(69.806,21.225)(70.175,20.908)(70.531,20.583)(70.875,20.250)(71.206,19.908)(71.524,19.558)(71.830,19.200)(72.121,18.832)(72.400,18.457)(72.665,18.073)(72.915,17.681)(73.152,17.280)(73.374,16.871)(73.582,16.453)(73.775,16.027)(73.953,15.593)(74.116,15.150)(74.263,14.698)(74.395,14.238)(74.511,13.770)(74.611,13.293)(74.695,12.808)(74.762,12.315)(74.812,11.812)(74.846,11.302)(74.863,10.783)(74.862,10.256)(74.844,9.720)(74.808,9.176)(74.754,8.623)(74.682,8.062)(74.592,7.492)(74.483,6.915)(74.355,6.328)(74.209,5.733)(74.043,5.130)(73.858,4.518)(73.653,3.898)(73.428,3.270)(73.183,2.633)(72.919,1.987)(72.633,1.333)(72.327,0.671)(72.000,0.000)}
+\put(12,14){\circle*{1.5}}
+\put(8,7){$p_0$}
+\put(30,50){\circle*{1.5}}
+\put(26,55){$p_1$}
+\put(102,50){\circle*{1.5}}
+\put(98,55){$p_2$}
+\put(84,14){\circle*{1.5}}
+\put(80,7){$p_3$}
+\put(30,50){\vector(3,-2){54}}
+\put(46,7){$p_0-2p_1+p_2$}
+\end{picture}\end{center}
+
+\exercise{8.6.4}{Derivatives of the consistent cubic B-spline}
+\step{(a) Compute the tangent and its endpoint values.}
+Differentiating the corrected formula gives
+\[
+ S'(t)=\tfrac12\big[-(1-t)^2p_0+(3t^2-4t)p_1
+                  +(-3t^2+2t+1)p_2+t^2p_3\big].
+\]
+Hence $S'(0)=(p_2-p_0)/2$ and $S'(1)=(p_3-p_1)/2$.
+The initial tangent is parallel to the segment from $p_0$ to $p_2$,
+and the final tangent to the segment from $p_1$ to $p_3$, when nonzero.
+If both vanish, then $p_2=p_0=a$ and $p_3=p_1=b$.
+Substitution gives
+\[
+ S(t)=\big(\tfrac13+t^2-\tfrac23t^3\big)a
+     +\big(\tfrac23-t^2+\tfrac23t^3\big)b,
+ \quad S'(t)=2t(1-t)(a-b).
+\]
+If $a\ne b$, this traverses the straight segment from $(a+2b)/3$ to
+$(2a+b)/3$, with zero speeds at both endpoints but positive speed inside.
+It need not be constant. It is constant only if $a=b$.
+\step{(b) Compute the second derivative and its geometry.}
+\[
+ S''(t)=(1-t)(p_0-2p_1+p_2)+t(p_1-2p_2+p_3).
+\]
+In particular $S''(0)=p_0-2p_1+p_2$ and
+$S''(1)=p_1-2p_2+p_3$.
+Taking $p_2$ as origin, add the vectors $p_1-p_2$ and $p_3-p_2$;
+their parallelogram diagonal has the direction of $S''(1)$.
+The plot uses the same schematic controls as Exercise 8.6.3 but the
+B-spline curve and this second diagonal.
+\begin{center}\setlength{\unitlength}{1mm}\begin{picture}(120,67)
+\put(12,14){\color{gray}\polyline(0,0)(18,36)(90,36)(72,0)}
+\put(12,14){\linethickness{1pt}\polyline(27.000,30.000)(27.282,30.112)(27.567,30.222)(27.853,30.331)(28.142,30.439)(28.432,30.545)(28.724,30.650)(29.018,30.753)(29.314,30.855)(29.612,30.956)(29.912,31.055)(30.214,31.152)(30.517,31.249)(30.822,31.344)(31.128,31.437)(31.436,31.529)(31.746,31.620)(32.057,31.709)(32.370,31.797)(32.684,31.884)(33.000,31.969)(33.317,32.052)(33.636,32.135)(33.955,32.216)(34.276,32.295)(34.599,32.373)(34.922,32.450)(35.247,32.525)(35.573,32.599)(35.900,32.671)(36.229,32.742)(36.558,32.812)(36.888,32.880)(37.219,32.947)(37.551,33.012)(37.885,33.076)(38.218,33.139)(38.553,33.200)(38.889,33.260)(39.225,33.318)(39.563,33.375)(39.900,33.431)(40.239,33.485)(40.578,33.537)(40.918,33.589)(41.258,33.639)(41.599,33.687)(41.940,33.734)(42.282,33.780)(42.624,33.824)(42.967,33.867)(43.310,33.909)(43.653,33.949)(43.997,33.987)(44.340,34.025)(44.684,34.061)(45.028,34.095)(45.373,34.128)(45.717,34.160)(46.062,34.190)(46.406,34.219)(46.751,34.246)(47.095,34.272)(47.440,34.297)(47.784,34.320)(48.128,34.342)(48.472,34.362)(48.816,34.381)(49.160,34.399)(49.503,34.415)(49.846,34.430)(50.188,34.443)(50.531,34.455)(50.872,34.466)(51.214,34.475)(51.554,34.482)(51.895,34.489)(52.234,34.494)(52.574,34.497)(52.912,34.499)(53.250,34.500)(53.587,34.499)(53.924,34.497)(54.259,34.494)(54.594,34.489)(54.928,34.482)(55.261,34.475)(55.593,34.466)(55.925,34.455)(56.255,34.443)(56.584,34.430)(56.912,34.415)(57.239,34.399)(57.565,34.381)(57.890,34.362)(58.214,34.342)(58.536,34.320)(58.857,34.297)(59.177,34.272)(59.495,34.246)(59.812,34.219)(60.128,34.190)(60.442,34.160)(60.755,34.128)(61.067,34.095)(61.376,34.061)(61.684,34.025)(61.991,33.987)(62.296,33.949)(62.599,33.909)(62.900,33.867)(63.200,33.824)(63.498,33.780)(63.794,33.734)(64.088,33.687)(64.381,33.639)(64.671,33.589)(64.959,33.537)(65.246,33.485)(65.530,33.431)(65.812,33.375)(66.093,33.318)(66.371,33.260)(66.647,33.200)(66.920,33.139)(67.192,33.076)(67.461,33.012)(67.728,32.947)(67.992,32.880)(68.254,32.812)(68.514,32.742)(68.771,32.671)(69.025,32.599)(69.278,32.525)(69.527,32.450)(69.774,32.373)(70.019,32.295)(70.260,32.216)(70.499,32.135)(70.735,32.052)(70.969,31.969)(71.199,31.884)(71.427,31.797)(71.652,31.709)(71.874,31.620)(72.093,31.529)(72.309,31.437)(72.522,31.344)(72.732,31.249)(72.939,31.152)(73.143,31.055)(73.343,30.956)(73.540,30.855)(73.735,30.753)(73.925,30.650)(74.113,30.545)(74.297,30.439)(74.478,30.331)(74.656,30.222)(74.829,30.112)(75.000,30.000)}
+\put(12,14){\circle*{1.5}}
+\put(8,7){$p_0$}
+\put(30,50){\circle*{1.5}}
+\put(26,55){$p_1$}
+\put(102,50){\circle*{1.5}}
+\put(98,55){$p_2$}
+\put(84,14){\circle*{1.5}}
+\put(80,7){$p_3$}
+\put(102,50){\vector(-5,-2){90}}
+\put(25,19){$p_1-2p_2+p_3$}
+\end{picture}\end{center}
+
+\exercise{8.6.5}{Joining two cubic B\'ezier segments with matching velocities}
+\step{(a) Equal derivatives give the midpoint condition.}
+At their shared control $p_3$, the first segment has derivative
+$3(p_3-p_2)$ and the second has derivative $3(p_4-p_3)$.
+Using the same unit parameter length for both pieces, $C^1$ continuity
+therefore requires and is guaranteed by
+\[
+ p_3-p_2=p_4-p_3,\quad\text{or}\quad p_4=2p_3-p_2.
+\]
+Thus $p_3$ is the midpoint of $p_2p_4$.
+\step{(b) The zero-derivative case.}
+Both derivatives vanish exactly when $p_2=p_3=p_4$.
+The joined parametrization is still $C^1$, because its one-sided derivatives
+agree and are zero. But a zero velocity supplies no regular tangent direction;
+one cannot infer a smooth nonstationary join merely from parallel tangents.
+The remaining controls can give different departing and arriving directions
+at higher order, so $C^2$ continuity is not automatic.
+
+\exercise{8.6.6}{Adjacent B-spline segments automatically join}
+The first segment has controls $p_0,p_1,p_2,p_3$; the next has
+$p_1,p_2,p_3,p_4$.
+\step{(a) Check the endpoints.}
+By the endpoint formulas,
+$x(1)=(p_1+4p_2+p_3)/6=y(0)$, proving $G^0$ continuity.
+\step{(b) Check the derivatives with their actual scale factors.}
+The first segment has $x'(1)=(p_3-p_1)/2$; the next has
+$y'(0)=(p_3-p_1)/2$. They agree, so the combined unit-parameter
+curve is $C^1$ at the join. The last new control $p_4$ does not enter
+these equalities.
+
+\exercise{8.6.7}{A second derivative condition determines the next control}
+The $C^1$ condition from Exercise 8.6.5 gives $p_4=2p_3-p_2$.
+The $C^2$ condition equates
+\[
+ x''(1)=6(p_3-2p_2+p_1),\qquad
+ y''(0)=6(p_3-2p_4+p_5).
+\]
+Cancel $6$ and $p_3$, obtaining $p_5=p_1-2p_2+2p_4$.
+Substitute the already determined $p_4$ to get
+\[
+ p_5=p_1-4p_2+4p_3.
+\]
+Thus $p_4$ and $p_5$ are fixed by the original controls and $C^2$
+continuity; only the new segment's final control $p_6$ is free.
+
+\exercise{8.6.8}{Adjacent B-spline segments also match accelerations}
+For controls $p_0,p_1,p_2,p_3$, the final second derivative is
+$x''(1)=p_1-2p_2+p_3$.
+For the next segment, with controls shifted forward by one,
+the initial second derivative is $y''(0)=p_1-2p_2+p_3$.
+They are equal. Together with the endpoint and first-derivative equalities
+proved in Exercise 8.6.6, this establishes $C^2$ continuity at the join.
+
+\exercise{8.6.9}{The quartic B\'ezier basis matrix}
+Let $G=[\,p_0\ p_1\ p_2\ p_3\ p_4\,]$ and
+$u(t)=(1,t,t^2,t^3,t^4)^T$. Expand each of the five quartic weights in
+powers of $t$ and put its coefficients in a \emph{row} of $M_B$:
+\[
+ M_B=\begin{pmatrix}
+ 1&-4&6&-4&1\\0&4&-12&12&-4\\0&0&6&-12&6\\
+ 0&0&0&4&-4\\0&0&0&0&1
+ \end{pmatrix}.
+\]
+For example its second row produces
+$4t-12t^2+12t^3-4t^4=4t(1-t)^3$, the weight of $p_1$.
+Thus $x(t)=GM_Bu(t)$ reproduces the stated quartic curve.
+
+\exercise{8.6.10}{The uniform cubic B-spline basis matrix}
+Using $G=[\,p_0\ p_1\ p_2\ p_3\,]$ and $u(t)=(1,t,t^2,t^3)^T$,
+read the four consistent B-spline weights into rows:
+\[
+ M_S=\tfrac16\begin{pmatrix}
+ 1&-3&3&-1\\4&0&-6&3\\1&3&3&-3\\0&0&0&1
+ \end{pmatrix}.
+\]
+Then $GM_Su(t)$ gives the B-spline formula from the Practice Problems.
+The factor $1/6$ is essential for normalization and cannot be dropped.
+The printed missing-square error in Exercise 2 is not used in this matrix.
+
+\exercise{8.6.11}{Three statements about B\'ezier curves}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} A cubic B\'ezier curve uses four controls.
+\item \textbf{False.} For a quadratic curve the initial derivative is
+$2(p_1-p_0)$, not $p_1-p_0$. The direction is the same when nonzero,
+but the tangent vector has the extra factor two.
+\item \textbf{True.} The endpoint derivatives are $2(p_2-p_1)$ and
+$2(p_3-p_2)$, which agree exactly when $p_2=(p_1+p_3)/2$.
+The two pieces already share their endpoint, so this ensures $C^1$ continuity.
+\end{enumerate}
+
+\exercise{8.6.12}{Three statements about invariance and matrices}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} Translations preserve the B\'ezier construction
+too, because the weights sum to one, as Exercise 8.6.1 proves.
+\item \textbf{True.} Equality of the ending and starting points is
+exactly $G^0$ continuity; matching derivatives requires an additional condition.
+\item \textbf{False.} The control columns form the geometry matrix
+$G$. The basis matrix contains fixed polynomial coefficients, independent of the controls.
+\end{enumerate}
+
+\exercise{8.6.13}{The first half's subdivided control points}
+\step{(a) Use the endpoint derivative equation.}
+Equation (12) says $3(q_1-q_0)=\tfrac32(p_1-p_0)$.
+Since $q_0=p_0$, divide by $3$ and rearrange:
+$q_1=(p_0+p_1)/2$.
+\step{(b) Rearrange the midpoint derivative equation.}
+Equation (13) gives
+$q_3-q_2=(-p_0-p_1+p_2+p_3)/8$.
+Multiplying by eight and solving for $q_2$ gives
+$8q_2=8q_3+p_0+p_1-p_2-p_3$.
+\step{(c) Substitute the actual curve midpoint.}
+Use $q_3=(p_0+3p_1+3p_2+p_3)/8$ from equation (8).
+Then $8q_2=2p_0+4p_1+2p_2$, so
+\[
+ q_2=(p_0+2p_1+p_2)/4
+ =\tfrac12\big[q_1+(p_1+p_2)/2\big].
+\]
+Thus it is exactly the requested midpoint of two already constructed midpoints.
+
+\exercise{8.6.14}{The second half's subdivided controls}
+\step{(a) Justify the endpoint derivative chain.}
+The equality $3(r_3-r_2)=z'(1)$ is the B\'ezier endpoint formula.
+The equality $z'(1)=\tfrac12x'(1)$ is the chain rule for
+$z(t)=x(1/2+t/2)$.
+Finally $\tfrac12x'(1)=\tfrac32(p_3-p_2)$ is the original endpoint formula.
+\step{(b) Solve for $r_2$.}
+Since $r_3=p_3$, the equalities give $r_2=(p_2+p_3)/2$.
+\step{(c) Justify the initial derivative chain.}
+The identity $3(r_1-r_0)=z'(0)$ is the initial B\'ezier derivative formula;
+$z'(0)=\tfrac12x'(1/2)$ follows from the same reparametrization and chain rule.
+\step{(d) Use the original midpoint derivative.}
+Since $x'(1/2)=\tfrac34(-p_0-p_1+p_2+p_3)$,
+$3(r_1-r_0)=\tfrac38(-p_0-p_1+p_2+p_3)$.
+Divide by $3$ and rearrange to obtain
+$8r_1=-p_0-p_1+p_2+p_3+8r_0$.
+\step{(e) Substitute $r_0=x(1/2)$.}
+The midpoint formula yields
+$8r_1=2p_1+4p_2+2p_3$. Consequently
+\[
+ r_1=(p_1+2p_2+p_3)/4
+     =\tfrac12\big[r_2+(p_1+p_2)/2\big].
+\]
+
+\exercise{8.6.15}{A subdivision algorithm using only midpoint operations}
+\step{(a) Apply the chain rule at the common midpoint.}
+With $y(t)=x(t/2)$ and $z(t)=x(1/2+t/2)$,
+$y'(1)=\tfrac12x'(1/2)=z'(0)$.
+\step{(b) Translate that equality into a control-point midpoint.}
+The endpoint formulas give $3(q_3-q_2)=3(r_1-r_0)$.
+Using $q_3=r_0$ and rearranging gives
+$2q_3=q_2+r_1$, so $q_3$ is the midpoint of $q_2r_1$.
+\step{(c) State the full reusable algorithm.}
+Compute three first-level midpoints
+\[
+ a=(p_0+p_1)/2,\quad b=(p_1+p_2)/2,\quad c=(p_2+p_3)/2;
+\]
+then two second-level midpoints $d=(a+b)/2$, $e=(b+c)/2$;
+then the last midpoint $f=(d+e)/2$.
+The left controls are $(p_0,a,d,f)$ and the right controls are $(f,e,c,p_3)$.
+The formulas in Exercises 8.6.13--14 show $a=q_1,d=q_2,f=q_3=r_0$,
+$e=r_1,c=r_2$. Thus the algorithm computes all required controls once,
+shares the repeated midpoint, and uses only sums and division by two.
+\begin{center}\setlength{\unitlength}{1mm}\begin{picture}(120,67)
+\put(12,14){\color{gray}\polyline(0,0)(18,36)(90,36)(72,0)}
+\put(12,14){\linethickness{1pt}\polyline(0.000,0.000)(0.344,0.671)(0.700,1.333)(1.069,1.987)(1.449,2.633)(1.841,3.270)(2.245,3.898)(2.661,4.518)(3.087,5.130)(3.524,5.733)(3.973,6.328)(4.431,6.915)(4.901,7.492)(5.380,8.062)(5.869,8.623)(6.368,9.176)(6.876,9.720)(7.394,10.256)(7.920,10.783)(8.456,11.302)(9.000,11.812)(9.553,12.315)(10.113,12.808)(10.682,13.293)(11.259,13.770)(11.843,14.238)(12.435,14.698)(13.034,15.150)(13.639,15.592)(14.252,16.027)(14.871,16.453)(15.496,16.871)(16.128,17.280)(16.765,17.681)(17.409,18.073)(18.057,18.457)(18.711,18.833)(19.370,19.200)(20.034,19.558)(20.702,19.908)(21.375,20.250)(22.052,20.583)(22.733,20.908)(23.418,21.225)(24.107,21.533)(24.798,21.832)(25.493,22.123)(26.191,22.406)(26.892,22.680)(27.595,22.946)(28.301,23.203)(29.008,23.452)(29.718,23.693)(30.429,23.925)(31.142,24.148)(31.856,24.363)(32.571,24.570)(33.287,24.768)(34.003,24.958)(34.720,25.140)(35.438,25.312)(36.155,25.477)(36.872,25.633)(37.588,25.781)(38.304,25.920)(39.019,26.051)(39.733,26.173)(40.446,26.287)(41.157,26.392)(41.867,26.490)(42.574,26.578)(43.280,26.658)(43.983,26.730)(44.684,26.793)(45.382,26.848)(46.077,26.895)(46.768,26.932)(47.457,26.962)(48.142,26.983)(48.823,26.996)(49.500,27.000)(50.173,26.996)(50.841,26.983)(51.505,26.962)(52.164,26.933)(52.818,26.895)(53.466,26.848)(54.110,26.793)(54.747,26.730)(55.379,26.658)(56.004,26.578)(56.623,26.490)(57.235,26.393)(57.841,26.287)(58.440,26.173)(59.032,26.051)(59.616,25.920)(60.193,25.781)(60.762,25.633)(61.322,25.477)(61.875,25.312)(62.419,25.140)(62.955,24.958)(63.481,24.768)(63.999,24.570)(64.507,24.363)(65.006,24.148)(65.495,23.925)(65.975,23.692)(66.444,23.452)(66.902,23.203)(67.351,22.946)(67.788,22.680)(68.214,22.406)(68.630,22.123)(69.034,21.832)(69.426,21.532)(69.806,21.225)(70.175,20.908)(70.531,20.583)(70.875,20.250)(71.206,19.908)(71.524,19.558)(71.830,19.200)(72.121,18.832)(72.400,18.457)(72.665,18.073)(72.915,17.681)(73.152,17.280)(73.374,16.871)(73.582,16.453)(73.775,16.027)(73.953,15.593)(74.116,15.150)(74.263,14.698)(74.395,14.238)(74.511,13.770)(74.611,13.293)(74.695,12.808)(74.762,12.315)(74.812,11.812)(74.846,11.302)(74.863,10.783)(74.862,10.256)(74.844,9.720)(74.808,9.176)(74.754,8.623)(74.682,8.062)(74.592,7.492)(74.483,6.915)(74.355,6.328)(74.209,5.733)(74.043,5.130)(73.858,4.518)(73.653,3.898)(73.428,3.270)(73.183,2.633)(72.919,1.987)(72.633,1.333)(72.327,0.671)(72.000,0.000)}
+\put(12,14){\circle*{1.5}}
+\put(8,7){$p_0$}
+\put(30,50){\circle*{1.5}}
+\put(26,55){$p_1$}
+\put(102,50){\circle*{1.5}}
+\put(98,55){$p_2$}
+\put(84,14){\circle*{1.5}}
+\put(80,7){$p_3$}
+\put(12,14){\color{gray}\polyline(9.000,18.000)(54.000,36.000)(81.000,18.000)}
+\put(12,14){\color{gray}\polyline(31.500,27.000)(67.500,27.000)}
+\put(21.000,32.000){\circle*{1.2}}
+\put(14.000,32.000){$a$}
+\put(66.000,50.000){\circle*{1.2}}
+\put(65.000,52.000){$b$}
+\put(93.000,32.000){\circle*{1.2}}
+\put(96.000,32.000){$c$}
+\put(43.500,41.000){\circle*{1.2}}
+\put(36.500,40.000){$d$}
+\put(79.500,41.000){\circle*{1.2}}
+\put(82.500,40.000){$e$}
+\put(61.500,41.000){\circle*{1.2}}
+\put(60.500,34.000){$f$}
+\end{picture}\end{center}
+
+\exercise{8.6.16}{Endpoint positions and velocities determine the curve}
+The endpoint formulas recover all controls from the four specified vectors:
+\[
+ p_0=x(0),\quad p_3=x(1),\quad
+ p_1=x(0)+x'(0)/3,\quad p_2=x(1)-x'(1)/3.
+\]
+These equations determine one and only one control list, and substituting
+that list into the cubic B\'ezier formula determines one and only one curve.
+The derivative scale factor $3$ is needed; just choosing any control points
+on the tangent lines would not determine the parameterized curve uniquely.
+
+\exercise{8.6.17}{Elevate a quadratic curve to cubic degree without changing it}
+\step{(a) Match both endpoint positions and both endpoint velocities.}
+For $w(t)=(1-t)^2p_0+2t(1-t)p_1+t^2p_2$,
+$w(0)=p_0$, $w(1)=p_2$, $w'(0)=2(p_1-p_0)$, and
+$w'(1)=2(p_2-p_1)$.
+The preceding recovery formulas give cubic controls
+\[
+ r_0=p_0,\quad r_1=\tfrac13p_0+\tfrac23p_1,\quad
+ r_2=\tfrac23p_1+\tfrac13p_2,\quad r_3=p_2.
+\]
+Their endpoint derivatives are $3(r_1-r_0)=w'(0)$ and
+$3(r_3-r_2)=w'(1)$, so all four requirements are met.
+\step{(b) Check equality for every parameter.}
+Insert these controls into the cubic formula and collect the original
+$p_0,p_1,p_2$ coefficients. They become respectively
+\[
+ (1-t)^3+t(1-t)^2=(1-t)^2,
+\]
+\[
+ 2t(1-t)^2+2t^2(1-t)=2t(1-t),\qquad
+ t^2(1-t)+t^3=t^2.
+\]
+Thus $x(t)=w(t)$ identically, including at both endpoints. The curve's
+polynomial degree representation has changed, but its geometry and parametrization have not.
+
+\exercise{8.6.18}{Multiply the scalar blocks by the control vectors}
+Treat the displayed $p_j$ as vector blocks. Row-by-row block multiplication gives
+\[
+ \begin{pmatrix}
+ p_0\\-3p_0+3p_1\\3p_0-6p_1+3p_2\\-p_0+3p_1-3p_2+p_3
+ \end{pmatrix}.
+\]
+For controls in $\R^n$, this is a column of four vector blocks, or $4n$
+scalar entries when expanded. These are the constant, linear, quadratic,
+and cubic vector coefficients of the curve; they agree with direct expansion
+of its four Bernstein weights.

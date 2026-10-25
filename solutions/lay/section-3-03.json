@@ -1,0 +1,16 @@
+{
+  "chapter": 3,
+  "section": 3,
+  "title": "Cramer's rule, volume, and linear transformations",
+  "exercise_count": 35,
+  "practice_count": 1,
+  "source_pages": [
+    201,
+    202
+  ],
+  "verification": "All numerical determinants, adjugates, inverses and solution substitutions checked with exact SymPy arithmetic; stated computer experiments executed; standalone PDF compiles without layout/reference warnings.",
+  "source_notes": [
+    "Exercise 30 needs absolute-value bars for unsigned area; the printed formula is only signed area.",
+    "Exercise 35 is conditional on historical MATLAB flops availability; solution gives an explicit exact arithmetic-count model, not a fabricated legacy-counter measurement."
+  ]
+}

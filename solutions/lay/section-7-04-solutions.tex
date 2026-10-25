@@ -1,0 +1,408 @@
+\section{The singular value decomposition}
+For an $m\times n$ real matrix, a full singular value decomposition (SVD) is $A=U\Sigma V^T$, where $U$ and $V$ are square orthogonal matrices and $\Sigma$ is rectangular diagonal with nonnegative entries in decreasing order. The singular values are the square roots of the eigenvalues of $A^TA$. Positive singular values count rank. The distinction between $V$ and the displayed factor $V^T$ is essential when reading singular vectors.
+
+Right singular vectors satisfy $A^TAv_i=\sigma_i^2v_i$; when $\sigma_i>0$, set $u_i=Av_i/\sigma_i$. Complete the left columns orthonormally if needed. This method is useful for understanding the theory; for ill-conditioned large matrices a direct numerical SVD avoids squaring the condition number by forming $A^TA$.
+
+\practice{7.4.P1}{Transpose an SVD and track zero conventions}
+Transposing the factorization gives
+\[
+A^T=(U\Sigma V^T)^T=V\Sigma^TU^T.
+\]
+Both outer matrices are orthogonal, and $\Sigma^T$ is rectangular diagonal with the same nonnegative diagonal entries. Thus it is an SVD of the transpose. The positive singular values of $A$ and $A^T$ coincide, including multiplicities. If singular values are listed as all square roots of the eigenvalues of $A^TA$, the number of additional zero entries can differ for a rectangular matrix because $A^TA$ and $AA^T$ have different sizes. There is no disagreement about the nonzero singular values.
+
+\exercise{7.4.1}{Nonnegative singular values}
+Compute the positive-semidefinite matrix
+\[A^TA=\begin{bmatrix}1&0\\0&9\end{bmatrix}.\]
+Its eigenvalues are $9,\ 1$. Singular values are their nonnegative square roots, listed in decreasing order:
+\[(3,\ 1).\]
+A negative diagonal entry of $A$ does not make a negative singular value: lengths and square roots here are nonnegative.
+
+\exercise{7.4.2}{Nonnegative singular values}
+Compute the positive-semidefinite matrix
+\[A^TA=\begin{bmatrix}25&0\\0&0\end{bmatrix}.\]
+Its eigenvalues are $25,\ 0$. Singular values are their nonnegative square roots, listed in decreasing order:
+\[(5,\ 0).\]
+A negative diagonal entry of $A$ does not make a negative singular value: lengths and square roots here are nonnegative.
+
+\exercise{7.4.3}{Nonnegative singular values}
+Compute the positive-semidefinite matrix
+\[A^TA=\begin{bmatrix}6&\sqrt{6}\\\sqrt{6}&7\end{bmatrix}.\]
+Its eigenvalues are $9,\ 4$. Singular values are their nonnegative square roots, listed in decreasing order:
+\[(3,\ 2).\]
+A negative diagonal entry of $A$ does not make a negative singular value: lengths and square roots here are nonnegative.
+
+\exercise{7.4.4}{Nonnegative singular values}
+Compute the positive-semidefinite matrix
+\[A^TA=\begin{bmatrix}3&2 \sqrt{3}\\2 \sqrt{3}&7\end{bmatrix}.\]
+Its eigenvalues are $9,\ 1$. Singular values are their nonnegative square roots, listed in decreasing order:
+\[(3,\ 1).\]
+A negative diagonal entry of $A$ does not make a negative singular value: lengths and square roots here are nonnegative.
+
+\exercise{7.4.5}{Build and verify all three SVD factors}
+\goal Find a full singular value decomposition of
+\[A=\begin{bmatrix}-3&0\\0&0\end{bmatrix}.\]
+\step{Find right singular vectors from a symmetric matrix.}
+Compute
+\[G=A^TA=\begin{bmatrix}9&0\\0&0\end{bmatrix}.\]
+The eigenvalues of $G$ in decreasing order, including zeros, are $9,\ 0$. Their nonnegative square roots are $3,\ 0$. Choose orthonormal eigenvectors in the same order:
+\[V=\begin{bmatrix}1&0\\0&1\end{bmatrix}.\]
+These columns are found by solving $(G-\lambda I)v=0$ and normalizing; if an eigenspace has dimension greater than one, Gram--Schmidt is used within it. The exact checks are $V^TV=I$ and $Gv_i=\sigma_i^2v_i$.
+\step{Find left singular vectors, dividing only by positive singular values.}
+For $i=1$, $\sigma_i=3$ gives
+\[u_{1}=\frac{Av_{1}}{3}=\begin{bmatrix}-1\\0\end{bmatrix}.\]
+Complete these orthonormal columns to an orthonormal basis of $\R^{2}$; the additional columns do not come from dividing by a zero singular value. They can be chosen in $\Nul A^T$.
+\step{Assemble and check the factors.}
+A valid choice is
+\[U=\begin{bmatrix}-1&0\\0&1\end{bmatrix}.\]
+\[\Sigma=\begin{bmatrix}3&0\\0&0\end{bmatrix},\qquad V^T=\begin{bmatrix}1&0\\0&1\end{bmatrix}.\]
+The dimensions are $2\times2$, $2\times2$, and $2\times2$, respectively. Exact multiplication gives $U^TU=I$, $V^TV=I$, and $U\Sigma V^T=A$, checking orthogonality and every entry of the reconstruction. Nonzero sign changes in matching columns of $U,V$ can produce different-looking but equivalent answers.
+
+
+\exercise{7.4.6}{Build and verify all three SVD factors}
+\goal Find a full singular value decomposition of
+\[A=\begin{bmatrix}-2&0\\0&-1\end{bmatrix}.\]
+\step{Find right singular vectors from a symmetric matrix.}
+Compute
+\[G=A^TA=\begin{bmatrix}4&0\\0&1\end{bmatrix}.\]
+The eigenvalues of $G$ in decreasing order, including zeros, are $4,\ 1$. Their nonnegative square roots are $2,\ 1$. Choose orthonormal eigenvectors in the same order:
+\[V=\begin{bmatrix}1&0\\0&1\end{bmatrix}.\]
+These columns are found by solving $(G-\lambda I)v=0$ and normalizing; if an eigenspace has dimension greater than one, Gram--Schmidt is used within it. The exact checks are $V^TV=I$ and $Gv_i=\sigma_i^2v_i$.
+\step{Find left singular vectors, dividing only by positive singular values.}
+For $i=1$, $\sigma_i=2$ gives
+\[u_{1}=\frac{Av_{1}}{2}=\begin{bmatrix}-1\\0\end{bmatrix}.\]
+For $i=2$, $\sigma_i=1$ gives
+\[u_{2}=\frac{Av_{2}}{1}=\begin{bmatrix}0\\-1\end{bmatrix}.\]
+\step{Assemble and check the factors.}
+A valid choice is
+\[U=\begin{bmatrix}-1&0\\0&-1\end{bmatrix}.\]
+\[\Sigma=\begin{bmatrix}2&0\\0&1\end{bmatrix},\qquad V^T=\begin{bmatrix}1&0\\0&1\end{bmatrix}.\]
+The dimensions are $2\times2$, $2\times2$, and $2\times2$, respectively. Exact multiplication gives $U^TU=I$, $V^TV=I$, and $U\Sigma V^T=A$, checking orthogonality and every entry of the reconstruction. Nonzero sign changes in matching columns of $U,V$ can produce different-looking but equivalent answers.
+
+
+\exercise{7.4.7}{Build and verify all three SVD factors}
+\goal Find a full singular value decomposition of
+\[A=\begin{bmatrix}2&-1\\2&2\end{bmatrix}.\]
+\step{Find right singular vectors from a symmetric matrix.}
+Compute
+\[G=A^TA=\begin{bmatrix}8&2\\2&5\end{bmatrix}.\]
+The eigenvalues of $G$ in decreasing order, including zeros, are $9,\ 4$. Their nonnegative square roots are $3,\ 2$. Choose orthonormal eigenvectors in the same order:
+\[V=\begin{bmatrix}\frac{2 \sqrt{5}}{5}&- \frac{\sqrt{5}}{5}\\\frac{\sqrt{5}}{5}&\frac{2 \sqrt{5}}{5}\end{bmatrix}.\]
+These columns are found by solving $(G-\lambda I)v=0$ and normalizing; if an eigenspace has dimension greater than one, Gram--Schmidt is used within it. The exact checks are $V^TV=I$ and $Gv_i=\sigma_i^2v_i$.
+\step{Find left singular vectors, dividing only by positive singular values.}
+For $i=1$, $\sigma_i=3$ gives
+\[u_{1}=\frac{Av_{1}}{3}=\begin{bmatrix}\frac{\sqrt{5}}{5}\\\frac{2 \sqrt{5}}{5}\end{bmatrix}.\]
+For $i=2$, $\sigma_i=2$ gives
+\[u_{2}=\frac{Av_{2}}{2}=\begin{bmatrix}- \frac{2 \sqrt{5}}{5}\\\frac{\sqrt{5}}{5}\end{bmatrix}.\]
+\step{Assemble and check the factors.}
+A valid choice is
+\[U=\begin{bmatrix}\frac{\sqrt{5}}{5}&- \frac{2 \sqrt{5}}{5}\\\frac{2 \sqrt{5}}{5}&\frac{\sqrt{5}}{5}\end{bmatrix}.\]
+\[\Sigma=\begin{bmatrix}3&0\\0&2\end{bmatrix},\qquad V^T=\begin{bmatrix}\frac{2 \sqrt{5}}{5}&\frac{\sqrt{5}}{5}\\- \frac{\sqrt{5}}{5}&\frac{2 \sqrt{5}}{5}\end{bmatrix}.\]
+The dimensions are $2\times2$, $2\times2$, and $2\times2$, respectively. Exact multiplication gives $U^TU=I$, $V^TV=I$, and $U\Sigma V^T=A$, checking orthogonality and every entry of the reconstruction. Nonzero sign changes in matching columns of $U,V$ can produce different-looking but equivalent answers.
+
+
+\exercise{7.4.8}{Build and verify all three SVD factors}
+\goal Find a full singular value decomposition of
+\[A=\begin{bmatrix}2&3\\0&2\end{bmatrix}.\]
+\step{Find right singular vectors from a symmetric matrix.}
+Compute
+\[G=A^TA=\begin{bmatrix}4&6\\6&13\end{bmatrix}.\]
+The eigenvalues of $G$ in decreasing order, including zeros, are $16,\ 1$. Their nonnegative square roots are $4,\ 1$. Choose orthonormal eigenvectors in the same order:
+\[V=\begin{bmatrix}\frac{\sqrt{5}}{5}&- \frac{2 \sqrt{5}}{5}\\\frac{2 \sqrt{5}}{5}&\frac{\sqrt{5}}{5}\end{bmatrix}.\]
+These columns are found by solving $(G-\lambda I)v=0$ and normalizing; if an eigenspace has dimension greater than one, Gram--Schmidt is used within it. The exact checks are $V^TV=I$ and $Gv_i=\sigma_i^2v_i$.
+\step{Find left singular vectors, dividing only by positive singular values.}
+For $i=1$, $\sigma_i=4$ gives
+\[u_{1}=\frac{Av_{1}}{4}=\begin{bmatrix}\frac{2 \sqrt{5}}{5}\\\frac{\sqrt{5}}{5}\end{bmatrix}.\]
+For $i=2$, $\sigma_i=1$ gives
+\[u_{2}=\frac{Av_{2}}{1}=\begin{bmatrix}- \frac{\sqrt{5}}{5}\\\frac{2 \sqrt{5}}{5}\end{bmatrix}.\]
+\step{Assemble and check the factors.}
+A valid choice is
+\[U=\begin{bmatrix}\frac{2 \sqrt{5}}{5}&- \frac{\sqrt{5}}{5}\\\frac{\sqrt{5}}{5}&\frac{2 \sqrt{5}}{5}\end{bmatrix}.\]
+\[\Sigma=\begin{bmatrix}4&0\\0&1\end{bmatrix},\qquad V^T=\begin{bmatrix}\frac{\sqrt{5}}{5}&\frac{2 \sqrt{5}}{5}\\- \frac{2 \sqrt{5}}{5}&\frac{\sqrt{5}}{5}\end{bmatrix}.\]
+The dimensions are $2\times2$, $2\times2$, and $2\times2$, respectively. Exact multiplication gives $U^TU=I$, $V^TV=I$, and $U\Sigma V^T=A$, checking orthogonality and every entry of the reconstruction. Nonzero sign changes in matching columns of $U,V$ can produce different-looking but equivalent answers.
+
+
+\exercise{7.4.9}{Build and verify all three SVD factors}
+\goal Find a full singular value decomposition of
+\[A=\begin{bmatrix}7&1\\0&0\\5&5\end{bmatrix}.\]
+\step{Find right singular vectors from a symmetric matrix.}
+Compute
+\[G=A^TA=\begin{bmatrix}74&32\\32&26\end{bmatrix}.\]
+The eigenvalues of $G$ in decreasing order, including zeros, are $90,\ 10$. Their nonnegative square roots are $3 \sqrt{10},\ \sqrt{10}$. Choose orthonormal eigenvectors in the same order:
+\[V=\begin{bmatrix}\frac{2 \sqrt{5}}{5}&- \frac{\sqrt{5}}{5}\\\frac{\sqrt{5}}{5}&\frac{2 \sqrt{5}}{5}\end{bmatrix}.\]
+These columns are found by solving $(G-\lambda I)v=0$ and normalizing; if an eigenspace has dimension greater than one, Gram--Schmidt is used within it. The exact checks are $V^TV=I$ and $Gv_i=\sigma_i^2v_i$.
+\step{Find left singular vectors, dividing only by positive singular values.}
+For $i=1$, $\sigma_i=3 \sqrt{10}$ gives
+\[u_{1}=\frac{Av_{1}}{3 \sqrt{10}}=\begin{bmatrix}\frac{\sqrt{2}}{2}\\0\\\frac{\sqrt{2}}{2}\end{bmatrix}.\]
+For $i=2$, $\sigma_i=\sqrt{10}$ gives
+\[u_{2}=\frac{Av_{2}}{\sqrt{10}}=\begin{bmatrix}- \frac{\sqrt{2}}{2}\\0\\\frac{\sqrt{2}}{2}\end{bmatrix}.\]
+Complete these orthonormal columns to an orthonormal basis of $\R^{3}$; the additional columns do not come from dividing by a zero singular value. They can be chosen in $\Nul A^T$.
+\step{Assemble and check the factors.}
+A valid choice is
+\[U=\begin{bmatrix}\frac{\sqrt{2}}{2}&- \frac{\sqrt{2}}{2}&0\\0&0&1\\\frac{\sqrt{2}}{2}&\frac{\sqrt{2}}{2}&0\end{bmatrix}.\]
+\[\Sigma=\begin{bmatrix}3 \sqrt{10}&0\\0&\sqrt{10}\\0&0\end{bmatrix},\qquad V^T=\begin{bmatrix}\frac{2 \sqrt{5}}{5}&\frac{\sqrt{5}}{5}\\- \frac{\sqrt{5}}{5}&\frac{2 \sqrt{5}}{5}\end{bmatrix}.\]
+The dimensions are $3\times3$, $3\times2$, and $2\times2$, respectively. Exact multiplication gives $U^TU=I$, $V^TV=I$, and $U\Sigma V^T=A$, checking orthogonality and every entry of the reconstruction. Nonzero sign changes in matching columns of $U,V$ can produce different-looking but equivalent answers.
+
+
+\exercise{7.4.10}{Build and verify all three SVD factors}
+\goal Find a full singular value decomposition of
+\[A=\begin{bmatrix}4&-2\\2&-1\\0&0\end{bmatrix}.\]
+\step{Find right singular vectors from a symmetric matrix.}
+Compute
+\[G=A^TA=\begin{bmatrix}20&-10\\-10&5\end{bmatrix}.\]
+The eigenvalues of $G$ in decreasing order, including zeros, are $25,\ 0$. Their nonnegative square roots are $5,\ 0$. Choose orthonormal eigenvectors in the same order:
+\[V=\begin{bmatrix}- \frac{2 \sqrt{5}}{5}&\frac{\sqrt{5}}{5}\\\frac{\sqrt{5}}{5}&\frac{2 \sqrt{5}}{5}\end{bmatrix}.\]
+These columns are found by solving $(G-\lambda I)v=0$ and normalizing; if an eigenspace has dimension greater than one, Gram--Schmidt is used within it. The exact checks are $V^TV=I$ and $Gv_i=\sigma_i^2v_i$.
+\step{Find left singular vectors, dividing only by positive singular values.}
+For $i=1$, $\sigma_i=5$ gives
+\[u_{1}=\frac{Av_{1}}{5}=\begin{bmatrix}- \frac{2 \sqrt{5}}{5}\\- \frac{\sqrt{5}}{5}\\0\end{bmatrix}.\]
+Complete these orthonormal columns to an orthonormal basis of $\R^{3}$; the additional columns do not come from dividing by a zero singular value. They can be chosen in $\Nul A^T$.
+\step{Assemble and check the factors.}
+A valid choice is
+\[U=\begin{bmatrix}- \frac{2 \sqrt{5}}{5}&\frac{\sqrt{5}}{5}&0\\- \frac{\sqrt{5}}{5}&- \frac{2 \sqrt{5}}{5}&0\\0&0&1\end{bmatrix}.\]
+\[\Sigma=\begin{bmatrix}5&0\\0&0\\0&0\end{bmatrix},\qquad V^T=\begin{bmatrix}- \frac{2 \sqrt{5}}{5}&\frac{\sqrt{5}}{5}\\\frac{\sqrt{5}}{5}&\frac{2 \sqrt{5}}{5}\end{bmatrix}.\]
+The dimensions are $3\times3$, $3\times2$, and $2\times2$, respectively. Exact multiplication gives $U^TU=I$, $V^TV=I$, and $U\Sigma V^T=A$, checking orthogonality and every entry of the reconstruction. Nonzero sign changes in matching columns of $U,V$ can produce different-looking but equivalent answers.
+
+
+\exercise{7.4.11}{Build and verify all three SVD factors}
+\goal Find a full singular value decomposition of
+\[A=\begin{bmatrix}-3&1\\6&-2\\6&-2\end{bmatrix}.\]
+\step{Find right singular vectors from a symmetric matrix.}
+Compute
+\[G=A^TA=\begin{bmatrix}81&-27\\-27&9\end{bmatrix}.\]
+The eigenvalues of $G$ in decreasing order, including zeros, are $90,\ 0$. Their nonnegative square roots are $3 \sqrt{10},\ 0$. Choose orthonormal eigenvectors in the same order:
+\[V=\begin{bmatrix}- \frac{3 \sqrt{10}}{10}&\frac{\sqrt{10}}{10}\\\frac{\sqrt{10}}{10}&\frac{3 \sqrt{10}}{10}\end{bmatrix}.\]
+These columns are found by solving $(G-\lambda I)v=0$ and normalizing; if an eigenspace has dimension greater than one, Gram--Schmidt is used within it. The exact checks are $V^TV=I$ and $Gv_i=\sigma_i^2v_i$.
+\step{Find left singular vectors, dividing only by positive singular values.}
+For $i=1$, $\sigma_i=3 \sqrt{10}$ gives
+\[u_{1}=\frac{Av_{1}}{3 \sqrt{10}}=\begin{bmatrix}\frac{1}{3}\\- \frac{2}{3}\\- \frac{2}{3}\end{bmatrix}.\]
+Complete these orthonormal columns to an orthonormal basis of $\R^{3}$; the additional columns do not come from dividing by a zero singular value. They can be chosen in $\Nul A^T$.
+\step{Assemble and check the factors.}
+A valid choice is
+\[U=\begin{bmatrix}\frac{1}{3}&\frac{2 \sqrt{2}}{3}&0\\- \frac{2}{3}&\frac{\sqrt{2}}{6}&\frac{\sqrt{2}}{2}\\- \frac{2}{3}&\frac{\sqrt{2}}{6}&- \frac{\sqrt{2}}{2}\end{bmatrix}.\]
+\[\Sigma=\begin{bmatrix}3 \sqrt{10}&0\\0&0\\0&0\end{bmatrix},\qquad V^T=\begin{bmatrix}- \frac{3 \sqrt{10}}{10}&\frac{\sqrt{10}}{10}\\\frac{\sqrt{10}}{10}&\frac{3 \sqrt{10}}{10}\end{bmatrix}.\]
+The dimensions are $3\times3$, $3\times2$, and $2\times2$, respectively. Exact multiplication gives $U^TU=I$, $V^TV=I$, and $U\Sigma V^T=A$, checking orthogonality and every entry of the reconstruction. Nonzero sign changes in matching columns of $U,V$ can produce different-looking but equivalent answers.
+
+
+\exercise{7.4.12}{Build and verify all three SVD factors}
+\goal Find a full singular value decomposition of
+\[A=\begin{bmatrix}1&1\\0&1\\-1&1\end{bmatrix}.\]
+\step{Find right singular vectors from a symmetric matrix.}
+Compute
+\[G=A^TA=\begin{bmatrix}2&0\\0&3\end{bmatrix}.\]
+The eigenvalues of $G$ in decreasing order, including zeros, are $3,\ 2$. Their nonnegative square roots are $\sqrt{3},\ \sqrt{2}$. Choose orthonormal eigenvectors in the same order:
+\[V=\begin{bmatrix}0&1\\1&0\end{bmatrix}.\]
+These columns are found by solving $(G-\lambda I)v=0$ and normalizing; if an eigenspace has dimension greater than one, Gram--Schmidt is used within it. The exact checks are $V^TV=I$ and $Gv_i=\sigma_i^2v_i$.
+\step{Find left singular vectors, dividing only by positive singular values.}
+For $i=1$, $\sigma_i=\sqrt{3}$ gives
+\[u_{1}=\frac{Av_{1}}{\sqrt{3}}=\begin{bmatrix}\frac{\sqrt{3}}{3}\\\frac{\sqrt{3}}{3}\\\frac{\sqrt{3}}{3}\end{bmatrix}.\]
+For $i=2$, $\sigma_i=\sqrt{2}$ gives
+\[u_{2}=\frac{Av_{2}}{\sqrt{2}}=\begin{bmatrix}\frac{\sqrt{2}}{2}\\0\\- \frac{\sqrt{2}}{2}\end{bmatrix}.\]
+Complete these orthonormal columns to an orthonormal basis of $\R^{3}$; the additional columns do not come from dividing by a zero singular value. They can be chosen in $\Nul A^T$.
+\step{Assemble and check the factors.}
+A valid choice is
+\[U=\begin{bmatrix}\frac{\sqrt{3}}{3}&\frac{\sqrt{2}}{2}&\frac{\sqrt{6}}{6}\\\frac{\sqrt{3}}{3}&0&- \frac{\sqrt{6}}{3}\\\frac{\sqrt{3}}{3}&- \frac{\sqrt{2}}{2}&\frac{\sqrt{6}}{6}\end{bmatrix}.\]
+\[\Sigma=\begin{bmatrix}\sqrt{3}&0\\0&\sqrt{2}\\0&0\end{bmatrix},\qquad V^T=\begin{bmatrix}0&1\\1&0\end{bmatrix}.\]
+The dimensions are $3\times3$, $3\times2$, and $2\times2$, respectively. Exact multiplication gives $U^TU=I$, $V^TV=I$, and $U\Sigma V^T=A$, checking orthogonality and every entry of the reconstruction. Nonzero sign changes in matching columns of $U,V$ can produce different-looking but equivalent answers.
+
+
+\exercise{7.4.13}{Build and verify all three SVD factors}
+\goal Find a full singular value decomposition of
+\[A=\begin{bmatrix}3&2&2\\2&3&-2\end{bmatrix}.\]
+\step{Find right singular vectors from a symmetric matrix.}
+Compute
+\[G=A^TA=\begin{bmatrix}13&12&2\\12&13&-2\\2&-2&8\end{bmatrix}.\]
+The eigenvalues of $G$ in decreasing order, including zeros, are $25,\ 9,\ 0$. Their nonnegative square roots are $5,\ 3,\ 0$. Choose orthonormal eigenvectors in the same order:
+\[V=\begin{bmatrix}\frac{\sqrt{2}}{2}&\frac{\sqrt{2}}{6}&- \frac{2}{3}\\\frac{\sqrt{2}}{2}&- \frac{\sqrt{2}}{6}&\frac{2}{3}\\0&\frac{2 \sqrt{2}}{3}&\frac{1}{3}\end{bmatrix}.\]
+These columns are found by solving $(G-\lambda I)v=0$ and normalizing; if an eigenspace has dimension greater than one, Gram--Schmidt is used within it. The exact checks are $V^TV=I$ and $Gv_i=\sigma_i^2v_i$.
+\step{Find left singular vectors, dividing only by positive singular values.}
+For $i=1$, $\sigma_i=5$ gives
+\[u_{1}=\frac{Av_{1}}{5}=\begin{bmatrix}\frac{\sqrt{2}}{2}\\\frac{\sqrt{2}}{2}\end{bmatrix}.\]
+For $i=2$, $\sigma_i=3$ gives
+\[u_{2}=\frac{Av_{2}}{3}=\begin{bmatrix}\frac{\sqrt{2}}{2}\\- \frac{\sqrt{2}}{2}\end{bmatrix}.\]
+\step{Assemble and check the factors.}
+A valid choice is
+\[U=\begin{bmatrix}\frac{\sqrt{2}}{2}&\frac{\sqrt{2}}{2}\\\frac{\sqrt{2}}{2}&- \frac{\sqrt{2}}{2}\end{bmatrix}.\]
+\[\Sigma=\begin{bmatrix}5&0&0\\0&3&0\end{bmatrix},\qquad V^T=\begin{bmatrix}\frac{\sqrt{2}}{2}&\frac{\sqrt{2}}{2}&0\\\frac{\sqrt{2}}{6}&- \frac{\sqrt{2}}{6}&\frac{2 \sqrt{2}}{3}\\- \frac{2}{3}&\frac{2}{3}&\frac{1}{3}\end{bmatrix}.\]
+The dimensions are $2\times2$, $2\times3$, and $3\times3$, respectively. Exact multiplication gives $U^TU=I$, $V^TV=I$, and $U\Sigma V^T=A$, checking orthogonality and every entry of the reconstruction. Nonzero sign changes in matching columns of $U,V$ can produce different-looking but equivalent answers.
+
+
+\exercise{7.4.14}{A unit vector attaining the largest stretch}
+For any unit vector $x$, expand it in the orthonormal right singular basis: $x=c_1v_1+c_2v_2$, where $c_1^2+c_2^2=1$. Exercise 7 gives singular values $3$ and $2$, so
+\[
+\|Ax\|^2=9c_1^2+4c_2^2\le9(c_1^2+c_2^2)=9.
+\]
+The largest possible length is therefore $3$, attained at the first right singular vector
+\[x=\begin{bmatrix}\frac{2 \sqrt{5}}{5}\\\frac{\sqrt{5}}{5}\end{bmatrix}.\]
+It is a unit vector, and direct multiplication gives $\|Ax\|=3$. Its negative is another maximizer.
+
+\exercise{7.4.15}{Read rank and subspace bases without reconstruction}
+\step{(a) Count positive singular values.} The displayed diagonal factor has positive entries $7.10$ and $3.10$ and then zero, so $\rank A=2$.
+\step{(b) Read the appropriate columns of the two orthogonal factors.} A basis of $\Col A$ is given by the first two columns of $U$:
+\[
+\left\{\begin{bmatrix}.40\\.37\\-.84\end{bmatrix},
+\begin{bmatrix}-.78\\-.33\\-.52\end{bmatrix}\right\}.
+\]
+For the null space take column 3 of $V$, which is \emph{row 3 of the printed $V^T$ factor}:
+\[
+\Nul A=\Span\left\{\begin{bmatrix}.58\\-.58\\.58\end{bmatrix}\right\}.
+\]
+The entries are rounded descriptions of the true singular vectors; they need not give exact orthogonality or exact zero residuals when interpreted as exact terminating decimals. The requested structural information comes from the stated SVD, not from recomputing rank after rounding.
+
+\exercise{7.4.16}{A rectangular SVD with a two-dimensional null space}
+The diagonal factor has two positive entries, $12.48$ and $6.34$, so $\rank A=2$. Since $A$ has four columns, its nullity is $4-2=2$.
+A basis of $\Col A$ is supplied by the first two $U$ columns:
+\[
+\left\{\begin{bmatrix}-.86\\.31\\.41\end{bmatrix},
+\begin{bmatrix}-.11\\.68\\-.73\end{bmatrix}\right\}.
+\]
+The last two columns of $V$ are the last two rows of the printed right-hand factor $V^T$. Thus a basis of $\Nul A$ is
+\[
+\left\{\begin{bmatrix}.65\\.08\\-.16\\-.73\end{bmatrix},
+\begin{bmatrix}-.34\\.42\\-.84\\-.08\end{bmatrix}\right\}.
+\]
+As in Exercise 15, the printed decimal columns are approximations to the exact basis vectors associated with the given SVD.
+
+\exercise{7.4.17}{SVD consequences and proofs}
+Invertibility makes every singular value positive. Reverse the factor order to obtain
+\[
+A^{-1}=V\Sigma^{-1}U^T.
+\]
+This has orthogonal outer factors and positive diagonal entries $1/\sigma_1,\ldots,1/\sigma_n$. If an SVD is required to list singular values in decreasing order, reverse this order: let $J$ be the permutation matrix reversing the standard basis. Then
+\[
+A^{-1}=(VJ)(J^T\Sigma^{-1}J)(UJ)^T.
+\]
+Its diagonal is $1/\sigma_n\ge\cdots\ge1/\sigma_1$, as required. In particular the largest singular value of the inverse is the reciprocal of the smallest singular value of $A$.
+
+\exercise{7.4.18}{SVD consequences and proofs}
+Taking determinants of $A=U\Sigma V^T$ gives $\det A=(\det U)(\det\Sigma)(\det V^T)$. Orthogonal matrices have determinants $\pm1$, while $\det\Sigma=\sigma_1\cdots\sigma_n\ge0$. Taking absolute values proves $|\det A|=\prod_{j=1}^n\sigma_j$. If $A$ is singular, a singular value is zero and both sides are zero.
+
+\exercise{7.4.19}{SVD consequences and proofs}
+Use orthogonality in the products:
+\[
+A^TA=V\Sigma^TU^TU\Sigma V^T=V(\Sigma^T\Sigma)V^T,
+\]
+\[
+AA^T=U\Sigma V^TV\Sigma^TU^T=U(\Sigma\Sigma^T)U^T.
+\]
+The middle matrices are diagonal. Their positive entries are $\sigma_1^2,\ldots,\sigma_r^2$, with zeros in the remaining positions. Thus the columns of $V$ and $U$ are the respective eigenvectors, with those squared eigenvalues; their nonnegative square roots are the singular values. For a rectangular matrix, the numbers of structural zeros on the two sides can differ.
+
+\exercise{7.4.20}{SVD consequences and proofs}
+A real positive definite matrix in this section is symmetric. Its orthogonal diagonalization $A=PDP^T$ has strictly positive eigenvalues on the diagonal of $D$. Thus the factors already satisfy the SVD requirements, with $U=V=P$ and $\Sigma=D$. If necessary reorder the eigenvectors and diagonal entries together so that the positive diagonal is decreasing. Positive definiteness is what avoids any sign adjustments to make singular values nonnegative.
+
+\exercise{7.4.21}{SVD consequences and proofs}
+Because $P^TP=I_m$,
+\[
+(PA)^T(PA)=A^TP^TPA=A^TA.
+\]
+The two Gram matrices are identical, not merely similar. Hence their eigenvalues and their nonnegative square roots agree, proving the singular values agree. Geometrically an orthogonal transformation of the output does not change any length.
+
+\exercise{7.4.22}{SVD consequences and proofs}
+Assume there is a second right singular direction, so $n\ge2$. For a unit $x\perp v_1$, expand $x=\sum_{j=2}^n c_jv_j$ with $\sum_{j=2}^n c_j^2=1$. Orthogonality of the left singular vectors gives
+\[
+\|Ax\|^2=\sum_{j=2}^n\sigma_j^2c_j^2
+\le\sigma_2^2\sum_{j=2}^n c_j^2=\sigma_2^2.
+\]
+The bound is attained at $x=v_2$. Thus the maximum length is $\sigma_2$, including the cases of repeated singular values or $\sigma_2=0$. The order $\sigma_1\ge\sigma_2\ge\cdots$ is used in the inequality.
+
+\exercise{7.4.23}{SVD consequences and proofs}
+The product $U\Sigma$ has first $r$ columns $\sigma_ju_j$ and all other columns zero. Row $j$ of $V^T$ is $v_j^T$. By the column-times-row expansion of a matrix product,
+\[
+U\Sigma V^T=\sum_{j=1}^r(\sigma_ju_j)v_j^T
+=\sum_{j=1}^r\sigma_ju_jv_j^T.
+\]
+Every term is an $m\times n$ rank-one matrix. The dimensions match, and zero-singular-value terms contribute nothing.
+
+\exercise{7.4.24}{SVD consequences and proofs}
+Transpose the SVD and use $U^Tu_j=e_j$:
+\[
+A^Tu_j=V\Sigma^TU^Tu_j=V\Sigma^Te_j
+=V(\sigma_je_j)=\sigma_jv_j\qquad(1\le j\le r).
+\]
+Thus multiplication by $A^T$ sends a positive left singular direction to its matching right singular direction, with the same scale.
+
+\exercise{7.4.25}{SVD consequences and proofs}
+Find the standard matrix $A$ of $T$ and compute a full SVD $A=U\Sigma V^T$. Let $\mathcal B$ be the ordered columns of $V$ in the domain, and let $\mathcal C$ be the ordered columns of $U$ in the codomain. They are bases because the matrices are orthogonal. The coordinate matrix is
+\[
+[T]_{\mathcal C\leftarrow\mathcal B}=U^{-1}AV=U^TAV=\Sigma.
+\]
+This is the requested rectangular diagonal matrix, including zero rows or columns where dimensions and rank require them. Using different bases on input and output is what permits this for every rectangular linear map.
+
+\exercise{7.4.26}{Numerical SVD with measured reconstruction checks}
+\goal Compute an SVD of
+\[A=\begin{bmatrix}-18&13&-4&4\\2&19&-4&12\\-14&11&-12&8\\-2&21&4&8\end{bmatrix}.\]
+Following the construction in the examples, compute eigenvectors of $A^TA$ in decreasing eigenvalue order. Take the positive square roots to obtain the singular values, then set $u_i=Av_i/\sigma_i$. Exact row reduction confirms rank $3$, so exactly that many singular values are positive. The full-precision calculation gives factors whose entries, rounded to two decimals as requested, are
+\[U\approx\begin{bmatrix}0.50&-0.50&-0.50&-0.50\\0.50&0.50&0.50&-0.50\\0.50&-0.50&0.50&0.50\\0.50&0.50&-0.50&0.50\end{bmatrix}.\]
+\[\Sigma\approx\begin{bmatrix}40.00&0.00&0.00&0.00\\0.00&20.00&0.00&0.00\\0.00&0.00&10.00&0.00\\0.00&0.00&0.00&0.00\end{bmatrix}.\]
+\[V^T\approx\begin{bmatrix}-0.40&0.80&-0.20&0.40\\0.80&0.40&0.40&0.20\\0.40&-0.20&-0.80&0.40\\-0.20&-0.40&0.40&0.80\end{bmatrix}.\]
+Before rounding, the Frobenius reconstruction error $\|U\Sigma V^T-A\|_F$ was $2.35\times10^{-14}$, and the orthogonality errors for $U,V$ were $2.48\times10^{-15}$ and $8.2\times10^{-16}$. Rounding the displayed entries increases residuals and need not retain exact orthogonality; the decomposition is specified numerically to two decimals, not as an exact factorization of the rounded factors.
+A reproducible implementation of the stated construction is:
+\begin{verbatim}
+import numpy as np
+lam,V = np.linalg.eigh(A.T@A)
+idx = np.argsort(lam)[::-1]
+lam,V = lam[idx],V[:,idx]
+r = 3 if A.shape[1] == 4 else 4  # exact ranks here
+s = np.sqrt(lam[:r])
+U = (A@V[:,:r])/s
+if r < A.shape[0]:
+    Q,_ = np.linalg.qr(U,mode='complete')
+    U = np.column_stack((U,Q[:,r:]))
+Sigma = np.zeros(A.shape)
+Sigma[np.arange(r),np.arange(r)] = s
+print(U,Sigma,V.T)
+\end{verbatim}
+Use floating-point arrays for the displayed input. Eigenvector signs may differ between libraries; changing the matching left and right signs does not change the product. A direct numerical SVD was also used to check the computed singular values.
+
+\exercise{7.4.27}{Numerical SVD with measured reconstruction checks}
+\goal Compute an SVD of
+\[A=\begin{bmatrix}6&-8&-4&5&-4\\2&7&-5&-6&4\\0&-1&-8&2&2\\-1&-2&4&4&-8\end{bmatrix}.\]
+Following the construction in the examples, compute eigenvectors of $A^TA$ in decreasing eigenvalue order. Take the positive square roots to obtain the singular values, then set $u_i=Av_i/\sigma_i$. Exact row reduction confirms rank $4$, so exactly that many singular values are positive. The full-precision calculation gives factors whose entries, rounded to two decimals as requested, are
+\[U\approx\begin{bmatrix}-0.57&0.65&0.42&0.27\\0.63&0.24&0.68&-0.29\\0.07&0.63&-0.53&-0.56\\-0.51&-0.34&0.29&-0.73\end{bmatrix}.\]
+\[\Sigma\approx\begin{bmatrix}16.46&0.00&0.00&0.00&0.00\\0.00&12.16&0.00&0.00&0.00\\0.00&0.00&4.87&0.00&0.00\\0.00&0.00&0.00&4.31&0.00\end{bmatrix}.\]
+\[V^T\approx\begin{bmatrix}-0.10&0.61&-0.21&-0.52&0.55\\0.39&-0.29&-0.84&0.14&0.19\\0.74&0.27&0.07&-0.38&-0.49\\0.41&-0.50&0.45&-0.23&0.58\\-0.36&-0.48&-0.19&-0.72&-0.29\end{bmatrix}.\]
+Before rounding, the Frobenius reconstruction error $\|U\Sigma V^T-A\|_F$ was $1.13\times10^{-14}$, and the orthogonality errors for $U,V$ were $2.99\times10^{-15}$ and $1.04\times10^{-15}$. Rounding the displayed entries increases residuals and need not retain exact orthogonality; the decomposition is specified numerically to two decimals, not as an exact factorization of the rounded factors.
+A reproducible implementation of the stated construction is:
+\begin{verbatim}
+import numpy as np
+lam,V = np.linalg.eigh(A.T@A)
+idx = np.argsort(lam)[::-1]
+lam,V = lam[idx],V[:,idx]
+r = 3 if A.shape[1] == 4 else 4  # exact ranks here
+s = np.sqrt(lam[:r])
+U = (A@V[:,:r])/s
+if r < A.shape[0]:
+    Q,_ = np.linalg.qr(U,mode='complete')
+    U = np.column_stack((U,Q[:,r:]))
+Sigma = np.zeros(A.shape)
+Sigma[np.arange(r),np.arange(r)] = s
+print(U,Sigma,V.T)
+\end{verbatim}
+Use floating-point arrays for the displayed input. Eigenvector signs may differ between libraries; changing the matching left and right signs does not change the product. A direct numerical SVD was also used to check the computed singular values.
+
+\exercise{7.4.28}{Singular values and a condition number}
+The matrix referred to from Section 2.3 is
+\[A=\begin{bmatrix}4&0&-3&-7\\-6&9&9&9\\7&-5&10&19\\-1&2&4&-1\end{bmatrix}.\]
+A stable direct SVD, rather than forming the potentially ill-conditioned Gram matrix numerically, gives the singular values
+\[(25.96092922,\ 14.45655782,\ 4.669971173,\ 2.286801047).\]
+All are positive (also $\det A=-4008\ne0$ in exact arithmetic). The spectral condition number is therefore
+\[\kappa_2(A)=\frac{\sigma_1}{\sigma_{4}}\approx 11.3525089.\]
+The computation is reproducible with
+\begin{verbatim}
+s = np.linalg.svd(A,compute_uv=False)
+print(s,s[0]/s[-1])
+\end{verbatim}
+The ratio measures the greatest stretching relative to the least stretching. A large ratio explains sensitivity to perturbations even though the matrix is exactly invertible.
+
+\exercise{7.4.29}{Singular values and a condition number}
+The matrix referred to from Section 2.3 is
+\[A=\begin{bmatrix}5&3&1&7&9\\6&4&2&8&-8\\7&5&3&10&9\\9&6&4&-9&-5\\8&5&2&11&4\end{bmatrix}.\]
+A stable direct SVD, rather than forming the potentially ill-conditioned Gram matrix numerically, gives the singular values
+\[(25.9343222,\ 16.7554367,\ 11.29172511,\ 1.078525439,\ 0.0003779276369).\]
+All are positive (also $\det A=2\ne0$ in exact arithmetic). The spectral condition number is therefore
+\[\kappa_2(A)=\frac{\sigma_1}{\sigma_{5}}\approx 68622.45484.\]
+The computation is reproducible with
+\begin{verbatim}
+s = np.linalg.svd(A,compute_uv=False)
+print(s,s[0]/s[-1])
+\end{verbatim}
+The ratio measures the greatest stretching relative to the least stretching. A large ratio explains sensitivity to perturbations even though the matrix is exactly invertible.

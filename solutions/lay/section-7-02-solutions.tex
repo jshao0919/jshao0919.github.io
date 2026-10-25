@@ -1,0 +1,549 @@
+\section{Quadratic forms}
+For a symmetric matrix $A$, the expression $Q(x)=x^TAx$ is a quadratic
+form. Diagonal entries are the coefficients of squares. Off-diagonal
+entries contribute twice: the coefficient of $x_ix_j$ for $i\ne j$ is
+$2a_{ij}$. Thus put \emph{half} of each mixed-term coefficient in each
+of the two symmetric positions.
+
+An orthogonal change $x=Py$ gives
+$Q(x)=y^T(P^TAP)y$. If $P$ consists of orthonormal eigenvectors, then
+$P^TAP=D$ is diagonal and $Q=\sum_i\lambda_i y_i^2$.
+All eigenvalues positive means positive definite; all negative means negative
+definite. Nonnegative eigenvalues with a zero give positive semidefinite
+but not definite, and the analogous nonpositive case is negative semidefinite.
+Both signs give an indefinite form. A definite inequality is required only
+for $x\ne0$, since every quadratic form has $Q(0)=0$.
+
+\practice{7.2.P1}{Recognize positive semidefiniteness spectrally}
+A symmetric matrix is positive semidefinite exactly when all eigenvalues
+are nonnegative. In an orthonormal eigenbasis,
+$Q(x)=\sum_i\lambda_i y_i^2\ge0$ if every $\lambda_i\ge0$.
+Conversely, if $\lambda_j<0$, taking $y=e_j$ and $x=Pe_j$ gives
+$Q(x)=\lambda_j<0$, contradicting semidefiniteness.
+This argument also includes zero eigenvalues and the zero matrix.
+
+\exercise{7.2.1}{Evaluate a two-variable form}
+\begin{enumerate}[label=(\alph*)]
+\item First multiply $Ax=(5x_1+x_2/3,x_1/3+x_2)^T$.
+Dotting with $x$ gives
+$Q(x)=5x_1^2+(2/3)x_1x_2+x_2^2$.
+\item For $x=(6,1)^T$, the value is $5(36)+(2/3)6+1=185$.
+\item For $x=(1,3)^T$, the value is $5+(2/3)3+9=16$.
+\end{enumerate}
+The two off-diagonal contributions both matter; omitting one changes the answer.
+
+\exercise{7.2.2}{Evaluate a three-variable form}
+\begin{enumerate}[label=(\alph*)]
+\item Expanding $x^TAx$ and collecting the symmetric terms gives
+$Q(x)=4x_1^2+2x_2^2+x_3^2+6x_1x_2+2x_2x_3$.
+There is no $x_1x_3$ term because $a_{13}=a_{31}=0$.
+\item At $x=(2,-1,5)^T$, this is $16+2+25-12-10=21$.
+\item At $x=(1,1,1)^T/\sqrt3$, each square and each pair product is
+$1/3$. Thus $Q(x)=(4+2+1+6+2)/3=5$.
+\end{enumerate}
+
+\exercise{7.2.3}{Recover two symmetric coefficient matrices}
+The diagonal entries come from the square terms and each mixed coefficient
+is divided by two. Thus the matrices are
+\[
+ \text{(a)}\quad\boxed{\begin{bmatrix}10&-3\\-3&-3\end{bmatrix}},
+ \qquad\text{(b)}\quad\boxed{\begin{bmatrix}5&3/2\\3/2&0\end{bmatrix}}.
+\]
+For example the first mixed coefficient is $-3-3=-6$, and the second
+form has no $x_2^2$ term, so its bottom-right entry is zero.
+
+\exercise{7.2.4}{A large mixed coefficient and a pure mixed term}
+The same rule gives
+\[
+ \text{(a)}\quad\boxed{\begin{bmatrix}20&15/2\\15/2&-10\end{bmatrix}},
+ \qquad\text{(b)}\quad\boxed{\begin{bmatrix}0&1/2\\1/2&0\end{bmatrix}}.
+\]
+The two $1/2$ entries in part (b) sum to the required coefficient $1$
+of $x_1x_2$; neither diagonal entry is needed.
+
+\exercise{7.2.5}{Three-variable coefficient matrices}
+Record the three square coefficients on the diagonal, then place half of
+each of the three possible mixed coefficients in symmetric positions:
+\[
+ \text{(a)}\quad\boxed{\begin{bmatrix}8&-3&2\\-3&7&-1\\2&-1&-3\end{bmatrix}},
+ \qquad\text{(b)}\quad\boxed{\begin{bmatrix}0&2&3\\2&0&-4\\3&-4&0\end{bmatrix}}.
+\]
+In part (b) all square coefficients vanish, explaining the zero diagonal.
+Expanding either matrix as $x^TAx$ reproduces every original coefficient.
+
+\exercise{7.2.6}{Mixed terms with odd coefficients}
+Fractions are necessary when a mixed coefficient is odd. The two matrices are
+\[
+ \text{(a)}\quad\boxed{\begin{bmatrix}5&5/2&-3/2\\5/2&-1&0\\-3/2&0&7\end{bmatrix}},
+ \qquad\text{(b)}\quad\boxed{\begin{bmatrix}0&-2&0\\-2&0&2\\0&2&1\end{bmatrix}}.
+\]
+For instance $2(5/2)=5$ and $2(-3/2)=-3$ give the two mixed
+coefficients in part (a); the absent $x_2x_3$ term gives a zero entry.
+
+\exercise{7.2.7}{Remove the mixed terms and identify the signs}
+The symmetric coefficient matrix is
+\[
+ A=\begin{bmatrix}1&5\\5&1\end{bmatrix}.
+\]
+\step{Find orthogonal eigenvectors rather than guessing a change of variables.}
+The eigenvalues are $(-4,6)$ (counted with multiplicity).
+$\lambda=-4$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=- x_{2} \).
+$\lambda=6$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=x_{2} \).
+Choosing free variables and, within a repeated eigenspace, orthogonalizing
+gives the eigenvectors as the columns of
+\[
+ V=\begin{bmatrix}1&1\\-1&1\end{bmatrix}.
+\]
+Their squared lengths are $(2,2)$ and their pairwise dot products vanish. Set
+\[
+ P=\frac1{\sqrt{2}}V;\qquad x=Py.
+\]
+\step{Read the new form and its classification.}
+Exact multiplication gives $P^TAP=\operatorname{diag}(-4,6)$, so
+\[
+ Q(x)=\boxed{- 4 y_{1}^{2} + 6 y_{2}^{2}}.
+\]
+The form is \textbf{indefinite}. Taking $y$ on a positive-eigenvalue coordinate axis makes $Q>0$,
+while a negative-eigenvalue axis makes $Q<0$. Thus both signs really occur.
+
+\exercise{7.2.8}{Remove the mixed terms and identify the signs}
+The symmetric coefficient matrix is
+\[
+ A=\begin{bmatrix}9&-4&4\\-4&7&0\\4&0&11\end{bmatrix}.
+\]
+\step{Find orthogonal eigenvectors rather than guessing a change of variables.}
+The eigenvalues are $(3,9,15)$ (counted with multiplicity).
+$\lambda=3$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=- 2 x_{3},\quad x_{2}=- 2 x_{3} \).
+$\lambda=9$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=- \frac{x_{3}}{2},\quad x_{2}=x_{3} \).
+$\lambda=15$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=x_{3},\quad x_{2}=- \frac{x_{3}}{2} \).
+Choosing free variables and, within a repeated eigenspace, orthogonalizing
+gives the eigenvectors as the columns of
+\[
+ V=\begin{bmatrix}2&1&2\\2&-2&-1\\-1&-2&2\end{bmatrix}.
+\]
+Their squared lengths are $(9,9,9)$ and their pairwise dot products vanish. Set
+\[
+ P=\frac1{3}V;\qquad x=Py.
+\]
+\step{Read the new form and its classification.}
+Exact multiplication gives $P^TAP=\operatorname{diag}(3,9,15)$, so
+\[
+ Q(x)=\boxed{3 y_{1}^{2} + 9 y_{2}^{2} + 15 y_{3}^{2}}.
+\]
+The form is \textbf{positive definite}. Every nonzero $y$ has a nonzero coordinate with a positive coefficient,
+so its value is strictly positive. Since $P$ is invertible, the same holds
+for every nonzero $x$.
+
+\exercise{7.2.9}{Remove the mixed terms and identify the signs}
+The symmetric coefficient matrix is
+\[
+ A=\begin{bmatrix}3&-2\\-2&6\end{bmatrix}.
+\]
+\step{Find orthogonal eigenvectors rather than guessing a change of variables.}
+The eigenvalues are $(2,7)$ (counted with multiplicity).
+$\lambda=2$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=2 x_{2} \).
+$\lambda=7$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=- \frac{x_{2}}{2} \).
+Choosing free variables and, within a repeated eigenspace, orthogonalizing
+gives the eigenvectors as the columns of
+\[
+ V=\begin{bmatrix}2&1\\1&-2\end{bmatrix}.
+\]
+Their squared lengths are $(5,5)$ and their pairwise dot products vanish. Set
+\[
+ P=\frac1{\sqrt{5}}V;\qquad x=Py.
+\]
+\step{Read the new form and its classification.}
+Exact multiplication gives $P^TAP=\operatorname{diag}(2,7)$, so
+\[
+ Q(x)=\boxed{2 y_{1}^{2} + 7 y_{2}^{2}}.
+\]
+The form is \textbf{positive definite}. Every nonzero $y$ has a nonzero coordinate with a positive coefficient,
+so its value is strictly positive. Since $P$ is invertible, the same holds
+for every nonzero $x$.
+
+\exercise{7.2.10}{Remove the mixed terms and identify the signs}
+The symmetric coefficient matrix is
+\[
+ A=\begin{bmatrix}9&-4\\-4&3\end{bmatrix}.
+\]
+\step{Find orthogonal eigenvectors rather than guessing a change of variables.}
+The eigenvalues are $(1,11)$ (counted with multiplicity).
+$\lambda=1$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=\frac{x_{2}}{2} \).
+$\lambda=11$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=- 2 x_{2} \).
+Choosing free variables and, within a repeated eigenspace, orthogonalizing
+gives the eigenvectors as the columns of
+\[
+ V=\begin{bmatrix}1&2\\2&-1\end{bmatrix}.
+\]
+Their squared lengths are $(5,5)$ and their pairwise dot products vanish. Set
+\[
+ P=\frac1{\sqrt{5}}V;\qquad x=Py.
+\]
+\step{Read the new form and its classification.}
+Exact multiplication gives $P^TAP=\operatorname{diag}(1,11)$, so
+\[
+ Q(x)=\boxed{y_{1}^{2} + 11 y_{2}^{2}}.
+\]
+The form is \textbf{positive definite}. Every nonzero $y$ has a nonzero coordinate with a positive coefficient,
+so its value is strictly positive. Since $P$ is invertible, the same holds
+for every nonzero $x$.
+
+\exercise{7.2.11}{Remove the mixed terms and identify the signs}
+The symmetric coefficient matrix is
+\[
+ A=\begin{bmatrix}2&5\\5&2\end{bmatrix}.
+\]
+\step{Find orthogonal eigenvectors rather than guessing a change of variables.}
+The eigenvalues are $(-3,7)$ (counted with multiplicity).
+$\lambda=-3$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=- x_{2} \).
+$\lambda=7$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=x_{2} \).
+Choosing free variables and, within a repeated eigenspace, orthogonalizing
+gives the eigenvectors as the columns of
+\[
+ V=\begin{bmatrix}1&1\\-1&1\end{bmatrix}.
+\]
+Their squared lengths are $(2,2)$ and their pairwise dot products vanish. Set
+\[
+ P=\frac1{\sqrt{2}}V;\qquad x=Py.
+\]
+\step{Read the new form and its classification.}
+Exact multiplication gives $P^TAP=\operatorname{diag}(-3,7)$, so
+\[
+ Q(x)=\boxed{- 3 y_{1}^{2} + 7 y_{2}^{2}}.
+\]
+The form is \textbf{indefinite}. Taking $y$ on a positive-eigenvalue coordinate axis makes $Q>0$,
+while a negative-eigenvalue axis makes $Q<0$. Thus both signs really occur.
+
+\exercise{7.2.12}{Remove the mixed terms and identify the signs}
+The symmetric coefficient matrix is
+\[
+ A=\begin{bmatrix}-5&2\\2&-2\end{bmatrix}.
+\]
+\step{Find orthogonal eigenvectors rather than guessing a change of variables.}
+The eigenvalues are $(-6,-1)$ (counted with multiplicity).
+$\lambda=-6$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=- 2 x_{2} \).
+$\lambda=-1$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=\frac{x_{2}}{2} \).
+Choosing free variables and, within a repeated eigenspace, orthogonalizing
+gives the eigenvectors as the columns of
+\[
+ V=\begin{bmatrix}2&1\\-1&2\end{bmatrix}.
+\]
+Their squared lengths are $(5,5)$ and their pairwise dot products vanish. Set
+\[
+ P=\frac1{\sqrt{5}}V;\qquad x=Py.
+\]
+\step{Read the new form and its classification.}
+Exact multiplication gives $P^TAP=\operatorname{diag}(-6,-1)$, so
+\[
+ Q(x)=\boxed{- 6 y_{1}^{2} - y_{2}^{2}}.
+\]
+The form is \textbf{negative definite}. Every nonzero $y$ has a nonzero squared coordinate with a negative
+coefficient, so $Q<0$. Invertibility of $P$ transfers this to nonzero $x$.
+
+\exercise{7.2.13}{Remove the mixed terms and identify the signs}
+The symmetric coefficient matrix is
+\[
+ A=\begin{bmatrix}1&-3\\-3&9\end{bmatrix}.
+\]
+\step{Find orthogonal eigenvectors rather than guessing a change of variables.}
+The eigenvalues are $(0,10)$ (counted with multiplicity).
+$\lambda=0$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=3 x_{2} \).
+$\lambda=10$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=- \frac{x_{2}}{3} \).
+Choosing free variables and, within a repeated eigenspace, orthogonalizing
+gives the eigenvectors as the columns of
+\[
+ V=\begin{bmatrix}3&1\\1&-3\end{bmatrix}.
+\]
+Their squared lengths are $(10,10)$ and their pairwise dot products vanish. Set
+\[
+ P=\frac1{\sqrt{10}}V;\qquad x=Py.
+\]
+\step{Read the new form and its classification.}
+Exact multiplication gives $P^TAP=\operatorname{diag}(0,10)$, so
+\[
+ Q(x)=\boxed{10 y_{2}^{2}}.
+\]
+The form is \textbf{positive semidefinite but not positive definite}. All terms are nonnegative, but a nonzero vector along a zero-eigenvalue
+coordinate gives $Q=0$, preventing strict positive definiteness.
+
+\exercise{7.2.14}{Remove the mixed terms and identify the signs}
+The symmetric coefficient matrix is
+\[
+ A=\begin{bmatrix}8&3\\3&0\end{bmatrix}.
+\]
+\step{Find orthogonal eigenvectors rather than guessing a change of variables.}
+The eigenvalues are $(-1,9)$ (counted with multiplicity).
+$\lambda=-1$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=- \frac{x_{2}}{3} \).
+$\lambda=9$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=3 x_{2} \).
+Choosing free variables and, within a repeated eigenspace, orthogonalizing
+gives the eigenvectors as the columns of
+\[
+ V=\begin{bmatrix}1&3\\-3&1\end{bmatrix}.
+\]
+Their squared lengths are $(10,10)$ and their pairwise dot products vanish. Set
+\[
+ P=\frac1{\sqrt{10}}V;\qquad x=Py.
+\]
+\step{Read the new form and its classification.}
+Exact multiplication gives $P^TAP=\operatorname{diag}(-1,9)$, so
+\[
+ Q(x)=\boxed{- y_{1}^{2} + 9 y_{2}^{2}}.
+\]
+The form is \textbf{indefinite}. Taking $y$ on a positive-eigenvalue coordinate axis makes $Q>0$,
+while a negative-eigenvalue axis makes $Q<0$. Thus both signs really occur.
+
+\exercise{7.2.15}{Remove the mixed terms and identify the signs}
+The symmetric coefficient matrix is
+\[
+ A=\begin{bmatrix}-2&2&2&2\\2&-6&0&0\\2&0&-9&3\\2&0&3&-9\end{bmatrix}.
+\]
+\step{Find orthogonal eigenvectors rather than guessing a change of variables.}
+The eigenvalues are $(-12,-8,-6,0)$ (counted with multiplicity).
+$\lambda=-12$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=0,\quad x_{2}=0,\quad x_{3}=- x_{4} \).
+$\lambda=-8$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=- x_{4},\quad x_{2}=x_{4},\quad x_{3}=x_{4} \).
+$\lambda=-6$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=0,\quad x_{2}=- 2 x_{4},\quad x_{3}=x_{4} \).
+$\lambda=0$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=3 x_{4},\quad x_{2}=x_{4},\quad x_{3}=x_{4} \).
+Choosing free variables and, within a repeated eigenspace, orthogonalizing
+gives the eigenvectors as the columns of
+\[
+ V=\begin{bmatrix}0&1&0&3\\0&-1&2&1\\1&-1&-1&1\\-1&-1&-1&1\end{bmatrix}.
+\]
+Their squared lengths are $(2,4,6,12)$ and their pairwise dot products vanish. Set
+\[
+ P=V\operatorname{diag}(\frac{\sqrt{2}}{2},\frac{1}{2},\frac{\sqrt{6}}{6},\frac{\sqrt{3}}{6});\qquad x=Py.
+\]
+\step{Read the new form and its classification.}
+Exact multiplication gives $P^TAP=\operatorname{diag}(-12,-8,-6,0)$, so
+\[
+ Q(x)=\boxed{- 12 y_{1}^{2} - 8 y_{2}^{2} - 6 y_{3}^{2}}.
+\]
+The form is \textbf{negative semidefinite but not negative definite}. All terms are nonpositive, but a nonzero vector along the zero-eigenvalue
+coordinate gives $Q=0$, preventing strict negative definiteness.
+
+\exercise{7.2.16}{Remove the mixed terms and identify the signs}
+The symmetric coefficient matrix is
+\[
+ A=\begin{bmatrix}4&\frac{3}{2}&0&-2\\\frac{3}{2}&4&2&0\\0&2&4&\frac{3}{2}\\-2&0&\frac{3}{2}&4\end{bmatrix}.
+\]
+\step{Find orthogonal eigenvectors rather than guessing a change of variables.}
+The eigenvalues are $(\frac{3}{2},\frac{3}{2},\frac{13}{2},\frac{13}{2})$ (counted with multiplicity).
+$\lambda=\frac{3}{2}$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=\frac{3 x_{3}}{4} + \frac{5 x_{4}}{4},\quad x_{2}=- \frac{5 x_{3}}{4} - \frac{3 x_{4}}{4} \).
+$\lambda=\frac{13}{2}$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=\frac{3 x_{3}}{4} - \frac{5 x_{4}}{4},\quad x_{2}=\frac{5 x_{3}}{4} - \frac{3 x_{4}}{4} \).
+Choosing free variables and, within a repeated eigenspace, orthogonalizing
+gives the eigenvectors as the columns of
+\[
+ V=\begin{bmatrix}3&4&3&4\\-5&0&5&0\\4&-3&4&-3\\0&5&0&-5\end{bmatrix}.
+\]
+Their squared lengths are $(50,50,50,50)$ and their pairwise dot products vanish. Set
+\[
+ P=\frac1{5 \sqrt{2}}V;\qquad x=Py.
+\]
+\step{Read the new form and its classification.}
+Exact multiplication gives $P^TAP=\operatorname{diag}(\frac{3}{2},\frac{3}{2},\frac{13}{2},\frac{13}{2})$, so
+\[
+ Q(x)=\boxed{\frac{3 y_{1}^{2}}{2} + \frac{3 y_{2}^{2}}{2} + \frac{13 y_{3}^{2}}{2} + \frac{13 y_{4}^{2}}{2}}.
+\]
+The form is \textbf{positive definite}. Every nonzero $y$ has a nonzero coordinate with a positive coefficient,
+so its value is strictly positive. Since $P$ is invertible, the same holds
+for every nonzero $x$.
+
+\exercise{7.2.17}{Remove the mixed terms and identify the signs}
+The symmetric coefficient matrix is
+\[
+ A=\begin{bmatrix}1&\frac{9}{2}&0&-6\\\frac{9}{2}&1&6&0\\0&6&1&\frac{9}{2}\\-6&0&\frac{9}{2}&1\end{bmatrix}.
+\]
+\step{Find orthogonal eigenvectors rather than guessing a change of variables.}
+The eigenvalues are $(- \frac{13}{2},- \frac{13}{2},\frac{17}{2},\frac{17}{2})$ (counted with multiplicity).
+$\lambda=- \frac{13}{2}$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=\frac{3 x_{3}}{4} + \frac{5 x_{4}}{4},\quad x_{2}=- \frac{5 x_{3}}{4} - \frac{3 x_{4}}{4} \).
+$\lambda=\frac{17}{2}$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=\frac{3 x_{3}}{4} - \frac{5 x_{4}}{4},\quad x_{2}=\frac{5 x_{3}}{4} - \frac{3 x_{4}}{4} \).
+Choosing free variables and, within a repeated eigenspace, orthogonalizing
+gives the eigenvectors as the columns of
+\[
+ V=\begin{bmatrix}3&4&3&4\\-5&0&5&0\\4&-3&4&-3\\0&5&0&-5\end{bmatrix}.
+\]
+Their squared lengths are $(50,50,50,50)$ and their pairwise dot products vanish. Set
+\[
+ P=\frac1{5 \sqrt{2}}V;\qquad x=Py.
+\]
+\step{Read the new form and its classification.}
+Exact multiplication gives $P^TAP=\operatorname{diag}(- \frac{13}{2},- \frac{13}{2},\frac{17}{2},\frac{17}{2})$, so
+\[
+ Q(x)=\boxed{- \frac{13 y_{1}^{2}}{2} - \frac{13 y_{2}^{2}}{2} + \frac{17 y_{3}^{2}}{2} + \frac{17 y_{4}^{2}}{2}}.
+\]
+The form is \textbf{indefinite}. Taking $y$ on a positive-eigenvalue coordinate axis makes $Q>0$,
+while a negative-eigenvalue axis makes $Q<0$. Thus both signs really occur.
+
+\exercise{7.2.18}{Remove the mixed terms and identify the signs}
+The symmetric coefficient matrix is
+\[
+ A=\begin{bmatrix}11&-6&-6&-6\\-6&-1&0&0\\-6&0&0&-1\\-6&0&-1&0\end{bmatrix}.
+\]
+\step{Find orthogonal eigenvectors rather than guessing a change of variables.}
+The eigenvalues are $(-7,-1,1,17)$ (counted with multiplicity).
+$\lambda=-7$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=x_{4},\quad x_{2}=x_{4},\quad x_{3}=x_{4} \).
+$\lambda=-1$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=0,\quad x_{2}=- 2 x_{4},\quad x_{3}=x_{4} \).
+$\lambda=1$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=0,\quad x_{2}=0,\quad x_{3}=- x_{4} \).
+$\lambda=17$: reducing $(A-\lambda I)v=0$ gives
+\( x_{1}=- 3 x_{4},\quad x_{2}=x_{4},\quad x_{3}=x_{4} \).
+Choosing free variables and, within a repeated eigenspace, orthogonalizing
+gives the eigenvectors as the columns of
+\[
+ V=\begin{bmatrix}1&0&0&3\\1&2&0&-1\\1&-1&1&-1\\1&-1&-1&-1\end{bmatrix}.
+\]
+Their squared lengths are $(4,6,2,12)$ and their pairwise dot products vanish. Set
+\[
+ P=V\operatorname{diag}(\frac{1}{2},\frac{\sqrt{6}}{6},\frac{\sqrt{2}}{2},\frac{\sqrt{3}}{6});\qquad x=Py.
+\]
+\step{Read the new form and its classification.}
+Exact multiplication gives $P^TAP=\operatorname{diag}(-7,-1,1,17)$, so
+\[
+ Q(x)=\boxed{- 7 y_{1}^{2} - y_{2}^{2} + y_{3}^{2} + 17 y_{4}^{2}}.
+\]
+The form is \textbf{indefinite}. Taking $y$ on a positive-eigenvalue coordinate axis makes $Q>0$,
+while a negative-eigenvalue axis makes $Q<0$. Thus both signs really occur.
+
+\exercise{7.2.19}{A unit-circle maximum}
+Since $x_1^2+x_2^2=1$,
+$5x_1^2+8x_2^2=5+3x_2^2\le8$.
+Equality occurs at $x=(0,1)$ or $(0,-1)$. Thus the largest value is
+$\boxed8$. The calculation provides both an upper bound and a point attaining it.
+
+\exercise{7.2.20}{A negative coefficient lowers the maximum}
+Again use the constraint to write
+$5x_1^2-3x_2^2=5-8x_2^2\le5$.
+Equality occurs at $x=(1,0)$ or $(-1,0)$, so the largest value is
+$\boxed5$. Without the unit constraint, scaling $x_1$ would make the
+form arbitrarily large.
+
+\exercise{7.2.21}{Six true--false statements about quadratic forms}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} The matrix of a form in this section means its
+canonical symmetric coefficient matrix, with mixed coefficients split equally.
+A nonsymmetric representing array can be replaced by its symmetric part.
+\item \textbf{True.} In a symmetric matrix the mixed coefficient is
+$2a_{ij}$, so all mixed coefficients vanish exactly when every off-diagonal
+entry vanishes.
+\item \textbf{True.} The principal-axis directions are given by an
+orthonormal eigenvector basis of the symmetric coefficient matrix.
+\item \textbf{False.} The condition is $Q(x)>0$ for all $x\ne0$.
+At $x=0$ every quadratic form equals zero.
+\item \textbf{True.} In eigenvector coordinates the form is a sum
+of positive coefficients times squares, strictly positive for nonzero inputs.
+\item \textbf{True.} This is the stated form of a Cholesky factorization.
+Its existence is restricted to positive definite symmetric matrices;
+the statement describes the factorization, not a claim that every symmetric
+matrix admits one.
+\end{enumerate}
+
+\exercise{7.2.22}{Five further classification statements}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} $\|x\|^2=x^TIx$ is a quadratic form.
+\item \textbf{False.} Orthogonality of $P$ alone is insufficient;
+its columns must be appropriate eigenvectors. For
+$A=\begin{bmatrix}1&1\\1&1\end{bmatrix}$ and $P=I$, the mixed
+term $2y_1y_2$ remains.
+\item \textbf{False.} Degenerate or empty level sets are also possible.
+For $A=I$, $c=-1$ the set is empty; for $A=\operatorname{diag}(1,0)$,
+$c=0$ the level set is the line $x_1=0$, not one of the three listed curves.
+\item \textbf{False.} An indefinite form takes both positive and
+negative values. Semidefinite forms have only one weak sign. For example
+$x_1^2-x_2^2$ is indefinite and neither kind of semidefinite.
+\item \textbf{True.} For each unit eigenvector $u_i$,
+$u_i^TAu_i=\lambda_i$. Strict negativity at every nonzero input therefore
+makes every eigenvalue negative.
+\end{enumerate}
+
+\exercise{7.2.23}{Compare characteristic-polynomial coefficients}
+For $A=\begin{bmatrix}a&b\\b&d\end{bmatrix}$,
+\[
+ \det(A-tI)=(a-t)(d-t)-b^2
+ =t^2-(a+d)t+(ad-b^2).
+\]
+On the other hand it is
+$(t-\lambda_1)(t-\lambda_2)=t^2-(\lambda_1+\lambda_2)t+
+\lambda_1\lambda_2$.
+Equality of polynomial coefficients gives
+\[
+ \boxed{\lambda_1+\lambda_2=a+d,\qquad
+ \lambda_1\lambda_2=\det A}.
+\]
+The factor signs agree because there are two factors; in odd dimensions
+one must distinguish $\det(A-tI)$ from $\det(tI-A)$.
+
+\exercise{7.2.24}{Classify nonsingular two-variable forms without solving for roots}
+\begin{enumerate}[label=(\alph*)]
+\item If $\det A=ad-b^2>0$ and $a>0$, then $ad>b^2\ge0$,
+so $d>0$ and $a+d>0$. The two real eigenvalues have positive product,
+so they have the same nonzero sign; their positive sum forces both positive.
+Thus the form is positive definite.
+\item If $\det A>0$ and $a<0$, then $ad>0$ makes $d<0$,
+so the eigenvalues have the same nonzero sign and negative sum. Both are
+negative, giving a negative definite form.
+\item If $\det A<0$, the real eigenvalues have negative product,
+so one is positive and one negative. Their eigenvector directions give
+opposite values of the form, proving indefiniteness.
+\end{enumerate}
+The hypothesis $\det A\ne0$ excludes the semidefinite boundary cases.
+
+\exercise{7.2.25}{Gram matrices are positive semidefinite}
+The matrix $B^TB$ is symmetric. For any $x$,
+$x^TB^TBx=(Bx)^T(Bx)=\|Bx\|^2\ge0$, proving positive semidefiniteness.
+If $B$ is square and invertible, $x\ne0$ implies $Bx\ne0$, making the
+last value strictly positive. Thus $B^TB$ is positive definite then.
+In fact independent columns suffice even for a rectangular $B$.
+
+\exercise{7.2.26}{Construct a positive definite square root}
+Write $A=PDP^T$ with orthogonal $P$ and all $\lambda_i>0$ on the diagonal
+of $D$. Let $C=\operatorname{diag}(\sqrt{\lambda_1},\ldots,
+\sqrt{\lambda_n})$, so $C^TC=D$, and set $B=PCP^T$.
+This $B$ is symmetric and, for nonzero $x$ with $y=P^Tx\ne0$,
+$x^TBx=\sum_i\sqrt{\lambda_i}y_i^2>0$, so $B$ is positive definite.
+Finally
+\[
+ B^TB=PC^TP^TPCP^T=PC^TCP^T=PDP^T=A.
+\]
+Both the factorization and the positive definiteness requested of $B$
+have now been verified.
+
+\exercise{7.2.27}{A sum of positive definite matrices}
+The sum $A+B$ is symmetric. For $x\ne0$,
+$x^T(A+B)x=x^TAx+x^TBx>0+0=0$, since each matrix is positive definite.
+Thus $A+B$ is positive definite, and its eigenvalues are all positive.
+The proof does not require $A$ and $B$ to commute or share eigenvectors;
+adding their eigenvalue lists would not be a valid general argument.
+
+\exercise{7.2.28}{The inverse of a positive definite matrix}
+An orthogonal diagonalization $A=PDP^T$ has positive diagonal entries
+$\lambda_i$. Its inverse is $A^{-1}=PD^{-1}P^T$, with positive eigenvalues
+$1/\lambda_i$. Hence its quadratic form is positive definite.
+For a direct check, given $x\ne0$ let $y=A^{-1}x\ne0$. Since $A$ is
+symmetric, $x^TA^{-1}x=(Ay)^Ty=y^TAy>0$.
+Thus both the eigenvalue argument and the defining inequality give the claim.

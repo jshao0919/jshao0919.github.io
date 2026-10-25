@@ -1,0 +1,516 @@
+\section{Linear independence}
+\textbf{The main question.} For vectors $v_1,\ldots,v_p$, write
+$c_1v_1+\cdots+c_pv_p=0$. The list is \emph{linearly independent}
+if its only solution is $c_1=\cdots=c_p=0$. It is dependent if a
+solution exists with at least one nonzero coefficient. Notice that the
+zero-coefficient solution always exists, so its existence proves nothing.
+Putting the vectors into the columns of $A$ turns the question into
+$Ac=0$. A pivot in every column means no free variable, hence independence.
+A free variable supplies a nontrivial dependence relation.
+
+\practice{1.7.P1}{Check every pair, not only the whole list}
+The four vectors are $u=(3,2,-4)$, $v=(-6,1,7)$, $w=(0,-5,2)$,
+and $z=(3,7,-5)$. None is zero. For two nonzero vectors, dependence
+means one is a scalar multiple of the other. We can disprove this
+by looking just at their first two coordinates: the quantities
+$a_1b_2-a_2b_1$ for $(u,v),(u,w),(u,z),(v,w),(v,z),(w,z)$ are
+respectively $15,-15,15,30,-45,15$. None is zero. For example, if
+$v=tu$, then $3(1)-2(-6)$ would have to be zero; it is $15$.
+\answer{All six pairs are linearly independent.}
+
+\practice{1.7.P2}{Pairwise independence is weaker than independence}
+No. Checking pairs rules out a relation using only two vectors, but
+it does not rule out a relation using three or four. For instance,
+$e_1,e_2,e_1+e_2$ are pairwise independent yet
+$e_1+e_2-(e_1+e_2)=0$ is a nontrivial relation among all three.
+The same logical distinction applies to the four given vectors.
+
+\practice{1.7.P3}{Why testing a selected vector can miss dependence}
+It is not a reliable test to ask only whether $w$ is in the span of
+the other three. A dependence relation may have coefficient zero on
+$w$. For these data, solving with the actual coordinates gives $z=3u+v$. Thus $3u+v-z=0$
+already establishes dependence without involving $w$.
+Moreover $w$ is outside $\Span\{u,v\}$: the equations
+$3a-6b=0$, $2a+b=-5$ force $b=-1$, $a=-2$, but then
+$-4a+7b=1\ne2$. So $w\notin\Span\{u,v,z\}$ despite dependence
+of the whole list. Testing one chosen vector could therefore mislead us.
+
+\practice{1.7.P4}{More vectors than coordinates}
+There are four vectors in $\R^3$, so their $3\times4$ column matrix
+cannot have a pivot in all four columns. At least one variable is free
+in the homogeneous system, and the list is dependent. The relation
+$3u+v-z=0$ from the preceding problem gives a direct check.
+
+
+\exercise{1.7.1}{Test the column equation}
+
+\goal Determine whether the given vectors are independent. Form $Ac=0$; row operations preserve exactly its solutions.
+
+\[ A=\begin{bmatrix}5 & 7 & 9\\0 & 2 & 4\\0 & -6 & -8\end{bmatrix}.\]
+Use $R_{1}\leftarrow \frac{1}{5}R_{1}$. Then
+\[ \begin{bmatrix}1 & \frac{7}{5} & \frac{9}{5}\\0 & 2 & 4\\0 & -6 & -8\end{bmatrix}.\]
+Use $R_{2}\leftarrow \frac{1}{2}R_{2},\quad R_{1}\leftarrow R_{1}-(\frac{7}{5})R_{2},\quad R_{3}\leftarrow R_{3}-(-6)R_{2}$. Then
+\[ \begin{bmatrix}1 & 0 & -1\\0 & 1 & 2\\0 & 0 & 4\end{bmatrix}.\]
+Use $R_{3}\leftarrow \frac{1}{4}R_{3},\quad R_{1}\leftarrow R_{1}-(-1)R_{3},\quad R_{2}\leftarrow R_{2}-(2)R_{3}$. Then
+\[ \begin{bmatrix}1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 1\end{bmatrix}.\]
+
+Every column has a pivot. The reduced equations force every coefficient in $c$ to be zero, so there is no nontrivial dependence relation.
+\answer{The vectors are linearly independent.}
+
+
+\exercise{1.7.2}{Test the column equation}
+
+\goal Determine whether the given vectors are independent. Form $Ac=0$; row operations preserve exactly its solutions.
+
+\[ A=\begin{bmatrix}0 & 0 & -1\\2 & 0 & 3\\3 & -8 & 1\end{bmatrix}.\]
+Use $R_{1}\leftrightarrow R_{2},\quad R_{1}\leftarrow \frac{1}{2}R_{1},\quad R_{3}\leftarrow R_{3}-(3)R_{1}$. Then
+\[ \begin{bmatrix}1 & 0 & \frac{3}{2}\\0 & 0 & -1\\0 & -8 & - \frac{7}{2}\end{bmatrix}.\]
+Use $R_{2}\leftrightarrow R_{3},\quad R_{2}\leftarrow - \frac{1}{8}R_{2}$. Then
+\[ \begin{bmatrix}1 & 0 & \frac{3}{2}\\0 & 1 & \frac{7}{16}\\0 & 0 & -1\end{bmatrix}.\]
+Use $R_{3}\leftarrow -1R_{3},\quad R_{1}\leftarrow R_{1}-(\frac{3}{2})R_{3},\quad R_{2}\leftarrow R_{2}-(\frac{7}{16})R_{3}$. Then
+\[ \begin{bmatrix}1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 1\end{bmatrix}.\]
+
+Every column has a pivot. The reduced equations force every coefficient in $c$ to be zero, so there is no nontrivial dependence relation.
+\answer{The vectors are linearly independent.}
+
+
+\exercise{1.7.3}{Test the column equation}
+
+\goal Determine whether the given vectors are independent. Form $Ac=0$; row operations preserve exactly its solutions.
+
+\[ A=\begin{bmatrix}2 & -4\\-3 & 6\end{bmatrix}.\]
+Use $R_{1}\leftarrow \frac{1}{2}R_{1},\quad R_{2}\leftarrow R_{2}-(-3)R_{1}$. Then
+\[ \begin{bmatrix}1 & -2\\0 & 0\end{bmatrix}.\]
+
+There is a free variable. For example, the nonzero coefficient vector $c=\begin{bmatrix}2\\1\end{bmatrix}$ satisfies $Ac=0$ (substitution checks every coordinate). This is a nontrivial relation among the columns.
+\answer{The vectors are linearly dependent.}
+
+
+\exercise{1.7.4}{Test the column equation}
+
+\goal Determine whether the given vectors are independent. Form $Ac=0$; row operations preserve exactly its solutions.
+
+\[ A=\begin{bmatrix}-1 & -3\\3 & -9\end{bmatrix}.\]
+Use $R_{1}\leftrightarrow R_{2},\quad R_{1}\leftarrow \frac{1}{3}R_{1},\quad R_{2}\leftarrow R_{2}-(-1)R_{1}$. Then
+\[ \begin{bmatrix}1 & -3\\0 & -6\end{bmatrix}.\]
+Use $R_{2}\leftarrow - \frac{1}{6}R_{2},\quad R_{1}\leftarrow R_{1}-(-3)R_{2}$. Then
+\[ \begin{bmatrix}1 & 0\\0 & 1\end{bmatrix}.\]
+
+Every column has a pivot. The reduced equations force every coefficient in $c$ to be zero, so there is no nontrivial dependence relation.
+\answer{The vectors are linearly independent.}
+
+
+\exercise{1.7.5}{Test the column equation}
+
+\goal Determine whether the given vectors (the columns of the matrix) are independent. Form $Ac=0$; row operations preserve exactly its solutions.
+
+\[ A=\begin{bmatrix}0 & -3 & 9\\2 & 1 & -7\\-1 & 4 & -5\\1 & -4 & -2\end{bmatrix}.\]
+Use $R_{1}\leftrightarrow R_{4},\quad R_{2}\leftarrow R_{2}-(2)R_{1},\quad R_{3}\leftarrow R_{3}-(-1)R_{1}$. Then
+\[ \begin{bmatrix}1 & -4 & -2\\0 & 9 & -3\\0 & 0 & -7\\0 & -3 & 9\end{bmatrix}.\]
+Use $R_{2}\leftarrow \frac{1}{9}R_{2},\quad R_{1}\leftarrow R_{1}-(-4)R_{2},\quad R_{4}\leftarrow R_{4}-(-3)R_{2}$. Then
+\[ \begin{bmatrix}1 & 0 & - \frac{10}{3}\\0 & 1 & - \frac{1}{3}\\0 & 0 & -7\\0 & 0 & 8\end{bmatrix}.\]
+Use $R_{3}\leftrightarrow R_{4},\quad R_{3}\leftarrow \frac{1}{8}R_{3},\quad R_{1}\leftarrow R_{1}-(- \frac{10}{3})R_{3},\quad R_{2}\leftarrow R_{2}-(- \frac{1}{3})R_{3},\quad R_{4}\leftarrow R_{4}-(-7)R_{3}$. Then
+\[ \begin{bmatrix}1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 1\\0 & 0 & 0\end{bmatrix}.\]
+
+Every column has a pivot. The reduced equations force every coefficient in $c$ to be zero, so there is no nontrivial dependence relation.
+\answer{The vectors are linearly independent.}
+
+
+\exercise{1.7.6}{Test the column equation}
+
+\goal Determine whether the given vectors (the columns of the matrix) are independent. Form $Ac=0$; row operations preserve exactly its solutions.
+
+\[ A=\begin{bmatrix}-4 & -3 & 0\\0 & -1 & 5\\1 & 1 & -5\\2 & 1 & -10\end{bmatrix}.\]
+Use $R_{1}\leftrightarrow R_{3},\quad R_{3}\leftarrow R_{3}-(-4)R_{1},\quad R_{4}\leftarrow R_{4}-(2)R_{1}$. Then
+\[ \begin{bmatrix}1 & 1 & -5\\0 & -1 & 5\\0 & 1 & -20\\0 & -1 & 0\end{bmatrix}.\]
+Use $R_{2}\leftrightarrow R_{3},\quad R_{1}\leftarrow R_{1}-(1)R_{2},\quad R_{3}\leftarrow R_{3}-(-1)R_{2},\quad R_{4}\leftarrow R_{4}-(-1)R_{2}$. Then
+\[ \begin{bmatrix}1 & 0 & 15\\0 & 1 & -20\\0 & 0 & -15\\0 & 0 & -20\end{bmatrix}.\]
+Use $R_{3}\leftarrow - \frac{1}{15}R_{3},\quad R_{1}\leftarrow R_{1}-(15)R_{3},\quad R_{2}\leftarrow R_{2}-(-20)R_{3},\quad R_{4}\leftarrow R_{4}-(-20)R_{3}$. Then
+\[ \begin{bmatrix}1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 1\\0 & 0 & 0\end{bmatrix}.\]
+
+Every column has a pivot. The reduced equations force every coefficient in $c$ to be zero, so there is no nontrivial dependence relation.
+\answer{The vectors are linearly independent.}
+
+
+\exercise{1.7.7}{Test the column equation}
+
+\goal Determine whether the given vectors (the columns of the matrix) are independent. Form $Ac=0$; row operations preserve exactly its solutions.
+
+\[ A=\begin{bmatrix}1 & 4 & -3 & 0\\-2 & -7 & 5 & 1\\-4 & -5 & 7 & 5\end{bmatrix}.\]
+Use $R_{2}\leftarrow R_{2}-(-2)R_{1},\quad R_{3}\leftarrow R_{3}-(-4)R_{1}$. Then
+\[ \begin{bmatrix}1 & 4 & -3 & 0\\0 & 1 & -1 & 1\\0 & 11 & -5 & 5\end{bmatrix}.\]
+Use $R_{1}\leftarrow R_{1}-(4)R_{2},\quad R_{3}\leftarrow R_{3}-(11)R_{2}$. Then
+\[ \begin{bmatrix}1 & 0 & 1 & -4\\0 & 1 & -1 & 1\\0 & 0 & 6 & -6\end{bmatrix}.\]
+Use $R_{3}\leftarrow \frac{1}{6}R_{3},\quad R_{1}\leftarrow R_{1}-(1)R_{3},\quad R_{2}\leftarrow R_{2}-(-1)R_{3}$. Then
+\[ \begin{bmatrix}1 & 0 & 0 & -3\\0 & 1 & 0 & 0\\0 & 0 & 1 & -1\end{bmatrix}.\]
+
+There is a free variable. For example, the nonzero coefficient vector $c=\begin{bmatrix}3\\0\\1\\1\end{bmatrix}$ satisfies $Ac=0$ (substitution checks every coordinate). This is a nontrivial relation among the columns.
+\answer{The vectors are linearly dependent.}
+
+
+\exercise{1.7.8}{Test the column equation}
+
+\goal Determine whether the given vectors (the columns of the matrix) are independent. Form $Ac=0$; row operations preserve exactly its solutions.
+
+\[ A=\begin{bmatrix}1 & -2 & 3 & 2\\-2 & 4 & -6 & 2\\0 & 1 & -1 & 3\end{bmatrix}.\]
+Use $R_{2}\leftarrow R_{2}-(-2)R_{1}$. Then
+\[ \begin{bmatrix}1 & -2 & 3 & 2\\0 & 0 & 0 & 6\\0 & 1 & -1 & 3\end{bmatrix}.\]
+Use $R_{2}\leftrightarrow R_{3},\quad R_{1}\leftarrow R_{1}-(-2)R_{2}$. Then
+\[ \begin{bmatrix}1 & 0 & 1 & 8\\0 & 1 & -1 & 3\\0 & 0 & 0 & 6\end{bmatrix}.\]
+Use $R_{3}\leftarrow \frac{1}{6}R_{3},\quad R_{1}\leftarrow R_{1}-(8)R_{3},\quad R_{2}\leftarrow R_{2}-(3)R_{3}$. Then
+\[ \begin{bmatrix}1 & 0 & 1 & 0\\0 & 1 & -1 & 0\\0 & 0 & 0 & 1\end{bmatrix}.\]
+
+There is a free variable. For example, the nonzero coefficient vector $c=\begin{bmatrix}-1\\1\\1\\0\end{bmatrix}$ satisfies $Ac=0$ (substitution checks every coordinate). This is a nontrivial relation among the columns.
+\answer{The vectors are linearly dependent.}
+
+
+\exercise{1.7.9}{A span question can differ from a dependence question}
+\step{(a) Reduce the span of the first two vectors.}
+Here $v_1=(1,-3,2)$ and $v_2=(-3,9,-6)=-3v_1$.
+Their span is the line of multiples of $v_1$. For
+$v_3=(5,-7,h)$ to lie on that line, its first coordinate would
+force the multiplier to be $5$, but its second would then have to
+be $-15$, not $-7$. No choice of $h$ fixes that contradiction.
+\step{(b) Test the three-vector list instead.}
+The relation $3v_1+v_2+0v_3=0$ is nontrivial for every $h$.
+\answer{(a) No real $h$. (b) Every real $h$. The first two vectors
+are already dependent, whether or not the third lies in their span.}
+
+\exercise{1.7.10}{The same distinction with another line}
+Here $v_1=(1,-3,-5)$, $v_2=(-3,9,15)=-3v_1$,
+and $v_3=(2,-5,h)$.
+\step{(a) Compare coordinates of a proposed multiple.}
+If $v_3=tv_1$, its first coordinate gives $t=2$, but then the
+second coordinate would be $-6$, not $-5$. Thus $v_3$ is outside
+$\Span\{v_1,v_2\}$ for every $h$.
+\step{(b) Exhibit a relation that does not use $v_3$.}
+Again $3v_1+v_2+0v_3=0$, with coefficients not all zero.
+\answer{(a) No $h$. (b) All $h\in\R$.}
+
+
+\exercise{1.7.11}{Locate the parameter value that removes a pivot}
+
+\idea Keep $h$ symbolic, but eliminate using only the first two columns. Those pivots are nonzero constants, so these operations do not assume anything about $h$.
+
+\[ A=\begin{bmatrix}2 & 4 & -2\\-2 & -6 & 2\\4 & 7 & h\end{bmatrix}.\]
+Use $R_{1}\leftarrow \frac{1}{2}R_{1},\quad R_{2}\leftarrow R_{2}-(-2)R_{1},\quad R_{3}\leftarrow R_{3}-(4)R_{1}$. Then
+\[ \begin{bmatrix}1 & 2 & -1\\0 & -2 & 0\\0 & -1 & h + 4\end{bmatrix}.\]
+Use $R_{2}\leftrightarrow R_{3},\quad R_{2}\leftarrow -1R_{2},\quad R_{1}\leftarrow R_{1}-(2)R_{2},\quad R_{3}\leftarrow R_{3}-(-2)R_{2}$. Then
+\[ \begin{bmatrix}1 & 0 & 2 h + 7\\0 & 1 & - h - 4\\0 & 0 & - 2 h - 8\end{bmatrix}.\]
+
+The first two pivot columns are present for all $h$. The three columns are dependent precisely when the last row contributes no third pivot, that is, when $- 2 \left(h + 4\right)=0$.
+
+\answer{The required value is $h=-4$. At other values all three coefficients are forced to zero, giving independence.}
+
+
+\exercise{1.7.12}{Locate the parameter value that removes a pivot}
+
+\idea Keep $h$ symbolic, but eliminate using only the first two columns. Those pivots are nonzero constants, so these operations do not assume anything about $h$.
+
+\[ A=\begin{bmatrix}3 & -6 & 9\\-6 & 4 & h\\1 & -3 & 3\end{bmatrix}.\]
+Use $R_{1}\leftrightarrow R_{3},\quad R_{2}\leftarrow R_{2}-(-6)R_{1},\quad R_{3}\leftarrow R_{3}-(3)R_{1}$. Then
+\[ \begin{bmatrix}1 & -3 & 3\\0 & -14 & h + 18\\0 & 3 & 0\end{bmatrix}.\]
+Use $R_{2}\leftrightarrow R_{3},\quad R_{2}\leftarrow \frac{1}{3}R_{2},\quad R_{1}\leftarrow R_{1}-(-3)R_{2},\quad R_{3}\leftarrow R_{3}-(-14)R_{2}$. Then
+\[ \begin{bmatrix}1 & 0 & 3\\0 & 1 & 0\\0 & 0 & h + 18\end{bmatrix}.\]
+
+The first two pivot columns are present for all $h$. The three columns are dependent precisely when the last row contributes no third pivot, that is, when $h + 18=0$.
+
+\answer{The required value is $h=-18$. At other values all three coefficients are forced to zero, giving independence.}
+
+
+\exercise{1.7.13}{Locate the parameter value that removes a pivot}
+
+\idea Keep $h$ symbolic, but eliminate using only the first two columns. Those pivots are nonzero constants, so these operations do not assume anything about $h$.
+
+\[ A=\begin{bmatrix}1 & -2 & 3\\5 & -9 & h\\-3 & 6 & -9\end{bmatrix}.\]
+Use $R_{2}\leftarrow R_{2}-(5)R_{1},\quad R_{3}\leftarrow R_{3}-(-3)R_{1}$. Then
+\[ \begin{bmatrix}1 & -2 & 3\\0 & 1 & h - 15\\0 & 0 & 0\end{bmatrix}.\]
+Use $R_{1}\leftarrow R_{1}-(-2)R_{2}$. Then
+\[ \begin{bmatrix}1 & 0 & 2 h - 27\\0 & 1 & h - 15\\0 & 0 & 0\end{bmatrix}.\]
+
+The first two pivot columns are present for all $h$. The three columns are dependent precisely when the last row contributes no third pivot, that is, when $0=0$.
+
+This condition holds identically. The reduced equations are solved nontrivially by $c_3=1$, $c_2=15-h$, and $c_1=27-2h$.
+\answer{The list is dependent for every real $h$.}
+
+
+\exercise{1.7.14}{Locate the parameter value that removes a pivot}
+
+\idea Keep $h$ symbolic, but eliminate using only the first two columns. Those pivots are nonzero constants, so these operations do not assume anything about $h$.
+
+\[ A=\begin{bmatrix}1 & -3 & 2\\-2 & 7 & 1\\-4 & 6 & h\end{bmatrix}.\]
+Use $R_{2}\leftarrow R_{2}-(-2)R_{1},\quad R_{3}\leftarrow R_{3}-(-4)R_{1}$. Then
+\[ \begin{bmatrix}1 & -3 & 2\\0 & 1 & 5\\0 & -6 & h + 8\end{bmatrix}.\]
+Use $R_{1}\leftarrow R_{1}-(-3)R_{2},\quad R_{3}\leftarrow R_{3}-(-6)R_{2}$. Then
+\[ \begin{bmatrix}1 & 0 & 17\\0 & 1 & 5\\0 & 0 & h + 38\end{bmatrix}.\]
+
+The first two pivot columns are present for all $h$. The three columns are dependent precisely when the last row contributes no third pivot, that is, when $h + 38=0$.
+
+\answer{The required value is $h=-38$. At other values all three coefficients are forced to zero, giving independence.}
+
+
+\exercise{1.7.15}{Four vectors in a two-coordinate space}
+The list has four vectors in $\R^2$. Its $2\times4$ column matrix
+has at most two pivots, leaving at least two free variables in $Ac=0$.
+\answer{Dependent. More than two vectors in $\R^2$ cannot be independent.}
+
+\exercise{1.7.16}{Spot a scalar multiple}
+The second vector equals $-\tfrac32$ times the first:
+$(-3,6,-12)=-\tfrac32(2,-4,8)$.
+Thus $3v_1+2v_2=0$ is a relation with nonzero coefficients.
+\answer{Dependent.}
+
+\exercise{1.7.17}{A zero vector is enough}
+The second vector is zero. The coefficients $(0,1,0)$ produce
+$0v_1+1v_2+0v_3=0$ without being all zero.
+\answer{Dependent. The values of the other vectors do not matter.}
+
+\exercise{1.7.18}{Count the coordinates first}
+There are four vectors in $\R^2$, so a $2\times4$ column matrix
+cannot have four pivot columns. Its homogeneous system has a free variable.
+\answer{Dependent. Row reduction is unnecessary.}
+
+\exercise{1.7.19}{Two vectors that are not multiples}
+For $u=(-8,12,-4)$ and $v=(2,-3,-1)$, the first coordinate of
+$v=tu$ would force $t=-1/4$. The third coordinate would then be
+$1$, whereas $v$ has third coordinate $-1$. Neither vector is zero,
+so the failure of scalar proportionality proves independence.
+\answer{Independent.}
+
+\exercise{1.7.20}{Another zero-vector relation}
+The third vector is zero. The coefficient list $(0,0,1)$ therefore
+solves the column equation nontrivially.
+\answer{Dependent.}
+
+\exercise{1.7.21}{Four statements about dependence}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} Every homogeneous equation has the trivial solution.
+Independence requires it to be the \emph{only} solution. The zero matrix
+has the trivial solution and many others.
+\item \textbf{False.} At least one vector is a combination of the others,
+not necessarily every vector. The list $e_1,2e_1,e_2$ is dependent,
+but $e_2$ is not in the span of the first two vectors.
+\item \textbf{True.} Five columns in $\R^4$ give more variables than
+possible pivots, so the homogeneous system has a free variable.
+\item \textbf{True.} A nontrivial relation $ax+by+cz=0$ must have
+$c\ne0$; otherwise independence of $x,y$ would give $a=b=0$.
+Solving gives $z=-(a/c)x-(b/c)y$.
+\end{enumerate}
+
+\exercise{1.7.22}{Avoid converses that have not been proved}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} If $w=au+bv$, then $au+bv-w=0$ is a relation
+with coefficient $-1$ on $w$, hence a nontrivial relation.
+\item \textbf{False as written.} A plane need not pass through zero.
+The independent vectors $e_1,e_2,e_3$ all lie in the plane
+$x_1+x_2+x_3=1$. Vectors lying in a plane \emph{through zero} are dependent
+when there are three of them, but the question does not impose that condition.
+\item \textbf{False.} In $\R^3$, the two vectors $e_1,2e_1$ are dependent.
+Having few vectors makes independence possible, not automatic.
+\item \textbf{False.} The two vectors $e_1,2e_1$ in $\R^3$ give a
+counterexample: dependence with only two vectors, fewer than three.
+\end{enumerate}
+
+\exercise{1.7.23}{Every rank-deficient two-by-two echelon pattern}
+Use $p$ for a nonzero pivot and $*$ for an arbitrary entry. Dependent
+columns mean fewer than two pivots. The possible echelon patterns are
+\[
+ \begin{bmatrix}p&*\\0&0\end{bmatrix},\qquad
+ \begin{bmatrix}0&p\\0&0\end{bmatrix},\qquad
+ \begin{bmatrix}0&0\\0&0\end{bmatrix}.
+\]
+These exhaust rank one and rank zero. A second pivot would force independence.
+
+\exercise{1.7.24}{Three independent columns}
+Independence requires all three columns to have pivots. Since pivots
+move right as one moves down, their only possible positions are
+$(1,1),(2,2),(3,3)$. Thus the echelon pattern is
+\[
+ \begin{bmatrix}p&*&*\\0&q&*\\0&0&r\end{bmatrix},\qquad p,q,r\ne0.
+\]
+The arbitrary entries are above pivots; entries below them are zero.
+
+\exercise{1.7.25}{Do not silently assume the first column is nonzero}
+If $a_1\ne0$ and $a_2$ is not its multiple, the two columns are
+independent. But the hypothesis also permits $a_1=0$, in which case
+$a_2\ne0$ and there is only one pivot, in column two. Thus both patterns
+are possible:
+\[
+ \begin{bmatrix}p&*\\0&q\\0&0\\0&0\end{bmatrix}
+ \quad\text{or}\quad
+ \begin{bmatrix}0&p\\0&0\\0&0\\0&0\end{bmatrix},
+ \qquad p,q\ne0.
+\]
+For the second pattern, no nonzero vector is a multiple of the zero vector,
+so it really does satisfy the stated condition.
+
+\exercise{1.7.26}{A third column outside a plane}
+Independence of $a_1,a_2$ supplies two pivots. If the third column
+failed to add a pivot, it would be a combination of the first two,
+contrary to the assumption. Hence all three columns are pivot columns:
+\[
+ \begin{bmatrix}p&*&*\\0&q&*\\0&0&r\\0&0&0\end{bmatrix},
+ \qquad p,q,r\ne0.
+\]
+
+\exercise{1.7.27}{Count pivots for independence}
+A $6\times4$ matrix with independent columns must have \textbf{four}
+pivot columns: one for each variable in $Ax=0$. Fewer would leave a
+free variable and hence a nonzero solution. Extra rows do not require extra pivots.
+
+\exercise{1.7.28}{Count pivots for spanning}
+For the columns of a $4\times6$ matrix to span $\R^4$, $Ax=b$
+must be consistent for every four-coordinate $b$. This requires a pivot
+in every row, so there must be \textbf{four} pivot columns. Six are
+impossible because there are only four rows.
+
+\exercise{1.7.29}{Build dependent and independent examples}
+Take
+\[
+ A=\begin{bmatrix}1&2\\0&0\\0&0\end{bmatrix},\qquad
+ B=\begin{bmatrix}1&0\\0&1\\0&0\end{bmatrix}.
+\]
+Then $A(-2,1)^T=0$ is a nontrivial solution. On the other hand,
+$Bx=0$ has first two equations $x_1=0,x_2=0$, so its only solution
+is zero. Both matrices have the required size $3\times2$.
+
+\exercise{1.7.30}{State the exact pivot condition}
+\step{(a) Fill the blank.} The number is $\boxed{n}$.
+\step{(b) Prove both directions.}
+There are $n$ columns. If all $n$ are pivot columns, $Ax=0$ has
+no free variable, so its only solution is zero and the columns are independent.
+Conversely, if there are fewer than $n$ pivot columns, some variable
+is free. Set one free variable to $1$ and the others to $0$, and solve
+for the pivot variables. This gives a nonzero homogeneous solution,
+contradicting independence. Thus independence forces $n$ pivot columns.
+
+\exercise{1.7.31}{Read a relation from the columns}
+The given relation is $a_3=a_1+a_2$. Move all terms to one side:
+$a_1+a_2-a_3=0$. Therefore
+\[
+ x=\begin{bmatrix}1\\1\\-1\end{bmatrix}
+\]
+is a nonzero solution of $Ax=0$. No row reduction is needed, because
+matrix multiplication is the weighted sum of the columns.
+
+\exercise{1.7.32}{Read another relation without elimination}
+Here $a_1-3a_2=a_3$, so $a_1-3a_2-a_3=0$.
+Consequently $x=(1,-3,-1)^T$ is a nontrivial solution. The signs
+come from moving $a_3$ to the left, not from changing the columns themselves.
+
+\exercise{1.7.33}{A relation already gives the answer}
+\textbf{True.} The assumption $v_3=2v_1+v_2$ gives
+$2v_1+v_2-v_3+0v_4=0$. The coefficients are not all zero,
+so the four-vector list is dependent regardless of $v_4$.
+
+\exercise{1.7.34}{The overlooked zero-vector exception}
+\textbf{False.} In $\R^4$, take $v_1=0$ and $v_2=e_1$.
+The nonzero $v_2$ is not a scalar multiple of $v_1$, but
+$1v_1+0v_2=0$ is a nontrivial dependence relation.
+For two nonzero vectors the proposed test would be valid; the statement
+did not require both vectors to be nonzero.
+
+\exercise{1.7.35}{A zero column yields a relation}
+\textbf{True.} If $v_3=0$, the coefficient list $(0,0,1,0,0)$
+gives a zero weighted sum and is not itself zero. Thus the list is dependent.
+
+\exercise{1.7.36}{The first two vectors might already be dependent}
+\textbf{False.} Let $v_1=e_1$, $v_2=2e_1$, and $v_3=e_2$ in $\R^3$.
+The third vector is outside the span of the first two, but
+$2v_1-v_2+0v_3=0$ proves dependence. Adding a new direction cannot
+remove a relation that was already present.
+
+\exercise{1.7.37}{Dependence survives enlarging the list}
+\textbf{True.} A nontrivial relation among $v_1,v_2,v_3$ remains
+a nontrivial relation among $v_1,v_2,v_3,v_4$ after assigning coefficient
+zero to $v_4$. Therefore the larger list is dependent.
+
+\exercise{1.7.38}{Independence survives taking a sublist}
+\textbf{True.} Suppose $c_1v_1+c_2v_2+c_3v_3=0$.
+Then $c_1v_1+c_2v_2+c_3v_3+0v_4=0$. Independence of the
+four-vector list forces $c_1=c_2=c_3=0$. This is precisely the
+independence test for the three-vector sublist.
+
+\exercise{1.7.39}{Use the special target zero}
+\goal Prove column independence from the assumption of at most one
+solution for every $b$.
+Apply the assumption to $b=0$. The zero vector is already one
+solution of $Ax=0$, so ``at most one'' says there is no other solution.
+Thus every relation among the columns has all coefficients zero,
+which is the definition of independence. Existence for other $b$ is not needed.
+
+\exercise{1.7.40}{No free variable means no second solution}
+There are $n$ pivot columns and only $n$ columns altogether, so
+there are no free variables. For a given $b$, reduction of $[A\mid b]$
+may produce a contradiction, giving no solution; if it does not, every
+variable is a pivot variable with one determined value. Thus there
+can never be infinitely many solutions or two distinct solutions.
+Equivalently, if $Ax=Ay=b$, then $A(x-y)=0$; the $n$ pivots force
+$x-y=0$, and hence $x=y$.
+
+
+\exercise{1.7.41}{Choose a maximal independent collection of original columns}
+
+\goal Retain as many original columns as possible while making $Bx=0$ have only the zero solution. The source matrix is
+\[ A=\begin{bmatrix}3 & -4 & 10 & 7 & -4\\-5 & -3 & -7 & -11 & 15\\4 & 3 & 5 & 2 & 1\\8 & -7 & 23 & 4 & 15\end{bmatrix}.\]
+
+Exact row reduction gives
+\[ \operatorname{rref}(A)=\begin{bmatrix}1 & 0 & 2 & 0 & 2\\0 & 1 & -1 & 0 & -1\\0 & 0 & 0 & 1 & -2\\0 & 0 & 0 & 0 & 0\end{bmatrix}.\]
+
+Its pivot columns are 1, 2, 4. Take these columns from the \emph{original} matrix, not from its reduced matrix:
+\[ B=\begin{bmatrix}3 & -4 & 7\\-5 & -3 & -11\\4 & 3 & 2\\8 & -7 & 4\end{bmatrix}.\]
+
+Reducing $B$ gives
+\[ \operatorname{rref}(B)=\begin{bmatrix}1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 1\\0 & 0 & 0\end{bmatrix}.\]
+
+Thus $Bx=0$ forces every one of its 3 variables to be zero. No larger independent subcollection is possible, because the reduced $A$ has only 3 pivot positions; every nonpivot column is a combination of the pivot columns. The next related exercise exhibits such a combination explicitly.
+
+
+\exercise{1.7.42}{Choose a maximal independent collection of original columns}
+
+\goal Retain as many original columns as possible while making $Bx=0$ have only the zero solution. The source matrix is
+\[ A=\begin{bmatrix}12 & 10 & -6 & 8 & 4 & -14\\-7 & -6 & 4 & -5 & -7 & 9\\9 & 9 & -9 & 9 & 9 & -18\\-4 & -3 & -1 & 0 & -8 & 1\\8 & 7 & -5 & 6 & 1 & -11\end{bmatrix}.\]
+
+Exact row reduction gives
+\[ \operatorname{rref}(A)=\begin{bmatrix}1 & 0 & 0 & 1 & 0 & 1\\0 & 1 & 0 & -1 & 0 & -2\\0 & 0 & 1 & -1 & 0 & 1\\0 & 0 & 0 & 0 & 1 & 0\\0 & 0 & 0 & 0 & 0 & 0\end{bmatrix}.\]
+
+Its pivot columns are 1, 2, 3, 5. Take these columns from the \emph{original} matrix, not from its reduced matrix:
+\[ B=\begin{bmatrix}12 & 10 & -6 & 4\\-7 & -6 & 4 & -7\\9 & 9 & -9 & 9\\-4 & -3 & -1 & -8\\8 & 7 & -5 & 1\end{bmatrix}.\]
+
+Reducing $B$ gives
+\[ \operatorname{rref}(B)=\begin{bmatrix}1 & 0 & 0 & 0\\0 & 1 & 0 & 0\\0 & 0 & 1 & 0\\0 & 0 & 0 & 1\\0 & 0 & 0 & 0\end{bmatrix}.\]
+
+Thus $Bx=0$ forces every one of its 4 variables to be zero. No larger independent subcollection is possible, because the reduced $A$ has only 4 pivot positions; every nonpivot column is a combination of the pivot columns. The next related exercise exhibits such a combination explicitly.
+
+
+\exercise{1.7.43}{Recover an omitted column}
+For the choice $B=[a_1\ a_2\ a_4]$ in Exercise 41, choose
+$v=a_3=(10,-7,5,23)^T$. The reduced column relation from that
+exercise is $a_3=2a_1-a_2$. Directly,
+\[
+ 2\begin{bmatrix}3\\-5\\4\\8\end{bmatrix}
+ -\begin{bmatrix}-4\\-3\\3\\-7\end{bmatrix}
+ =\begin{bmatrix}10\\-7\\5\\23\end{bmatrix}.
+\]
+So $Bc=v$ is solved by $c=(2,-1,0)^T$.
+\answer{$v$ is in the span of the columns of $B$.}
+
+\exercise{1.7.44}{Why maximality forces every omitted column into the span}
+For Exercise 42, $B=[a_1\ a_2\ a_3\ a_5]$. Choose the omitted
+column $v=a_4$. Its coordinates in the retained columns are
+$(1,-1,-1,0)^T$, because
+\[
+ a_1-a_2-a_3=
+ \begin{bmatrix}12\\-7\\9\\-4\\8\end{bmatrix}
+ -\begin{bmatrix}10\\-6\\9\\-3\\7\end{bmatrix}
+ -\begin{bmatrix}-6\\4\\-9\\-1\\-5\end{bmatrix}
+ =\begin{bmatrix}8\\-5\\9\\0\\6\end{bmatrix}=a_4.
+\]
+Thus $v\in\Col B$. In general, if an omitted column were outside
+this span, adjoining it to the independent columns of $B$ would
+produce a larger independent list: a relation with nonzero coefficient
+on the new column would express it in the old span, and a relation
+with zero coefficient would contradict independence of the old list.
+That contradicts the requirement that $B$ use as many columns as possible.
+\answer{Every omitted column lies in the span of a maximal independent
+subcollection, not only the particular column checked here.}

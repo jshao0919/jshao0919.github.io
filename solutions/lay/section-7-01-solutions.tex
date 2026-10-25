@@ -1,0 +1,636 @@
+\section{Diagonalization of symmetric matrices}
+A real matrix is symmetric when $A^T=A$, and an orthogonal matrix satisfies
+$P^TP=I$, so $P^{-1}=P^T$. These are different definitions.
+The spectral theorem says that a real square matrix has an orthonormal
+eigenvector basis exactly when it is symmetric.
+To orthogonally diagonalize a symmetric matrix:
+\begin{enumerate}
+\item Find its real eigenvalues, with multiplicities.
+\item For each $\lambda$, solve $(A-\lambda I)v=0$ by row reduction.
+\item Within a repeated eigenspace, use Gram--Schmidt if needed.
+Eigenvectors belonging to distinct eigenvalues are already perpendicular.
+\item Normalize each nonzero vector $v_i$ to $u_i=v_i/\|v_i\|$.
+Set $P=[u_1\ \cdots\ u_n]$ and $D=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)$
+in the same order. Then $A=PDP^T$.
+\end{enumerate}
+In the computations below, the columns of $V$ are unnormalized orthogonal
+eigenvectors. A diagonal factor rescales the columns to form $P$.
+Every displayed diagonalization was checked exactly by $AP=PD$ and $P^TP=I$.
+Changing a column's sign or reordering columns together with $D$ gives
+another equally valid answer.
+
+\practice{7.1.P1}{A square of a symmetric matrix is symmetric}
+Using the reverse-order transpose rule,
+$(A^2)^T=(AA)^T=A^TA^T=AA=A^2$, since $A^T=A$.
+Thus $A^2$ is symmetric. The reversal creates no difficulty here because
+the two factors are the same matrix.
+
+\practice{7.1.P2}{Square an orthogonal diagonalization}
+If $A=PDP^T$ with $P^TP=I$, then
+$A^2=PDP^TPDP^T=PD^2P^T$.
+The same $P$ is orthogonal and $D^2$ is diagonal, so this is an orthogonal
+diagonalization of $A^2$.
+
+\exercise{7.1.1}{Match entries across the diagonal}
+The two off-diagonal entries are both $5$, so
+$\begin{bmatrix}3&5\\5&-7\end{bmatrix}^T$
+is the original matrix. It is symmetric.
+
+\exercise{7.1.2}{Opposite signs do not match}
+The upper-right entry is $5$ and the lower-left entry is $-5$.
+They would have to be equal for symmetry. Therefore the matrix is not symmetric.
+
+\exercise{7.1.3}{One unequal pair is enough}
+Here $a_{12}=2$ but $a_{21}=4$. Thus $A^T\ne A$, so the matrix is
+not symmetric, despite the repeated entries within each row.
+
+\exercise{7.1.4}{Check all three off-diagonal pairs}
+The paired entries are $a_{12}=a_{21}=8$,
+$a_{13}=a_{31}=3$, and $a_{23}=a_{32}=-2$.
+The diagonal is unchanged by transpose. Thus this matrix is symmetric.
+
+\exercise{7.1.5}{An upper triangular matrix with nonzero off-diagonal entries}
+The entry $a_{12}=2$ has counterpart $a_{21}=0$.
+Thus the matrix is not symmetric. An upper triangular symmetric matrix
+would have to be diagonal, because its entries below and above the diagonal
+must both vanish.
+
+\exercise{7.1.6}{Symmetry requires a square matrix}
+The given array has three rows and four columns. Its transpose has four
+rows and three columns, so the two cannot be equal. It is not symmetric.
+The repeated numerical pattern does not overcome the shape mismatch.
+
+\exercise{7.1.7}{Orthonormal decimal columns}
+The two columns have squared lengths $.6^2+.8^2=1$ and
+$.8^2+(-.6)^2=1$. Their dot product is $.6(.8)+.8(-.6)=0$.
+Thus $A$ is orthogonal, and
+\[
+ A^{-1}=A^T=\begin{bmatrix}.6&.8\\.8&-.6\end{bmatrix}.
+\]
+Here the matrix happens to be symmetric too, so it is its own inverse.
+
+\exercise{7.1.8}{A rotation has its transpose as inverse}
+Each column has squared length $1/2+1/2=1$, and the dot product is
+$-1/2+1/2=0$. Hence the matrix is orthogonal and
+\[
+ A^{-1}=A^T=\frac1{\sqrt2}\begin{bmatrix}1&1\\-1&1\end{bmatrix}.
+\]
+Geometrically this reverses the $45^\circ$ rotation of the original matrix.
+
+\exercise{7.1.9}{Perpendicular but not unit columns}
+The columns $(-5,2)^T$ and $(2,5)^T$ are perpendicular, but each has
+squared length $25+4=29$. Thus $A^TA=29I$, not $I$.
+The matrix is not orthogonal. Having an inverse is a separate issue;
+orthogonality specifically requires the columns to be normalized.
+
+\exercise{7.1.10}{Another missing normalization}
+Each column has squared length $1+4+4=9$, and distinct columns have
+dot product $-2-2+4=0$. Therefore $A^TA=9I$, not $I$.
+The given matrix is not orthogonal; dividing it by $3$ would make it so.
+
+\exercise{7.1.11}{Verify a less obvious orthogonal matrix}
+Let the columns be $c_1,c_2,c_3$. Their squared lengths are
+\[
+ \|c_1\|^2=4/9+5/9=1,\quad
+ \|c_2\|^2=4/9+1/5+16/45=1,\quad
+ \|c_3\|^2=1/9+4/5+4/45=1.
+\]
+Their pairwise dot products are
+$4/9-4/9=0$, $2/9-2/9=0$, and
+$2/9-2/5+8/45=0$.
+Thus all columns are orthonormal and the inverse is the transpose:
+\[
+ A^{-1}=\begin{bmatrix}
+ 2/3&0&\sqrt5/3\\2/3&1/\sqrt5&-4/\sqrt{45}\\
+ 1/3&-2/\sqrt5&-2/\sqrt{45}
+ \end{bmatrix}.
+\]
+
+\exercise{7.1.12}{An orthogonal signed matrix}
+Write $A=H/2$, where $H$ has the printed entries $1$ or $-1$.
+Each column of $H$ has squared length $4$, and every pair of different
+columns has two agreeing signs and two disagreeing signs, so dot product zero.
+Thus $A^TA=I$, and
+\[
+ A^{-1}=A^T=\frac12\begin{bmatrix}
+ 1&-1&1&-1\\1&1&1&1\\-1&-1&1&1\\-1&1&1&-1
+ \end{bmatrix}.
+\]
+
+\exercise{7.1.13}{An orthogonal eigenvector basis}
+The characteristic polynomial $\det(A-tI)$ is $\left(t - 4\right) \left(t - 2\right)$. Its roots give the eigenvalues below.
+\step{Solve the eigenspace equations.}
+$\lambda=2$: row reduction gives \(x_{1}=- x_{2}\).
+$\lambda=4$: row reduction gives \(x_{1}=x_{2}\).
+\step{Normalize the orthogonal vectors and pair the same order with D.}
+The columns of
+\[
+ V=\begin{bmatrix}1&1\\-1&1\end{bmatrix}
+\]
+are mutually orthogonal eigenvectors in the order
+\[
+ (\lambda_1,\ldots,\lambda_2)=(2,4).
+\]
+Their squared lengths are $(2,2)$. Hence an explicit answer is
+\[
+ P=\frac1{\sqrt{2}}V,\qquad
+ D=\operatorname{diag}(2,4).
+\]
+Dividing columns by these nonzero lengths gives $P^TP=I$, and the
+eigenspace equations give $AP=PD$. Multiplying the latter by $P^T$
+therefore verifies $A=PDP^T$.
+
+\exercise{7.1.14}{An orthogonal eigenvector basis}
+The characteristic polynomial $\det(A-tI)$ is $\left(t - 6\right) \left(t + 4\right)$. Its roots give the eigenvalues below.
+\step{Solve the eigenspace equations.}
+$\lambda=-4$: row reduction gives \(x_{1}=- x_{2}\).
+$\lambda=6$: row reduction gives \(x_{1}=x_{2}\).
+\step{Normalize the orthogonal vectors and pair the same order with D.}
+The columns of
+\[
+ V=\begin{bmatrix}1&1\\-1&1\end{bmatrix}
+\]
+are mutually orthogonal eigenvectors in the order
+\[
+ (\lambda_1,\ldots,\lambda_2)=(-4,6).
+\]
+Their squared lengths are $(2,2)$. Hence an explicit answer is
+\[
+ P=\frac1{\sqrt{2}}V,\qquad
+ D=\operatorname{diag}(-4,6).
+\]
+Dividing columns by these nonzero lengths gives $P^TP=I$, and the
+eigenspace equations give $AP=PD$. Multiplying the latter by $P^T$
+therefore verifies $A=PDP^T$.
+
+\exercise{7.1.15}{An orthogonal eigenvector basis}
+The characteristic polynomial $\det(A-tI)$ is $t \left(t - 17\right)$. Its roots give the eigenvalues below.
+\step{Solve the eigenspace equations.}
+$\lambda=0$: row reduction gives \(x_{1}=\frac{x_{2}}{4}\).
+$\lambda=17$: row reduction gives \(x_{1}=- 4 x_{2}\).
+\step{Normalize the orthogonal vectors and pair the same order with D.}
+The columns of
+\[
+ V=\begin{bmatrix}1&4\\4&-1\end{bmatrix}
+\]
+are mutually orthogonal eigenvectors in the order
+\[
+ (\lambda_1,\ldots,\lambda_2)=(0,17).
+\]
+Their squared lengths are $(17,17)$. Hence an explicit answer is
+\[
+ P=\frac1{\sqrt{17}}V,\qquad
+ D=\operatorname{diag}(0,17).
+\]
+Dividing columns by these nonzero lengths gives $P^TP=I$, and the
+eigenspace equations give $AP=PD$. Multiplying the latter by $P^T$
+therefore verifies $A=PDP^T$.
+
+\exercise{7.1.16}{An orthogonal eigenvector basis}
+The characteristic polynomial $\det(A-tI)$ is $\left(t - 25\right) \left(t + 25\right)$. Its roots give the eigenvalues below.
+\step{Solve the eigenspace equations.}
+$\lambda=-25$: row reduction gives \(x_{1}=- \frac{4 x_{2}}{3}\).
+$\lambda=25$: row reduction gives \(x_{1}=\frac{3 x_{2}}{4}\).
+\step{Normalize the orthogonal vectors and pair the same order with D.}
+The columns of
+\[
+ V=\begin{bmatrix}4&3\\-3&4\end{bmatrix}
+\]
+are mutually orthogonal eigenvectors in the order
+\[
+ (\lambda_1,\ldots,\lambda_2)=(-25,25).
+\]
+Their squared lengths are $(25,25)$. Hence an explicit answer is
+\[
+ P=\frac1{5}V,\qquad
+ D=\operatorname{diag}(-25,25).
+\]
+Dividing columns by these nonzero lengths gives $P^TP=I$, and the
+eigenspace equations give $AP=PD$. Multiplying the latter by $P^T$
+therefore verifies $A=PDP^T$.
+
+\exercise{7.1.17}{An orthogonal eigenvector basis}
+\step{Solve the eigenspace equations.}
+$\lambda=-2$: row reduction gives \(x_{1}=- x_{3},\quad x_{2}=0\).
+$\lambda=2$: row reduction gives \(x_{1}=x_{3},\quad x_{2}=- 2 x_{3}\).
+$\lambda=5$: row reduction gives \(x_{1}=x_{3},\quad x_{2}=x_{3}\).
+\step{Normalize the orthogonal vectors and pair the same order with D.}
+The columns of
+\[
+ V=\begin{bmatrix}1&1&1\\0&-2&1\\-1&1&1\end{bmatrix}
+\]
+are mutually orthogonal eigenvectors in the order
+\[
+ (\lambda_1,\ldots,\lambda_3)=(-2,2,5).
+\]
+Their squared lengths are $(2,6,3)$. Hence an explicit answer is
+\[
+ P=V\operatorname{diag}(\frac{\sqrt{2}}{2},\frac{\sqrt{6}}{6},\frac{\sqrt{3}}{3}),\qquad
+ D=\operatorname{diag}(-2,2,5).
+\]
+Dividing columns by these nonzero lengths gives $P^TP=I$, and the
+eigenspace equations give $AP=PD$. Multiplying the latter by $P^T$
+therefore verifies $A=PDP^T$.
+
+\exercise{7.1.18}{An orthogonal eigenvector basis}
+\step{Solve the eigenspace equations.}
+$\lambda=-50$: row reduction gives \(x_{1}=\frac{3 x_{2}}{4},\quad x_{3}=0\).
+$\lambda=3$: row reduction gives \(x_{1}=0,\quad x_{2}=0\).
+$\lambda=25$: row reduction gives \(x_{1}=- \frac{4 x_{2}}{3},\quad x_{3}=0\).
+\step{Normalize the orthogonal vectors and pair the same order with D.}
+The columns of
+\[
+ V=\begin{bmatrix}3&0&4\\4&0&-3\\0&1&0\end{bmatrix}
+\]
+are mutually orthogonal eigenvectors in the order
+\[
+ (\lambda_1,\ldots,\lambda_3)=(-50,3,25).
+\]
+Their squared lengths are $(25,1,25)$. Hence an explicit answer is
+\[
+ P=V\operatorname{diag}(\frac{1}{5},1,\frac{1}{5}),\qquad
+ D=\operatorname{diag}(-50,3,25).
+\]
+Dividing columns by these nonzero lengths gives $P^TP=I$, and the
+eigenspace equations give $AP=PD$. Multiplying the latter by $P^T$
+therefore verifies $A=PDP^T$.
+
+\exercise{7.1.19}{An orthogonal eigenvector basis}
+\step{Solve the eigenspace equations.}
+$\lambda=-2$: row reduction gives \(x_{1}=- x_{3},\quad x_{2}=- \frac{x_{3}}{2}\).
+$\lambda=7$: row reduction gives \(x_{1}=- \frac{x_{2}}{2} + x_{3}\).
+Within the $7$-eigenspace, start with $(1,0,1)^T$ and $(-1/2,1,0)^T$.
+Subtracting the projection of the latter onto the former gives
+$(-1/4,1,1/4)^T$, a multiple of $(-1,4,1)^T$. This is the Gram--Schmidt
+step that produces the two orthogonal columns used below.
+\step{Normalize the orthogonal vectors and pair the same order with D.}
+The columns of
+\[
+ V=\begin{bmatrix}2&1&-1\\1&0&4\\-2&1&1\end{bmatrix}
+\]
+are mutually orthogonal eigenvectors in the order
+\[
+ (\lambda_1,\ldots,\lambda_3)=(-2,7,7).
+\]
+Their squared lengths are $(9,2,18)$. Hence an explicit answer is
+\[
+ P=V\operatorname{diag}(\frac{1}{3},\frac{\sqrt{2}}{2},\frac{\sqrt{2}}{6}),\qquad
+ D=\operatorname{diag}(-2,7,7).
+\]
+Dividing columns by these nonzero lengths gives $P^TP=I$, and the
+eigenspace equations give $AP=PD$. Multiplying the latter by $P^T$
+therefore verifies $A=PDP^T$.
+
+\exercise{7.1.20}{An orthogonal eigenvector basis}
+\step{Solve the eigenspace equations.}
+$\lambda=1$: row reduction gives \(x_{1}=- 2 x_{3},\quad x_{2}=- 2 x_{3}\).
+$\lambda=7$: row reduction gives \(x_{1}=- \frac{x_{3}}{2},\quad x_{2}=x_{3}\).
+$\lambda=13$: row reduction gives \(x_{1}=x_{3},\quad x_{2}=- \frac{x_{3}}{2}\).
+\step{Normalize the orthogonal vectors and pair the same order with D.}
+The columns of
+\[
+ V=\begin{bmatrix}2&1&2\\2&-2&-1\\-1&-2&2\end{bmatrix}
+\]
+are mutually orthogonal eigenvectors in the order
+\[
+ (\lambda_1,\ldots,\lambda_3)=(1,7,13).
+\]
+Their squared lengths are $(9,9,9)$. Hence an explicit answer is
+\[
+ P=\frac1{3}V,\qquad
+ D=\operatorname{diag}(1,7,13).
+\]
+Dividing columns by these nonzero lengths gives $P^TP=I$, and the
+eigenspace equations give $AP=PD$. Multiplying the latter by $P^T$
+therefore verifies $A=PDP^T$.
+
+\exercise{7.1.21}{An orthogonal eigenvector basis}
+\step{Solve the eigenspace equations.}
+$\lambda=1$: row reduction gives \(x_{1}=- x_{3},\quad x_{2}=- x_{4}\).
+$\lambda=5$: row reduction gives \(x_{1}=- x_{4},\quad x_{2}=x_{4},\quad x_{3}=- x_{4}\).
+$\lambda=9$: row reduction gives \(x_{1}=x_{4},\quad x_{2}=x_{4},\quad x_{3}=x_{4}\).
+\step{Normalize the orthogonal vectors and pair the same order with D.}
+The columns of
+\[
+ V=\begin{bmatrix}1&0&1&1\\0&1&-1&1\\-1&0&1&1\\0&-1&-1&1\end{bmatrix}
+\]
+are mutually orthogonal eigenvectors in the order
+\[
+ (\lambda_1,\ldots,\lambda_4)=(1,1,5,9).
+\]
+Their squared lengths are $(2,2,4,4)$. Hence an explicit answer is
+\[
+ P=V\operatorname{diag}(\frac{\sqrt{2}}{2},\frac{\sqrt{2}}{2},\frac{1}{2},\frac{1}{2}),\qquad
+ D=\operatorname{diag}(1,1,5,9).
+\]
+Dividing columns by these nonzero lengths gives $P^TP=I$, and the
+eigenspace equations give $AP=PD$. Multiplying the latter by $P^T$
+therefore verifies $A=PDP^T$.
+
+\exercise{7.1.22}{An orthogonal eigenvector basis}
+\step{Solve the eigenspace equations.}
+$\lambda=0$: row reduction gives \(x_{1}=0,\quad x_{2}=- x_{4},\quad x_{3}=0\).
+$\lambda=2$: row reduction gives \(x_{2}=x_{4}\).
+\step{Normalize the orthogonal vectors and pair the same order with D.}
+The columns of
+\[
+ V=\begin{bmatrix}0&1&0&0\\1&0&0&1\\0&0&1&0\\-1&0&0&1\end{bmatrix}
+\]
+are mutually orthogonal eigenvectors in the order
+\[
+ (\lambda_1,\ldots,\lambda_4)=(0,2,2,2).
+\]
+Their squared lengths are $(2,1,1,2)$. Hence an explicit answer is
+\[
+ P=V\operatorname{diag}(\frac{\sqrt{2}}{2},1,1,\frac{\sqrt{2}}{2}),\qquad
+ D=\operatorname{diag}(0,2,2,2).
+\]
+Dividing columns by these nonzero lengths gives $P^TP=I$, and the
+eigenspace equations give $AP=PD$. Multiplying the latter by $P^T$
+therefore verifies $A=PDP^T$.
+
+\exercise{7.1.23}{An orthogonal eigenvector basis}
+The printed vector $v=(1,1,1)^T$ satisfies $Av=5v$, so its eigenvalue
+is $5$. The exercise also asks to verify $2$ is an eigenvalue; the vector
+$(1,-1,0)^T$ satisfies $A(1,-1,0)^T=2(1,-1,0)^T$.
+Thus the two assertions in the wording refer to different eigenvectors.
+\step{Solve the eigenspace equations.}
+$\lambda=2$: row reduction gives \(x_{1}=- x_{2} - x_{3}\).
+$\lambda=5$: row reduction gives \(x_{1}=x_{3},\quad x_{2}=x_{3}\).
+\step{Normalize the orthogonal vectors and pair the same order with D.}
+The columns of
+\[
+ V=\begin{bmatrix}1&1&1\\-1&1&1\\0&-2&1\end{bmatrix}
+\]
+are mutually orthogonal eigenvectors in the order
+\[
+ (\lambda_1,\ldots,\lambda_3)=(2,2,5).
+\]
+Their squared lengths are $(2,6,3)$. Hence an explicit answer is
+\[
+ P=V\operatorname{diag}(\frac{\sqrt{2}}{2},\frac{\sqrt{6}}{6},\frac{\sqrt{3}}{3}),\qquad
+ D=\operatorname{diag}(2,2,5).
+\]
+Dividing columns by these nonzero lengths gives $P^TP=I$, and the
+eigenspace equations give $AP=PD$. Multiplying the latter by $P^T$
+therefore verifies $A=PDP^T$.
+
+\exercise{7.1.24}{An orthogonal eigenvector basis}
+Multiplication gives $Av_1=10v_1$ for the supplied $v_1=(-2,2,1)^T$,
+and $Av_2=v_2$ for $v_2=(1,1,0)^T$. For the repeated eigenvalue $1$,
+$(1,-1,4)^T$ is a second eigenvector orthogonal to $v_2$.
+\step{Solve the eigenspace equations.}
+$\lambda=1$: row reduction gives \(x_{1}=x_{2} + \frac{x_{3}}{2}\).
+$\lambda=10$: row reduction gives \(x_{1}=- 2 x_{3},\quad x_{2}=2 x_{3}\).
+\step{Normalize the orthogonal vectors and pair the same order with D.}
+The columns of
+\[
+ V=\begin{bmatrix}1&1&2\\1&-1&-2\\0&4&-1\end{bmatrix}
+\]
+are mutually orthogonal eigenvectors in the order
+\[
+ (\lambda_1,\ldots,\lambda_3)=(1,1,10).
+\]
+Their squared lengths are $(2,18,9)$. Hence an explicit answer is
+\[
+ P=V\operatorname{diag}(\frac{\sqrt{2}}{2},\frac{\sqrt{2}}{6},\frac{1}{3}),\qquad
+ D=\operatorname{diag}(1,1,10).
+\]
+Dividing columns by these nonzero lengths gives $P^TP=I$, and the
+eigenspace equations give $AP=PD$. Multiplying the latter by $P^T$
+therefore verifies $A=PDP^T$.
+
+\exercise{7.1.25}{Symmetry, multiplicity, and a missing unit condition}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} If $A=PDP^T$, then
+$A^T=(PDP^T)^T=PD^TP^T=PDP^T=A$.
+\item \textbf{True.} Symmetry gives
+$3u^Tv=(Au)^Tv=u^TAv=4u^Tv$, so $u^Tv=0$.
+\item \textbf{False.} $I_n$ is symmetric but has only one distinct
+eigenvalue, namely $1$ with multiplicity $n$.
+\item \textbf{False.} For $B=vv^T$, $B^2=(v^Tv)B$.
+A projection requires $B^2=B$, which for nonzero $v$ requires $\|v\|=1$.
+For $v=2e_1$, $B=4e_1e_1^T$ is not idempotent.
+\end{enumerate}
+
+\exercise{7.1.26}{Four consequences and nonconsequences of the spectral theorem}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} This is the real symmetric spectral theorem.
+\item \textbf{True.} Taking the transpose of $PDP^T$ gives the same
+matrix because $D$ is real diagonal.
+\item \textbf{False.} A $90^\circ$ rotation
+$\begin{bmatrix}0&-1\\1&0\end{bmatrix}$ is orthogonal but not symmetric,
+so it cannot be orthogonally diagonalized over $\R$.
+\item \textbf{True.} In the spectral theorem the orthogonal
+diagonalization provides one basis vector for each occurrence of an
+eigenvalue on the diagonal, giving equality of geometric and algebraic multiplicities.
+\end{enumerate}
+
+\exercise{7.1.27}{Three symmetric products}
+Use the reverse-order transpose rule and the hypothesis $A^T=A$:
+\[
+ (B^TAB)^T=B^TA^TB=B^TAB,
+ \quad (B^TB)^T=B^TB,
+ \quad (BB^T)^T=BB^T.
+\]
+The products have square sizes $m\times m$, $m\times m$, and $n\times n$,
+respectively, so these equalities indeed establish symmetry in each case.
+
+\exercise{7.1.28}{Move a symmetric matrix across a dot product}
+For every $x,y$,
+$(Ax)\cdot y=(Ax)^Ty=x^TA^Ty=x^TAy=x\cdot(Ay)$.
+The step using $A^T=A$ is exactly where symmetry matters.
+Without it the correct expression would contain $A^T$ on the other side.
+
+\exercise{7.1.29}{The inverse retains the eigenvectors}
+Write $A=PDP^T$ with $P$ orthogonal. Since $A$ is invertible, none
+of the diagonal eigenvalues in $D$ is zero, so $D^{-1}$ exists and is diagonal.
+Then $A^{-1}=PD^{-1}P^T$, an orthogonal diagonalization with the same
+$P$. Its diagonal eigenvalues are the reciprocals of the original ones.
+
+\exercise{7.1.30}{A commuting product remains symmetric}
+Orthogonal diagonalizability makes both $A$ and $B$ symmetric.
+Therefore $(AB)^T=B^TA^T=BA=AB$, using the additional commutation hypothesis.
+Thus $AB$ is symmetric and the spectral theorem makes it orthogonally
+diagonalizable. Without $AB=BA$, a product of two symmetric matrices need
+not be symmetric.
+
+\exercise{7.1.31}{Count a repeated eigenvalue's eigenspace dimension}
+Let $x=Py$. Since $P$ is invertible,
+$Ax=\lambda x$ is equivalent to $(D-\lambda I)y=0$.
+At positions where the diagonal of $D$ differs from $\lambda$, this forces
+$y_i=0$. At its $k$ positions equal to $\lambda$, the corresponding
+$y_i$ are arbitrary. Thus the solution space has exactly $k$ independent
+coordinates. Mapping by $P$ gives the eigenspace of $A$ and preserves
+its dimension, so that dimension is $k$.
+Equivalently the $k$ corresponding columns of $P$ form its basis.
+
+\exercise{7.1.32}{A symmetric triangular matrix is diagonal}
+From $A=PRP^T$, solve for $R=P^TAP$.
+Taking transposes gives $R^T=P^TA^TP=P^TAP=R$, so $R$ is symmetric.
+But $R$ is also upper triangular. Entries below its diagonal are zero;
+symmetry forces their counterpart entries above the diagonal to be zero too.
+Thus all off-diagonal entries vanish and $R$ is diagonal.
+
+\exercise{7.1.33}{A spectral decomposition for Example 2}
+Use the orthogonal eigenvectors
+$a=(-1,1,0)^T$, $b=(-1,-1,2)^T$, $c=(1,1,1)^T$,
+with eigenvalues $8,6,3$ and squared lengths $2,6,3$.
+After normalization the spectral formula gives
+\[
+ \boxed{A=4aa^T+bb^T+cc^T}.
+\]
+Indeed the normalization divides each outer product by its squared length;
+thus the three coefficients are $8/2$, $6/6$, $3/3$.
+Expanding these outer products gives
+$\begin{bmatrix}6&-2&-1\\-2&6&-1\\-1&-1&5\end{bmatrix}$,
+the matrix from Example 2. This checks the decomposition entrywise.
+
+\exercise{7.1.34}{A spectral decomposition with a repeated eigenvalue}
+For Example 3, take $a=(1,0,1)^T$, $b=(-1,4,1)^T$, and
+$c=(-2,-1,2)^T$. They are mutually perpendicular, with squared lengths
+$2,18,9$. The first two have eigenvalue $7$, and the last has eigenvalue
+$-2$. Therefore
+\[
+ \boxed{A=\frac72aa^T+\frac7{18}bb^T-\frac29cc^T}.
+\]
+For instance the $(1,1)$ entry is $7/2+7/18-8/9=3$;
+expansion of all entries returns
+$\begin{bmatrix}3&-2&4\\-2&6&2\\4&2&3\end{bmatrix}$.
+The two separate rank-one terms for eigenvalue $7$ reflect its
+two-dimensional eigenspace.
+
+\exercise{7.1.35}{A rank-one projection from a unit vector}
+\begin{enumerate}[label=(\alph*)]
+\item $Bx=(uu^T)x=u(u^Tx)=(x\cdot u)u$.
+Since $u\cdot u=1$, this equals
+$((x\cdot u)/(u\cdot u))u$, the orthogonal projection formula.
+\item $B^T=(uu^T)^T=uu^T=B$ and
+$B^2=u(u^Tu)u^T=uu^T=B$.
+\item $Bu=u(u^Tu)=u$. The unit vector is nonzero, so it is an
+eigenvector with eigenvalue $1$.
+\end{enumerate}
+
+\exercise{7.1.36}{Every symmetric idempotent matrix is an orthogonal projection}
+\step{(a) Show the proposed pieces are perpendicular.}
+Put $\widehat y=By$, $z=(I-B)y$. Symmetry and idempotence give
+\[
+ z^T\widehat y=y^T(I-B)^TBy=y^T(B-B^2)y=0.
+\]
+\step{(b) Verify the stronger orthogonality needed for a projection.}
+Clearly $\widehat y\in W=\Col B$. For any $w\in W$, write $w=Bv$;
+then $z^Tw=y^T(I-B)Bv=0$. Thus $z\in W^\perp$, not merely
+perpendicular to one particular vector $\widehat y$.
+The identity $y=By+(y-By)$ is therefore the orthogonal decomposition
+into a vector in $W$ and one in $W^\perp$. Its uniqueness proves that
+$By=\operatorname{proj}_W y$.
+
+\exercise{7.1.37}{Compute eigenvalues, then row-reduce each eigenspace}
+The eigenvalues were computed from the characteristic polynomial. For
+the eigenvectors we solve null-space systems by row reduction, not by
+calling an eigenvector routine, as the exercise requests.
+\step{Solve the eigenspace equations.}
+$\lambda=-12$: row reduction gives \(x_{1}=x_{4},\quad x_{2}=- x_{4},\quad x_{3}=- x_{4}\).
+$\lambda=4$: row reduction gives \(x_{1}=- x_{4},\quad x_{2}=- x_{4},\quad x_{3}=x_{4}\).
+$\lambda=10$: row reduction gives \(x_{1}=x_{4},\quad x_{2}=x_{4},\quad x_{3}=x_{4}\).
+$\lambda=18$: row reduction gives \(x_{1}=- x_{4},\quad x_{2}=x_{4},\quad x_{3}=- x_{4}\).
+\step{Normalize the orthogonal vectors and pair the same order with D.}
+The columns of
+\[
+ V=\begin{bmatrix}1&1&1&1\\-1&1&1&-1\\-1&-1&1&1\\1&-1&1&-1\end{bmatrix}
+\]
+are mutually orthogonal eigenvectors in the order
+\[
+ (\lambda_1,\ldots,\lambda_4)=(-12,4,10,18).
+\]
+Their squared lengths are $(4,4,4,4)$. Hence an explicit answer is
+\[
+ P=\frac1{2}V,\qquad
+ D=\operatorname{diag}(-12,4,10,18).
+\]
+Dividing columns by these nonzero lengths gives $P^TP=I$, and the
+eigenspace equations give $AP=PD$. Multiplying the latter by $P^T$
+therefore verifies $A=PDP^T$.
+
+\exercise{7.1.38}{Compute eigenvalues, then row-reduce each eigenspace}
+The eigenvalues were computed from the characteristic polynomial. For
+the eigenvectors we solve null-space systems by row reduction, not by
+calling an eigenvector routine, as the exercise requests.
+\step{Solve the eigenspace equations.}
+$\lambda=\frac{1}{4}$: row reduction gives \(x_{1}=4 x_{4},\quad x_{2}=2 x_{4},\quad x_{3}=2 x_{4}\).
+$\lambda=\frac{3}{10}$: row reduction gives \(x_{1}=- \frac{x_{4}}{4},\quad x_{2}=- \frac{x_{4}}{2},\quad x_{3}=\frac{x_{4}}{2}\).
+$\lambda=\frac{11}{20}$: row reduction gives \(x_{1}=x_{4},\quad x_{2}=- \frac{x_{4}}{2},\quad x_{3}=- 2 x_{4}\).
+$\lambda=\frac{3}{4}$: row reduction gives \(x_{1}=- x_{4},\quad x_{2}=2 x_{4},\quad x_{3}=- \frac{x_{4}}{2}\).
+\step{Normalize the orthogonal vectors and pair the same order with D.}
+The columns of
+\[
+ V=\begin{bmatrix}4&1&2&2\\2&2&-1&-4\\2&-2&-4&1\\1&-4&2&-2\end{bmatrix}
+\]
+are mutually orthogonal eigenvectors in the order
+\[
+ (\lambda_1,\ldots,\lambda_4)=(\frac{1}{4},\frac{3}{10},\frac{11}{20},\frac{3}{4}).
+\]
+Their squared lengths are $(25,25,25,25)$. Hence an explicit answer is
+\[
+ P=\frac1{5}V,\qquad
+ D=\operatorname{diag}(\frac{1}{4},\frac{3}{10},\frac{11}{20},\frac{3}{4}).
+\]
+Dividing columns by these nonzero lengths gives $P^TP=I$, and the
+eigenspace equations give $AP=PD$. Multiplying the latter by $P^T$
+therefore verifies $A=PDP^T$.
+
+\exercise{7.1.39}{Compute eigenvalues, then row-reduce each eigenspace}
+The eigenvalues were computed from the characteristic polynomial. For
+the eigenvectors we solve null-space systems by row reduction, not by
+calling an eigenvector routine, as the exercise requests.
+\step{Solve the eigenspace equations.}
+$\lambda=- \frac{5}{4}$: row reduction gives \(x_{1}=- x_{4},\quad x_{2}=2 x_{4},\quad x_{3}=- \frac{x_{4}}{2}\).
+$\lambda=0$: row reduction gives \(x_{1}=- x_{4},\quad x_{2}=- \frac{x_{4}}{2},\quad x_{3}=2 x_{4}\).
+$\lambda=\frac{3}{4}$: row reduction gives \(x_{1}=\frac{3 x_{3}}{2} + x_{4},\quad x_{2}=x_{3}\).
+For the repeated eigenvalue $3/4$, the two chosen null vectors
+$(4,2,2,1)^T$ and $(1,-2,-2,4)^T$ have dot product $4-4-4+4=0$.
+Both have squared length $25$, so dividing each by $5$ normalizes them.
+\step{Normalize the orthogonal vectors and pair the same order with D.}
+The columns of
+\[
+ V=\begin{bmatrix}2&2&4&1\\-4&1&2&-2\\1&-4&2&-2\\-2&-2&1&4\end{bmatrix}
+\]
+are mutually orthogonal eigenvectors in the order
+\[
+ (\lambda_1,\ldots,\lambda_4)=(- \frac{5}{4},0,\frac{3}{4},\frac{3}{4}).
+\]
+Their squared lengths are $(25,25,25,25)$. Hence an explicit answer is
+\[
+ P=\frac1{5}V,\qquad
+ D=\operatorname{diag}(- \frac{5}{4},0,\frac{3}{4},\frac{3}{4}).
+\]
+Dividing columns by these nonzero lengths gives $P^TP=I$, and the
+eigenspace equations give $AP=PD$. Multiplying the latter by $P^T$
+therefore verifies $A=PDP^T$.
+
+\exercise{7.1.40}{Compute eigenvalues, then row-reduce each eigenspace}
+The eigenvalues were computed from the characteristic polynomial. For
+the eigenvectors we solve null-space systems by row reduction, not by
+calling an eigenvector routine, as the exercise requests.
+\step{Solve the eigenspace equations.}
+$\lambda=-28$: row reduction gives \(x_{1}=- \frac{x_{5}}{4},\quad x_{2}=- \frac{x_{5}}{4},\quad x_{3}=- \frac{x_{5}}{4},\quad x_{4}=- \frac{x_{5}}{4}\).
+$\lambda=8$: row reduction gives \(x_{1}=- x_{2} - x_{3},\quad x_{4}=0,\quad x_{5}=0\).
+$\lambda=17$: row reduction gives \(x_{1}=x_{5},\quad x_{2}=x_{5},\quad x_{3}=x_{5},\quad x_{4}=x_{5}\).
+$\lambda=32$: row reduction gives \(x_{1}=- \frac{x_{4}}{3},\quad x_{2}=- \frac{x_{4}}{3},\quad x_{3}=- \frac{x_{4}}{3},\quad x_{5}=0\).
+\step{Normalize the orthogonal vectors and pair the same order with D.}
+The columns of
+\[
+ V=\begin{bmatrix}1&1&1&1&1\\1&-1&1&1&1\\1&0&-2&1&1\\1&0&0&1&-3\\-4&0&0&1&0\end{bmatrix}
+\]
+are mutually orthogonal eigenvectors in the order
+\[
+ (\lambda_1,\ldots,\lambda_5)=(-28,8,8,17,32).
+\]
+Their squared lengths are $(20,2,6,5,12)$. Hence an explicit answer is
+\[
+ P=V\operatorname{diag}(\frac{\sqrt{5}}{10},\frac{\sqrt{2}}{2},\frac{\sqrt{6}}{6},\frac{\sqrt{5}}{5},\frac{\sqrt{3}}{6}),\qquad
+ D=\operatorname{diag}(-28,8,8,17,32).
+\]
+Dividing columns by these nonzero lengths gives $P^TP=I$, and the
+eigenspace equations give $AP=PD$. Multiplying the latter by $P^T$
+therefore verifies $A=PDP^T$.

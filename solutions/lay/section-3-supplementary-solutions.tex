@@ -1,0 +1,244 @@
+\section{Chapter 3 supplementary exercises}
+These exercises combine determinant calculations with proofs. A counterexample disproves a universal claim; several successful numerical experiments do not prove one. Throughout this supplement matrices and scalars are real unless the problem says otherwise. It is helpful to keep three facts distinct: row replacement preserves a determinant, scaling \emph{one} row scales it once, and scaling an entire $n\times n$ matrix scales it $n$ times.
+
+\exercise{3.S.1}{Sixteen statements with explanations}
+\goal Judge all sixteen statements, giving a reason rather than just a letter.
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} Zero determinant means dependent columns. For two columns $u,v$, dependence makes one a multiple of the other: if a dependence $cu+dv=0$ has $c\ne0$, solve for $u$; otherwise $d\ne0$ gives $v=0$, a multiple of $u$. This includes zero columns.
+\item \textbf{True.} Interchanging the equal rows leaves the matrix unchanged but reverses the determinant, so $d=-d$ and $d=0$.
+\item \textbf{False.} Scaling every row of a $3\times3$ matrix gives $\det(5A)=5^3\det A$, not $5\det A$. For $A=I_3$, the two proposed sides are $125$ and $5$.
+\item \textbf{False.} For $n=2$, take $A=\operatorname{diag}(2,1)$ and $B=\operatorname{diag}(3,1)$. Their determinants are $2$ and $3$, but $\det(A+B)=\det\operatorname{diag}(5,2)=10$, not $5$.
+\item \textbf{False.} Multiplicativity gives $\det(A^3)=(\det A)^3=2^3=8$, not $6$.
+\item \textbf{False.} A single interchange gives $\det B=-\det A$. Interchanging two rows of $I_2$ gives determinant $-1$, not $1$.
+\item \textbf{True.} Scaling row 3 by $5$ multiplies the determinant by $5$, with all other rows fixed.
+\item \textbf{True.} Add the stated multiples one at a time. Each is a row replacement using an unchanged other row, so each preserves the determinant and their finite succession does too.
+\item \textbf{False.} Transposition preserves the determinant. The identity matrix disproves a general minus sign.
+\item \textbf{False in general.} The correct rule is $\det(-A)=(-1)^n\det A$. For $I_2$ this is $1$, not $-1$; the proposed rule holds in odd dimensions.
+\item \textbf{True.} Multiplicativity and transpose invariance give $\det(A^TA)=(\det A)^2\ge0$.
+\item \textbf{False.} Cramer's quotient formulas require a nonzero coefficient determinant. The system $0x=1$, for example, is inconsistent and cannot be solved by dividing replacement determinants by $0$.
+\item \textbf{False.} The parallelogram has area $10$; the stated triangle has half that area, namely $5$.
+\item \textbf{True.} Taking determinants in $A^3=0$ yields $(\det A)^3=0$, hence $\det A=0$.
+\item \textbf{False.} The correct formula is $\det(A^{-1})=1/\det A$. Taking $A=[2]$ gives $1/2$, not $2$.
+\item \textbf{True.} Apply multiplicativity to $AA^{-1}=I$: the two determinant factors have product $1$.
+\end{enumerate}
+
+\exercise{3.S.2}{Equally spaced rows}
+For the matrix with rows $(12,13,14)$, $(15,16,17)$, and $(18,19,20)$, perform $R_3\leftarrow R_3-R_2$ first, giving $(3,3,3)$ in row 3. Next do $R_2\leftarrow R_2-R_1$, also giving $(3,3,3)$. Finally $R_3\leftarrow R_3-R_2$ creates a zero row. Only row replacements were used, so the determinant is unchanged and equals zero.
+
+\exercise{3.S.3}{A symbolic determinant that vanishes}
+Begin with rows $(1,a,b+c)$, $(1,b,a+c)$, and $(1,c,a+b)$. Subtract row 1 from rows 2 and 3 to obtain
+\[
+\begin{bmatrix}1&a&b+c\\0&b-a&a-b\\0&c-a&a-c\end{bmatrix}.
+\]
+If $b=a$, row 2 is already zero. Otherwise replace row 3 by row 3 minus $\frac{c-a}{b-a}$ times row 2. Its second entry becomes zero, and its third becomes
+\[
+(a-c)-\frac{c-a}{b-a}(a-b)=(a-c)+(c-a)=0.
+\]
+Thus a determinant-preserving operation makes a zero row in every case, proving the determinant is zero. The case split avoids dividing by a possibly zero parameter.
+
+\exercise{3.S.4}{Rows translated in a common direction}
+Subtract row 1 from rows 2 and 3. The matrix becomes
+\[
+\begin{bmatrix}a&b&c\\x&x&x\\y&y&y\end{bmatrix}.
+\]
+If $x=0$, it has a zero row. If $x\ne0$, replace row 3 by row 3 minus $(y/x)$ times row 2; that gives a zero row. All operations were row replacements, so the original determinant is zero, including the special parameter cases.
+
+\exercise{3.S.5}{Choose sparse expansions}
+Choose a row or column with the most zeros at each stage. In the following calculation tree, $D_{1}$ is the required determinant; each other $D_j$ is a smaller determinant. The exponent of $-1$ records the deleted row and column in that particular matrix.
+\[
+D_{1}=\begin{vmatrix}9&1&9&9&9\\9&0&9&9&2\\4&0&0&5&0\\9&0&3&9&0\\6&0&0&7&0\end{vmatrix}=(1)(-1)^{1+2}D_{2}=-12.
+\]
+\[
+D_{2}=\begin{vmatrix}9&9&9&2\\4&0&5&0\\9&3&9&0\\6&0&7&0\end{vmatrix}=(2)(-1)^{1+4}D_{3}=12.
+\]
+\[
+D_{3}=\begin{vmatrix}4&0&5\\9&3&9\\6&0&7\end{vmatrix}=(3)(-1)^{2+2}D_{4}=-6.
+\]
+\[
+D_{4}=\begin{vmatrix}4&5\\6&7\end{vmatrix}=(4)(7)-(5)(6)=-2.
+\]
+Thus the answer is $-12$.
+
+\exercise{3.S.6}{Choose sparse expansions}
+Choose a row or column with the most zeros at each stage. In the following calculation tree, $D_{1}$ is the required determinant; each other $D_j$ is a smaller determinant. The exponent of $-1$ records the deleted row and column in that particular matrix.
+\[
+D_{1}=\begin{vmatrix}4&8&8&8&5\\0&1&0&0&0\\6&8&8&8&7\\0&8&8&3&0\\0&8&2&0&0\end{vmatrix}=(1)(-1)^{2+2}D_{2}=12.
+\]
+\[
+D_{2}=\begin{vmatrix}4&8&8&5\\6&8&8&7\\0&8&3&0\\0&2&0&0\end{vmatrix}=(2)(-1)^{4+2}D_{3}=12.
+\]
+\[
+D_{3}=\begin{vmatrix}4&8&5\\6&8&7\\0&3&0\end{vmatrix}=(3)(-1)^{3+2}D_{4}=6.
+\]
+\[
+D_{4}=\begin{vmatrix}4&5\\6&7\end{vmatrix}=(4)(7)-(5)(6)=-2.
+\]
+Thus the answer is $12$.
+
+\exercise{3.S.7}{Geometric and structural determinant proofs}
+Subtract row 2 from rows 1 and 3 in the displayed determinant. Expanding down its first column shows that its zero equation is equivalent to
+\[
+(x-x_1)(y_2-y_1)-(y-y_1)(x_2-x_1)=0.
+\]
+This says the displacement $(x-x_1,y-y_1)$ is parallel to the nonzero direction $(x_2-x_1,y_2-y_1)$. To check without a geometric shortcut, if $x_2\ne x_1$ solve for $y-y_1=\frac{y_2-y_1}{x_2-x_1}(x-x_1)$; if $x_2=x_1$, distinctness gives $y_2\ne y_1$, and the equation reduces to $x=x_1$. These are exactly the nonvertical and vertical lines through the two distinct points.
+
+\exercise{3.S.8}{Geometric and structural determinant proofs}
+A direction vector for a line of finite slope $m$ is $(1,m)$. Thus one valid determinant equation is
+\[
+\begin{vmatrix}1&x&y\\1&x_1&y_1\\0&1&m\end{vmatrix}=0.
+\]
+Subtract row 2 from row 1, then expand down column 1. The left side is $-[(x-x_1)m-(y-y_1)]$, so setting it to zero is precisely $y-y_1=m(x-x_1)$. Alternatively the third row can be $(1,x_1+1,y_1+m)$, corresponding to a second point on the same line; subtracting row 2 converts it to the displayed version.
+
+\exercise{3.S.9}{Geometric and structural determinant proofs}
+Subtract row 1 from rows 2 and 3 in $T$. The two new rows are $(0,b-a,b^2-a^2)$ and $(0,c-a,c^2-a^2)$. Factor $b^2-a^2=(b-a)(b+a)$ and $c^2-a^2=(c-a)(c+a)$ to obtain
+\begin{align*}
+\det T
+&=(b-a)(c-a)
+\begin{vmatrix}1&a&a^2\\0&1&b+a\\0&1&c+a\end{vmatrix}\\
+&=(b-a)(c-a)[(c+a)-(b+a)]\\
+&=(b-a)(c-a)(c-b).
+\end{align*}
+Row factoring is a polynomial identity, so no division by $b-a$ or $c-a$ was used; the formula remains valid when two parameters coincide.
+
+\exercise{3.S.10}{Geometric and structural determinant proofs}
+Expand along the first row of $V(t)$. Its cofactors depend only on the fixed numbers $x_1,x_2,x_3$, so the expansion is a polynomial in $t$ of degree at most $3$. The coefficient of $t^3$ is the cofactor in position $(1,4)$:
+\[
+-\begin{vmatrix}1&x_1&x_1^2\\1&x_2&x_2^2\\1&x_3&x_3^2\end{vmatrix}
+=-(x_2-x_1)(x_3-x_1)(x_3-x_2).
+\]
+It is nonzero because the three numbers are distinct. Hence the degree is exactly $3$. At $t=x_i$, the first row equals row $i+1$, so the determinant is zero. Thus three graph points are $(x_1,0)$, $(x_2,0)$, $(x_3,0)$. In fact these roots and the leading coefficient determine
+\[
+f(t)=-(x_2-x_1)(x_3-x_1)(x_3-x_2)\prod_{i=1}^3(t-x_i).
+\]
+
+\exercise{3.S.11}{Geometric and structural determinant proofs}
+Use $p=(1,4)$ as a base vertex, and take adjacent displacements $u=(-1,5)-p=(-2,1)$ and $v=(5,8)-p=(4,4)$. Their sum gives the remaining vertex: $p+u+v=(3,9)$. This verifies the parallelogram structure. Equivalently, the diagonals have the same midpoint because $(1,4)+(3,9)=(-1,5)+(5,8)$. Its area is
+\[
+\left|\begin{vmatrix}-2&4\\1&4\end{vmatrix}\right|
+=|-8-4|=12.
+\]
+
+\exercise{3.S.12}{Geometric and structural determinant proofs}
+A $2\times2$ matrix is invertible if and only if the parallelogram spanned by its two columns has positive area. Indeed, the columns are independent exactly when they are not parallel, which is exactly when the parallelogram has a nonzero base and positive perpendicular height. The Invertible Matrix Theorem equates that independence with invertibility. In determinant language the same area is $|\det A|$, but the geometric statement itself describes the nonflat image of the unit square.
+
+\exercise{3.S.13}{Geometric and structural determinant proofs}
+Put $d=\det A\ne0$. The adjugate identity gives $A\operatorname{adj}A=\operatorname{adj}A\,A=dI$. Divide both equations by $d$:
+\[
+(A/d)\operatorname{adj}A=I,
+\qquad \operatorname{adj}A\,(A/d)=I.
+\]
+Thus $A/d$ is a two-sided inverse of $\operatorname{adj}A$. This proves both its invertibility and $(\operatorname{adj}A)^{-1}=A/\det A$.
+
+\exercise{3.S.14}{Geometric and structural determinant proofs}
+\step{A block-triangular determinant rule.}
+For $M=\left[\begin{smallmatrix}A&0\\C&D\end{smallmatrix}\right]$, expand the determinant by its signed products, one entry from each row and column. Any nonzero product must use the first $n$ columns for the top $n$ rows, since the upper-right block is zero. Those top rows use \emph{all} first $n$ columns. The bottom $n$ rows must therefore use the last $n$ columns. Such a product splits into one signed product of $A$ and one of $D$; the signs also multiply because no columns cross between blocks. Summing gives $\det M=(\det A)(\det D)$. This argument does not require either block to be invertible.
+\step{(a) Put $C=0$ and $D=I_n$.}
+The rule gives $\det\left[\begin{smallmatrix}A&0\\0&I\end{smallmatrix}\right]=(\det A)(\det I)=\det A$.
+\step{(b) Put the upper-left block equal to $I_n$.}
+Then $\det\left[\begin{smallmatrix}I&0\\C&D\end{smallmatrix}\right]=(\det I)(\det D)=\det D$.
+\step{(c) Both block-triangular orientations.}
+The proved rule gives the lower-block-triangular formula. For the upper-block-triangular matrix, transpose:
+\[
+\det\begin{bmatrix}A&B\\0&D\end{bmatrix}
+=\det\begin{bmatrix}A^T&0\\B^T&D^T\end{bmatrix}
+=(\det A^T)(\det D^T)=(\det A)(\det D).
+\]
+The off-diagonal blocks affect entries but not the determinant in these zero-block arrangements.
+
+\exercise{3.S.15}{Geometric and structural determinant proofs}
+\step{(a) Determine the factors by multiplying their blocks.}
+Block multiplication gives
+\[
+\begin{bmatrix}I&0\\X&I\end{bmatrix}
+\begin{bmatrix}A&B\\0&Y\end{bmatrix}
+=\begin{bmatrix}A&B\\XA&XB+Y\end{bmatrix}.
+\]
+To match the lower-left block $C$, use $X=CA^{-1}$. To match the lower-right block $D$, use $Y=D-CA^{-1}B$. Multiplicativity and Exercise 14 now give
+\[
+\det\begin{bmatrix}A&B\\C&D\end{bmatrix}
+=1\cdot(\det A)\det(D-CA^{-1}B).
+\]
+The first factor has determinant $1$ because its two diagonal blocks are identities.
+\step{(b) Use precisely the commuting hypothesis stated.}
+If $AC=CA$, then $ACA^{-1}=C$, and hence
+\[
+A(D-CA^{-1}B)=AD-CB.
+\]
+Taking determinants gives $(\det A)\det(D-CA^{-1}B)=\det(AD-CB)$. Substitution in part (a) proves the asserted formula. We have not commuted $A$ with $B$ or $D$; neither of those extra hypotheses is supplied or needed.
+
+\exercise{3.S.16}{Geometric and structural determinant proofs}
+Let $d=a-b$. The claimed determinant is $d^{n-1}[a+(n-1)b]$.
+\step{(a) Subtract successive rows in the correct order.}
+Perform $R_1\leftarrow R_1-R_2$, then $R_2\leftarrow R_2-R_3$, continuing downward through $R_{n-1}\leftarrow R_{n-1}-R_n$. At each step the row being subtracted is still its original row. The first $n-1$ rows now have $d$ in position $(i,i)$, $-d$ in position $(i,i+1)$, and zeros elsewhere. The last row remains $(b,b,\ldots,b,a)$. Every operation is a row replacement, so the determinant is unchanged.
+\step{(b) Add successive columns, now from left to right.}
+Apply $C_2\leftarrow C_2+C_1$, then $C_3\leftarrow C_3+C_2$ using the \emph{new} column 2, and continue. The first $n-1$ rows become zero off their diagonal $d$ entries. In the last row the entries accumulate to $b,2b,\ldots,(n-1)b,a+(n-1)b$. Column replacements preserve the determinant, by the transpose version of the row rule.
+\step{(c) Read a triangular determinant.}
+The matrix is now lower triangular with diagonal $d,\ldots,d,a+(n-1)b$. Their product is $(a-b)^{n-1}[a+(n-1)b]$. No division by $a-b$ was used, so $a=b$ causes no gap in the proof. The case $n=1$ simply says the determinant is $a$.
+
+\exercise{3.S.17}{Geometric and structural determinant proofs}
+\goal Reprove the formula by induction without assuming the preceding row-operation argument.
+For $n=1$ the determinant is $a$. Suppose the formula holds at size $n-1$. By linearity in column 1, with all other columns fixed, $\det A=\det B+\det C$ for the displayed matrices.
+
+In $B$, expand down column 1: only the first entry $a-b$ is nonzero. The remaining $(n-1)\times(n-1)$ matrix has diagonal $a$ and off-diagonal entries $b$. The induction hypothesis therefore gives
+\[
+\det B=(a-b)^{n-1}[a+(n-2)b].
+\]
+In $C$, subtract row 1 from every other row. Column 1 then has $b$ followed by zeros, and the remaining lower-right block is $(a-b)I_{n-1}$. Thus $\det C=b(a-b)^{n-1}$. Adding these two expressions yields
+\[
+\det A=(a-b)^{n-1}[a+(n-2)b+b]
+=(a-b)^{n-1}[a+(n-1)b].
+\]
+This proves the induction step, including zero parameter values because no division occurs.
+
+\exercise{3.S.18}{Two constant-off-diagonal examples}
+For the first matrix, $n=4$, $a=3$, $b=8$. The formula gives
+\[
+(3-8)^3[3+3\cdot8]=(-5)^3(27)=-3375.
+\]
+For the second, $n=5$, $a=8$, $b=3$, so
+\[
+(8-3)^4[8+4\cdot3]=5^4(20)=12500.
+\]
+An independent exact computation is
+\begin{verbatim}
+from sympy import Matrix
+for n,a,b in ((4,3,8),(5,8,3)):
+    A = Matrix(n,n,lambda i,j: a if i == j else b)
+    print(A.det())
+\end{verbatim}
+It prints $-3375$ and $12500$, respectively. A negative determinant in the first example describes orientation, not a negative ordinary volume.
+
+\exercise{3.S.19}{A matrix of successive minima}
+Let $H_n$ have entry $\min(i,j)$ in position $(i,j)$. The three displayed examples are $H_3,H_4,H_5$. Exact computation gives determinant $1$ for each:
+\begin{verbatim}
+from sympy import Matrix
+for n in (3,4,5):
+    H = Matrix(n,n,lambda i,j: min(i+1,j+1))
+    print(H.det())
+\end{verbatim}
+\step{Prove the conjecture for every size.}
+Starting at the \emph{bottom}, do $R_n\leftarrow R_n-R_{n-1}$, then $R_{n-1}\leftarrow R_{n-1}-R_{n-2}$, and continue to $R_2\leftarrow R_2-R_1$. This order ensures that every subtracted row is still its original row. Row 1 is all $1$'s; new row $i$ has $i-1$ zeros followed by $1$'s. Thus the resulting matrix is upper triangular with every diagonal entry $1$. No operation changed the determinant, so $\det H_n=1$ for every $n\ge1$.
+
+\exercise{3.S.20}{A related matrix with a different first increment}
+\goal Determine the determinant of the matrix exactly as printed.
+Its successive distinct entries are $d_1=1$ and $d_i=3(i-1)$ for $i\ge2$: in particular $1,3,6,9,\ldots,3(n-1)$. These are \emph{not} the triangular numbers after the first three entries. The $(i,j)$ entry is $d_{\min(i,j)}$.
+\step{Run the same bottom-up differences.}
+For $i=n,n-1,\ldots,2$, replace $R_i$ by $R_i-R_{i-1}$. The resulting matrix is upper triangular with diagonal
+\[
+d_1,\quad d_2-d_1,\quad d_3-d_2,\ldots,d_n-d_{n-1}
+=1,2,3,\ldots,3.
+\]
+Therefore
+\[
+\boxed{\det A=2\cdot3^{n-2}\quad(n\ge2).}
+\]
+At $n=1$, the matrix is $[1]$ and has determinant $1$.
+A direct check for $n=2,3,4,5$ gives $2,6,18,54$:
+\begin{verbatim}
+from sympy import Matrix
+for n in (2,3,4,5):
+    d = [1] + [3*i for i in range(1,n)]
+    A = Matrix(n,n,lambda i,j: d[min(i,j)])
+    print(A.det())
+\end{verbatim}
+The special first difference $3-1=2$ is why a guess of $3^{n-1}$ would be wrong. Equivalently, the triangular matrix after row differences has a leading $2\times2$ block of determinant $2$ and a remaining block equal to $3$ times the upper-triangular matrix from Exercise 19; block-triangular determinants give the same answer.

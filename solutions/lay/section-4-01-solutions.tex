@@ -1,0 +1,481 @@
+\section{Vector spaces and subspaces}
+A vector need not be an arrow: a polynomial, a matrix, or a function can be a
+vector when addition and scalar multiplication satisfy the vector-space axioms.
+A subset $H$ of a known vector space is a subspace when (i) it contains the zero
+vector, (ii) $u+v\in H$ for \emph{every} $u,v\in H$, and (iii) $cu\in H$ for
+\emph{every} $u\in H$ and real scalar $c$. One counterexample disproves closure;
+one successful example does not prove it. A span is automatically a subspace.
+
+\practice{4.1.P1}{An affine line fails scalar closure}
+\goal For $H=\{(3s,2+5s):s\in\R\}$, find a vector whose scalar multiple leaves $H$.
+Take $s=0$. Then $u=(0,2)\in H$. Its multiple $2u=(0,4)$ is not in $H$:
+the equation $3s=0$ would require $s=0$, but then the second coordinate would
+be $2$, not $4$. Thus scalar multiplication is not closed on $H$.
+\answer{$H$ is not a vector space under the usual operations.}
+
+\practice{4.1.P2}{Every generator belongs to its span}
+For $W=\Span\{v_1,\ldots,v_p\}$ and a fixed $k$ between $1$ and $p$, write
+\[
+ v_k=0v_1+\cdots+0v_{k-1}+1v_k+0v_{k+1}+\cdots+0v_p.
+\]
+This is a permitted linear combination of the generators, hence $v_k\in W$.
+In particular, choose $k=1$ for the first part of the question. A span contains
+all its generators, even if some are zero or repeated.
+
+\exercise{4.1.1}{The first quadrant}
+\step{(a) Addition preserves both inequalities.}
+If $u=(u_1,u_2)$ and $v=(v_1,v_2)$ have nonnegative coordinates, then
+$u_1+v_1\ge0$ and $u_2+v_2\ge0$. Therefore $u+v$ is still in the first quadrant.
+\step{(b) Negative scalars reveal the obstruction.}
+The vector $u=(1,0)$ belongs to the set, but $(-1)u=(-1,0)$ does not.
+\answer{Addition is closed, but scalar multiplication is not; the first
+quadrant is not a vector space.}
+
+\exercise{4.1.2}{The first and third quadrants together}
+\step{(a) Any scalar multiple stays in the set.}
+Here $W=\{(x,y):xy\ge0\}$. If $u=(x,y)\in W$, then the product of the
+coordinates of $cu$ is $(cx)(cy)=c^2xy\ge0$, since $c^2\ge0$.
+This proves closure under multiplication by every real scalar, including zero.
+\step{(b) Addition can leave the set.}
+Choose $u=(2,1)$ and $v=(-1,-2)$. Both coordinate products equal $2>0$,
+so both vectors are in $W$. Their sum is $(1,-1)$, whose coordinate product
+is $-1<0$. Thus $u+v\notin W$.
+\answer{$W$ passes the scalar test but fails the addition test.}
+
+\exercise{4.1.3}{The closed unit disk}
+The vector $u=(1,0)$ is in the disk because $1^2+0^2=1$. But $2u=(2,0)$
+is outside it, since $2^2+0^2=4>1$. Thus the disk is not closed under scalar
+multiplication and is not a subspace. It is not enough that the disk contains
+zero: closure must hold for arbitrarily large as well as small scalars.
+
+\exercise{4.1.4}{A translated line is not closed under addition}
+\goal Supply a geometric counterexample, rather than just assert that a line misses zero.
+Consider the line $L=\{(x,1):x\in\R\}$. Take $u=(0,1)$ and $v=(1,1)$.
+Both endpoints lie on $L$, but $u+v=(1,2)$ lies on the parallel line $y=2$.
+The parallelogram construction for adding $u$ and $v$ therefore ends off $L$.
+\begin{center}
+\setlength{\unitlength}{1mm}
+\begin{picture}(92,52)
+\put(10,7){\vector(1,0){75}}\put(22,3){\vector(0,1){44}}
+\put(8,25){\line(1,0){75}}\put(8,43){\line(1,0){75}}
+\put(22,7){\vector(0,1){18}}\put(22,7){\vector(1,1){18}}
+\put(22,7){\vector(1,2){18}}
+\put(40,25){\circle*{1.3}}\put(40,43){\circle*{1.3}}
+\put(14,26){$u$}\put(42,24){$v$}\put(42,43){$u+v$}
+\put(72,27){$L:y=1$}\put(65,45){$y=2$}
+\end{picture}
+\end{center}
+More generally write any line not through zero as $p+\Span\{d\}$, where
+$p\notin\Span\{d\}$. Then $p\in L$ but $2p\notin L$, for otherwise
+$2p=p+td$ would imply $p=td$, a contradiction. Adding $p$ to itself already fails.
+
+\exercise{4.1.5}{Multiples of a single polynomial}
+The set $\{at^2:a\in\R\}$ equals $\Span\{t^2\}$, a subspace of $P_2$
+(and of $P_n$ for every $n\ge2$). Explicitly its zero is obtained with $a=0$,
+$at^2+bt^2=(a+b)t^2$ stays in the set, and $c(at^2)=(ca)t^2$ stays in the set.
+\answer{It is a subspace.}
+
+\exercise{4.1.6}{A fixed quadratic coefficient}
+The set consists of polynomials $a+t^2$, whose coefficient of $t^2$ is always
+$1$. It does not contain the zero polynomial: no choice of $a$ makes
+$a+t^2$ zero for every $t$. Equivalently multiplying $t^2$ by zero produces a
+polynomial outside the set. Thus this subset of $P_2$ is not a subspace.
+
+\exercise{4.1.7}{Integer coefficients and real scalars}
+The constant polynomial $p(t)=1$ has integer coefficients and degree at most
+$3$. The real scalar $1/2$ is permitted in the ambient vector space, but
+$(1/2)p(t)=1/2$ does not have integer coefficients. Scalar closure fails.
+\answer{This set is not a real subspace of $P_3$. The choice of scalar field matters.}
+
+\exercise{4.1.8}{Polynomials vanishing at zero}
+Let $H=\{p\in P_n:p(0)=0\}$. The zero polynomial is in $H$.
+If $p,q\in H$, then $(p+q)(0)=p(0)+q(0)=0$.
+For real $c$, $(cp)(0)=cp(0)=0$. These equations prove both closure properties;
+sums and scalar multiples still have degree at most $n$.
+\answer{$H$ is a subspace. For $n\ge1$ it is $\Span\{t,t^2,\ldots,t^n\}$;
+for $n=0$ it is just the zero polynomial.}
+
+\exercise{4.1.9}{A one-parameter line in three dimensions}
+Factor out the arbitrary real parameter:
+\[
+ (-2t,5t,3t)=t(-2,5,3).
+\]
+Thus choose $v=(-2,5,3)$, and $H=\Span\{v\}$. This is equality in both
+directions: every displayed vector is a multiple of $v$, and every real
+multiple of $v$ is obtained by choosing that number as $t$.
+A span is a subspace, so $H$ is a subspace of $\R^3$.
+
+\exercise{4.1.10}{A line with a zero middle coordinate}
+Here $(3t,0,-7t)=t(3,0,-7)$. As $t$ runs through all real numbers, these are
+exactly all linear combinations of the single vector $(3,0,-7)$.
+Consequently $H=\Span\{(3,0,-7)\}$ is a subspace of $\R^3$.
+The zero middle coordinate does not make it a different kind of vector space.
+
+\exercise{4.1.11}{Separate two free parameters}
+For arbitrary $b,c\in\R$,
+\[
+ \begin{pmatrix}2b+3c\\-b\\2c\end{pmatrix}
+ =b\begin{pmatrix}2\\-1\\0\end{pmatrix}
+ +c\begin{pmatrix}3\\0\\2\end{pmatrix}.
+\]
+Take $u=(2,-1,0)$ and $v=(3,0,2)$. Every original vector is in their span,
+and an arbitrary linear combination $bu+cv$ has exactly the required form.
+Therefore $W=\Span\{u,v\}$, and spans are subspaces of the ambient vector space.
+
+\exercise{4.1.12}{Separate two parameters in four dimensions}
+Collect the coefficients of $s$ and $t$ in each coordinate:
+\[
+ \begin{pmatrix}2s+4t\\2s\\2s-3t\\5t\end{pmatrix}
+ =s\begin{pmatrix}2\\2\\2\\0\end{pmatrix}
+ +t\begin{pmatrix}4\\0\\-3\\5\end{pmatrix}.
+\]
+Since $s,t$ are unrestricted, $W$ is precisely the span of the two displayed
+constant vectors. The span theorem proves that $W$ is a subspace of $\R^4$.
+
+\exercise{4.1.13}{A set of generators versus its span}
+\goal Distinguish membership in a finite set from membership in all its linear combinations.
+The given vectors are $v_1=(1,0,-1)$, $v_2=(2,1,3)$, $v_3=(4,2,6)$,
+and $w=(3,1,2)$.
+\step{(a) Inspect the three individual vectors.}
+The vector $w$ equals none of $v_1,v_2,v_3$, so $w\notin\{v_1,v_2,v_3\}$.
+Those three vectors are distinct, so that set has exactly three elements.
+\step{(b) Count the span.}
+Since $v_1\ne0$, the multiples $tv_1$ give distinct vectors for distinct real
+$t$. Thus the span contains infinitely many vectors.
+\step{(c) Find an actual combination.}
+Adding coordinates gives $v_1+v_2=(1+2,0+1,-1+3)=(3,1,2)=w$.
+Hence $w$ belongs to the span even though it is not one of its three generators.
+
+\exercise{4.1.14}{Another vector in the same plane}
+Use the generators from the preceding exercise and $w=(1,3,14)$.
+Because $v_3=2v_2$, combinations of the first two vectors suffice.
+Set $av_1+bv_2=w$. Coordinate comparison gives
+\[
+ a+2b=1,\qquad b=3,\qquad -a+3b=14.
+\]
+The middle equation gives $b=3$, the first gives $a=-5$, and the last checks:
+$-(-5)+3(3)=14$. Therefore $w=-5v_1+3v_2$ lies in the required span.
+
+\exercise{4.1.15}{A coordinate forced to be negative one}
+Every vector in the set has second coordinate $-1$. The zero vector has
+second coordinate zero and is therefore absent. A vector space must contain
+zero, so no spanning set for this $W$ exists: $W$ is not a vector space.
+
+\exercise{4.1.16}{A coordinate forced to be one}
+Every vector has first coordinate $1$, regardless of the values of $a,b$.
+Thus zero is absent. This violates the first subspace condition and shows that
+$W$ is not a vector space under the inherited operations.
+
+\exercise{4.1.17}{Three parameters, each with its own coefficient vector}
+Expanding coordinate by coordinate gives
+\[
+ \begin{pmatrix}2a-b\\3b-c\\3c-a\\3b\end{pmatrix}
+ =a\begin{pmatrix}2\\0\\-1\\0\end{pmatrix}
+ +b\begin{pmatrix}-1\\3\\0\\3\end{pmatrix}
+ +c\begin{pmatrix}0\\-1\\3\\0\end{pmatrix}.
+\]
+With all three parameters arbitrary, $W$ equals the span of these three
+vectors, so it is a subspace of $\R^4$. These vectors form a valid spanning
+set; one need not prove independence merely to supply a spanning set.
+
+\exercise{4.1.18}{A permanently zero coordinate is harmless}
+The required decomposition is
+\[
+ \begin{pmatrix}4a+3b\\0\\a+3b+c\\3b-2c\end{pmatrix}
+ =a\begin{pmatrix}4\\0\\1\\0\end{pmatrix}
+ +b\begin{pmatrix}3\\0\\3\\3\end{pmatrix}
+ +c\begin{pmatrix}0\\0\\1\\-2\end{pmatrix}.
+\]
+Every such combination has the specified form and vice versa. Thus the
+three coefficient vectors span $W$, which is a subspace. A coordinate fixed
+at zero is compatible with subspaces; a coordinate fixed at nonzero $1$ was not.
+
+\exercise{4.1.19}{The space of oscillating functions}
+Fix $\omega$ and let $f(t)=\cos(\omega t)$ and $g(t)=\sin(\omega t)$.
+The set of functions $c_1f+c_2g$, with arbitrary real $c_1,c_2$, is exactly
+$\Span\{f,g\}$ inside the vector space of all real-valued functions on $\R$.
+Hence it is a subspace. Explicitly, adding two functions adds their two
+coefficients, and scalar multiplication multiplies both coefficients; neither
+operation changes the fixed frequency $\omega$. Choosing both coefficients
+zero gives the zero function. The span argument remains valid if $\omega=0$.
+
+\exercise{4.1.20}{Continuous functions and an endpoint condition}
+\step{(a) State the three required facts.}
+The function identically zero on $[a,b]$ is continuous. The sum of any two
+continuous functions on $[a,b]$ is continuous, and every real scalar multiple
+of a continuous function there is continuous. These are the subspace tests,
+so $C[a,b]$ is a subspace of all real-valued functions on that interval.
+\step{(b) Preserve equality of the endpoint values.}
+Let $H=\{f\in C[a,b]:f(a)=f(b)\}$. The zero function is in $H$.
+If $f,g\in H$, then
+\[
+ (f+g)(a)=f(a)+g(a)=f(b)+g(b)=(f+g)(b).
+\]
+For every real $c$, $(cf)(a)=cf(a)=cf(b)=(cf)(b)$.
+Both new functions are continuous by part (a), so both belong to $H$.
+\answer{$H$ is a subspace of $C[a,b]$.}
+
+\exercise{4.1.21}{Upper triangular matrices form a subspace}
+Take $H=\{\left(\begin{smallmatrix}a&b\\0&d\end{smallmatrix}\right):a,b,d\in\R\}$.
+Zero is obtained with $a=b=d=0$. Adding two such matrices still gives a
+zero entry in position $(2,1)$, and multiplying by a scalar preserves that
+zero entry. Therefore $H$ is a subspace of $M_{2\times2}$.
+One explicit spanning set is
+\[
+ \left\{\begin{pmatrix}1&0\\0&0\end{pmatrix},
+ \begin{pmatrix}0&1\\0&0\end{pmatrix},
+ \begin{pmatrix}0&0\\0&1\end{pmatrix}\right\}.
+\]
+
+\exercise{4.1.22}{A homogeneous matrix equation}
+Let $F$ be the fixed $3\times2$ matrix, and let
+$H=\{A\in M_{2\times4}:FA=0\}$. The zero $2\times4$ matrix is in $H$,
+because multiplying it by $F$ gives the zero $3\times4$ matrix.
+For $A,B\in H$, distributivity gives $F(A+B)=FA+FB=0$.
+For real $c$, $F(cA)=c(FA)=0$. Thus both $A+B$ and $cA$ belong to $H$.
+\answer{$H$ is a subspace of $M_{2\times4}$. The matrix sizes ensure each product is defined.}
+
+\exercise{4.1.23}{Five statements about vectors and subspaces}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{False.} A zero function must vanish at \emph{every} input.
+For example $f(t)=t$ has $f(0)=0$ but is not the zero function.
+\item \textbf{False.} Vectors can be functions, matrices, or polynomials,
+not only arrows in three-dimensional space. An element of $P_2$, such as
+$t^2$, is a vector in that vector space.
+\item \textbf{False.} Containing zero is necessary but insufficient. The
+unit disk contains zero but fails scalar closure, as Exercise 4.1.3 shows.
+\item \textbf{True.} A subspace inherits the vector-space operations and
+all axioms; the subspace conditions ensure the operations stay inside it.
+\item \textbf{False.} The chapter introduction describes the major shuttle
+control systems in terms of \emph{digital}, not analog, signals.
+\end{enumerate}
+
+\exercise{4.1.24}{Five more statements, including the closure quantifiers}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{True.} A vector means an element of a vector space; its
+physical appearance is irrelevant.
+\item \textbf{True.} The identity $(-1)u=-u$ follows from distributivity
+and uniqueness of the additive inverse; Exercise 4.1.29 supplies the proof.
+\item \textbf{True.} Every vector space is a subspace of itself, using
+its own zero vector and the two operations.
+\item \textbf{False.} As defined here, elements of $\R^2$ are ordered
+pairs, not ordered triples in $\R^3$. The plane $\{(x,y,0):x,y\in\R\}$
+is a subspace of $\R^3$ isomorphic to $\R^2$, but it is a different set.
+\item \textbf{False as written.} The stated conditions merely say that
+$u,v,u+v$ are in $H$ and that $cu$ is in $H$ for particular choices. Closure
+requires these conclusions for \emph{all} $u,v\in H$ and \emph{all} real $c$.
+For instance $H=\{(0,0),(1,0)\}$ satisfies the listed conditions with
+$u=v=0$ and $c=0$ but is not closed under multiplication by $2$.
+If the omitted universal quantifiers are supplied, the resulting statement
+is exactly the correct subspace test.
+\end{enumerate}
+
+\exercise{4.1.25}{Uniqueness of the zero vector}
+The missing axiom is \textbf{4}, the additive-identity axiom (with the
+commutative form justified by Axiom 2, as the exercise specifies).
+If $w$ is another additive identity, then using it as an identity gives
+$0+w=0$, whereas using the original zero as an identity gives $0+w=w$.
+The same expression equals both $0$ and $w$, hence $w=0$.
+
+\exercise{4.1.26}{Uniqueness of the additive inverse}
+The blanks are \textbf{(a) 3, (b) 5, (c) 4}.
+To see each step, suppose $u+w=0$ and add $-u$ to both sides:
+\[
+ (-u)+(u+w)=(-u)+0.
+\]
+Associativity (Axiom 3) changes the left side to $((-u)+u)+w$.
+The inverse axiom (Axiom 5, with commutativity) changes $(-u)+u$ to zero.
+The identity axiom (Axiom 4) then changes $0+w=(-u)+0$ to $w=-u$.
+\answer{There can be only one additive inverse of a given vector.}
+
+\exercise{4.1.27}{Multiplication by the scalar zero}
+The blanks are \textbf{(a) 8, (b) 3, (c) 5, (d) 4}.
+Distributivity over scalar addition (Axiom 8) gives
+$0u=(0+0)u=0u+0u$. Add the additive inverse $-(0u)$ to both sides.
+Associativity (3) groups the last two terms on the right as
+$0u+(-(0u))$; the inverse axiom (5) changes each such pair to zero.
+The result is $0=0u+0$, which the identity axiom (4) reduces to $0=0u$.
+Here the first zero in $0u$ is a scalar; the zero on the right is a vector.
+
+\exercise{4.1.28}{A scalar times the zero vector}
+The blanks are \textbf{(a) 4, (b) 7, (c) 3, (d) 5, (e) 4}.
+First $0=0+0$ by the identity axiom (4). Thus
+$c0=c(0+0)=c0+c0$ by distributivity over vector addition (7).
+Add the inverse of $c0$ to both sides. Associativity (3) allows the
+right-hand inverse pair to be grouped; Axiom 5 reduces the inverse pairs
+to zero; and Axiom 4 removes the remaining added zero. Hence $0=c0$.
+This holds for every scalar $c$, including negative and zero scalars.
+
+\exercise{4.1.29}{The scalar negative one gives the additive inverse}
+Axiom 10 says $u=1u$. Axiom 8 then gives
+\[
+ u+(-1)u=1u+(-1)u=(1+(-1))u=0u=0,
+\]
+where the last equality is Exercise 4.1.27. Therefore $(-1)u$ is an additive
+inverse of $u$. By uniqueness of that inverse (Exercise 4.1.26),
+$(-1)u=-u$.
+
+\exercise{4.1.30}{A nonzero scalar cannot annihilate a nonzero vector}
+Suppose $cu=0$ and $c\ne0$. Then $1/c$ is an allowed scalar. Multiply
+both sides by it and use Axioms 9 and 10 and Exercise 4.1.28:
+\[
+ u=1u=((1/c)c)u=(1/c)(cu)=(1/c)0=0.
+\]
+The nonzero hypothesis is needed to form $1/c$; when $c=0$, the equation
+$cu=0$ holds for every $u$ and does not force $u=0$.
+
+\exercise{4.1.31}{The span is the smallest containing subspace}
+Suppose the subspace $H$ contains $u$ and $v$. An arbitrary member of
+$\Span\{u,v\}$ has form $au+bv$ for real $a,b$.
+Scalar closure puts $au,bv$ in $H$, and additive closure puts $au+bv$ in $H$.
+Thus $\Span\{u,v\}\subseteq H$. Since the span itself is a subspace that
+contains $u,v$, it is the smallest such subspace, in the sense of inclusion.
+
+\exercise{4.1.32}{Intersection works; union can fail}
+\step{Check the intersection's three properties.}
+Both $H$ and $K$ contain zero, so their intersection does too.
+If $u,v\in H\cap K$, then they belong to both subspaces; hence $u+v$
+belongs to both, so $u+v\in H\cap K$. Likewise any scalar multiple $cu$
+belongs to both, hence to their intersection. Thus $H\cap K$ is a subspace.
+\step{Give a concrete counterexample for a union.}
+Let $H=\{(x,0):x\in\R\}$ and $K=\{(0,y):y\in\R\}$, the two coordinate
+axes. Their union contains $(1,0)$ and $(0,1)$, but not their sum $(1,1)$.
+Thus a union of subspaces need not be a subspace.
+
+\exercise{4.1.33}{The sum of two subspaces}
+\step{(a) Verify closure, keeping each summand in its own subspace.}
+Zero is $0+0$ with the first zero in $H$ and the second in $K$.
+For $x=h_1+k_1$ and $y=h_2+k_2$ in $H+K$, associativity and commutativity give
+\[
+ x+y=(h_1+h_2)+(k_1+k_2)\in H+K,
+\]
+since $h_1+h_2\in H$ and $k_1+k_2\in K$.
+For a real scalar $c$, $cx=ch_1+ck_1\in H+K$ by both scalar closures.
+Therefore $H+K$ is a subspace of $V$.
+\step{(b) Put the missing summand equal to zero.}
+If $h\in H$, then $h=h+0$ with $0\in K$, so $H\subseteq H+K$.
+If $k\in K$, write $k=0+k$ to obtain $K\subseteq H+K$.
+With their inherited operations, both are subspaces of $H+K$.
+
+\exercise{4.1.34}{Spanning the sum by combining the generators}
+Let $H=\Span\{u_1,\ldots,u_p\}$ and $K=\Span\{v_1,\ldots,v_q\}$.
+\step{Every element of the sum belongs to the combined span.}
+If $x=h+k\in H+K$, write $h=\sum_i a_i u_i$ and $k=\sum_j b_jv_j$.
+Then $x=\sum_i a_iu_i+\sum_jb_jv_j$, a combination of the combined list.
+\step{Every element of the combined span belongs to the sum.}
+Conversely split any combination of that combined list into its $u$-part
+$h\in H$ and its $v$-part $k\in K$. It then equals $h+k\in H+K$.
+These two inclusions prove equality of the sets.
+
+\exercise{4.1.35}{A checked representation in four dimensions}
+\goal Express $w=(9,-4,-4,7)$ as a combination of the given $v_1,v_2,v_3$.
+Set $a v_1+b v_2+c v_3=w$. The augmented system and its reduced form are
+\[
+ \left[\begin{array}{rrr|r}
+ 8&-4&-7&9\\-4&3&6&-4\\-3&-2&-5&-4\\9&-8&-18&7
+ \end{array}\right]\ \sim\
+ \left[\begin{array}{rrr|r}1&0&0&1\\0&1&0&-2\\0&0&1&1\\0&0&0&0\end{array}\right].
+\]
+The three coefficient values are $1,-2,1$. Rather than trust the reduction
+alone, check them in the original vectors:
+\[
+ \begin{pmatrix}8\\-4\\-3\\9\end{pmatrix}
+ -2\begin{pmatrix}-4\\3\\-2\\-8\end{pmatrix}
+ +\begin{pmatrix}-7\\6\\-5\\-18\end{pmatrix}
+ =\begin{pmatrix}8+8-7\\-4-6+6\\-3+4-5\\9+16-18\end{pmatrix}
+ =\begin{pmatrix}9\\-4\\-4\\7\end{pmatrix}.
+\]
+\answer{$w=v_1-2v_2+v_3$ belongs to the stated span.}
+
+\exercise{4.1.36}{Test membership in a column span}
+The columns of $A$ span precisely the vectors $Ax$. Therefore solve $Ax=y$:
+\[
+ \left[\begin{array}{rrr|r}
+ 3&-5&-9&-4\\8&7&-6&-8\\-5&-8&3&6\\2&-2&-9&-5
+ \end{array}\right]\ \sim\
+ \left[\begin{array}{rrr|r}1&0&0&-1/5\\0&1&0&-2/5\\0&0&1&3/5\\0&0&0&0\end{array}\right].
+\]
+There is no inconsistent row. The candidate is $x=(-1/5,-2/5,3/5)$.
+Checking the original multiplication gives
+\[
+ Ax=\tfrac15(-3+10-27,\,-8-14-18,\,5+16+9,\,-2+4-27)
+ =(-4,-8,6,-5)=y.
+\]
+\answer{$y$ is in the subspace spanned by the columns of $A$.}
+
+\exercise{4.1.37}{Recognizing two multiple-angle functions}
+\goal Identify the two given polynomials in $\cos t$, then verify them algebraically and graphically.
+Write $c=\cos t$. The double-angle formula gives $\cos2t=2c^2-1$.
+Apply it a second time:
+\[
+ \cos4t=2(2c^2-1)^2-1=8c^4-8c^2+1=f(t).
+\]
+For the other polynomial use $\cos3u=4\cos^3u-3\cos u$ with $u=2t$:
+\[
+ \cos6t=4(2c^2-1)^3-3(2c^2-1)=32c^6-48c^4+18c^2-1=g(t).
+\]
+Thus the first graph has four full cosine oscillations on $[0,2\pi]$ and
+the second has six. The requested difference graphs are exactly
+$1+f(t)-\cos4t=1$ and $1+g(t)-\cos6t=1$. A numerical graph supports the
+recognition, while the displayed identities prove it for every $t$.
+\begin{center}\setlength{\unitlength}{1mm}
+\begin{tabular}{c}
+$\cos(4t)$\\
+\begin{picture}(130,29)
+\put(3,14){\vector(1,0){124}}\put(3,2){\vector(0,1){24}}
+\put(3,14){\polyline(0.000,10.000)(0.500,9.945)(1.000,9.781)(1.500,9.511)(2.000,9.135)(2.500,8.660)(3.000,8.090)(3.500,7.431)(4.000,6.691)(4.500,5.878)(5.000,5.000)(5.500,4.067)(6.000,3.090)(6.500,2.079)(7.000,1.045)(7.500,0.000)(8.000,-1.045)(8.500,-2.079)(9.000,-3.090)(9.500,-4.067)(10.000,-5.000)(10.500,-5.878)(11.000,-6.691)(11.500,-7.431)(12.000,-8.090)(12.500,-8.660)(13.000,-9.135)(13.500,-9.511)(14.000,-9.781)(14.500,-9.945)(15.000,-10.000)(15.500,-9.945)(16.000,-9.781)(16.500,-9.511)(17.000,-9.135)(17.500,-8.660)(18.000,-8.090)(18.500,-7.431)(19.000,-6.691)(19.500,-5.878)(20.000,-5.000)(20.500,-4.067)(21.000,-3.090)(21.500,-2.079)(22.000,-1.045)(22.500,-0.000)(23.000,1.045)(23.500,2.079)(24.000,3.090)(24.500,4.067)(25.000,5.000)(25.500,5.878)(26.000,6.691)(26.500,7.431)(27.000,8.090)(27.500,8.660)(28.000,9.135)(28.500,9.511)(29.000,9.781)(29.500,9.945)(30.000,10.000)(30.500,9.945)(31.000,9.781)(31.500,9.511)(32.000,9.135)(32.500,8.660)(33.000,8.090)(33.500,7.431)(34.000,6.691)(34.500,5.878)(35.000,5.000)(35.500,4.067)(36.000,3.090)(36.500,2.079)(37.000,1.045)(37.500,0.000)(38.000,-1.045)(38.500,-2.079)(39.000,-3.090)(39.500,-4.067)(40.000,-5.000)(40.500,-5.878)(41.000,-6.691)(41.500,-7.431)(42.000,-8.090)(42.500,-8.660)(43.000,-9.135)(43.500,-9.511)(44.000,-9.781)(44.500,-9.945)(45.000,-10.000)(45.500,-9.945)(46.000,-9.781)(46.500,-9.511)(47.000,-9.135)(47.500,-8.660)(48.000,-8.090)(48.500,-7.431)(49.000,-6.691)(49.500,-5.878)(50.000,-5.000)(50.500,-4.067)(51.000,-3.090)(51.500,-2.079)(52.000,-1.045)(52.500,-0.000)(53.000,1.045)(53.500,2.079)(54.000,3.090)(54.500,4.067)(55.000,5.000)(55.500,5.878)(56.000,6.691)(56.500,7.431)(57.000,8.090)(57.500,8.660)(58.000,9.135)(58.500,9.511)(59.000,9.781)(59.500,9.945)(60.000,10.000)(60.500,9.945)(61.000,9.781)(61.500,9.511)(62.000,9.135)(62.500,8.660)(63.000,8.090)(63.500,7.431)(64.000,6.691)(64.500,5.878)(65.000,5.000)(65.500,4.067)(66.000,3.090)(66.500,2.079)(67.000,1.045)(67.500,0.000)(68.000,-1.045)(68.500,-2.079)(69.000,-3.090)(69.500,-4.067)(70.000,-5.000)(70.500,-5.878)(71.000,-6.691)(71.500,-7.431)(72.000,-8.090)(72.500,-8.660)(73.000,-9.135)(73.500,-9.511)(74.000,-9.781)(74.500,-9.945)(75.000,-10.000)(75.500,-9.945)(76.000,-9.781)(76.500,-9.511)(77.000,-9.135)(77.500,-8.660)(78.000,-8.090)(78.500,-7.431)(79.000,-6.691)(79.500,-5.878)(80.000,-5.000)(80.500,-4.067)(81.000,-3.090)(81.500,-2.079)(82.000,-1.045)(82.500,-0.000)(83.000,1.045)(83.500,2.079)(84.000,3.090)(84.500,4.067)(85.000,5.000)(85.500,5.878)(86.000,6.691)(86.500,7.431)(87.000,8.090)(87.500,8.660)(88.000,9.135)(88.500,9.511)(89.000,9.781)(89.500,9.945)(90.000,10.000)(90.500,9.945)(91.000,9.781)(91.500,9.511)(92.000,9.135)(92.500,8.660)(93.000,8.090)(93.500,7.431)(94.000,6.691)(94.500,5.878)(95.000,5.000)(95.500,4.067)(96.000,3.090)(96.500,2.079)(97.000,1.045)(97.500,0.000)(98.000,-1.045)(98.500,-2.079)(99.000,-3.090)(99.500,-4.067)(100.000,-5.000)(100.500,-5.878)(101.000,-6.691)(101.500,-7.431)(102.000,-8.090)(102.500,-8.660)(103.000,-9.135)(103.500,-9.511)(104.000,-9.781)(104.500,-9.945)(105.000,-10.000)(105.500,-9.945)(106.000,-9.781)(106.500,-9.511)(107.000,-9.135)(107.500,-8.660)(108.000,-8.090)(108.500,-7.431)(109.000,-6.691)(109.500,-5.878)(110.000,-5.000)(110.500,-4.067)(111.000,-3.090)(111.500,-2.079)(112.000,-1.045)(112.500,-0.000)(113.000,1.045)(113.500,2.079)(114.000,3.090)(114.500,4.067)(115.000,5.000)(115.500,5.878)(116.000,6.691)(116.500,7.431)(117.000,8.090)(117.500,8.660)(118.000,9.135)(118.500,9.511)(119.000,9.781)(119.500,9.945)(120.000,10.000)}
+\put(3,0){\scriptsize$0$}\put(116,0){\scriptsize$2\pi$}\put(0,24){\scriptsize$1$}
+\end{picture}\\
+$\cos(6t)$\\
+\begin{picture}(130,29)
+\put(3,14){\vector(1,0){124}}\put(3,2){\vector(0,1){24}}
+\put(3,14){\polyline(0.000,10.000)(0.500,9.877)(1.000,9.511)(1.500,8.910)(2.000,8.090)(2.500,7.071)(3.000,5.878)(3.500,4.540)(4.000,3.090)(4.500,1.564)(5.000,0.000)(5.500,-1.564)(6.000,-3.090)(6.500,-4.540)(7.000,-5.878)(7.500,-7.071)(8.000,-8.090)(8.500,-8.910)(9.000,-9.511)(9.500,-9.877)(10.000,-10.000)(10.500,-9.877)(11.000,-9.511)(11.500,-8.910)(12.000,-8.090)(12.500,-7.071)(13.000,-5.878)(13.500,-4.540)(14.000,-3.090)(14.500,-1.564)(15.000,-0.000)(15.500,1.564)(16.000,3.090)(16.500,4.540)(17.000,5.878)(17.500,7.071)(18.000,8.090)(18.500,8.910)(19.000,9.511)(19.500,9.877)(20.000,10.000)(20.500,9.877)(21.000,9.511)(21.500,8.910)(22.000,8.090)(22.500,7.071)(23.000,5.878)(23.500,4.540)(24.000,3.090)(24.500,1.564)(25.000,0.000)(25.500,-1.564)(26.000,-3.090)(26.500,-4.540)(27.000,-5.878)(27.500,-7.071)(28.000,-8.090)(28.500,-8.910)(29.000,-9.511)(29.500,-9.877)(30.000,-10.000)(30.500,-9.877)(31.000,-9.511)(31.500,-8.910)(32.000,-8.090)(32.500,-7.071)(33.000,-5.878)(33.500,-4.540)(34.000,-3.090)(34.500,-1.564)(35.000,-0.000)(35.500,1.564)(36.000,3.090)(36.500,4.540)(37.000,5.878)(37.500,7.071)(38.000,8.090)(38.500,8.910)(39.000,9.511)(39.500,9.877)(40.000,10.000)(40.500,9.877)(41.000,9.511)(41.500,8.910)(42.000,8.090)(42.500,7.071)(43.000,5.878)(43.500,4.540)(44.000,3.090)(44.500,1.564)(45.000,0.000)(45.500,-1.564)(46.000,-3.090)(46.500,-4.540)(47.000,-5.878)(47.500,-7.071)(48.000,-8.090)(48.500,-8.910)(49.000,-9.511)(49.500,-9.877)(50.000,-10.000)(50.500,-9.877)(51.000,-9.511)(51.500,-8.910)(52.000,-8.090)(52.500,-7.071)(53.000,-5.878)(53.500,-4.540)(54.000,-3.090)(54.500,-1.564)(55.000,-0.000)(55.500,1.564)(56.000,3.090)(56.500,4.540)(57.000,5.878)(57.500,7.071)(58.000,8.090)(58.500,8.910)(59.000,9.511)(59.500,9.877)(60.000,10.000)(60.500,9.877)(61.000,9.511)(61.500,8.910)(62.000,8.090)(62.500,7.071)(63.000,5.878)(63.500,4.540)(64.000,3.090)(64.500,1.564)(65.000,0.000)(65.500,-1.564)(66.000,-3.090)(66.500,-4.540)(67.000,-5.878)(67.500,-7.071)(68.000,-8.090)(68.500,-8.910)(69.000,-9.511)(69.500,-9.877)(70.000,-10.000)(70.500,-9.877)(71.000,-9.511)(71.500,-8.910)(72.000,-8.090)(72.500,-7.071)(73.000,-5.878)(73.500,-4.540)(74.000,-3.090)(74.500,-1.564)(75.000,-0.000)(75.500,1.564)(76.000,3.090)(76.500,4.540)(77.000,5.878)(77.500,7.071)(78.000,8.090)(78.500,8.910)(79.000,9.511)(79.500,9.877)(80.000,10.000)(80.500,9.877)(81.000,9.511)(81.500,8.910)(82.000,8.090)(82.500,7.071)(83.000,5.878)(83.500,4.540)(84.000,3.090)(84.500,1.564)(85.000,-0.000)(85.500,-1.564)(86.000,-3.090)(86.500,-4.540)(87.000,-5.878)(87.500,-7.071)(88.000,-8.090)(88.500,-8.910)(89.000,-9.511)(89.500,-9.877)(90.000,-10.000)(90.500,-9.877)(91.000,-9.511)(91.500,-8.910)(92.000,-8.090)(92.500,-7.071)(93.000,-5.878)(93.500,-4.540)(94.000,-3.090)(94.500,-1.564)(95.000,0.000)(95.500,1.564)(96.000,3.090)(96.500,4.540)(97.000,5.878)(97.500,7.071)(98.000,8.090)(98.500,8.910)(99.000,9.511)(99.500,9.877)(100.000,10.000)(100.500,9.877)(101.000,9.511)(101.500,8.910)(102.000,8.090)(102.500,7.071)(103.000,5.878)(103.500,4.540)(104.000,3.090)(104.500,1.564)(105.000,-0.000)(105.500,-1.564)(106.000,-3.090)(106.500,-4.540)(107.000,-5.878)(107.500,-7.071)(108.000,-8.090)(108.500,-8.910)(109.000,-9.511)(109.500,-9.877)(110.000,-10.000)(110.500,-9.877)(111.000,-9.511)(111.500,-8.910)(112.000,-8.090)(112.500,-7.071)(113.000,-5.878)(113.500,-4.540)(114.000,-3.090)(114.500,-1.564)(115.000,0.000)(115.500,1.564)(116.000,3.090)(116.500,4.540)(117.000,5.878)(117.500,7.071)(118.000,8.090)(118.500,8.910)(119.000,9.511)(119.500,9.877)(120.000,10.000)}
+\put(3,0){\scriptsize$0$}\put(116,0){\scriptsize$2\pi$}\put(0,24){\scriptsize$1$}
+\end{picture}\\
+All corresponding difference plots: $1+\text{polynomial}-\text{identified function}$\\
+\begin{picture}(130,22)\put(3,3){\vector(1,0){124}}\put(3,1){\vector(0,1){19}}\put(3,13){\line(1,0){120}}\put(0,13){\scriptsize$1$}\put(116,0){\scriptsize$2\pi$}\end{picture}
+\end{tabular}\end{center}
+
+\exercise{4.1.38}{Recognizing three polynomials in sine}
+Put $s=\sin t$. The imaginary part of
+$(\cos t+i\sin t)^3=\cos3t+i\sin3t$ gives
+\[
+ \sin3t=3s\cos^2t-s^3=3s(1-s^2)-s^3=3s-4s^3=f(t).
+\]
+The double-angle identity $\cos2t=1-2s^2$ gives
+\[
+ \cos4t=2(1-2s^2)^2-1=1-8s^2+8s^4=g(t).
+\]
+Likewise the imaginary part of the fifth power gives
+\begin{align*}
+ \sin5t&=5\cos^4t\,s-10\cos^2t\,s^3+s^5\\
+ &=5(1-s^2)^2s-10(1-s^2)s^3+s^5
+ =5s-20s^3+16s^5=h(t).
+\end{align*}
+(The power identities used here also follow by repeated angle-addition formulas.)
+The plots have three sine cycles, four cosine cycles, and five sine cycles,
+respectively, on $[0,2\pi]$. Subtracting each identified function from one
+plus its original polynomial gives the constant $1$, as requested.
+\begin{center}\setlength{\unitlength}{1mm}
+\begin{tabular}{c}
+$\sin(3t)$\\
+\begin{picture}(130,29)
+\put(3,14){\vector(1,0){124}}\put(3,2){\vector(0,1){24}}
+\put(3,14){\polyline(0.000,0.000)(0.500,0.785)(1.000,1.564)(1.500,2.334)(2.000,3.090)(2.500,3.827)(3.000,4.540)(3.500,5.225)(4.000,5.878)(4.500,6.494)(5.000,7.071)(5.500,7.604)(6.000,8.090)(6.500,8.526)(7.000,8.910)(7.500,9.239)(8.000,9.511)(8.500,9.724)(9.000,9.877)(9.500,9.969)(10.000,10.000)(10.500,9.969)(11.000,9.877)(11.500,9.724)(12.000,9.511)(12.500,9.239)(13.000,8.910)(13.500,8.526)(14.000,8.090)(14.500,7.604)(15.000,7.071)(15.500,6.494)(16.000,5.878)(16.500,5.225)(17.000,4.540)(17.500,3.827)(18.000,3.090)(18.500,2.334)(19.000,1.564)(19.500,0.785)(20.000,0.000)(20.500,-0.785)(21.000,-1.564)(21.500,-2.334)(22.000,-3.090)(22.500,-3.827)(23.000,-4.540)(23.500,-5.225)(24.000,-5.878)(24.500,-6.494)(25.000,-7.071)(25.500,-7.604)(26.000,-8.090)(26.500,-8.526)(27.000,-8.910)(27.500,-9.239)(28.000,-9.511)(28.500,-9.724)(29.000,-9.877)(29.500,-9.969)(30.000,-10.000)(30.500,-9.969)(31.000,-9.877)(31.500,-9.724)(32.000,-9.511)(32.500,-9.239)(33.000,-8.910)(33.500,-8.526)(34.000,-8.090)(34.500,-7.604)(35.000,-7.071)(35.500,-6.494)(36.000,-5.878)(36.500,-5.225)(37.000,-4.540)(37.500,-3.827)(38.000,-3.090)(38.500,-2.334)(39.000,-1.564)(39.500,-0.785)(40.000,-0.000)(40.500,0.785)(41.000,1.564)(41.500,2.334)(42.000,3.090)(42.500,3.827)(43.000,4.540)(43.500,5.225)(44.000,5.878)(44.500,6.494)(45.000,7.071)(45.500,7.604)(46.000,8.090)(46.500,8.526)(47.000,8.910)(47.500,9.239)(48.000,9.511)(48.500,9.724)(49.000,9.877)(49.500,9.969)(50.000,10.000)(50.500,9.969)(51.000,9.877)(51.500,9.724)(52.000,9.511)(52.500,9.239)(53.000,8.910)(53.500,8.526)(54.000,8.090)(54.500,7.604)(55.000,7.071)(55.500,6.494)(56.000,5.878)(56.500,5.225)(57.000,4.540)(57.500,3.827)(58.000,3.090)(58.500,2.334)(59.000,1.564)(59.500,0.785)(60.000,0.000)(60.500,-0.785)(61.000,-1.564)(61.500,-2.334)(62.000,-3.090)(62.500,-3.827)(63.000,-4.540)(63.500,-5.225)(64.000,-5.878)(64.500,-6.494)(65.000,-7.071)(65.500,-7.604)(66.000,-8.090)(66.500,-8.526)(67.000,-8.910)(67.500,-9.239)(68.000,-9.511)(68.500,-9.724)(69.000,-9.877)(69.500,-9.969)(70.000,-10.000)(70.500,-9.969)(71.000,-9.877)(71.500,-9.724)(72.000,-9.511)(72.500,-9.239)(73.000,-8.910)(73.500,-8.526)(74.000,-8.090)(74.500,-7.604)(75.000,-7.071)(75.500,-6.494)(76.000,-5.878)(76.500,-5.225)(77.000,-4.540)(77.500,-3.827)(78.000,-3.090)(78.500,-2.334)(79.000,-1.564)(79.500,-0.785)(80.000,-0.000)(80.500,0.785)(81.000,1.564)(81.500,2.334)(82.000,3.090)(82.500,3.827)(83.000,4.540)(83.500,5.225)(84.000,5.878)(84.500,6.494)(85.000,7.071)(85.500,7.604)(86.000,8.090)(86.500,8.526)(87.000,8.910)(87.500,9.239)(88.000,9.511)(88.500,9.724)(89.000,9.877)(89.500,9.969)(90.000,10.000)(90.500,9.969)(91.000,9.877)(91.500,9.724)(92.000,9.511)(92.500,9.239)(93.000,8.910)(93.500,8.526)(94.000,8.090)(94.500,7.604)(95.000,7.071)(95.500,6.494)(96.000,5.878)(96.500,5.225)(97.000,4.540)(97.500,3.827)(98.000,3.090)(98.500,2.334)(99.000,1.564)(99.500,0.785)(100.000,0.000)(100.500,-0.785)(101.000,-1.564)(101.500,-2.334)(102.000,-3.090)(102.500,-3.827)(103.000,-4.540)(103.500,-5.225)(104.000,-5.878)(104.500,-6.494)(105.000,-7.071)(105.500,-7.604)(106.000,-8.090)(106.500,-8.526)(107.000,-8.910)(107.500,-9.239)(108.000,-9.511)(108.500,-9.724)(109.000,-9.877)(109.500,-9.969)(110.000,-10.000)(110.500,-9.969)(111.000,-9.877)(111.500,-9.724)(112.000,-9.511)(112.500,-9.239)(113.000,-8.910)(113.500,-8.526)(114.000,-8.090)(114.500,-7.604)(115.000,-7.071)(115.500,-6.494)(116.000,-5.878)(116.500,-5.225)(117.000,-4.540)(117.500,-3.827)(118.000,-3.090)(118.500,-2.334)(119.000,-1.564)(119.500,-0.785)(120.000,-0.000)}
+\put(3,0){\scriptsize$0$}\put(116,0){\scriptsize$2\pi$}\put(0,24){\scriptsize$1$}
+\end{picture}\\
+$\cos(4t)$\\
+\begin{picture}(130,29)
+\put(3,14){\vector(1,0){124}}\put(3,2){\vector(0,1){24}}
+\put(3,14){\polyline(0.000,10.000)(0.500,9.945)(1.000,9.781)(1.500,9.511)(2.000,9.135)(2.500,8.660)(3.000,8.090)(3.500,7.431)(4.000,6.691)(4.500,5.878)(5.000,5.000)(5.500,4.067)(6.000,3.090)(6.500,2.079)(7.000,1.045)(7.500,0.000)(8.000,-1.045)(8.500,-2.079)(9.000,-3.090)(9.500,-4.067)(10.000,-5.000)(10.500,-5.878)(11.000,-6.691)(11.500,-7.431)(12.000,-8.090)(12.500,-8.660)(13.000,-9.135)(13.500,-9.511)(14.000,-9.781)(14.500,-9.945)(15.000,-10.000)(15.500,-9.945)(16.000,-9.781)(16.500,-9.511)(17.000,-9.135)(17.500,-8.660)(18.000,-8.090)(18.500,-7.431)(19.000,-6.691)(19.500,-5.878)(20.000,-5.000)(20.500,-4.067)(21.000,-3.090)(21.500,-2.079)(22.000,-1.045)(22.500,-0.000)(23.000,1.045)(23.500,2.079)(24.000,3.090)(24.500,4.067)(25.000,5.000)(25.500,5.878)(26.000,6.691)(26.500,7.431)(27.000,8.090)(27.500,8.660)(28.000,9.135)(28.500,9.511)(29.000,9.781)(29.500,9.945)(30.000,10.000)(30.500,9.945)(31.000,9.781)(31.500,9.511)(32.000,9.135)(32.500,8.660)(33.000,8.090)(33.500,7.431)(34.000,6.691)(34.500,5.878)(35.000,5.000)(35.500,4.067)(36.000,3.090)(36.500,2.079)(37.000,1.045)(37.500,0.000)(38.000,-1.045)(38.500,-2.079)(39.000,-3.090)(39.500,-4.067)(40.000,-5.000)(40.500,-5.878)(41.000,-6.691)(41.500,-7.431)(42.000,-8.090)(42.500,-8.660)(43.000,-9.135)(43.500,-9.511)(44.000,-9.781)(44.500,-9.945)(45.000,-10.000)(45.500,-9.945)(46.000,-9.781)(46.500,-9.511)(47.000,-9.135)(47.500,-8.660)(48.000,-8.090)(48.500,-7.431)(49.000,-6.691)(49.500,-5.878)(50.000,-5.000)(50.500,-4.067)(51.000,-3.090)(51.500,-2.079)(52.000,-1.045)(52.500,-0.000)(53.000,1.045)(53.500,2.079)(54.000,3.090)(54.500,4.067)(55.000,5.000)(55.500,5.878)(56.000,6.691)(56.500,7.431)(57.000,8.090)(57.500,8.660)(58.000,9.135)(58.500,9.511)(59.000,9.781)(59.500,9.945)(60.000,10.000)(60.500,9.945)(61.000,9.781)(61.500,9.511)(62.000,9.135)(62.500,8.660)(63.000,8.090)(63.500,7.431)(64.000,6.691)(64.500,5.878)(65.000,5.000)(65.500,4.067)(66.000,3.090)(66.500,2.079)(67.000,1.045)(67.500,0.000)(68.000,-1.045)(68.500,-2.079)(69.000,-3.090)(69.500,-4.067)(70.000,-5.000)(70.500,-5.878)(71.000,-6.691)(71.500,-7.431)(72.000,-8.090)(72.500,-8.660)(73.000,-9.135)(73.500,-9.511)(74.000,-9.781)(74.500,-9.945)(75.000,-10.000)(75.500,-9.945)(76.000,-9.781)(76.500,-9.511)(77.000,-9.135)(77.500,-8.660)(78.000,-8.090)(78.500,-7.431)(79.000,-6.691)(79.500,-5.878)(80.000,-5.000)(80.500,-4.067)(81.000,-3.090)(81.500,-2.079)(82.000,-1.045)(82.500,-0.000)(83.000,1.045)(83.500,2.079)(84.000,3.090)(84.500,4.067)(85.000,5.000)(85.500,5.878)(86.000,6.691)(86.500,7.431)(87.000,8.090)(87.500,8.660)(88.000,9.135)(88.500,9.511)(89.000,9.781)(89.500,9.945)(90.000,10.000)(90.500,9.945)(91.000,9.781)(91.500,9.511)(92.000,9.135)(92.500,8.660)(93.000,8.090)(93.500,7.431)(94.000,6.691)(94.500,5.878)(95.000,5.000)(95.500,4.067)(96.000,3.090)(96.500,2.079)(97.000,1.045)(97.500,0.000)(98.000,-1.045)(98.500,-2.079)(99.000,-3.090)(99.500,-4.067)(100.000,-5.000)(100.500,-5.878)(101.000,-6.691)(101.500,-7.431)(102.000,-8.090)(102.500,-8.660)(103.000,-9.135)(103.500,-9.511)(104.000,-9.781)(104.500,-9.945)(105.000,-10.000)(105.500,-9.945)(106.000,-9.781)(106.500,-9.511)(107.000,-9.135)(107.500,-8.660)(108.000,-8.090)(108.500,-7.431)(109.000,-6.691)(109.500,-5.878)(110.000,-5.000)(110.500,-4.067)(111.000,-3.090)(111.500,-2.079)(112.000,-1.045)(112.500,-0.000)(113.000,1.045)(113.500,2.079)(114.000,3.090)(114.500,4.067)(115.000,5.000)(115.500,5.878)(116.000,6.691)(116.500,7.431)(117.000,8.090)(117.500,8.660)(118.000,9.135)(118.500,9.511)(119.000,9.781)(119.500,9.945)(120.000,10.000)}
+\put(3,0){\scriptsize$0$}\put(116,0){\scriptsize$2\pi$}\put(0,24){\scriptsize$1$}
+\end{picture}\\
+$\sin(5t)$\\
+\begin{picture}(130,29)
+\put(3,14){\vector(1,0){124}}\put(3,2){\vector(0,1){24}}
+\put(3,14){\polyline(0.000,0.000)(0.500,1.305)(1.000,2.588)(1.500,3.827)(2.000,5.000)(2.500,6.088)(3.000,7.071)(3.500,7.934)(4.000,8.660)(4.500,9.239)(5.000,9.659)(5.500,9.914)(6.000,10.000)(6.500,9.914)(7.000,9.659)(7.500,9.239)(8.000,8.660)(8.500,7.934)(9.000,7.071)(9.500,6.088)(10.000,5.000)(10.500,3.827)(11.000,2.588)(11.500,1.305)(12.000,0.000)(12.500,-1.305)(13.000,-2.588)(13.500,-3.827)(14.000,-5.000)(14.500,-6.088)(15.000,-7.071)(15.500,-7.934)(16.000,-8.660)(16.500,-9.239)(17.000,-9.659)(17.500,-9.914)(18.000,-10.000)(18.500,-9.914)(19.000,-9.659)(19.500,-9.239)(20.000,-8.660)(20.500,-7.934)(21.000,-7.071)(21.500,-6.088)(22.000,-5.000)(22.500,-3.827)(23.000,-2.588)(23.500,-1.305)(24.000,-0.000)(24.500,1.305)(25.000,2.588)(25.500,3.827)(26.000,5.000)(26.500,6.088)(27.000,7.071)(27.500,7.934)(28.000,8.660)(28.500,9.239)(29.000,9.659)(29.500,9.914)(30.000,10.000)(30.500,9.914)(31.000,9.659)(31.500,9.239)(32.000,8.660)(32.500,7.934)(33.000,7.071)(33.500,6.088)(34.000,5.000)(34.500,3.827)(35.000,2.588)(35.500,1.305)(36.000,0.000)(36.500,-1.305)(37.000,-2.588)(37.500,-3.827)(38.000,-5.000)(38.500,-6.088)(39.000,-7.071)(39.500,-7.934)(40.000,-8.660)(40.500,-9.239)(41.000,-9.659)(41.500,-9.914)(42.000,-10.000)(42.500,-9.914)(43.000,-9.659)(43.500,-9.239)(44.000,-8.660)(44.500,-7.934)(45.000,-7.071)(45.500,-6.088)(46.000,-5.000)(46.500,-3.827)(47.000,-2.588)(47.500,-1.305)(48.000,-0.000)(48.500,1.305)(49.000,2.588)(49.500,3.827)(50.000,5.000)(50.500,6.088)(51.000,7.071)(51.500,7.934)(52.000,8.660)(52.500,9.239)(53.000,9.659)(53.500,9.914)(54.000,10.000)(54.500,9.914)(55.000,9.659)(55.500,9.239)(56.000,8.660)(56.500,7.934)(57.000,7.071)(57.500,6.088)(58.000,5.000)(58.500,3.827)(59.000,2.588)(59.500,1.305)(60.000,0.000)(60.500,-1.305)(61.000,-2.588)(61.500,-3.827)(62.000,-5.000)(62.500,-6.088)(63.000,-7.071)(63.500,-7.934)(64.000,-8.660)(64.500,-9.239)(65.000,-9.659)(65.500,-9.914)(66.000,-10.000)(66.500,-9.914)(67.000,-9.659)(67.500,-9.239)(68.000,-8.660)(68.500,-7.934)(69.000,-7.071)(69.500,-6.088)(70.000,-5.000)(70.500,-3.827)(71.000,-2.588)(71.500,-1.305)(72.000,-0.000)(72.500,1.305)(73.000,2.588)(73.500,3.827)(74.000,5.000)(74.500,6.088)(75.000,7.071)(75.500,7.934)(76.000,8.660)(76.500,9.239)(77.000,9.659)(77.500,9.914)(78.000,10.000)(78.500,9.914)(79.000,9.659)(79.500,9.239)(80.000,8.660)(80.500,7.934)(81.000,7.071)(81.500,6.088)(82.000,5.000)(82.500,3.827)(83.000,2.588)(83.500,1.305)(84.000,0.000)(84.500,-1.305)(85.000,-2.588)(85.500,-3.827)(86.000,-5.000)(86.500,-6.088)(87.000,-7.071)(87.500,-7.934)(88.000,-8.660)(88.500,-9.239)(89.000,-9.659)(89.500,-9.914)(90.000,-10.000)(90.500,-9.914)(91.000,-9.659)(91.500,-9.239)(92.000,-8.660)(92.500,-7.934)(93.000,-7.071)(93.500,-6.088)(94.000,-5.000)(94.500,-3.827)(95.000,-2.588)(95.500,-1.305)(96.000,-0.000)(96.500,1.305)(97.000,2.588)(97.500,3.827)(98.000,5.000)(98.500,6.088)(99.000,7.071)(99.500,7.934)(100.000,8.660)(100.500,9.239)(101.000,9.659)(101.500,9.914)(102.000,10.000)(102.500,9.914)(103.000,9.659)(103.500,9.239)(104.000,8.660)(104.500,7.934)(105.000,7.071)(105.500,6.088)(106.000,5.000)(106.500,3.827)(107.000,2.588)(107.500,1.305)(108.000,0.000)(108.500,-1.305)(109.000,-2.588)(109.500,-3.827)(110.000,-5.000)(110.500,-6.088)(111.000,-7.071)(111.500,-7.934)(112.000,-8.660)(112.500,-9.239)(113.000,-9.659)(113.500,-9.914)(114.000,-10.000)(114.500,-9.914)(115.000,-9.659)(115.500,-9.239)(116.000,-8.660)(116.500,-7.934)(117.000,-7.071)(117.500,-6.088)(118.000,-5.000)(118.500,-3.827)(119.000,-2.588)(119.500,-1.305)(120.000,-0.000)}
+\put(3,0){\scriptsize$0$}\put(116,0){\scriptsize$2\pi$}\put(0,24){\scriptsize$1$}
+\end{picture}\\
+All corresponding difference plots: $1+\text{polynomial}-\text{identified function}$\\
+\begin{picture}(130,22)\put(3,3){\vector(1,0){124}}\put(3,1){\vector(0,1){19}}\put(3,13){\line(1,0){120}}\put(0,13){\scriptsize$1$}\put(116,0){\scriptsize$2\pi$}\end{picture}
+\end{tabular}\end{center}

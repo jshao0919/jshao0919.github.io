@@ -1,0 +1,160 @@
+\section{Applications to image processing and statistics}
+A data matrix has one observation in each \emph{column} and one measured variable in each row. Its mean column is $M=N^{-1}\sum_{k=1}^N X_k$. Subtract $M$ from every column to form $B$; then the sample covariance matrix is $S=BB^T/(N-1)$, for $N>1$.
+
+For a unit coefficient vector $c$, the scalar index $y=c^TX$ has variance $c^TSc$. The greatest possible variance is the largest eigenvalue of $S$, attained at a corresponding unit eigenvector. Principal component scores normally use the centered observation $X-M$. Centering changes an index by a constant and hence does not change its variance. Signs of principal component directions are arbitrary: reversing a unit eigenvector reverses every score but preserves its explained variance.
+
+\practice{7.5.P1}{Center the weight-height data and calculate covariance}
+The five-column mean is $M=(130,65)^T$. Subtracting it from every observation gives
+\[B=\begin{bmatrix}-10&-5&-5&5&15\\-4&-5&-1&3&7\end{bmatrix}.\]
+Each row sums to zero, checking the centering step. The cross-product is
+\[BB^T=\begin{bmatrix}400&190\\190&100\end{bmatrix}.\]
+Since the sample has $N=5$, divide by $N-1=4$:
+\[S=\frac14BB^T=\begin{bmatrix}100&\frac{95}{2}\\\frac{95}{2}&25\end{bmatrix}.\]
+Its diagonal entries are the weight and height sample variances; its off-diagonal entry is their sample covariance.
+
+\practice{7.5.P2}{A one-number size index}
+Diagonalizing the covariance matrix gives variances approximately $123.01859218$ and $1.98140782$. A unit direction for the larger one is
+\[c\approx\begin{bmatrix}0.899901\\0.436094\end{bmatrix}.\]
+Thus a centered size score is $y\approx0.899901(w-130)+0.436094(h-65)$. Its variance is the larger eigenvalue. The total variance is $\operatorname{tr}S=125$, so the fraction retained is $0.98414874$, or about $98.4149\%$. This index uses the original units specified by the question; standardizing the two variables to unit variance would define a different PCA problem.
+
+\exercise{7.5.1}{Center all observations and form the sample covariance}
+\step{Compute the mean of each row using all six observations.}
+\[M=\begin{bmatrix}12\\10\end{bmatrix}.\]
+\step{Subtract that column from every observation.}
+\[B=\begin{bmatrix}7&10&-6&-9&-10&8\\2&-4&-1&5&3&-5\end{bmatrix}.\]
+Each row sums to zero. This checks that no observation was omitted and that the rows and columns were not reversed.
+\step{Form the sample covariance with denominator $6-1$.}
+\[BB^T=\begin{bmatrix}430&-135\\-135&80\end{bmatrix},\qquad S=\frac15BB^T=\begin{bmatrix}86&-27\\-27&16\end{bmatrix}.\]
+For example, the off-diagonal entry is the sum of six products of paired centered measurements, divided by $5$. The two diagonal entries are sums of squares divided by $5$, so they are nonnegative as variances must be.
+
+\exercise{7.5.2}{Center all observations and form the sample covariance}
+\step{Compute the mean of each row using all six observations.}
+\[M=\begin{bmatrix}4\\9\end{bmatrix}.\]
+\step{Subtract that column from every observation.}
+\[B=\begin{bmatrix}-3&1&-2&2&3&-1\\-6&2&-3&-1&6&2\end{bmatrix}.\]
+Each row sums to zero. This checks that no observation was omitted and that the rows and columns were not reversed.
+\step{Form the sample covariance with denominator $6-1$.}
+\[BB^T=\begin{bmatrix}28&40\\40&90\end{bmatrix},\qquad S=\frac15BB^T=\begin{bmatrix}\frac{28}{5}&8\\8&18\end{bmatrix}.\]
+For example, the off-diagonal entry is the sum of six products of paired centered measurements, divided by $5$. The two diagonal entries are sums of squares divided by $5$, so they are nonnegative as variances must be.
+
+\exercise{7.5.3}{Find both principal component directions}
+Use the exact covariance matrix from Exercise 1:
+\[S=\begin{bmatrix}86&-27\\-27&16\end{bmatrix}.\]
+Its characteristic equation is $t^{2} - 102 t + 647=0$. In decreasing order its eigenvalues are approximately
+\[\lambda_1=95.20407221,\qquad\lambda_2=6.79592779.\]
+Choose the following orthonormal eigenvector columns, in that same order:
+\[P\approx\begin{bmatrix}0.946515&0.322659\\-0.322659&0.946515\end{bmatrix}.\]
+The two principal component scores are the entries of $Y=P^T(X-M)$, with mean
+\[M=\begin{bmatrix}12\\10\end{bmatrix}.\]
+Their covariance matrix is diagonal, $P^TSP=\operatorname{diag}(\lambda_1,\lambda_2)$, so they are uncorrelated. The first score explains about $93.33733\%$ of total variance; the second explains the remainder. A sign-reversed column gives an equivalent principal component.
+
+\exercise{7.5.4}{Find both principal component directions}
+Use the exact covariance matrix from Exercise 2:
+\[S=\begin{bmatrix}\frac{28}{5}&8\\8&18\end{bmatrix}.\]
+Its characteristic equation is $\frac{5 t^{2} - 118 t + 184}{5}=0$. In decreasing order its eigenvalues are approximately
+\[\lambda_1=21.92126474,\qquad\lambda_2=1.67873526.\]
+Choose the following orthonormal eigenvector columns, in that same order:
+\[P\approx\begin{bmatrix}0.440130&0.897934\\0.897934&-0.440130\end{bmatrix}.\]
+The two principal component scores are the entries of $Y=P^T(X-M)$, with mean
+\[M=\begin{bmatrix}4\\9\end{bmatrix}.\]
+Their covariance matrix is diagonal, $P^TSP=\operatorname{diag}(\lambda_1,\lambda_2)$, so they are uncorrelated. The first score explains about $92.88672\%$ of total variance; the second explains the remainder. A sign-reversed column gives an equivalent principal component.
+
+\exercise{7.5.5}{A leading principal component from a supplied covariance matrix}
+The full covariance matrix needed for this calculation is supplied in the exercise:
+\[S=\begin{bmatrix}\frac{4103}{25}&\frac{3273}{100}&\frac{2026}{25}\\\frac{3273}{100}&\frac{13486}{25}&\frac{24913}{100}\\\frac{2026}{25}&\frac{24913}{100}&\frac{18911}{100}\end{bmatrix}.\]
+No original satellite image is required to diagonalize this matrix. Compute its symmetric eigenproblem and normalize the eigenvector of largest eigenvalue. The eigenvalues, in decreasing order, are approximately
+\[(677.49712437,\ 181.58112062,\ 33.59175501).\]
+A maximizing unit direction is
+\[c\approx\begin{bmatrix}0.129554\\0.874423\\0.467547\end{bmatrix}.\]
+Thus $y_1=c_1\widehat x_1+c_2\widehat x_2+c_3\widehat x_3$, where the hats denote mean-deviation variables, is the first principal component. The uncentered combination has the same variance. The maximum variance is approximately $677.49712437$, and total variance is $\operatorname{tr}S=\frac{89267}{100}$. Therefore the explained fraction is
+\[\frac{\lambda_1}{\operatorname{tr}S}\approx 0.75895586,\quad\text{or }75.89559\%.\]
+The actual computation used the real symmetric eigenvalue routine:
+\begin{verbatim}
+eigenvalues,P = np.linalg.eigh(S)
+c = P[:,-1]
+print(c,eigenvalues[-1],
+      100*eigenvalues[-1]/np.trace(S))
+\end{verbatim}
+The maximum eigenvalue is the last one because \texttt{eigh} returns increasing order. A reversed eigenvector sign is equivalent. Orthogonality and the residual $Sc-\lambda_1c$ were checked at full precision before rounding.
+
+\exercise{7.5.6}{A leading principal component from a supplied covariance matrix}
+The full covariance matrix needed for this calculation is supplied in the exercise:
+\[S=\begin{bmatrix}\frac{741}{25}&\frac{919}{50}&5\\\frac{919}{50}&\frac{1041}{50}&\frac{703}{50}\\5&\frac{703}{50}&\frac{2921}{100}\end{bmatrix}.\]
+No original satellite image is required to diagonalize this matrix. Compute its symmetric eigenproblem and normalize the eigenvector of largest eigenvalue. The eigenvalues, in decreasing order, are approximately
+\[(51.69566979,\ 24.53510921,\ 3.43922100).\]
+A maximizing unit direction is
+\[c\approx\begin{bmatrix}0.615525\\0.599424\\0.511683\end{bmatrix}.\]
+Thus $y_1=c_1\widehat x_1+c_2\widehat x_2+c_3\widehat x_3$, where the hats denote mean-deviation variables, is the first principal component. The uncentered combination has the same variance. The maximum variance is approximately $51.69566979$, and total variance is $\operatorname{tr}S=\frac{7967}{100}$. Therefore the explained fraction is
+\[\frac{\lambda_1}{\operatorname{tr}S}\approx 0.64887247,\quad\text{or }64.88725\%.\]
+The actual computation used the real symmetric eigenvalue routine:
+\begin{verbatim}
+eigenvalues,P = np.linalg.eigh(S)
+c = P[:,-1]
+print(c,eigenvalues[-1],
+      100*eigenvalues[-1]/np.trace(S))
+\end{verbatim}
+The maximum eigenvalue is the last one because \texttt{eigh} returns increasing order. A reversed eigenvector sign is equivalent. Orthogonality and the residual $Sc-\lambda_1c$ were checked at full precision before rounding.
+
+\exercise{7.5.7}{A maximal-variance scalar combination}
+For the data in Exercise 1, the covariance matrix is
+\[S=\begin{bmatrix}86&-27\\-27&16\end{bmatrix}.\]
+Choose the unit coefficient direction
+\[c\approx\begin{bmatrix}0.946515\\-0.322659\end{bmatrix}.\]
+The requested uncentered variable is $y_1\approx (0.946515)x_1+(-0.322659)x_2$. Its variance is $c^TSc=\lambda_1\approx 95.20407221$, the maximum by the quadratic-form theorem. Using $x_1-M_1,x_2-M_2$ instead would simply subtract its mean and leave that variance unchanged.
+The total variance is $\operatorname{tr}S=102$, so the explained percentage is approximately $93.33733\%$. Both the unit-length constraint and the covariance eigenvector equation were checked before rounding the coefficients.
+
+\exercise{7.5.8}{A maximal-variance scalar combination}
+For the data in Exercise 2, the covariance matrix is
+\[S=\begin{bmatrix}\frac{28}{5}&8\\8&18\end{bmatrix}.\]
+Choose the unit coefficient direction
+\[c\approx\begin{bmatrix}0.440130\\0.897934\end{bmatrix}.\]
+The requested uncentered variable is $y_1\approx (0.440130)x_1+(0.897934)x_2$. Its variance is $c^TSc=\lambda_1\approx 21.92126474$, the maximum by the quadratic-form theorem. Using $x_1-M_1,x_2-M_2$ instead would simply subtract its mean and leave that variance unchanged.
+The total variance is $\operatorname{tr}S=\frac{118}{5}$, so the explained percentage is approximately $92.88672\%$. Both the unit-length constraint and the covariance eigenvector equation were checked before rounding the coefficients.
+
+\exercise{7.5.9}{A unit eigenvector maximizes the index variance}
+The sample variance of $y=c^TX$ is $c^TSc$, with $c^Tc=1$. The characteristic roots of the supplied symmetric matrix are $9,\ 6,\ 3$, with multiplicity. Its largest eigenvalue is $9$. Solving $(S-(9)I)c=0$ and normalizing gives
+\[c=\begin{bmatrix}\frac{1}{3}\\\frac{2}{3}\\\frac{2}{3}\end{bmatrix}.\]
+The exact checks are $c^Tc=1$ and $Sc=(9)c$. Hence the index
+\[y=(\frac{1}{3})x_1 + (\frac{2}{3})x_2 + (\frac{2}{3})x_3\]
+has the largest possible variance, $9$. This accounts for the fraction $\frac{1}{2}$ of the total variance $18$.
+
+\exercise{7.5.10}{A unit eigenvector maximizes the index variance}
+The sample variance of $y=c^TX$ is $c^TSc$, with $c^Tc=1$. The characteristic roots of the supplied symmetric matrix are $15,\ 3,\ 3$, with multiplicity. Its largest eigenvalue is $15$. Solving $(S-(15)I)c=0$ and normalizing gives
+\[c=\begin{bmatrix}\frac{\sqrt{6}}{6}\\\frac{\sqrt{6}}{3}\\\frac{\sqrt{6}}{6}\end{bmatrix}.\]
+The exact checks are $c^Tc=1$ and $Sc=(15)c$. Hence the index
+\[y=(\frac{\sqrt{6}}{6})x_1 + (\frac{\sqrt{6}}{3})x_2 + (\frac{\sqrt{6}}{6})x_3\]
+has the largest possible variance, $15$. This accounts for the fraction $\frac{5}{7}$ of the total variance $21$.
+
+\exercise{7.5.11}{Covariance identities and their dimensions}
+\step{(a) The transformed mean remains zero.}
+Write $B=[X_1\ \cdots\ X_N]$ and $C=[Y_1\ \cdots\ Y_N]=P^TB$. Since the original mean is zero, $\sum_kX_k=0$. Thus
+\[
+\frac1N\sum_kY_k=P^T\left(\frac1N\sum_kX_k\right)=0.
+\]
+Equivalently, $B\mathbf1=0$ implies $C\mathbf1=P^TB\mathbf1=0$. No orthogonality of $P$ is required.
+\step{(b) Compute the new covariance using part (a).}
+Because both matrices are already centered,
+\[
+S_Y=\frac1{N-1}CC^T
+=\frac1{N-1}P^TBB^TP=P^TSP.
+\]
+The transpose on $C^T$ reverses factors and gives $C^T=B^TP$, which explains the rightmost $P$.
+
+\exercise{7.5.12}{Covariance identities and their dimensions}
+For orthogonal $P$, the relation $X=PY$ is equivalent to $Y=P^TX$. Centering commutes with that linear change of variables, and Exercise 11 gives covariance $S_Y=P^TSP$. Total variance is the trace. The cyclic trace identity yields
+\[
+\operatorname{tr}(S_Y)=\operatorname{tr}(P^TSP)
+=\operatorname{tr}(SPP^T)=\operatorname{tr}(SI)=\operatorname{tr}(S).
+\]
+Thus orthogonal changes redistribute variance among new coordinate directions without creating or destroying its total. This proof also covers data not originally centered, because covariance first subtracts the transformed mean.
+
+\exercise{7.5.13}{Covariance identities and their dimensions}
+Let $M=N^{-1}\sum_{k=1}^NX_k$ and $B=[X_1-M\ \cdots\ X_N-M]$. Multiply the column partition of $B$ by the row partition of $B^T$:
+\[
+BB^T=\sum_{k=1}^N(X_k-M)(X_k-M)^T.
+\]
+Hence the sample covariance is
+\[
+\boxed{S=\frac1{N-1}\sum_{k=1}^N(X_k-M)(X_k-M)^T.}
+\]
+Every summand is a $p\times p$ outer-product matrix. Its $(i,j)$ entry is the product of the centered measurements of variables $i$ and $j$ in observation $k$. When $p=1$, the outer product is just the square $(t_k-m)^2$, giving exactly the usual scalar sample-variance formula. The sum has $N$ terms, one per observation; the lowercase $n$ printed as an upper bound in the displayed scalar formula should be read as that sample size.

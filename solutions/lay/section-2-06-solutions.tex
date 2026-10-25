@@ -1,0 +1,256 @@
+\section{The Leontief input--output model}
+The production vector $x$ must supply both intermediate consumption $Cx$
+and final demand $d$. Thus
+\[x=Cx+d,\qquad (I-C)x=d.\]
+Column $j$ of $C$ lists the amounts each sector supplies as inputs per
+unit produced in sector $j$. These columns need not sum to one; the
+remaining part includes value added. This is a different model from the
+closed exchange economy of Section 1.6.
+
+The vector $d$ is the external demand, not the total required production.
+When $I-C$ is invertible, $x=(I-C)^{-1}d$. For a single right side,
+solving $(I-C)x=d$ by elimination is often more efficient than computing
+an inverse. Respect the instructions against forming inverses in
+Exercises 2 and 3 below.
+
+\practice{2.6.P1}{Write each unit-consumption vector as a column}
+The Goods column is $(.2,.5)^T$ and the Services column is $(.4,.3)^T$.
+Hence
+\[x=\begin{bmatrix}.2&.4\\.5&.3\end{bmatrix}x+
+\begin{bmatrix}20\\30\end{bmatrix},\quad\text{or}\quad
+\begin{bmatrix}.8&-.4\\-.5&.7\end{bmatrix}x=
+\begin{bmatrix}20\\30\end{bmatrix}.\]
+The first row accounts for all Goods required, and the second accounts
+for all Services required. This sets up the requested model.
+
+\exercise{2.6.1}{Construct the three-sector consumption matrix}
+Use Manufacturing, Agriculture, Services as the order of rows and
+columns. The input columns described in the exercise give
+\[C=\begin{bmatrix}.10&.60&.60\\.30&.20&0\\.30&.10&.10\end{bmatrix}.\]
+For example producing one agricultural unit requires $.60$ unit
+from Manufacturing, $.20$ from Agriculture, and $.10$ from Services.
+If Agriculture produces $100$ units, its intermediate-demand vector
+is $100$ times that column:
+\[(60,20,10)^T.\]
+These are the inputs needed for that production plan, not a final-demand
+vector or a complete equilibrium production plan for all sectors.
+
+\exercise{2.6.2}{Meet agricultural final demand without computing an inverse}
+The final-demand vector is $(0,20,0)^T$. Multiplying the equations
+$(I-C)x=d$ by $10$ gives
+\[\left[\begin{array}{rrr|r}9&-6&-6&0\\-3&8&0&200\\-3&-1&9&0\end{array}\right].\]
+Swap rows 1 and 2. Then use $R_2\leftarrow R_2+3R_1$,
+$R_3\leftarrow R_3-R_1$, and $R_3\leftarrow2R_3+R_2$.
+The result is
+\[\left[\begin{array}{rrr|r}-3&8&0&200\\0&18&-6&600\\0&0&12&200\end{array}\right].\]
+Back substitution gives $x_S=50/3$,
+$x_A=(600+6(50/3))/18=350/9$, and
+$x_M=(8(350/9)-200)/3=1000/27$.
+\answer{$x=(1000/27,350/9,50/3)^T$. Substitution into the original
+model gives final demand $(0,20,0)^T$ exactly.}
+
+\exercise{2.6.3}{Meet manufacturing final demand by the same elimination}
+Now $d=(20,0,0)^T$, so the initial augmented right side after
+multiplying by $10$ is $(200,0,0)^T$.
+Use the same row swap and replacements listed in Exercise 2.6.2.
+They produce
+\[\left[\begin{array}{rrr|r}-3&8&0&0\\0&18&-6&200\\0&0&12&200\end{array}\right].\]
+Thus $x_S=50/3$, $x_A=(200+100)/18=50/3$, and
+$x_M=8(50/3)/3=400/9$.
+\answer{$x=(400/9,50/3,50/3)^T$. No inverse matrix was used.}
+
+\exercise{2.6.4}{Add the production responses to two demand vectors}
+The new demand $(20,20,0)^T$ is the sum of the demands in the two
+previous exercises. If $(I-C)x^{(a)}=d^{(a)}$ and
+$(I-C)x^{(b)}=d^{(b)}$, additivity gives
+$(I-C)(x^{(a)}+x^{(b)})=d^{(a)}+d^{(b)}$.
+Add the actual production vectors:
+\[x=\begin{bmatrix}1000/27\\350/9\\50/3\end{bmatrix}
++\begin{bmatrix}400/9\\50/3\\50/3\end{bmatrix}
+=\begin{bmatrix}2200/27\\500/9\\100/3\end{bmatrix}.\]
+The elimination pivots in Exercises 2 and 3 are nonzero, so the
+coefficient matrix is invertible and this solution is unique.
+
+\exercise{2.6.5}{Use the inverse requested in the problem}
+Here
+\[I-C=\begin{bmatrix}1&-1/2\\-3/5&4/5\end{bmatrix},\qquad
+\det(I-C)=\frac45-\frac3{10}=\frac12.\]
+The $2\times2$ inverse formula therefore gives
+\[(I-C)^{-1}=\begin{bmatrix}8/5&1\\6/5&2\end{bmatrix}.\]
+Multiplication by $(50,30)^T$ yields
+\[x=(80+30,60+60)^T=(110,120)^T.\]
+Check intermediate demand: $Cx=(60,90)^T$, so
+$Cx+d=(60+50,90+30)^T=x$.
+
+\exercise{2.6.6}{An inverse with a different determinant}
+Now
+\[I-C=\begin{bmatrix}4/5&-1/2\\-3/5&9/10\end{bmatrix},\qquad
+\det(I-C)=\frac{36}{50}-\frac3{10}=\frac{21}{50}.\]
+Consequently
+\[(I-C)^{-1}=\frac{50}{21}
+\begin{bmatrix}9/10&1/2\\3/5&4/5\end{bmatrix}
+=\begin{bmatrix}15/7&25/21\\10/7&40/21\end{bmatrix}.\]
+With $d=(16,12)^T$, the two coordinates are
+$240/7+100/7=340/7$ and $160/7+160/7=320/7$.
+\answer{$x=(340/7,320/7)^T$. This vector satisfies $(I-C)x=(16,12)^T$.}
+
+\exercise{2.6.7}{The effect of increasing final demand by one unit}
+Use the inverse from Exercise 2.6.5.
+\begin{enumerate}[label=(\alph*)]
+\item For demand $(1,0)^T$, the production vector is the first
+column of the inverse: $(8/5,6/5)^T$.
+\item For demand $(51,30)^T$, multiplication gives
+$x=((8/5)51+30,(6/5)51+60)^T=(558/5,606/5)^T$.
+\item The new demand is $(50,30)^T+(1,0)^T$. By distributivity of
+matrix multiplication, the new production is
+$(110,120)^T+(8/5,6/5)^T=(558/5,606/5)^T$.
+Thus the first inverse column records the whole economy's extra
+production needed for the one-unit increase in sector 1's final demand.
+\end{enumerate}
+
+\exercise{2.6.8}{Prove superposition and interpret an inverse column}
+The column-sum hypothesis guarantees $I-C$ invertible for a
+nonnegative consumption matrix. For instance if $q<1$ is the
+largest column sum, $z=Cz$ would give
+$\|z\|_1\le q\|z\|_1$, forcing $z=0$; the square-matrix theorem
+then gives invertibility.
+\begin{enumerate}[label=(\alph*)]
+\item The given equations are $(I-C)x=d$ and
+$(I-C)\Delta x=\Delta d$. Adding them gives
+$(I-C)(x+\Delta x)=d+\Delta d$. Uniqueness makes
+$x+\Delta x$ the new production vector.
+\item If $\Delta d=e_1=(1,0,\ldots,0)^T$, then
+$\Delta x=(I-C)^{-1}e_1$. Multiplication by $e_1$ selects column
+1 of any matrix, so it selects exactly the claimed inverse column.
+The same interpretation applies to column $j$ for an increase in
+sector $j$'s final demand.
+\end{enumerate}
+
+\exercise{2.6.9}{Solve a three-sector numerical production model}
+Multiply $(I-C)x=d$ by $10$:
+\[8x_1-2x_2=400,\qquad-3x_1+9x_2-3x_3=600,
+\qquad-x_1+8x_3=800.\]
+The third equation gives $x_1=8x_3-800$. Substituting into the first
+gives $x_2=32x_3-3400$. Insert both expressions in the middle equation:
+\[-3(8x_3-800)+9(32x_3-3400)-3x_3=600.\]
+Thus $261x_3=28800$, giving $x_3=3200/29$,
+$x_1=2400/29$, and $x_2=3800/29$.
+\answer{$x=(2400/29,3800/29,3200/29)^T$; direct substitution
+checks all three equations.}
+
+\exercise{2.6.10}{A demand increase affects every sector when every inverse entry is positive}
+An increase $h>0$ in final demand for sector $j$ is $\Delta d=he_j$.
+The production change is
+$\Delta x=h(I-C)^{-1}e_j$, namely $h$ times inverse column $j$.
+Every entry of that column is strictly positive by hypothesis.
+\answer{Production must rise in every sector, including sectors whose
+final demand did not change directly. Intermediate purchases transmit
+the increase throughout this model.}
+
+\exercise{2.6.11}{Verify the two GDP expressions algebraically}
+The production equation gives $d=(I-C)x$.
+The dual price equation gives $v=p-C^Tp$, so transposing yields
+$v^T=p^T-p^TC=p^T(I-C)$. Therefore
+\[p^Td=p^T(I-C)x=v^Tx.\]
+This uses associativity and the transpose identity
+$(C^Tp)^T=p^TC$; all three expressions are scalar values.
+It proves the equality without assuming an inverse for either equation.
+
+\exercise{2.6.12}{An iterative inverse from finite geometric sums}
+By definition $D_m=I+C+\cdots+C^m$. Multiplying by $C$ shifts
+every power up by one, so
+\[D_{m+1}=I+CD_m,\qquad D_0=I.\]
+Equivalently $D_{m+1}-D_m=C^{m+1}$. Thus repeatedly multiply
+the current matrix by $C$ and add $I$ to obtain the next approximation.
+To verify the limit, the finite telescoping identity is
+$(I-C)D_m=I-C^{m+1}$. The hypothesis $C^m\to0$ implies
+$I-C$ invertible: if $z=Cz$, then $z=C^mz\to0$, so $z=0$.
+Consequently
+\[D_m=(I-C)^{-1}(I-C^{m+1})\longrightarrow(I-C)^{-1}.\]
+The recurrence therefore approximates the requested inverse, not just
+an unexplained matrix sequence.
+
+\exercise{2.6.13}{Compute production for the supplied seven-sector economy}
+\step{Enter the supplied consumption data exactly.}
+To specify the data without ambiguous rounding, write
+\[C=\frac1{10000}\left[\begin{matrix}1588 & 64 & 25 & 304 & 14 & 83 & 1594\\57 & 2645 & 436 & 99 & 83 & 201 & 3413\\264 & 1506 & 3557 & 139 & 142 & 70 & 236\\3299 & 565 & 495 & 3636 & 204 & 483 & 649\\89 & 81 & 333 & 295 & 3412 & 237 & 20\\1190 & 901 & 996 & 1260 & 1722 & 2368 & 3369\\63 & 126 & 196 & 98 & 64 & 132 & 12\end{matrix}\right].\]
+Use the demand vector
+$d=(74000,56000,10500,25000,17500,196000,5000)^T$ in the
+same sector order as the problem. Solve $Mx=d$ with $M=I-C$;
+this is a seven-equation linear system, not a demand for external data.
+\step{Solve and check the residual before rounding.}
+Exact rational elimination gives the following values, rounded to six
+decimal places for display (units: millions of dollars):
+\[x\approx\begin{bmatrix}99575.653398\\97703.022863\\51230.523166\\
+131569.921929\\49488.491372\\329554.452570\\13835.335715\end{bmatrix}.\]
+The exact rational solution satisfies $Mx-d=0$ in every coordinate.
+The six-decimal display is only an approximation and need not have
+an identically zero numerical residual.
+To reproduce that exact calculation, define $C$ using the integer
+matrix above divided by $10000$, and run:
+\begin{verbatim}
+from sympy import Matrix, eye
+# C is the displayed integer matrix divided by 10000.
+d = Matrix([74000,56000,10500,25000,17500,196000,5000])
+M = eye(7) - C
+x = M.LUsolve(d)      # exact rational elimination
+assert M*x == d
+print(x.evalf(12))
+\end{verbatim}
+This solves the system without constructing an inverse. The displayed
+vector is the actual production plan, not merely an algorithm for finding it.
+
+\exercise{2.6.14}{Use the same coefficient matrix for a new demand}
+Keep the consumption matrix from Exercise 2.6.13 and change only
+the demand to
+\[d=(99640,75548,14444,33501,23527,263985,6526)^T.\]
+Solving $(I-C)x=d$ by exact arithmetic, then displaying six decimals,
+gives (again in millions of dollars)
+\[x\approx\begin{bmatrix}134033.615328\\131686.642968\\69471.699079\\
+176912.002023\\66595.556706\\443772.902077\\18431.177683\end{bmatrix}.\]
+The same reproduction code works with this new $d$.
+Checking the exact solution gives $(I-C)x-d=0$ coordinate by coordinate.
+A previously computed $LU$ factorization of $I-C$ can be reused;
+only its two triangular solves need be repeated.
+
+\exercise{2.6.15}{Count the actual number of iteration steps}
+Start with the specified $x^{(0)}=d$ from Exercise 2.6.13 and
+iterate $x^{(k+1)}=d+Cx^{(k)}$ without rounding intermediate values.
+We interpret ``to four significant figures'' as agreement, in all
+seven coordinates, with rounding the exact solution to four significant
+figures. The resulting target vector is
+\[\begin{bmatrix}9.958\times10^4\\9.770\times10^4\\5.123\times10^4\\
+1.316\times10^5\\4.949\times10^4\\3.296\times10^5\\1.384\times10^4\end{bmatrix}.\]
+Actual iteration gives these checks:
+\[\begin{array}{c|r|c}
+k&\max_i |x_i^{(k)}-x_i|/|x_i|&\text{all rounded entries agree?}\\\hline
+0&8.09987\times10^{-1}&\text{no}\\
+5&4.04043\times10^{-2}&\text{no}\\
+10&1.62676\times10^{-3}&\text{no}\\
+15&6.49063\times10^{-5}&\text{no}\\
+16&3.40686\times10^{-5}&\text{yes}
+\end{array}.\]
+At step 16, before rounding,
+\[x^{(16)}\approx\begin{bmatrix}
+99575.105594\\97701.855867\\51228.777814\\131566.362702\\
+49487.009311\\329550.480997\\13835.050858\end{bmatrix}.\]
+No preceding iterate has all seven required rounded values. At step
+15, for instance, the first coordinate is $99574.609463$, which
+rounds to $9.957\times10^4$, not $9.958\times10^4$.
+Here is a reproducible counting procedure using the exact $C,d$:
+\begin{verbatim}
+x_exact = (eye(7)-C).LUsolve(d)
+four = lambda v: [format(float(z), '.4g') for z in v]
+target = four(x_exact)
+xk = d
+k = 0
+while four(xk) != target:
+    xk = d + C*xk
+    k += 1
+assert k == 16
+\end{verbatim}
+The rational arithmetic prevents iteration-roundoff accumulation;
+the final formatting is used only for the specified comparison.
+\answer{With $x^{(0)}=d$ counted as step zero, 16 updates are needed.
+The usual relative-error check $\max_i |x_i^{(k)}-x_i|/|x_i|<5\times10^{-5}$
+also first holds at step 16 for these data.}

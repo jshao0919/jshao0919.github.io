@@ -1,0 +1,392 @@
+\section{Linear models in business, science, and engineering}
+A model begins by defining its variables and their units. Matrix columns
+then describe what one unit of each input contributes, and rows record
+one output requirement at a time. A mathematically consistent nutritional
+system is not physically feasible if it requires negative amounts of food.
+In a circuit, signs depend on the chosen loop directions and battery
+polarities. In a migration model, column $j$ records where people starting
+in region $j$ go, so its entries sum to $1$ when nobody leaves the system.
+The labels [M] in the text permit matrix software; exact reduced matrices
+and substitution checks are supplied below rather than treating a software
+answer as a substitute for interpreting the model.
+
+\practice{1.10.P1}{Express the diet example as a matrix equation}
+Let $x_1,x_2,x_3$ be the amounts of nonfat milk, soy flour, and whey,
+respectively, measured in $100$-gram units. Put the nutrient contributions
+per unit into columns and the targets into the right-hand side:
+\[
+ A=\begin{bmatrix}36&51&13\\52&34&74\\0&7&1.1\end{bmatrix},\qquad
+ x=\begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix},\qquad
+ b=\begin{bmatrix}33\\45\\3\end{bmatrix},\qquad Ax=b.
+\]
+The rows specify protein, carbohydrate, and fat in grams. For example,
+the first row says $36x_1+51x_2+13x_3=33$, so it adds the protein
+from all three ingredients. The actual food masses in grams are $100x_j$.
+
+\exercise{1.10.1}{A two-cereal mixture with four requirements}
+\step{(a) Define the serving counts and the vector equation.}
+Let $x$ be servings of Cheerios and $y$ servings of Natural Cereal.
+With rows ordered as calories, protein, carbohydrate, and fat,
+\[
+ x\begin{bmatrix}110\\4\\20\\2\end{bmatrix}
+ +y\begin{bmatrix}130\\3\\18\\5\end{bmatrix}
+ =\begin{bmatrix}295\\9\\48\\8\end{bmatrix}.
+\]
+\step{(b) Solve and check all the requirements.}
+The equivalent matrix equation is
+\[
+ \begin{bmatrix}110&130\\4&3\\20&18\\2&5\end{bmatrix}
+ \begin{bmatrix}x\\y\end{bmatrix}
+ =\begin{bmatrix}295\\9\\48\\8\end{bmatrix}.
+\]
+Use the protein equation $4x+3y=9$ and fat equation $2x+5y=8$.
+Subtract twice the latter from the former: $-7y=-7$, hence $y=1$.
+Then $2x+5=8$ gives $x=3/2$. Check the other rows:
+$110(3/2)+130=295$ and $20(3/2)+18=48$. Both serving
+counts are nonnegative, so the solution is physically meaningful.
+\answer{Mix $1.5$ servings of Cheerios with $1$ serving of Natural Cereal.}
+
+\exercise{1.10.2}{A specified mixture and a new nutritional target}
+\step{(a) Build the contribution matrix.}
+Order the rows as calories, protein, fiber, and fat, and the columns
+as Shredded Wheat and Crispix. Then
+\[
+ B=\begin{bmatrix}160&110\\5&2\\6&0.1\\1&0.4\end{bmatrix},\quad
+ u=\begin{bmatrix}3\\2\end{bmatrix},\quad
+ Bu=\begin{bmatrix}700\\19\\18.2\\3.8\end{bmatrix}.
+\]
+For instance the fiber amount is $6(3)+0.1(2)=18.2$ grams.
+\step{(b) Solve for the requested different mixture.}
+The desired equation is $B(x,y)^T=(130,3.20,2.46,0.64)^T$.
+Its reduced augmented matrix is
+\[
+ \begin{bmatrix}1&0&0.4\\0&1&0.6\\0&0&0\\0&0&0\end{bmatrix}.
+\]
+Thus $x=0.4$ and $y=0.6$. To check all rows, the totals are
+$64+66=130$ calories, $2+1.2=3.20$ protein, $2.4+0.06=2.46$
+fiber, and $0.4+0.24=0.64$ fat. These nonnegative proportions
+also add to one serving.
+\answer{The target is attainable with $0.4$ serving of Shredded Wheat
+and $0.6$ serving of Crispix.}
+
+\exercise{1.10.3}{Compare two versions of a lunch}
+Let $x,y,z$ be servings of the pasta dish, broccoli, and chicken.
+Use calories, protein, and fiber as the three rows. Solving each system
+requires all three targets, not only the calories.
+\step{(a) Use the original Mac and Cheese.}
+\[
+ \begin{bmatrix}270&51&70\\10&5.4&15\\2&5.2&0\end{bmatrix}
+ \begin{bmatrix}x\\y\\z\end{bmatrix}
+ =\begin{bmatrix}400\\30\\10\end{bmatrix}.
+\]
+Exact row reduction, treating the decimals as the stated rational
+numbers, gives
+\[
+ [A\mid b]\sim
+ \begin{bmatrix}1&0&0&8205/8323\\0&1&0&12850/8323\\0&0&1&6550/8323\end{bmatrix}.
+\]
+Hence $(x,y,z)\approx(0.98582,1.54391,0.78698)$. Every variable
+is determined by a pivot, so the solution is unique. Substituting the
+exact fractions into the original three rows gives $(400,30,10)^T$.
+All three fractions are positive, so the mixture is feasible.
+\step{(b) Replace the pasta column by the whole-wheat-shells data.}
+Only that ingredient's column changes:
+\[
+ \begin{bmatrix}260&51&70\\9&5.4&15\\5&5.2&0\end{bmatrix}
+ \begin{bmatrix}x\\y\\z\end{bmatrix}
+ =\begin{bmatrix}400\\30\\10\end{bmatrix}.
+\]
+Reduction gives $(x,y,z)=(5470,4400,5180)/5023$, approximately
+$(1.08899,0.87597,1.03126)$. Substitution again gives exactly
+$400$ calories, $30$ grams protein, and $10$ grams fiber before
+rounding. The broccoli portion drops from about $1.54$ to $0.88$
+serving, in line with the stated preference.
+\answer{To two decimal places the mixtures are $(0.99,1.54,0.79)$
+and $(1.09,0.88,1.03)$ servings in the stated ingredient order.
+Use the exact fractions for exact nutritional totals.}
+
+\exercise{1.10.4}{A consistent diet equation can be physically impossible}
+\step{(a) Specify the four variables and four nutrient rows.}
+Let $x_1,x_2,x_3,x_4$ be $100$-gram units of nonfat milk, soy flour,
+whey, and isolated soy protein. In the row order protein,
+carbohydrate, fat, calcium, the equation is
+\[
+ \begin{bmatrix}
+ 36&51&13&80\\52&34&74&0\\0&7&1.1&3.4\\1.26&0.19&0.8&0.18
+ \end{bmatrix}
+ \begin{bmatrix}x_1\\x_2\\x_3\\x_4\end{bmatrix}
+ =\begin{bmatrix}33\\45\\3\\0.8\end{bmatrix}.
+\]
+Each coefficient is grams of that nutrient per $100$ grams of ingredient.
+\step{(b) Solve and interpret the signs.}
+Exact reduction yields the unique solution
+\[
+ x=\begin{bmatrix}
+ 2264687/3531104\\1921341/3531104\\-326887/3531104\\-1468529/7062208
+ \end{bmatrix}
+ \approx\begin{bmatrix}0.64135\\0.54412\\-0.09257\\-0.20794\end{bmatrix}.
+\]
+Multiplication of the exact vector by the original matrix reproduces
+all four targets, so the algebraic equations are consistent. But the
+whey and isolated-protein amounts are negative. One cannot subtract
+food already absent from the mixture, so this unique algebraic solution
+is not a permissible recipe. Because it is unique, there is no different
+nonnegative solution to these same equations.
+\answer{These four ingredients cannot meet all four targets with
+nonnegative amounts under the supplied nutrient data.}
+
+\textbf{Circuit convention for Exercises 5--8.}
+Use the counterclockwise loop directions drawn in the textbook.
+For each loop, add all resistances on its boundary to get the diagonal
+coefficient. A shared resistor carries the difference of the adjacent
+loop currents, so its resistance enters the neighboring column with a
+minus sign. On the right, crossing a battery from its short plate to
+its long plate contributes a positive voltage; the reverse crossing
+contributes a negative voltage. These rules explain every sign in
+$Ri=v$. A negative current means the actual direction is opposite
+to the assumed counterclockwise direction.
+
+
+\exercise{1.10.5}{Derive the loop equations and solve them}
+
+The four diagonal resistance sums are $1+1+4+5=11$, $3+5+1+1=10$, $4+1+2+2=9$, and $1+2+3+4=10$. The successive shared resistances are $5,1,2$. Battery crossings give $20+30=50$, $-30-10=-40$, $10+20=30$, and $-20-10=-30$ volts.
+
+Thus, in amperes, the matrix equation is
+\[ \begin{bmatrix}11 & -5 & 0 & 0\\-5 & 10 & -1 & 0\\0 & -1 & 9 & -2\\0 & 0 & -2 & 10\end{bmatrix}\begin{bmatrix}I_{1}\\I_{2}\\I_{3}\\I_{4}\end{bmatrix}=\begin{bmatrix}50\\-40\\30\\-30\end{bmatrix}.\]
+
+Exact elimination of this augmented system gives a pivot in every variable column and hence the unique solution
+\[ i=\begin{bmatrix}\frac{265}{72}\\- \frac{137}{72}\\\frac{185}{72}\\- \frac{179}{72}\end{bmatrix}\approx \begin{bmatrix}3.6806\\-1.9028\\2.5694\\-2.4861\end{bmatrix}.\]
+
+The displayed exact fractions satisfy $Ri=v$ in every row. For example, the first row computes $50$, the first specified net voltage. All remaining rows were checked by the same substitution. Interpret a minus sign as a direction reversal rather than a negative physical magnitude.
+
+
+\exercise{1.10.6}{Derive the loop equations and solve them}
+
+The diagonal sums are $3+2+1=6$, $1+4+4=9$, $4+1+2=7$, and $2+2+3=7$. Adjacent loops share resistances $1,4,2$. Every battery on the left is crossed from short plate to long plate in the chosen direction, giving voltages $30,20,40,10$.
+
+Thus, in amperes, the matrix equation is
+\[ \begin{bmatrix}6 & -1 & 0 & 0\\-1 & 9 & -4 & 0\\0 & -4 & 7 & -2\\0 & 0 & -2 & 7\end{bmatrix}\begin{bmatrix}I_{1}\\I_{2}\\I_{3}\\I_{4}\end{bmatrix}=\begin{bmatrix}30\\20\\40\\10\end{bmatrix}.\]
+
+Exact elimination of this augmented system gives a pivot in every variable column and hence the unique solution
+\[ i=\begin{bmatrix}\frac{3630}{571}\\\frac{4650}{571}\\\frac{6700}{571}\\\frac{2730}{571}\end{bmatrix}\approx \begin{bmatrix}6.3573\\8.1436\\11.734\\4.7811\end{bmatrix}.\]
+
+The displayed exact fractions satisfy $Ri=v$ in every row. For example, the first row computes $30$, the first specified net voltage. All remaining rows were checked by the same substitution. Interpret a minus sign as a direction reversal rather than a negative physical magnitude.
+
+
+\exercise{1.10.7}{Derive the loop equations and solve them}
+
+Keep the order $I_1$ upper left, $I_2$ lower left, $I_3$ lower right, $I_4$ upper right. The diagonal sums are $1+7+4=12$, $7+6+2=15$, $6+5+3=14$, and $4+5+4=13$. Shared resistances are $7$ between loops 1 and 2, $6$ between 2 and 3, $5$ between 3 and 4, and $4$ between 4 and 1. The source voltages are $40,30,20,-10$; the last is negative because loop 4 crosses that battery against its positive direction.
+
+Thus, in amperes, the matrix equation is
+\[ \begin{bmatrix}12 & -7 & 0 & -4\\-7 & 15 & -6 & 0\\0 & -6 & 14 & -5\\-4 & 0 & -5 & 13\end{bmatrix}\begin{bmatrix}I_{1}\\I_{2}\\I_{3}\\I_{4}\end{bmatrix}=\begin{bmatrix}40\\30\\20\\-10\end{bmatrix}.\]
+
+Exact elimination of this augmented system gives a pivot in every variable column and hence the unique solution
+\[ i=\begin{bmatrix}\frac{119910}{10487}\\\frac{110640}{10487}\\\frac{84270}{10487}\\\frac{61240}{10487}\end{bmatrix}\approx \begin{bmatrix}11.434\\10.55\\8.0357\\5.8396\end{bmatrix}.\]
+
+The displayed exact fractions satisfy $Ri=v$ in every row. For example, the first row computes $40$, the first specified net voltage. All remaining rows were checked by the same substitution. Interpret a minus sign as a direction reversal rather than a negative physical magnitude.
+
+
+\exercise{1.10.8}{Derive the loop equations and solve them}
+
+The loop order is the four outer regions $1,2,3,4$, then the central diamond $5$. Their diagonal sums are $3+1+4+1=9$, $1+1+3+2=7$, $2+2+3+3=10$, $1+1+2+3=7$, and $4+3+3+2=12$. The central loop shares resistances $4,3,3,2$ with the four outer loops. Additional shared stems are $1$ between 1 and 4, $1$ between 1 and 2, $2$ between 2 and 3, and $3$ between 3 and 4. Its own battery contribution is zero; the outer contributions are $50,-30,20,-40$.
+
+Thus, in amperes, the matrix equation is
+\[ \begin{bmatrix}9 & -1 & 0 & -1 & -4\\-1 & 7 & -2 & 0 & -3\\0 & -2 & 10 & -3 & -3\\-1 & 0 & -3 & 7 & -2\\-4 & -3 & -3 & -2 & 12\end{bmatrix}\begin{bmatrix}I_{1}\\I_{2}\\I_{3}\\I_{4}\\I_{5}\end{bmatrix}=\begin{bmatrix}50\\-30\\20\\-40\\0\end{bmatrix}.\]
+
+Exact elimination of this augmented system gives a pivot in every variable column and hence the unique solution
+\[ i=\begin{bmatrix}\frac{3019}{755}\\- \frac{3309}{755}\\- \frac{683}{755}\\- \frac{4382}{755}\\- \frac{722}{755}\end{bmatrix}\approx \begin{bmatrix}3.9987\\-4.3828\\-0.90464\\-5.804\\-0.95629\end{bmatrix}.\]
+
+The displayed exact fractions satisfy $Ri=v$ in every row. For example, the first row computes $50$, the first specified net voltage. All remaining rows were checked by the same substitution. Interpret a minus sign as a direction reversal rather than a negative physical magnitude.
+
+
+\textbf{Migration convention for Exercises 9--13.}
+Put the current populations into a column vector. In each migration
+matrix, column $j$ tells what fractions of starting population $j$
+arrive in the various destinations. Thus $x_{k+1}=Mx_k$ and two
+years later means $x_2=M(Mx_0)$, not $Mx_0$.
+
+\exercise{1.10.9}{A seven-percent outward migration rate}
+Let $x_k=(c_k,s_k)^T$ denote city and suburban populations $k$
+years after 2010. The matrix and initial population are
+\[
+ M=\begin{bmatrix}0.93&0.05\\0.07&0.95\end{bmatrix},\qquad
+ x_0=\begin{bmatrix}800000\\500000\end{bmatrix},\qquad x_{k+1}=Mx_k.
+\]
+For example $c_{k+1}=0.93c_k+0.05s_k$: city residents who stay
+plus suburban residents who move into the city. First multiplication
+gives $x_1=(769000,531000)^T$. Multiplying once more gives
+\[
+ x_2=\begin{bmatrix}741720\\558280\end{bmatrix}.
+\]
+The total remains $1300000$, as a check on the column sums and arithmetic.
+\answer{In 2012 the model predicts $741720$ city residents and
+$558280$ suburban residents.}
+
+\exercise{1.10.10}{A six-percent outward migration rate}
+With city first and suburbs second,
+\[
+ M=\begin{bmatrix}0.94&0.04\\0.06&0.96\end{bmatrix},\quad
+ x_0=\begin{bmatrix}10000000\\800000\end{bmatrix},\quad x_{k+1}=Mx_k.
+\]
+Here the first column says $94\%$ of city residents stay and
+$6\%$ move to the suburbs. The second says $4\%$ move in and
+$96\%$ stay in the suburbs. Successive multiplications give
+\[
+ x_1=\begin{bmatrix}9432000\\1368000\end{bmatrix},\qquad
+ x_2=\begin{bmatrix}8920800\\1879200\end{bmatrix}.
+\]
+Both totals equal the initial $10800000$.
+\answer{The 2012 prediction is $8920800$ in the city and $1879200$
+in the suburbs, subject to the model's exclusions.}
+
+\exercise{1.10.11}{Estimate migration rates before iterating}
+\step{(a) Divide each flow by its population of origin.}
+The fraction leaving California is
+$516100/31524000\approx0.0163716533$, hence $0.01637$ to five
+decimal places. The fraction moving into California from elsewhere
+is $381262/228680000\approx0.0016672293$, hence $0.00167$.
+Put California first. The rounded migration model is
+\[
+ M=\begin{bmatrix}0.98363&0.00167\\0.01637&0.99833\end{bmatrix},\qquad
+ x_0=\begin{bmatrix}31524000\\228680000\end{bmatrix}.
+\]
+The diagonal entries are the complements of the corresponding
+outward rates, not independently rounded unrelated quantities.
+\step{(b) Apply six annual steps to reach 2000.}
+Compute $x_{k+1}=Mx_k$ six times, retaining full arithmetic with
+the specified five-place coefficients. The result is
+\[
+ x_6\approx\begin{bmatrix}30754526.4814\\229449473.5186\end{bmatrix}.
+\]
+To the nearest person, these are $30754526$ in California and
+$229449474$ elsewhere. Their sum is the unchanged total $260204000$.
+The fractional entries before rounding are population estimates, not
+literal fractional people. Using unrounded migration rates would yield
+slightly different estimates, so it is important to state which rates were used.
+\answer{The model predicts about $30.755$ million in California and
+$229.449$ million elsewhere, with births, deaths, and international
+migration excluded as required.}
+
+\exercise{1.10.12}{Follow a fleet through two daily transitions}
+Use the order airport, east, west. The columns correspond to the
+rental origin and rows to the return location, so
+\[
+ M=\begin{bmatrix}0.97&0.05&0.10\\0&0.90&0.05\\0.03&0.05&0.85\end{bmatrix},
+ \qquad x_0=\begin{bmatrix}295\\55\\150\end{bmatrix}.
+\]
+Monday to Tuesday gives $x_1=Mx_0=(303.9,57,139.1)^T$.
+Tuesday to Wednesday gives
+\[
+ x_2=Mx_1=\begin{bmatrix}311.543\\58.255\\130.202\end{bmatrix}.
+\]
+For example the first entry is $0.97(303.9)+0.05(57)+0.10(139.1)$.
+The three entries sum to $500$ before rounding, matching the fleet size.
+\answer{Approximately $312$ cars at the airport, $58$ at the east
+location, and $130$ at the west location on Wednesday.}
+
+\exercise{1.10.13}{Twenty iterations and their limiting pattern}
+The source model uses
+$M=\begin{bmatrix}0.95&0.03\\0.05&0.97\end{bmatrix}$.
+The total population is $1000000$ in both parts. Therefore, if $c_k$
+is the city population, the suburb population is $1000000-c_k$,
+and the first row of the recurrence becomes
+\[
+ c_{k+1}=0.95c_k+0.03(1000000-c_k)=0.92c_k+30000.
+\]
+Subtract $375000$ from both sides to obtain
+$c_{k+1}-375000=0.92(c_k-375000)$. Repeated substitution gives
+\[
+ c_k=375000+(c_0-375000)(0.92)^k,\qquad s_k=1000000-c_k.
+\]
+This formula both checks the matrix iterations and explains their pattern.
+\step{(a) Start from $(600000,400000)^T$.}
+The city component is $375000+225000(0.92)^k$.
+\step{(b) Start from $(350000,650000)^T$.}
+The city component is $375000-25000(0.92)^k$.
+The following table lists all twenty requested vectors, with entries
+rounded to the nearest person only for display.
+\begin{center}
+\begin{tabular}{r|rr|rr}
+ &\multicolumn{2}{c|}{Part (a)}&\multicolumn{2}{c}{Part (b)}\\
+$k$&City&Suburbs&City&Suburbs\\\hline
+
+1&582000&418000&352000&648000\\
+2&565440&434560&353840&646160\\
+3&550205&449795&355533&644467\\
+4&536188&463812&357090&642910\\
+5&523293&476707&358523&641477\\
+6&511430&488570&359841&640159\\
+7&500515&499485&361054&638946\\
+8&490474&509526&362170&637830\\
+9&481236&518764&363196&636804\\
+10&472737&527263&364140&635860\\
+11&464918&535082&365009&634991\\
+12&457725&542275&365808&634192\\
+13&451107&548893&366544&633456\\
+14&445018&554982&367220&632780\\
+15&439417&560583&367843&632157\\
+16&434264&565736&368415&631585\\
+17&429522&570478&368942&631058\\
+18&425161&574839&369427&630573\\
+19&421148&578852&369872&630128\\
+20&417456&582544&370283&629717\\
+
+\end{tabular}\end{center}
+Since $0<0.92<1$, its powers tend to zero. In (a) the city
+population decreases toward $375000$, passing below the suburban
+population between years $7$ and $8$ (first below at the year-$8$ update).
+In (b) it increases toward the same
+$375000$. The suburb populations approach $625000$ from the
+opposite sides. The common limiting proportions come from the
+migration rule, not from the initial distribution.
+\answer{Both initial distributions tend to $(375000,625000)^T$,
+but they approach it from different sides.}
+
+\exercise{1.10.14}{Temperature models obey superposition}
+\step{(a) Write one averaging equation for each interior point.}
+Order the points as $1$ upper left, $2$ upper right, $3$ lower right,
+$4$ lower left, as in the diagrams. Moving the two interior-neighbor
+temperatures to the left gives the common coefficient matrix
+\[
+ K=\begin{bmatrix}4&-1&0&-1\\-1&4&-1&0\\0&-1&4&-1\\-1&0&-1&4\end{bmatrix}.
+\]
+For plate A, each point touches boundary temperatures $20$ and $0$,
+so $KT_A=(20,20,20,20)^T$. Direct substitution gives
+$T_A=(10,10,10,10)^T$.
+For plate B, the two relevant boundary values sum to $10,40,50,20$
+in point order. Thus $KT_B=(10,40,50,20)^T$, and solving gives
+\[
+ T_B=(10,17.5,20,12.5)^T.
+\]
+For example its first equation is $4(10)-17.5-12.5=10$,
+and its third is $4(20)-17.5-12.5=50$.
+Their sum is
+\[
+ T_A+T_B=(20,27.5,30,22.5)^T,
+\]
+exactly the temperature list cited from Section 1.1. The boundary
+data there are the sums of these two plates' boundary data, so the
+same additivity appears at the interior points.
+\step{(b) Triple all of plate A's boundary temperatures.}
+The new right-hand side is $(60,60,60,60)^T$, three times the
+old one. Hence $T=(30,30,30,30)^T=3T_A$. This is also
+checked directly: each row is $4(30)-30-30=60$.
+\step{(c) Formulate and justify the general rule.}
+The map from the eight boundary values to the four interior values
+is linear: adding boundary data adds interior solutions, and scaling
+boundary data scales the interior solution. To justify uniqueness,
+if two solutions existed, their difference $z$ would satisfy $Kz=0$.
+Choose a component whose absolute value is largest, say $|z_i|=L$.
+Its equation gives $4L\le2L$, since there are two neighboring
+components, each of absolute value at most $L$. Thus $L=0$ and
+$z=0$. There cannot be two distinct solutions.
+Existence for every right-hand side $b$ can be verified directly by
+substitution in the explicit solution formula
+\[
+ T=\frac1{24}
+ \begin{bmatrix}7&2&1&2\\2&7&2&1\\1&2&7&2\\2&1&2&7\end{bmatrix}b.
+\]
+Each $b_i$ is a sum of two boundary values, so both stages of the
+construction use only fixed linear combinations.
+\answer{The interior-temperature map is linear. Its additivity
+explains part (a), and its homogeneity explains part (b).}

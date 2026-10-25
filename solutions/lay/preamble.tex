@@ -1,0 +1,75 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{booktabs,array}
+\usepackage{pict2e}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\definecolor{mathjockgreen}{HTML}{355439}
+\hypersetup{colorlinks=true,linkcolor=mathjockgreen,urlcolor=mathjockgreen,
+  pdftitle={Lay Linear Algebra and Its Applications: worked solutions},
+  pdfauthor={Mathjock},pdfsubject={Detailed worked solutions, fourth edition}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\setlength{\headheight}{14pt}
+\setlist[enumerate]{leftmargin=*,itemsep=0.4em,topsep=0.4em}
+\setlist[itemize]{leftmargin=*,itemsep=0.25em}
+\allowdisplaybreaks
+\emergencystretch=2em
+% Leave a visible gap after two-digit exercise numbers in the contents.
+\makeatletter
+% Chapter.section and supplementary labels need more room than article's
+% default 1.5em section-number box, especially for labels such as 3.S.
+\renewcommand*{\l@section}[2]{\begingroup\bfseries
+  \@dottedtocline{1}{0em}{3em}{#1}{#2}\endgroup}
+\renewcommand*{\l@subsection}{\@dottedtocline{2}{1.5em}{3.5em}}
+\makeatother
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Mathjock \textbar\ Lay, fourth edition}
+\fancyhead[R]{\small Step-by-step solutions}
+\fancyfoot[C]{\thepage}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\makeatletter
+\newcommand{\exercise}[2]{\subsection*{Exercise #1: #2}\addcontentsline{toc}{subsection}{Exercise #1: #2}\def\@currentlabel{#1}\label{ex:#1}}
+\makeatother
+\newcommand{\goal}{\par\textbf{What we must show.} }
+\newcommand{\idea}{\par\textbf{Plan.} }
+\newcommand{\step}[1]{\par\medskip\textbf{#1}\par}
+\newcommand{\answer}[1]{\par\textbf{Conclusion.} #1\par}
+\newcommand{\C}{\mathbb{C}}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\Col}{Col}
+\DeclareMathOperator{\Nul}{Nul}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\dist}{dist}
+\newcommand{\practice}[2]{\subsection*{Practice problem #1: #2}\addcontentsline{toc}{subsection}{Practice problem #1: #2}}
+\newcommand{\bookinfo}{%
+\textbf{Text and numbering.} David C. Lay, \emph{Linear Algebra and Its
+Applications}, fourth edition (Pearson, 2012), as supplied in the textbook
+PDF linked on Mathjock. Labels give chapter, section, and exercise number;
+for example, 1.2.3 is Exercise 3 in Section 1.2. A P label denotes a practice
+problem, and S denotes a chapter supplementary exercise.
+These are independently written solutions, not a publisher's solutions manual.
+Short descriptions identify the problems; consult the textbook for the full
+original statements.\par
+\textbf{Source scope.} The supplied textbook contains printed Chapters~1--8.
+Its separately published online Chapters~9--10 are absent from that PDF and
+are not included in this collection.\par
+\textbf{How to read the solutions.} Start with the section's definitions.
+For a calculation, follow the row operations and substitute the result into
+the original equations. For a proof, identify the assumptions, the desired
+conclusion, and why each implication follows. Free variables are parameters,
+not values that should be silently set to zero. Unless otherwise specified,
+scalars are real; complex arithmetic is used where the problem requires it.
+}
