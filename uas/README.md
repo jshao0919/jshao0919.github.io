@@ -2,11 +2,16 @@
 
 A static, interactive public-information course at [uas/](./index.html). It
 runs on GitHub Pages without a backend, account, external libraries, fonts,
-tracking, or runtime network requests beyond its own files.
+or tracking. The core course uses its own files. An optional image-search feature
+connects directly to Wikimedia only when the learner selects **Load source images**.
 
 The course includes ten beginner lessons, 32 family/naming entries, two science
 labs, 44 explained assessment questions, a fictional observation-writing
-exercise, a glossary, and a complete [printable workbook](workbook.html).
+exercise, a glossary, and a complete [printable workbook](workbook.html). Each
+atlas entry also has a model-study page with design vocabulary and individually
+selectable public image searches. The first three lessons now emphasize archived
+photographs, anatomy terms, and the distinction between a caption and a verified
+model attribution.
 Suggested lesson study and reflection total approximately 145 minutes; allow
 three to four hours for the course with labs, atlas exploration, and assessment.
 These are pacing suggestions, not timed requirements.
@@ -17,7 +22,33 @@ This is a broad educational survey, **not an exhaustive or current inventory**
 of Iranian aircraft. Historical families, reported variants, ambiguous names,
 and regional associations are distinguished. A matching shape does not establish
 origin, operator, intent, or exact variant. Icons depict generic configurations;
-they are not photographs or dimensionally accurate identification plates.
+they are not photographs or dimensionally accurate identification plates. The
+model-study pages provide historical source literacy, not diagnostic comparison
+drills or operational aircraft identification training.
+
+### Public image study
+
+All 32 entries have explicit Wikimedia Commons searches (44 separately selectable
+designations, including grouped variants). The user chooses a name and opts in to
+one search. The browser requests up to six source records and eligible thumbnails
+directly from Wikimedia. A query is never silently broadened or replaced with an
+image of another model. Results may include photographs, diagrams, exhibits,
+unrelated material, or mislabeled files; **model identity is not verified**.
+
+The gallery keeps source descriptions, creator credit, stated dates, reported
+reuse terms, and original Commons file links alongside the image. Descriptions
+are plain-text excerpts; full metadata is available on the linked file page.
+Images are displayed without cropping or added annotations. Missing results,
+rejected metadata, failed thumbnails, and network errors have explicit states
+and a direct archive-search fallback. The static workbook contains search links
+and the same study vocabulary, without making external requests or embedding
+unverified photographs.
+
+External Commons access was blocked during development. The integration was
+tested with clearly synthetic API fixtures; this does **not** establish live
+availability or verified photographic coverage of every model. No generated or
+test image is presented as an OSINT photograph. Source labels are claims to
+investigate, not identification evidence certified by this course.
 
 The counter-UAS material covers general safety, observation, reporting,
 coordination, uncertainty, and authorized responsibilities. It supplies no weapon
@@ -41,9 +72,9 @@ self-study score is not an operational qualification.
 
 ## Course organization
 
-1. UAS fundamentals, names, variants, and aliases.
-2. Observable features, perspective, and calibrated uncertainty.
-3. Iranian family names and public-reference limitations.
+1. Read archived aircraft images: source claims, dates, attribution, and licenses.
+2. Understand broad airframe anatomy and photographic perspective.
+3. Study named families through historical captions and provenance.
 4. Detection, tracking, classification, identification, and intent.
 5. CA-CFAR: derivation, worked example, assumptions, and failure of assumptions.
 6. Complementary sensor types, association, provenance, and conditional dependence.
@@ -52,8 +83,9 @@ self-study score is not an operational qualification.
 9. Debris and explosive-hazard awareness.
 10. A fictional capstone integrating observation, model limits, and reporting.
 
-The atlas supports search, category/reference-status filters, entry details, and
-two-entry comparison. Lessons can be marked complete and resumed. Practice is
+The atlas supports search, category/reference-status filters, entry details,
+model-study pages, and two-entry text comparison. Source images are kept in the
+separate source-study view. Lessons can be marked complete and resumed. Practice is
 available by lesson or as a full assessment, with explanations after every answer
 and links to revisit missed ideas. The self-study review target is 80%.
 
@@ -71,12 +103,23 @@ hypothesis. Multiplication assumes conditional independence under both hypothese
 When independence is not assumed, the lab declines to calculate a combined
 posterior; correlated evidence needs an appropriate joint model.
 
-Only lesson completion and the last full-assessment score are stored under
+Only lesson completion, the last full-assessment score, and its edition marker are stored under
 `mathjock.uas.progress.v1` in this browser. Storage errors produce a visible
 message; the course remains usable in memory. Reset requires confirmation and
 affects only this course. No cross-device synchronization or certification is
-provided. Fictional practice notes are not stored; the user may download a plain
+provided. Older assessment results are labeled as belonging to the earlier
+edition. Fictional practice notes are not stored; the user may download a plain
 text copy. Do not enter real incident, personal, or installation information.
+
+The optional photo feature sends the selected public model-name query and normal
+connection information to Wikimedia. It sends no course progress or practice
+notes. API requests omit credentials and referrers; thumbnails use a no-referrer
+policy. Metadata is not saved. Leaving the study page or changing the search name
+cancels pending image-search requests. Returned markup is reduced to plain text and escaped;
+image/file hosts and Creative Commons license links are validated. The gallery
+accepts supported bitmap formats with recognized reported CC BY, CC BY-SA, CC0,
+or explicit public-domain metadata. These checks do not independently verify
+copyright ownership or factual accuracy.
 
 ## Development
 
@@ -92,6 +135,7 @@ Open `http://127.0.0.1:8770/uas/`. ES modules need HTTP rather than `file://`.
 - `catalogue.js`, `catalogue-sources.json`: family entries and qualified reading leads.
 - `sources.js`: shared technical reading leads and glossary.
 - `lab-core.js`: independently testable mathematical models.
+- `model-study.js`, `photos.js`: source-study presentation and optional Commons API.
 - `app.js`, `index.html`, `course.css`: interactive and accessible presentation.
 - `build.mjs`: validation and deterministic source-module/workbook generation.
 
@@ -100,8 +144,9 @@ After changing course data, run:
 ```sh
 node uas/build.mjs
 node uas/build.mjs --check
-node --test tests/uas-lab.test.mjs
+node --test tests/uas-lab.test.mjs tests/uas-photos.test.mjs
 python3 tests/uas-browser.py
+python3 tests/uas-photos-browser.py
 ```
 
 The browser check needs Python Playwright and Chromium. Install test tooling
@@ -113,14 +158,22 @@ read without JavaScript or printed through the browser.
 
 - Nine mathematical tests pass, including independent reference-window
   calculations and 50,000 noise-only Monte Carlo trials of the CFAR model.
-- 134 browser checks pass: all 44 assessment answers and explanations, wrong-answer
+- Ten photo-module tests cover explicit queries, attribution, URL/license
+  restrictions, metadata sanitization, and response/error handling. Another 71
+  browser checks exercise the source-study pages using synthetic API and image
+  fixtures, including opt-in requests, cancellation, timeout, failed thumbnails,
+  mobile layout, and missing attribution. No test fixture is published as a
+  real source photograph, and these tests do not verify live Commons retrieval.
+- Browser checks cover all 44 assessment answers and explanations, wrong-answer
   review, navigation, progress persistence, corrupt/blocked storage, reset isolation,
   atlas search/comparison/dialogs, both labs, practice-note download, keyboard
   access, source jumps, and desktop/390 px/320 px layouts.
+  Earlier-edition score labeling and retaking the revised assessment were also
+  checked so an old score is not silently presented as a score on the new questions.
 - The deterministic build validates schemas, IDs, source references, and generated
   freshness. The JavaScript-free workbook contains all ten lessons, 32 entries,
-  44 questions, and 44 answer explanations. Its 137 IDs are unique and all internal
-  fragments resolve. A 78-page A4 print was checked for clipping and text bounds.
+  44 questions, and 44 answer explanations. Its 138 IDs are unique and all internal
+  fragments resolve. A 93-page A4 print was checked for clipping and text bounds.
 - Content and mathematical reviews were performed independently of the authors.
   These checks validate implementation and internal consistency; they do not
   replace the external source audit described above.

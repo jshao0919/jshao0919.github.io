@@ -22,7 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = os.environ.get("BASE_URL", "http://127.0.0.1:8770").rstrip("/")
 ARTIFACTS = Path(os.environ.get("SCREENSHOT_DIR", "/tmp/uas-qa"))
 KEY = "mathjock.uas.progress.v1"
-VIEWS = ["overview", "lessons", "atlas", "cfar", "network", "practice", "reference"]
+VIEWS = ["overview", "lessons", "atlas", "study", "cfar", "network", "practice", "reference"]
 ARTIFACTS.mkdir(parents=True, exist_ok=True)
 DATA = json.loads(subprocess.check_output([
     "node", "--input-type=module", "-e",
@@ -238,11 +238,21 @@ with sync_playwright() as playwright:
     expect(page.locator("#results-heading")).to_contain_text(f"{len(module_questions)-1} / {len(module_questions)}")
     check("Missed practice answer links to remediation", page.locator("#quiz-stage details").count() == 1 and page.locator("#quiz-stage details a").get_attribute("href") == f"#lessons/{LESSONS[0]['id']}")
     check("Lesson practice is separate from full assessment", stored(page)["assessment"] is None)
+    page.evaluate("""({key,total}) => {
+      const data=JSON.parse(localStorage.getItem(key));
+      data.assessment={correct:total-1,total}; delete data.assessmentRevision;
+      localStorage.setItem(key, JSON.stringify(data));
+    }""", {"key": KEY, "total": len(QUESTIONS)})
+    page.reload()
+    expect(page.locator("#assessment-label")).to_contain_text("Earlier edition assessment")
+    expect(page.locator("#assessment-label")).to_contain_text("Retake to review the updated photo lessons")
+    check("Legacy score survives with an explicit earlier-edition label", f"{len(QUESTIONS)-1}/{len(QUESTIONS)}" in page.locator("#assessment-label").inner_text())
     page.locator("#quiz-module").select_option("all")
     page.locator("#start-quiz").click()
     answer_set(page, QUESTIONS)
     expect(page.locator("#results-heading")).to_have_text(f"{len(QUESTIONS)} / {len(QUESTIONS)} · 100%")
     check("Full assessment persists exact score", stored(page)["assessment"] == {"correct": len(QUESTIONS), "total": len(QUESTIONS)})
+    check("Retaking the full assessment upgrades its revision", stored(page)["assessmentRevision"] == 2)
     page.reload()
     expect(page.locator("#assessment-label")).to_contain_text(f"{len(QUESTIONS)}/{len(QUESTIONS)} (100%)")
     route(page, "reference")

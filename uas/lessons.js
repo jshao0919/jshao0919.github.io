@@ -2,113 +2,125 @@
 export const lessons = [
   {
     "id": "foundations",
-    "title": "Start with the system, not the name",
-    "kicker": "01 · Foundations",
+    "title": "Read an archived aircraft image as a source",
+    "kicker": "01 · Public-photo study",
     "duration": "12 min",
-    "summary": "Understand what a UAS includes, distinguish purpose from appearance, and read public reporting without turning uncertain labels into facts.",
+    "summary": "Start the photo and model-study route: read archived captions, distinguish a photograph from a diagram, and separate a source’s model claim from what its image actually shows.",
     "objectives": [
-      "Distinguish the air vehicle from the complete UAS.",
-      "Separate a family name, a variant name, and an externally assigned name.",
-      "Explain why country of design, operator, and observed identity are different claims."
+      "Record the source’s label without treating it as an independently verified identity.",
+      "Separate the image creator, uploader, source, license, and different kinds of dates.",
+      "Organize a study note into source claim, broad visible feature, and unknowns."
     ],
     "sections": [
       {
-        "heading": "Aircraft and system are different ideas",
+        "heading": "Study the source before adopting its label",
         "body": [
-          "A UAV is an uncrewed aerial vehicle: the aircraft itself. UAS means uncrewed aircraft system and includes the aircraft together with associated control equipment and links. A photograph usually shows only one part of that system. It cannot, by itself, establish who controls the aircraft, whether a control link is active, or what task the aircraft is performing.",
-          "A remotely piloted aircraft receives human direction through a link. An aircraft can also execute portions of a flight automatically. These ideas can coexist. “Autonomous” is not a reliable synonym for “uncrewed,” and loss of a visible or detectable radio link does not prove that an aircraft is absent or disabled."
+          "An archived public image is a historical document with a caption and a chain of custody. Its filename, category, or caption may name a model, but those labels are source claims. Begin by recording who supplied the image, where it was first published if known, and exactly which name the source uses. Keep your own observations in a separate sentence.",
+          "A UAV is the air vehicle; a UAS includes the aircraft and associated equipment and links. An aircraft photograph usually shows only the airframe. Even a well-captioned image does not by itself establish its complete system, current operator, control mode, availability, or present-day use."
         ]
       },
       {
-        "heading": "Use role labels carefully",
+        "heading": "Use a three-part study note",
         "body": [
-          "Public reports use labels such as reconnaissance, surveillance, strike, target drone, and one-way attack aircraft. A role describes a use; it does not uniquely describe a shape. A design may have several variants or may be adapted to different purposes. Some large uncrewed aircraft resemble conventional airplanes; some smaller aircraft resemble hobby products.",
-          "This course uses publicly described roles only as background context. It does not infer hostile intent from a configuration, an assumed national origin, or a catalogue match. Recognition is a hypothesis to document and review."
+          "For each archived image, write three short entries. First, quote or accurately paraphrase the source claim: “The file caption labels this image X.” Second, describe a broad feature that you can actually see: “A small forward surface appears ahead of the main wing.” Third, state what remains unknown: “The caption’s model attribution has not been independently checked; this view does not establish a variant.”",
+          "This method lets you learn names and anatomy without pretending that a caption is proof. If the image does not load, the visible-feature entry should say “image not reviewed.” If a surface is obscured, say “not visible in this view,” rather than claiming that it is absent."
         ],
         "bullets": [
-          "Airframe: the physical aircraft and its structure.",
-          "Family: a group of related designs; family boundaries can differ between sources.",
-          "Variant: a particular version within a family, where evidence supports the distinction.",
-          "Alias: another name used for an aircraft or family; aliases are not automatically interchangeable."
+          "Source claim: the exact label, attribution, and historical context supplied by the source.",
+          "Broad visible feature: a literal description of what this image or drawing shows.",
+          "Unknowns: unverified attribution, unclear details, missing provenance, or unresolved dates."
         ]
       },
       {
-        "heading": "Why Iranian names can be confusing",
+        "heading": "Identify the kind of image",
         "body": [
-          "Transliteration from Persian and Arabic can produce several Latin spellings. Public names can also be reused, changed, or assigned by a different country. Numbers in a name do not guarantee a simple chronological sequence or a common airframe. A familiar name is a starting point for source checking.",
-          "For each identification claim, record which source uses the name, when it was published, and whether its evidence is imagery, recovered components, an official announcement, or a secondary description. Distinguish “Iranian-designed,” “reported Iranian-supplied,” and “observed in use by a particular operator.” Those are separate statements that require separate support."
+          "A photograph records a scene through a camera, though it may still be cropped, retouched, miscaptioned, or assembled from several images. A diagram or rendering expresses an author’s interpretation. A museum display or model photograph documents that display or model; it does not automatically document a full-size aircraft in service.",
+          "The source-study view may retrieve photographs, diagrams, or other images from a public archive. Read the file page and caption rather than assuming that every result is a photograph. The linked image results were not retrievable for verification during this build; an available thumbnail is an unreviewed source item, not an authenticated model example."
         ]
       },
       {
-        "heading": "A catalogue is a bounded reference",
+        "heading": "Keep dates and people distinct",
         "body": [
-          "No public course can guarantee a list of every Iranian asset, prototype, modification, locally assembled derivative, or undisclosed system. A broad catalogue can still be useful if it explains its scope and uncertainty. Official announcements establish that a claim was made; they do not independently establish every advertised capability.",
-          "Begin each exercise by asking what can actually be observed and what evidence is missing. The purpose of the course is to improve technical literacy and careful reporting. Course completion does not provide an identification qualification, an operational authorization, or authority to act against an aircraft."
+          "A photograph can have a capture date, an original publication date, a later archive upload date, and a date when its description was edited. Those dates answer different questions. Uploading an old image today does not make the depicted aircraft a current observation. If the original date is unknown, preserve that uncertainty.",
+          "The creator may be a photographer or illustrator. The uploader is the account that placed a copy in the archive; these may be different people. The source field may point to an earlier publisher. Metadata can help reconstruct this history, but a field value is itself a claim to check, not a guarantee of accuracy."
+        ]
+      },
+      {
+        "heading": "A license governs reuse, not factual accuracy",
+        "body": [
+          "A file’s license describes conditions for reusing that file. It does not certify the aircraft name in its caption. Read the individual file page for the stated creator, source, license, required credit, and any conditions on modifications. Do not assume that every file in an archive has the same license or that the uploader is the creator to credit.",
+          "Keep a link to the file page alongside the image so another reader can inspect the source and its history. A complete study note can say both “the stated reuse conditions were recorded” and “the model attribution remains unreviewed.” Those statements concern different kinds of confidence."
         ]
       }
     ],
     "takeaways": [
-      "UAS describes a system; a sighting usually reveals only a small part of it.",
-      "A name, an operator, a role, and an identity are separate claims.",
-      "Record the source and its uncertainty before adopting its label."
+      "Use three columns: source claim, broad visible feature, and unknowns.",
+      "Capture, publication, and upload dates are not interchangeable.",
+      "An image license addresses reuse; it does not verify a caption’s model identity."
     ],
     "sourceIds": [
-      "dia-2019",
-      "faa-cuas"
+      "dia-2019"
     ]
   },
   {
     "id": "recognition",
-    "title": "Describe shape without overclaiming identity",
-    "kicker": "02 · Visual reasoning",
+    "title": "Learn the anatomy words used in archive captions",
+    "kicker": "02 · Broad airframe vocabulary",
     "duration": "14 min",
-    "summary": "Build an organized description from visible features and recognize the limits of silhouettes, photographs, and look-alike designs.",
+    "summary": "Learn canard, delta, flying wing, tail, boom, V-tail, and pusher as broad descriptive terms for historical image study, without treating any one feature as a model name.",
     "objectives": [
-      "Describe observable airframe features in consistent language.",
-      "Explain how viewpoint and image quality change an apparent shape.",
-      "Use multiple cues and a plausible alternative instead of naming an aircraft from one feature."
+      "Explain common anatomy terms in ordinary language.",
+      "Distinguish a wing shape from an overall airframe arrangement.",
+      "Describe a public image without assigning a model from broad shared features."
     ],
     "sections": [
       {
-        "heading": "Describe what is visible first",
+        "heading": "Start with position and visibility",
         "body": [
-          "Begin with the image, not the catalogue. Write a short literal description: “fixed-wing object, swept main surfaces, no clearly visible separate tail, viewed from below.” That is stronger evidence than “definitely a particular model” when the image does not support that certainty.",
-          "Useful categories include overall configuration, wing shape, visible tail arrangement, relative proportions, and visible propulsion placement. Keep “not visible” separate from “not present.” A tail hidden by perspective is not a tailless aircraft. A propeller blurred by motion is not proof of jet propulsion."
-        ],
-        "bullets": [
-          "Configuration: fixed wing, rotary wing, or unresolved.",
-          "Wing planform: approximately straight, swept, delta-like, or unresolved.",
-          "Tail arrangement: conventional tail, V-tail, twin booms, no separate tail visible, or unresolved.",
-          "Propulsion placement: observed location if visible; otherwise leave unknown.",
-          "Image conditions: viewing angle, blur, occlusion, compression, and scale uncertainty."
+          "Use the main wing as a reference when studying a labeled archive image. “Forward” means toward the nose, and “aft” means toward the rear. State the viewpoint before describing a feature: a side photograph, an underside view, and a top-view drawing reveal different things.",
+          "Keep the description modest. A surface partly hidden by another part of the aircraft may be unresolved. A blurred propeller may not appear as distinct blades. A generic course icon illustrates a term; it is not an accurate silhouette or a substitute for an attributed source image."
         ]
       },
       {
-        "heading": "One feature rarely identifies a family",
+        "heading": "Canard and tail describe different positions",
         "body": [
-          "Different designers often arrive at similar shapes because they face similar engineering constraints. Delta-like wings, twin booms, and pusher propellers occur in many unrelated aircraft. A silhouette can support a broad configuration category; it seldom proves a national origin or a precise variant.",
-          "Use at least two genuinely observable features when explaining a candidate match, and state at least one alternative explanation. This is a learning discipline rather than an operational identification rule. If the evidence remains weak, “unresolved fixed-wing object” is a useful and honest result."
+          "A canard is a small wing-like foreplane ahead of the main wing. A conventional tail arrangement places stabilizing surfaces toward the rear. In a V-tail, two inclined tail surfaces form an approximate V when viewed from an appropriate direction. These words describe arrangements shared by many aircraft; they do not establish a particular model or country.",
+          "In a study note, write “a forward surface is visible” before adopting the more specific anatomical term. If perspective makes its position unclear, leave the term unresolved. Do not turn a hidden rear surface into a claim that no tail exists."
         ]
       },
       {
-        "heading": "Perspective and scale can mislead",
+        "heading": "Delta and flying wing are not synonyms",
         "body": [
-          "A wing viewed edge-on can appear narrower than it is. An oblique view can make two unequal spans appear similar. A close small object can occupy as many image pixels as a distant large object. Without independently established geometry, apparent image size alone does not determine physical size or distance.",
-          "Consumer cameras can sharpen edges or combine frames. Social-media images may be cropped, mirrored, compressed, or mislabeled. Preserve the original when available and keep edits separate. A diagram in this course illustrates a concept; it is not a dimensionally accurate recognition template."
+          "A delta wing has a broadly triangular planform: its outline as viewed from above or below. “Flying wing” describes an overall arrangement in which the wing is the principal airframe structure, without a conventional separate fuselage-and-horizontal-tail arrangement. One term describes a wing shape; the other describes an aircraft architecture.",
+          "A triangular outline alone does not establish that an aircraft is a flying wing. Conversely, the words “flying wing” do not require one particular triangular outline. An oblique image can distort either appearance, so record the limits of the view rather than forcing a category."
         ]
       },
       {
-        "heading": "Write a useful confidence statement",
+        "heading": "Booms are structures, not an engine count",
         "body": [
-          "A helpful confidence statement gives a claim, its supporting observations, the limitations, and a plausible alternative. For example: “The image is consistent with a broad tailless delta configuration because a triangular main outline is visible. Model identity remains unresolved because the view is blurred and propulsion details are hidden.”",
-          "Avoid assigning numerical confidence without a defined, validated method. “90% sure” can sound precise while simply reflecting familiarity. Report uncertainty in words that explain its cause. New evidence should be able to change the conclusion."
+          "A boom is a long structural member. A twin-boom arrangement has two such members; in many designs they extend aft and support tail structures. The term describes structure, not the number of engines. Do not infer two engines simply because two booms are shown.",
+          "A drawing can make structural relationships easier to see, but it remains an illustration. Record its author and caption, and distinguish an explanatory drawing from a photograph documenting a particular airframe."
+        ]
+      },
+      {
+        "heading": "Pusher describes propulsion arrangement",
+        "body": [
+          "In broad aviation vocabulary, a pusher propeller is positioned aft of the structure it propels, rather than ahead in a tractor arrangement. A clear archive image may illustrate this relationship. The word does not establish a model, a mission, or a national origin.",
+          "A photograph that hides or blurs the propeller may not support either description. In that case, keep the source’s stated configuration in the source-claim column and put “propeller arrangement not resolved in this view” in your own observation column."
+        ]
+      },
+      {
+        "heading": "Put the terms together without building an identity verdict",
+        "body": [
+          "A useful study description might be: “The source labels this as a historical aircraft photograph. The image shows a main wing and two rearward structural members; the tail details are partly obscured. The file’s model attribution has not been independently reviewed.” This explains what the image contributes and where the description stops.",
+          "Many unrelated aircraft share canards, delta-like wings, V-tails, twin booms, or pusher arrangements. This lesson provides vocabulary for reading archived material. It does not teach distinguishing details for identifying an unknown aircraft in an operational setting."
         ]
       }
     ],
     "takeaways": [
-      "An observable description should precede a family name.",
-      "Not visible is different from absent.",
-      "A recognition candidate should include reasons, limitations, and alternatives."
+      "Canard, tail, boom, and pusher describe broad arrangements shared across designs.",
+      "Delta is a wing-shape term; flying wing is an overall architecture term.",
+      "Write “not resolved in this view” when the image does not support the description."
     ],
     "sourceIds": [
       "dia-2019"
@@ -116,62 +128,64 @@ export const lessons = [
   },
   {
     "id": "families",
-    "title": "Navigate the Iranian public reference catalogue",
-    "kicker": "03 · Families and evidence",
+    "title": "Study named families through captions and provenance",
+    "kicker": "03 · Historical model study",
     "duration": "16 min",
-    "summary": "Use a family-level reference without confusing historical designs, derivatives, reported prototypes, or aliases.",
+    "summary": "Use the Ababil and Shahed entries to practice family names, broad anatomy, and source checking while keeping variant attribution and current status separate.",
     "objectives": [
-      "Explain what a family-level catalogue can and cannot establish.",
-      "Separate documented examples from reported announcements.",
-      "Trace a catalogue statement to a source rather than relying on repetition."
+      "Distinguish a family, variant label, alias, and externally assigned name.",
+      "Apply the three-part study note to source-labeled Ababil and Shahed examples.",
+      "Explain why shared appearance, archive categories, and repeated captions do not verify a variant."
     ],
     "sections": [
       {
-        "heading": "Read the catalogue in layers",
+        "heading": "Begin from a named historical source item",
         "body": [
-          "Begin with a broad form category and then compare the descriptive cues supplied for a family. Next read the confusion notes and evidence label. Finally open the cited source and check what it actually supports. A family card can be useful even when the correct answer for an image is “insufficient evidence.”",
-          "The catalogue organizes publicly discussed names such as Ababil, Mohajer, and Shahed, together with other reported families. These labels are organizational aids. They are not promises that every aircraft carrying a related name has the same appearance, construction, role, or history."
+          "Open a catalogue entry as a research topic, then inspect a source item whose own caption names the aircraft. Record the exact name and the source’s wording before studying broad anatomy. This is a source-led history exercise, not a quiz that asks you to name an unknown aircraft from its appearance.",
+          "A family groups related public design labels, but the boundaries of that group can vary between references. A variant is a particular version when the evidence supports that distinction. An alias is another name; it is not automatically proof of identical design. Transliteration can produce several spellings, and different organizations may apply different labels."
         ]
       },
       {
-        "heading": "Families can contain very different aircraft",
+        "heading": "Ababil: one family name, more than one arrangement",
         "body": [
-          "A long-running programme can include substantial redesigns. Conversely, an aircraft can acquire a new name without becoming a wholly different design. A version number should not replace comparison of the actual evidence. Catalogue aliases should be read with their qualifications.",
-          "“Related to,” “derived from,” and “identical to” are different claims. Public reporting may support a resemblance without proving component-level equivalence. An aircraft observed with a different operator may also have modifications that a family-level source does not describe."
+          "The catalogue uses Ababil-2 as a canard-related study topic and Ababil-3 as a twin-boom-related study topic. These are broad reference descriptions to examine against captioned source material. They illustrate why a shared family name should not be treated as a promise that every family member has the same arrangement.",
+          "For an archive item captioned “Ababil-2,” keep that wording in the source-claim column. If its image clearly shows a surface ahead of the main wing, describe that visible relationship; otherwise mark the detail unresolved. For an item captioned “Ababil-3,” similarly record whether two structural booms are actually visible in that particular view. Neither observation independently authenticates the caption or determines a variant.",
+          "Do not assume the source-study results supplied by an archive have already been checked. This build could not retrieve and review the linked image results. An unrelated result, diagram, mislabeled file, or incomplete view must remain distinguishable from a verified historical photograph."
         ]
       },
       {
-        "heading": "Use evidence labels as a reading guide",
+        "heading": "Shahed-131 and Shahed-136: broad similarity is a limit",
         "body": [
-          "The “documented” category identifies an established public-reference family name. It is a reading aid, not a fresh claim-level verification: this build could not retrieve the linked reference material and does not establish current status. “Reported” names depend more heavily on attributed announcements or reporting. “Uncertain” highlights unresolved naming, identity, or evidence issues. All categories require source checking before a claim is relied upon.",
-          "Two articles may repeat the same original announcement. Their agreement is then one information chain, not two independent confirmations. Prefer a traceable original source, identify later analysis as analysis, and note where a source lacks images or clear provenance."
+          "Public reference descriptions associate both Shahed-131 and Shahed-136 with a broad delta-like form. In this course they illustrate a shared vocabulary category, not a set of visual tests for separating the two. A triangular-looking outline cannot verify either name.",
+          "If one archived file is captioned with one label and another with the other, record both labels and their provenance. The study question is what each source claims and how well its history can be traced. Do not infer that two captions refer to the same airframe, or that a broad shared form resolves the variant."
+        ]
+      },
+      {
+        "heading": "Follow the caption back to its origin",
+        "body": [
+          "A filename, category, article caption, and later repost may all repeat one earlier label. Their agreement can be a single information chain. Look for the original photographer or publisher, the stated context, and the earlier caption where available. Preserve a disagreement between labels instead of silently selecting the one that seems familiar.",
+          "A category page is an index of files, not a guarantee that every file depicts the category’s named model. It may include diagrams, related objects, comparative illustrations, or mistaken additions. Read the individual file page and check what is actually shown before using it in a study note."
         ],
         "bullets": [
-          "Check whether the source shows the airframe or merely repeats a name.",
-          "Check whether an image caption actually identifies the pictured variant.",
-          "Check whether the date describes publication, an announcement, or an observation.",
-          "Keep a reported prototype separate from evidence of widespread use."
+          "Keep the exact source label and any qualified wording such as “reported” or “attributed.”",
+          "Separate the creator from the uploader and the original source from later hosts.",
+          "Keep capture, publication, and upload dates in separate fields.",
+          "Record whether the item is a photograph, drawing, rendering, or display-model image.",
+          "Keep reuse permission and factual confidence as separate assessments."
         ]
       },
       {
-        "heading": "Work an example without guessing",
+        "heading": "Read evidence labels as bounded research aids",
         "body": [
-          "Suppose a photograph shows an unmanned aircraft with twin booms and an unclear propulsion arrangement. Several catalogue entries might share those broad features. The correct first output is a description and a list of unresolved distinctions, not a forced selection of one model.",
-          "If an accompanying caption supplies a name, treat that caption as an additional source claim. Check its provenance. When the image and caption disagree, record the discrepancy. Do not silently change the observed description to fit the label."
-        ]
-      },
-      {
-        "heading": "Keep the reference current and bounded",
-        "body": [
-          "A public reference ages. New reporting may clarify an alias, challenge a previous attribution, or document an additional variant. A useful update records the source, publication date, changed claim, and reason for the change. It preserves a distinction between a newly published claim and a newly verified fact.",
-          "This course covers a broad public reference set, not all possible Iranian assets. It intentionally does not provide engagement ranges, weapons recommendations, deployment locations, or an inventory of equipment at any installation."
+          "The “documented” category identifies an established public-reference family name. It is not a fresh claim-level verification: this build could not retrieve the linked reference material and does not establish current status. “Reported” names depend more heavily on attributed announcements or reporting. “Uncertain” highlights unresolved naming, identity, or evidence issues.",
+          "A public reference cannot include every undisclosed prototype or modification. New sources can clarify names or challenge old attributions. Keep a record of what changed and why. Historical image study can improve understanding of terminology and source quality without becoming a current inventory or a means of identifying an aircraft for action."
         ]
       }
     ],
     "takeaways": [
-      "A family card is a source-guided reference, not an identity verdict.",
-      "Repeated reporting may have a single underlying source.",
-      "Completeness and certainty must be stated as limits, not assumed."
+      "Start with a named source item and preserve the label as a source claim.",
+      "Ababil examples illustrate variation within a family; Shahed examples illustrate broad similarity across labels.",
+      "Archive membership, repeated captions, and shared anatomy do not verify a model or variant."
     ],
     "sourceIds": [
       "dia-2019"

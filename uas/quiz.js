@@ -3,158 +3,158 @@ export const quizQuestions = [
   {
     "id": "foundations-1",
     "moduleId": "foundations",
-    "prompt": "A photograph shows an uncrewed aircraft. Which statement is best supported?",
+    "prompt": "An archive caption names a model, while its photograph shows a small surface ahead of the main wing. Which study note keeps the evidence separate?",
     "options": [
-      "The photograph establishes the full UAS architecture.",
-      "The photograph shows the air vehicle, but associated control equipment and links may be unknown.",
-      "The photograph proves the aircraft is operating autonomously.",
-      "The photograph establishes who is controlling it."
+      "“The visible surface independently proves the model named in the caption.”",
+      "“Source claim: the caption names X. Visible feature: a forward surface appears. Unknown: the model attribution has not been independently checked.”",
+      "“The filename proves the aircraft’s current operator.”",
+      "“The image establishes the complete UAS and its present-day use.”"
     ],
     "answer": 1,
-    "explanation": "A UAS includes the aircraft and associated equipment and links. An image of the aircraft generally does not establish the other parts, its control mode, or its operator."
+    "explanation": "The three-part method separates the source’s model label, a broad visible relationship, and unresolved attribution. A shared anatomical feature does not independently authenticate a caption."
   },
   {
     "id": "foundations-2",
     "moduleId": "foundations",
-    "prompt": "Two sources use different Latin spellings for a similar aircraft name. What is the best next step?",
+    "prompt": "A file was uploaded in 2024, and its description says the photograph was taken in 2012. Which statement is appropriate?",
     "options": [
-      "Treat them as different aircraft without further checks.",
-      "Merge the names immediately because spelling differences never matter.",
-      "Compare provenance, dates, imagery, and the source’s use of each name before treating them as aliases.",
-      "Use whichever spelling appears more often as proof of identity."
+      "The upload proves that the pictured aircraft was observed in 2024.",
+      "The two dates must describe the same event.",
+      "Record 2012 as the source’s stated capture date and 2024 as the upload date; neither should silently replace the other.",
+      "Discard the older date because upload dates are always more accurate."
     ],
     "answer": 2,
-    "explanation": "Transliteration can create aliases, but names can also be reused or misapplied. Source comparison is needed before claiming equivalence."
+    "explanation": "Capture and upload dates answer different questions. Preserve both with their stated provenance, and retain uncertainty if the original capture date has not been verified."
   },
   {
     "id": "foundations-3",
     "moduleId": "foundations",
-    "prompt": "Which pair of claims needs separate evidence?",
+    "prompt": "A public image has a reuse license and a model name in its caption. What does the license establish?",
     "options": [
-      "The aircraft was designed in a country, and the aircraft is currently operated by that country.",
-      "The image is blurred, and fine detail is difficult to see.",
-      "The report was forwarded, and the message is not an original recording.",
-      "The course is public, and its content is available to readers."
+      "The stated conditions for reusing the file; it does not verify the model attribution.",
+      "That the caption’s model name has been independently authenticated.",
+      "That every related image has the same license.",
+      "That the uploader is necessarily the photographer."
     ],
     "answer": 0,
-    "explanation": "Design origin does not establish the current operator. Transfer, derivatives, assembly, and misidentification can complicate attribution."
+    "explanation": "A license concerns reuse, while a caption makes a factual claim. Check the individual file’s creator, source, conditions, and history; do not confuse permission with accuracy."
   },
   {
     "id": "foundations-4",
     "moduleId": "foundations",
-    "prompt": "An official announcement describes a new aircraft. What does the announcement directly establish?",
+    "prompt": "A search result is an SVG drawing uploaded by one account and credited to a different illustrator. How should it be described?",
     "options": [
-      "Every advertised capability has been independently verified.",
-      "The aircraft is widely deployed wherever related equipment exists.",
-      "Every aircraft with a similar name is the same design.",
-      "The issuing organization made those claims; independent verification of capability is a separate question."
+      "As a photograph made by the uploader.",
+      "As a verified photograph because the archive returned it for the model name.",
+      "As proof of the full-size aircraft’s current service status.",
+      "As an illustration with a stated illustrator and a separate uploader; inspect its source and caption before relying on it."
     ],
     "answer": 3,
-    "explanation": "An announcement is evidence of the announcement and its attributed claims. Verification of capabilities, availability, and use requires additional support."
+    "explanation": "A drawing is not a photograph, and uploader and creator can be different people. Archive retrieval does not authenticate the subject, date, or model attribution."
   },
   {
     "id": "recognition-1",
     "moduleId": "recognition",
-    "prompt": "A tail is not visible in a blurred underside image. Which description is best?",
+    "prompt": "In broad aircraft anatomy, what does “canard” describe?",
     "options": [
-      "The aircraft definitely has no tail.",
-      "The tail arrangement is unresolved in this view.",
-      "The image proves the aircraft belongs to one particular family.",
-      "The aircraft must use jet propulsion."
+      "A guaranteed model name for any triangular aircraft.",
+      "A small wing-like foreplane ahead of the main wing.",
+      "Two rear structural members, which necessarily contain two engines.",
+      "A license category for aircraft photographs."
     ],
     "answer": 1,
-    "explanation": "Not visible does not mean absent. Perspective, blur, and occlusion may hide a tail or other feature."
+    "explanation": "Canard is an anatomical arrangement, not a model name. In a source image, the feature’s position must actually be visible before describing it that way."
   },
   {
     "id": "recognition-2",
     "moduleId": "recognition",
-    "prompt": "A triangular outline appears in an image. What is a defensible conclusion?",
+    "prompt": "Why are “delta wing” and “flying wing” not interchangeable terms?",
     "options": [
-      "A particular national origin is confirmed.",
-      "A particular model is confirmed because all triangular aircraft are related.",
-      "The image may support a broad delta-like configuration, with precise identity still unresolved.",
-      "The object’s role and intent are established."
+      "Both are unique names for the same aircraft family.",
+      "A triangular outline proves every aspect of an aircraft’s architecture.",
+      "Delta describes a broadly triangular wing planform; flying wing describes an overall airframe arrangement.",
+      "A source caption makes the distinction unnecessary."
     ],
     "answer": 2,
-    "explanation": "Broad shapes occur across unrelated designs. A configuration observation alone does not establish model, origin, role, or intent."
+    "explanation": "A wing-shape description and an overall architecture description answer different questions. One cannot be inferred solely from the other or from a distorted view."
   },
   {
     "id": "recognition-3",
     "moduleId": "recognition",
-    "prompt": "Two objects occupy the same number of pixels in separate photographs. What follows?",
+    "prompt": "An attributed drawing shows two long rearward structural members and calls them “twin booms.” What can be inferred from that term alone?",
     "options": [
-      "They have the same physical size.",
-      "They are at the same distance.",
-      "They are the same model.",
-      "Without reliable geometry and context, physical size and distance remain unresolved."
+      "The aircraft necessarily has two engines.",
+      "The drawing establishes a precise variant.",
+      "Every similar arrangement belongs to one country.",
+      "The drawing depicts a structural arrangement; engine count and model identity require separate evidence."
     ],
     "answer": 3,
-    "explanation": "Apparent image size depends on distance, optics, cropping, viewpoint, and physical size. Equal pixel size is not a size or distance measurement."
+    "explanation": "Booms are structural members. “Twin boom” does not itself specify engine count, model, national origin, or the accuracy of the drawing’s attribution."
   },
   {
     "id": "recognition-4",
     "moduleId": "recognition",
-    "prompt": "Which assessment best explains confidence?",
+    "prompt": "A caption calls the aircraft a “pusher,” but the propeller is obscured in the image. Which note is best?",
     "options": [
-      "“A delta-like outline is visible, but blur hides distinguishing details; exact identity remains unresolved.”",
-      "“I recognize the shape, so it is 99% certain.”",
-      "“Everyone in the forwarded discussion agrees, so no caveat is needed.”",
-      "“The catalogue contains a similar silhouette, which settles the model.”"
+      "“The source describes a pusher arrangement; the propeller arrangement is not resolved in this view.”",
+      "“The invisible propeller proves jet propulsion.”",
+      "“The pusher label alone confirms a model name.”",
+      "“I can treat the caption’s description as a directly observed feature.”"
     ],
     "answer": 0,
-    "explanation": "A useful confidence statement links the claim to observed evidence, explains limitations, and leaves room for alternatives. Unsupported percentages add apparent precision without justification."
+    "explanation": "Keep the source’s claim separate from what is visible. A pusher is a broad propulsion arrangement, and an obscured propeller cannot supply independent visual confirmation."
   },
   {
     "id": "families-1",
     "moduleId": "families",
-    "prompt": "Two articles repeat the same original announcement. How should their agreement be interpreted?",
+    "prompt": "The course uses Ababil-2 as a canard-related study topic and Ababil-3 as a twin-boom-related topic. What is the historical-source lesson?",
     "options": [
-      "As two fully independent confirmations.",
-      "As evidence that the aircraft is in widespread use.",
-      "As potentially one underlying information chain.",
-      "As proof that all uncertainty has been resolved."
+      "A shared family name guarantees an identical arrangement.",
+      "Either broad feature authenticates every archive caption using that family name.",
+      "A family can include differing arrangements; record each source label and inspect the broad feature without treating it as independent model verification.",
+      "The catalogue establishes that every labeled archive image has been reviewed."
     ],
     "answer": 2,
-    "explanation": "Different publications can depend on the same source. Independence depends on the underlying evidence, not the number of articles."
+    "explanation": "The examples illustrate vocabulary and variation within a named family. The image results were not verified during this build, and shared anatomical terms do not authenticate a model label."
   },
   {
     "id": "families-2",
     "moduleId": "families",
-    "prompt": "A catalogue card is labeled “documented.” What does that label mean in this course?",
+    "prompt": "Two archive items are labeled Shahed-131 and Shahed-136, and both appear broadly delta-like. Which conclusion is supported by that broad similarity?",
     "options": [
-      "It marks an established public-reference family name; this build did not freshly verify claim-level support or current status.",
-      "Any similar-looking aircraft must be that family.",
-      "The card establishes current deployment at a named installation.",
-      "No later information can change the entry."
+      "They share a broad descriptive form; that similarity does not verify either caption or resolve a variant.",
+      "Both captions must refer to one identical airframe.",
+      "The outline independently proves both model labels.",
+      "The archive labels establish current operational status."
     ],
     "answer": 0,
-    "explanation": "Evidence labels are bounded reading aids. The linked material could not be retrieved during this build, so the category does not certify claim-level support, capabilities, variants, or a current deployment inventory."
+    "explanation": "A broad shared form is not a variant test. Preserve each source’s exact label and provenance, and keep unresolved attribution separate from visible anatomy."
   },
   {
     "id": "families-3",
     "moduleId": "families",
-    "prompt": "A caption names a model, but visible features do not clearly support that name. What should you do?",
+    "prompt": "An archive category named for a model contains a photograph, a diagram, and an image of a display model. What should a learner do?",
     "options": [
-      "Ignore the image and adopt the caption.",
-      "Rewrite the observed features so they match the caption.",
-      "Discard both sources without recording them.",
-      "Record the mismatch, preserve provenance, and keep identity unresolved pending review."
+      "Treat all three as authenticated photographs of the full-size aircraft.",
+      "Assume category membership proves every caption.",
+      "Ignore the individual file pages because the category name settles the identity.",
+      "Inspect each file’s medium, creator, source, caption, and dates; category membership is a search aid rather than verification."
     ],
     "answer": 3,
-    "explanation": "The caption is a claim that needs support. A mismatch is information to preserve and examine, not a reason to force agreement."
+    "explanation": "Archive categories organize material and can contain related, illustrative, or mislabeled items. Each source item needs its own description and provenance."
   },
   {
     "id": "families-4",
     "moduleId": "families",
-    "prompt": "Which statement appropriately describes the scope of a public Iranian UAS catalogue?",
+    "prompt": "Three websites repeat one aircraft photograph with the same model caption, and all credit the same original publisher. How should the model claim be counted?",
     "options": [
-      "It necessarily includes every undisclosed prototype.",
-      "It covers a bounded public reference set and may omit unreported variants or modifications.",
-      "It establishes that every listed design is currently operational.",
-      "It guarantees identity whenever a silhouette appears similar."
+      "As three independent identifications.",
+      "As potentially one underlying source claim repeated three times, pending separate evidence.",
+      "As proof that the creator and uploader are the same person.",
+      "As proof that the image’s license certifies the caption."
     ],
     "answer": 1,
-    "explanation": "Public information is incomplete and changes over time. A useful catalogue states its scope and avoids claiming exhaustive coverage or operational availability."
+    "explanation": "Repeated copies do not create independent source evidence. Trace the shared image and caption to their origin, and record any later analysis as separate interpretation."
   },
   {
     "id": "observation-1",

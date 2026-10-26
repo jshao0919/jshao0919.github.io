@@ -4,6 +4,7 @@ import { quizQuestions } from './quiz.js';
 import { makeCfarScene, cfar, fuseEvidence } from './lab-core.js';
 import { coreSources, glossary } from './sources.js';
 import { catalogueSources } from './catalogue-sources.js';
+import { renderModelStudy, cancelPhotoRequest } from './model-study.js';
 
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
@@ -13,7 +14,7 @@ const paragraphs = values => values.map(value => `<p>${esc(value)}</p>`).join(''
 const sources = [...coreSources, ...catalogueSources];
 const sourceById = new Map(sources.map(source => [source.id, source]));
 const storageKey = 'mathjock.uas.progress.v1';
-let progress = { completed: [], assessment: null };
+let progress = { completed: [], assessment: null, assessmentRevision: 2 };
 let selectedLesson = lessons[0].id;
 let compared = [];
 let noiseSeed = 7;
@@ -23,6 +24,7 @@ function loadProgress() {
   try {
     const data = JSON.parse(localStorage.getItem(storageKey));
     if (!data || !Array.isArray(data.completed)) return;
+    progress.assessmentRevision = data.assessmentRevision === 2 ? 2 : 1;
     progress.completed = [...new Set(data.completed.filter(id => lessons.some(lesson => lesson.id === id)))];
     const a = data.assessment;
     if (a && Number.isInteger(a.correct) && Number.isInteger(a.total) && a.total === quizQuestions.length && a.correct >= 0 && a.correct <= a.total) {
@@ -48,7 +50,7 @@ function renderProgress() {
   $('#course-progress').value = progress.completed.length;
   $('#progress-label').textContent = `${progress.completed.length} of ${lessons.length} lessons completed`;
   const a = progress.assessment;
-  $('#assessment-label').textContent = a ? `Last full assessment: ${a.correct}/${a.total} (${Math.round(a.correct / a.total * 100)}%).` : 'Assessment not yet attempted.';
+  $('#assessment-label').textContent = a ? `${progress.assessmentRevision === 2 ? 'Last full assessment' : 'Earlier edition assessment'}: ${a.correct}/${a.total} (${Math.round(a.correct / a.total * 100)}%).${progress.assessmentRevision === 2 ? '' : ' Retake to review the updated photo lessons.'}` : 'Assessment not yet attempted.';
   renderModuleGrid();
   renderLessonMenu();
 }
@@ -88,7 +90,7 @@ function renderLesson(id) {
 
 function route(focus = true) {
   const [requested, lessonId] = location.hash.slice(1).split('/');
-  const allowed = ['overview', 'lessons', 'atlas', 'cfar', 'network', 'practice', 'reference'];
+  const allowed = ['overview', 'lessons', 'atlas', 'study', 'cfar', 'network', 'practice', 'reference'];
   const view = allowed.includes(requested) ? requested : 'overview';
   $$('.view').forEach(element => { element.hidden = element.dataset.view !== view; });
   $$('.nav-link').forEach(link => {
@@ -97,9 +99,10 @@ function route(focus = true) {
     if (active) link.setAttribute('aria-current', 'page'); else link.removeAttribute('aria-current');
   });
   if (view === 'lessons') renderLesson(lessonId || selectedLesson);
-  document.title = `${({ overview: 'Start here', lessons: 'Guided course', atlas: 'Recognition atlas', cfar: 'CFAR laboratory', network: 'Sensor networks', practice: 'Knowledge checks', reference: 'Reference & protocols' })[view]} · UAS Fieldnotes`;
+  if (view === 'study') renderModelStudy(lessonId); else cancelPhotoRequest();
+  document.title = `${({ overview: 'Start here', lessons: 'Guided course', atlas: 'Recognition atlas', study: 'Model & photo study', cfar: 'CFAR laboratory', network: 'Sensor networks', practice: 'Knowledge checks', reference: 'Reference & protocols' })[view]} · UAS Fieldnotes`;
   if (focus) {
-    const target = view === 'lessons' && lessonId ? $('#current-lesson-title') : view === 'reference' && sourceById.has(lessonId) ? $(`#source-${lessonId} h3`) : $(`[data-view="${view}"] h1`);
+    const target = view === 'study' ? $('#study-model-title') : view === 'lessons' && lessonId ? $('#current-lesson-title') : view === 'reference' && sourceById.has(lessonId) ? $(`#source-${lessonId} h3`) : $(`[data-view="${view}"] h1`);
     target.focus({ preventScroll: true });
     target.scrollIntoView({ block: 'start', behavior: 'instant' });
   }
@@ -118,7 +121,7 @@ function formIcon(form) {
 }
 
 function assetDetails(asset) {
-  return `<p><span class="badge ${esc(asset.evidence)}">${esc(evidenceNames[asset.evidence])}</span> <span class="badge">${esc(asset.category)}</span></p><p>${esc(asset.summary)}</p><dl><dt>Broad form</dt><dd>${esc(asset.form)}</dd><dt>Names and aliases</dt><dd>${esc(asset.aliases.length ? asset.aliases.join(' · ') : 'No additional alias listed')}</dd></dl><h3>Description cues</h3>${list(asset.cues)}<h3>Confusions and limits</h3>${list(asset.confusions)}<div class="callout"><strong>Evidence note</strong><p>${esc(asset.evidenceNote)}</p></div>${readingLinks(asset.sourceIds)}`;
+  return `<p><span class="badge ${esc(asset.evidence)}">${esc(evidenceNames[asset.evidence])}</span> <span class="badge">${esc(asset.category)}</span></p><p>${esc(asset.summary)}</p><dl><dt>Broad form</dt><dd>${esc(asset.form)}</dd><dt>Names and aliases</dt><dd>${esc(asset.aliases.length ? asset.aliases.join(' · ') : 'No additional alias listed')}</dd></dl><h3>Description cues</h3>${list(asset.cues)}<h3>Confusions and limits</h3>${list(asset.confusions)}<div class="callout"><strong>Evidence note</strong><p>${esc(asset.evidenceNote)}</p></div>${readingLinks(asset.sourceIds)}<a class="button" href="#study/${asset.id}">Open model &amp; photo study</a>`;
 }
 
 function renderAtlas() {
@@ -127,7 +130,7 @@ function renderAtlas() {
   const evidence = $('#atlas-evidence').value;
   const visible = catalogue.filter(asset => (category === 'all' || asset.category === category) && (evidence === 'all' || asset.evidence === evidence) && [asset.name, ...asset.aliases, asset.form, asset.summary, ...asset.cues].join(' ').toLowerCase().includes(query));
   $('#filter-summary').textContent = `${visible.length} of ${catalogue.length} entries shown. Select up to two to compare.`;
-  $('#atlas-grid').innerHTML = visible.length ? visible.map(asset => `<article class="asset-card"><div class="asset-icon">${formIcon(asset.form)}<span class="small muted">Generic form icon</span></div><div class="asset-details"><span class="badge ${esc(asset.evidence)}">${esc(evidenceNames[asset.evidence])}</span><h2>${esc(asset.name)}</h2><p class="small muted">${esc(asset.category)}</p><p>${esc(asset.summary)}</p><div class="toolbar"><button class="button secondary" type="button" data-open="${asset.id}">Read entry<span class="sr-only">: ${esc(asset.name)}</span></button><label class="small"><input type="checkbox" data-compare="${asset.id}" ${compared.includes(asset.id) ? 'checked' : ''} ${compared.length === 2 && !compared.includes(asset.id) ? 'disabled' : ''}> Compare<span class="sr-only"> ${esc(asset.name)}</span></label></div></div></article>`).join('') : '<p class="empty-state">No entries match these filters. Try another name or choose all categories.</p>';
+  $('#atlas-grid').innerHTML = visible.length ? visible.map(asset => `<article class="asset-card"><div class="asset-icon">${formIcon(asset.form)}<span class="small muted">Generic form icon</span></div><div class="asset-details"><span class="badge ${esc(asset.evidence)}">${esc(evidenceNames[asset.evidence])}</span><h2>${esc(asset.name)}</h2><p class="small muted">${esc(asset.category)}</p><p>${esc(asset.summary)}</p><p><a class="button" href="#study/${asset.id}">Model &amp; photo study<span class="sr-only">: ${esc(asset.name)}</span></a></p><div class="toolbar"><button class="button secondary" type="button" data-open="${asset.id}">Read entry<span class="sr-only">: ${esc(asset.name)}</span></button><label class="small"><input type="checkbox" data-compare="${asset.id}" ${compared.includes(asset.id) ? 'checked' : ''} ${compared.length === 2 && !compared.includes(asset.id) ? 'disabled' : ''}> Compare<span class="sr-only"> ${esc(asset.name)}</span></label></div></div></article>`).join('') : '<p class="empty-state">No entries match these filters. Try another name or choose all categories.</p>';
 }
 
 function renderCompare() {
@@ -228,7 +231,7 @@ function renderQuestion() {
 function renderResults() {
   const correct = quiz.questions.filter((question, index) => question.answer === quiz.answers[index]).length;
   const total = quiz.questions.length, percent = Math.round(correct / total * 100);
-  if (quiz.moduleId === 'all') { progress.assessment = { correct, total }; saveProgress(); }
+  if (quiz.moduleId === 'all') { progress.assessment = { correct, total }; progress.assessmentRevision = 2; saveProgress(); }
   const missed = quiz.questions.filter((question, index) => question.answer !== quiz.answers[index]);
   const review = missed.length ? '<h3>Ideas to revisit</h3>' + missed.map(question => `<details><summary>${esc(question.prompt)}</summary><p><strong>Best answer:</strong> ${esc(question.options[question.answer])}</p><p>${esc(question.explanation)}</p><a href="#lessons/${question.moduleId}">Review the lesson</a></details>`).join('') : '<p>All answers were correct. Try explaining CFAR and evidence independence without looking at the notes.</p>';
   $('#quiz-stage').innerHTML = `<div class="results"><p class="eyebrow">${quiz.moduleId === 'all' ? 'Full assessment' : 'Lesson practice'} complete</p><h2 id="results-heading" tabindex="-1">${correct} / ${total} · ${percent}%</h2><p>${percent >= 80 ? 'You met the self-study review target of 80%. Revisit any missed concepts below.' : 'Review the linked lessons and try again when you can explain the reasoning.'} This score is not an operational certification.</p>${review}<button id="retry-quiz" class="button" type="button">Try this set again</button></div>`;
@@ -278,7 +281,7 @@ function init() {
   $('#source-list').innerHTML = sources.map(source => `<article class="source-card" id="source-${source.id}"><p class="eyebrow">${esc(source.publisher)} · ${esc(source.date)}</p><h3 tabindex="-1"><a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(source.title)} <span class="sr-only">(opens in a new tab)</span></a></h3><p>${esc(source.scope || 'Background reading for the related family names; not a claim of complete variant coverage.')}</p><p class="small muted">${esc(source.accessNote)}</p></article>`).join('');
   $('#reset-progress').addEventListener('click', () => $('#reset-dialog').showModal());
   $('#cancel-reset').addEventListener('click', () => $('#reset-dialog').close());
-  $('#confirm-reset').addEventListener('click', () => { progress = { completed: [], assessment: null }; saveProgress(); renderLesson(selectedLesson); $('#reset-dialog').close(); });
+  $('#confirm-reset').addEventListener('click', () => { progress = { completed: [], assessment: null, assessmentRevision: 2 }; saveProgress(); renderLesson(selectedLesson); $('#reset-dialog').close(); });
   $('#report-form').addEventListener('submit', event => { event.preventDefault(); $('#report-feedback').hidden = false; });
   $('#download-report').addEventListener('click', () => {
     const content = `FICTIONAL TRAINING NOTE — not an incident report\n\nDirect observations:\n${$('#report-observation').value}\n\nUnknowns and secondhand claims:\n${$('#report-uncertainty').value}\n`;

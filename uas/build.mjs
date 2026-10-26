@@ -6,6 +6,8 @@ import { lessons } from './lessons.js';
 import { catalogue } from './catalogue.js';
 import { quizQuestions } from './quiz.js';
 import { coreSources, glossary } from './sources.js';
+import { designVocabulary } from './model-study.js';
+import { photoQueries, commonsSearchUrl } from './photos.js';
 
 const directory = new URL('./', import.meta.url);
 const checkOnly = process.argv.includes('--check');
@@ -55,6 +57,8 @@ for (const lesson of lessons) {
   references(lesson.sourceIds, `Lesson ${lesson.id}`);
 }
 identified(catalogue, 'catalogue');
+const photoQuerySet = new Set();
+let photoQueryCount = 0;
 for (const asset of catalogue) {
   for (const field of ['name', 'category', 'form', 'summary', 'evidenceNote']) text(asset[field], `asset ${asset.id}.${field}`);
   texts(asset.aliases, `${asset.id}.aliases`, true);
@@ -62,6 +66,22 @@ for (const asset of catalogue) {
   texts(asset.confusions, `${asset.id}.confusions`);
   assert(['documented', 'reported', 'uncertain'].includes(asset.evidence), `Unknown evidence label ${asset.evidence}.`);
   references(asset.sourceIds, `Asset ${asset.id}`);
+  const vocabulary = designVocabulary(asset);
+  assert(Array.isArray(vocabulary) && vocabulary.length > 0, `Asset ${asset.id} needs design vocabulary.`);
+  for (const pair of vocabulary) {
+    assert(Array.isArray(pair) && pair.length === 2, `Asset ${asset.id} has malformed design vocabulary.`);
+    texts(pair, `${asset.id} design vocabulary`);
+  }
+  const queries = photoQueries(asset);
+  texts(queries, `${asset.id} photo queries`);
+  assert(new Set(queries).size === queries.length, `Asset ${asset.id} repeats a photo query.`);
+  for (const query of queries) {
+    const url = new URL(commonsSearchUrl(query));
+    assert(url.origin === 'https://commons.wikimedia.org' && url.pathname === '/wiki/Special:MediaSearch' && url.searchParams.get('type') === 'image', `Invalid Commons search URL for ${asset.id}.`);
+    assert(url.searchParams.get('search')?.includes(query), `Commons search does not preserve query ${query}.`);
+    photoQuerySet.add(query);
+    photoQueryCount++;
+  }
 }
 identified(quizQuestions, 'question');
 for (const question of quizQuestions) {
@@ -117,7 +137,7 @@ body.workbook { min-width: 0; background: white; }
   .workbook .panel, .workbook .callout, .workbook .workbook-lesson, .workbook .workbook-asset { break-inside: auto; }
   .workbook h1, .workbook h2, .workbook h3, .workbook h4 { break-after: avoid; }
   .workbook p, .workbook li { orphans: 3; widows: 3; }
-  .workbook .workbook-question, .workbook .workbook-answer { break-inside: avoid; }
+  .workbook .workbook-question, .workbook .workbook-answer, .workbook .workbook-source, .workbook .worksheet { break-inside: avoid; }
   .workbook a { color: inherit; text-decoration: none; }
   .workbook .worksheet { border-color: #888; }
 }
@@ -131,6 +151,7 @@ body.workbook { min-width: 0; background: white; }
 <p class="eyebrow">Mathjock · Public-information learning edition</p>
 <h1>UAS recognition & sensor literacy</h1>
 <p class="lede">A complete reading companion to UAS Fieldnotes: ${lessons.length} lessons, ${catalogue.length} public-reference entries, two science exercises, and ${quizQuestions.length} explained assessment questions.</p>
+<p>The interactive course also offers an optional Wikimedia source-image browser for each atlas entry. Loading it requires an explicit action and network access. Returned images are unreviewed search results, not a curated or verified model-photo gallery. This static workbook uses vocabulary, worksheets, and direct search links; it embeds no remote images.</p>
 </header>
 <section class="callout" aria-labelledby="scope-heading">
 <h2 id="scope-heading">Scope, evidence, and responsible use</h2>
@@ -142,7 +163,7 @@ body.workbook { min-width: 0; background: white; }
 <nav class="workbook-toc panel" aria-label="Workbook contents">
 <h2>Contents</h2>
 <ol>${lessons.map((lesson, index) => `<li><a href="#lesson-${lesson.id}">${index + 1}. ${escape(lesson.title)}</a></li>`).join('')}</ol>
-<ul><li><a href="#atlas">Recognition atlas</a></li><li><a href="#science">CFAR and sensor-fusion exercises</a></li><li><a href="#protocols">Responsible practice and observation worksheet</a></li><li><a href="#questions">Assessment questions</a></li><li><a href="#answer-key">Answer key with explanations</a></li><li><a href="#glossary">Glossary</a></li><li><a href="#sources">Background reading and source limitations</a></li></ul>
+<ul><li><a href="#atlas">Recognition atlas and model vocabulary</a></li><li><a href="#photo-study">Photograph and public-source study worksheet</a></li><li><a href="#science">CFAR and sensor-fusion exercises</a></li><li><a href="#protocols">Responsible practice and observation worksheet</a></li><li><a href="#questions">Assessment questions</a></li><li><a href="#answer-key">Answer key with explanations</a></li><li><a href="#glossary">Glossary</a></li><li><a href="#sources">Background reading and source limitations</a></li></ul>
 </nav>
 <section aria-label="Course lessons">
 ${lessons.map((lesson, index) => `<article id="lesson-${lesson.id}" class="workbook-lesson">
@@ -159,7 +180,21 @@ ${readingLinks(lesson.sourceIds)}
 <p class="eyebrow">Recognition atlas</p><h2>Families, forms & uncertain names</h2>
 <p>The following ${catalogue.length} entries organize public names and broad forms. They do not establish a current fleet inventory or reliable identification from a distant image. Evidence labels concern general public-reference status, not intelligence confidence or operational service. A later number does not prove a known variant relationship.</p>
 <p>Descriptions are deliberately broad. Each record retains confusions and limits, and each background link is qualified in the reference list. An absence from this atlas is not evidence that a design does not exist.</p>
-${catalogue.map(asset => `<article id="asset-${asset.id}" class="workbook-asset"><h3>${escape(asset.name)}</h3><p><strong>Category:</strong> ${escape(asset.category)}<br><strong>Public-reference status:</strong> ${escape(evidenceNames[asset.evidence])}</p><p>${escape(asset.summary)}</p><dl><dt>Broad form</dt><dd>${escape(asset.form)}</dd><dt>Names and aliases</dt><dd>${escape(asset.aliases.length ? asset.aliases.join(' · ') : 'No additional alias listed')}</dd></dl><h4>Description cues</h4>${list(asset.cues)}<h4>Confusions and limits</h4>${list(asset.confusions)}<p><strong>Evidence note:</strong> ${escape(asset.evidenceNote)}</p>${readingLinks(asset.sourceIds)}</article>`).join('\n')}
+<p>Each entry includes general design vocabulary and explicit Commons search terms. These links do not establish that photographs exist, match the requested model, or have been reviewed. Use the <a href="#photo-study">source-study worksheet</a> to separate a caption’s claim, a broad visible feature, and an unresolved question.</p>
+${catalogue.map(asset => `<article id="asset-${asset.id}" class="workbook-asset"><h3>${escape(asset.name)}</h3><p><strong>Category:</strong> ${escape(asset.category)}<br><strong>Public-reference status:</strong> ${escape(evidenceNames[asset.evidence])}</p><p>${escape(asset.summary)}</p><dl><dt>Broad form</dt><dd>${escape(asset.form)}</dd><dt>Names and aliases</dt><dd>${escape(asset.aliases.length ? asset.aliases.join(' · ') : 'No additional alias listed')}</dd></dl><h4>Description cues</h4>${list(asset.cues)}<h4>Confusions and limits</h4>${list(asset.confusions)}<p><strong>Evidence note:</strong> ${escape(asset.evidenceNote)}</p><section class="workbook-design-vocabulary"><h4>General design vocabulary</h4><dl>${designVocabulary(asset).map(([term, definition]) => `<dt>${escape(term)}</dt><dd>${escape(definition)}</dd>`).join('')}</dl></section><section class="workbook-photo-links"><h4>Public-source image research</h4><p>Explicit Commons search links: ${photoQueries(asset).map(query => `<a href="${escape(commonsSearchUrl(query))}">${escape(query)}</a>`).join(' · ')}.</p><p class="reading">A name match is not a verified model photograph. Images may show unrelated objects, drawings, parts, displays, or another variant. Check the original file page, credit, date, and reuse terms.</p><p><a href="./#study/${asset.id}">Open this entry’s interactive source-study page</a> · <a href="#photo-study">Use the source-study worksheet</a></p></section>${readingLinks(asset.sourceIds)}</article>`).join('\n')}
+</section>
+<section id="photo-study" class="print-new-section">
+<p class="eyebrow">Photographs as public historical sources</p><h2>Read the picture and its source together</h2>
+<p>The model-study pages connect each atlas entry with general airframe vocabulary and an optional Wikimedia Commons search. The gallery is an aid to reading public sources; it is not a recognition test, a verified photograph catalogue, or an operational identification aid. This workbook does not embed images or make network requests for them.</p>
+<ol><li><strong>Start with the source record.</strong> Open the original Commons file page. Record its title, stated creator, source credit, date information, and reuse terms. A file’s upload date is not necessarily the photograph’s capture date.</li><li><strong>Attribute the caption’s claim.</strong> Write “the caption labels this…” when the designation comes from metadata. An uploader’s label and the identity of the pictured object are separate questions.</li><li><strong>Use broad design vocabulary.</strong> Explain a visible arrangement such as a forward surface, a main wing, or separate tail booms only if the view resolves it. Perspective, cropping, blur, or hidden surfaces limit what can be described.</li><li><strong>Keep unknowns visible.</strong> A photograph may depict a display, drawing, component, prototype, unrelated object, or different variant. It does not by itself establish service status, capabilities, operator, or intent.</li><li><strong>Respect image provenance and reuse.</strong> Check the original file’s license and attribution requirements. The interactive gallery shows returned metadata, but that metadata is not independently verified. If no suitable result is returned, retain the gap; do not substitute a neighbouring model’s image.</li></ol>
+<h3>Source claim → broad visible feature → unknown</h3>
+<p>Choose a public source image from an explicit search link. Keep each kind of statement separate. This exercise concerns archival source reading, not a real-time sighting.</p>
+<div class="worksheet"><strong>Source record:</strong> Original file page, creator/credit, date and its meaning, reuse terms.</div>
+<div class="worksheet"><strong>Attributed source claim:</strong> What does the caption or file description actually call the object?</div>
+<div class="worksheet"><strong>Broad visible feature:</strong> What surface or structural arrangement can this view support? Which vocabulary term explains it?</div>
+<div class="worksheet"><strong>Unknown or unresolved:</strong> What is obscured, unverified, or unsupported by this source?</div>
+<h3>Fictional example</h3><p><strong>Source claim:</strong> “The archive caption calls this a model X display.” <strong>Visible feature:</strong> “The image resolves two longitudinal members extending toward a tail structure; the course vocabulary calls such members booms.” <strong>Unknown:</strong> “I have not established the caption’s model label, whether the exhibit represents a production aircraft, or whether the upload date is the capture date.”</p>
+<p>The careful conclusion preserves what the source says and what the image shows without converting either into a stronger unsupported claim. Live image retrieval could not be tested from the build environment; the workbook’s links are research leads, not evidence of a completed image audit.</p>
 </section>
 <section id="science" class="print-new-section">
 <p class="eyebrow">Classroom science exercises</p><h2>Work the reasoning by hand</h2>
@@ -220,4 +255,4 @@ for (const [name, content] of generated) {
     assert(existing === content, `${name} is stale. Run node uas/build.mjs.`);
   } else await writeFile(destination, content);
 }
-console.log(`${checkOnly ? 'Verified' : 'Built'} ${generated.size} generated files in ${fileURLToPath(directory)}: ${lessons.length} lessons, ${catalogue.length} atlas entries, ${quizQuestions.length} questions, ${sources.length} source leads.`);
+console.log(`${checkOnly ? 'Verified' : 'Built'} ${generated.size} generated files in ${fileURLToPath(directory)}: ${lessons.length} lessons, ${catalogue.length} atlas entries, ${quizQuestions.length} questions, ${sources.length} source leads, ${photoQueryCount} photo-search links (${photoQuerySet.size} distinct queries).`);
