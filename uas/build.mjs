@@ -1,0 +1,223 @@
+#!/usr/bin/env node
+/** Deterministic, dependency-free publication builder. Run from any directory. */
+import { readFile, writeFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import { lessons } from './lessons.js';
+import { catalogue } from './catalogue.js';
+import { quizQuestions } from './quiz.js';
+import { coreSources, glossary } from './sources.js';
+
+const directory = new URL('./', import.meta.url);
+const checkOnly = process.argv.includes('--check');
+if (process.argv.slice(2).some(argument => argument !== '--check')) throw new Error('Usage: node uas/build.mjs [--check]');
+const catalogueSources = JSON.parse(await readFile(new URL('catalogue-sources.json', directory), 'utf8'));
+const sources = [...coreSources, ...catalogueSources];
+const escape = value => String(value).replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
+const list = values => `<ul>${values.map(value => `<li>${escape(value)}</li>`).join('')}</ul>`;
+const paragraphs = values => values.map(value => `<p>${escape(value)}</p>`).join('');
+function assert(condition, message) { if (!condition) throw new Error(message); }
+function text(value, path) { assert(typeof value === 'string' && value.trim().length > 0, `${path} must be nonempty text.`); }
+function texts(values, path, allowEmpty = false) {
+  assert(Array.isArray(values) && (allowEmpty || values.length > 0), `${path} must be an array${allowEmpty ? '' : ' with entries'}.`);
+  values.forEach((value, index) => text(value, `${path}[${index}]`));
+}
+function identified(values, label) {
+  assert(Array.isArray(values) && values.length > 0, `${label} must have entries.`);
+  const ids = new Set();
+  for (const value of values) {
+    assert(typeof value.id === 'string' && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value.id), `Invalid ${label} ID: ${value.id}`);
+    assert(!ids.has(value.id), `Duplicate ${label} ID: ${value.id}`);
+    ids.add(value.id);
+  }
+  return ids;
+}
+
+const sourceIds = identified(sources, 'source');
+for (const source of sources) {
+  for (const field of ['title', 'publisher', 'date', 'scope', 'accessNote']) text(source[field], `source ${source.id}.${field}`);
+  assert(new URL(source.url).protocol === 'https:', `Source ${source.id} must use HTTPS.`);
+}
+function references(ids, name) {
+  texts(ids, `${name}.sourceIds`, true);
+  for (const id of ids) assert(sourceIds.has(id), `${name} references unknown source ${id}.`);
+}
+const lessonIds = identified(lessons, 'lesson');
+for (const lesson of lessons) {
+  for (const field of ['title', 'kicker', 'duration', 'summary']) text(lesson[field], `lesson ${lesson.id}.${field}`);
+  texts(lesson.objectives, `${lesson.id}.objectives`);
+  texts(lesson.takeaways, `${lesson.id}.takeaways`);
+  assert(Array.isArray(lesson.sections) && lesson.sections.length > 0, `Lesson ${lesson.id} needs sections.`);
+  for (const section of lesson.sections) {
+    text(section.heading, `${lesson.id} section heading`);
+    texts(section.body, `${lesson.id} section body`);
+    if (section.bullets !== undefined) texts(section.bullets, `${lesson.id} section bullets`);
+  }
+  references(lesson.sourceIds, `Lesson ${lesson.id}`);
+}
+identified(catalogue, 'catalogue');
+for (const asset of catalogue) {
+  for (const field of ['name', 'category', 'form', 'summary', 'evidenceNote']) text(asset[field], `asset ${asset.id}.${field}`);
+  texts(asset.aliases, `${asset.id}.aliases`, true);
+  texts(asset.cues, `${asset.id}.cues`);
+  texts(asset.confusions, `${asset.id}.confusions`);
+  assert(['documented', 'reported', 'uncertain'].includes(asset.evidence), `Unknown evidence label ${asset.evidence}.`);
+  references(asset.sourceIds, `Asset ${asset.id}`);
+}
+identified(quizQuestions, 'question');
+for (const question of quizQuestions) {
+  assert(lessonIds.has(question.moduleId), `Question ${question.id} has unknown lesson ${question.moduleId}.`);
+  text(question.prompt, `${question.id}.prompt`);
+  text(question.explanation, `${question.id}.explanation`);
+  texts(question.options, `${question.id}.options`);
+  assert(question.options.length >= 2 && new Set(question.options).size === question.options.length, `Question ${question.id} needs distinct choices.`);
+  assert(Number.isInteger(question.answer) && question.answer >= 0 && question.answer < question.options.length, `Question ${question.id} answer is out of range.`);
+}
+for (const lesson of lessons) assert(quizQuestions.some(question => question.moduleId === lesson.id), `Lesson ${lesson.id} has no assessment question.`);
+assert(Array.isArray(glossary) && glossary.length > 0, 'Glossary is empty.');
+for (const entry of glossary) { assert(Array.isArray(entry) && entry.length === 2, 'Invalid glossary entry.'); texts(entry, 'glossary entry'); }
+
+const sourceById = new Map(sources.map(source => [source.id, source]));
+const lessonById = new Map(lessons.map(lesson => [lesson.id, lesson]));
+const readingLinks = ids => ids.length ? `<p class="reading"><strong>Background reading:</strong> ${ids.map(id => `<a href="#source-${id}">${escape(sourceById.get(id).title)}</a>`).join('; ')}. These are reading leads, not fresh claim-level verification.</p>` : '';
+const evidenceNames = { documented: 'Documented family', reported: 'Reported name / variant', uncertain: 'Uncertain attribution' };
+const alpha = 16 * Math.expm1(-Math.log(0.01) / 16);
+
+const workbook = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Complete printable UAS Fieldnotes course: public Iranian UAS families, CFAR and sensor literacy, responsible procedures, practice questions and answer key.">
+<title>UAS Fieldnotes · Complete Course Workbook</title>
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="course.css">
+<style>
+body.workbook { min-width: 0; background: white; }
+.workbook main { max-width: 1000px; margin: 0 auto; padding: clamp(20px, 5vw, 60px); }
+.workbook h1 { max-width: 22ch; }
+.workbook h2 { margin-top: 1.4em; }
+.workbook h3 { margin-top: 1.2em; }
+.workbook section { scroll-margin-top: 1.5rem; }
+.workbook .workbook-toc ol { columns: 2 240px; }
+.workbook .workbook-toc li { break-inside: avoid; }
+.workbook .workbook-lesson, .workbook .workbook-asset { padding: 1.7rem 0; border-bottom: 1px solid var(--line); }
+.workbook .reading { font-size: .85rem; color: var(--muted); }
+.workbook dt { font-weight: 700; margin-top: .9rem; }
+.workbook dd { margin: .25rem 0 1rem; }
+.workbook .worksheet { min-height: 6rem; margin: 1rem 0; border: 1px solid var(--line); border-radius: 8px; padding: 1rem; }
+.workbook .workbook-question { padding: 1.1rem 0; border-bottom: 1px solid var(--line); }
+.workbook .workbook-source { padding: 1rem 0; overflow-wrap: anywhere; border-bottom: 1px solid var(--line); }
+.workbook .source-url { font-size: .8rem; }
+.workbook .formula { white-space: normal; overflow-wrap: anywhere; }
+@media print {
+  @page { margin: 16mm; }
+  .workbook main { max-width: none; padding: 0; margin: 0; font-size: 10.5pt; }
+  .workbook .screen-only { display: none !important; }
+  .workbook .print-new-section { break-before: page; }
+  .workbook .panel, .workbook .callout, .workbook .workbook-lesson, .workbook .workbook-asset { break-inside: auto; }
+  .workbook h1, .workbook h2, .workbook h3, .workbook h4 { break-after: avoid; }
+  .workbook p, .workbook li { orphans: 3; widows: 3; }
+  .workbook .workbook-question, .workbook .workbook-answer { break-inside: avoid; }
+  .workbook a { color: inherit; text-decoration: none; }
+  .workbook .worksheet { border-color: #888; }
+}
+</style>
+</head>
+<body class="workbook">
+<a class="skip-link" href="#workbook-main">Skip to workbook</a>
+<main id="workbook-main">
+<p class="screen-only"><a href="./">← Interactive course</a> · <a href="../">Mathjock home</a> · Use your browser’s Print command to save or print this workbook.</p>
+<header>
+<p class="eyebrow">Mathjock · Public-information learning edition</p>
+<h1>UAS recognition & sensor literacy</h1>
+<p class="lede">A complete reading companion to UAS Fieldnotes: ${lessons.length} lessons, ${catalogue.length} public-reference entries, two science exercises, and ${quizQuestions.length} explained assessment questions.</p>
+</header>
+<section class="callout" aria-labelledby="scope-heading">
+<h2 id="scope-heading">Scope, evidence, and responsible use</h2>
+<p>This original course introduces publicly discussed Iranian unmanned-aircraft families, careful observation, CFAR detection, sensor-network reasoning, and general protective procedures. It is a bounded educational catalogue, not a complete or current inventory of all possible assets. Historical designs, announced names, exported derivatives, and uncertain regional associations are distinguished where possible.</p>
+<p>Visual form alone cannot establish exact variant, national origin, operator, or intent. No actual sensor equipment, deployment, topology, coverage, readiness, or procedures at Camp Arifjan or another installation are described. The network and numerical examples are fictional classroom models.</p>
+<p>The course provides no weapon selection by range, engagement parameters, targeting guidance, or rules of engagement. Actual protective action must follow applicable authority and approved local procedures. Completion is a self-study record, not an operational qualification.</p>
+<p>External reference websites could not be retrieved in the build environment. The reference list contains explicitly qualified background and discovery leads; it does not represent a fresh source audit or a claim of 2026 completeness. Before formal instruction, an appropriately qualified instructor should check current source material and applicable approved guidance.</p>
+</section>
+<nav class="workbook-toc panel" aria-label="Workbook contents">
+<h2>Contents</h2>
+<ol>${lessons.map((lesson, index) => `<li><a href="#lesson-${lesson.id}">${index + 1}. ${escape(lesson.title)}</a></li>`).join('')}</ol>
+<ul><li><a href="#atlas">Recognition atlas</a></li><li><a href="#science">CFAR and sensor-fusion exercises</a></li><li><a href="#protocols">Responsible practice and observation worksheet</a></li><li><a href="#questions">Assessment questions</a></li><li><a href="#answer-key">Answer key with explanations</a></li><li><a href="#glossary">Glossary</a></li><li><a href="#sources">Background reading and source limitations</a></li></ul>
+</nav>
+<section aria-label="Course lessons">
+${lessons.map((lesson, index) => `<article id="lesson-${lesson.id}" class="workbook-lesson">
+<p class="eyebrow">Lesson ${index + 1} of ${lessons.length} · ${escape(lesson.duration)}</p>
+<h2>${escape(lesson.title)}</h2><p class="lede">${escape(lesson.summary)}</p>
+<h3>Learning objectives</h3>${list(lesson.objectives)}
+${lesson.sections.map(section => `<section><h3>${escape(section.heading)}</h3>${paragraphs(section.body)}${section.bullets ? list(section.bullets) : ''}</section>`).join('')}
+<div class="callout"><h3>Keep these ideas</h3>${list(lesson.takeaways)}</div>
+${readingLinks(lesson.sourceIds)}
+<p><a href="#questions-${lesson.id}">Practice this lesson</a> · <a href="./#lessons/${lesson.id}">Open the interactive lesson</a></p>
+</article>`).join('\n')}
+</section>
+<section id="atlas" class="print-new-section">
+<p class="eyebrow">Recognition atlas</p><h2>Families, forms & uncertain names</h2>
+<p>The following ${catalogue.length} entries organize public names and broad forms. They do not establish a current fleet inventory or reliable identification from a distant image. Evidence labels concern general public-reference status, not intelligence confidence or operational service. A later number does not prove a known variant relationship.</p>
+<p>Descriptions are deliberately broad. Each record retains confusions and limits, and each background link is qualified in the reference list. An absence from this atlas is not evidence that a design does not exist.</p>
+${catalogue.map(asset => `<article id="asset-${asset.id}" class="workbook-asset"><h3>${escape(asset.name)}</h3><p><strong>Category:</strong> ${escape(asset.category)}<br><strong>Public-reference status:</strong> ${escape(evidenceNames[asset.evidence])}</p><p>${escape(asset.summary)}</p><dl><dt>Broad form</dt><dd>${escape(asset.form)}</dd><dt>Names and aliases</dt><dd>${escape(asset.aliases.length ? asset.aliases.join(' · ') : 'No additional alias listed')}</dd></dl><h4>Description cues</h4>${list(asset.cues)}<h4>Confusions and limits</h4>${list(asset.confusions)}<p><strong>Evidence note:</strong> ${escape(asset.evidenceNote)}</p>${readingLinks(asset.sourceIds)}</article>`).join('\n')}
+</section>
+<section id="science" class="print-new-section">
+<p class="eyebrow">Classroom science exercises</p><h2>Work the reasoning by hand</h2>
+<article><h3>CFAR: a complete normalized example</h3>
+<p>Consider one cell under test (CUT), two guard cells on each side, and eight training or reference cells on each side. The total reference count is N = 16. The CUT and all four guard cells are excluded from the background estimate. Suppose the sixteen reference powers are all 1 in normalized classroom units.</p>
+<ol><li>The reference mean is (1 + … + 1) / 16 = 1.</li><li>For the hypothetical requested noise false-alarm probability P<sub>FA</sub> = 0.01, calculate α = N(P<sub>FA</sub><sup>−1/N</sup> − 1) = 16(0.01<sup>−1/16</sup> − 1) ≈ ${alpha.toFixed(5)}.</li><li>The threshold is T = α × reference mean ≈ ${alpha.toFixed(5)}.</li><li>If the CUT power is 6, then 6 &gt; T. The result is a detection candidate, not an identification.</li><li>If the CUT power is 4, then 4 &lt; T. It does not cross this threshold. This does not prove the absence of an object.</li></ol>
+<p>This analytic multiplier assumes independent, identically distributed exponential noise powers, homogeneous reference cells, and a single-look power detector. Linear power is used, not decibels. The concrete all-ones window makes the arithmetic easy; it is not itself an estimate of long-run false-alarm probability.</p>
+<h4>Why that multiplier works under the model</h4>
+<p>If noise power has mean μ, a noise-only CUT X has tail probability P(X &gt; t) = exp(−t/μ). Let Z be the average of N independent reference noise powers, independent of X. The desired probability is P(X &gt; αZ). Averaging over the random reference samples gives (1 + α/N)<sup>−N</sup>. Setting that expression equal to P<sub>FA</sub> and solving for α gives N(P<sub>FA</sub><sup>−1/N</sup> − 1). A changed background, correlated samples, or strong neighbouring echoes can invalidate the assumptions.</p>
+<h4>Prediction worksheet</h4><ol><li>Keep N and the reference mean fixed. What happens to the threshold if P<sub>FA</sub> decreases?</li><li>What happens to the reference mean if another strong echo enters a training cell?</li><li>Why must an edge cell with an incomplete reference window be marked unevaluated?</li></ol>
+<div class="worksheet">Your predictions and reasoning:</div>
+<p><strong>Discussion:</strong> A smaller P<sub>FA</sub> increases α and the threshold, making crossings less frequent under the model. A strong reference-cell echo raises the mean and can mask another echo. An incomplete window has a different calculation from the specified model; “not evaluated” must not be presented as a negative observation.</p>
+<p><a href="./#cfar">Try the interactive CFAR laboratory</a>.</p></article>
+<article><h3>Sensor networks: a fictional information-flow exercise</h3>
+<p>A generic network may combine radar measurements, EO/IR imagery, radio-frequency observations, and acoustic measurements. These are classes of evidence, not a claim about any installation’s equipment. Draw arrows from each selected input to “time and provenance,” then “association and uncertainty,” then “human review.” The arrows represent data flow, not geography or coverage.</p>
+<ol><li>Give each observation a timestamp and source. Identify whether it is firsthand or copied.</li><li>Ask whether observations concern the same event before combining them.</li><li>Retain uncertainty, disagreement, stale data, and missing measurements.</li><li>Keep observation, interpretation, and authorized protective decisions distinct.</li></ol>
+<h4>Toy Bayes calculation</h4><p>Let H mean “a manufactured test object is present.” The prior probability is 0.10, so prior odds are 0.10 / 0.90 = 1/9. Invent two observations with likelihood ratios 3 and 3. If they are conditionally independent under both H and not-H, posterior odds are (1/9) × 3 × 3 = 1. Converting odds to probability gives 1 / (1 + 1) = 0.50.</p>
+<p>If the observations repeat one original report, independence does not hold. Do not multiply the two ratios. Without a valid joint likelihood model, no combined posterior is justified by these numbers. This is the key lesson: more reports need not mean more independent evidence.</p>
+<div class="worksheet">Explain why the 50% result is conditional on the stated assumptions:</div>
+<p><a href="./#network">Explore the interactive sensor-network and probability laboratory</a>.</p></article>
+</section>
+<section id="protocols" class="print-new-section">
+<p class="eyebrow">Responsible practice</p><h2>Observation and protective procedures</h2>
+<ol><li><strong>Put personal safety first.</strong> Follow official alerts, posted shelter instructions, and designated local authorities.</li><li><strong>Separate facts from interpretation.</strong> Record only what is safely and lawfully observable. Do not invent dimensions, distances, model names, or intent.</li><li><strong>Use approved reporting channels.</strong> State whether a claim is firsthand or secondhand, and what is uncertain.</li><li><strong>Leave intervention to authorized personnel.</strong> Legal authority, identification requirements, airspace coordination, and risk to people govern any response.</li><li><strong>Keep clear of debris.</strong> Do not touch, move, collect, or approach it for photographs. Notify the appropriate emergency or explosive-hazard authority through local procedures.</li></ol>
+<p>Detection, tracking, classification, identification, and authorization are distinct decisions. Distance alone does not prescribe a weapon or response. Current local procedures determine alert meanings, reporting channels, shelter arrangements, and authorized responsibilities. Public U.S. agency guidance supplies educational context and does not establish legal authority in Kuwait.</p>
+<h3>Fictional observation worksheet</h3><p>In a training video, you briefly see an indistinct fixed-wing shape. A colleague names a particular model, but the tail and markings are not visible. Write a short report with separate direct observations and secondhand claims. Use fictional training information only.</p>
+<div class="worksheet"><strong>What the video directly shows:</strong></div><div class="worksheet"><strong>Unknowns and secondhand claims:</strong></div>
+<p><strong>Model answer:</strong> “In the training video, I saw a fixed-wing shape briefly. I could not resolve its tail, markings, or dimensions. A colleague suggested a model name; I cannot independently confirm it. The image alone does not establish the operator, origin, or intent.”</p>
+</section>
+<section id="questions" class="print-new-section">
+<p class="eyebrow">Self-study assessment</p><h2>Questions</h2><p>Choose the best supported answer for each question. Explain your reasoning before consulting the separate answer key. Reading completion and assessment performance are different learning records; neither is an operational qualification.</p>
+${lessons.map(lesson => `<section id="questions-${lesson.id}"><h3>${escape(lesson.title)}</h3>${quizQuestions.filter(question => question.moduleId === lesson.id).map(question => { const number = quizQuestions.indexOf(question) + 1; return `<article class="workbook-question" id="question-${question.id}"><h4>${number}. ${escape(question.prompt)}</h4><ol type="A">${question.options.map(option => `<li>${escape(option)}</li>`).join('')}</ol><p>My answer: ______ &nbsp; Reason: __________________________________</p></article>`; }).join('')}</section>`).join('\n')}
+</section>
+<section id="answer-key" class="print-new-section">
+<p class="eyebrow">Separate answer key</p><h2>Answers and explanations</h2>
+${quizQuestions.map((question, index) => `<article class="workbook-answer"><h3>${index + 1}. ${String.fromCharCode(65 + question.answer)} — ${escape(question.options[question.answer])}</h3><p>${escape(question.explanation)}</p><p class="reading"><a href="#question-${question.id}">Return to question</a> · <a href="#lesson-${question.moduleId}">${escape(lessonById.get(question.moduleId).title)}</a></p></article>`).join('\n')}
+</section>
+<section id="glossary" class="print-new-section"><p class="eyebrow">Shared vocabulary</p><h2>Glossary</h2><dl>${glossary.map(([term, definition]) => `<dt>${escape(term)}</dt><dd>${escape(definition)}</dd>`).join('')}</dl></section>
+<section id="sources" class="print-new-section"><p class="eyebrow">Background reading</p><h2>References and source limitations</h2>
+<p>This is an original educational synthesis, not an official intelligence product or installation SOP. External sites could not be retrieved from the build environment, so links and claim-level coverage were not revalidated. Catalogue references are background leads, not a claim that every variant is documented in every linked report. Secondary search links are discovery aids only. No current inventory or operational status is inferred from a report, announcement, caption, or search result.</p>
+${sources.map(source => `<article class="workbook-source" id="source-${source.id}"><h3>${escape(source.title)}</h3><p><strong>${escape(source.publisher)}</strong> · ${escape(source.date)}</p><p>${escape(source.scope)}</p><p class="reading">${escape(source.accessNote)}</p><p class="source-url"><a href="${escape(source.url)}">${escape(source.url)}</a></p></article>`).join('\n')}
+</section>
+<footer><p>Mathjock · UAS Fieldnotes · Public-information learning edition</p><p><a href="./">Interactive course</a> · <a href="README.md">Scope, maintenance, and verification notes</a></p></footer>
+</main>
+</body>
+</html>
+`;
+
+const generated = new Map([
+  ['catalogue-sources.js', `// Generated by node uas/build.mjs; edit catalogue-sources.json instead.\nexport const catalogueSources = ${JSON.stringify(catalogueSources, null, 2)};\n`],
+  ['workbook.html', workbook],
+]);
+for (const [name, content] of generated) {
+  const destination = new URL(name, directory);
+  if (checkOnly) {
+    let existing;
+    try { existing = await readFile(destination, 'utf8'); } catch { throw new Error(`${name} is missing. Run node uas/build.mjs.`); }
+    assert(existing === content, `${name} is stale. Run node uas/build.mjs.`);
+  } else await writeFile(destination, content);
+}
+console.log(`${checkOnly ? 'Verified' : 'Built'} ${generated.size} generated files in ${fileURLToPath(directory)}: ${lessons.length} lessons, ${catalogue.length} atlas entries, ${quizQuestions.length} questions, ${sources.length} source leads.`);

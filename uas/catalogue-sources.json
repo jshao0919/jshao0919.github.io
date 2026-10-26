@@ -1,0 +1,254 @@
+[
+  {
+    "id": "dia-2019",
+    "title": "Iran Military Power (2019): background reading",
+    "publisher": "U.S. Defense Intelligence Agency",
+    "url": "https://www.dia.mil/Military-Power-Publications/",
+    "date": "2019",
+    "scope": "Historical Iranian military and unmanned-aircraft background. The publications index is a retrieval lead; this entry does not imply that every attached variant is discussed in the report.",
+    "accessNote": "External retrieval blocked by the environment proxy. This report was not freshly audited for individual catalogue claims. It cannot establish post-2019 developments or current inventories."
+  },
+  {
+    "id": "dia-ukraine",
+    "title": "Iranian UAVs in Ukraine: A Visual Comparison (2023): background reading",
+    "publisher": "U.S. Defense Intelligence Agency",
+    "url": "https://www.dia.mil/Military-Power-Publications/",
+    "date": "2023",
+    "scope": "Public comparative reference associated with Shahed-131, Shahed-136 and Mohajer-6. A publications-index lead, not a claim of a current or complete inventory.",
+    "accessNote": "External retrieval blocked by the environment proxy. The report and its individual comparisons were not freshly audited during this build."
+  },
+  {
+    "id": "un-yemen",
+    "title": "Yemen Panel of Experts reports: provenance research",
+    "publisher": "United Nations Security Council",
+    "url": "https://main.un.org/securitycouncil/en/sanctions/2140/panel-of-experts/reports",
+    "date": "Multiple reporting years",
+    "scope": "Research lead for specimen-specific regional attribution and the limits of evidence. No individual finding or report passage is asserted here.",
+    "accessNote": "External retrieval blocked. Use the dated report and relevant annex, rather than this catalogue, to evaluate a specific provenance claim."
+  },
+  {
+    "id": "name-ababil",
+    "title": "Ababil UAV: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Ababil%20UAV",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-mohajer",
+    "title": "Mohajer UAV: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Mohajer%20UAV",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-sadegh",
+    "title": "Sadegh UAV: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Sadegh%20UAV",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-mohajer-10",
+    "title": "Mohajer 10: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Mohajer%2010",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-shahed-121",
+    "title": "Shahed 121: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Shahed%20121",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-shahed-129",
+    "title": "Shahed 129: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Shahed%20129",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-shahed-149",
+    "title": "Shahed 149 Gaza: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Shahed%20149%20Gaza",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-shahed-131",
+    "title": "Shahed 131: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Shahed%20131",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-shahed-136",
+    "title": "Shahed 136: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Shahed%20136",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-shahed-238",
+    "title": "Shahed 238: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Shahed%20238",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-shahed-171",
+    "title": "Shahed 171 Simorgh: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Shahed%20171%20Simorgh",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-saegheh",
+    "title": "Shahed 181 Shahed 191 Saegheh: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Shahed%20181%20Shahed%20191%20Saegheh",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-shahed-101-107",
+    "title": "Shahed 101 Shahed 107: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Shahed%20101%20Shahed%20107",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-karrar",
+    "title": "Karrar UAV: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Karrar%20UAV",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-fotros",
+    "title": "Fotros: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Fotros",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-kaman-12",
+    "title": "Kaman 12: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Kaman%2012",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-kaman-22",
+    "title": "Kaman 22: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Kaman%2022",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-yasir",
+    "title": "Yasir UAV: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Yasir%20UAV",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-kian",
+    "title": "Kian UAV: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Kian%20UAV",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-arash",
+    "title": "Arash UAV: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Arash%20UAV",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-raad-85",
+    "title": "Raad 85 UAV: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Raad%2085%20UAV",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-pelican-2",
+    "title": "Pelican 2 UAV: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Pelican%202%20UAV",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-mobin",
+    "title": "Mobin UAV: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Mobin%20UAV",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-qasef",
+    "title": "Qasef UAV: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Qasef%20UAV",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  },
+  {
+    "id": "name-samad",
+    "title": "Samad UAV: secondary-reference search",
+    "publisher": "Wikipedia search (discovery only)",
+    "url": "https://en.wikipedia.org/w/index.php?search=Samad%20UAV",
+    "date": "Undated search lead",
+    "scope": "Name-discovery link only. Follow original citations and inspect dated images; search results are not evidence for the catalogue claims.",
+    "accessNote": "Not retrieved during this build. This is an explicit search URL, not an invented article citation or a verified primary source."
+  }
+]

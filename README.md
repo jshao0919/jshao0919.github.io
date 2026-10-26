@@ -1,6 +1,17 @@
 # jshao0919.github.io
 Revisiting math :)
 
+## UAS Recognition & Sensor Literacy
+
+[Open the interactive course](uas/) for ten beginner lessons, a searchable
+32-entry public-reference atlas, CFAR and sensor-fusion labs, 44 explained
+questions, and a [printable workbook](uas/workbook.html). The course covers broad
+Iranian UAS families, uncertainty, technical concepts, and responsible reporting.
+It does not claim an exhaustive/current inventory or describe an installation's
+systems, weapon selection, or engagement procedures. External reading links were
+not revalidated because the build environment blocked those sites; the course
+labels these source limitations explicitly. See [scope and development notes](uas/README.md).
+
 ## Ross solutions
 
 [Complete Chapter 1](solutions/ross/chapter-1/ross-chapter-1.pdf) contains
