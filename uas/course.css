@@ -284,6 +284,60 @@ dl.photo-metadata { display: grid; grid-template-columns: minmax(70px,.3fr) minm
 .source-study-nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .8rem; margin: 1.4rem 0; padding-top: 1rem; border-top: 1px solid var(--line); }
 .study-progress { color: var(--muted); font-size: .8rem; font-variant-numeric: tabular-nums; }
 
+/* Static model records remain readable when the interactive application cannot load. */
+.model-page main { width: 100%; max-width: 1100px; margin: 0 auto; padding: clamp(24px,4vw,48px); }
+.model-page .site-header { min-height: 76px; }
+.model-page h1 { max-width: 26ch; margin-bottom: .55em; font-size: clamp(2rem,4vw,3.2rem); overflow-wrap: anywhere; }
+.model-page .lede { max-width: 76ch; }
+.model-page .model-record { margin-top: 1.3rem; }
+.model-record { min-width: 0; }
+.model-record > p { max-width: 85ch; }
+.model-record dl { margin: 1rem 0; }
+.model-record dt { margin-top: 1rem; color: var(--ink-strong); font-weight: 700; }
+.model-record dd { margin: .3rem 0 0; color: var(--muted); }
+.model-record .photo-metadata dt { margin-top: 0; }
+.model-record .photo-metadata dd { margin-top: 0; }
+.model-pager { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .7rem; padding: 1rem 0; margin: 1.2rem 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.model-pager > a { min-height: 44px; display: inline-flex; align-items: center; }
+.model-index-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; margin: 1.5rem 0; }
+.model-index-card { display: flex; flex-direction: column; align-items: start; min-width: 0; padding: 1.3rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--ink); text-decoration: none; }
+a.model-index-card:hover { border-color: var(--teal); box-shadow: var(--shadow); text-decoration: none; }
+.model-index-card h2 { font-size: 1.2rem; line-height: 1.3; margin: .7rem 0 .5rem; }
+.model-index-card h3 { font-size: 1.12rem; line-height: 1.3; margin: .7rem 0 .5rem; }
+.model-index-card p { font-size: .86rem; color: var(--muted); }
+.model-index-card .button { margin-top: auto; }
+.model-index-card > :last-child { margin-bottom: 0; }
+.model-directory .module-card .badge { position: static; margin: .65rem 0 .4rem; }
+.model-directory .module-card h2 { margin: .5rem 0 .65rem; font-size: 1.2rem; line-height: 1.3; }
+.model-directory .module-card .small { font-size: .79rem; }
+.model-page .source-study-nav { margin: .2rem 0 1.4rem; padding: .7rem 0; }
+.model-page .source-study-nav:last-of-type { margin-top: 1.6rem; }
+.static-source-links { margin-top: 1.3rem; padding-top: 1.1rem; border-top: 1px solid var(--line); }
+.static-source-links li { overflow-wrap: anywhere; }
+.model-photo-panel { min-width: 0; margin-top: 1.4rem; }
+.model-photo-panel .photo-grid { margin-bottom: 0; }
+.atlas-photo { min-width: 0; margin: .3rem 0 1rem; padding: .7rem; border: 1px solid var(--line); border-radius: var(--radius-small); background: #f7f9f7; }
+.atlas-source-photo { margin: 0; min-width: 0; }
+.atlas-photo-frame { display: flex; align-items: center; justify-content: center; width: 100%; aspect-ratio: 4 / 3; padding: .35rem; overflow: hidden; border-radius: 5px; background: #e9efeb; }
+.atlas-photo-frame > a { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+.atlas-photo-frame img { display: block; width: 100%; max-width: 100%; height: 100%; object-fit: contain; }
+.atlas-photo-caption { display: block; margin: .7rem 0 0; color: var(--muted); font-size: .75rem; line-height: 1.55; overflow-wrap: anywhere; }
+.asset-card .atlas-photo-caption { font-size: .75rem; }
+.atlas-photo-caption a { overflow-wrap: anywhere; }
+.atlas-photo-caption strong { color: var(--ink); }
+.atlas-photo-actions { display: flex; flex-wrap: wrap; gap: .4rem .6rem; align-items: center; margin-top: .65rem; }
+.atlas-photo-actions button, .atlas-photo-actions .button { min-height: 44px; font-size: .76rem; }
+.atlas-photo-status { display: block; margin: .5rem 0; font-size: .75rem; color: var(--muted); overflow-wrap: anywhere; }
+.atlas-photo-status.error, .atlas-photo.error, .atlas-photo [role="alert"] { color: var(--error); }
+.atlas-photo .photo-error { padding: .65rem .8rem; margin: .65rem 0 0; font-size: .75rem; }
+.image-unavailable { margin: 0; padding: .7rem; text-align: center; font-size: .8rem; color: var(--muted); }
+.course-fallback { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1.2rem; padding: .85rem clamp(18px,4vw,54px); border-bottom: 1px solid var(--line); background: #eaf2ed; font-size: .83rem; }
+.course-fallback p { margin: 0; }
+.course-fallback a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 650; }
+.app-startup-status { padding: .85rem clamp(18px,4vw,54px); margin: 0; border-bottom: 1px solid var(--line); color: var(--muted); background: var(--surface-soft); font-size: .85rem; }
+.app-startup-status:empty { display: none; }
+.app-startup-status.error, .app-startup-status[role="alert"] { background: var(--warning-soft); color: var(--ink); }
+
 .lab-layout { display: grid; grid-template-columns: minmax(210px, .8fr) minmax(0, 2fr); gap: 1.3rem; align-items: start; }
 .controls { padding: 1.25rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
 .controls h3 { font-size: .96rem; }
@@ -380,6 +434,7 @@ dialog > p { margin: 0 1.6rem 1.4rem; }
   .lesson-content { padding: 1.35rem; }
   .lab-layout { grid-template-columns: minmax(190px, .85fr) minmax(0,1.6fr); }
   .study-grid { grid-template-columns: 1fr; }
+  .model-index-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
 @media (max-width: 900px) {
   .shell { display: block; }
@@ -417,6 +472,13 @@ dialog > p { margin: 0 1.6rem 1.4rem; }
   .section-heading > .button, .section-heading > .badge { margin-bottom: .5rem; }
   .module-grid, .atlas-grid, .two-col, .compare-grid, .lab-layout, .lesson-layout { grid-template-columns: 1fr; }
   .photo-grid { grid-template-columns: 1fr; }
+  .model-index-grid { grid-template-columns: 1fr; }
+  .model-page .site-header { min-height: 66px; flex-wrap: wrap; }
+  .model-page .header-actions { margin-left: auto; }
+  .model-page main { padding: 24px 18px; }
+  .model-page h1 { font-size: 2rem; }
+  .model-pager { justify-content: start; }
+  .model-pager .button { flex: 1 1 auto; }
   .study-header { flex-direction: column; gap: 1rem; }
   .study-header .asset-icon { flex-basis: auto; min-height: 100px; }
   .study-toolbar { gap: .65rem; }
@@ -464,6 +526,8 @@ dialog > p { margin: 0 1.6rem 1.4rem; }
   .site-header, .sidebar, .header-actions, .skip-link, button, .button, .toolbar, dialog, .controls, .lesson-menu, .report-form { display: none !important; }
   .shell { display: block; }
   .workbook { width: 100%; padding: 0; }
+  .model-page main { width: 100%; max-width: none; padding: 0; }
+  .course-fallback, .app-startup-status, .model-pager, .atlas-photo-actions { display: none !important; }
   main { max-width: none; padding: 0; }
   .hero { margin-bottom: 1rem; }
   h1 { font-size: 26pt; }
@@ -475,6 +539,8 @@ dialog > p { margin: 0 1.6rem 1.4rem; }
   .study-toolbar, .photo-consent .button, .source-study-nav { display: none !important; }
   figure.photo-card { break-inside: avoid; }
   .photo-image-wrap { max-height: 75mm; }
+  .atlas-photo-frame { max-height: 65mm; }
+  .model-index-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .module-grid, .atlas-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .lesson-content { border: 0; padding: 0; }
   .formula { background: white; color: black; border: 1px solid #aaa; white-space: normal; }

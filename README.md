@@ -4,7 +4,8 @@ Revisiting math :)
 ## UAS Recognition & Sensor Literacy
 
 [Open the interactive course](uas/) for ten beginner lessons, a searchable
-32-entry public-reference atlas with model-study pages and optional Wikimedia
+32-entry public-reference atlas with [model-study pages](uas/models/) that work
+without JavaScript and optional Wikimedia
 source images, CFAR and sensor-fusion labs, 44 explained
 questions, and a [printable workbook](uas/workbook.html). The course covers broad
 Iranian UAS families, uncertainty, technical concepts, and responsible reporting.

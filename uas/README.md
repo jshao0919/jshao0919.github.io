@@ -1,9 +1,10 @@
 # UAS Recognition & Sensor Literacy
 
-A static, interactive public-information course at [uas/](./index.html). It
-runs on GitHub Pages without a backend, account, external libraries, fonts,
-or tracking. The core course uses its own files. An optional image-search feature
-connects directly to Wikimedia only when the learner selects **Load source images**.
+A static, interactive public-information course at [uas/](./index.html), with
+[ordinary model-study pages](models/) that open without JavaScript. It runs on
+GitHub Pages without a backend, account, remotely hosted libraries, fonts, or
+tracking. The core course uses its own files. Optional source-image buttons
+connect directly to Wikimedia only when the learner requests an image.
 
 The course includes ten beginner lessons, 32 family/naming entries, two science
 labs, 44 explained assessment questions, a fictional observation-writing
@@ -34,6 +35,12 @@ one search. The browser requests up to six source records and eligible thumbnail
 directly from Wikimedia. A query is never silently broadened or replaced with an
 image of another model. Results may include photographs, diagrams, exhibits,
 unrelated material, or mislabeled files; **model identity is not verified**.
+
+Each atlas card also has an inline source-image panel. It requests a result for
+that card's first explicit designation and displays the first result passing the
+format and attribution checks. It does not verify relevance beyond the source
+search; the full model page offers each of the entry's variant queries separately.
+Loaded atlas results are retained only in memory for the current page session.
 
 The gallery keeps source descriptions, creator credit, stated dates, reported
 reuse terms, and original Commons file links alongside the image. Descriptions
@@ -84,8 +91,8 @@ self-study score is not an operational qualification.
 10. A fictional capstone integrating observation, model limits, and reporting.
 
 The atlas supports search, category/reference-status filters, entry details,
-model-study pages, and two-entry text comparison. Source images are kept in the
-separate source-study view. Lessons can be marked complete and resumed. Practice is
+model-study pages, inline source images, and two-entry text comparison. Images are
+not used in the comparison exercise. Lessons can be marked complete and resumed. Practice is
 available by lesson or as a full assessment, with explanations after every answer
 and links to revisit missed ideas. The self-study review target is 80%.
 
@@ -131,13 +138,33 @@ python3 -m http.server 8770 --bind 127.0.0.1
 
 Open `http://127.0.0.1:8770/uas/`. ES modules need HTTP rather than `file://`.
 
+The model directory is `/uas/models/`; every record has a normal URL such as
+`/uas/models/shahed-136.html`. Its complete text and direct source links work even
+with scripts disabled or unavailable. The course keeps visible links to these
+pages and the workbook if its interactive entry point fails to load. Legacy
+`#study/model-id` links still work when the interactive course is available.
+
 - `lessons.js`, `quiz.js`: learning content and answer explanations.
 - `catalogue.js`, `catalogue-sources.json`: family entries and qualified reading leads.
 - `sources.js`: shared technical reading leads and glossary.
 - `lab-core.js`: independently testable mathematical models.
-- `model-study.js`, `photos.js`: source-study presentation and optional Commons API.
+- `model-pages.mjs`, `models/`: deterministic static model pages and directory.
+- `model-study.js`: compatibility presentation for older hash links.
+- `model-page.js`, `photo-ui.js`, `atlas-photos.js`, `photos.js`: optional photo UI and Commons API.
 - `app.js`, `index.html`, `course.css`: interactive and accessible presentation.
-- `build.mjs`: validation and deterministic source-module/workbook generation.
+- `build.mjs`: validation, static-page/workbook generation, and browser bundling.
+
+Install the pinned build tool with Node.js 18 or newer:
+
+```sh
+npm ci --prefix uas --cache /tmp/mathjock-uas-npm-cache --no-audit --no-fund
+```
+
+`esbuild` is a development dependency. Published pages use committed static files
+and need no build tool on GitHub Pages. Each browser entry point is a single file
+whose name changes with its content; no separate browser imports can combine
+old cached helpers with new application code. Stylesheet URLs also carry a content
+version. Previously published bundle files should be retained for cached pages.
 
 After changing course data, run:
 
@@ -147,6 +174,7 @@ node uas/build.mjs --check
 node --test tests/uas-lab.test.mjs tests/uas-photos.test.mjs
 python3 tests/uas-browser.py
 python3 tests/uas-photos-browser.py
+python3 tests/uas-model-pages-browser.py
 ```
 
 The browser check needs Python Playwright and Chromium. Install test tooling
@@ -158,7 +186,7 @@ read without JavaScript or printed through the browser.
 
 - Nine mathematical tests pass, including independent reference-window
   calculations and 50,000 noise-only Monte Carlo trials of the CFAR model.
-- Ten photo-module tests cover explicit queries, attribution, URL/license
+- Eleven photo-module tests cover explicit queries, older-browser compatibility, attribution, URL/license
   restrictions, metadata sanitization, and response/error handling. Another 71
   browser checks exercise the source-study pages using synthetic API and image
   fixtures, including opt-in requests, cancellation, timeout, failed thumbnails,
@@ -170,6 +198,12 @@ read without JavaScript or printed through the browser.
   access, source jumps, and desktop/390 px/320 px layouts.
   Earlier-edition score labeling and retaking the revised assessment were also
   checked so an old score is not silently presented as a score on the new questions.
+- Opening regressions add 165 checks across all 33 independent model/directory
+  pages: disabled JavaScript, failed bundles, older browsers without `Object.hasOwn`,
+  immutable script loading, direct atlas/dialog links, inline source-image states,
+  and browser Back/Forward restoration during an interrupted image request.
+  Together the three browser suites pass 377 checks. Image-service responses in
+  these tests are synthetic fixtures, not verified live photographs.
 - The deterministic build validates schemas, IDs, source references, and generated
   freshness. The JavaScript-free workbook contains all ten lessons, 32 entries,
   44 questions, and 44 answer explanations. Its 138 IDs are unique and all internal

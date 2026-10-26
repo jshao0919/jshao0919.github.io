@@ -114,7 +114,10 @@ with sync_playwright() as playwright:
     for view in VIEWS:
         route(page, view)
         check(f"Only the {view} view is displayed", page.locator(".view:visible").count() == 1)
-        expect(page.locator(f'.nav-link[href="#{view}"]')).to_have_attribute("aria-current", "page")
+        if view != "study":
+            expect(page.locator(f'.nav-link[href="#{view}"]')).to_have_attribute("aria-current", "page")
+        else:
+            check("Primary model navigation uses an independent page", page.locator('.nav-link[href="models/"]').count() == 1)
         no_overflow(page, f"Desktop {view} has no outer overflow")
 
     # Every lesson is reachable, and the visible lesson heading follows navigation.
@@ -316,8 +319,8 @@ with sync_playwright() as playwright:
     static_context = browser.new_context(java_script_enabled=False, viewport={"width": 390, "height": 844})
     static_page = track(static_context.new_page())
     static_page.goto(f"{BASE}/uas/")
-    expect(static_page.locator("noscript a")).to_be_visible()
-    static_page.locator("noscript a").click()
+    expect(static_page.locator('noscript a[href="workbook.html"]')).to_be_visible()
+    static_page.locator('noscript a[href="workbook.html"]').click()
     body = static_page.locator("body").inner_text()
     check("Workbook has exact lesson/atlas/question/answer counts", static_page.locator(".workbook-lesson").count() == len(LESSONS) and static_page.locator(".workbook-asset").count() == len(CATALOGUE) and static_page.locator(".workbook-question").count() == len(QUESTIONS) and static_page.locator(".workbook-answer").count() == len(QUESTIONS))
     no_overflow(static_page, "390px static workbook has no outer overflow")

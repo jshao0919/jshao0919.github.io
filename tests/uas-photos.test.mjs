@@ -54,6 +54,21 @@ test('every catalogue entry has explicit clean queries and grouped designations 
   assert.deepEqual(photoQueries({ id: 'karrar' }), ['Karrar']);
 });
 
+test('model queries remain available in browsers without Object.hasOwn', () => {
+  const original = Object.getOwnPropertyDescriptor(Object, 'hasOwn');
+  try {
+    Object.defineProperty(Object, 'hasOwn', { configurable: true, writable: true, value: undefined });
+    for (const asset of catalogue) assert.ok(photoQueries(asset).length > 0, asset.id);
+    assert.deepEqual(photoQueries({ id: 'shahed-181-191' }), ['Shahed-181', 'Shahed-191']);
+    assert.deepEqual(photoQueries({ id: 'constructor' }), []);
+    assert.deepEqual(photoQueries({ id: '__proto__' }), []);
+    assert.deepEqual(photoQueries(null), []);
+  } finally {
+    if (original) Object.defineProperty(Object, 'hasOwn', original);
+    else delete Object.hasOwn;
+  }
+});
+
 test('human and API searches preserve exact designations and anonymous CORS settings', async () => {
   const link = new URL(commonsSearchUrl('Shahed-136'));
   assert.equal(link.origin, 'https://commons.wikimedia.org');

@@ -44,7 +44,7 @@ const imageMimes = new Set(['image/jpeg', 'image/png', 'image/webp']);
 
 /** Explicit model queries, including separately searchable grouped labels. */
 export function photoQueries(asset) {
-  return Object.hasOwn(queriesById, asset?.id) ? [...queriesById[asset.id]] : [];
+  return Object.prototype.hasOwnProperty.call(queriesById, asset?.id) ? [...queriesById[asset.id]] : [];
 }
 
 function cleanQuery(query) {

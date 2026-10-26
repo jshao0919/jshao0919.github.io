@@ -5,6 +5,7 @@ import { makeCfarScene, cfar, fuseEvidence } from './lab-core.js';
 import { coreSources, glossary } from './sources.js';
 import { catalogueSources } from './catalogue-sources.js';
 import { renderModelStudy, cancelPhotoRequest } from './model-study.js';
+import { atlasPhotoPanel, attachAtlasPhotos, cancelAtlasPhotos } from './atlas-photos.js';
 
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
@@ -100,11 +101,12 @@ function route(focus = true) {
   });
   if (view === 'lessons') renderLesson(lessonId || selectedLesson);
   if (view === 'study') renderModelStudy(lessonId); else cancelPhotoRequest();
+  if (view !== 'atlas') cancelAtlasPhotos();
   document.title = `${({ overview: 'Start here', lessons: 'Guided course', atlas: 'Recognition atlas', study: 'Model & photo study', cfar: 'CFAR laboratory', network: 'Sensor networks', practice: 'Knowledge checks', reference: 'Reference & protocols' })[view]} · UAS Fieldnotes`;
-  if (focus) {
+  if (focus || view === 'study') {
     const target = view === 'study' ? $('#study-model-title') : view === 'lessons' && lessonId ? $('#current-lesson-title') : view === 'reference' && sourceById.has(lessonId) ? $(`#source-${lessonId} h3`) : $(`[data-view="${view}"] h1`);
     target.focus({ preventScroll: true });
-    target.scrollIntoView({ block: 'start', behavior: 'instant' });
+    target.scrollIntoView({ block: 'start', behavior: 'auto' });
   }
 }
 
@@ -121,16 +123,18 @@ function formIcon(form) {
 }
 
 function assetDetails(asset) {
-  return `<p><span class="badge ${esc(asset.evidence)}">${esc(evidenceNames[asset.evidence])}</span> <span class="badge">${esc(asset.category)}</span></p><p>${esc(asset.summary)}</p><dl><dt>Broad form</dt><dd>${esc(asset.form)}</dd><dt>Names and aliases</dt><dd>${esc(asset.aliases.length ? asset.aliases.join(' · ') : 'No additional alias listed')}</dd></dl><h3>Description cues</h3>${list(asset.cues)}<h3>Confusions and limits</h3>${list(asset.confusions)}<div class="callout"><strong>Evidence note</strong><p>${esc(asset.evidenceNote)}</p></div>${readingLinks(asset.sourceIds)}<a class="button" href="#study/${asset.id}">Open model &amp; photo study</a>`;
+  return `<p><span class="badge ${esc(asset.evidence)}">${esc(evidenceNames[asset.evidence])}</span> <span class="badge">${esc(asset.category)}</span></p><p>${esc(asset.summary)}</p><dl><dt>Broad form</dt><dd>${esc(asset.form)}</dd><dt>Names and aliases</dt><dd>${esc(asset.aliases.length ? asset.aliases.join(' · ') : 'No additional alias listed')}</dd></dl><h3>Description cues</h3>${list(asset.cues)}<h3>Confusions and limits</h3>${list(asset.confusions)}<div class="callout"><strong>Evidence note</strong><p>${esc(asset.evidenceNote)}</p></div>${readingLinks(asset.sourceIds)}<a class="button" href="models/${asset.id}.html">Open model &amp; photo study</a>`;
 }
 
 function renderAtlas() {
+  cancelAtlasPhotos();
   const query = $('#atlas-search').value.trim().toLowerCase();
   const category = $('#atlas-category').value;
   const evidence = $('#atlas-evidence').value;
   const visible = catalogue.filter(asset => (category === 'all' || asset.category === category) && (evidence === 'all' || asset.evidence === evidence) && [asset.name, ...asset.aliases, asset.form, asset.summary, ...asset.cues].join(' ').toLowerCase().includes(query));
-  $('#filter-summary').textContent = `${visible.length} of ${catalogue.length} entries shown. Select up to two to compare.`;
-  $('#atlas-grid').innerHTML = visible.length ? visible.map(asset => `<article class="asset-card"><div class="asset-icon">${formIcon(asset.form)}<span class="small muted">Generic form icon</span></div><div class="asset-details"><span class="badge ${esc(asset.evidence)}">${esc(evidenceNames[asset.evidence])}</span><h2>${esc(asset.name)}</h2><p class="small muted">${esc(asset.category)}</p><p>${esc(asset.summary)}</p><p><a class="button" href="#study/${asset.id}">Model &amp; photo study<span class="sr-only">: ${esc(asset.name)}</span></a></p><div class="toolbar"><button class="button secondary" type="button" data-open="${asset.id}">Read entry<span class="sr-only">: ${esc(asset.name)}</span></button><label class="small"><input type="checkbox" data-compare="${asset.id}" ${compared.includes(asset.id) ? 'checked' : ''} ${compared.length === 2 && !compared.includes(asset.id) ? 'disabled' : ''}> Compare<span class="sr-only"> ${esc(asset.name)}</span></label></div></div></article>`).join('') : '<p class="empty-state">No entries match these filters. Try another name or choose all categories.</p>';
+  $('#filter-summary').textContent = `${visible.length} of ${catalogue.length} entries shown. Select up to two descriptions to compare. Source images can be loaded directly on each card.`;
+  $('#atlas-grid').innerHTML = visible.length ? visible.map(asset => `<article class="asset-card"><header><h2>${esc(asset.name)}</h2><span class="badge ${esc(asset.evidence)}">${esc(evidenceNames[asset.evidence])}</span></header>${atlasPhotoPanel(asset, formIcon(asset.form))}<div class="asset-details"><p class="small muted">${esc(asset.category)}</p><p>${esc(asset.summary)}</p><p><a class="button" href="models/${asset.id}.html">Model &amp; photo study<span class="sr-only">: ${esc(asset.name)}</span></a></p><div class="toolbar"><button class="button secondary" type="button" data-open="${asset.id}">Read entry<span class="sr-only">: ${esc(asset.name)}</span></button><label class="small"><input type="checkbox" data-compare="${asset.id}" ${compared.includes(asset.id) ? 'checked' : ''} ${compared.length === 2 && !compared.includes(asset.id) ? 'disabled' : ''}> Compare<span class="sr-only"> ${esc(asset.name)}</span></label></div></div></article>`).join('') : '<p class="empty-state">No entries match these filters. Try another name or choose all categories.</p>';
+  attachAtlasPhotos($('#atlas-grid'), catalogue);
 }
 
 function renderCompare() {
@@ -243,7 +247,7 @@ function init() {
   $('.skip-link').addEventListener('click', event => {
     event.preventDefault();
     $('#main').focus({ preventScroll: true });
-    $('#main').scrollIntoView({ block: 'start', behavior: 'instant' });
+    $('#main').scrollIntoView({ block: 'start', behavior: 'auto' });
   });
   loadProgress();
   $('#lesson-count').textContent = lessons.length; $('#asset-count').textContent = catalogue.length; $('#question-count').textContent = quizQuestions.length;
@@ -289,5 +293,8 @@ function init() {
     const a = document.createElement('a'); a.href = url; a.download = 'uas-fictional-practice-note.txt'; document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
   });
   window.addEventListener('hashchange', () => route()); route(false);
+  window.addEventListener('pagehide', cancelAtlasPhotos);
+  document.documentElement.dataset.courseReady = 'true';
+  $('#app-startup-status')?.setAttribute('hidden', '');
 }
 init();
