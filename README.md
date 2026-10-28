@@ -1,6 +1,17 @@
 # jshao0919.github.io
 Revisiting math :)
 
+## Motor Pool · 91B Learning Lab
+
+[Open the PMCS and maintenance forms course](91b/) for 14 beginner lessons,
+12 interactive vehicle-inspection stations, original leak-class animations,
+guided DA Form 2404 and 5988-E practice, a maintenance handoff activity,
+and 42 explained questions. Every lesson also has a standalone reading page;
+the [complete workbook](91b/workbook.html) works without JavaScript and can be printed.
+Examples are fictional training records. The current vehicle TM and authorized
+unit process supply specific procedures, limits, form requirements, and authority.
+See [scope, source limitations, and development instructions](91b/README.md).
+
 ## UAS Recognition & Sensor Literacy
 
 [Open the interactive course](uas/) for ten beginner lessons, a searchable
